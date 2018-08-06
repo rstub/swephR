@@ -1,0 +1,12 @@
+Package: SwissEphemeris
+Type: Package
+Title: High Precision Ephemeris
+Version: 0.0.1
+Author: Ralf Stubner
+Maintainer: Ralf Stubner <ralf.stubner@gmail.com>
+Description: The SWISS EPHEMERIS is the high precision ephemeris developed
+    by Astrodienst, largely based upon the DE431 ephemerides from NASA's JPL.
+License: GPL (>= 2)
+Imports: Rcpp (>= 0.12.18)
+LinkingTo: Rcpp
+RoxygenNote: 6.1.0
