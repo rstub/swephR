@@ -10,3 +10,5 @@ License: GPL (>= 2)
 Imports: Rcpp (>= 0.12.18)
 LinkingTo: Rcpp
 RoxygenNote: 6.1.0
+Suggests:
+    testthat
