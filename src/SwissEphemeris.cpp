@@ -1,5 +1,15 @@
 #include <Rcpp.h>
-#include <swephexp.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/* monday = 0, ... sunday = 6 */
+int swe_day_of_week(double jd);
+
+#ifdef __cplusplus
+}
+#endif
 
 //' Compute day of week
 //' @param jd  Julian date as double
