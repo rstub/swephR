@@ -6,12 +6,12 @@
 using namespace Rcpp;
 
 // day_of_week
-int day_of_week(double jd);
+Rcpp::IntegerVector day_of_week(Rcpp::NumericVector jd);
 RcppExport SEXP _swephR_day_of_week(SEXP jdSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type jd(jdSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type jd(jdSEXP);
     rcpp_result_gen = Rcpp::wrap(day_of_week(jd));
     return rcpp_result_gen;
 END_RCPP
