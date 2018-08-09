@@ -16,6 +16,8 @@ matrix:
     os: osx
   - r: devel
     os: osx
+  allow_failures:
+  - os: osx
 notifications:
   email:
     on_success: change
