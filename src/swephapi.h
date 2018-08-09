@@ -8,6 +8,9 @@ extern "C" {
 /* monday = 0, ... sunday = 6 */
 int swe_day_of_week(double jd);
 
+/* acquire the tidal acceleration */
+double swe_get_tid_acc() ;
+
 #ifdef __cplusplus
 }
 #endif

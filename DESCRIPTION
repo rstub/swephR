@@ -2,7 +2,7 @@ Package: swephR
 Type: Package
 Title: High Precision Swiss Ephemeris
 Version: 0.0.2
-Author: Ralf Stubner
+Author: Ralf Stubner and Victor Reijs
 Maintainer: Ralf Stubner <ralf.stubner@gmail.com>
 Description: The SWISS EPHEMERIS is the high precision ephemeris developed
     by Astrodienst, largely based upon the DE431 ephemerides from NASA's JPL.
@@ -12,3 +12,6 @@ LinkingTo: Rcpp
 RoxygenNote: 6.1.0
 Suggests:
     testthat
+Encoding: UTF-8
+URL: https://github.com/rstub/swephR/
+Issues: https://github.com/rstub/swephR/issues/

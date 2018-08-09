@@ -16,9 +16,20 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// get_tid_acc
+double get_tid_acc();
+RcppExport SEXP _swephR_get_tid_acc() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(get_tid_acc());
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_swephR_day_of_week", (DL_FUNC) &_swephR_day_of_week, 1},
+    {"_swephR_get_tid_acc", (DL_FUNC) &_swephR_get_tid_acc, 0},
     {NULL, NULL, 0}
 };
 

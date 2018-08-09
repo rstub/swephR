@@ -9,3 +9,10 @@ day_of_week <- function(jd) {
     .Call(`_swephR_day_of_week`, jd)
 }
 
+#' Get the present configured tidal acceleration
+#' @return tidal acceleration as double
+#' @export
+get_tid_acc <- function() {
+    .Call(`_swephR_get_tid_acc`)
+}
+
