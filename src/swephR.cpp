@@ -16,6 +16,8 @@ int swe_day_of_week(double jd);
 //' @return Day of week as integer
 //' @export
 // [[Rcpp::export]]
-int day_of_week(double jd) {
-  return swe_day_of_week(jd);
+Rcpp::IntegerVector day_of_week(Rcpp::NumericVector jd) {
+  Rcpp::IntegerVector result(jd.size());
+  std::transform(jd.begin(), jd.end(), result.begin(), swe_day_of_week);
+  return result;
 }
