@@ -2,4 +2,4 @@
 
 export(day_of_week)
 importFrom(Rcpp,evalCpp)
-useDynLib(SwissEphemeris, .registration = TRUE)
+useDynLib(swephR, .registration = TRUE)

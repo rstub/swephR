@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // day_of_week
 int day_of_week(double jd);
-RcppExport SEXP _SwissEphemeris_day_of_week(SEXP jdSEXP) {
+RcppExport SEXP _swephR_day_of_week(SEXP jdSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -18,11 +18,11 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_SwissEphemeris_day_of_week", (DL_FUNC) &_SwissEphemeris_day_of_week, 1},
+    {"_swephR_day_of_week", (DL_FUNC) &_swephR_day_of_week, 1},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_SwissEphemeris(DllInfo *dll) {
+RcppExport void R_init_swephR(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

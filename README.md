@@ -1,5 +1,12 @@
-  [![Travis build status](https://travis-ci.org/rstub/SwissEphemeris.svg?branch=master)](https://travis-ci.org/rstub/SwissEphemeris)
-  [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/rstub/SwissEphemeris?branch=master&svg=true)](https://ci.appveyor.com/project/rstub/SwissEphemeris)
+  [![Travis build status](https://travis-ci.org/rstub/swephR.svg?branch=master)](https://travis-ci.org/rstub/swephR)
+  [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/rstub/swephR?branch=master&svg=true)](https://ci.appveyor.com/project/rstub/swephR)
 
-# SwissEphemeris
-High Precision Ephemeris
+# swephR
+High Precision Swiss Ephemeris
+
+# Installation
+Since `swephR` is not on CRAN, you have to install from GitHub
+
+```
+remotes::install_github("rstub/swephR")
+```

@@ -1,4 +1,4 @@
 library(testthat)
-library(SwissEphemeris)
+library(swephR)
 
-test_check("SwissEphemeris")
+test_check("swephR")

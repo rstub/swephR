@@ -6,6 +6,6 @@
 #' @return Day of week as integer
 #' @export
 day_of_week <- function(jd) {
-    .Call(`_SwissEphemeris_day_of_week`, jd)
+    .Call(`_swephR_day_of_week`, jd)
 }
 
