@@ -7,7 +7,7 @@
 get_tid_acc()
 }
 \value{
-tidal acceleration as double
+tidal acceleration as double [arcsec/century^2]
 }
 \description{
 Get the present configured tidal acceleration

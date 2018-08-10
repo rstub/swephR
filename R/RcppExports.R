@@ -10,7 +10,7 @@ day_of_week <- function(jd) {
 }
 
 #' Get the present configured tidal acceleration
-#' @return tidal acceleration as double
+#' @return tidal acceleration as double [arcsec/century^2]
 #' @export
 get_tid_acc <- function() {
     .Call(`_swephR_get_tid_acc`)
@@ -21,5 +21,44 @@ get_tid_acc <- function() {
 #' @export
 version <- function() {
     .Call(`_swephR_version`)
+}
+
+#' Set the tidal acceleration
+#' @param t_acc tidal acceleration as double [arcsec/century^2]
+#' @export
+set_tid_acc <- function(t_acc) {
+    invisible(.Call(`_swephR_set_tid_acc`, t_acc))
+}
+
+#' Determine the DeltaT at a certain date
+#' @param tjd  Julian day Number
+#' @return  DeltaT [sec]
+#' @export
+deltat <- function(tjd) {
+    .Call(`_swephR_deltat`, tjd)
+}
+
+#' Set the directory for the sefstar.txt, swe_deltat.txt and jpl files
+#' @param file  the directory plus file ((a string)
+#' @export
+set_ephe_path <- function(file) {
+    invisible(.Call(`_swephR_set_ephe_path`, file))
+}
+
+#' Set the topocentric location (lon, lat, height)
+#' @param geolon  Topocentric Longitude (deg)
+#' @param geolat  Topocentric Latitude (deg)
+#' @param altitude  the height (m)
+#' @export
+set_topo <- function(geolon, geolat, altitude) {
+    invisible(.Call(`_swephR_set_topo`, geolon, geolat, altitude))
+}
+
+#' Set one's own DeltaT
+#' @param t_acc DeltaT value[sec]
+#' return void
+#' @export
+set_delta_t_userdef <- function(t_acc) {
+    invisible(.Call(`_swephR_set_delta_t_userdef`, t_acc))
 }
 

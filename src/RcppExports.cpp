@@ -36,11 +36,69 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// set_tid_acc
+void set_tid_acc(double t_acc);
+RcppExport SEXP _swephR_set_tid_acc(SEXP t_accSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type t_acc(t_accSEXP);
+    set_tid_acc(t_acc);
+    return R_NilValue;
+END_RCPP
+}
+// deltat
+double deltat(double tjd);
+RcppExport SEXP _swephR_deltat(SEXP tjdSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type tjd(tjdSEXP);
+    rcpp_result_gen = Rcpp::wrap(deltat(tjd));
+    return rcpp_result_gen;
+END_RCPP
+}
+// set_ephe_path
+void set_ephe_path(std::string file);
+RcppExport SEXP _swephR_set_ephe_path(SEXP fileSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type file(fileSEXP);
+    set_ephe_path(file);
+    return R_NilValue;
+END_RCPP
+}
+// set_topo
+void set_topo(double geolon, double geolat, double altitude);
+RcppExport SEXP _swephR_set_topo(SEXP geolonSEXP, SEXP geolatSEXP, SEXP altitudeSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type geolon(geolonSEXP);
+    Rcpp::traits::input_parameter< double >::type geolat(geolatSEXP);
+    Rcpp::traits::input_parameter< double >::type altitude(altitudeSEXP);
+    set_topo(geolon, geolat, altitude);
+    return R_NilValue;
+END_RCPP
+}
+// set_delta_t_userdef
+void set_delta_t_userdef(double t_acc);
+RcppExport SEXP _swephR_set_delta_t_userdef(SEXP t_accSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type t_acc(t_accSEXP);
+    set_delta_t_userdef(t_acc);
+    return R_NilValue;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_swephR_day_of_week", (DL_FUNC) &_swephR_day_of_week, 1},
     {"_swephR_get_tid_acc", (DL_FUNC) &_swephR_get_tid_acc, 0},
     {"_swephR_version", (DL_FUNC) &_swephR_version, 0},
+    {"_swephR_set_tid_acc", (DL_FUNC) &_swephR_set_tid_acc, 1},
+    {"_swephR_deltat", (DL_FUNC) &_swephR_deltat, 1},
+    {"_swephR_set_ephe_path", (DL_FUNC) &_swephR_set_ephe_path, 1},
+    {"_swephR_set_topo", (DL_FUNC) &_swephR_set_topo, 3},
+    {"_swephR_set_delta_t_userdef", (DL_FUNC) &_swephR_set_delta_t_userdef, 1},
     {NULL, NULL, 0}
 };
 

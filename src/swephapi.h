@@ -28,6 +28,14 @@ double swe_get_tid_acc() ;
 char * swe_version(char *);
 char * swe_get_library_path(char *);
 
+/* vr added functions */
+void swe_set_tid_acc(double t_acc);
+double swe_deltat(double tjd);
+void swe_set_ephe_path(char *);
+void swe_set_topo(double geolon, double geolat, double altitude);
+void swe_set_delta_t_userdef (double t_acc);
+
+
 /* planets, moon, nodes etc. */
 int32 swe_calc(
         double tjd, int ipl, int32 iflag,
