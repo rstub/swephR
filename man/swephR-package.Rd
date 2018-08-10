@@ -9,3 +9,10 @@
 The swephR package provides an R interface for the
 \href{http://www.astro.com/swisseph/swephinfo_e.htm}{\code{Swiss Ephemeris}}.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/rstub/swephR/}
+}
+
+}
