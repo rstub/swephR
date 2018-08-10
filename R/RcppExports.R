@@ -16,3 +16,10 @@ get_tid_acc <- function() {
     .Call(`_swephR_get_tid_acc`)
 }
 
+#' Get the Swiss Ephemeris version number
+#' @return Swiss Ephemeris version number as string
+#' @export
+version <- function() {
+    .Call(`_swephR_version`)
+}
+

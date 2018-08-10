@@ -19,3 +19,16 @@ Rcpp::IntegerVector day_of_week(Rcpp::NumericVector jd) {
 double get_tid_acc() {
   return swe_get_tid_acc();
 }
+
+
+//' Get the Swiss Ephemeris version number
+//' @return Swiss Ephemeris version number as string
+//' @export
+// [[Rcpp::export]]
+std::string version() {
+  char *version = (char*) malloc(256*sizeof(char));
+  swe_version(version);
+  std::string result(version);
+  free(version);
+  return result;
+}

@@ -26,10 +26,21 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// version
+std::string version();
+RcppExport SEXP _swephR_version() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(version());
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_swephR_day_of_week", (DL_FUNC) &_swephR_day_of_week, 1},
     {"_swephR_get_tid_acc", (DL_FUNC) &_swephR_get_tid_acc, 0},
+    {"_swephR_version", (DL_FUNC) &_swephR_version, 0},
     {NULL, NULL, 0}
 };
 
