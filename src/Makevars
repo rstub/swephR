@@ -1,4 +1,4 @@
-PKG_CPPFLAGS=-I./libswe
+CXX_STD = CXX11
 PKG_LIBS=-L. -lswe
 
 all: $(SHLIB)
