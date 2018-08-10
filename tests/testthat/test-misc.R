@@ -11,3 +11,7 @@ test_that("day_of_week works with vector input", {
 test_that("tidal accelaration can be retrieved", {
   expect_equal(get_tid_acc(), 0)
 })
+
+test_that("version works", {
+    expect_equal(version(), "2.07.01")
+})
