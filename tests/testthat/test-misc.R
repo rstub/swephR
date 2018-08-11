@@ -12,6 +12,11 @@ test_that("tidal accelaration can be retrieved", {
   expect_equal(get_tid_acc(), 0)
 })
 
+test_that("tidal accelaration can be set and retrieved", {
+  set_tid_acc(1.23)
+  expect_equal(get_tid_acc(), 1.23)
+})
+
 test_that("version works", {
     expect_equal(version(), "2.07.01")
 })
