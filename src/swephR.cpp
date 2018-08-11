@@ -13,7 +13,7 @@ Rcpp::IntegerVector day_of_week(Rcpp::NumericVector jd) {
 }
 
 //' Get the present configured tidal acceleration
-//' @return tidal acceleration as double [arcsec/century^2]
+//' @return tidal acceleration as double (arcsec/century^2)
 //' @export
 // [[Rcpp::export]]
 double get_tid_acc() {
@@ -31,7 +31,7 @@ std::string version() {
 }
 
 //' Set the tidal acceleration
-//' @param t_acc tidal acceleration as double [arcsec/century^2]
+//' @param t_acc tidal acceleration as double (arcsec/century^2)
 //' @export
 // [[Rcpp::export]]
 void set_tid_acc(double t_acc) {
@@ -40,7 +40,7 @@ void set_tid_acc(double t_acc) {
 
 //' Determine the DeltaT at a certain date
 //' @param tjd  Julian day Number
-//' @return  DeltaT [sec]
+//' @return  DeltaT (sec)
 //' @export
 // [[Rcpp::export]]
 double deltat(double tjd) {
@@ -48,7 +48,7 @@ double deltat(double tjd) {
 }
 
 //' Set the directory for the sefstar.txt, swe_deltat.txt and jpl files
-//' @param file  the directory plus file ((a string)
+//' @param file  the directory plus file (a string)
 //' @export
 // [[Rcpp::export]]
 void set_ephe_path(std::string file) {
@@ -66,7 +66,7 @@ void set_topo(double geolon, double geolat, double altitude) {
 }
 
 //' Set one's own DeltaT
-//' @param t_acc DeltaT value[sec]
+//' @param t_acc DeltaT value (sec)
 //' return void
 //' @export
 // [[Rcpp::export]]
