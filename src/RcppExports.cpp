@@ -80,12 +80,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // set_delta_t_userdef
-void set_delta_t_userdef(double t_acc);
-RcppExport SEXP _swephR_set_delta_t_userdef(SEXP t_accSEXP) {
+void set_delta_t_userdef(double delta_t);
+RcppExport SEXP _swephR_set_delta_t_userdef(SEXP delta_tSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type t_acc(t_accSEXP);
-    set_delta_t_userdef(t_acc);
+    Rcpp::traits::input_parameter< double >::type delta_t(delta_tSEXP);
+    set_delta_t_userdef(delta_t);
     return R_NilValue;
 END_RCPP
 }
