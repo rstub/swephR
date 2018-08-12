@@ -20,3 +20,10 @@ test_that("tidal accelaration can be set and retrieved", {
 test_that("version works", {
     expect_equal(swe_version(), "2.07.01")
 })
+
+test_that("non-existent planet produces error", {
+    result <- swe_calc(1234.567, -2)
+    expect_true(is.list(result))
+    expect_equal(result$rc, -1)
+    expect_equal(result$serr, "illegal planet number -2.")
+})
