@@ -89,3 +89,21 @@ void set_delta_t_userdef (double delta_t) {
   swe_set_delta_t_userdef (delta_t);
 }
 
+//' @param tjd_et  Julian day, Ephemeris time
+//' @param ipl  body number
+//' @param iflag  a 32 bit integer containing bit flags that indicate what
+//'               kind of computation is wanted
+//' @return \code{swe_calc} returns a list with named entries \code{rc},
+//'         \code{xx}, and \code{serr} for return code, calculated values
+//'         and error message.
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_calc)]]
+Rcpp::List calc(double tjd_et, int ipl, int iflag = 0) {
+  std::array<double, 6> xx;
+  std::array<char, 256> serr;
+  int rc = swe_calc(tjd_et, ipl, iflag, &xx[0], &serr[0]);
+  return Rcpp::List::create(Rcpp::Named("rc") = rc,
+			    Rcpp::Named("xx") = xx,
+			    Rcpp::Named("serr") = std::string(&serr[0]));
+}

@@ -10,6 +10,7 @@
 \alias{swe_set_ephe_path}
 \alias{swe_set_topo}
 \alias{swe_set_delta_t_userdef}
+\alias{swe_calc}
 \title{Expert interface}
 \usage{
 swe_day_of_week(jd)
@@ -27,6 +28,8 @@ swe_set_ephe_path(file)
 swe_set_topo(geolon, geolat, altitude)
 
 swe_set_delta_t_userdef(delta_t)
+
+swe_calc(tjd_et, ipl, iflag = 0L)
 }
 \arguments{
 \item{jd}{Julian date as numeric vector}
@@ -44,6 +47,13 @@ swe_set_delta_t_userdef(delta_t)
 \item{altitude}{the height (m)}
 
 \item{delta_t}{DeltaT value (sec)}
+
+\item{tjd_et}{Julian day, Ephemeris time}
+
+\item{ipl}{body number}
+
+\item{iflag}{a 32 bit integer containing bit flags that indicate what
+kind of computation is wanted}
 }
 \value{
 \code{swe_day_of_week} retruns the day of week as integer vector
@@ -53,6 +63,10 @@ tidal acceleration as double (arcsec/century^2)
 Swiss Ephemeris version number as string
 
 DeltaT (sec)
+
+\code{swe_calc} returns a list with named entries \code{rc},
+        \code{xx}, and \code{serr} for return code, calculated values
+        and error message.
 }
 \description{
 For experts that are familiar with the C API of the underlying \code{libswe},

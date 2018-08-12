@@ -89,6 +89,19 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// calc
+Rcpp::List calc(double tjd_et, int ipl, int iflag);
+RcppExport SEXP _swephR_calc(SEXP tjd_etSEXP, SEXP iplSEXP, SEXP iflagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type tjd_et(tjd_etSEXP);
+    Rcpp::traits::input_parameter< int >::type ipl(iplSEXP);
+    Rcpp::traits::input_parameter< int >::type iflag(iflagSEXP);
+    rcpp_result_gen = Rcpp::wrap(calc(tjd_et, ipl, iflag));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_swephR_day_of_week", (DL_FUNC) &_swephR_day_of_week, 1},
@@ -99,6 +112,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_set_ephe_path", (DL_FUNC) &_swephR_set_ephe_path, 1},
     {"_swephR_set_topo", (DL_FUNC) &_swephR_set_topo, 3},
     {"_swephR_set_delta_t_userdef", (DL_FUNC) &_swephR_set_delta_t_userdef, 1},
+    {"_swephR_calc", (DL_FUNC) &_swephR_calc, 3},
     {NULL, NULL, 0}
 };
 
