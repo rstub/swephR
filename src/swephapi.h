@@ -42,6 +42,22 @@ int32 swe_calc(
         double *xx,
         char *serr);
 
+/* star info. */
+int32 swe_fixstar(
+    char *star, double tjd, int32 iflag,
+    double *xx,
+    char *serr);
+
+void swe_azalt(
+    double tjd_ut,     /* UT */
+    int32 calc_flag,    /* SE_ECL2HOR=0 or SE_EQU2HOR=1 */
+    double *geopos, /* array of 3 doubles: geograph. long., lat., height */
+    double atpress,   /* atmospheric pressure in mbar (hPa) */
+    double attemp,   /* atmospheric temperature in degrees Celsius */  
+  double *xin,
+  double *xaz);
+
+
 int32 swe_calc_ut(double tjd_ut, int32 ipl, int32 iflag,
 	double *xx, char *serr);
 

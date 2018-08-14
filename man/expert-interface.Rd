@@ -11,6 +11,8 @@
 \alias{swe_set_topo}
 \alias{swe_set_delta_t_userdef}
 \alias{swe_calc}
+\alias{swe_fixstar}
+\alias{swe_azalt}
 \title{Expert interface}
 \usage{
 swe_day_of_week(jd)
@@ -29,7 +31,11 @@ swe_set_topo(geolon, geolat, altitude)
 
 swe_set_delta_t_userdef(delta_t)
 
-swe_calc(tjd_et, ipl, iflag = 0L)
+swe_calc(tjd_et, ipl, iflag = 4L)
+
+swe_fixstar(star, tjd_et, iflag = 4L)
+
+swe_azalt(tjd_ut, calc_flag, geopos, atpress, attemp, xin)
 }
 \arguments{
 \item{jd}{Julian date as numeric vector}
@@ -54,6 +60,23 @@ swe_calc(tjd_et, ipl, iflag = 0L)
 
 \item{iflag}{a 32 bit integer containing bit flags that indicate what
 kind of computation is wanted}
+
+\item{star}{star name}
+
+\item{tjd_ut}{Julian day, UT time}
+
+\item{calc_flag}{Type of reference system}
+
+\item{atpress}{atmospheric pressure in mbar (hPa)}
+
+\item{attemp}{atmospheric temperature in degrees Celsius}
+
+\item{tjd_et}{Julian day, Ephemeris time}
+
+\item{iflag}{a 32 bit integer containing bit flags that indicate what
+kind of computation is wanted}
+
+\item{geopoas}{The position vector (longitude, latitude, height)}
 }
 \value{
 \code{swe_day_of_week} retruns the day of week as integer vector
@@ -67,6 +90,13 @@ DeltaT (sec)
 \code{swe_calc} returns a list with named entries \code{rc},
         \code{xx}, and \code{serr} for return code, calculated values
         and error message.
+
+\code{swe_fixstar} returns a list with named entries \code{return},
+        \code{star}, \code{xx}, and \code{serr} for return code, updated star name, 
+        calculated values and error message.
+
+\code{swe_azalt} returns a list with named entries: 
+     \code{xaz} for azi/alt info.
 }
 \description{
 For experts that are familiar with the C API of the underlying \code{libswe},

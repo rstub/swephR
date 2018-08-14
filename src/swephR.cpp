@@ -89,6 +89,7 @@ void set_delta_t_userdef (double delta_t) {
   swe_set_delta_t_userdef (delta_t);
 }
 
+//' Compute information of planet
 //' @param tjd_et  Julian day, Ephemeris time
 //' @param ipl  body number
 //' @param iflag  a 32 bit integer containing bit flags that indicate what
@@ -99,11 +100,51 @@ void set_delta_t_userdef (double delta_t) {
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_calc)]]
-Rcpp::List calc(double tjd_et, int ipl, int iflag = 0) {
+Rcpp::List calc(double tjd_et, int ipl, int iflag = 4) {
   std::array<double, 6> xx;
   std::array<char, 256> serr;
   int rc = swe_calc(tjd_et, ipl, iflag, &xx[0], &serr[0]);
-  return Rcpp::List::create(Rcpp::Named("rc") = rc,
+  return Rcpp::List::create(Rcpp::Named("return") = rc,
 			    Rcpp::Named("xx") = xx,
 			    Rcpp::Named("serr") = std::string(&serr[0]));
+}
+
+
+//' Compute information of stars
+//' @param star  star name
+//' @param tjd_et  Julian day, Ephemeris time
+//' @param iflag  a 32 bit integer containing bit flags that indicate what
+//'               kind of computation is wanted
+//' @return \code{swe_fixstar} returns a list with named entries \code{return},
+//'         \code{star}, \code{xx}, and \code{serr} for return code, updated star name, 
+//'         calculated values and error message.
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_fixstar)]]
+Rcpp::List fixstar(std::string star, double tjd_et, int iflag = 4) {
+  std::array<double, 6> xx;
+  std::array<char, 256> serr;
+  star = star + "                                         ";
+  int rtn = swe_fixstar(&star[0], tjd_et, iflag, &xx[0], &serr[0]);
+  return Rcpp::List::create(Rcpp::Named("return") = rtn,
+                            Rcpp::Named("star") = std::string(&star[0]),
+                            Rcpp::Named("xx") = xx,
+                            Rcpp::Named("serr") = std::string(&serr[0]));
+}
+
+//' Compute horizon information: azimuth, altiiude
+//' @param tjd_ut  Julian day, UT time
+//' @param calc_flag Type of reference system
+//' @param geopoas The position vector (longitude, latitude, height)
+//' @param atpress atmospheric pressure in mbar (hPa)
+//' @param attemp atmospheric temperature in degrees Celsius
+//' @return \code{swe_azalt} returns a list with named entries: 
+//'      \code{xaz} for azi/alt info.
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_azalt)]]
+Rcpp::List azalt(double tjd_ut, int calc_flag, Rcpp::NumericVector geopos, double atpress, double attemp, Rcpp::NumericVector xin) {
+  std::array<double, 3> xaz;
+  swe_azalt(tjd_ut, calc_flag, &geopos[0], atpress, attemp, &xin[0], &xaz[0]);
+  return Rcpp::List::create(Rcpp::Named("xaz") = xaz);
 }
