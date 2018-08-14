@@ -102,6 +102,35 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// fixstar
+Rcpp::List fixstar(std::string star, double tjd_et, int iflag);
+RcppExport SEXP _swephR_fixstar(SEXP starSEXP, SEXP tjd_etSEXP, SEXP iflagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type star(starSEXP);
+    Rcpp::traits::input_parameter< double >::type tjd_et(tjd_etSEXP);
+    Rcpp::traits::input_parameter< int >::type iflag(iflagSEXP);
+    rcpp_result_gen = Rcpp::wrap(fixstar(star, tjd_et, iflag));
+    return rcpp_result_gen;
+END_RCPP
+}
+// azalt
+Rcpp::List azalt(double tjd_ut, int calc_flag, Rcpp::NumericVector geopos, double atpress, double attemp, Rcpp::NumericVector xin);
+RcppExport SEXP _swephR_azalt(SEXP tjd_utSEXP, SEXP calc_flagSEXP, SEXP geoposSEXP, SEXP atpressSEXP, SEXP attempSEXP, SEXP xinSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type tjd_ut(tjd_utSEXP);
+    Rcpp::traits::input_parameter< int >::type calc_flag(calc_flagSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type geopos(geoposSEXP);
+    Rcpp::traits::input_parameter< double >::type atpress(atpressSEXP);
+    Rcpp::traits::input_parameter< double >::type attemp(attempSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type xin(xinSEXP);
+    rcpp_result_gen = Rcpp::wrap(azalt(tjd_ut, calc_flag, geopos, atpress, attemp, xin));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_swephR_day_of_week", (DL_FUNC) &_swephR_day_of_week, 1},
@@ -113,6 +142,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_set_topo", (DL_FUNC) &_swephR_set_topo, 3},
     {"_swephR_set_delta_t_userdef", (DL_FUNC) &_swephR_set_delta_t_userdef, 1},
     {"_swephR_calc", (DL_FUNC) &_swephR_calc, 3},
+    {"_swephR_fixstar", (DL_FUNC) &_swephR_fixstar, 3},
+    {"_swephR_azalt", (DL_FUNC) &_swephR_azalt, 6},
     {NULL, NULL, 0}
 };
 
