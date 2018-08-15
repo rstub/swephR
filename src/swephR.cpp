@@ -158,8 +158,8 @@ Rcpp::List azalt(double tjd_ut, int calc_flag, Rcpp::NumericVector geopos, doubl
 //' @param atpress atmospheric pressure in mbar (hPa)
 //' @param attemp atmospheric temperature in degrees Celsius
 //' @param horhgt The apparent horizon at rise/set in degrees
-//' @return \code{swe_rise_trans_true_hor} returns a list with named entries: 
-//'      \code{tret} for azi/alt info and \code(serr) for possible error code
+//' @return \code{swe_rise_trans_true_hor} returns a list with named entries: \code{i} success of function
+//'      \code{tret} for azi/alt info and \code{serr} for possible error code
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_rise_trans_true_hor)]]

@@ -128,8 +128,8 @@ swe_azalt <- function(tjd_ut, calc_flag, geopos, atpress, attemp, xin) {
 #' @param atpress atmospheric pressure in mbar (hPa)
 #' @param attemp atmospheric temperature in degrees Celsius
 #' @param horhgt The apparent horizon at rise/set in degrees
-#' @return \code{swe_rise_trans_true_hor} returns a list with named entries: 
-#'      \code{tret} for azi/alt info and \code(serr) for possible error code
+#' @return \code{swe_rise_trans_true_hor} returns a list with named entries: \code{i} success of function
+#'      \code{tret} for azi/alt info and \code{serr} for possible error code
 #' @rdname expert-interface
 #' @export
 swe_rise_trans_true_hor <- function(tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp, horhgt) {

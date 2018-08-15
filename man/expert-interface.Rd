@@ -118,8 +118,8 @@ DeltaT (sec)
 \code{swe_azalt} returns a list with named entries: 
      \code{xaz} for azi/alt info.
 
-\code{swe_rise_trans_true_hor} returns a list with named entries: 
-     \code{tret} for azi/alt info and \code(serr) for possible error code
+\code{swe_rise_trans_true_hor} returns a list with named entries: \code{i} success of function
+     \code{tret} for azi/alt info and \code{serr} for possible error code
 }
 \description{
 For experts that are familiar with the C API of the underlying \code{libswe},
