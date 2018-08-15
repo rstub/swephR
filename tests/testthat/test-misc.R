@@ -24,6 +24,6 @@ test_that("version works", {
 test_that("non-existent planet produces error", {
     result <- swe_calc(1234.567, -2)
     expect_true(is.list(result))
-    expect_equal(result$rc, -1)
+    expect_equal(result$return, -1)
     expect_equal(result$serr, "illegal planet number -2.")
 })
