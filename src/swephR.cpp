@@ -124,7 +124,7 @@ Rcpp::List calc(double tjd_et, int ipl, int iflag = 4) {
 Rcpp::List fixstar(std::string star, double tjd_et, int iflag = 4) {
   std::array<double, 6> xx;
   std::array<char, 256> serr;
-  star = star.resize(41);
+  star.resize(41);
   int rtn = swe_fixstar(&star[0], tjd_et, iflag, &xx[0], &serr[0]);
   return Rcpp::List::create(Rcpp::Named("return") = rtn,
                             Rcpp::Named("star") = std::string(&star[0]),
