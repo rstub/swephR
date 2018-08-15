@@ -87,7 +87,7 @@ swe_set_delta_t_userdef <- function(delta_t) {
 #'         and error message.
 #' @rdname expert-interface
 #' @export
-swe_calc <- function(tjd_et, ipl, iflag = 4L) {
+swe_calc <- function(tjd_et, ipl, iflag) {
     .Call(`_swephR_calc`, tjd_et, ipl, iflag)
 }
 
@@ -101,7 +101,7 @@ swe_calc <- function(tjd_et, ipl, iflag = 4L) {
 #'         calculated values and error message.
 #' @rdname expert-interface
 #' @export
-swe_fixstar <- function(star, tjd_et, iflag = 4L) {
+swe_fixstar <- function(star, tjd_et, iflag) {
     .Call(`_swephR_fixstar`, star, tjd_et, iflag)
 }
 

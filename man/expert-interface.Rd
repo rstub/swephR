@@ -32,9 +32,9 @@ swe_set_topo(geolon, geolat, altitude)
 
 swe_set_delta_t_userdef(delta_t)
 
-swe_calc(tjd_et, ipl, iflag = 4L)
+swe_calc(tjd_et, ipl, iflag)
 
-swe_fixstar(star, tjd_et, iflag = 4L)
+swe_fixstar(star, tjd_et, iflag)
 
 swe_azalt(tjd_ut, calc_flag, geopos, atpress, attemp, xin)
 
