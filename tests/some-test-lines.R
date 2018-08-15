@@ -1,7 +1,7 @@
 library(swephR)
 
 #I need to do these others testi snot found
-# library(roxygen2)
+#library(roxygen2)
 # roxygenise()
 
 swe_set_ephe_path("C:\\ARCHAEOCOSMO\\ephe")
@@ -19,4 +19,10 @@ test_that("Existing star position", {
 test_that("Azimuth and altitude postions", {
   result <- swe_azalt(1234567,1,c(0,50,10),15,1013.25,c(186,22))
   expect_equal(result$xaz, c(114.636188,   8.210881,   8.209274),tolerance = .0000001)
+})
+
+
+test_that("Rise/set azimuth", {
+          result <- swe_rise_trans_true_hor(1234567.5,0,"",4,0,c(0,50,10),1013.25,15,0)
+          expect_equal(result$tret, 1234567.83559187, tolerance = .0000001)
 })

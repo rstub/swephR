@@ -148,3 +148,26 @@ Rcpp::List azalt(double tjd_ut, int calc_flag, Rcpp::NumericVector geopos, doubl
   swe_azalt(tjd_ut, calc_flag, &geopos[0], atpress, attemp, &xin[0], &xaz[0]);
   return Rcpp::List::create(Rcpp::Named("xaz") = xaz);
 }
+
+//' Compute the rise and set location of the object
+//' @param tjd_ut  Julian day, UT time
+//' @param ipl Plant number (otherwise -1)
+//' @param starname The name of the star (otherwise "")
+//' @param epheflag Type of ephemeris (4=Moshier, 1=JPL, 2=SE)
+//' @param geopoas The position vector (longitude, latitude, height)
+//' @param atpress atmospheric pressure in mbar (hPa)
+//' @param attemp atmospheric temperature in degrees Celsius
+//' @param horhgt The apparent horizon at rise/set in degrees
+//' @return \code{swe_rise_trans_true_hor} returns a list with named entries: 
+//'      \code{tret} for azi/alt info and \code(serr) for possible error code
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_rise_trans_true_hor)]]
+Rcpp::List rise_trans_true_hor(double tjd_ut, int ipl, std::string starname, int epheflag, int rsmi,Rcpp::NumericVector geopos, double atpress, double attemp, double horhgt) {
+  std::array<char, 256> serr;
+  double tret;
+  int i = swe_rise_trans_true_hor(tjd_ut, ipl, &starname[0], epheflag, rsmi, &geopos[0], atpress, attemp, horhgt, &tret, &serr[0]);
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("tret") = tret,
+                            Rcpp::Named("serr") = std::string(&serr[0]));
+}

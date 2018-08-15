@@ -131,6 +131,25 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rise_trans_true_hor
+Rcpp::List rise_trans_true_hor(double tjd_ut, int ipl, std::string starname, int epheflag, int rsmi, Rcpp::NumericVector geopos, double atpress, double attemp, double horhgt);
+RcppExport SEXP _swephR_rise_trans_true_hor(SEXP tjd_utSEXP, SEXP iplSEXP, SEXP starnameSEXP, SEXP epheflagSEXP, SEXP rsmiSEXP, SEXP geoposSEXP, SEXP atpressSEXP, SEXP attempSEXP, SEXP horhgtSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type tjd_ut(tjd_utSEXP);
+    Rcpp::traits::input_parameter< int >::type ipl(iplSEXP);
+    Rcpp::traits::input_parameter< std::string >::type starname(starnameSEXP);
+    Rcpp::traits::input_parameter< int >::type epheflag(epheflagSEXP);
+    Rcpp::traits::input_parameter< int >::type rsmi(rsmiSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type geopos(geoposSEXP);
+    Rcpp::traits::input_parameter< double >::type atpress(atpressSEXP);
+    Rcpp::traits::input_parameter< double >::type attemp(attempSEXP);
+    Rcpp::traits::input_parameter< double >::type horhgt(horhgtSEXP);
+    rcpp_result_gen = Rcpp::wrap(rise_trans_true_hor(tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp, horhgt));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_swephR_day_of_week", (DL_FUNC) &_swephR_day_of_week, 1},
@@ -144,6 +163,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_calc", (DL_FUNC) &_swephR_calc, 3},
     {"_swephR_fixstar", (DL_FUNC) &_swephR_fixstar, 3},
     {"_swephR_azalt", (DL_FUNC) &_swephR_azalt, 6},
+    {"_swephR_rise_trans_true_hor", (DL_FUNC) &_swephR_rise_trans_true_hor, 9},
     {NULL, NULL, 0}
 };
 
