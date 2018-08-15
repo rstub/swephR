@@ -100,7 +100,7 @@ void set_delta_t_userdef (double delta_t) {
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_calc)]]
-Rcpp::List calc(double tjd_et, int ipl, int iflag = 4) {
+Rcpp::List calc(double tjd_et, int ipl, int iflag) {
   std::array<double, 6> xx;
   std::array<char, 256> serr;
   int rc = swe_calc(tjd_et, ipl, iflag, &xx[0], &serr[0]);
@@ -121,7 +121,7 @@ Rcpp::List calc(double tjd_et, int ipl, int iflag = 4) {
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_fixstar)]]
-Rcpp::List fixstar(std::string star, double tjd_et, int iflag = 4) {
+Rcpp::List fixstar(std::string star, double tjd_et, int iflag) {
   std::array<double, 6> xx;
   std::array<char, 256> serr;
   star.resize(41);
