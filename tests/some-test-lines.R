@@ -1,3 +1,6 @@
+library(swephR)
+
+
 swe_set_ephe_path("C:\\ARCHAEOCOSMO\\ephe")
 swe_set_topo(0,50,10)
 swe_fixstar("sirius",1234567,34818)
