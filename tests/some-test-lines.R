@@ -3,7 +3,7 @@ library(swephR)
 
 swe_set_ephe_path("C:\\ARCHAEOCOSMO\\ephe")
 swe_set_topo(0,50,10)
-test_that("Sxisting star position", {
+test_that("Existing star position", {
   result <- swe_fixstar("sirius",1234567,34818)
   expect_true(is.list(result))
   expect_equal(result$return, 34818)
