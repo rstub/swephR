@@ -77,6 +77,7 @@ swe_set_delta_t_userdef <- function(delta_t) {
     invisible(.Call(`_swephR_set_delta_t_userdef`, delta_t))
 }
 
+#' Compute information of planet
 #' @param tjd_et  Julian day, Ephemeris time
 #' @param ipl  body number
 #' @param iflag  a 32 bit integer containing bit flags that indicate what
@@ -86,7 +87,52 @@ swe_set_delta_t_userdef <- function(delta_t) {
 #'         and error message.
 #' @rdname expert-interface
 #' @export
-swe_calc <- function(tjd_et, ipl, iflag = 0L) {
+swe_calc <- function(tjd_et, ipl, iflag) {
     .Call(`_swephR_calc`, tjd_et, ipl, iflag)
+}
+
+#' Compute information of stars
+#' @param star  star name
+#' @param tjd_et  Julian day, Ephemeris time
+#' @param iflag  a 32 bit integer containing bit flags that indicate what
+#'               kind of computation is wanted
+#' @return \code{swe_fixstar} returns a list with named entries \code{return},
+#'         \code{star}, \code{xx}, and \code{serr} for return code, updated star name, 
+#'         calculated values and error message.
+#' @rdname expert-interface
+#' @export
+swe_fixstar <- function(star, tjd_et, iflag) {
+    .Call(`_swephR_fixstar`, star, tjd_et, iflag)
+}
+
+#' Compute horizon information: azimuth, altiiude
+#' @param tjd_ut  Julian day, UT time
+#' @param calc_flag Type of reference system
+#' @param geopoas The position vector (longitude, latitude, height)
+#' @param atpress atmospheric pressure in mbar (hPa)
+#' @param attemp atmospheric temperature in degrees Celsius
+#' @return \code{swe_azalt} returns a list with named entries: 
+#'      \code{xaz} for azi/alt info.
+#' @rdname expert-interface
+#' @export
+swe_azalt <- function(tjd_ut, calc_flag, geopos, atpress, attemp, xin) {
+    .Call(`_swephR_azalt`, tjd_ut, calc_flag, geopos, atpress, attemp, xin)
+}
+
+#' Compute the rise and set location of the object
+#' @param tjd_ut  Julian day, UT time
+#' @param ipl Plant number (otherwise -1)
+#' @param starname The name of the star (otherwise "")
+#' @param epheflag Type of ephemeris (4=Moshier, 1=JPL, 2=SE)
+#' @param geopoas The position vector (longitude, latitude, height)
+#' @param atpress atmospheric pressure in mbar (hPa)
+#' @param attemp atmospheric temperature in degrees Celsius
+#' @param horhgt The apparent horizon at rise/set in degrees
+#' @return \code{swe_rise_trans_true_hor} returns a list with named entries: \code{i} success of function
+#'      \code{tret} for azi/alt info and \code{serr} for possible error code
+#' @rdname expert-interface
+#' @export
+swe_rise_trans_true_hor <- function(tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp, horhgt) {
+    .Call(`_swephR_rise_trans_true_hor`, tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp, horhgt)
 }
 

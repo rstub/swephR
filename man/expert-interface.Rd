@@ -11,6 +11,9 @@
 \alias{swe_set_topo}
 \alias{swe_set_delta_t_userdef}
 \alias{swe_calc}
+\alias{swe_fixstar}
+\alias{swe_azalt}
+\alias{swe_rise_trans_true_hor}
 \title{Expert interface}
 \usage{
 swe_day_of_week(jd)
@@ -29,7 +32,14 @@ swe_set_topo(geolon, geolat, altitude)
 
 swe_set_delta_t_userdef(delta_t)
 
-swe_calc(tjd_et, ipl, iflag = 0L)
+swe_calc(tjd_et, ipl, iflag)
+
+swe_fixstar(star, tjd_et, iflag)
+
+swe_azalt(tjd_ut, calc_flag, geopos, atpress, attemp, xin)
+
+swe_rise_trans_true_hor(tjd_ut, ipl, starname, epheflag, rsmi, geopos,
+  atpress, attemp, horhgt)
 }
 \arguments{
 \item{jd}{Julian date as numeric vector}
@@ -54,6 +64,39 @@ swe_calc(tjd_et, ipl, iflag = 0L)
 
 \item{iflag}{a 32 bit integer containing bit flags that indicate what
 kind of computation is wanted}
+
+\item{star}{star name}
+
+\item{tjd_ut}{Julian day, UT time}
+
+\item{calc_flag}{Type of reference system}
+
+\item{atpress}{atmospheric pressure in mbar (hPa)}
+
+\item{attemp}{atmospheric temperature in degrees Celsius}
+
+\item{starname}{The name of the star (otherwise "")}
+
+\item{epheflag}{Type of ephemeris (4=Moshier, 1=JPL, 2=SE)}
+
+\item{horhgt}{The apparent horizon at rise/set in degrees}
+
+\item{tjd_et}{Julian day, Ephemeris time}
+
+\item{iflag}{a 32 bit integer containing bit flags that indicate what
+kind of computation is wanted}
+
+\item{geopoas}{The position vector (longitude, latitude, height)}
+
+\item{tjd_ut}{Julian day, UT time}
+
+\item{ipl}{Plant number (otherwise -1)}
+
+\item{geopoas}{The position vector (longitude, latitude, height)}
+
+\item{atpress}{atmospheric pressure in mbar (hPa)}
+
+\item{attemp}{atmospheric temperature in degrees Celsius}
 }
 \value{
 \code{swe_day_of_week} retruns the day of week as integer vector
@@ -67,6 +110,16 @@ DeltaT (sec)
 \code{swe_calc} returns a list with named entries \code{rc},
         \code{xx}, and \code{serr} for return code, calculated values
         and error message.
+
+\code{swe_fixstar} returns a list with named entries \code{return},
+        \code{star}, \code{xx}, and \code{serr} for return code, updated star name, 
+        calculated values and error message.
+
+\code{swe_azalt} returns a list with named entries: 
+     \code{xaz} for azi/alt info.
+
+\code{swe_rise_trans_true_hor} returns a list with named entries: \code{i} success of function
+     \code{tret} for azi/alt info and \code{serr} for possible error code
 }
 \description{
 For experts that are familiar with the C API of the underlying \code{libswe},

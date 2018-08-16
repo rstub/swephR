@@ -42,6 +42,36 @@ int32 swe_calc(
         double *xx,
         char *serr);
 
+/* star info. */
+int32 swe_fixstar(
+    char *star, double tjd, int32 iflag,
+    double *xx,
+    char *serr);
+
+void swe_azalt(
+    double tjd_ut,     /* UT */
+    int32 calc_flag,    /* SE_ECL2HOR=0 or SE_EQU2HOR=1 */
+    double *geopos, /* array of 3 doubles: geograph. long., lat., height */
+    double atpress,   /* atmospheric pressure in mbar (hPa) */
+    double attemp,   /* atmospheric temperature in degrees Celsius */  
+  double *xin,
+  double *xaz);
+
+int swe_rise_trans_true_hor(
+    double tjd_ut,               /* search after this time (UT) */
+int ipl,                        /* planet number, if planet or moon */
+char *starname,            /* star name, if star; must be NULL or empty, if ipl is used */
+int epheflag,              /* ephemeris flag */
+int rsmi,                     /* specifying: rise, set, orone of the two meridian transits*/
+double *geopos,            /* array of 3 doubles: geograph. long., lat., height */
+double atpress,             /* atmospheric pressure in mbar/hPa */
+double attemp,              /* atmospheric temperature in deg. C */
+double horhgt,              /* height of local horizon in deg at the point where the body rises or sets*/
+double *tret,                 /* return address (double) for rise time etc. */
+char *serr);                   /* return address for error message */
+
+
+
 int32 swe_calc_ut(double tjd_ut, int32 ipl, int32 iflag,
 	double *xx, char *serr);
 
