@@ -115,7 +115,19 @@ swe_fixstar <- function(star, tjd_et, iflag) {
     .Call(`_swephR_fixstar`, star, tjd_et, iflag)
 }
 
-#' Compute horizon information: azimuth, altitude
+#' Determine DeltaT
+#' @param ephe_flag  the epheemris flag (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)
+#' @return \code{swe_deltat_ex} returns a list with named entries: \code{return} for return value
+#'          and \code{serr} for error message.
+#' @rdname expert-interface
+#' @export
+swe_deltat_ex <- function(tjd, ephe_flag) {
+    .Call(`_swephR_deltat_ex`, tjd, ephe_flag)
+}
+
+#' Compute horizon information: azimuth, altiiude
+#' @return \code{swe_azalt} returns a list with named entries: 
+#'      \code{xaz} for azi/alt info.
 #' @rdname expert-interface
 #' @export
 swe_azalt <- function(tjd_ut, calc_flag, geopos, atpress, attemp, xin) {

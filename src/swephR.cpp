@@ -143,7 +143,24 @@ Rcpp::List fixstar(std::string star, double tjd_et, int iflag) {
                             Rcpp::Named("serr") = std::string(&serr[0]));
 }
 
-//' Compute horizon information: azimuth, altitude
+//' Determine DeltaT
+//' @param ephe_flag  the epheemris flag (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)
+//' @return \code{swe_deltat_ex} returns a list with named entries: \code{return} for return value
+//'          and \code{serr} for error message.
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_deltat_ex)]]
+Rcpp::List deltat_ex(double tjd, int ephe_flag) {
+  std::array<char, 256> serr;
+  double rtn = swe_deltat_ex(tjd, ephe_flag, &serr[0]);
+  return Rcpp::List::create(Rcpp::Named("return") = rtn,
+                             Rcpp::Named("serr") = std::string(&serr[0]));
+}
+
+
+//' Compute horizon information: azimuth, altiiude
+//' @return \code{swe_azalt} returns a list with named entries: 
+//'      \code{xaz} for azi/alt info.
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_azalt)]]
