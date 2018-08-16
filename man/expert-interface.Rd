@@ -12,6 +12,7 @@
 \alias{swe_set_delta_t_userdef}
 \alias{swe_calc}
 \alias{swe_fixstar}
+\alias{swe_deltat_ex}
 \alias{swe_azalt}
 \alias{swe_rise_trans_true_hor}
 \alias{swe_close}
@@ -36,6 +37,8 @@ swe_set_delta_t_userdef(delta_t)
 swe_calc(tjd_et, ipl, iflag)
 
 swe_fixstar(star, tjd_et, iflag)
+
+swe_deltat_ex(tjd, ephe_flag)
 
 swe_azalt(tjd_ut, calc_flag, geopos, atpress, attemp, xin)
 
@@ -69,6 +72,8 @@ swe_close()
 kind of computation is wanted}
 
 \item{star, starname}{star name ("" for no star possible with \code{swe_rise_trans_true_hor})}
+
+\item{ephe_flag}{the epheemris flag (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)}
 
 \item{tjd_ut}{Julian day, UT time}
 
@@ -110,6 +115,12 @@ kind of computation is wanted}
 \code{get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
 
 \code{swe_version} returns the Swiss Ephemeris version number as string
+
+\code{swe_deltat_ex} returns a list with named entries: \code{return} for return value
+         and \code{serr} for error message.
+
+\code{swe_azalt} returns a list with named entries: 
+     \code{xaz} for azi/alt info.
 }
 \description{
 For experts that are familiar with the C API of the underlying

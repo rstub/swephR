@@ -115,6 +115,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// deltat_ex
+Rcpp::List deltat_ex(double tjd, int ephe_flag);
+RcppExport SEXP _swephR_deltat_ex(SEXP tjdSEXP, SEXP ephe_flagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type tjd(tjdSEXP);
+    Rcpp::traits::input_parameter< int >::type ephe_flag(ephe_flagSEXP);
+    rcpp_result_gen = Rcpp::wrap(deltat_ex(tjd, ephe_flag));
+    return rcpp_result_gen;
+END_RCPP
+}
 // azalt
 Rcpp::List azalt(double tjd_ut, int calc_flag, Rcpp::NumericVector geopos, double atpress, double attemp, Rcpp::NumericVector xin);
 RcppExport SEXP _swephR_azalt(SEXP tjd_utSEXP, SEXP calc_flagSEXP, SEXP geoposSEXP, SEXP atpressSEXP, SEXP attempSEXP, SEXP xinSEXP) {
@@ -171,6 +183,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_set_delta_t_userdef", (DL_FUNC) &_swephR_set_delta_t_userdef, 1},
     {"_swephR_calc", (DL_FUNC) &_swephR_calc, 3},
     {"_swephR_fixstar", (DL_FUNC) &_swephR_fixstar, 3},
+    {"_swephR_deltat_ex", (DL_FUNC) &_swephR_deltat_ex, 2},
     {"_swephR_azalt", (DL_FUNC) &_swephR_azalt, 6},
     {"_swephR_rise_trans_true_hor", (DL_FUNC) &_swephR_rise_trans_true_hor, 9},
     {"_swephR_close", (DL_FUNC) &_swephR_close, 0},
