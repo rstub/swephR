@@ -13,6 +13,7 @@ The swephR package provides an R interface for the
 Useful links:
 \itemize{
   \item \url{https://github.com/rstub/swephR/}
+  \item Report bugs at \url{https://github.com/rstub/swephR/issues/}
 }
 
 }

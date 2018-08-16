@@ -14,4 +14,4 @@ Suggests:
     testthat
 Encoding: UTF-8
 URL: https://github.com/rstub/swephR/
-Issues: https://github.com/rstub/swephR/issues/
+BugReports: https://github.com/rstub/swephR/issues/
