@@ -1,5 +1,8 @@
 context("test-misc.R")
 
+skip_on_travis()
+skip_on_appveyor()
+
 test_that("day_of_week works", {
   expect_equal(swe_day_of_week(1234.567), 3)
 })
