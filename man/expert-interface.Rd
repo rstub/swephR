@@ -60,69 +60,56 @@ swe_rise_trans_true_hor(tjd_ut, ipl, starname, epheflag, rsmi, geopos,
 
 \item{tjd_et}{Julian day, Ephemeris time}
 
-\item{ipl}{body number}
+\item{ipl}{body/planet number (-1 for no planet possible with \code{swe_rise_trans_true_hor})}
 
 \item{iflag}{a 32 bit integer containing bit flags that indicate what
 kind of computation is wanted}
 
-\item{star}{star name}
+\item{star, starname}{star name ("" for no star possible with \code{swe_rise_trans_true_hor})}
 
 \item{tjd_ut}{Julian day, UT time}
 
 \item{calc_flag}{Type of reference system}
 
+\item{geopos}{The position vector (longitude, latitude, height)}
+
 \item{atpress}{atmospheric pressure in mbar (hPa)}
 
 \item{attemp}{atmospheric temperature in degrees Celsius}
 
-\item{starname}{The name of the star (otherwise "")}
+\item{xin}{position of body in either ecliptical or equatorial coordinates, depending on calc_flag}
 
 \item{epheflag}{Type of ephemeris (4=Moshier, 1=JPL, 2=SE)}
 
+\item{rsmi}{integer specifying that rise, set, or one of the two meridian transits is wanted}
+
 \item{horhgt}{The apparent horizon at rise/set in degrees}
-
-\item{tjd_et}{Julian day, Ephemeris time}
-
-\item{iflag}{a 32 bit integer containing bit flags that indicate what
-kind of computation is wanted}
-
-\item{geopoas}{The position vector (longitude, latitude, height)}
-
-\item{tjd_ut}{Julian day, UT time}
-
-\item{ipl}{Plant number (otherwise -1)}
-
-\item{geopoas}{The position vector (longitude, latitude, height)}
-
-\item{atpress}{atmospheric pressure in mbar (hPa)}
-
-\item{attemp}{atmospheric temperature in degrees Celsius}
 }
 \value{
-\code{swe_day_of_week} retruns the day of week as integer vector
+\code{swe_rise_trans_true_hor} returns a list with named entries: \code{i} success of function
+     \code{tret} for azi/alt info and \code{serr} for possible error code
 
-tidal acceleration as double (arcsec/century^2)
+\code{swe_azalt} returns a list with named entries:
+     \code{xaz} for azi/alt info.
 
-Swiss Ephemeris version number as string
-
-DeltaT (sec)
+\code{swe_fixstar} returns a list with named entries \code{return},
+        \code{star}, \code{xx}, and \code{serr} for return code, updated star name,
+        calculated values and error message.
 
 \code{swe_calc} returns a list with named entries \code{rc},
         \code{xx}, and \code{serr} for return code, calculated values
         and error message.
 
-\code{swe_fixstar} returns a list with named entries \code{return},
-        \code{star}, \code{xx}, and \code{serr} for return code, updated star name, 
-        calculated values and error message.
+\code{swe_deltat} returns the DeltaT (sec)
 
-\code{swe_azalt} returns a list with named entries: 
-     \code{xaz} for azi/alt info.
+\code{swe_day_of_week} retruns the day of week as integer vector
 
-\code{swe_rise_trans_true_hor} returns a list with named entries: \code{i} success of function
-     \code{tret} for azi/alt info and \code{serr} for possible error code
+\code{get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
+
+\code{swe_version} returns the Swiss Ephemeris version number as string
 }
 \description{
-For experts that are familiar with the C API of the underlying \code{libswe},
-an expert interface that mimicks that interface as closely as possbile is
-provided.
+For experts that are familiar with the C API of the underlying
+  \code{libswe}, an expert interface that mimicks that interface as closely
+  as possbile is provided.
 }

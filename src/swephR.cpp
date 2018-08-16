@@ -1,17 +1,51 @@
 #include <Rcpp.h>
 #include "swephapi.h"
 
-//' Expert interface
+//' @title Expert interface
 //'
-//' For experts that are familiar with the C API of the underlying \code{libswe},
-//' an expert interface that mimicks that interface as closely as possbile is
-//' provided.
+//' @description For experts that are familiar with the C API of the underlying
+//'   \code{libswe}, an expert interface that mimicks that interface as closely
+//'   as possbile is provided.
+//' @param jd  Julian date as numeric vector
+//' @param t_acc tidal acceleration as double (arcsec/century^2)
+//' @param tjd  Julian day Number
+//' @param file  the directory plus file (a string)
+//' @param geolon  Topocentric Longitude (deg)
+//' @param geolat  Topocentric Latitude (deg)
+//' @param geopos The position vector (longitude, latitude, height)
+//' @param altitude  the height (m)
+//' @param delta_t DeltaT value (sec)
+//' @param tjd_et  Julian day, Ephemeris time
+//' @param ipl  body/planet number (-1 for no planet possible with \code{swe_rise_trans_true_hor})
+//' @param iflag  a 32 bit integer containing bit flags that indicate what
+//'               kind of computation is wanted
+//' @param star,starname  star name ("" for no star possible with \code{swe_rise_trans_true_hor})
+//' @param tjd_ut  Julian day, UT time
+//' @param calc_flag Type of reference system
+//' @param atpress atmospheric pressure in mbar (hPa)
+//' @param attemp atmospheric temperature in degrees Celsius
+//' @param epheflag Type of ephemeris (4=Moshier, 1=JPL, 2=SE)
+//' @param horhgt The apparent horizon at rise/set in degrees
+//' @param xin  position of body in either ecliptical or equatorial coordinates, depending on calc_flag
+//' @param rsmi  integer specifying that rise, set, or one of the two meridian transits is wanted
+//' @return \code{swe_rise_trans_true_hor} returns a list with named entries: \code{i} success of function
+//'      \code{tret} for azi/alt info and \code{serr} for possible error code
+//' @return \code{swe_azalt} returns a list with named entries:
+//'      \code{xaz} for azi/alt info.
+//' @return \code{swe_fixstar} returns a list with named entries \code{return},
+//'         \code{star}, \code{xx}, and \code{serr} for return code, updated star name,
+//'         calculated values and error message.
+//' @return \code{swe_calc} returns a list with named entries \code{rc},
+//'         \code{xx}, and \code{serr} for return code, calculated values
+//'         and error message.
+//' @return  \code{swe_deltat} returns the DeltaT (sec)
+//' @return \code{swe_day_of_week} retruns the day of week as integer vector
+//' @return \code{get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
+//' @return \code{swe_version} returns the Swiss Ephemeris version number as string
 //' @name expert-interface
 
 
 //' Compute day of week
-//' @param jd  Julian date as numeric vector
-//' @return \code{swe_day_of_week} retruns the day of week as integer vector
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_day_of_week)]]
@@ -22,7 +56,6 @@ Rcpp::IntegerVector day_of_week(Rcpp::NumericVector jd) {
 }
 
 //' Get the present configured tidal acceleration
-//' @return tidal acceleration as double (arcsec/century^2)
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_get_tid_acc)]]
@@ -31,7 +64,6 @@ double get_tid_acc() {
 }
 
 //' Get the Swiss Ephemeris version number
-//' @return Swiss Ephemeris version number as string
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_version)]]
@@ -42,7 +74,6 @@ std::string version() {
 }
 
 //' Set the tidal acceleration
-//' @param t_acc tidal acceleration as double (arcsec/century^2)
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_set_tid_acc)]]
@@ -51,8 +82,6 @@ void set_tid_acc(double t_acc) {
 }
 
 //' Determine the DeltaT at a certain date
-//' @param tjd  Julian day Number
-//' @return  DeltaT (sec)
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_deltat)]]
@@ -61,7 +90,6 @@ double deltat(double tjd) {
 }
 
 //' Set the directory for the sefstar.txt, swe_deltat.txt and jpl files
-//' @param file  the directory plus file (a string)
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_set_ephe_path)]]
@@ -70,9 +98,6 @@ void set_ephe_path(std::string file) {
 }
 
 //' Set the topocentric location (lon, lat, height)
-//' @param geolon  Topocentric Longitude (deg)
-//' @param geolat  Topocentric Latitude (deg)
-//' @param altitude  the height (m)
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_set_topo)]]
@@ -81,7 +106,6 @@ void set_topo(double geolon, double geolat, double altitude) {
 }
 
 //' Set one's own DeltaT
-//' @param delta_t DeltaT value (sec)
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_set_delta_t_userdef)]]
@@ -90,13 +114,6 @@ void set_delta_t_userdef (double delta_t) {
 }
 
 //' Compute information of planet
-//' @param tjd_et  Julian day, Ephemeris time
-//' @param ipl  body number
-//' @param iflag  a 32 bit integer containing bit flags that indicate what
-//'               kind of computation is wanted
-//' @return \code{swe_calc} returns a list with named entries \code{rc},
-//'         \code{xx}, and \code{serr} for return code, calculated values
-//'         and error message.
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_calc)]]
@@ -111,13 +128,6 @@ Rcpp::List calc(double tjd_et, int ipl, int iflag) {
 
 
 //' Compute information of stars
-//' @param star  star name
-//' @param tjd_et  Julian day, Ephemeris time
-//' @param iflag  a 32 bit integer containing bit flags that indicate what
-//'               kind of computation is wanted
-//' @return \code{swe_fixstar} returns a list with named entries \code{return},
-//'         \code{star}, \code{xx}, and \code{serr} for return code, updated star name, 
-//'         calculated values and error message.
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_fixstar)]]
@@ -132,14 +142,7 @@ Rcpp::List fixstar(std::string star, double tjd_et, int iflag) {
                             Rcpp::Named("serr") = std::string(&serr[0]));
 }
 
-//' Compute horizon information: azimuth, altiiude
-//' @param tjd_ut  Julian day, UT time
-//' @param calc_flag Type of reference system
-//' @param geopoas The position vector (longitude, latitude, height)
-//' @param atpress atmospheric pressure in mbar (hPa)
-//' @param attemp atmospheric temperature in degrees Celsius
-//' @return \code{swe_azalt} returns a list with named entries: 
-//'      \code{xaz} for azi/alt info.
+//' Compute horizon information: azimuth, altitude
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_azalt)]]
@@ -150,16 +153,6 @@ Rcpp::List azalt(double tjd_ut, int calc_flag, Rcpp::NumericVector geopos, doubl
 }
 
 //' Compute the rise and set location of the object
-//' @param tjd_ut  Julian day, UT time
-//' @param ipl Plant number (otherwise -1)
-//' @param starname The name of the star (otherwise "")
-//' @param epheflag Type of ephemeris (4=Moshier, 1=JPL, 2=SE)
-//' @param geopoas The position vector (longitude, latitude, height)
-//' @param atpress atmospheric pressure in mbar (hPa)
-//' @param attemp atmospheric temperature in degrees Celsius
-//' @param horhgt The apparent horizon at rise/set in degrees
-//' @return \code{swe_rise_trans_true_hor} returns a list with named entries: \code{i} success of function
-//'      \code{tret} for azi/alt info and \code{serr} for possible error code
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_rise_trans_true_hor)]]
