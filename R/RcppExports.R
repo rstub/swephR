@@ -129,3 +129,10 @@ swe_rise_trans_true_hor <- function(tjd_ut, ipl, starname, epheflag, rsmi, geopo
     .Call(`_swephR_rise_trans_true_hor`, tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp, horhgt)
 }
 
+#' Close Swiss Ephemeris files
+#' @rdname expert-interface
+#' @export
+swe_close <- function() {
+    invisible(.Call(`_swephR_close`))
+}
+

@@ -150,6 +150,15 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// close
+void close();
+RcppExport SEXP _swephR_close() {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    close();
+    return R_NilValue;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_swephR_day_of_week", (DL_FUNC) &_swephR_day_of_week, 1},
@@ -164,6 +173,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_fixstar", (DL_FUNC) &_swephR_fixstar, 3},
     {"_swephR_azalt", (DL_FUNC) &_swephR_azalt, 6},
     {"_swephR_rise_trans_true_hor", (DL_FUNC) &_swephR_rise_trans_true_hor, 9},
+    {"_swephR_close", (DL_FUNC) &_swephR_close, 0},
     {NULL, NULL, 0}
 };
 

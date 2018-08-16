@@ -14,6 +14,7 @@
 \alias{swe_fixstar}
 \alias{swe_azalt}
 \alias{swe_rise_trans_true_hor}
+\alias{swe_close}
 \title{Expert interface}
 \usage{
 swe_day_of_week(jd)
@@ -40,6 +41,8 @@ swe_azalt(tjd_ut, calc_flag, geopos, atpress, attemp, xin)
 
 swe_rise_trans_true_hor(tjd_ut, ipl, starname, epheflag, rsmi, geopos,
   atpress, attemp, horhgt)
+
+swe_close()
 }
 \arguments{
 \item{jd}{Julian date as numeric vector}

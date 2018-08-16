@@ -2,6 +2,7 @@
 
 export(swe_azalt)
 export(swe_calc)
+export(swe_close)
 export(swe_day_of_week)
 export(swe_deltat)
 export(swe_fixstar)

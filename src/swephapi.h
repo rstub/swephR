@@ -75,6 +75,8 @@ char *serr);                   /* return address for error message */
 int32 swe_calc_ut(double tjd_ut, int32 ipl, int32 iflag,
 	double *xx, char *serr);
 
+/* close Swiss Ephemeris */
+void swe_close(void);
 
 #ifdef __cplusplus
 }

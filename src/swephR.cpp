@@ -164,3 +164,11 @@ Rcpp::List rise_trans_true_hor(double tjd_ut, int ipl, std::string starname, int
                             Rcpp::Named("tret") = tret,
                             Rcpp::Named("serr") = std::string(&serr[0]));
 }
+
+//' Close Swiss Ephemeris files
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_close)]]
+void close() {
+  swe_close();
+}
