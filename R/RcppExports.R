@@ -115,6 +115,16 @@ swe_fixstar <- function(star, tjd_et, iflag) {
     .Call(`_swephR_fixstar`, star, tjd_et, iflag)
 }
 
+#' Compute information of stars
+#' @return \code{swe_fixstar2} returns a list with named entries \code{return},
+#'         \code{star}, \code{xx}, and \code{serr} for return code, updated star name, 
+#'         calculated values and error message.
+#' @rdname expert-interface
+#' @export
+swe_fixstar2 <- function(star, tjd_et, iflag) {
+    .Call(`_swephR_fixstar2`, star, tjd_et, iflag)
+}
+
 #' Determine DeltaT
 #' @param ephe_flag  the epheemris flag (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)
 #' @return \code{swe_deltat_ex} returns a list with named entries: \code{return} for return value
@@ -132,6 +142,40 @@ swe_deltat_ex <- function(tjd, ephe_flag) {
 #' @export
 swe_azalt <- function(tjd_ut, calc_flag, geopos, atpress, attemp, xin) {
     .Call(`_swephR_azalt`, tjd_ut, calc_flag, geopos, atpress, attemp, xin)
+}
+
+#' Compute lunar eclipse at location
+#' @param ifl Type of ephemeris (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)
+#' @param backward TRUE for backwards search
+#' @return \code{swe_lun_eclipse_when_loc} returns a list with named entries: 
+#'      \code{return} visibility code, \code{tret} for eclipse timing moments, 
+#'      \code{attr} pheneomena durign eclipse and \code{serr} error string
+#' @rdname expert-interface
+#' @export
+swe_lun_eclipse_when_loc <- function(tjd_start, ifl, geopos, backward) {
+    .Call(`_swephR_lun_eclipse_when_loc`, tjd_start, ifl, geopos, backward)
+}
+
+#' Search a lunar eclipse on earth
+#' @param tjd_start  Julian day, UT time
+#' @param ifltype Type of eclipse event (SE_ECL_TOTAL etc.  or 0, if any eclipse type)
+#' @return \code{swe_lun_eclipse_when} returns a list with named entries: 
+#'      \code{return} visibility code, \code{tret} for eclipse timing moments 
+#'      and \code{serr} error string
+#' @rdname expert-interface
+#' @export
+swe_lun_eclipse_when <- function(tjd_start, ifl, ifltype, backward) {
+    .Call(`_swephR_lun_eclipse_when`, tjd_start, ifl, ifltype, backward)
+}
+
+#' Compute solar eclipse at location
+#' @return \code{swe_sol_eclipse_when_loc} returns a list with named entries: 
+#'      \code{return} visibility code, \code{tret} for eclipse timing moments, 
+#'      \code{attr} pheneomena durign eclipse and \code{serr} error string
+#' @rdname expert-interface
+#' @export
+swe_sol_eclipse_when_loc <- function(tjd_start, ifl, geopos, backward) {
+    .Call(`_swephR_sol_eclipse_when_loc`, tjd_start, ifl, geopos, backward)
 }
 
 #' Compute the rise and set location of the object

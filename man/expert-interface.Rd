@@ -12,8 +12,12 @@
 \alias{swe_set_delta_t_userdef}
 \alias{swe_calc}
 \alias{swe_fixstar}
+\alias{swe_fixstar2}
 \alias{swe_deltat_ex}
 \alias{swe_azalt}
+\alias{swe_lun_eclipse_when_loc}
+\alias{swe_lun_eclipse_when}
+\alias{swe_sol_eclipse_when_loc}
 \alias{swe_rise_trans_true_hor}
 \alias{swe_close}
 \title{Expert interface}
@@ -38,9 +42,17 @@ swe_calc(tjd_et, ipl, iflag)
 
 swe_fixstar(star, tjd_et, iflag)
 
+swe_fixstar2(star, tjd_et, iflag)
+
 swe_deltat_ex(tjd, ephe_flag)
 
 swe_azalt(tjd_ut, calc_flag, geopos, atpress, attemp, xin)
+
+swe_lun_eclipse_when_loc(tjd_start, ifl, geopos, backward)
+
+swe_lun_eclipse_when(tjd_start, ifl, ifltype, backward)
+
+swe_sol_eclipse_when_loc(tjd_start, ifl, geopos, backward)
 
 swe_rise_trans_true_hor(tjd_ut, ipl, starname, epheflag, rsmi, geopos,
   atpress, attemp, horhgt)
@@ -87,6 +99,14 @@ kind of computation is wanted}
 
 \item{xin}{position of body in either ecliptical or equatorial coordinates, depending on calc_flag}
 
+\item{tjd_start}{Julian day, UT time}
+
+\item{ifl}{Type of ephemeris (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)}
+
+\item{backward}{TRUE for backwards search}
+
+\item{ifltype}{Type of eclipse event (SE_ECL_TOTAL etc.  or 0, if any eclipse type)}
+
 \item{epheflag}{Type of ephemeris (4=Moshier, 1=JPL, 2=SE)}
 
 \item{rsmi}{integer specifying that rise, set, or one of the two meridian transits is wanted}
@@ -116,11 +136,27 @@ kind of computation is wanted}
 
 \code{swe_version} returns the Swiss Ephemeris version number as string
 
+\code{swe_fixstar2} returns a list with named entries \code{return},
+        \code{star}, \code{xx}, and \code{serr} for return code, updated star name, 
+        calculated values and error message.
+
 \code{swe_deltat_ex} returns a list with named entries: \code{return} for return value
          and \code{serr} for error message.
 
 \code{swe_azalt} returns a list with named entries: 
      \code{xaz} for azi/alt info.
+
+\code{swe_lun_eclipse_when_loc} returns a list with named entries: 
+     \code{return} visibility code, \code{tret} for eclipse timing moments, 
+     \code{attr} pheneomena durign eclipse and \code{serr} error string
+
+\code{swe_lun_eclipse_when} returns a list with named entries: 
+     \code{return} visibility code, \code{tret} for eclipse timing moments 
+     and \code{serr} error string
+
+\code{swe_sol_eclipse_when_loc} returns a list with named entries: 
+     \code{return} visibility code, \code{tret} for eclipse timing moments, 
+     \code{attr} pheneomena durign eclipse and \code{serr} error string
 }
 \description{
 For experts that are familiar with the C API of the underlying

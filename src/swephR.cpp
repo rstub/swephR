@@ -143,6 +143,26 @@ Rcpp::List fixstar(std::string star, double tjd_et, int iflag) {
                             Rcpp::Named("serr") = std::string(&serr[0]));
 }
 
+
+//' Compute information of stars
+//' @return \code{swe_fixstar2} returns a list with named entries \code{return},
+//'         \code{star}, \code{xx}, and \code{serr} for return code, updated star name, 
+//'         calculated values and error message.
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_fixstar2)]]
+Rcpp::List fixstar2(std::string star, double tjd_et, int iflag) {
+  std::array<double, 6> xx;
+  std::array<char, 256> serr;
+  star.resize(41);
+  int rtn = swe_fixstar2(&star[0], tjd_et, iflag, &xx[0], &serr[0]);
+  return Rcpp::List::create(Rcpp::Named("return") = rtn,
+                            Rcpp::Named("star") = std::string(&star[0]),
+                            Rcpp::Named("xx") = xx,
+                            Rcpp::Named("serr") = std::string(&serr[0]));
+}
+
+
 //' Determine DeltaT
 //' @param ephe_flag  the epheemris flag (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)
 //' @return \code{swe_deltat_ex} returns a list with named entries: \code{return} for return value
@@ -169,6 +189,66 @@ Rcpp::List azalt(double tjd_ut, int calc_flag, Rcpp::NumericVector geopos, doubl
   swe_azalt(tjd_ut, calc_flag, &geopos[0], atpress, attemp, &xin[0], &xaz[0]);
   return Rcpp::List::create(Rcpp::Named("xaz") = xaz);
 }
+
+//' Compute lunar eclipse at location
+//' @param ifl Type of ephemeris (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)
+//' @param backward TRUE for backwards search
+//' @return \code{swe_lun_eclipse_when_loc} returns a list with named entries: 
+//'      \code{return} visibility code, \code{tret} for eclipse timing moments, 
+//'      \code{attr} pheneomena durign eclipse and \code{serr} error string
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_lun_eclipse_when_loc)]]
+Rcpp::List lun_eclipse_when_loc(double tjd_start, int ifl, Rcpp::NumericVector geopos, bool backward) {
+  std::array<double, 10> tret;
+  std::array<double, 20> attr;
+  std::array<char, 256> serr;
+  int rtn = swe_lun_eclipse_when_loc(tjd_start, ifl, &geopos[0], &tret[0], &attr[0], backward, &serr[0]);
+  return Rcpp::List::create(Rcpp::Named("return") = rtn, Rcpp::Named("tret") = tret,
+                            Rcpp::Named("attr") = attr,
+                            Rcpp::Named("serr") = std::string(&serr[0])
+  );
+}
+
+
+//' Search a lunar eclipse on earth
+//' @param tjd_start  Julian day, UT time
+//' @param ifltype Type of eclipse event (SE_ECL_TOTAL etc.  or 0, if any eclipse type)
+//' @return \code{swe_lun_eclipse_when} returns a list with named entries: 
+//'      \code{return} visibility code, \code{tret} for eclipse timing moments 
+//'      and \code{serr} error string
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_lun_eclipse_when)]]
+Rcpp::List lun_eclipse_when(double tjd_start, int ifl, int ifltype, bool backward) {
+  std::array<double, 20> tret;
+  std::array<char, 256> serr;
+  int rtn = swe_lun_eclipse_when(tjd_start, ifl, ifltype, &tret[0], backward, &serr[0]);
+  return Rcpp::List::create(Rcpp::Named("return") = rtn, Rcpp::Named("tret") = tret,
+                            Rcpp::Named("serr") = std::string(&serr[0])
+  );
+}
+
+
+
+//' Compute solar eclipse at location
+//' @return \code{swe_sol_eclipse_when_loc} returns a list with named entries: 
+//'      \code{return} visibility code, \code{tret} for eclipse timing moments, 
+//'      \code{attr} pheneomena durign eclipse and \code{serr} error string
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_sol_eclipse_when_loc)]]
+Rcpp::List sol_eclipse_when_loc(double tjd_start, int ifl, Rcpp::NumericVector geopos, bool backward) {
+  std::array<double, 10> tret;
+  std::array<double, 20> attr;
+  std::array<char, 256> serr;
+  int rtn = swe_sol_eclipse_when_loc(tjd_start, ifl, &geopos[0], &tret[0], &attr[0], backward, &serr[0]);
+  return Rcpp::List::create(Rcpp::Named("return") = rtn, Rcpp::Named("tret") = tret,
+                            Rcpp::Named("attr") = attr,
+                            Rcpp::Named("serr") = std::string(&serr[0])
+    );
+}
+
 
 //' Compute the rise and set location of the object
 //' @rdname expert-interface
