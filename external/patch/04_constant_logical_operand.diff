@@ -1,0 +1,11 @@
+--- external/src/swephlib.c	2018-01-26 13:31:46.000000000 +0100
++++ src/libswe/swephlib.c	2018-08-17 21:59:10.137845852 +0200
+@@ -789,7 +789,7 @@
+     oma  += (k[i] * owen_oma_coef[icof][i]);
+     chia += (k[i] * owen_chia_coef[icof][i]);
+   }
+-  if (iflag & (SEFLG_JPLHOR || SEFLG_JPLHOR_APPROX)) {
++  if (iflag & (SEFLG_JPLHOR | SEFLG_JPLHOR_APPROX)) {
+     /* 
+      * In comparison with JPL Horizons we have an almost constant offset
+      * almost constant offset in ecl. longitude of about -0.000019 deg. 
