@@ -256,6 +256,7 @@ char *CALL_CONV swe_get_library_path(char *s)
   *s = '\0';
 #if !defined(__APPLE) 
   len = AS_MAXCH;
+  bytes = 0;
 #if MSDOS
   bytes = GetModuleFileName(dllhandle, (TCHAR*) s, len);
 #else
@@ -275,9 +276,7 @@ char *CALL_CONV swe_get_library_path(char *s)
     bytes = readlink("/proc/self/exe", s, len);
   #endif
 #endif
-  if(bytes >= 0) {
-    s[bytes] = '\0';
-  }
+  s[bytes] = '\0';
 #endif
   return s;
 }
