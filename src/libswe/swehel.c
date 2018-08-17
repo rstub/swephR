@@ -3250,8 +3250,8 @@ static int32 moon_event_vis_lim(double tjdstart, double *dgeo, double *datm, dou
   int32 epheflag = helflag & (SEFLG_JPLEPH|SEFLG_SWIEPH|SEFLG_MOSEPH);
   dret[0] = tjdstart; /* will be returned in error case */
   if (TypeEvent == 1 || TypeEvent == 2) {
-    if (serr != NULL)
-      strcpy(serr, "error: the moon has no morning first or evening last");
+    if (serr_ret != NULL)
+      strcpy(serr_ret, "error: the moon has no morning first or evening last");
     return ERR;
   }
   strcpy(ObjectName, "moon");
