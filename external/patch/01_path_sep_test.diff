@@ -1,0 +1,16 @@
+--- external/src/sweph.c	2018-01-26 13:46:06.000000000 +0100
++++ src/libswe/sweph.c	2018-08-17 10:05:53.740486053 +0200
+@@ -1331,13 +1331,6 @@
+   } else {
+     strcpy(s, SE_EPHE_PATH);
+   }
+-#if MSDOS
+-  if (strchr(s, '/') != NULL)
+-    strcpy(s, SE_EPHE_PATH);
+-#else
+-  if (strchr(s, '\\') != NULL)
+-    strcpy(s, SE_EPHE_PATH);
+-#endif
+   i = strlen(s);
+   if (*(s + i - 1) != *DIR_GLUE && *s != '\0')
+     strcat(s, DIR_GLUE);

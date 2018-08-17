@@ -1331,13 +1331,6 @@ void CALL_CONV swe_set_ephe_path(char *path)
   } else {
     strcpy(s, SE_EPHE_PATH);
   }
-/* #if MSDOS */
-/*   if (strchr(s, '/') != NULL) */
-/*     strcpy(s, SE_EPHE_PATH); */
-/* #else */
-/*   if (strchr(s, '\\') != NULL) */
-/*     strcpy(s, SE_EPHE_PATH); */
-/* #endif */
   i = strlen(s);
   if (*(s + i - 1) != *DIR_GLUE && *s != '\0')
     strcat(s, DIR_GLUE);
