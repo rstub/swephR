@@ -1,5 +1,6 @@
 CXX_STD = CXX11
 PKG_LIBS=-L. -lswe
+PKG_CPPFLAGS=-I./libswe/
 
 all: $(SHLIB)
 $(SHLIB): libswe.a
