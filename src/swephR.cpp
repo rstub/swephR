@@ -1,4 +1,5 @@
 #include <Rcpp.h>
+#include <array>
 #include "swephapi.h"
 
 //' @title Expert interface
