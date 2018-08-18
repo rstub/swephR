@@ -29,6 +29,60 @@ test_that("non-existent planet produces error", {
     swe_close()
 })
 
+test_that("Sun near present day with build in ephemeris", {
+    result <- swe_calc(2458346.82639, 0, 4)
+    expect_true(is.list(result))
+    expect_equal(result$return, 4)
+    expect_equal(result$serr, "")
+    expect_equal(result$xx, c(143.411541546115, 0.000153328074557681, 1.01265945421508, 0, 0, 0))
+    swe_close()
+})
+
+test_that("Sun near present day with SE ephemeris", {
+    result <- swe_calc(2458346.82639, 0, 2)
+    expect_true(is.list(result))
+    expect_equal(result$return, 2)
+    expect_equal(result$serr, "")
+    expect_equal(result$xx, c(143.411548004662, 0.000154522097263712, 1.01265952395477, 0, 0, 0))
+    swe_close()
+})
+
+test_that("Moon near present day with build in ephemeris", {
+    result <- swe_calc(2458346.82639, 1, 4)
+    expect_true(is.list(result))
+    expect_equal(result$return, 4)
+    expect_equal(result$serr, "")
+    expect_equal(result$xx, c(209.393205609575, 5.23865656062778, 0.00254763959909033, 0, 0, 0))
+    swe_close()
+})
+
+test_that("Moon near present day with SE ephemeris", {
+    result <- swe_calc(2458346.82639, 1, 2)
+    expect_true(is.list(result))
+    expect_equal(result$return, 2)
+    expect_equal(result$serr, "")
+    expect_equal(result$xx, c(209.393307909087, 5.23884819964366, 0.00254765467381015, 0, 0, 0))
+    swe_close()
+})
+
+test_that("Mercury near present day with build in ephemeris", {
+    result <- swe_calc(2458346.82639, 2, 4)
+    expect_true(is.list(result))
+    expect_equal(result$return, 4)
+    expect_equal(result$serr, "")
+    expect_equal(result$xx, c(132.01192327168, -3.48121475787494, 0.67906546508584, 0, 0, 0))
+    swe_close()
+})
+
+test_that("Mercury near present day with SE ephemeris", {
+    result <- swe_calc(2458346.82639, 2, 2)
+    expect_true(is.list(result))
+    expect_equal(result$return, 2)
+    expect_equal(result$serr, "")
+    expect_equal(result$xx, c(132.011933922771, -3.48121306761461, 0.679065645713915, 0, 0, 0))
+    swe_close()
+})
+
 test_that("Existing star position", {
   swe_set_topo(0,50,10)
   result <- swe_fixstar("sirius",1234567,34818)
