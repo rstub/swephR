@@ -156,8 +156,18 @@ swe_lun_eclipse_when_loc <- function(tjd_start, ifl, geopos, backward) {
     .Call(`_swephR_lun_eclipse_when_loc`, tjd_start, ifl, geopos, backward)
 }
 
-#' Search a lunar eclipse on earth
+#' Computes the attributes of a lunar eclipse at a given time
 #' @param tjd_start  Julian day, UT time
+#' @return \code{swe_lun_eclipse_how} returns a list with named entries: 
+#'      \code{return} visibility code, 
+#'      \code{attr} pheneomena durign eclipse and \code{serr} error string
+#' @rdname expert-interface
+#' @export
+swe_lun_eclipse_how <- function(tjd_start, ifl, geopos) {
+    .Call(`_swephR_lun_eclipse_how`, tjd_start, ifl, geopos)
+}
+
+#' Search a lunar eclipse on earth
 #' @param ifltype Type of eclipse event (SE_ECL_TOTAL etc.  or 0, if any eclipse type)
 #' @return \code{swe_lun_eclipse_when} returns a list with named entries: 
 #'      \code{return} visibility code, \code{tret} for eclipse timing moments 
@@ -183,6 +193,15 @@ swe_sol_eclipse_when_loc <- function(tjd_start, ifl, geopos, backward) {
 #' @export
 swe_rise_trans_true_hor <- function(tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp, horhgt) {
     .Call(`_swephR_rise_trans_true_hor`, tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp, horhgt)
+}
+
+#' Compute the rise and set location of the object (AppAlt=0)
+#' @return \code{swe_rise_trans} returns a list with named entries: \code{i} success of function
+#'      \code{tret} for azi/alt info and \code{serr} for possible error code
+#' @rdname expert-interface
+#' @export
+swe_rise_trans <- function(tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp) {
+    .Call(`_swephR_rise_trans`, tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp)
 }
 
 #' Close Swiss Ephemeris files
