@@ -210,9 +210,26 @@ Rcpp::List lun_eclipse_when_loc(double tjd_start, int ifl, Rcpp::NumericVector g
   );
 }
 
+//' Computes the attributes of a lunar eclipse at a given time
+//' @param tjd_start  Julian day, UT time
+//' @return \code{swe_lun_eclipse_how} returns a list with named entries: 
+//'      \code{return} visibility code, 
+//'      \code{attr} pheneomena durign eclipse and \code{serr} error string
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_lun_eclipse_how)]]
+Rcpp::List lun_eclipse_how(double tjd_start, int ifl, Rcpp::NumericVector geopos) {
+  std::array<double, 20> attr;
+  std::array<char, 256> serr;
+  int rtn = swe_lun_eclipse_how(tjd_start, ifl, &geopos[0], &attr[0], &serr[0]);
+  return Rcpp::List::create(Rcpp::Named("return") = rtn,
+                            Rcpp::Named("attr") = attr,
+                            Rcpp::Named("serr") = std::string(&serr[0])
+  );
+}
+
 
 //' Search a lunar eclipse on earth
-//' @param tjd_start  Julian day, UT time
 //' @param ifltype Type of eclipse event (SE_ECL_TOTAL etc.  or 0, if any eclipse type)
 //' @return \code{swe_lun_eclipse_when} returns a list with named entries: 
 //'      \code{return} visibility code, \code{tret} for eclipse timing moments 
@@ -258,6 +275,21 @@ Rcpp::List rise_trans_true_hor(double tjd_ut, int ipl, std::string starname, int
   std::array<char, 256> serr;
   double tret;
   int i = swe_rise_trans_true_hor(tjd_ut, ipl, &starname[0], epheflag, rsmi, &geopos[0], atpress, attemp, horhgt, &tret, &serr[0]);
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("tret") = tret,
+                            Rcpp::Named("serr") = std::string(&serr[0]));
+}
+
+//' Compute the rise and set location of the object (AppAlt=0)
+//' @return \code{swe_rise_trans} returns a list with named entries: \code{i} success of function
+//'      \code{tret} for azi/alt info and \code{serr} for possible error code
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_rise_trans)]]
+Rcpp::List rise_trans(double tjd_ut, int ipl, std::string starname, int epheflag, int rsmi,Rcpp::NumericVector geopos, double atpress, double attemp) {
+  std::array<char, 256> serr;
+  double tret;
+  int i = swe_rise_trans(tjd_ut, ipl, &starname[0], epheflag, rsmi, &geopos[0], atpress, attemp, &tret, &serr[0]);
   return Rcpp::List::create(Rcpp::Named("return") = i,
                             Rcpp::Named("tret") = tret,
                             Rcpp::Named("serr") = std::string(&serr[0]));

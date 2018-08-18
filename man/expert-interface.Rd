@@ -16,9 +16,11 @@
 \alias{swe_deltat_ex}
 \alias{swe_azalt}
 \alias{swe_lun_eclipse_when_loc}
+\alias{swe_lun_eclipse_how}
 \alias{swe_lun_eclipse_when}
 \alias{swe_sol_eclipse_when_loc}
 \alias{swe_rise_trans_true_hor}
+\alias{swe_rise_trans}
 \alias{swe_close}
 \title{Expert interface}
 \usage{
@@ -50,12 +52,17 @@ swe_azalt(tjd_ut, calc_flag, geopos, atpress, attemp, xin)
 
 swe_lun_eclipse_when_loc(tjd_start, ifl, geopos, backward)
 
+swe_lun_eclipse_how(tjd_start, ifl, geopos)
+
 swe_lun_eclipse_when(tjd_start, ifl, ifltype, backward)
 
 swe_sol_eclipse_when_loc(tjd_start, ifl, geopos, backward)
 
 swe_rise_trans_true_hor(tjd_ut, ipl, starname, epheflag, rsmi, geopos,
   atpress, attemp, horhgt)
+
+swe_rise_trans(tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress,
+  attemp)
 
 swe_close()
 }
@@ -150,6 +157,10 @@ kind of computation is wanted}
      \code{return} visibility code, \code{tret} for eclipse timing moments, 
      \code{attr} pheneomena durign eclipse and \code{serr} error string
 
+\code{swe_lun_eclipse_how} returns a list with named entries: 
+     \code{return} visibility code, 
+     \code{attr} pheneomena durign eclipse and \code{serr} error string
+
 \code{swe_lun_eclipse_when} returns a list with named entries: 
      \code{return} visibility code, \code{tret} for eclipse timing moments 
      and \code{serr} error string
@@ -157,6 +168,9 @@ kind of computation is wanted}
 \code{swe_sol_eclipse_when_loc} returns a list with named entries: 
      \code{return} visibility code, \code{tret} for eclipse timing moments, 
      \code{attr} pheneomena durign eclipse and \code{serr} error string
+
+\code{swe_rise_trans} returns a list with named entries: \code{i} success of function
+     \code{tret} for azi/alt info and \code{serr} for possible error code
 }
 \description{
 For experts that are familiar with the C API of the underlying
