@@ -102,6 +102,8 @@ swe_set_delta_t_userdef <- function(delta_t) {
 }
 
 #' Compute information of planet
+#' @return \code{swe_calc} returns a list with named entries \code{rc},
+#'         \code{xx} updated star name, and \code{serr} error message.
 #' @rdname expert-interface
 #' @export
 swe_calc <- function(tjd_et, ipl, iflag) {
@@ -109,16 +111,36 @@ swe_calc <- function(tjd_et, ipl, iflag) {
 }
 
 #' Compute information of stars
+#' @return \code{swe_fixstar} returns a list with named entries \code{return},
+#'         \code{star} updated star name, \code{xx}, and \code{serr} for return code, 
+#'         calculated values and error message.
 #' @rdname expert-interface
 #' @export
 swe_fixstar <- function(star, tjd_et, iflag) {
     .Call(`_swephR_fixstar`, star, tjd_et, iflag)
 }
 
+#' Compute the magnitude of star
+#' @return \code{swe_fixstar_mag} returns a list with named entries \code{return},
+#'         \code{star} updated star name, \code{mag} magnitude of star, and \code{serr} for error message.
+#' @rdname expert-interface
+#' @export
+swe_fixstar_mag <- function(star) {
+    .Call(`_swephR_fixstar_mag`, star)
+}
+
+#' Compute the magnitude of star
+#' @return \code{swe_fixstar2_mag} returns a list with named entries \code{return},
+#'         \code{star} updated star name, \code{mag} magnitude of star, and \code{serr} for error message.
+#' @rdname expert-interface
+#' @export
+swe_fixstar2_mag <- function(star) {
+    .Call(`_swephR_fixstar2_mag`, star)
+}
+
 #' Compute information of stars
 #' @return \code{swe_fixstar2} returns a list with named entries \code{return},
-#'         \code{star}, \code{xx}, and \code{serr} for return code, updated star name, 
-#'         calculated values and error message.
+#'         \code{star} updated star name, \code{xx}, and \code{serr} error message.
 #' @rdname expert-interface
 #' @export
 swe_fixstar2 <- function(star, tjd_et, iflag) {
@@ -142,6 +164,16 @@ swe_deltat_ex <- function(tjd, ephe_flag) {
 #' @export
 swe_azalt <- function(tjd_ut, calc_flag, geopos, atpress, attemp, xin) {
     .Call(`_swephR_azalt`, tjd_ut, calc_flag, geopos, atpress, attemp, xin)
+}
+
+#' Provide phenomom information of celestial body
+#' @return \code{swe_pheno_ut} returns a list with named entries: 
+#'      \code{return} ???, \code{attr} for phenomenon information 
+#'      and \code{serr} error string
+#' @rdname expert-interface
+#' @export
+swe_pheno_ut <- function(tjd_ut, ipl, iflag) {
+    .Call(`_swephR_pheno_ut`, tjd_ut, ipl, iflag)
 }
 
 #' Compute lunar eclipse at location

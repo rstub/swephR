@@ -115,6 +115,28 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// fixstar_mag
+Rcpp::List fixstar_mag(std::string star);
+RcppExport SEXP _swephR_fixstar_mag(SEXP starSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type star(starSEXP);
+    rcpp_result_gen = Rcpp::wrap(fixstar_mag(star));
+    return rcpp_result_gen;
+END_RCPP
+}
+// fixstar2_mag
+Rcpp::List fixstar2_mag(std::string star);
+RcppExport SEXP _swephR_fixstar2_mag(SEXP starSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type star(starSEXP);
+    rcpp_result_gen = Rcpp::wrap(fixstar2_mag(star));
+    return rcpp_result_gen;
+END_RCPP
+}
 // fixstar2
 Rcpp::List fixstar2(std::string star, double tjd_et, int iflag);
 RcppExport SEXP _swephR_fixstar2(SEXP starSEXP, SEXP tjd_etSEXP, SEXP iflagSEXP) {
@@ -153,6 +175,19 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type attemp(attempSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type xin(xinSEXP);
     rcpp_result_gen = Rcpp::wrap(azalt(tjd_ut, calc_flag, geopos, atpress, attemp, xin));
+    return rcpp_result_gen;
+END_RCPP
+}
+// pheno_ut
+Rcpp::List pheno_ut(double tjd_ut, int ipl, int iflag);
+RcppExport SEXP _swephR_pheno_ut(SEXP tjd_utSEXP, SEXP iplSEXP, SEXP iflagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type tjd_ut(tjd_utSEXP);
+    Rcpp::traits::input_parameter< int >::type ipl(iplSEXP);
+    Rcpp::traits::input_parameter< int >::type iflag(iflagSEXP);
+    rcpp_result_gen = Rcpp::wrap(pheno_ut(tjd_ut, ipl, iflag));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -269,9 +304,12 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_set_delta_t_userdef", (DL_FUNC) &_swephR_set_delta_t_userdef, 1},
     {"_swephR_calc", (DL_FUNC) &_swephR_calc, 3},
     {"_swephR_fixstar", (DL_FUNC) &_swephR_fixstar, 3},
+    {"_swephR_fixstar_mag", (DL_FUNC) &_swephR_fixstar_mag, 1},
+    {"_swephR_fixstar2_mag", (DL_FUNC) &_swephR_fixstar2_mag, 1},
     {"_swephR_fixstar2", (DL_FUNC) &_swephR_fixstar2, 3},
     {"_swephR_deltat_ex", (DL_FUNC) &_swephR_deltat_ex, 2},
     {"_swephR_azalt", (DL_FUNC) &_swephR_azalt, 6},
+    {"_swephR_pheno_ut", (DL_FUNC) &_swephR_pheno_ut, 3},
     {"_swephR_lun_eclipse_when_loc", (DL_FUNC) &_swephR_lun_eclipse_when_loc, 4},
     {"_swephR_lun_eclipse_how", (DL_FUNC) &_swephR_lun_eclipse_how, 3},
     {"_swephR_lun_eclipse_when", (DL_FUNC) &_swephR_lun_eclipse_when, 4},
