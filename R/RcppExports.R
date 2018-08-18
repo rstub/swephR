@@ -110,7 +110,7 @@ swe_calc <- function(tjd_et, ipl, iflag) {
     .Call(`_swephR_calc`, tjd_et, ipl, iflag)
 }
 
-#' Compute information of stars
+#' Compute information of star
 #' @return \code{swe_fixstar} returns a list with named entries \code{return},
 #'         \code{star} updated star name, \code{xx}, and \code{serr} for return code, 
 #'         calculated values and error message.
@@ -138,13 +138,29 @@ swe_fixstar2_mag <- function(star) {
     .Call(`_swephR_fixstar2_mag`, star)
 }
 
-#' Compute information of stars
+#' Compute information of star
 #' @return \code{swe_fixstar2} returns a list with named entries \code{return},
 #'         \code{star} updated star name, \code{xx}, and \code{serr} error message.
 #' @rdname expert-interface
 #' @export
 swe_fixstar2 <- function(star, tjd_et, iflag) {
     .Call(`_swephR_fixstar2`, star, tjd_et, iflag)
+}
+
+#' Compute the heliacale event of celestial object
+#' @param tjdstart  Julian day, UT time
+#' @param dgeo Geographic position
+#' @param datm Atmospheric conditions
+#' @param dobs Observer description
+#' @param objectname  celectial object
+#' @param event_type  event type
+#' @param helflag calcuation flag
+#' @return \code{swe_heliacal_ut} returns a list with named entries \code{return},
+#'         \code{dret} results, and \code{serr} error message.
+#' @rdname expert-interface
+#' @export
+swe_heliacal_ut <- function(tjdstart, dgeo, datm, dobs, objectname, event_type, helflag) {
+    .Call(`_swephR_heliacal_ut`, tjdstart, dgeo, datm, dobs, objectname, event_type, helflag)
 }
 
 #' Determine DeltaT
