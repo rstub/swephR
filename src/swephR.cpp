@@ -115,6 +115,8 @@ void set_delta_t_userdef (double delta_t) {
 }
 
 //' Compute information of planet
+//' @return \code{swe_calc} returns a list with named entries \code{rc},
+//'         \code{xx} updated star name, and \code{serr} error message.
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_calc)]]
@@ -129,6 +131,9 @@ Rcpp::List calc(double tjd_et, int ipl, int iflag) {
 
 
 //' Compute information of stars
+//' @return \code{swe_fixstar} returns a list with named entries \code{return},
+//'         \code{star} updated star name, \code{xx}, and \code{serr} for return code, 
+//'         calculated values and error message.
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_fixstar)]]
@@ -143,11 +148,44 @@ Rcpp::List fixstar(std::string star, double tjd_et, int iflag) {
                             Rcpp::Named("serr") = std::string(&serr[0]));
 }
 
+//' Compute the magnitude of star
+//' @return \code{swe_fixstar_mag} returns a list with named entries \code{return},
+//'         \code{star} updated star name, \code{mag} magnitude of star, and \code{serr} for error message.
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_fixstar_mag)]]
+Rcpp::List fixstar_mag(std::string star) {
+  std::array<char, 256> serr;
+  std::array<double, 1> mag;
+  star.resize(41);
+  int rtn = swe_fixstar_mag(&star[0], &mag[0], &serr[0]);
+  return Rcpp::List::create(Rcpp::Named("return") = rtn,
+                            Rcpp::Named("star") = std::string(&star[0]),
+                            Rcpp::Named("mag") = mag,
+                            Rcpp::Named("serr") = std::string(&serr[0]));
+}
+
+//' Compute the magnitude of star
+//' @return \code{swe_fixstar2_mag} returns a list with named entries \code{return},
+//'         \code{star} updated star name, \code{mag} magnitude of star, and \code{serr} for error message.
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_fixstar2_mag)]]
+Rcpp::List fixstar2_mag(std::string star) {
+  std::array<char, 256> serr;
+  std::array<double, 1> mag;
+  star.resize(41);
+  int rtn = swe_fixstar2_mag(&star[0], &mag[0], &serr[0]);
+  return Rcpp::List::create(Rcpp::Named("return") = rtn,
+                            Rcpp::Named("star") = std::string(&star[0]),
+                            Rcpp::Named("mag") = mag,
+                            Rcpp::Named("serr") = std::string(&serr[0]));
+}
+
 
 //' Compute information of stars
 //' @return \code{swe_fixstar2} returns a list with named entries \code{return},
-//'         \code{star}, \code{xx}, and \code{serr} for return code, updated star name, 
-//'         calculated values and error message.
+//'         \code{star} updated star name, \code{xx}, and \code{serr} error message.
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_fixstar2)]]
@@ -189,6 +227,23 @@ Rcpp::List azalt(double tjd_ut, int calc_flag, Rcpp::NumericVector geopos, doubl
   swe_azalt(tjd_ut, calc_flag, &geopos[0], atpress, attemp, &xin[0], &xaz[0]);
   return Rcpp::List::create(Rcpp::Named("xaz") = xaz);
 }
+
+//' Provide phenomom information of celestial body
+//' @return \code{swe_pheno_ut} returns a list with named entries: 
+//'      \code{return} ???, \code{attr} for phenomenon information 
+//'      and \code{serr} error string
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_pheno_ut)]]
+Rcpp::List pheno_ut(double tjd_ut, int ipl, int iflag) {
+  std::array<double, 20> attr;
+  std::array<char, 256> serr;
+  int rtn = swe_pheno_ut(tjd_ut, ipl, iflag, &attr[0], &serr[0]);
+  return Rcpp::List::create(Rcpp::Named("return") = rtn, Rcpp::Named("attr") = attr,
+                            Rcpp::Named("serr") = std::string(&serr[0])
+  );
+}
+
 
 //' Compute lunar eclipse at location
 //' @param ifl Type of ephemeris (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)

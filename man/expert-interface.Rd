@@ -12,9 +12,12 @@
 \alias{swe_set_delta_t_userdef}
 \alias{swe_calc}
 \alias{swe_fixstar}
+\alias{swe_fixstar_mag}
+\alias{swe_fixstar2_mag}
 \alias{swe_fixstar2}
 \alias{swe_deltat_ex}
 \alias{swe_azalt}
+\alias{swe_pheno_ut}
 \alias{swe_lun_eclipse_when_loc}
 \alias{swe_lun_eclipse_how}
 \alias{swe_lun_eclipse_when}
@@ -44,11 +47,17 @@ swe_calc(tjd_et, ipl, iflag)
 
 swe_fixstar(star, tjd_et, iflag)
 
+swe_fixstar_mag(star)
+
+swe_fixstar2_mag(star)
+
 swe_fixstar2(star, tjd_et, iflag)
 
 swe_deltat_ex(tjd, ephe_flag)
 
 swe_azalt(tjd_ut, calc_flag, geopos, atpress, attemp, xin)
+
+swe_pheno_ut(tjd_ut, ipl, iflag)
 
 swe_lun_eclipse_when_loc(tjd_start, ifl, geopos, backward)
 
@@ -143,15 +152,31 @@ kind of computation is wanted}
 
 \code{swe_version} returns the Swiss Ephemeris version number as string
 
-\code{swe_fixstar2} returns a list with named entries \code{return},
-        \code{star}, \code{xx}, and \code{serr} for return code, updated star name, 
+\code{swe_calc} returns a list with named entries \code{rc},
+        \code{xx} updated star name, and \code{serr} error message.
+
+\code{swe_fixstar} returns a list with named entries \code{return},
+        \code{star} updated star name, \code{xx}, and \code{serr} for return code, 
         calculated values and error message.
+
+\code{swe_fixstar_mag} returns a list with named entries \code{return},
+        \code{star} updated star name, \code{mag} magnitude of star, and \code{serr} for error message.
+
+\code{swe_fixstar2_mag} returns a list with named entries \code{return},
+        \code{star} updated star name, \code{mag} magnitude of star, and \code{serr} for error message.
+
+\code{swe_fixstar2} returns a list with named entries \code{return},
+        \code{star} updated star name, \code{xx}, and \code{serr} error message.
 
 \code{swe_deltat_ex} returns a list with named entries: \code{return} for return value
          and \code{serr} for error message.
 
 \code{swe_azalt} returns a list with named entries: 
      \code{xaz} for azi/alt info.
+
+\code{swe_pheno_ut} returns a list with named entries: 
+     \code{return} ???, \code{attr} for phenomenon information 
+     and \code{serr} error string
 
 \code{swe_lun_eclipse_when_loc} returns a list with named entries: 
      \code{return} visibility code, \code{tret} for eclipse timing moments, 
