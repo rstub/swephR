@@ -130,7 +130,7 @@ Rcpp::List calc(double tjd_et, int ipl, int iflag) {
 }
 
 
-//' Compute information of stars
+//' Compute information of star
 //' @return \code{swe_fixstar} returns a list with named entries \code{return},
 //'         \code{star} updated star name, \code{xx}, and \code{serr} for return code, 
 //'         calculated values and error message.
@@ -183,7 +183,7 @@ Rcpp::List fixstar2_mag(std::string star) {
 }
 
 
-//' Compute information of stars
+//' Compute information of star
 //' @return \code{swe_fixstar2} returns a list with named entries \code{return},
 //'         \code{star} updated star name, \code{xx}, and \code{serr} error message.
 //' @rdname expert-interface
@@ -197,6 +197,28 @@ Rcpp::List fixstar2(std::string star, double tjd_et, int iflag) {
   return Rcpp::List::create(Rcpp::Named("return") = rtn,
                             Rcpp::Named("star") = std::string(&star[0]),
                             Rcpp::Named("xx") = xx,
+                            Rcpp::Named("serr") = std::string(&serr[0]));
+}
+
+//' Compute the heliacale event of celestial object
+//' @param tjdstart  Julian day, UT time
+//' @param dgeo Geographic position
+//' @param datm Atmospheric conditions
+//' @param dobs Observer description
+//' @param objectname  celectial object
+//' @param event_type  event type
+//' @param helflag calcuation flag
+//' @return \code{swe_heliacal_ut} returns a list with named entries \code{return},
+//'         \code{dret} results, and \code{serr} error message.
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_heliacal_ut)]]
+Rcpp::List heliacal_ut(double tjdstart, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int event_type, int helflag) {
+  std::array<double, 50> dret;
+  std::array<char, 256> serr;
+  int rtn = swe_heliacal_ut(tjdstart, &dgeo[0],&datm[0],&dobs[0],&objectname[0],event_type,helflag, &dret[0], &serr[0]);
+  return Rcpp::List::create(Rcpp::Named("return") = rtn,
+                            Rcpp::Named("dret") = dret,
                             Rcpp::Named("serr") = std::string(&serr[0]));
 }
 

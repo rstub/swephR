@@ -15,6 +15,7 @@
 \alias{swe_fixstar_mag}
 \alias{swe_fixstar2_mag}
 \alias{swe_fixstar2}
+\alias{swe_heliacal_ut}
 \alias{swe_deltat_ex}
 \alias{swe_azalt}
 \alias{swe_pheno_ut}
@@ -52,6 +53,9 @@ swe_fixstar_mag(star)
 swe_fixstar2_mag(star)
 
 swe_fixstar2(star, tjd_et, iflag)
+
+swe_heliacal_ut(tjdstart, dgeo, datm, dobs, objectname, event_type,
+  helflag)
 
 swe_deltat_ex(tjd, ephe_flag)
 
@@ -100,6 +104,20 @@ swe_close()
 kind of computation is wanted}
 
 \item{star, starname}{star name ("" for no star possible with \code{swe_rise_trans_true_hor})}
+
+\item{tjdstart}{Julian day, UT time}
+
+\item{dgeo}{Geographic position}
+
+\item{datm}{Atmospheric conditions}
+
+\item{dobs}{Observer description}
+
+\item{objectname}{celectial object}
+
+\item{event_type}{event type}
+
+\item{helflag}{calcuation flag}
 
 \item{ephe_flag}{the epheemris flag (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)}
 
@@ -167,6 +185,9 @@ kind of computation is wanted}
 
 \code{swe_fixstar2} returns a list with named entries \code{return},
         \code{star} updated star name, \code{xx}, and \code{serr} error message.
+
+\code{swe_heliacal_ut} returns a list with named entries \code{return},
+        \code{dret} results, and \code{serr} error message.
 
 \code{swe_deltat_ex} returns a list with named entries: \code{return} for return value
          and \code{serr} for error message.

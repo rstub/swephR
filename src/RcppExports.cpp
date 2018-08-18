@@ -150,6 +150,23 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// heliacal_ut
+Rcpp::List heliacal_ut(double tjdstart, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs, std::string objectname, int event_type, int helflag);
+RcppExport SEXP _swephR_heliacal_ut(SEXP tjdstartSEXP, SEXP dgeoSEXP, SEXP datmSEXP, SEXP dobsSEXP, SEXP objectnameSEXP, SEXP event_typeSEXP, SEXP helflagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type tjdstart(tjdstartSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type dgeo(dgeoSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type datm(datmSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type dobs(dobsSEXP);
+    Rcpp::traits::input_parameter< std::string >::type objectname(objectnameSEXP);
+    Rcpp::traits::input_parameter< int >::type event_type(event_typeSEXP);
+    Rcpp::traits::input_parameter< int >::type helflag(helflagSEXP);
+    rcpp_result_gen = Rcpp::wrap(heliacal_ut(tjdstart, dgeo, datm, dobs, objectname, event_type, helflag));
+    return rcpp_result_gen;
+END_RCPP
+}
 // deltat_ex
 Rcpp::List deltat_ex(double tjd, int ephe_flag);
 RcppExport SEXP _swephR_deltat_ex(SEXP tjdSEXP, SEXP ephe_flagSEXP) {
@@ -307,6 +324,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_fixstar_mag", (DL_FUNC) &_swephR_fixstar_mag, 1},
     {"_swephR_fixstar2_mag", (DL_FUNC) &_swephR_fixstar2_mag, 1},
     {"_swephR_fixstar2", (DL_FUNC) &_swephR_fixstar2, 3},
+    {"_swephR_heliacal_ut", (DL_FUNC) &_swephR_heliacal_ut, 7},
     {"_swephR_deltat_ex", (DL_FUNC) &_swephR_deltat_ex, 2},
     {"_swephR_azalt", (DL_FUNC) &_swephR_azalt, 6},
     {"_swephR_pheno_ut", (DL_FUNC) &_swephR_pheno_ut, 3},
