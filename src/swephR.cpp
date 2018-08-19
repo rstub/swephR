@@ -156,9 +156,9 @@ Rcpp::List fixstar(std::string star, double tjd_et, int iflag) {
 // [[Rcpp::export(swe_fixstar_mag)]]
 Rcpp::List fixstar_mag(std::string star) {
   std::array<char, 256> serr;
-  std::array<double, 1> mag;
+  double mag;
   star.resize(41);
-  int rtn = swe_fixstar_mag(&star[0], &mag[0], &serr[0]);
+  int rtn = swe_fixstar_mag(&star[0], &mag, &serr[0]);
   return Rcpp::List::create(Rcpp::Named("return") = rtn,
                             Rcpp::Named("star") = std::string(&star[0]),
                             Rcpp::Named("mag") = mag,
@@ -173,9 +173,9 @@ Rcpp::List fixstar_mag(std::string star) {
 // [[Rcpp::export(swe_fixstar2_mag)]]
 Rcpp::List fixstar2_mag(std::string star) {
   std::array<char, 256> serr;
-  std::array<double, 1> mag;
+  double mag;
   star.resize(41);
-  int rtn = swe_fixstar2_mag(&star[0], &mag[0], &serr[0]);
+  int rtn = swe_fixstar2_mag(&star[0], &mag, &serr[0]);
   return Rcpp::List::create(Rcpp::Named("return") = rtn,
                             Rcpp::Named("star") = std::string(&star[0]),
                             Rcpp::Named("mag") = mag,
