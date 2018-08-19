@@ -165,6 +165,7 @@ Rcpp::List fixstar_mag(std::string star) {
                             Rcpp::Named("serr") = std::string(&serr[0]));
 }
 
+
 //' Compute the magnitude of star
 //' @return \code{swe_fixstar2_mag} returns a list with named entries \code{return},
 //'         \code{star} updated star name, \code{mag} magnitude of star, and \code{serr} for error message.
