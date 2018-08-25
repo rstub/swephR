@@ -11,8 +11,6 @@
 \alias{swe_set_topo}
 \alias{swe_set_delta_t_userdef}
 \alias{swe_calc}
-\alias{swe_fixstar}
-\alias{swe_fixstar_mag}
 \alias{swe_fixstar2_mag}
 \alias{swe_fixstar2}
 \alias{swe_heliacal_ut}
@@ -45,10 +43,6 @@ swe_set_topo(geolon, geolat, altitude)
 swe_set_delta_t_userdef(delta_t)
 
 swe_calc(tjd_et, ipl, iflag)
-
-swe_fixstar(star, tjd_et, iflag)
-
-swe_fixstar_mag(star)
 
 swe_fixstar2_mag(star)
 
@@ -154,10 +148,6 @@ kind of computation is wanted}
 \code{swe_azalt} returns a list with named entries:
      \code{xaz} for azi/alt info.
 
-\code{swe_fixstar} returns a list with named entries \code{return},
-        \code{star}, \code{xx}, and \code{serr} for return code, updated star name,
-        calculated values and error message.
-
 \code{swe_calc} returns a list with named entries \code{rc},
         \code{xx}, and \code{serr} for return code, calculated values
         and error message.
@@ -172,13 +162,6 @@ kind of computation is wanted}
 
 \code{swe_calc} returns a list with named entries \code{rc},
         \code{xx} updated star name, and \code{serr} error message.
-
-\code{swe_fixstar} returns a list with named entries \code{return},
-        \code{star} updated star name, \code{xx}, and \code{serr} for return code, 
-        calculated values and error message.
-
-\code{swe_fixstar_mag} returns a list with named entries \code{return},
-        \code{star} updated star name, \code{mag} magnitude of star, and \code{serr} for error message.
 
 \code{swe_fixstar2_mag} returns a list with named entries \code{return},
         \code{star} updated star name, \code{mag} magnitude of star, and \code{serr} for error message.
