@@ -33,9 +33,6 @@
 //'      \code{tret} for azi/alt info and \code{serr} for possible error code
 //' @return \code{swe_azalt} returns a list with named entries:
 //'      \code{xaz} for azi/alt info.
-//' @return \code{swe_fixstar} returns a list with named entries \code{return},
-//'         \code{star}, \code{xx}, and \code{serr} for return code, updated star name,
-//'         calculated values and error message.
 //' @return \code{swe_calc} returns a list with named entries \code{rc},
 //'         \code{xx}, and \code{serr} for return code, calculated values
 //'         and error message.
@@ -127,42 +124,6 @@ Rcpp::List calc(double tjd_et, int ipl, int iflag) {
   return Rcpp::List::create(Rcpp::Named("return") = rc,
 			    Rcpp::Named("xx") = xx,
 			    Rcpp::Named("serr") = std::string(&serr[0]));
-}
-
-
-//' Compute information of star
-//' @return \code{swe_fixstar} returns a list with named entries \code{return},
-//'         \code{star} updated star name, \code{xx}, and \code{serr} for return code, 
-//'         calculated values and error message.
-//' @rdname expert-interface
-//' @export
-// [[Rcpp::export(swe_fixstar)]]
-Rcpp::List fixstar(std::string star, double tjd_et, int iflag) {
-  std::array<double, 6> xx;
-  std::array<char, 256> serr;
-  star.resize(41);
-  int rtn = swe_fixstar(&star[0], tjd_et, iflag, &xx[0], &serr[0]);
-  return Rcpp::List::create(Rcpp::Named("return") = rtn,
-                            Rcpp::Named("star") = std::string(&star[0]),
-                            Rcpp::Named("xx") = xx,
-                            Rcpp::Named("serr") = std::string(&serr[0]));
-}
-
-//' Compute the magnitude of star
-//' @return \code{swe_fixstar_mag} returns a list with named entries \code{return},
-//'         \code{star} updated star name, \code{mag} magnitude of star, and \code{serr} for error message.
-//' @rdname expert-interface
-//' @export
-// [[Rcpp::export(swe_fixstar_mag)]]
-Rcpp::List fixstar_mag(std::string star) {
-  std::array<char, 256> serr;
-  double mag;
-  star.resize(41);
-  int rtn = swe_fixstar_mag(&star[0], &mag, &serr[0]);
-  return Rcpp::List::create(Rcpp::Named("return") = rtn,
-                            Rcpp::Named("star") = std::string(&star[0]),
-                            Rcpp::Named("mag") = mag,
-                            Rcpp::Named("serr") = std::string(&serr[0]));
 }
 
 

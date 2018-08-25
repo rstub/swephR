@@ -32,9 +32,6 @@
 #'      \code{tret} for azi/alt info and \code{serr} for possible error code
 #' @return \code{swe_azalt} returns a list with named entries:
 #'      \code{xaz} for azi/alt info.
-#' @return \code{swe_fixstar} returns a list with named entries \code{return},
-#'         \code{star}, \code{xx}, and \code{serr} for return code, updated star name,
-#'         calculated values and error message.
 #' @return \code{swe_calc} returns a list with named entries \code{rc},
 #'         \code{xx}, and \code{serr} for return code, calculated values
 #'         and error message.
@@ -108,25 +105,6 @@ swe_set_delta_t_userdef <- function(delta_t) {
 #' @export
 swe_calc <- function(tjd_et, ipl, iflag) {
     .Call(`_swephR_calc`, tjd_et, ipl, iflag)
-}
-
-#' Compute information of star
-#' @return \code{swe_fixstar} returns a list with named entries \code{return},
-#'         \code{star} updated star name, \code{xx}, and \code{serr} for return code, 
-#'         calculated values and error message.
-#' @rdname expert-interface
-#' @export
-swe_fixstar <- function(star, tjd_et, iflag) {
-    .Call(`_swephR_fixstar`, star, tjd_et, iflag)
-}
-
-#' Compute the magnitude of star
-#' @return \code{swe_fixstar_mag} returns a list with named entries \code{return},
-#'         \code{star} updated star name, \code{mag} magnitude of star, and \code{serr} for error message.
-#' @rdname expert-interface
-#' @export
-swe_fixstar_mag <- function(star) {
-    .Call(`_swephR_fixstar_mag`, star)
 }
 
 #' Compute the magnitude of star

@@ -88,15 +88,6 @@ test_that("Mercury near present day with SE", {
 
 test_that("Existing star position", {
   swe_set_topo(0,50,10)
-  result <- swe_fixstar("sirius",1234567,34818)
-  expect_true(is.list(result))
-  expect_equal(result$return, 34818)
-  expect_equal(result$xx, c(6.465315e+01, -1.780315e+01,  5.518192e+05, -3.482530e-04,  1.170200e-05, -3.109594e-03),tolerance = .00001)
-  swe_close()
-})
-
-test_that("Existing star position", {
-  swe_set_topo(0,50,10)
   result <- swe_fixstar2("sirius",1234567,34820)
   expect_true(is.list(result))
   expect_equal(result$return, 34820)
