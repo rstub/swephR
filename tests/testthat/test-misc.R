@@ -96,6 +96,15 @@ test_that("Existing star position", {
 })
 
 
+test_that("Existing star magnitude", {
+  result <- swe_fixstar2_mag("sirius")
+  expect_true(is.list(result))
+  expect_equal(result$return, 0)
+  expect_equal(result$mag, -1.46)
+  swe_close()
+})
+
+
 test_that("Azimuth and altitude postions", {
   result <- swe_azalt(1234567,1,c(0,50,10),15,1013.25,c(186,22))
   expect_equal(result$xaz, c(114.636188,   8.210881,   8.209274),tolerance = .0000001)
