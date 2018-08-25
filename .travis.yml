@@ -22,5 +22,8 @@ notifications:
     on_failure: change
 r_packages:
   - covr
+repos:
+  CRAN: https://cloud.r-project.org
+  rstub: http://rstub.github.io/drat
 after_success:
 - test "$TRAVIS_R_VERSION_STRING" = "release" && Rscript -e 'covr::codecov()' || true
