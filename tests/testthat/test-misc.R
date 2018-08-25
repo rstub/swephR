@@ -38,7 +38,8 @@ test_that("Sun near present day with build in ephemeris", {
     swe_close()
 })
 
-test_that("Sun near present day with SE ephemeris", {
+test_that("Sun near present day with SE", {
+    skip("No SE data files")
     result <- swe_calc(2458346.82639, 0, 2)
     expect_true(is.list(result))
     expect_equal(result$return, 2)
@@ -56,7 +57,8 @@ test_that("Moon near present day with build in ephemeris", {
     swe_close()
 })
 
-test_that("Moon near present day with SE ephemeris", {
+test_that("Moon near present day with SE", {
+    skip("No SE data files")
     result <- swe_calc(2458346.82639, 1, 2)
     expect_true(is.list(result))
     expect_equal(result$return, 2)
@@ -74,7 +76,8 @@ test_that("Mercury near present day with build in ephemeris", {
     swe_close()
 })
 
-test_that("Mercury near present day with SE ephemeris", {
+test_that("Mercury near present day with SE", {
+    skip("No SE data files")
     result <- swe_calc(2458346.82639, 2, 2)
     expect_true(is.list(result))
     expect_equal(result$return, 2)
