@@ -1,17 +1,25 @@
 Package: swephR
 Type: Package
 Title: High Precision Swiss Ephemeris
-Version: 0.0.3
+Version: 0.0.4
 Author: Ralf Stubner and Victor Reijs
 Maintainer: Ralf Stubner <ralf.stubner@gmail.com>
-Description: The SWISS EPHEMERIS is the high precision ephemeris developed
-    by Astrodienst, largely based upon the DE431 ephemerides from NASA's JPL.
+Description: The Swiss Ephemeris is a high precision ephemeris developed
+    by Astrodienst, based upon the DE431 ephemerides from NASA's JPL. This
+    package uses the semianalytic theory by Steve Moshier. For faster and more
+    accurate calculations, the compressed Swiss Ephemeris data is available in
+    the 'swephRdata' package. To access this data package, run
+    'install.packages("swephRdata", repos = "https://rstub.github.io/drat/",
+    type = "source")'. The size of the 'swephRdata' package is approximately
+    115 MB.
 License: AGPL
 Imports: Rcpp (>= 0.12.18)
 LinkingTo: Rcpp
 RoxygenNote: 6.1.0
 Suggests:
-    testthat
+    testthat,
+    swephRdata
 Encoding: UTF-8
 URL: https://github.com/rstub/swephR/
 BugReports: https://github.com/rstub/swephR/issues/
+Additional_repositories: https://rstub.github.io/drat
