@@ -1,3 +1,7 @@
 .onLoad <- function(libname, pkgname) {
-    swe_set_ephe_path(file.path(libname, pkgname, "ephemeris"))
+    if(requireNamespace("swephRdata", quietly = TRUE)) {
+        swe_set_ephe_path(system.file("ephemeris", package = "swephRdata"))
+    } else {
+        swe_set_ephe_path(file.path(libname, pkgname, "ephemeris"))
+    }
 }
