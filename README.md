@@ -6,8 +6,11 @@
 High Precision Swiss Ephemeris
 
 # Installation
-Since `swephR` is not on CRAN, you have to install from GitHub
 
-```
-remotes::install_github("rstub/swephR")
+At the moment `swephR` is not on CRAN, but you can install the current version via [drat](https://cran.r-project.org/package=drat):
+
+``` r
+if (!requireNamespace("drat", quietly = TRUE)) install.packages("drat")
+drat::addRepo("rstub")
+install.packages("swephR")
 ```
