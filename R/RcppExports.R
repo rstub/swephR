@@ -98,12 +98,7 @@ swe_set_delta_t_userdef <- function(delta_t) {
     invisible(.Call(`_swephR_set_delta_t_userdef`, delta_t))
 }
 
-#' Compute information of planet
-#' @return \code{swe_calc} returns a list with named entries \code{rc},
-#'         \code{xx} updated star name, and \code{serr} error message.
-#' @rdname expert-interface
-#' @export
-swe_calc <- function(tjd_et, ipl, iflag) {
+calc <- function(tjd_et, ipl, iflag) {
     .Call(`_swephR_calc`, tjd_et, ipl, iflag)
 }
 

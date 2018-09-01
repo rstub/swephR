@@ -90,13 +90,13 @@ BEGIN_RCPP
 END_RCPP
 }
 // calc
-Rcpp::List calc(double tjd_et, int ipl, int iflag);
+Rcpp::List calc(Rcpp::NumericVector tjd_et, Rcpp::IntegerVector ipl, int iflag);
 RcppExport SEXP _swephR_calc(SEXP tjd_etSEXP, SEXP iplSEXP, SEXP iflagSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type tjd_et(tjd_etSEXP);
-    Rcpp::traits::input_parameter< int >::type ipl(iplSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tjd_et(tjd_etSEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type ipl(iplSEXP);
     Rcpp::traits::input_parameter< int >::type iflag(iflagSEXP);
     rcpp_result_gen = Rcpp::wrap(calc(tjd_et, ipl, iflag));
     return rcpp_result_gen;

@@ -67,6 +67,17 @@ test_that("Moon near present day with SE", {
     swe_close()
 })
 
+test_that("Sun and Moon near present day with build in ephemeris", {
+    result <- swe_calc(2458346.82639, c(0, 1), 4)
+    expect_true(is.list(result))
+    expect_equal(result$return, c(4, 4))
+    expect_equal(result$serr, c("", ""))
+    expect_equal(result$xx, matrix(c(143.411541546115, 0.000153328074557681, 1.01265945421508, 0, 0, 0,
+                                     209.393205609575, 5.23865656062778, 0.00254763959909033, 0, 0, 0),
+                                   nrow = 2, byrow = TRUE))
+    swe_close()
+})
+
 test_that("Mercury near present day with build in ephemeris", {
     result <- swe_calc(2458346.82639, 2, 4)
     expect_true(is.list(result))

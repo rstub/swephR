@@ -111,19 +111,32 @@ void set_delta_t_userdef (double delta_t) {
   swe_set_delta_t_userdef (delta_t);
 }
 
-//' Compute information of planet
-//' @return \code{swe_calc} returns a list with named entries \code{rc},
-//'         \code{xx} updated star name, and \code{serr} error message.
-//' @rdname expert-interface
-//' @export
-// [[Rcpp::export(swe_calc)]]
-Rcpp::List calc(double tjd_et, int ipl, int iflag) {
-  std::array<double, 6> xx;
-  std::array<char, 256> serr;
-  int rc = swe_calc(tjd_et, ipl, iflag, &xx[0], &serr[0]);
-  return Rcpp::List::create(Rcpp::Named("return") = rc,
-			    Rcpp::Named("xx") = xx,
-			    Rcpp::Named("serr") = std::string(&serr[0]));
+// Compute information of planet
+// [[Rcpp::export]]
+Rcpp::List calc(Rcpp::NumericVector tjd_et, Rcpp::IntegerVector ipl, int iflag) {
+  if (tjd_et.length() != ipl.length())
+    Rcpp::stop("The number of bodies in 'ipl' and the number of dates in 'tjd_et' must be identical!");
+
+  Rcpp::IntegerVector rc_(ipl.length());
+  Rcpp::CharacterVector serr_(ipl.length());
+  Rcpp::NumericMatrix xx_(ipl.length(), 6);
+
+  for (int i  =0; i < ipl.length(); ++i) {
+    std::array<double, 6> xx = {0.0};
+    std::array<char, 256> serr = {'\0'};
+    rc_(i) = swe_calc(tjd_et[i], ipl[i], iflag, &xx[0], &serr[0]);
+    Rcpp::NumericVector tmp(xx.begin(), xx.end());
+    xx_(i, Rcpp::_) = tmp;
+    serr_(i) = std::string(&serr[0]);
+  }
+
+  // remove dim attribute to return a vector
+  if (ipl.length() == 1)
+    xx_.attr("dim") = R_NilValue;
+
+  return Rcpp::List::create(Rcpp::Named("return") = rc_,
+			    Rcpp::Named("xx") = xx_,
+			    Rcpp::Named("serr") = serr_);
 }
 
 
