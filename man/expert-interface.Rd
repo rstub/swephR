@@ -11,7 +11,6 @@
 \alias{swe_set_topo}
 \alias{swe_set_delta_t_userdef}
 \alias{swe_fixstar2_mag}
-\alias{swe_fixstar2}
 \alias{swe_heliacal_ut}
 \alias{swe_deltat_ex}
 \alias{swe_azalt}
@@ -24,6 +23,7 @@
 \alias{swe_rise_trans}
 \alias{swe_close}
 \alias{swe_calc}
+\alias{swe_fixstar2}
 \title{Expert interface}
 \usage{
 swe_day_of_week(jd)
@@ -43,8 +43,6 @@ swe_set_topo(geolon, geolat, altitude)
 swe_set_delta_t_userdef(delta_t)
 
 swe_fixstar2_mag(star)
-
-swe_fixstar2(star, tjd_et, iflag)
 
 swe_heliacal_ut(tjdstart, dgeo, datm, dobs, objectname, event_type,
   helflag)
@@ -72,6 +70,8 @@ swe_rise_trans(tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress,
 swe_close()
 
 swe_calc(tjd_et, ipl, iflag)
+
+swe_fixstar2(star, tjd_et, iflag)
 }
 \arguments{
 \item{jd}{Julian date as numeric vector}
@@ -91,11 +91,6 @@ swe_calc(tjd_et, ipl, iflag)
 \item{delta_t}{DeltaT value (sec)}
 
 \item{star, starname}{star name ("" for no star possible with \code{swe_rise_trans_true_hor})}
-
-\item{tjd_et}{Julian day, Ephemeris time}
-
-\item{iflag}{a 32 bit integer containing bit flags that indicate what
-kind of computation is wanted}
 
 \item{tjdstart}{Julian day, UT time}
 
@@ -127,6 +122,9 @@ kind of computation is wanted}
 
 \item{ipl}{body/planet number (-1 for no planet possible with \code{swe_rise_trans_true_hor})}
 
+\item{iflag}{a 32 bit integer containing bit flags that indicate what
+kind of computation is wanted}
+
 \item{tjd_start}{Julian day, UT time}
 
 \item{ifl}{Type of ephemeris (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)}
@@ -140,6 +138,8 @@ kind of computation is wanted}
 \item{rsmi}{integer specifying that rise, set, or one of the two meridian transits is wanted}
 
 \item{horhgt}{The apparent horizon at rise/set in degrees}
+
+\item{tjd_et}{Julian day, Ephemeris time}
 }
 \value{
 \code{swe_rise_trans_true_hor} returns a list with named entries: \code{i} success of function
@@ -162,9 +162,6 @@ kind of computation is wanted}
 
 \code{swe_fixstar2_mag} returns a list with named entries \code{return},
         \code{star} updated star name, \code{mag} magnitude of star, and \code{serr} for error message.
-
-\code{swe_fixstar2} returns a list with named entries \code{return},
-        \code{star} updated star name, \code{xx}, and \code{serr} error message.
 
 \code{swe_heliacal_ut} returns a list with named entries \code{return},
         \code{dret} results, and \code{serr} error message.
@@ -200,6 +197,9 @@ kind of computation is wanted}
 
 \code{swe_calc} returns a list with named entries \code{rc},
         \code{xx} updated star name, and \code{serr} error message.
+
+\code{swe_fixstar2} returns a list with named entries \code{return},
+        \code{star} updated star name, \code{xx}, and \code{serr} error message.
 }
 \description{
 For experts that are familiar with the C API of the underlying
