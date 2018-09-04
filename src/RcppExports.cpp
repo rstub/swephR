@@ -47,12 +47,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // deltat
-double deltat(double tjd);
+Rcpp::NumericVector deltat(Rcpp::NumericVector tjd);
 RcppExport SEXP _swephR_deltat(SEXP tjdSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type tjd(tjdSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tjd(tjdSEXP);
     rcpp_result_gen = Rcpp::wrap(deltat(tjd));
     return rcpp_result_gen;
 END_RCPP

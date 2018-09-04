@@ -83,8 +83,10 @@ void set_tid_acc(double t_acc) {
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_deltat)]]
-double deltat(double tjd) {
-  return swe_deltat(tjd);
+Rcpp::NumericVector deltat(Rcpp::NumericVector tjd) {
+  Rcpp::NumericVector result(tjd.size());
+  std::transform(tjd.begin(), tjd.end(), result.begin(), swe_deltat);
+  return result;
 }
 
 //' Set the directory for the sefstar.txt, swe_deltat.txt and jpl files

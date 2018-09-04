@@ -15,6 +15,21 @@ test_that("tidal accelaration can be retrieved", {
 test_that("tidal accelaration can be set and retrieved", {
   swe_set_tid_acc(1.23)
   expect_equal(swe_get_tid_acc(), 1.23)
+  swe_close()
+})
+
+test_that("deltat can be retrieved", {
+  expect_equal(swe_deltat(1234.567), 1.5976757, tolerance = .0000001)
+})
+
+test_that("deltat can be retrieved for vector", {
+  expect_equal(swe_deltat(c(1234.567, 1234567)), c(1.5976757, 0.3685434), tolerance = .0000001)
+})
+
+test_that("deltat can be set and retrieved", {
+  swe_set_delta_t_userdef(1.23456)
+  expect_equal(swe_deltat(1234.567), 1.23456)
+  swe_set_delta_t_userdef(-1E-10) # SE_DELTAT_AUTOMATIC
 })
 
 test_that("version works", {
