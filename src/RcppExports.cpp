@@ -114,13 +114,13 @@ BEGIN_RCPP
 END_RCPP
 }
 // fixstar2
-Rcpp::List fixstar2(std::string star, double tjd_et, int iflag);
+Rcpp::List fixstar2(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_et, int iflag);
 RcppExport SEXP _swephR_fixstar2(SEXP starSEXP, SEXP tjd_etSEXP, SEXP iflagSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type star(starSEXP);
-    Rcpp::traits::input_parameter< double >::type tjd_et(tjd_etSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type star(starSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tjd_et(tjd_etSEXP);
     Rcpp::traits::input_parameter< int >::type iflag(iflagSEXP);
     rcpp_result_gen = Rcpp::wrap(fixstar2(star, tjd_et, iflag));
     return rcpp_result_gen;

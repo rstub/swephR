@@ -111,12 +111,7 @@ swe_fixstar2_mag <- function(star) {
     .Call(`_swephR_fixstar2_mag`, star)
 }
 
-#' Compute information of star
-#' @return \code{swe_fixstar2} returns a list with named entries \code{return},
-#'         \code{star} updated star name, \code{xx}, and \code{serr} error message.
-#' @rdname expert-interface
-#' @export
-swe_fixstar2 <- function(star, tjd_et, iflag) {
+fixstar2 <- function(star, tjd_et, iflag) {
     .Call(`_swephR_fixstar2`, star, tjd_et, iflag)
 }
 

@@ -126,7 +126,7 @@ Rcpp::List calc(Rcpp::NumericVector tjd_et, Rcpp::IntegerVector ipl, int iflag) 
   for (int i  =0; i < ipl.length(); ++i) {
     std::array<double, 6> xx = {0.0};
     std::array<char, 256> serr = {'\0'};
-    rc_(i) = swe_calc(tjd_et[i], ipl[i], iflag, &xx[0], &serr[0]);
+    rc_(i) = swe_calc(tjd_et[i], ipl(i), iflag, &xx[0], &serr[0]);
     Rcpp::NumericVector tmp(xx.begin(), xx.end());
     xx_(i, Rcpp::_) = tmp;
     serr_(i) = std::string(&serr[0]);
@@ -160,21 +160,37 @@ Rcpp::List fixstar2_mag(std::string star) {
 }
 
 
-//' Compute information of star
-//' @return \code{swe_fixstar2} returns a list with named entries \code{return},
-//'         \code{star} updated star name, \code{xx}, and \code{serr} error message.
-//' @rdname expert-interface
-//' @export
-// [[Rcpp::export(swe_fixstar2)]]
-Rcpp::List fixstar2(std::string star, double tjd_et, int iflag) {
-  std::array<double, 6> xx;
-  std::array<char, 256> serr;
-  star.resize(41);
-  int rtn = swe_fixstar2(&star[0], tjd_et, iflag, &xx[0], &serr[0]);
-  return Rcpp::List::create(Rcpp::Named("return") = rtn,
-                            Rcpp::Named("star") = std::string(&star[0]),
-                            Rcpp::Named("xx") = xx,
-                            Rcpp::Named("serr") = std::string(&serr[0]));
+// Compute information of star
+// [[Rcpp::export]]
+Rcpp::List fixstar2(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_et, int iflag) {
+  if (tjd_et.length() != star.length())
+    Rcpp::stop("The number of stars in 'star' and the number of dates in 'tjd_et' must be identical!");
+
+  Rcpp::IntegerVector rc_(star.length());
+  Rcpp::CharacterVector serr_(star.length());
+  Rcpp::NumericMatrix xx_(star.length(), 6);
+
+
+  for (int i  =0; i < star.length(); ++i) {
+    std::array<double, 6> xx = {0.0};
+    std::array<char, 256> serr = {'\0'};
+    std::string star_(star(i));
+    star_.resize(41);
+    rc_(i) = swe_fixstar2(&star_[0], tjd_et(i), iflag, &xx[0], &serr[0]);
+    Rcpp::NumericVector tmp(xx.begin(), xx.end());
+    xx_(i, Rcpp::_) = tmp;
+    serr_(i) = std::string(&serr[0]);
+    star(i) = star_;
+  }
+
+  // remove dim attribute to return a vector
+  if (star.length() == 1)
+    xx_.attr("dim") = R_NilValue;
+
+  return Rcpp::List::create(Rcpp::Named("return") = rc_,
+                            Rcpp::Named("star") = star,
+                            Rcpp::Named("xx") = xx_,
+                            Rcpp::Named("serr") = serr_);
 }
 
 //' Compute the heliacale event of celestial object
