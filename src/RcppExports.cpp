@@ -144,12 +144,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // deltat_ex
-Rcpp::List deltat_ex(double tjd, int ephe_flag);
+Rcpp::List deltat_ex(Rcpp::NumericVector tjd, int ephe_flag);
 RcppExport SEXP _swephR_deltat_ex(SEXP tjdSEXP, SEXP ephe_flagSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type tjd(tjdSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tjd(tjdSEXP);
     Rcpp::traits::input_parameter< int >::type ephe_flag(ephe_flagSEXP);
     rcpp_result_gen = Rcpp::wrap(deltat_ex(tjd, ephe_flag));
     return rcpp_result_gen;

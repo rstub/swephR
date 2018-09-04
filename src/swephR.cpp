@@ -123,7 +123,7 @@ Rcpp::List calc(Rcpp::NumericVector tjd_et, Rcpp::IntegerVector ipl, int iflag) 
   Rcpp::CharacterVector serr_(ipl.length());
   Rcpp::NumericMatrix xx_(ipl.length(), 6);
 
-  for (int i  =0; i < ipl.length(); ++i) {
+  for (int i = 0; i < ipl.length(); ++i) {
     std::array<double, 6> xx = {0.0};
     std::array<char, 256> serr = {'\0'};
     rc_(i) = swe_calc(tjd_et[i], ipl(i), iflag, &xx[0], &serr[0]);
@@ -153,7 +153,7 @@ Rcpp::List fixstar2_mag(Rcpp::CharacterVector star) {
   Rcpp::CharacterVector serr_(star.length());
   Rcpp::NumericVector mag_(star.length());
 
-  for (int i  =0; i < star.length(); ++i) {
+  for (int i = 0; i < star.length(); ++i) {
     double mag;
     std::array<char, 256> serr = {'\0'};
     std::string star_(star(i));
@@ -181,7 +181,7 @@ Rcpp::List fixstar2(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_et, int 
   Rcpp::CharacterVector serr_(star.length());
   Rcpp::NumericMatrix xx_(star.length(), 6);
 
-  for (int i  =0; i < star.length(); ++i) {
+  for (int i = 0; i < star.length(); ++i) {
     std::array<double, 6> xx = {0.0};
     std::array<char, 256> serr = {'\0'};
     std::string star_(star(i));
@@ -233,11 +233,18 @@ Rcpp::List heliacal_ut(double tjdstart, Rcpp::NumericVector dgeo, Rcpp::NumericV
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_deltat_ex)]]
-Rcpp::List deltat_ex(double tjd, int ephe_flag) {
-  std::array<char, 256> serr;
-  double rtn = swe_deltat_ex(tjd, ephe_flag, &serr[0]);
-  return Rcpp::List::create(Rcpp::Named("return") = rtn,
-                             Rcpp::Named("serr") = std::string(&serr[0]));
+Rcpp::List deltat_ex(Rcpp::NumericVector tjd, int ephe_flag) {
+  Rcpp::NumericVector deltat(tjd.length());
+  Rcpp::CharacterVector serr_(tjd.length());
+
+  for (int i = 0; i < tjd.length(); ++i) {
+    std::array<char, 256> serr = {'\0'};
+    deltat(i) = swe_deltat_ex(tjd(i), ephe_flag, &serr[0]);
+    serr_(i) = std::string(&serr[0]);
+  }
+
+  return Rcpp::List::create(Rcpp::Named("deltat") = deltat,
+                            Rcpp::Named("serr") = serr_);
 }
 
 

@@ -32,6 +32,36 @@ test_that("deltat can be set and retrieved", {
   swe_set_delta_t_userdef(-1E-10) # SE_DELTAT_AUTOMATIC
 })
 
+test_that("deltat can be retrieved with build in ephemeris", {
+    result <- swe_deltat_ex(1234.567, 4)
+    expect_true(is.list(result))
+    expect_equal(result$serr, "")
+    expect_equal(result$deltat, 1.5873865, tolerance = .0000001)
+})
+
+test_that("deltat can be retrieved with build in ephemeris for vector", {
+    result <- swe_deltat_ex(c(1234.567, 1234567), 4)
+    expect_true(is.list(result))
+    expect_equal(result$serr, c("", ""))
+    expect_equal(result$deltat, c(1.5873865, 0.36604), tolerance = .0000001)
+})
+
+test_that("deltat can be retrieved with SE", {
+    skip_if_not_installed("swephRdata")
+    result <- swe_deltat_ex(1234.567, 2)
+    expect_true(is.list(result))
+    expect_equal(result$serr, "")
+    expect_equal(result$deltat, 1.5976757, tolerance = .0000001)
+})
+
+test_that("deltat can be retrieved with SE for vector", {
+    skip_if_not_installed("swephRdata")
+    result <- swe_deltat_ex(c(1234.567, 1234567), 2)
+    expect_true(is.list(result))
+    expect_equal(result$serr, c("", ""))
+    expect_equal(result$deltat, c(1.5976757, 0.3685434), tolerance = .0000001)
+})
+
 test_that("version works", {
     expect_equal(swe_version(), "2.07.01")
 })
