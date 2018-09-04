@@ -103,12 +103,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // fixstar2_mag
-Rcpp::List fixstar2_mag(std::string star);
+Rcpp::List fixstar2_mag(Rcpp::CharacterVector star);
 RcppExport SEXP _swephR_fixstar2_mag(SEXP starSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type star(starSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type star(starSEXP);
     rcpp_result_gen = Rcpp::wrap(fixstar2_mag(star));
     return rcpp_result_gen;
 END_RCPP

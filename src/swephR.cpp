@@ -148,15 +148,26 @@ Rcpp::List calc(Rcpp::NumericVector tjd_et, Rcpp::IntegerVector ipl, int iflag) 
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_fixstar2_mag)]]
-Rcpp::List fixstar2_mag(std::string star) {
-  std::array<char, 256> serr;
-  double mag;
-  star.resize(41);
-  int rtn = swe_fixstar2_mag(&star[0], &mag, &serr[0]);
-  return Rcpp::List::create(Rcpp::Named("return") = rtn,
-                            Rcpp::Named("star") = std::string(&star[0]),
-                            Rcpp::Named("mag") = mag,
-                            Rcpp::Named("serr") = std::string(&serr[0]));
+Rcpp::List fixstar2_mag(Rcpp::CharacterVector star) {
+  Rcpp::IntegerVector rc_(star.length());
+  Rcpp::CharacterVector serr_(star.length());
+  Rcpp::NumericVector mag_(star.length());
+
+  for (int i  =0; i < star.length(); ++i) {
+    double mag;
+    std::array<char, 256> serr = {'\0'};
+    std::string star_(star(i));
+    star_.resize(41);
+    rc_(i) = swe_fixstar2_mag(&star_[0], &mag, &serr[0]);
+    mag_(i) = mag;
+    serr_(i) = std::string(&serr[0]);
+    star(i) = star_;
+  }
+    
+  return Rcpp::List::create(Rcpp::Named("return") = rc_,
+                            Rcpp::Named("star") = star,
+                            Rcpp::Named("mag") = mag_,
+                            Rcpp::Named("serr") = serr_);
 }
 
 
@@ -169,7 +180,6 @@ Rcpp::List fixstar2(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_et, int 
   Rcpp::IntegerVector rc_(star.length());
   Rcpp::CharacterVector serr_(star.length());
   Rcpp::NumericMatrix xx_(star.length(), 6);
-
 
   for (int i  =0; i < star.length(); ++i) {
     std::array<double, 6> xx = {0.0};
