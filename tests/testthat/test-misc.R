@@ -19,11 +19,17 @@ test_that("tidal accelaration can be set and retrieved", {
 })
 
 test_that("deltat can be retrieved", {
-  expect_equal(swe_deltat(1234.567), 1.5976757, tolerance = .0000001)
+    if (requireNamespace("swephRdata"))
+        expect_equal(swe_deltat(1234.567), 1.5976757, tolerance = .0000001)
+    else
+        expect_equal(swe_deltat(1234.567), 1.5873865, tolerance = .0000001)
 })
 
 test_that("deltat can be retrieved for vector", {
-  expect_equal(swe_deltat(c(1234.567, 1234567)), c(1.5976757, 0.3685434), tolerance = .0000001)
+    if (requireNamespace("swephRdata"))
+        expect_equal(swe_deltat(c(1234.567, 1234567)), c(1.5976757, 0.3685434), tolerance = .0000001)
+    else
+        expect_equal(swe_deltat(c(1234.567, 1234567)), c(1.5873865, 0.36604), tolerance = .0000001)
 })
 
 test_that("deltat can be set and retrieved", {
