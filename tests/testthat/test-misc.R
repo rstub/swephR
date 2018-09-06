@@ -1,5 +1,8 @@
 context("test-misc.R")
 
+swe_set_ephe_path('')
+swe_set_topo(0,50,10)
+
 test_that("day_of_week works", {
   expect_equal(swe_day_of_week(1234.567), 3)
 })
