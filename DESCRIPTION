@@ -1,7 +1,7 @@
 Package: swephR
 Type: Package
 Title: High Precision Swiss Ephemeris
-Version: 0.0.4
+Version: 0.0.5
 Author: Ralf Stubner and Victor Reijs
 Maintainer: Ralf Stubner <ralf.stubner@gmail.com>
 Description: The Swiss Ephemeris is a high precision ephemeris developed
