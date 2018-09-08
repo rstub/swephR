@@ -217,13 +217,14 @@ Rcpp::List fixstar2(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_et, int 
 //' @export
 // [[Rcpp::export(swe_heliacal_ut)]]
 Rcpp::List heliacal_ut(double tjdstart, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int event_type, int helflag) {
-  std::array<double, 50> dret;
-  std::array<char, 256> serr;
-  int rtn = swe_heliacal_ut(tjdstart, &dgeo[0],&datm[0],&dobs[0],&objectname[0],event_type,helflag, &dret[0], &serr[0]);
-  Rcpp::NumericVector tmp(dret.begin(), dret.begin() + 3);
+  std::array<double, 50> dret{0.0};
+  std::array<char, 256> serr = {'\0'};
+  std::array<double, 6> dobs_;
+  std::copy_n(dobs.begin(), 6, dobs_.begin());
+  int rtn = swe_heliacal_ut(tjdstart, &dgeo[0],&datm[0],&dobs_[0],&objectname[0],event_type,helflag, dret.begin(), serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = rtn,
-                            Rcpp::Named("dret") = tmp,
-                            Rcpp::Named("serr") = std::string(&serr[0]));
+			    Rcpp::Named("dret") = Rcpp::NumericVector::import(dret.begin(), dret.begin() + 3),
+                            Rcpp::Named("serr") = std::string(serr.begin()));
 }
 
 
