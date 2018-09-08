@@ -1,8 +1,7 @@
 external
+
 ^\.travis\.yml$
 ^appveyor\.yml$
 ^codecov\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-ephemeris
-docs
