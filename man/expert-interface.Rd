@@ -22,6 +22,8 @@
 \alias{swe_rise_trans_true_hor}
 \alias{swe_rise_trans}
 \alias{swe_close}
+\alias{swe_vis_limit_mag}
+\alias{swe_heliacal_pheno_ut}
 \alias{swe_calc}
 \alias{swe_fixstar2}
 \title{Expert interface}
@@ -68,6 +70,11 @@ swe_rise_trans(tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress,
   attemp)
 
 swe_close()
+
+swe_vis_limit_mag(tjdut, dgeo, datm, dobs, objectname, helflag)
+
+swe_heliacal_pheno_ut(tjdut, dgeo, datm, dobs, objectname, event_type,
+  helflag)
 
 swe_calc(tjd_et, ipl, iflag)
 
@@ -194,6 +201,12 @@ kind of computation is wanted}
 
 \code{swe_rise_trans} returns a list with named entries: \code{i} success of function
      \code{tret} for azi/alt info and \code{serr} for possible error code
+
+\code{swe_vis_limit_mag} returns a list with named entries: \code{i} success of function
+     \code{dret} for magnitude info and \code{serr} for possible error code
+
+\code{swe_heliacal_pheno_ut} returns a list with named entries: \code{i} success of function
+     \code{darr} for heliacal details and \code{serr} for possible error code
 
 \code{swe_calc} returns a list with named entries \code{rc},
         \code{xx} updated star name, and \code{serr} error message.

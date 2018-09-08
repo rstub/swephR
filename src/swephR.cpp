@@ -391,3 +391,33 @@ Rcpp::List rise_trans(double tjd_ut, int ipl, std::string starname, int epheflag
 void close() {
   swe_close();
 }
+
+//' Compute the limiting visibiliy magnitude
+//' @return \code{swe_vis_limit_mag} returns a list with named entries: \code{i} success of function
+//'      \code{dret} for magnitude info and \code{serr} for possible error code
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_vis_limit_mag)]]
+Rcpp::List vis_limit_mag(double tjdut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int helflag ){
+  std::array<double, 10> dret;
+  std::array<char, 256> serr;
+  int i = swe_vis_limit_mag(tjdut, &dgeo[0], &datm[0],&dobs[0], &objectname[0], helflag, &dret[0], &serr[0]);
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("dret") = dret,
+                            Rcpp::Named("serr") = std::string(&serr[0]));
+}
+
+//' Compute heliacal event details
+//' @return \code{swe_heliacal_pheno_ut} returns a list with named entries: \code{i} success of function
+//'      \code{darr} for heliacal details and \code{serr} for possible error code
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_heliacal_pheno_ut)]]
+Rcpp::List heliacal_pheno_ut(double tjdut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int event_type, int helflag ){
+  std::array<double, 40> darr;
+  std::array<char, 256> serr;
+  int i = swe_heliacal_pheno_ut(tjdut, &dgeo[0], &datm[0],&dobs[0], &objectname[0], event_type, helflag, &darr[0], &serr[0]);
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("darr") = darr,
+                            Rcpp::Named("serr") = std::string(&serr[0]));
+}

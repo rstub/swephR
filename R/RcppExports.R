@@ -227,3 +227,21 @@ swe_close <- function() {
     invisible(.Call(`_swephR_close`))
 }
 
+#' Compute the limiting visibiliy magnitude
+#' @return \code{swe_vis_limit_mag} returns a list with named entries: \code{i} success of function
+#'      \code{dret} for magnitude info and \code{serr} for possible error code
+#' @rdname expert-interface
+#' @export
+swe_vis_limit_mag <- function(tjdut, dgeo, datm, dobs, objectname, helflag) {
+    .Call(`_swephR_vis_limit_mag`, tjdut, dgeo, datm, dobs, objectname, helflag)
+}
+
+#' Compute heliacal event details
+#' @return \code{swe_heliacal_pheno_ut} returns a list with named entries: \code{i} success of function
+#'      \code{darr} for heliacal details and \code{serr} for possible error code
+#' @rdname expert-interface
+#' @export
+swe_heliacal_pheno_ut <- function(tjdut, dgeo, datm, dobs, objectname, event_type, helflag) {
+    .Call(`_swephR_heliacal_pheno_ut`, tjdut, dgeo, datm, dobs, objectname, event_type, helflag)
+}
+
