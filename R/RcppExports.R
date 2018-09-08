@@ -237,6 +237,12 @@ swe_heliacal_pheno_ut <- function(tjd_ut, dgeo, datm, dobs, objectname, event_ty
 }
 
 #' Compute heliacal event details
+#' @param mag   The object's magnitude
+#' @param AziO  The object's azimut
+#' @param AltO  The object's altitude
+#' @param AziS  The sun's azimut
+#' @param AziM  The moon's azimut
+#' @param AltM  The moon's altitude
 #' @return \code{swe_topo_arcus_visionis} returns a list with named entries: \code{i} success of function
 #'      \code{darr} for heliacal details and \code{serr} for possible error code
 #' @rdname expert-interface

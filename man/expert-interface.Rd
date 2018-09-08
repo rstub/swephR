@@ -146,6 +146,18 @@ kind of computation is wanted}
 
 \item{horhgt}{The apparent horizon at rise/set in degrees}
 
+\item{mag}{The object's magnitude}
+
+\item{AziO}{The object's azimut}
+
+\item{AltO}{The object's altitude}
+
+\item{AziS}{The sun's azimut}
+
+\item{AziM}{The moon's azimut}
+
+\item{AltM}{The moon's altitude}
+
 \item{tjd_et}{Julian day, Ephemeris time}
 }
 \value{
