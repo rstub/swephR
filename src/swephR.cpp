@@ -10,7 +10,7 @@
 //' @param jd  Julian date as numeric vector
 //' @param t_acc tidal acceleration as double (arcsec/century^2)
 //' @param tjd  Julian day Number
-//' @param file  the directory plus file (a string)
+//' @param path  the directory where the ephemeris files are stored (a string)
 //' @param geolon  Topocentric Longitude (deg)
 //' @param geolat  Topocentric Latitude (deg)
 //' @param geopos The position vector (longitude, latitude, height)
@@ -93,8 +93,12 @@ Rcpp::NumericVector deltat(Rcpp::NumericVector tjd) {
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_set_ephe_path)]]
-void set_ephe_path(std::string file) {
-  swe_set_ephe_path(&file[0]);
+void set_ephe_path(Rcpp::Nullable<Rcpp::CharacterVector> path) {
+  if (path.isNotNull()) {
+    swe_set_ephe_path(path.as().at(0));
+  } else {
+    swe_set_ephe_path(NULL);
+  }
 }
 
 //' Set the topocentric location (lon, lat, height)

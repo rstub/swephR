@@ -9,7 +9,7 @@
 #' @param jd  Julian date as numeric vector
 #' @param t_acc tidal acceleration as double (arcsec/century^2)
 #' @param tjd  Julian day Number
-#' @param file  the directory plus file (a string)
+#' @param path  the directory where the ephemeris files are stored (a string)
 #' @param geolon  Topocentric Longitude (deg)
 #' @param geolat  Topocentric Latitude (deg)
 #' @param geopos The position vector (longitude, latitude, height)
@@ -80,8 +80,8 @@ swe_deltat <- function(tjd) {
 #' Set the directory for the sefstar.txt, swe_deltat.txt and jpl files
 #' @rdname expert-interface
 #' @export
-swe_set_ephe_path <- function(file) {
-    invisible(.Call(`_swephR_set_ephe_path`, file))
+swe_set_ephe_path <- function(path) {
+    invisible(.Call(`_swephR_set_ephe_path`, path))
 }
 
 #' Set the topocentric location (lon, lat, height)

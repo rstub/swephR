@@ -37,7 +37,7 @@ swe_set_tid_acc(t_acc)
 
 swe_deltat(tjd)
 
-swe_set_ephe_path(file)
+swe_set_ephe_path(path)
 
 swe_set_topo(geolon, geolat, altitude)
 
@@ -83,7 +83,7 @@ swe_fixstar2(star, tjd_et, iflag)
 
 \item{tjd}{Julian day Number}
 
-\item{file}{the directory plus file (a string)}
+\item{path}{the directory where the ephemeris files are stored (a string)}
 
 \item{geolon}{Topocentric Longitude (deg)}
 

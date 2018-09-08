@@ -58,12 +58,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // set_ephe_path
-void set_ephe_path(std::string file);
-RcppExport SEXP _swephR_set_ephe_path(SEXP fileSEXP) {
+void set_ephe_path(Rcpp::Nullable<Rcpp::CharacterVector> path);
+RcppExport SEXP _swephR_set_ephe_path(SEXP pathSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type file(fileSEXP);
-    set_ephe_path(file);
+    Rcpp::traits::input_parameter< Rcpp::Nullable<Rcpp::CharacterVector> >::type path(pathSEXP);
+    set_ephe_path(path);
     return R_NilValue;
 END_RCPP
 }
