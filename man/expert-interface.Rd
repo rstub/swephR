@@ -67,9 +67,9 @@ swe_rise_trans_true_hor(tjd_ut, ipl, starname, epheflag, rsmi, geopos,
 
 swe_close()
 
-swe_vis_limit_mag(tjdut, dgeo, datm, dobs, objectname, helflag)
+swe_vis_limit_mag(tjd_ut, dgeo, datm, dobs, objectname, helflag)
 
-swe_heliacal_pheno_ut(tjdut, dgeo, datm, dobs, objectname, event_type,
+swe_heliacal_pheno_ut(tjd_ut, dgeo, datm, dobs, objectname, event_type,
   helflag)
 
 swe_calc(tjd_et, ipl, iflag)

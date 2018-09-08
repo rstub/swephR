@@ -223,8 +223,8 @@ swe_close <- function() {
 #'      \code{dret} for magnitude info and \code{serr} for possible error code
 #' @rdname expert-interface
 #' @export
-swe_vis_limit_mag <- function(tjdut, dgeo, datm, dobs, objectname, helflag) {
-    .Call(`_swephR_vis_limit_mag`, tjdut, dgeo, datm, dobs, objectname, helflag)
+swe_vis_limit_mag <- function(tjd_ut, dgeo, datm, dobs, objectname, helflag) {
+    .Call(`_swephR_vis_limit_mag`, tjd_ut, dgeo, datm, dobs, objectname, helflag)
 }
 
 #' Compute heliacal event details
@@ -232,7 +232,7 @@ swe_vis_limit_mag <- function(tjdut, dgeo, datm, dobs, objectname, helflag) {
 #'      \code{darr} for heliacal details and \code{serr} for possible error code
 #' @rdname expert-interface
 #' @export
-swe_heliacal_pheno_ut <- function(tjdut, dgeo, datm, dobs, objectname, event_type, helflag) {
-    .Call(`_swephR_heliacal_pheno_ut`, tjdut, dgeo, datm, dobs, objectname, event_type, helflag)
+swe_heliacal_pheno_ut <- function(tjd_ut, dgeo, datm, dobs, objectname, event_type, helflag) {
+    .Call(`_swephR_heliacal_pheno_ut`, tjd_ut, dgeo, datm, dobs, objectname, event_type, helflag)
 }
 

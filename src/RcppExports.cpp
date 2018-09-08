@@ -268,35 +268,35 @@ BEGIN_RCPP
 END_RCPP
 }
 // vis_limit_mag
-Rcpp::List vis_limit_mag(double tjdut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs, std::string objectname, int helflag);
-RcppExport SEXP _swephR_vis_limit_mag(SEXP tjdutSEXP, SEXP dgeoSEXP, SEXP datmSEXP, SEXP dobsSEXP, SEXP objectnameSEXP, SEXP helflagSEXP) {
+Rcpp::List vis_limit_mag(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs, std::string objectname, int helflag);
+RcppExport SEXP _swephR_vis_limit_mag(SEXP tjd_utSEXP, SEXP dgeoSEXP, SEXP datmSEXP, SEXP dobsSEXP, SEXP objectnameSEXP, SEXP helflagSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type tjdut(tjdutSEXP);
+    Rcpp::traits::input_parameter< double >::type tjd_ut(tjd_utSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type dgeo(dgeoSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type datm(datmSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type dobs(dobsSEXP);
     Rcpp::traits::input_parameter< std::string >::type objectname(objectnameSEXP);
     Rcpp::traits::input_parameter< int >::type helflag(helflagSEXP);
-    rcpp_result_gen = Rcpp::wrap(vis_limit_mag(tjdut, dgeo, datm, dobs, objectname, helflag));
+    rcpp_result_gen = Rcpp::wrap(vis_limit_mag(tjd_ut, dgeo, datm, dobs, objectname, helflag));
     return rcpp_result_gen;
 END_RCPP
 }
 // heliacal_pheno_ut
-Rcpp::List heliacal_pheno_ut(double tjdut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs, std::string objectname, int event_type, int helflag);
-RcppExport SEXP _swephR_heliacal_pheno_ut(SEXP tjdutSEXP, SEXP dgeoSEXP, SEXP datmSEXP, SEXP dobsSEXP, SEXP objectnameSEXP, SEXP event_typeSEXP, SEXP helflagSEXP) {
+Rcpp::List heliacal_pheno_ut(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs, std::string objectname, int event_type, int helflag);
+RcppExport SEXP _swephR_heliacal_pheno_ut(SEXP tjd_utSEXP, SEXP dgeoSEXP, SEXP datmSEXP, SEXP dobsSEXP, SEXP objectnameSEXP, SEXP event_typeSEXP, SEXP helflagSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type tjdut(tjdutSEXP);
+    Rcpp::traits::input_parameter< double >::type tjd_ut(tjd_utSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type dgeo(dgeoSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type datm(datmSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type dobs(dobsSEXP);
     Rcpp::traits::input_parameter< std::string >::type objectname(objectnameSEXP);
     Rcpp::traits::input_parameter< int >::type event_type(event_typeSEXP);
     Rcpp::traits::input_parameter< int >::type helflag(helflagSEXP);
-    rcpp_result_gen = Rcpp::wrap(heliacal_pheno_ut(tjdut, dgeo, datm, dobs, objectname, event_type, helflag));
+    rcpp_result_gen = Rcpp::wrap(heliacal_pheno_ut(tjd_ut, dgeo, datm, dobs, objectname, event_type, helflag));
     return rcpp_result_gen;
 END_RCPP
 }
