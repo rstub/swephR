@@ -221,11 +221,12 @@ Rcpp::List fixstar2(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_et, int 
 //' @export
 // [[Rcpp::export(swe_heliacal_ut)]]
 Rcpp::List heliacal_ut(double tjdstart, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int event_type, int helflag) {
+  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
+  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
+  if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
   std::array<double, 50> dret{0.0};
   std::array<char, 256> serr = {'\0'};
-  std::array<double, 6> dobs_;
-  std::copy_n(dobs.begin(), 6, dobs_.begin());
-  int rtn = swe_heliacal_ut(tjdstart, &dgeo[0],&datm[0],&dobs_[0],&objectname[0],event_type,helflag, dret.begin(), serr.begin());
+  int rtn = swe_heliacal_ut(tjdstart, &dgeo[0],&datm[0],&dobs[0],&objectname[0],event_type,helflag, dret.begin(), serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = rtn,
 			    Rcpp::Named("dret") = Rcpp::NumericVector::import(dret.begin(), dret.begin() + 3),
                             Rcpp::Named("serr") = std::string(serr.begin()));
@@ -261,6 +262,7 @@ Rcpp::List deltat_ex(Rcpp::NumericVector tjd, int ephe_flag) {
 //' @export
 // [[Rcpp::export(swe_azalt)]]
 Rcpp::List azalt(double tjd_ut, int calc_flag, Rcpp::NumericVector geopos, double atpress, double attemp, Rcpp::NumericVector xin) {
+  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
   std::array<double, 3> xaz;
   swe_azalt(tjd_ut, calc_flag, &geopos[0], atpress, attemp, &xin[0], &xaz[0]);
   return Rcpp::List::create(Rcpp::Named("xaz") = xaz);
@@ -293,6 +295,7 @@ Rcpp::List pheno_ut(double tjd_ut, int ipl, int iflag) {
 //' @export
 // [[Rcpp::export(swe_lun_eclipse_when_loc)]]
 Rcpp::List lun_eclipse_when_loc(double tjd_start, int ifl, Rcpp::NumericVector geopos, bool backward) {
+  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
   std::array<double, 10> tret;
   std::array<double, 20> attr;
   std::array<char, 256> serr;
@@ -312,6 +315,7 @@ Rcpp::List lun_eclipse_when_loc(double tjd_start, int ifl, Rcpp::NumericVector g
 //' @export
 // [[Rcpp::export(swe_lun_eclipse_how)]]
 Rcpp::List lun_eclipse_how(double tjd_start, int ifl, Rcpp::NumericVector geopos) {
+  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
   std::array<double, 20> attr;
   std::array<char, 256> serr;
   int rtn = swe_lun_eclipse_how(tjd_start, ifl, &geopos[0], &attr[0], &serr[0]);
@@ -349,6 +353,7 @@ Rcpp::List lun_eclipse_when(double tjd_start, int ifl, int ifltype, bool backwar
 //' @export
 // [[Rcpp::export(swe_sol_eclipse_when_loc)]]
 Rcpp::List sol_eclipse_when_loc(double tjd_start, int ifl, Rcpp::NumericVector geopos, bool backward) {
+  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
   std::array<double, 10> tret;
   std::array<double, 20> attr;
   std::array<char, 256> serr;
@@ -365,6 +370,7 @@ Rcpp::List sol_eclipse_when_loc(double tjd_start, int ifl, Rcpp::NumericVector g
 //' @export
 // [[Rcpp::export(swe_rise_trans_true_hor)]]
 Rcpp::List rise_trans_true_hor(double tjd_ut, int ipl, std::string starname, int epheflag, int rsmi,Rcpp::NumericVector geopos, double atpress, double attemp, double horhgt) {
+  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
   std::array<char, 256> serr;
   double tret;
   int i = swe_rise_trans_true_hor(tjd_ut, ipl, &starname[0], epheflag, rsmi, &geopos[0], atpress, attemp, horhgt, &tret, &serr[0]);
@@ -389,6 +395,9 @@ void close() {
 //' @export
 // [[Rcpp::export(swe_vis_limit_mag)]]
 Rcpp::List vis_limit_mag(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int helflag ){
+  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
+  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
+  if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
   std::array<double, 50> dret;
   std::array<char, 256> serr;
   int i = swe_vis_limit_mag(tjd_ut, &dgeo[0], &datm[0],&dobs[0], &objectname[0], helflag, &dret[0], &serr[0]);
@@ -404,6 +413,9 @@ Rcpp::List vis_limit_mag(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericV
 //' @export
 // [[Rcpp::export(swe_heliacal_pheno_ut)]]
 Rcpp::List heliacal_pheno_ut(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int event_type, int helflag ){
+  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
+  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
+  if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
   std::array<double, 50> darr;
   std::array<char, 256> serr;
   int i = swe_heliacal_pheno_ut(tjd_ut, &dgeo[0], &datm[0],&dobs[0], &objectname[0], event_type, helflag, &darr[0], &serr[0]);
@@ -419,6 +431,9 @@ Rcpp::List heliacal_pheno_ut(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::Nume
 //' @export
 // [[Rcpp::export(swe_topo_arcus_visionis)]]
 Rcpp::List topo_arcus_visionis(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,int helflag,double mag,double AziO, double AltO,double AziS, double AziM, double AltM){
+  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
+  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
+  if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
   std::array<char, 256> serr;
   double tav;
   int i = swe_topo_arcus_visionis(tjd_ut, &dgeo[0], &datm[0],&dobs[0], helflag, mag,AziO, AltO, AziS,  AziM,  AltM, &tav, &serr[0]);
