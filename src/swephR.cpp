@@ -369,20 +369,6 @@ Rcpp::List rise_trans_true_hor(double tjd_ut, int ipl, std::string starname, int
                             Rcpp::Named("serr") = std::string(&serr[0]));
 }
 
-//' Compute the rise and set location of the object (AppAlt=0)
-//' @return \code{swe_rise_trans} returns a list with named entries: \code{i} success of function
-//'      \code{tret} for azi/alt info and \code{serr} for possible error code
-//' @rdname expert-interface
-//' @export
-// [[Rcpp::export(swe_rise_trans)]]
-Rcpp::List rise_trans(double tjd_ut, int ipl, std::string starname, int epheflag, int rsmi,Rcpp::NumericVector geopos, double atpress, double attemp) {
-  std::array<char, 256> serr;
-  double tret;
-  int i = swe_rise_trans(tjd_ut, ipl, &starname[0], epheflag, rsmi, &geopos[0], atpress, attemp, &tret, &serr[0]);
-  return Rcpp::List::create(Rcpp::Named("return") = i,
-                            Rcpp::Named("tret") = tret,
-                            Rcpp::Named("serr") = std::string(&serr[0]));
-}
 
 //' Close Swiss Ephemeris files
 //' @rdname expert-interface

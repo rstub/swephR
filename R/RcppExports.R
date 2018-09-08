@@ -211,15 +211,6 @@ swe_rise_trans_true_hor <- function(tjd_ut, ipl, starname, epheflag, rsmi, geopo
     .Call(`_swephR_rise_trans_true_hor`, tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp, horhgt)
 }
 
-#' Compute the rise and set location of the object (AppAlt=0)
-#' @return \code{swe_rise_trans} returns a list with named entries: \code{i} success of function
-#'      \code{tret} for azi/alt info and \code{serr} for possible error code
-#' @rdname expert-interface
-#' @export
-swe_rise_trans <- function(tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp) {
-    .Call(`_swephR_rise_trans`, tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp)
-}
-
 #' Close Swiss Ephemeris files
 #' @rdname expert-interface
 #' @export

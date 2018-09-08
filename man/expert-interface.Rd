@@ -20,7 +20,6 @@
 \alias{swe_lun_eclipse_when}
 \alias{swe_sol_eclipse_when_loc}
 \alias{swe_rise_trans_true_hor}
-\alias{swe_rise_trans}
 \alias{swe_close}
 \alias{swe_vis_limit_mag}
 \alias{swe_heliacal_pheno_ut}
@@ -65,9 +64,6 @@ swe_sol_eclipse_when_loc(tjd_start, ifl, geopos, backward)
 
 swe_rise_trans_true_hor(tjd_ut, ipl, starname, epheflag, rsmi, geopos,
   atpress, attemp, horhgt)
-
-swe_rise_trans(tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress,
-  attemp)
 
 swe_close()
 
@@ -198,9 +194,6 @@ kind of computation is wanted}
 \code{swe_sol_eclipse_when_loc} returns a list with named entries: 
      \code{return} visibility code, \code{tret} for eclipse timing moments, 
      \code{attr} pheneomena durign eclipse and \code{serr} error string
-
-\code{swe_rise_trans} returns a list with named entries: \code{i} success of function
-     \code{tret} for azi/alt info and \code{serr} for possible error code
 
 \code{swe_vis_limit_mag} returns a list with named entries: \code{i} success of function
      \code{dret} for magnitude info and \code{serr} for possible error code

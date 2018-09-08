@@ -258,24 +258,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// rise_trans
-Rcpp::List rise_trans(double tjd_ut, int ipl, std::string starname, int epheflag, int rsmi, Rcpp::NumericVector geopos, double atpress, double attemp);
-RcppExport SEXP _swephR_rise_trans(SEXP tjd_utSEXP, SEXP iplSEXP, SEXP starnameSEXP, SEXP epheflagSEXP, SEXP rsmiSEXP, SEXP geoposSEXP, SEXP atpressSEXP, SEXP attempSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type tjd_ut(tjd_utSEXP);
-    Rcpp::traits::input_parameter< int >::type ipl(iplSEXP);
-    Rcpp::traits::input_parameter< std::string >::type starname(starnameSEXP);
-    Rcpp::traits::input_parameter< int >::type epheflag(epheflagSEXP);
-    Rcpp::traits::input_parameter< int >::type rsmi(rsmiSEXP);
-    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type geopos(geoposSEXP);
-    Rcpp::traits::input_parameter< double >::type atpress(atpressSEXP);
-    Rcpp::traits::input_parameter< double >::type attemp(attempSEXP);
-    rcpp_result_gen = Rcpp::wrap(rise_trans(tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp));
-    return rcpp_result_gen;
-END_RCPP
-}
 // close
 void close();
 RcppExport SEXP _swephR_close() {
@@ -340,7 +322,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_lun_eclipse_when", (DL_FUNC) &_swephR_lun_eclipse_when, 4},
     {"_swephR_sol_eclipse_when_loc", (DL_FUNC) &_swephR_sol_eclipse_when_loc, 4},
     {"_swephR_rise_trans_true_hor", (DL_FUNC) &_swephR_rise_trans_true_hor, 9},
-    {"_swephR_rise_trans", (DL_FUNC) &_swephR_rise_trans, 8},
     {"_swephR_close", (DL_FUNC) &_swephR_close, 0},
     {"_swephR_vis_limit_mag", (DL_FUNC) &_swephR_vis_limit_mag, 6},
     {"_swephR_heliacal_pheno_ut", (DL_FUNC) &_swephR_heliacal_pheno_ut, 7},
