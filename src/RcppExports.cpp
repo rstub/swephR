@@ -301,12 +301,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // topo_arcus_visionis
-Rcpp::List topo_arcus_visionis(double tjdut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs, int helflag, double mag, double AziO, double AltO, double AziS, double AziM, double AltM);
-RcppExport SEXP _swephR_topo_arcus_visionis(SEXP tjdutSEXP, SEXP dgeoSEXP, SEXP datmSEXP, SEXP dobsSEXP, SEXP helflagSEXP, SEXP magSEXP, SEXP AziOSEXP, SEXP AltOSEXP, SEXP AziSSEXP, SEXP AziMSEXP, SEXP AltMSEXP) {
+Rcpp::List topo_arcus_visionis(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs, int helflag, double mag, double AziO, double AltO, double AziS, double AziM, double AltM);
+RcppExport SEXP _swephR_topo_arcus_visionis(SEXP tjd_utSEXP, SEXP dgeoSEXP, SEXP datmSEXP, SEXP dobsSEXP, SEXP helflagSEXP, SEXP magSEXP, SEXP AziOSEXP, SEXP AltOSEXP, SEXP AziSSEXP, SEXP AziMSEXP, SEXP AltMSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type tjdut(tjdutSEXP);
+    Rcpp::traits::input_parameter< double >::type tjd_ut(tjd_utSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type dgeo(dgeoSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type datm(datmSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type dobs(dobsSEXP);
@@ -317,7 +317,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type AziS(AziSSEXP);
     Rcpp::traits::input_parameter< double >::type AziM(AziMSEXP);
     Rcpp::traits::input_parameter< double >::type AltM(AltMSEXP);
-    rcpp_result_gen = Rcpp::wrap(topo_arcus_visionis(tjdut, dgeo, datm, dobs, helflag, mag, AziO, AltO, AziS, AziM, AltM));
+    rcpp_result_gen = Rcpp::wrap(topo_arcus_visionis(tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AltO, AziS, AziM, AltM));
     return rcpp_result_gen;
 END_RCPP
 }

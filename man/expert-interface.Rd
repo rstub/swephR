@@ -73,7 +73,7 @@ swe_vis_limit_mag(tjd_ut, dgeo, datm, dobs, objectname, helflag)
 swe_heliacal_pheno_ut(tjd_ut, dgeo, datm, dobs, objectname, event_type,
   helflag)
 
-swe_topo_arcus_visionis(tjdut, dgeo, datm, dobs, helflag, mag, AziO, AltO,
+swe_topo_arcus_visionis(tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AltO,
   AziS, AziM, AltM)
 
 swe_calc(tjd_et, ipl, iflag)
