@@ -300,6 +300,27 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// topo_arcus_visionis
+Rcpp::List topo_arcus_visionis(double tjdut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs, int helflag, double mag, double AziO, double AltO, double AziS, double AziM, double AltM);
+RcppExport SEXP _swephR_topo_arcus_visionis(SEXP tjdutSEXP, SEXP dgeoSEXP, SEXP datmSEXP, SEXP dobsSEXP, SEXP helflagSEXP, SEXP magSEXP, SEXP AziOSEXP, SEXP AltOSEXP, SEXP AziSSEXP, SEXP AziMSEXP, SEXP AltMSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type tjdut(tjdutSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type dgeo(dgeoSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type datm(datmSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type dobs(dobsSEXP);
+    Rcpp::traits::input_parameter< int >::type helflag(helflagSEXP);
+    Rcpp::traits::input_parameter< double >::type mag(magSEXP);
+    Rcpp::traits::input_parameter< double >::type AziO(AziOSEXP);
+    Rcpp::traits::input_parameter< double >::type AltO(AltOSEXP);
+    Rcpp::traits::input_parameter< double >::type AziS(AziSSEXP);
+    Rcpp::traits::input_parameter< double >::type AziM(AziMSEXP);
+    Rcpp::traits::input_parameter< double >::type AltM(AltMSEXP);
+    rcpp_result_gen = Rcpp::wrap(topo_arcus_visionis(tjdut, dgeo, datm, dobs, helflag, mag, AziO, AltO, AziS, AziM, AltM));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_swephR_day_of_week", (DL_FUNC) &_swephR_day_of_week, 1},
@@ -325,6 +346,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_close", (DL_FUNC) &_swephR_close, 0},
     {"_swephR_vis_limit_mag", (DL_FUNC) &_swephR_vis_limit_mag, 6},
     {"_swephR_heliacal_pheno_ut", (DL_FUNC) &_swephR_heliacal_pheno_ut, 7},
+    {"_swephR_topo_arcus_visionis", (DL_FUNC) &_swephR_topo_arcus_visionis, 11},
     {NULL, NULL, 0}
 };
 

@@ -407,3 +407,18 @@ Rcpp::List heliacal_pheno_ut(double tjdut, Rcpp::NumericVector dgeo, Rcpp::Numer
                             Rcpp::Named("darr") = darr,
                             Rcpp::Named("serr") = std::string(&serr[0]));
 }
+
+//' Compute heliacal event details
+//' @return \code{swe_topo_arcus_visionis} returns a list with named entries: \code{i} success of function
+//'      \code{darr} for heliacal details and \code{serr} for possible error code
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_topo_arcus_visionis)]]
+Rcpp::List topo_arcus_visionis(double tjdut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,int helflag,double mag,double AziO, double AltO,double AziS, double AziM, double AltM){
+  std::array<char, 256> serr;
+  double tav;
+  int i = swe_topo_arcus_visionis(tjdut, &dgeo[0], &datm[0],&dobs[0], helflag, mag,AziO, AltO, AziS,  AziM,  AltM, &tav, &serr[0]);
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("tav") = tav,
+                            Rcpp::Named("serr") = std::string(&serr[0]));
+}

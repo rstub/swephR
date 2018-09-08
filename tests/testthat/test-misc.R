@@ -275,3 +275,11 @@ test_that("Heliacal event details", {
   expect_equal(result$serr, "")
   swe_close()
 })
+
+test_that("Determine topocentric Arcusvisionis", {
+  result <- swe_topo_arcus_visionis(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),768,-1,124,2,120,0,-45)
+  expect_equal(result$return, 0)
+  expect_equal(result$tav,12.4801254272461, tolerance=.000001)
+  expect_equal(result$serr, "")
+  swe_close()
+})

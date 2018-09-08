@@ -23,6 +23,7 @@
 \alias{swe_close}
 \alias{swe_vis_limit_mag}
 \alias{swe_heliacal_pheno_ut}
+\alias{swe_topo_arcus_visionis}
 \alias{swe_calc}
 \alias{swe_fixstar2}
 \title{Expert interface}
@@ -71,6 +72,9 @@ swe_vis_limit_mag(tjdut, dgeo, datm, dobs, objectname, helflag)
 
 swe_heliacal_pheno_ut(tjdut, dgeo, datm, dobs, objectname, event_type,
   helflag)
+
+swe_topo_arcus_visionis(tjdut, dgeo, datm, dobs, helflag, mag, AziO, AltO,
+  AziS, AziM, AltM)
 
 swe_calc(tjd_et, ipl, iflag)
 
@@ -199,6 +203,9 @@ kind of computation is wanted}
      \code{dret} for magnitude info and \code{serr} for possible error code
 
 \code{swe_heliacal_pheno_ut} returns a list with named entries: \code{i} success of function
+     \code{darr} for heliacal details and \code{serr} for possible error code
+
+\code{swe_topo_arcus_visionis} returns a list with named entries: \code{i} success of function
      \code{darr} for heliacal details and \code{serr} for possible error code
 
 \code{swe_calc} returns a list with named entries \code{rc},

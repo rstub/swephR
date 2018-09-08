@@ -236,3 +236,12 @@ swe_heliacal_pheno_ut <- function(tjdut, dgeo, datm, dobs, objectname, event_typ
     .Call(`_swephR_heliacal_pheno_ut`, tjdut, dgeo, datm, dobs, objectname, event_type, helflag)
 }
 
+#' Compute heliacal event details
+#' @return \code{swe_topo_arcus_visionis} returns a list with named entries: \code{i} success of function
+#'      \code{darr} for heliacal details and \code{serr} for possible error code
+#' @rdname expert-interface
+#' @export
+swe_topo_arcus_visionis <- function(tjdut, dgeo, datm, dobs, helflag, mag, AziO, AltO, AziS, AziM, AltM) {
+    .Call(`_swephR_topo_arcus_visionis`, tjdut, dgeo, datm, dobs, helflag, mag, AziO, AltO, AziS, AziM, AltM)
+}
+
