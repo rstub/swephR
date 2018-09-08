@@ -4,5 +4,5 @@ external
 ^codecov\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^ephemeris$
-^docs$
+ephemeris
+docs
