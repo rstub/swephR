@@ -38,7 +38,7 @@ swe_set_tid_acc(t_acc)
 
 swe_deltat(tjd)
 
-swe_set_ephe_path(file)
+swe_set_ephe_path(path)
 
 swe_set_topo(geolon, geolat, altitude)
 
@@ -68,9 +68,9 @@ swe_rise_trans_true_hor(tjd_ut, ipl, starname, epheflag, rsmi, geopos,
 
 swe_close()
 
-swe_vis_limit_mag(tjdut, dgeo, datm, dobs, objectname, helflag)
+swe_vis_limit_mag(tjd_ut, dgeo, datm, dobs, objectname, helflag)
 
-swe_heliacal_pheno_ut(tjdut, dgeo, datm, dobs, objectname, event_type,
+swe_heliacal_pheno_ut(tjd_ut, dgeo, datm, dobs, objectname, event_type,
   helflag)
 
 swe_topo_arcus_visionis(tjdut, dgeo, datm, dobs, helflag, mag, AziO, AltO,
@@ -87,7 +87,7 @@ swe_fixstar2(star, tjd_et, iflag)
 
 \item{tjd}{Julian day Number}
 
-\item{file}{the directory plus file (a string)}
+\item{path}{the directory where the ephemeris files are stored (a string)}
 
 \item{geolon}{Topocentric Longitude (deg)}
 

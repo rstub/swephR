@@ -9,7 +9,7 @@
 #' @param jd  Julian date as numeric vector
 #' @param t_acc tidal acceleration as double (arcsec/century^2)
 #' @param tjd  Julian day Number
-#' @param file  the directory plus file (a string)
+#' @param path  the directory where the ephemeris files are stored (a string)
 #' @param geolon  Topocentric Longitude (deg)
 #' @param geolat  Topocentric Latitude (deg)
 #' @param geopos The position vector (longitude, latitude, height)
@@ -80,8 +80,8 @@ swe_deltat <- function(tjd) {
 #' Set the directory for the sefstar.txt, swe_deltat.txt and jpl files
 #' @rdname expert-interface
 #' @export
-swe_set_ephe_path <- function(file) {
-    invisible(.Call(`_swephR_set_ephe_path`, file))
+swe_set_ephe_path <- function(path) {
+    invisible(.Call(`_swephR_set_ephe_path`, path))
 }
 
 #' Set the topocentric location (lon, lat, height)
@@ -223,8 +223,8 @@ swe_close <- function() {
 #'      \code{dret} for magnitude info and \code{serr} for possible error code
 #' @rdname expert-interface
 #' @export
-swe_vis_limit_mag <- function(tjdut, dgeo, datm, dobs, objectname, helflag) {
-    .Call(`_swephR_vis_limit_mag`, tjdut, dgeo, datm, dobs, objectname, helflag)
+swe_vis_limit_mag <- function(tjd_ut, dgeo, datm, dobs, objectname, helflag) {
+    .Call(`_swephR_vis_limit_mag`, tjd_ut, dgeo, datm, dobs, objectname, helflag)
 }
 
 #' Compute heliacal event details
@@ -232,8 +232,8 @@ swe_vis_limit_mag <- function(tjdut, dgeo, datm, dobs, objectname, helflag) {
 #'      \code{darr} for heliacal details and \code{serr} for possible error code
 #' @rdname expert-interface
 #' @export
-swe_heliacal_pheno_ut <- function(tjdut, dgeo, datm, dobs, objectname, event_type, helflag) {
-    .Call(`_swephR_heliacal_pheno_ut`, tjdut, dgeo, datm, dobs, objectname, event_type, helflag)
+swe_heliacal_pheno_ut <- function(tjd_ut, dgeo, datm, dobs, objectname, event_type, helflag) {
+    .Call(`_swephR_heliacal_pheno_ut`, tjd_ut, dgeo, datm, dobs, objectname, event_type, helflag)
 }
 
 #' Compute heliacal event details
