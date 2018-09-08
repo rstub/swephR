@@ -399,7 +399,7 @@ void close() {
 //' @export
 // [[Rcpp::export(swe_vis_limit_mag)]]
 Rcpp::List vis_limit_mag(double tjdut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int helflag ){
-  std::array<double, 10> dret;
+  std::array<double, 50> dret;
   std::array<char, 256> serr;
   int i = swe_vis_limit_mag(tjdut, &dgeo[0], &datm[0],&dobs[0], &objectname[0], helflag, &dret[0], &serr[0]);
   return Rcpp::List::create(Rcpp::Named("return") = i,
@@ -414,7 +414,7 @@ Rcpp::List vis_limit_mag(double tjdut, Rcpp::NumericVector dgeo, Rcpp::NumericVe
 //' @export
 // [[Rcpp::export(swe_heliacal_pheno_ut)]]
 Rcpp::List heliacal_pheno_ut(double tjdut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int event_type, int helflag ){
-  std::array<double, 40> darr;
+  std::array<double, 50> darr;
   std::array<char, 256> serr;
   int i = swe_heliacal_pheno_ut(tjdut, &dgeo[0], &datm[0],&dobs[0], &objectname[0], event_type, helflag, &darr[0], &serr[0]);
   return Rcpp::List::create(Rcpp::Named("return") = i,
