@@ -8,6 +8,7 @@
 \alias{swe_set_tid_acc}
 \alias{swe_deltat}
 \alias{swe_set_ephe_path}
+\alias{swe_julday}
 \alias{swe_set_topo}
 \alias{swe_set_delta_t_userdef}
 \alias{swe_fixstar2_mag}
@@ -40,6 +41,8 @@ swe_set_tid_acc(t_acc)
 swe_deltat(tjd)
 
 swe_set_ephe_path(path)
+
+swe_julday(year, month, day, hour, gregflag)
 
 swe_set_topo(geolon, geolat, altitude)
 
@@ -92,6 +95,14 @@ swe_fixstar2(star, tjd_et, iflag)
 \item{tjd}{Julian day Number}
 
 \item{path}{the directory where the ephemeris files are stored (a string)}
+
+\item{year}{Year}
+
+\item{day}{Day}
+
+\item{hour}{Hour}
+
+\item{gregflag}{Greogiran (1) or juian calandar (0)}
 
 \item{geolon}{Topocentric Longitude (deg)}
 
@@ -164,6 +175,8 @@ kind of computation is wanted}
 
 \item{tjd_et}{Julian day, Ephemeris time}
 
+\item{mont}{Month}
+
 \item{mag}{The object's magnitude}
 
 \item{AziO}{The object's azimut}
@@ -235,7 +248,7 @@ kind of computation is wanted}
      \code{darr} for heliacal details and \code{serr} for possible error code
 
 \code{swe_heliacal_angle} returns a list with named entries: \code{i} success of function
-     \code{darr} for heliacal details and \code{serr} for possible error code
+     \code{darr} for heliacal angle and \code{serr} for possible error code
 
 \code{swe_calc} returns a list with named entries \code{rc},
         \code{xx} updated star name, and \code{serr} error message.

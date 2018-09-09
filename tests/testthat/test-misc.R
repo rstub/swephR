@@ -74,15 +74,15 @@ test_that("version works", {
     expect_equal(swe_version(), "2.07.01")
 })
 
-test_that("non-existent planet produces error", {
-    result <- swe_calc(1234.567, -2,4)
-    expect_true(is.list(result))
-    expect_equal(result$return, -1)
-    expect_equal(result$serr, "illegal planet number -2.")
-    swe_close()
+test_that("non-existent planet produces error (ET)", {
+  result <- swe_calc(1234.567, -2,4)
+  expect_true(is.list(result))
+  expect_equal(result$return, -1)
+  expect_equal(result$serr, "illegal planet number -2.")
+  swe_close()
 })
 
-test_that("Sun near present day with build in ephemeris", {
+test_that("Sun near present day with build in ephemeris (ET)", {
     result <- swe_calc(2458346.82639, 0, 4)
     expect_true(is.list(result))
     expect_equal(result$return, 4)
@@ -91,7 +91,7 @@ test_that("Sun near present day with build in ephemeris", {
     swe_close()
 })
 
-test_that("Sun near present day with SE", {
+test_that("Sun near present day with SE (ET)", {
     skip_if_not_installed("swephRdata")
     result <- swe_calc(2458346.82639, 0, 2)
     expect_true(is.list(result))
@@ -101,16 +101,25 @@ test_that("Sun near present day with SE", {
     swe_close()
 })
 
-test_that("Moon near present day with build in ephemeris", {
-    result <- swe_calc(2458346.82639, 1, 4)
-    expect_true(is.list(result))
-    expect_equal(result$return, 4)
-    expect_equal(result$serr, "")
-    expect_equal(result$xx, c(209.393205609575, 5.23865656062778, 0.00254763959909033, 0, 0, 0))
-    swe_close()
+test_that("Moon near present day with build in ephemeris (ET)", {
+  result <- swe_calc(2458346.82639, 1, 4)
+  expect_true(is.list(result))
+  expect_equal(result$return, 4)
+  expect_equal(result$serr, "")
+  expect_equal(result$xx, c(209.393205609575, 5.23865656062778, 0.00254763959909033, 0, 0, 0))
+  swe_close()
 })
 
-test_that("Moon near present day with SE", {
+test_that("Moon near present day with build in ephemeris (UT)", {
+  result <- swe_calc_ut(2458346.82639, 1, 4)
+  expect_true(is.list(result))
+  expect_equal(result$return, 4)
+  expect_equal(result$serr, "")
+  expect_equal(result$xx, c(209.393205609575, 5.23865656062778, 0.00254763959909033, 0, 0, 0))
+  swe_close()
+})
+
+test_that("Moon near present day with SE (ET)", {
     skip_if_not_installed("swephRdata")
     result <- swe_calc(2458346.82639, 1, 2)
     expect_true(is.list(result))
@@ -120,7 +129,7 @@ test_that("Moon near present day with SE", {
     swe_close()
 })
 
-test_that("Sun and Moon near present day with build in ephemeris", {
+test_that("Sun and Moon near present day with build in ephemeris (ET)", {
     result <- swe_calc(2458346.82639, c(0, 1), 4)
     expect_true(is.list(result))
     expect_equal(result$return, c(4, 4))
@@ -131,7 +140,7 @@ test_that("Sun and Moon near present day with build in ephemeris", {
     swe_close()
 })
 
-test_that("Mercury near present day with build in ephemeris", {
+test_that("Mercury near present day with build in ephemeris (ET)", {
     result <- swe_calc(2458346.82639, 2, 4)
     expect_true(is.list(result))
     expect_equal(result$return, 4)
@@ -140,7 +149,7 @@ test_that("Mercury near present day with build in ephemeris", {
     swe_close()
 })
 
-test_that("Mercury near present day with SE", {
+test_that("Mercury near present day with SE (ET)", {
     skip_if_not_installed("swephRdata")
     result <- swe_calc(2458346.82639, 2, 2)
     expect_true(is.list(result))
@@ -293,4 +302,10 @@ test_that("Determine Heliacal angle", {
   expect_equal(result$dret[1:3],c(3.468750, 11.569977, -8.101227), tolerance=.000001)
   expect_equal(result$serr, "")
   swe_close()
+})
+
+
+test_that("Converting calander date into Julian day number", {
+  result <- swe_julday(2000,1,1,12,1)
+  expect_equal(result, 2451545)
 })
