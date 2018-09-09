@@ -286,3 +286,11 @@ test_that("Determine topocentric Arcusvisionis", {
   expect_equal(result$serr, "")
   swe_close()
 })
+
+test_that("Determine Heliacal angle", {
+  result <- swe_heliacal_angle(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),768,-1,124,120,0,-45)
+  expect_equal(result$return, 0)
+  expect_equal(result$dret[1:3],c(3.468750, 11.569977, -8.101227), tolerance=.000001)
+  expect_equal(result$serr, "")
+  swe_close()
+})

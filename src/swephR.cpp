@@ -447,3 +447,27 @@ Rcpp::List topo_arcus_visionis(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::Nu
                             Rcpp::Named("tav") = tav,
                             Rcpp::Named("serr") = std::string(&serr[0]));
 }
+
+//' Compute heliacal event details
+//' @param mag   The object's magnitude
+//' @param AziO  The object's azimut
+//' @param AziS  The sun's azimut
+//' @param AziM  The moon's azimut
+//' @param AltM  The moon's altitude
+//' @return \code{swe_heliacal_angle} returns a list with named entries: \code{i} success of function
+//'      \code{darr} for heliacal details and \code{serr} for possible error code
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_heliacal_angle)]]
+Rcpp::List heliacal_angle(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,int helflag,double mag,double AziO, double AziS, double AziM, double AltM){
+  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
+  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
+  if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
+  std::array<double, 50> dret{0.0};
+  std::array<char, 256> serr{'\0'};
+  double tav;
+  int i = swe_heliacal_angle(tjd_ut, &dgeo[0], &datm[0],&dobs[0], helflag, mag,AziO, AziS,  AziM,  AltM, &dret[0], &serr[0]);
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("dret") = dret,
+                            Rcpp::Named("serr") = std::string(&serr[0]));
+}
