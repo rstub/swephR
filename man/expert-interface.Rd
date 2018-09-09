@@ -24,6 +24,7 @@
 \alias{swe_vis_limit_mag}
 \alias{swe_heliacal_pheno_ut}
 \alias{swe_topo_arcus_visionis}
+\alias{swe_heliacal_angle}
 \alias{swe_calc}
 \alias{swe_fixstar2}
 \title{Expert interface}
@@ -75,6 +76,9 @@ swe_heliacal_pheno_ut(tjd_ut, dgeo, datm, dobs, objectname, event_type,
 
 swe_topo_arcus_visionis(tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AltO,
   AziS, AziM, AltM)
+
+swe_heliacal_angle(tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS,
+  AziM, AltM)
 
 swe_calc(tjd_et, ipl, iflag)
 
@@ -159,6 +163,16 @@ kind of computation is wanted}
 \item{AltM}{The moon's altitude}
 
 \item{tjd_et}{Julian day, Ephemeris time}
+
+\item{mag}{The object's magnitude}
+
+\item{AziO}{The object's azimut}
+
+\item{AziS}{The sun's azimut}
+
+\item{AziM}{The moon's azimut}
+
+\item{AltM}{The moon's altitude}
 }
 \value{
 \code{swe_rise_trans_true_hor} returns a list with named entries: \code{i} success of function
@@ -218,6 +232,9 @@ kind of computation is wanted}
      \code{darr} for heliacal details and \code{serr} for possible error code
 
 \code{swe_topo_arcus_visionis} returns a list with named entries: \code{i} success of function
+     \code{darr} for heliacal details and \code{serr} for possible error code
+
+\code{swe_heliacal_angle} returns a list with named entries: \code{i} success of function
      \code{darr} for heliacal details and \code{serr} for possible error code
 
 \code{swe_calc} returns a list with named entries \code{rc},
