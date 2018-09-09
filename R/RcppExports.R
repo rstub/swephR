@@ -84,6 +84,18 @@ swe_set_ephe_path <- function(path) {
     invisible(.Call(`_swephR_set_ephe_path`, path))
 }
 
+#' Determine Julian date number from calendar date
+#' @param year  Year
+#' @param mont  Month
+#' @param day  Day
+#' @param hour  Hour
+#' @param gregflag  Greogiran (1) or juian calandar (0)
+#' @rdname expert-interface
+#' @export
+swe_julday <- function(year, month, day, hour, gregflag) {
+    .Call(`_swephR_julday`, year, month, day, hour, gregflag)
+}
+
 #' Set the topocentric location (lon, lat, height)
 #' @rdname expert-interface
 #' @export
@@ -102,6 +114,10 @@ calc <- function(tjd_et, ipl, iflag) {
     .Call(`_swephR_calc`, tjd_et, ipl, iflag)
 }
 
+calc_ut <- function(tjd_ut, ipl, iflag) {
+    .Call(`_swephR_calc_ut`, tjd_ut, ipl, iflag)
+}
+
 #' Compute the magnitude of star
 #' @return \code{swe_fixstar2_mag} returns a list with named entries \code{return},
 #'         \code{star} updated star name, \code{mag} magnitude of star, and \code{serr} for error message.
@@ -113,6 +129,10 @@ swe_fixstar2_mag <- function(star) {
 
 fixstar2 <- function(star, tjd_et, iflag) {
     .Call(`_swephR_fixstar2`, star, tjd_et, iflag)
+}
+
+fixstar2_ut <- function(star, tjd_ut, iflag) {
+    .Call(`_swephR_fixstar2_ut`, star, tjd_ut, iflag)
 }
 
 #' Compute the heliacale event of celestial object
@@ -258,7 +278,7 @@ swe_topo_arcus_visionis <- function(tjd_ut, dgeo, datm, dobs, helflag, mag, AziO
 #' @param AziM  The moon's azimut
 #' @param AltM  The moon's altitude
 #' @return \code{swe_heliacal_angle} returns a list with named entries: \code{i} success of function
-#'      \code{darr} for heliacal details and \code{serr} for possible error code
+#'      \code{darr} for heliacal angle and \code{serr} for possible error code
 #' @rdname expert-interface
 #' @export
 swe_heliacal_angle <- function(tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM, AltM) {

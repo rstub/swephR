@@ -101,6 +101,21 @@ void set_ephe_path(Rcpp::Nullable<Rcpp::CharacterVector> path) {
   }
 }
 
+//' Determine Julian date number from calendar date
+//' @param year  Year
+//' @param mont  Month
+//' @param day  Day
+//' @param hour  Hour
+//' @param gregflag  Greogiran (1) or juian calandar (0)
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_julday)]]
+double julday(int year, int month, int day, double hour, int gregflag) { 
+    double i;
+    i = swe_julday(year, month, day, hour, gregflag);
+  return i;
+}
+
 //' Set the topocentric location (lon, lat, height)
 //' @rdname expert-interface
 //' @export
@@ -117,7 +132,7 @@ void set_delta_t_userdef (double delta_t) {
   swe_set_delta_t_userdef (delta_t);
 }
 
-// Compute information of planet
+// Compute information of planet (ET)
 // [[Rcpp::export]]
 Rcpp::List calc(Rcpp::NumericVector tjd_et, Rcpp::IntegerVector ipl, int iflag) {
   if (tjd_et.length() != ipl.length())
@@ -135,7 +150,34 @@ Rcpp::List calc(Rcpp::NumericVector tjd_et, Rcpp::IntegerVector ipl, int iflag) 
     xx_(i, Rcpp::_) = tmp;
     serr_(i) = std::string(&serr[0]);
   }
+  // remove dim attribute to return a vector
+  if (ipl.length() == 1)
+    xx_.attr("dim") = R_NilValue;
+  
+  return Rcpp::List::create(Rcpp::Named("return") = rc_,
+                            Rcpp::Named("xx") = xx_,
+                            Rcpp::Named("serr") = serr_);
+}
 
+  // Compute information of planet (UT)
+  // [[Rcpp::export]]
+  Rcpp::List calc_ut(Rcpp::NumericVector tjd_ut, Rcpp::IntegerVector ipl, int iflag) {
+    if (tjd_ut.length() != ipl.length())
+      Rcpp::stop("The number of bodies in 'ipl' and the number of dates in 'tjd_ut' must be identical!");
+    
+    Rcpp::IntegerVector rc_(ipl.length());
+    Rcpp::CharacterVector serr_(ipl.length());
+    Rcpp::NumericMatrix xx_(ipl.length(), 6);
+    
+    for (int i = 0; i < ipl.length(); ++i) {
+      std::array<double, 6> xx{0.0};
+      std::array<char, 256> serr{'\0'};
+      rc_(i) = swe_calc_ut(tjd_ut[i], ipl(i), iflag, &xx[0], &serr[0]);
+      Rcpp::NumericVector tmp(xx.begin(), xx.end());
+      xx_(i, Rcpp::_) = tmp;
+      serr_(i) = std::string(&serr[0]);
+    }
+    
   // remove dim attribute to return a vector
   if (ipl.length() == 1)
     xx_.attr("dim") = R_NilValue;
@@ -180,11 +222,11 @@ Rcpp::List fixstar2_mag(Rcpp::CharacterVector star) {
 Rcpp::List fixstar2(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_et, int iflag) {
   if (tjd_et.length() != star.length())
     Rcpp::stop("The number of stars in 'star' and the number of dates in 'tjd_et' must be identical!");
-
+  
   Rcpp::IntegerVector rc_(star.length());
   Rcpp::CharacterVector serr_(star.length());
   Rcpp::NumericMatrix xx_(star.length(), 6);
-
+  
   for (int i = 0; i < star.length(); ++i) {
     std::array<double, 6> xx{0.0};
     std::array<char, 256> serr{'\0'};
@@ -196,11 +238,43 @@ Rcpp::List fixstar2(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_et, int 
     serr_(i) = std::string(&serr[0]);
     star(i) = star_;
   }
-
+  
   // remove dim attribute to return a vector
   if (star.length() == 1)
     xx_.attr("dim") = R_NilValue;
+  
+  return Rcpp::List::create(Rcpp::Named("return") = rc_,
+                            Rcpp::Named("star") = star,
+                            Rcpp::Named("xx") = xx_,
+                            Rcpp::Named("serr") = serr_);
+}
 
+// Compute information of star (UT)
+// [[Rcpp::export]]
+Rcpp::List fixstar2_ut(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_ut, int iflag) {
+  if (tjd_ut.length() != star.length())
+    Rcpp::stop("The number of stars in 'star' and the number of dates in 'tjd_ut' must be identical!");
+  
+  Rcpp::IntegerVector rc_(star.length());
+  Rcpp::CharacterVector serr_(star.length());
+  Rcpp::NumericMatrix xx_(star.length(), 6);
+  
+  for (int i = 0; i < star.length(); ++i) {
+    std::array<double, 6> xx{0.0};
+    std::array<char, 256> serr{'\0'};
+    std::string star_(star(i));
+    star_.resize(41);
+    rc_(i) = swe_fixstar2_ut(&star_[0], tjd_ut(i), iflag, &xx[0], &serr[0]);
+    Rcpp::NumericVector tmp(xx.begin(), xx.end());
+    xx_(i, Rcpp::_) = tmp;
+    serr_(i) = std::string(&serr[0]);
+    star(i) = star_;
+  }
+  
+  // remove dim attribute to return a vector
+  if (star.length() == 1)
+    xx_.attr("dim") = R_NilValue;
+  
   return Rcpp::List::create(Rcpp::Named("return") = rc_,
                             Rcpp::Named("star") = star,
                             Rcpp::Named("xx") = xx_,
@@ -465,7 +539,6 @@ Rcpp::List heliacal_angle(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::Numeric
   if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
   std::array<double, 50> dret{0.0};
   std::array<char, 256> serr{'\0'};
-  double tav;
   int i = swe_heliacal_angle(tjd_ut, &dgeo[0], &datm[0],&dobs[0], helflag, mag,AziO, AziS,  AziM,  AltM, &dret[0], &serr[0]);
   return Rcpp::List::create(Rcpp::Named("return") = i,
                             Rcpp::Named("dret") = dret,

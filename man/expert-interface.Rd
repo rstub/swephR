@@ -8,6 +8,7 @@
 \alias{swe_set_tid_acc}
 \alias{swe_deltat}
 \alias{swe_set_ephe_path}
+\alias{swe_julday}
 \alias{swe_set_topo}
 \alias{swe_set_delta_t_userdef}
 \alias{swe_fixstar2_mag}
@@ -26,7 +27,9 @@
 \alias{swe_topo_arcus_visionis}
 \alias{swe_heliacal_angle}
 \alias{swe_calc}
+\alias{swe_calc_ut}
 \alias{swe_fixstar2}
+\alias{swe_fixstar2_ut}
 \title{Expert interface}
 \usage{
 swe_day_of_week(jd)
@@ -40,6 +43,8 @@ swe_set_tid_acc(t_acc)
 swe_deltat(tjd)
 
 swe_set_ephe_path(path)
+
+swe_julday(year, month, day, hour, gregflag)
 
 swe_set_topo(geolon, geolat, altitude)
 
@@ -82,7 +87,11 @@ swe_heliacal_angle(tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS,
 
 swe_calc(tjd_et, ipl, iflag)
 
+swe_calc_ut(tjd_ut, ipl, iflag)
+
 swe_fixstar2(star, tjd_et, iflag)
+
+swe_fixstar2_ut(star, tjd_ut, iflag)
 }
 \arguments{
 \item{jd}{Julian date as numeric vector}
@@ -92,6 +101,14 @@ swe_fixstar2(star, tjd_et, iflag)
 \item{tjd}{Julian day Number}
 
 \item{path}{the directory where the ephemeris files are stored (a string)}
+
+\item{year}{Year}
+
+\item{day}{Day}
+
+\item{hour}{Hour}
+
+\item{gregflag}{Greogiran (1) or juian calandar (0)}
 
 \item{geolon}{Topocentric Longitude (deg)}
 
@@ -164,6 +181,8 @@ kind of computation is wanted}
 
 \item{tjd_et}{Julian day, Ephemeris time}
 
+\item{mont}{Month}
+
 \item{mag}{The object's magnitude}
 
 \item{AziO}{The object's azimut}
@@ -235,12 +254,18 @@ kind of computation is wanted}
      \code{darr} for heliacal details and \code{serr} for possible error code
 
 \code{swe_heliacal_angle} returns a list with named entries: \code{i} success of function
-     \code{darr} for heliacal details and \code{serr} for possible error code
+     \code{darr} for heliacal angle and \code{serr} for possible error code
 
 \code{swe_calc} returns a list with named entries \code{rc},
+        \code{xx} updated planet name, and \code{serr} error message.
+
+\code{swe_calc_ut} returns a list with named entries \code{rc},
         \code{xx} updated star name, and \code{serr} error message.
 
 \code{swe_fixstar2} returns a list with named entries \code{return},
+        \code{star} updated star name, \code{xx}, and \code{serr} error message.
+
+\code{swe_fixstar2_ut} returns a list with named entries \code{return},
         \code{star} updated star name, \code{xx}, and \code{serr} error message.
 }
 \description{
