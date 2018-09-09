@@ -228,7 +228,7 @@ Rcpp::List heliacal_ut(double tjdstart, Rcpp::NumericVector dgeo, Rcpp::NumericV
   std::array<char, 256> serr{'\0'};
   int rtn = swe_heliacal_ut(tjdstart, &dgeo[0],&datm[0],&dobs[0],&objectname[0],event_type,helflag, dret.begin(), serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = rtn,
-			    Rcpp::Named("dret") = Rcpp::NumericVector::import(dret.begin(), dret.begin() + 3),
+			    Rcpp::Named("dret") = dret,
                             Rcpp::Named("serr") = std::string(serr.begin()));
 }
 

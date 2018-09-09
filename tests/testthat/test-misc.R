@@ -208,7 +208,7 @@ test_that("Rise/set azimuth", {
 test_that("Heliacal rise of sirus", {
   result <- swe_heliacal_ut(1234567,c(0,50,10),c(1013.25,15,50,0.25),c(25,1,1,1,5,0.8),"sirius",1,260)
   expect_equal(result$return, 0)
-  expect_equal(result$dret,c(1234768.64491623, 1234768.65345790, 1234768.66307595), tolerance=.000001)
+  expect_equal(result$dret[1:3],c(1234768.64491623, 1234768.65345790, 1234768.66307595), tolerance=.000001)
   expect_equal(result$serr, "")
   swe_close()
 })
