@@ -9,7 +9,7 @@
 #' @param jd  Julian date as numeric vector
 #' @param t_acc tidal acceleration as double (arcsec/century^2)
 #' @param tjd  Julian day Number
-#' @param file  the directory plus file (a string)
+#' @param path  the directory where the ephemeris files are stored (a string)
 #' @param geolon  Topocentric Longitude (deg)
 #' @param geolat  Topocentric Latitude (deg)
 #' @param geopos The position vector (longitude, latitude, height)
@@ -80,8 +80,8 @@ swe_deltat <- function(tjd) {
 #' Set the directory for the sefstar.txt, swe_deltat.txt and jpl files
 #' @rdname expert-interface
 #' @export
-swe_set_ephe_path <- function(file) {
-    invisible(.Call(`_swephR_set_ephe_path`, file))
+swe_set_ephe_path <- function(path) {
+    invisible(.Call(`_swephR_set_ephe_path`, path))
 }
 
 #' Set the topocentric location (lon, lat, height)
@@ -98,12 +98,7 @@ swe_set_delta_t_userdef <- function(delta_t) {
     invisible(.Call(`_swephR_set_delta_t_userdef`, delta_t))
 }
 
-#' Compute information of planet
-#' @return \code{swe_calc} returns a list with named entries \code{rc},
-#'         \code{xx} updated star name, and \code{serr} error message.
-#' @rdname expert-interface
-#' @export
-swe_calc <- function(tjd_et, ipl, iflag) {
+calc <- function(tjd_et, ipl, iflag) {
     .Call(`_swephR_calc`, tjd_et, ipl, iflag)
 }
 
@@ -116,12 +111,7 @@ swe_fixstar2_mag <- function(star) {
     .Call(`_swephR_fixstar2_mag`, star)
 }
 
-#' Compute information of star
-#' @return \code{swe_fixstar2} returns a list with named entries \code{return},
-#'         \code{star} updated star name, \code{xx}, and \code{serr} error message.
-#' @rdname expert-interface
-#' @export
-swe_fixstar2 <- function(star, tjd_et, iflag) {
+fixstar2 <- function(star, tjd_et, iflag) {
     .Call(`_swephR_fixstar2`, star, tjd_et, iflag)
 }
 
@@ -221,19 +211,43 @@ swe_rise_trans_true_hor <- function(tjd_ut, ipl, starname, epheflag, rsmi, geopo
     .Call(`_swephR_rise_trans_true_hor`, tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp, horhgt)
 }
 
-#' Compute the rise and set location of the object (AppAlt=0)
-#' @return \code{swe_rise_trans} returns a list with named entries: \code{i} success of function
-#'      \code{tret} for azi/alt info and \code{serr} for possible error code
-#' @rdname expert-interface
-#' @export
-swe_rise_trans <- function(tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp) {
-    .Call(`_swephR_rise_trans`, tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp)
-}
-
 #' Close Swiss Ephemeris files
 #' @rdname expert-interface
 #' @export
 swe_close <- function() {
     invisible(.Call(`_swephR_close`))
+}
+
+#' Compute the limiting visibiliy magnitude
+#' @return \code{swe_vis_limit_mag} returns a list with named entries: \code{i} success of function
+#'      \code{dret} for magnitude info and \code{serr} for possible error code
+#' @rdname expert-interface
+#' @export
+swe_vis_limit_mag <- function(tjd_ut, dgeo, datm, dobs, objectname, helflag) {
+    .Call(`_swephR_vis_limit_mag`, tjd_ut, dgeo, datm, dobs, objectname, helflag)
+}
+
+#' Compute heliacal event details
+#' @return \code{swe_heliacal_pheno_ut} returns a list with named entries: \code{i} success of function
+#'      \code{darr} for heliacal details and \code{serr} for possible error code
+#' @rdname expert-interface
+#' @export
+swe_heliacal_pheno_ut <- function(tjd_ut, dgeo, datm, dobs, objectname, event_type, helflag) {
+    .Call(`_swephR_heliacal_pheno_ut`, tjd_ut, dgeo, datm, dobs, objectname, event_type, helflag)
+}
+
+#' Compute heliacal event details
+#' @param mag   The object's magnitude
+#' @param AziO  The object's azimut
+#' @param AltO  The object's altitude
+#' @param AziS  The sun's azimut
+#' @param AziM  The moon's azimut
+#' @param AltM  The moon's altitude
+#' @return \code{swe_topo_arcus_visionis} returns a list with named entries: \code{i} success of function
+#'      \code{darr} for heliacal details and \code{serr} for possible error code
+#' @rdname expert-interface
+#' @export
+swe_topo_arcus_visionis <- function(tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AltO, AziS, AziM, AltM) {
+    .Call(`_swephR_topo_arcus_visionis`, tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AltO, AziS, AziM, AltM)
 }
 

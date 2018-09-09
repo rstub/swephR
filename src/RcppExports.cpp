@@ -47,23 +47,23 @@ BEGIN_RCPP
 END_RCPP
 }
 // deltat
-double deltat(double tjd);
+Rcpp::NumericVector deltat(Rcpp::NumericVector tjd);
 RcppExport SEXP _swephR_deltat(SEXP tjdSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type tjd(tjdSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tjd(tjdSEXP);
     rcpp_result_gen = Rcpp::wrap(deltat(tjd));
     return rcpp_result_gen;
 END_RCPP
 }
 // set_ephe_path
-void set_ephe_path(std::string file);
-RcppExport SEXP _swephR_set_ephe_path(SEXP fileSEXP) {
+void set_ephe_path(Rcpp::Nullable<Rcpp::CharacterVector> path);
+RcppExport SEXP _swephR_set_ephe_path(SEXP pathSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type file(fileSEXP);
-    set_ephe_path(file);
+    Rcpp::traits::input_parameter< Rcpp::Nullable<Rcpp::CharacterVector> >::type path(pathSEXP);
+    set_ephe_path(path);
     return R_NilValue;
 END_RCPP
 }
@@ -90,37 +90,37 @@ BEGIN_RCPP
 END_RCPP
 }
 // calc
-Rcpp::List calc(double tjd_et, int ipl, int iflag);
+Rcpp::List calc(Rcpp::NumericVector tjd_et, Rcpp::IntegerVector ipl, int iflag);
 RcppExport SEXP _swephR_calc(SEXP tjd_etSEXP, SEXP iplSEXP, SEXP iflagSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type tjd_et(tjd_etSEXP);
-    Rcpp::traits::input_parameter< int >::type ipl(iplSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tjd_et(tjd_etSEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type ipl(iplSEXP);
     Rcpp::traits::input_parameter< int >::type iflag(iflagSEXP);
     rcpp_result_gen = Rcpp::wrap(calc(tjd_et, ipl, iflag));
     return rcpp_result_gen;
 END_RCPP
 }
 // fixstar2_mag
-Rcpp::List fixstar2_mag(std::string star);
+Rcpp::List fixstar2_mag(Rcpp::CharacterVector star);
 RcppExport SEXP _swephR_fixstar2_mag(SEXP starSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type star(starSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type star(starSEXP);
     rcpp_result_gen = Rcpp::wrap(fixstar2_mag(star));
     return rcpp_result_gen;
 END_RCPP
 }
 // fixstar2
-Rcpp::List fixstar2(std::string star, double tjd_et, int iflag);
+Rcpp::List fixstar2(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_et, int iflag);
 RcppExport SEXP _swephR_fixstar2(SEXP starSEXP, SEXP tjd_etSEXP, SEXP iflagSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type star(starSEXP);
-    Rcpp::traits::input_parameter< double >::type tjd_et(tjd_etSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type star(starSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tjd_et(tjd_etSEXP);
     Rcpp::traits::input_parameter< int >::type iflag(iflagSEXP);
     rcpp_result_gen = Rcpp::wrap(fixstar2(star, tjd_et, iflag));
     return rcpp_result_gen;
@@ -144,12 +144,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // deltat_ex
-Rcpp::List deltat_ex(double tjd, int ephe_flag);
+Rcpp::List deltat_ex(Rcpp::NumericVector tjd, int ephe_flag);
 RcppExport SEXP _swephR_deltat_ex(SEXP tjdSEXP, SEXP ephe_flagSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type tjd(tjdSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tjd(tjdSEXP);
     Rcpp::traits::input_parameter< int >::type ephe_flag(ephe_flagSEXP);
     rcpp_result_gen = Rcpp::wrap(deltat_ex(tjd, ephe_flag));
     return rcpp_result_gen;
@@ -258,24 +258,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// rise_trans
-Rcpp::List rise_trans(double tjd_ut, int ipl, std::string starname, int epheflag, int rsmi, Rcpp::NumericVector geopos, double atpress, double attemp);
-RcppExport SEXP _swephR_rise_trans(SEXP tjd_utSEXP, SEXP iplSEXP, SEXP starnameSEXP, SEXP epheflagSEXP, SEXP rsmiSEXP, SEXP geoposSEXP, SEXP atpressSEXP, SEXP attempSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type tjd_ut(tjd_utSEXP);
-    Rcpp::traits::input_parameter< int >::type ipl(iplSEXP);
-    Rcpp::traits::input_parameter< std::string >::type starname(starnameSEXP);
-    Rcpp::traits::input_parameter< int >::type epheflag(epheflagSEXP);
-    Rcpp::traits::input_parameter< int >::type rsmi(rsmiSEXP);
-    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type geopos(geoposSEXP);
-    Rcpp::traits::input_parameter< double >::type atpress(atpressSEXP);
-    Rcpp::traits::input_parameter< double >::type attemp(attempSEXP);
-    rcpp_result_gen = Rcpp::wrap(rise_trans(tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp));
-    return rcpp_result_gen;
-END_RCPP
-}
 // close
 void close();
 RcppExport SEXP _swephR_close() {
@@ -283,6 +265,60 @@ BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     close();
     return R_NilValue;
+END_RCPP
+}
+// vis_limit_mag
+Rcpp::List vis_limit_mag(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs, std::string objectname, int helflag);
+RcppExport SEXP _swephR_vis_limit_mag(SEXP tjd_utSEXP, SEXP dgeoSEXP, SEXP datmSEXP, SEXP dobsSEXP, SEXP objectnameSEXP, SEXP helflagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type tjd_ut(tjd_utSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type dgeo(dgeoSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type datm(datmSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type dobs(dobsSEXP);
+    Rcpp::traits::input_parameter< std::string >::type objectname(objectnameSEXP);
+    Rcpp::traits::input_parameter< int >::type helflag(helflagSEXP);
+    rcpp_result_gen = Rcpp::wrap(vis_limit_mag(tjd_ut, dgeo, datm, dobs, objectname, helflag));
+    return rcpp_result_gen;
+END_RCPP
+}
+// heliacal_pheno_ut
+Rcpp::List heliacal_pheno_ut(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs, std::string objectname, int event_type, int helflag);
+RcppExport SEXP _swephR_heliacal_pheno_ut(SEXP tjd_utSEXP, SEXP dgeoSEXP, SEXP datmSEXP, SEXP dobsSEXP, SEXP objectnameSEXP, SEXP event_typeSEXP, SEXP helflagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type tjd_ut(tjd_utSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type dgeo(dgeoSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type datm(datmSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type dobs(dobsSEXP);
+    Rcpp::traits::input_parameter< std::string >::type objectname(objectnameSEXP);
+    Rcpp::traits::input_parameter< int >::type event_type(event_typeSEXP);
+    Rcpp::traits::input_parameter< int >::type helflag(helflagSEXP);
+    rcpp_result_gen = Rcpp::wrap(heliacal_pheno_ut(tjd_ut, dgeo, datm, dobs, objectname, event_type, helflag));
+    return rcpp_result_gen;
+END_RCPP
+}
+// topo_arcus_visionis
+Rcpp::List topo_arcus_visionis(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs, int helflag, double mag, double AziO, double AltO, double AziS, double AziM, double AltM);
+RcppExport SEXP _swephR_topo_arcus_visionis(SEXP tjd_utSEXP, SEXP dgeoSEXP, SEXP datmSEXP, SEXP dobsSEXP, SEXP helflagSEXP, SEXP magSEXP, SEXP AziOSEXP, SEXP AltOSEXP, SEXP AziSSEXP, SEXP AziMSEXP, SEXP AltMSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type tjd_ut(tjd_utSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type dgeo(dgeoSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type datm(datmSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type dobs(dobsSEXP);
+    Rcpp::traits::input_parameter< int >::type helflag(helflagSEXP);
+    Rcpp::traits::input_parameter< double >::type mag(magSEXP);
+    Rcpp::traits::input_parameter< double >::type AziO(AziOSEXP);
+    Rcpp::traits::input_parameter< double >::type AltO(AltOSEXP);
+    Rcpp::traits::input_parameter< double >::type AziS(AziSSEXP);
+    Rcpp::traits::input_parameter< double >::type AziM(AziMSEXP);
+    Rcpp::traits::input_parameter< double >::type AltM(AltMSEXP);
+    rcpp_result_gen = Rcpp::wrap(topo_arcus_visionis(tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AltO, AziS, AziM, AltM));
+    return rcpp_result_gen;
 END_RCPP
 }
 
@@ -307,8 +343,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_lun_eclipse_when", (DL_FUNC) &_swephR_lun_eclipse_when, 4},
     {"_swephR_sol_eclipse_when_loc", (DL_FUNC) &_swephR_sol_eclipse_when_loc, 4},
     {"_swephR_rise_trans_true_hor", (DL_FUNC) &_swephR_rise_trans_true_hor, 9},
-    {"_swephR_rise_trans", (DL_FUNC) &_swephR_rise_trans, 8},
     {"_swephR_close", (DL_FUNC) &_swephR_close, 0},
+    {"_swephR_vis_limit_mag", (DL_FUNC) &_swephR_vis_limit_mag, 6},
+    {"_swephR_heliacal_pheno_ut", (DL_FUNC) &_swephR_heliacal_pheno_ut, 7},
+    {"_swephR_topo_arcus_visionis", (DL_FUNC) &_swephR_topo_arcus_visionis, 11},
     {NULL, NULL, 0}
 };
 

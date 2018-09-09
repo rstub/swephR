@@ -10,7 +10,7 @@
 //' @param jd  Julian date as numeric vector
 //' @param t_acc tidal acceleration as double (arcsec/century^2)
 //' @param tjd  Julian day Number
-//' @param file  the directory plus file (a string)
+//' @param path  the directory where the ephemeris files are stored (a string)
 //' @param geolon  Topocentric Longitude (deg)
 //' @param geolat  Topocentric Latitude (deg)
 //' @param geopos The position vector (longitude, latitude, height)
@@ -66,7 +66,7 @@ double get_tid_acc() {
 //' @export
 // [[Rcpp::export(swe_version)]]
 std::string version() {
-  std::array<char, 256> version;
+  std::array<char, 256> version{'\0'};
   swe_version(&version[0]);
   return std::string(&version[0]);
 }
@@ -83,16 +83,22 @@ void set_tid_acc(double t_acc) {
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_deltat)]]
-double deltat(double tjd) {
-  return swe_deltat(tjd);
+Rcpp::NumericVector deltat(Rcpp::NumericVector tjd) {
+  Rcpp::NumericVector result(tjd.size());
+  std::transform(tjd.begin(), tjd.end(), result.begin(), swe_deltat);
+  return result;
 }
 
 //' Set the directory for the sefstar.txt, swe_deltat.txt and jpl files
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_set_ephe_path)]]
-void set_ephe_path(std::string file) {
-  swe_set_ephe_path(&file[0]);
+void set_ephe_path(Rcpp::Nullable<Rcpp::CharacterVector> path) {
+  if (path.isNotNull()) {
+    swe_set_ephe_path(path.as().at(0));
+  } else {
+    swe_set_ephe_path(NULL);
+  }
 }
 
 //' Set the topocentric location (lon, lat, height)
@@ -111,19 +117,32 @@ void set_delta_t_userdef (double delta_t) {
   swe_set_delta_t_userdef (delta_t);
 }
 
-//' Compute information of planet
-//' @return \code{swe_calc} returns a list with named entries \code{rc},
-//'         \code{xx} updated star name, and \code{serr} error message.
-//' @rdname expert-interface
-//' @export
-// [[Rcpp::export(swe_calc)]]
-Rcpp::List calc(double tjd_et, int ipl, int iflag) {
-  std::array<double, 6> xx;
-  std::array<char, 256> serr;
-  int rc = swe_calc(tjd_et, ipl, iflag, &xx[0], &serr[0]);
-  return Rcpp::List::create(Rcpp::Named("return") = rc,
-			    Rcpp::Named("xx") = xx,
-			    Rcpp::Named("serr") = std::string(&serr[0]));
+// Compute information of planet
+// [[Rcpp::export]]
+Rcpp::List calc(Rcpp::NumericVector tjd_et, Rcpp::IntegerVector ipl, int iflag) {
+  if (tjd_et.length() != ipl.length())
+    Rcpp::stop("The number of bodies in 'ipl' and the number of dates in 'tjd_et' must be identical!");
+
+  Rcpp::IntegerVector rc_(ipl.length());
+  Rcpp::CharacterVector serr_(ipl.length());
+  Rcpp::NumericMatrix xx_(ipl.length(), 6);
+
+  for (int i = 0; i < ipl.length(); ++i) {
+    std::array<double, 6> xx{0.0};
+    std::array<char, 256> serr{'\0'};
+    rc_(i) = swe_calc(tjd_et[i], ipl(i), iflag, &xx[0], &serr[0]);
+    Rcpp::NumericVector tmp(xx.begin(), xx.end());
+    xx_(i, Rcpp::_) = tmp;
+    serr_(i) = std::string(&serr[0]);
+  }
+
+  // remove dim attribute to return a vector
+  if (ipl.length() == 1)
+    xx_.attr("dim") = R_NilValue;
+
+  return Rcpp::List::create(Rcpp::Named("return") = rc_,
+			    Rcpp::Named("xx") = xx_,
+			    Rcpp::Named("serr") = serr_);
 }
 
 
@@ -133,33 +152,59 @@ Rcpp::List calc(double tjd_et, int ipl, int iflag) {
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_fixstar2_mag)]]
-Rcpp::List fixstar2_mag(std::string star) {
-  std::array<char, 256> serr;
-  double mag;
-  star.resize(41);
-  int rtn = swe_fixstar2_mag(&star[0], &mag, &serr[0]);
-  return Rcpp::List::create(Rcpp::Named("return") = rtn,
-                            Rcpp::Named("star") = std::string(&star[0]),
-                            Rcpp::Named("mag") = mag,
-                            Rcpp::Named("serr") = std::string(&serr[0]));
+Rcpp::List fixstar2_mag(Rcpp::CharacterVector star) {
+  Rcpp::IntegerVector rc_(star.length());
+  Rcpp::CharacterVector serr_(star.length());
+  Rcpp::NumericVector mag_(star.length());
+
+  for (int i = 0; i < star.length(); ++i) {
+    double mag;
+    std::array<char, 256> serr{'\0'};
+    std::string star_(star(i));
+    star_.resize(41);
+    rc_(i) = swe_fixstar2_mag(&star_[0], &mag, &serr[0]);
+    mag_(i) = mag;
+    serr_(i) = std::string(&serr[0]);
+    star(i) = star_;
+  }
+    
+  return Rcpp::List::create(Rcpp::Named("return") = rc_,
+                            Rcpp::Named("star") = star,
+                            Rcpp::Named("mag") = mag_,
+                            Rcpp::Named("serr") = serr_);
 }
 
 
-//' Compute information of star
-//' @return \code{swe_fixstar2} returns a list with named entries \code{return},
-//'         \code{star} updated star name, \code{xx}, and \code{serr} error message.
-//' @rdname expert-interface
-//' @export
-// [[Rcpp::export(swe_fixstar2)]]
-Rcpp::List fixstar2(std::string star, double tjd_et, int iflag) {
-  std::array<double, 6> xx;
-  std::array<char, 256> serr;
-  star.resize(41);
-  int rtn = swe_fixstar2(&star[0], tjd_et, iflag, &xx[0], &serr[0]);
-  return Rcpp::List::create(Rcpp::Named("return") = rtn,
-                            Rcpp::Named("star") = std::string(&star[0]),
-                            Rcpp::Named("xx") = xx,
-                            Rcpp::Named("serr") = std::string(&serr[0]));
+// Compute information of star
+// [[Rcpp::export]]
+Rcpp::List fixstar2(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_et, int iflag) {
+  if (tjd_et.length() != star.length())
+    Rcpp::stop("The number of stars in 'star' and the number of dates in 'tjd_et' must be identical!");
+
+  Rcpp::IntegerVector rc_(star.length());
+  Rcpp::CharacterVector serr_(star.length());
+  Rcpp::NumericMatrix xx_(star.length(), 6);
+
+  for (int i = 0; i < star.length(); ++i) {
+    std::array<double, 6> xx{0.0};
+    std::array<char, 256> serr{'\0'};
+    std::string star_(star(i));
+    star_.resize(41);
+    rc_(i) = swe_fixstar2(&star_[0], tjd_et(i), iflag, &xx[0], &serr[0]);
+    Rcpp::NumericVector tmp(xx.begin(), xx.end());
+    xx_(i, Rcpp::_) = tmp;
+    serr_(i) = std::string(&serr[0]);
+    star(i) = star_;
+  }
+
+  // remove dim attribute to return a vector
+  if (star.length() == 1)
+    xx_.attr("dim") = R_NilValue;
+
+  return Rcpp::List::create(Rcpp::Named("return") = rc_,
+                            Rcpp::Named("star") = star,
+                            Rcpp::Named("xx") = xx_,
+                            Rcpp::Named("serr") = serr_);
 }
 
 //' Compute the heliacale event of celestial object
@@ -176,12 +221,15 @@ Rcpp::List fixstar2(std::string star, double tjd_et, int iflag) {
 //' @export
 // [[Rcpp::export(swe_heliacal_ut)]]
 Rcpp::List heliacal_ut(double tjdstart, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int event_type, int helflag) {
-  std::array<double, 50> dret;
-  std::array<char, 256> serr;
-  int rtn = swe_heliacal_ut(tjdstart, &dgeo[0],&datm[0],&dobs[0],&objectname[0],event_type,helflag, &dret[0], &serr[0]);
+  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
+  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
+  if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
+  std::array<double, 50> dret{0.0};
+  std::array<char, 256> serr{'\0'};
+  int rtn = swe_heliacal_ut(tjdstart, &dgeo[0],&datm[0],&dobs[0],&objectname[0],event_type,helflag, dret.begin(), serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = rtn,
-                            Rcpp::Named("dret") = dret,
-                            Rcpp::Named("serr") = std::string(&serr[0]));
+			    Rcpp::Named("dret") = dret,
+                            Rcpp::Named("serr") = std::string(serr.begin()));
 }
 
 
@@ -192,11 +240,18 @@ Rcpp::List heliacal_ut(double tjdstart, Rcpp::NumericVector dgeo, Rcpp::NumericV
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_deltat_ex)]]
-Rcpp::List deltat_ex(double tjd, int ephe_flag) {
-  std::array<char, 256> serr;
-  double rtn = swe_deltat_ex(tjd, ephe_flag, &serr[0]);
-  return Rcpp::List::create(Rcpp::Named("return") = rtn,
-                             Rcpp::Named("serr") = std::string(&serr[0]));
+Rcpp::List deltat_ex(Rcpp::NumericVector tjd, int ephe_flag) {
+  Rcpp::NumericVector deltat(tjd.length());
+  Rcpp::CharacterVector serr_(tjd.length());
+
+  for (int i = 0; i < tjd.length(); ++i) {
+    std::array<char, 256> serr{'\0'};
+    deltat(i) = swe_deltat_ex(tjd(i), ephe_flag, &serr[0]);
+    serr_(i) = std::string(&serr[0]);
+  }
+
+  return Rcpp::List::create(Rcpp::Named("deltat") = deltat,
+                            Rcpp::Named("serr") = serr_);
 }
 
 
@@ -207,7 +262,8 @@ Rcpp::List deltat_ex(double tjd, int ephe_flag) {
 //' @export
 // [[Rcpp::export(swe_azalt)]]
 Rcpp::List azalt(double tjd_ut, int calc_flag, Rcpp::NumericVector geopos, double atpress, double attemp, Rcpp::NumericVector xin) {
-  std::array<double, 3> xaz;
+  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
+  std::array<double, 3> xaz{0.0};
   swe_azalt(tjd_ut, calc_flag, &geopos[0], atpress, attemp, &xin[0], &xaz[0]);
   return Rcpp::List::create(Rcpp::Named("xaz") = xaz);
 }
@@ -220,8 +276,8 @@ Rcpp::List azalt(double tjd_ut, int calc_flag, Rcpp::NumericVector geopos, doubl
 //' @export
 // [[Rcpp::export(swe_pheno_ut)]]
 Rcpp::List pheno_ut(double tjd_ut, int ipl, int iflag) {
-  std::array<double, 20> attr;
-  std::array<char, 256> serr;
+  std::array<double, 20> attr{0.0};
+  std::array<char, 256> serr{'\0'};
   int rtn = swe_pheno_ut(tjd_ut, ipl, iflag, &attr[0], &serr[0]);
   return Rcpp::List::create(Rcpp::Named("return") = rtn, Rcpp::Named("attr") = attr,
                             Rcpp::Named("serr") = std::string(&serr[0])
@@ -239,9 +295,10 @@ Rcpp::List pheno_ut(double tjd_ut, int ipl, int iflag) {
 //' @export
 // [[Rcpp::export(swe_lun_eclipse_when_loc)]]
 Rcpp::List lun_eclipse_when_loc(double tjd_start, int ifl, Rcpp::NumericVector geopos, bool backward) {
-  std::array<double, 10> tret;
-  std::array<double, 20> attr;
-  std::array<char, 256> serr;
+  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
+  std::array<double, 10> tret{0.0};
+  std::array<double, 20> attr{0.0};
+  std::array<char, 256> serr{'\0'};
   int rtn = swe_lun_eclipse_when_loc(tjd_start, ifl, &geopos[0], &tret[0], &attr[0], backward, &serr[0]);
   return Rcpp::List::create(Rcpp::Named("return") = rtn, Rcpp::Named("tret") = tret,
                             Rcpp::Named("attr") = attr,
@@ -258,8 +315,9 @@ Rcpp::List lun_eclipse_when_loc(double tjd_start, int ifl, Rcpp::NumericVector g
 //' @export
 // [[Rcpp::export(swe_lun_eclipse_how)]]
 Rcpp::List lun_eclipse_how(double tjd_start, int ifl, Rcpp::NumericVector geopos) {
-  std::array<double, 20> attr;
-  std::array<char, 256> serr;
+  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
+  std::array<double, 20> attr{0.0};
+  std::array<char, 256> serr{'\0'};
   int rtn = swe_lun_eclipse_how(tjd_start, ifl, &geopos[0], &attr[0], &serr[0]);
   return Rcpp::List::create(Rcpp::Named("return") = rtn,
                             Rcpp::Named("attr") = attr,
@@ -277,8 +335,8 @@ Rcpp::List lun_eclipse_how(double tjd_start, int ifl, Rcpp::NumericVector geopos
 //' @export
 // [[Rcpp::export(swe_lun_eclipse_when)]]
 Rcpp::List lun_eclipse_when(double tjd_start, int ifl, int ifltype, bool backward) {
-  std::array<double, 20> tret;
-  std::array<char, 256> serr;
+  std::array<double, 20> tret{0.0};
+  std::array<char, 256> serr{'\0'};
   int rtn = swe_lun_eclipse_when(tjd_start, ifl, ifltype, &tret[0], backward, &serr[0]);
   return Rcpp::List::create(Rcpp::Named("return") = rtn, Rcpp::Named("tret") = tret,
                             Rcpp::Named("serr") = std::string(&serr[0])
@@ -295,9 +353,10 @@ Rcpp::List lun_eclipse_when(double tjd_start, int ifl, int ifltype, bool backwar
 //' @export
 // [[Rcpp::export(swe_sol_eclipse_when_loc)]]
 Rcpp::List sol_eclipse_when_loc(double tjd_start, int ifl, Rcpp::NumericVector geopos, bool backward) {
-  std::array<double, 10> tret;
-  std::array<double, 20> attr;
-  std::array<char, 256> serr;
+  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
+  std::array<double, 10> tret{0.0};
+  std::array<double, 20> attr{0.0};
+  std::array<char, 256> serr{'\0'};
   int rtn = swe_sol_eclipse_when_loc(tjd_start, ifl, &geopos[0], &tret[0], &attr[0], backward, &serr[0]);
   return Rcpp::List::create(Rcpp::Named("return") = rtn, Rcpp::Named("tret") = tret,
                             Rcpp::Named("attr") = attr,
@@ -311,7 +370,8 @@ Rcpp::List sol_eclipse_when_loc(double tjd_start, int ifl, Rcpp::NumericVector g
 //' @export
 // [[Rcpp::export(swe_rise_trans_true_hor)]]
 Rcpp::List rise_trans_true_hor(double tjd_ut, int ipl, std::string starname, int epheflag, int rsmi,Rcpp::NumericVector geopos, double atpress, double attemp, double horhgt) {
-  std::array<char, 256> serr;
+  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
+  std::array<char, 256> serr{'\0'};
   double tret;
   int i = swe_rise_trans_true_hor(tjd_ut, ipl, &starname[0], epheflag, rsmi, &geopos[0], atpress, attemp, horhgt, &tret, &serr[0]);
   return Rcpp::List::create(Rcpp::Named("return") = i,
@@ -319,20 +379,6 @@ Rcpp::List rise_trans_true_hor(double tjd_ut, int ipl, std::string starname, int
                             Rcpp::Named("serr") = std::string(&serr[0]));
 }
 
-//' Compute the rise and set location of the object (AppAlt=0)
-//' @return \code{swe_rise_trans} returns a list with named entries: \code{i} success of function
-//'      \code{tret} for azi/alt info and \code{serr} for possible error code
-//' @rdname expert-interface
-//' @export
-// [[Rcpp::export(swe_rise_trans)]]
-Rcpp::List rise_trans(double tjd_ut, int ipl, std::string starname, int epheflag, int rsmi,Rcpp::NumericVector geopos, double atpress, double attemp) {
-  std::array<char, 256> serr;
-  double tret;
-  int i = swe_rise_trans(tjd_ut, ipl, &starname[0], epheflag, rsmi, &geopos[0], atpress, attemp, &tret, &serr[0]);
-  return Rcpp::List::create(Rcpp::Named("return") = i,
-                            Rcpp::Named("tret") = tret,
-                            Rcpp::Named("serr") = std::string(&serr[0]));
-}
 
 //' Close Swiss Ephemeris files
 //' @rdname expert-interface
@@ -340,4 +386,64 @@ Rcpp::List rise_trans(double tjd_ut, int ipl, std::string starname, int epheflag
 // [[Rcpp::export(swe_close)]]
 void close() {
   swe_close();
+}
+
+//' Compute the limiting visibiliy magnitude
+//' @return \code{swe_vis_limit_mag} returns a list with named entries: \code{i} success of function
+//'      \code{dret} for magnitude info and \code{serr} for possible error code
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_vis_limit_mag)]]
+Rcpp::List vis_limit_mag(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int helflag ){
+  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
+  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
+  if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
+  std::array<double, 50> dret{0.0};
+  std::array<char, 256> serr{'\0'};
+  int i = swe_vis_limit_mag(tjd_ut, &dgeo[0], &datm[0],&dobs[0], &objectname[0], helflag, &dret[0], &serr[0]);
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("dret") = dret,
+                            Rcpp::Named("serr") = std::string(&serr[0]));
+}
+
+//' Compute heliacal event details
+//' @return \code{swe_heliacal_pheno_ut} returns a list with named entries: \code{i} success of function
+//'      \code{darr} for heliacal details and \code{serr} for possible error code
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_heliacal_pheno_ut)]]
+Rcpp::List heliacal_pheno_ut(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int event_type, int helflag ){
+  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
+  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
+  if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
+  std::array<double, 50> darr{0.0};
+  std::array<char, 256> serr{'\0'};
+  int i = swe_heliacal_pheno_ut(tjd_ut, &dgeo[0], &datm[0],&dobs[0], &objectname[0], event_type, helflag, &darr[0], &serr[0]);
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("darr") = darr,
+                            Rcpp::Named("serr") = std::string(&serr[0]));
+}
+
+//' Compute heliacal event details
+//' @param mag   The object's magnitude
+//' @param AziO  The object's azimut
+//' @param AltO  The object's altitude
+//' @param AziS  The sun's azimut
+//' @param AziM  The moon's azimut
+//' @param AltM  The moon's altitude
+//' @return \code{swe_topo_arcus_visionis} returns a list with named entries: \code{i} success of function
+//'      \code{darr} for heliacal details and \code{serr} for possible error code
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_topo_arcus_visionis)]]
+Rcpp::List topo_arcus_visionis(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,int helflag,double mag,double AziO, double AltO,double AziS, double AziM, double AltM){
+  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
+  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
+  if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
+  std::array<char, 256> serr{'\0'};
+  double tav;
+  int i = swe_topo_arcus_visionis(tjd_ut, &dgeo[0], &datm[0],&dobs[0], helflag, mag,AziO, AltO, AziS,  AziM,  AltM, &tav, &serr[0]);
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("tav") = tav,
+                            Rcpp::Named("serr") = std::string(&serr[0]));
 }
