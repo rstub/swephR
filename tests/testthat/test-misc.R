@@ -41,14 +41,14 @@ test_that("deltat can be set and retrieved", {
 })
 
 test_that("deltat can be retrieved with build in ephemeris", {
-    result <- swe_deltat_ex(1234.567, 4)
+    result <- swe_deltat_ex(1234.567, flags$MOSEPH)
     expect_true(is.list(result))
     expect_equal(result$serr, "")
     expect_equal(result$deltat, 1.5873865, tolerance = .0000001)
 })
 
 test_that("deltat can be retrieved with build in ephemeris for vector", {
-    result <- swe_deltat_ex(c(1234.567, 1234567), 4)
+    result <- swe_deltat_ex(c(1234.567, 1234567), flags$MOSEPH)
     expect_true(is.list(result))
     expect_equal(result$serr, c("", ""))
     expect_equal(result$deltat, c(1.5873865, 0.36604), tolerance = .0000001)
@@ -56,7 +56,7 @@ test_that("deltat can be retrieved with build in ephemeris for vector", {
 
 test_that("deltat can be retrieved with SE", {
     skip_if_not_installed("swephRdata")
-    result <- swe_deltat_ex(1234.567, 2)
+    result <- swe_deltat_ex(1234.567, flags$SWIEPH)
     expect_true(is.list(result))
     expect_equal(result$serr, "")
     expect_equal(result$deltat, 1.5976757, tolerance = .0000001)
@@ -64,7 +64,7 @@ test_that("deltat can be retrieved with SE", {
 
 test_that("deltat can be retrieved with SE for vector", {
     skip_if_not_installed("swephRdata")
-    result <- swe_deltat_ex(c(1234.567, 1234567), 2)
+    result <- swe_deltat_ex(c(1234.567, 1234567), flags$SWIEPH)
     expect_true(is.list(result))
     expect_equal(result$serr, c("", ""))
     expect_equal(result$deltat, c(1.5976757, 0.3685434), tolerance = .0000001)
@@ -75,7 +75,7 @@ test_that("version works", {
 })
 
 test_that("non-existent planet produces error", {
-    result <- swe_calc(1234.567, -2,4)
+    result <- swe_calc(1234.567, -2, flags$MOSEPH)
     expect_true(is.list(result))
     expect_equal(result$return, -1)
     expect_equal(result$serr, "illegal planet number -2.")
@@ -83,9 +83,9 @@ test_that("non-existent planet produces error", {
 })
 
 test_that("Sun near present day with build in ephemeris", {
-    result <- swe_calc(2458346.82639, 0, 4)
+    result <- swe_calc(2458346.82639, bodies$SUN, flags$MOSEPH)
     expect_true(is.list(result))
-    expect_equal(result$return, 4)
+    expect_equal(result$return, flags$MOSEPH)
     expect_equal(result$serr, "")
     expect_equal(result$xx, c(143.411541546115, 0.000153328074557681, 1.01265945421508, 0, 0, 0))
     swe_close()
@@ -93,18 +93,18 @@ test_that("Sun near present day with build in ephemeris", {
 
 test_that("Sun near present day with SE", {
     skip_if_not_installed("swephRdata")
-    result <- swe_calc(2458346.82639, 0, 2)
+    result <- swe_calc(2458346.82639, bodies$SUN, flags$SWIEPH)
     expect_true(is.list(result))
-    expect_equal(result$return, 2)
+    expect_equal(result$return, flags$SWIEPH)
     expect_equal(result$serr, "")
     expect_equal(result$xx, c(143.411548004662, 0.000154522097263712, 1.01265952395477, 0, 0, 0))
     swe_close()
 })
 
 test_that("Moon near present day with build in ephemeris", {
-    result <- swe_calc(2458346.82639, 1, 4)
+    result <- swe_calc(2458346.82639, bodies$MOON, flags$MOSEPH)
     expect_true(is.list(result))
-    expect_equal(result$return, 4)
+    expect_equal(result$return, flags$MOSEPH)
     expect_equal(result$serr, "")
     expect_equal(result$xx, c(209.393205609575, 5.23865656062778, 0.00254763959909033, 0, 0, 0))
     swe_close()
@@ -112,18 +112,18 @@ test_that("Moon near present day with build in ephemeris", {
 
 test_that("Moon near present day with SE", {
     skip_if_not_installed("swephRdata")
-    result <- swe_calc(2458346.82639, 1, 2)
+    result <- swe_calc(2458346.82639, bodies$MOON, flags$SWIEPH)
     expect_true(is.list(result))
-    expect_equal(result$return, 2)
+    expect_equal(result$return, flags$SWIEPH)
     expect_equal(result$serr, "")
     expect_equal(result$xx, c(209.393307909087, 5.23884819964366, 0.00254765467381015, 0, 0, 0))
     swe_close()
 })
 
 test_that("Sun and Moon near present day with build in ephemeris", {
-    result <- swe_calc(2458346.82639, c(0, 1), 4)
+    result <- swe_calc(2458346.82639, c(bodies$SUN, bodies$MOON), flags$MOSEPH)
     expect_true(is.list(result))
-    expect_equal(result$return, c(4, 4))
+    expect_equal(result$return, c(flags$MOSEPH, flags$MOSEPH))
     expect_equal(result$serr, c("", ""))
     expect_equal(result$xx, matrix(c(143.411541546115, 0.000153328074557681, 1.01265945421508, 0, 0, 0,
                                      209.393205609575, 5.23865656062778, 0.00254763959909033, 0, 0, 0),
@@ -132,9 +132,9 @@ test_that("Sun and Moon near present day with build in ephemeris", {
 })
 
 test_that("Mercury near present day with build in ephemeris", {
-    result <- swe_calc(2458346.82639, 2, 4)
+    result <- swe_calc(2458346.82639, bodies$MERCURY, flags$MOSEPH)
     expect_true(is.list(result))
-    expect_equal(result$return, 4)
+    expect_equal(result$return, flags$MOSEPH)
     expect_equal(result$serr, "")
     expect_equal(result$xx, c(132.01192327168, -3.48121475787494, 0.67906546508584, 0, 0, 0))
     swe_close()
@@ -142,9 +142,9 @@ test_that("Mercury near present day with build in ephemeris", {
 
 test_that("Mercury near present day with SE", {
     skip_if_not_installed("swephRdata")
-    result <- swe_calc(2458346.82639, 2, 2)
+    result <- swe_calc(2458346.82639, bodies$MERCURY, flags$SWIEPH)
     expect_true(is.list(result))
-    expect_equal(result$return, 2)
+    expect_equal(result$return, flags$SWIEPH)
     expect_equal(result$serr, "")
     expect_equal(result$xx, c(132.011933922771, -3.48121306761461, 0.679065645713915, 0, 0, 0))
     swe_close()
