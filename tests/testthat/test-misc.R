@@ -259,7 +259,7 @@ test_that("Solar eclipse", {
   swe_close()
 })
 
-test_that("Phenomenology info from Moon (ET)", {
+test_that("Phenomenology info from Moon (UT)", {
   result <- swe_pheno_ut(1234567,1,4)
   expect_equal(result$return, 0)
   if (requireNamespace("swephRdata", quietly = TRUE))
@@ -270,7 +270,7 @@ test_that("Phenomenology info from Moon (ET)", {
   swe_close()
 })
 
-test_that("Phenomenology info from Moon (UT)", {
+test_that("Phenomenology info from Moon (ET)", {
   result <- swe_pheno(1234567,1,4)
   expect_equal(result$return, 0)
   if (requireNamespace("swephRdata", quietly = TRUE))

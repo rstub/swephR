@@ -107,6 +107,8 @@ swe_fixstar2_ut(star, tjd_ut, iflag)
 
 \item{year}{Year}
 
+\item{month}{Month}
+
 \item{day}{Day}
 
 \item{hour}{Hour}
@@ -177,18 +179,6 @@ kind of computation is wanted}
 \item{AziO}{The object's azimut}
 
 \item{AltO}{The object's altitude}
-
-\item{AziS}{The sun's azimut}
-
-\item{AziM}{The moon's azimut}
-
-\item{AltM}{The moon's altitude}
-
-\item{mont}{Month}
-
-\item{mag}{The object's magnitude}
-
-\item{AziO}{The object's azimut}
 
 \item{AziS}{The sun's azimut}
 

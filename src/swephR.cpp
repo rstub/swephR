@@ -103,7 +103,7 @@ void set_ephe_path(Rcpp::Nullable<Rcpp::CharacterVector> path) {
 
 //' Determine Julian date number from calendar date
 //' @param year  Year
-//' @param mont  Month
+//' @param month  Month
 //' @param day  Day
 //' @param hour  Hour
 //' @param gregflag  Greogiran (1) or juian calandar (0)
@@ -342,7 +342,7 @@ Rcpp::List azalt(double tjd_ut, int calc_flag, Rcpp::NumericVector geopos, doubl
   return Rcpp::List::create(Rcpp::Named("xaz") = xaz);
 }
 
-//' Provide phenomom information of celestial body ()UT)
+//' Provide phenomom information of celestial body (UT)
 //' @return \code{swe_pheno_ut} returns a list with named entries: 
 //'      \code{return} ???, \code{attr} for phenomenon information 
 //'      and \code{serr} error string
@@ -540,11 +540,6 @@ Rcpp::List topo_arcus_visionis(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::Nu
 }
 
 //' Compute heliacal event details
-//' @param mag   The object's magnitude
-//' @param AziO  The object's azimut
-//' @param AziS  The sun's azimut
-//' @param AziM  The moon's azimut
-//' @param AltM  The moon's altitude
 //' @return \code{swe_heliacal_angle} returns a list with named entries: \code{i} success of function
 //'      \code{darr} for heliacal angle and \code{serr} for possible error code
 //' @rdname expert-interface

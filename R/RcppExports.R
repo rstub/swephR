@@ -86,7 +86,7 @@ swe_set_ephe_path <- function(path) {
 
 #' Determine Julian date number from calendar date
 #' @param year  Year
-#' @param mont  Month
+#' @param month  Month
 #' @param day  Day
 #' @param hour  Hour
 #' @param gregflag  Greogiran (1) or juian calandar (0)
@@ -170,7 +170,7 @@ swe_azalt <- function(tjd_ut, calc_flag, geopos, atpress, attemp, xin) {
     .Call(`_swephR_azalt`, tjd_ut, calc_flag, geopos, atpress, attemp, xin)
 }
 
-#' Provide phenomom information of celestial body ()UT)
+#' Provide phenomom information of celestial body (UT)
 #' @return \code{swe_pheno_ut} returns a list with named entries: 
 #'      \code{return} ???, \code{attr} for phenomenon information 
 #'      and \code{serr} error string
@@ -282,11 +282,6 @@ swe_topo_arcus_visionis <- function(tjd_ut, dgeo, datm, dobs, helflag, mag, AziO
 }
 
 #' Compute heliacal event details
-#' @param mag   The object's magnitude
-#' @param AziO  The object's azimut
-#' @param AziS  The sun's azimut
-#' @param AziM  The moon's azimut
-#' @param AltM  The moon's altitude
 #' @return \code{swe_heliacal_angle} returns a list with named entries: \code{i} success of function
 #'      \code{darr} for heliacal angle and \code{serr} for possible error code
 #' @rdname expert-interface
