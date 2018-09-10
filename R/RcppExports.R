@@ -131,6 +131,10 @@ fixstar2 <- function(star, tjd_et, iflag) {
     .Call(`_swephR_fixstar2`, star, tjd_et, iflag)
 }
 
+fixstar2_ut <- function(star, tjd_ut, iflag) {
+    .Call(`_swephR_fixstar2_ut`, star, tjd_ut, iflag)
+}
+
 #' Compute the heliacale event of celestial object
 #' @param tjdstart  Julian day, UT time
 #' @param dgeo Geographic position

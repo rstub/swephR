@@ -222,11 +222,11 @@ Rcpp::List fixstar2_mag(Rcpp::CharacterVector star) {
 Rcpp::List fixstar2(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_et, int iflag) {
   if (tjd_et.length() != star.length())
     Rcpp::stop("The number of stars in 'star' and the number of dates in 'tjd_et' must be identical!");
-
+  
   Rcpp::IntegerVector rc_(star.length());
   Rcpp::CharacterVector serr_(star.length());
   Rcpp::NumericMatrix xx_(star.length(), 6);
-
+  
   for (int i = 0; i < star.length(); ++i) {
     std::array<double, 6> xx{0.0};
     std::array<char, 256> serr{'\0'};
@@ -238,11 +238,43 @@ Rcpp::List fixstar2(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_et, int 
     serr_(i) = std::string(&serr[0]);
     star(i) = star_;
   }
-
+  
   // remove dim attribute to return a vector
   if (star.length() == 1)
     xx_.attr("dim") = R_NilValue;
+  
+  return Rcpp::List::create(Rcpp::Named("return") = rc_,
+                            Rcpp::Named("star") = star,
+                            Rcpp::Named("xx") = xx_,
+                            Rcpp::Named("serr") = serr_);
+}
 
+// Compute information of star (UT)
+// [[Rcpp::export]]
+Rcpp::List fixstar2_ut(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_ut, int iflag) {
+  if (tjd_ut.length() != star.length())
+    Rcpp::stop("The number of stars in 'star' and the number of dates in 'tjd_ut' must be identical!");
+  
+  Rcpp::IntegerVector rc_(star.length());
+  Rcpp::CharacterVector serr_(star.length());
+  Rcpp::NumericMatrix xx_(star.length(), 6);
+  
+  for (int i = 0; i < star.length(); ++i) {
+    std::array<double, 6> xx{0.0};
+    std::array<char, 256> serr{'\0'};
+    std::string star_(star(i));
+    star_.resize(41);
+    rc_(i) = swe_fixstar2_ut(&star_[0], tjd_ut(i), iflag, &xx[0], &serr[0]);
+    Rcpp::NumericVector tmp(xx.begin(), xx.end());
+    xx_(i, Rcpp::_) = tmp;
+    serr_(i) = std::string(&serr[0]);
+    star(i) = star_;
+  }
+  
+  // remove dim attribute to return a vector
+  if (star.length() == 1)
+    xx_.attr("dim") = R_NilValue;
+  
   return Rcpp::List::create(Rcpp::Named("return") = rc_,
                             Rcpp::Named("star") = star,
                             Rcpp::Named("xx") = xx_,

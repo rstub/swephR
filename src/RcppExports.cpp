@@ -154,6 +154,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// fixstar2_ut
+Rcpp::List fixstar2_ut(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_ut, int iflag);
+RcppExport SEXP _swephR_fixstar2_ut(SEXP starSEXP, SEXP tjd_utSEXP, SEXP iflagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type star(starSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tjd_ut(tjd_utSEXP);
+    Rcpp::traits::input_parameter< int >::type iflag(iflagSEXP);
+    rcpp_result_gen = Rcpp::wrap(fixstar2_ut(star, tjd_ut, iflag));
+    return rcpp_result_gen;
+END_RCPP
+}
 // heliacal_ut
 Rcpp::List heliacal_ut(double tjdstart, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs, std::string objectname, int event_type, int helflag);
 RcppExport SEXP _swephR_heliacal_ut(SEXP tjdstartSEXP, SEXP dgeoSEXP, SEXP datmSEXP, SEXP dobsSEXP, SEXP objectnameSEXP, SEXP event_typeSEXP, SEXP helflagSEXP) {
@@ -384,6 +397,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_calc_ut", (DL_FUNC) &_swephR_calc_ut, 3},
     {"_swephR_fixstar2_mag", (DL_FUNC) &_swephR_fixstar2_mag, 1},
     {"_swephR_fixstar2", (DL_FUNC) &_swephR_fixstar2, 3},
+    {"_swephR_fixstar2_ut", (DL_FUNC) &_swephR_fixstar2_ut, 3},
     {"_swephR_heliacal_ut", (DL_FUNC) &_swephR_heliacal_ut, 7},
     {"_swephR_deltat_ex", (DL_FUNC) &_swephR_deltat_ex, 2},
     {"_swephR_azalt", (DL_FUNC) &_swephR_azalt, 6},
