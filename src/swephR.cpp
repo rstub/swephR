@@ -103,7 +103,7 @@ void set_ephe_path(Rcpp::Nullable<Rcpp::CharacterVector> path) {
 
 //' Determine Julian date number from calendar date
 //' @param year  Year
-//' @param mont  Month
+//' @param month  Month
 //' @param day  Day
 //' @param hour  Hour
 //' @param gregflag  Greogiran (1) or juian calandar (0)

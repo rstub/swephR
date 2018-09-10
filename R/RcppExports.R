@@ -86,7 +86,7 @@ swe_set_ephe_path <- function(path) {
 
 #' Determine Julian date number from calendar date
 #' @param year  Year
-#' @param mont  Month
+#' @param month  Month
 #' @param day  Day
 #' @param hour  Hour
 #' @param gregflag  Greogiran (1) or juian calandar (0)

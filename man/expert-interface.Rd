@@ -107,6 +107,8 @@ swe_fixstar2_ut(star, tjd_ut, iflag)
 
 \item{year}{Year}
 
+\item{month}{Month}
+
 \item{day}{Day}
 
 \item{hour}{Hour}
@@ -183,8 +185,6 @@ kind of computation is wanted}
 \item{AziM}{The moon's azimut}
 
 \item{AltM}{The moon's altitude}
-
-\item{mont}{Month}
 
 \item{mag}{The object's magnitude}
 
