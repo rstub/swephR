@@ -342,7 +342,7 @@ Rcpp::List azalt(double tjd_ut, int calc_flag, Rcpp::NumericVector geopos, doubl
   return Rcpp::List::create(Rcpp::Named("xaz") = xaz);
 }
 
-//' Provide phenomom information of celestial body
+//' Provide phenomom information of celestial body ()UT)
 //' @return \code{swe_pheno_ut} returns a list with named entries: 
 //'      \code{return} ???, \code{attr} for phenomenon information 
 //'      and \code{serr} error string
@@ -353,6 +353,23 @@ Rcpp::List pheno_ut(double tjd_ut, int ipl, int iflag) {
   std::array<double, 20> attr{0.0};
   std::array<char, 256> serr{'\0'};
   int rtn = swe_pheno_ut(tjd_ut, ipl, iflag, &attr[0], &serr[0]);
+  return Rcpp::List::create(Rcpp::Named("return") = rtn, Rcpp::Named("attr") = attr,
+                            Rcpp::Named("serr") = std::string(&serr[0])
+  );
+}
+
+
+//' Provide phenomom information of celestial body (ET)
+//' @return \code{swe_pheno} returns a list with named entries: 
+//'      \code{return} ???, \code{attr} for phenomenon information 
+//'      and \code{serr} error string
+//' @rdname expert-interface
+//' @export
+// [[Rcpp::export(swe_pheno)]]
+Rcpp::List pheno(double tjd_et, int ipl, int iflag) {
+  std::array<double, 20> attr{0.0};
+  std::array<char, 256> serr{'\0'};
+  int rtn = swe_pheno(tjd_et, ipl, iflag, &attr[0], &serr[0]);
   return Rcpp::List::create(Rcpp::Named("return") = rtn, Rcpp::Named("attr") = attr,
                             Rcpp::Named("serr") = std::string(&serr[0])
   );
