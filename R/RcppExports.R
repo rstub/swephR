@@ -170,7 +170,7 @@ swe_azalt <- function(tjd_ut, calc_flag, geopos, atpress, attemp, xin) {
     .Call(`_swephR_azalt`, tjd_ut, calc_flag, geopos, atpress, attemp, xin)
 }
 
-#' Provide phenomom information of celestial body
+#' Provide phenomom information of celestial body ()UT)
 #' @return \code{swe_pheno_ut} returns a list with named entries: 
 #'      \code{return} ???, \code{attr} for phenomenon information 
 #'      and \code{serr} error string
@@ -178,6 +178,16 @@ swe_azalt <- function(tjd_ut, calc_flag, geopos, atpress, attemp, xin) {
 #' @export
 swe_pheno_ut <- function(tjd_ut, ipl, iflag) {
     .Call(`_swephR_pheno_ut`, tjd_ut, ipl, iflag)
+}
+
+#' Provide phenomom information of celestial body (ET)
+#' @return \code{swe_pheno} returns a list with named entries: 
+#'      \code{return} ???, \code{attr} for phenomenon information 
+#'      and \code{serr} error string
+#' @rdname expert-interface
+#' @export
+swe_pheno <- function(tjd_et, ipl, iflag) {
+    .Call(`_swephR_pheno`, tjd_et, ipl, iflag)
 }
 
 #' Compute lunar eclipse at location

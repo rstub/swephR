@@ -16,6 +16,7 @@
 \alias{swe_deltat_ex}
 \alias{swe_azalt}
 \alias{swe_pheno_ut}
+\alias{swe_pheno}
 \alias{swe_lun_eclipse_when_loc}
 \alias{swe_lun_eclipse_how}
 \alias{swe_lun_eclipse_when}
@@ -60,6 +61,8 @@ swe_deltat_ex(tjd, ephe_flag)
 swe_azalt(tjd_ut, calc_flag, geopos, atpress, attemp, xin)
 
 swe_pheno_ut(tjd_ut, ipl, iflag)
+
+swe_pheno(tjd_et, ipl, iflag)
 
 swe_lun_eclipse_when_loc(tjd_start, ifl, geopos, backward)
 
@@ -153,6 +156,8 @@ swe_fixstar2_ut(star, tjd_ut, iflag)
 \item{iflag}{a 32 bit integer containing bit flags that indicate what
 kind of computation is wanted}
 
+\item{tjd_et}{Julian day, Ephemeris time}
+
 \item{tjd_start}{Julian day, UT time}
 
 \item{ifl}{Type of ephemeris (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)}
@@ -178,8 +183,6 @@ kind of computation is wanted}
 \item{AziM}{The moon's azimut}
 
 \item{AltM}{The moon's altitude}
-
-\item{tjd_et}{Julian day, Ephemeris time}
 
 \item{mont}{Month}
 
@@ -225,6 +228,10 @@ kind of computation is wanted}
      \code{xaz} for azi/alt info.
 
 \code{swe_pheno_ut} returns a list with named entries: 
+     \code{return} ???, \code{attr} for phenomenon information 
+     and \code{serr} error string
+
+\code{swe_pheno} returns a list with named entries: 
      \code{return} ???, \code{attr} for phenomenon information 
      and \code{serr} error string
 
