@@ -540,11 +540,6 @@ Rcpp::List topo_arcus_visionis(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::Nu
 }
 
 //' Compute heliacal event details
-//' @param mag   The object's magnitude
-//' @param AziO  The object's azimut
-//' @param AziS  The sun's azimut
-//' @param AziM  The moon's azimut
-//' @param AltM  The moon's altitude
 //' @return \code{swe_heliacal_angle} returns a list with named entries: \code{i} success of function
 //'      \code{darr} for heliacal angle and \code{serr} for possible error code
 //' @rdname expert-interface

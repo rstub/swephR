@@ -185,16 +185,6 @@ kind of computation is wanted}
 \item{AziM}{The moon's azimut}
 
 \item{AltM}{The moon's altitude}
-
-\item{mag}{The object's magnitude}
-
-\item{AziO}{The object's azimut}
-
-\item{AziS}{The sun's azimut}
-
-\item{AziM}{The moon's azimut}
-
-\item{AltM}{The moon's altitude}
 }
 \value{
 \code{swe_rise_trans_true_hor} returns a list with named entries: \code{i} success of function
