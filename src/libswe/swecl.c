@@ -3992,7 +3992,7 @@ int32 CALL_CONV swe_pheno(double tjd, int32 ipl, int32 iflag, double *attr, char
   }
   if (*serr2 != '\0' && serr != NULL)
     strcpy(serr, serr2);
-  return OK;
+  return iflag;
 }
 
 int32 CALL_CONV swe_pheno_ut(double tjd_ut, int32 ipl, int32 iflag, double *attr, char *serr)
