@@ -342,7 +342,7 @@ Rcpp::List azalt(double tjd_ut, int calc_flag, Rcpp::NumericVector geopos, doubl
   return Rcpp::List::create(Rcpp::Named("xaz") = xaz);
 }
 
-//' Provide phenomom information of celestial body ()UT)
+//' Provide phenomom information of celestial body (UT)
 //' @return \code{swe_pheno_ut} returns a list with named entries: 
 //'      \code{return} ???, \code{attr} for phenomenon information 
 //'      and \code{serr} error string

@@ -170,7 +170,7 @@ swe_azalt <- function(tjd_ut, calc_flag, geopos, atpress, attemp, xin) {
     .Call(`_swephR_azalt`, tjd_ut, calc_flag, geopos, atpress, attemp, xin)
 }
 
-#' Provide phenomom information of celestial body ()UT)
+#' Provide phenomom information of celestial body (UT)
 #' @return \code{swe_pheno_ut} returns a list with named entries: 
 #'      \code{return} ???, \code{attr} for phenomenon information 
 #'      and \code{serr} error string
