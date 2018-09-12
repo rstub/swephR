@@ -43,17 +43,8 @@ swe_set_topo <- function(geolon, geolat, altitude) {
     invisible(.Call(`_swephR_set_topo`, geolon, geolat, altitude))
 }
 
-#' @title Expert interface
-#'
-#' @description For experts that are familiar with the C API of the underlying
-#'   \code{libswe}, an expert interface that mimicks that interface as closely
-#'   as possbile is provided.
-#' @param jd  Julian date as numeric vector
-#' @param t_acc tidal acceleration as double (arcsec/century^2)
-#' @param tjd  Julian day Number
-#' @param path  the directory where the ephemeris files are stored (a string)
-#' @param geopos The position vector (longitude, latitude, height)
-#' @param delta_t DeltaT value (sec)
+#' @title Eclipses and planetary phenomena
+#' Compute solar eclipse at location
 #' @param tjd_et  Julian day, Ephemeris time
 #' @param ipl  body/planet number (-1 for no planet possible with \code{swe_rise_trans_true_hor})
 #' @param iflag  a 32 bit integer containing bit flags that indicate what
@@ -71,6 +62,154 @@ swe_set_topo <- function(geolon, geolat, altitude) {
 #'      \code{tret} for azi/alt info and \code{serr} for possible error code
 #' @return \code{swe_azalt} returns a list with named entries:
 #'      \code{xaz} for azi/alt info.
+#' @return \code{swe_sol_eclipse_when_loc} returns a list with named entries: 
+#'      \code{return} visibility code, \code{tret} for eclipse timing moments, 
+#'      \code{attr} pheneomena durign eclipse and \code{serr} error string
+#' @rdname eclipse_pheno
+#' @export
+swe_sol_eclipse_when_loc <- function(tjd_start, ifl, geopos, backward) {
+    .Call(`_swephR_sol_eclipse_when_loc`, tjd_start, ifl, geopos, backward)
+}
+
+#' Compute lunar eclipse at location
+#' @param ifl Type of ephemeris (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)
+#' @param geopos The position vector (longitude, latitude, height)
+#' @param backward TRUE for backwards search
+#' @return \code{swe_lun_eclipse_when_loc} returns a list with named entries:
+#'      \code{return} visibility code, \code{tret} for eclipse timing moments,
+#'      \code{attr} pheneomena durign eclipse and \code{serr} error string
+#' @rdname eclipse_pheno
+#' @export
+swe_lun_eclipse_when_loc <- function(tjd_start, ifl, geopos, backward) {
+    .Call(`_swephR_lun_eclipse_when_loc`, tjd_start, ifl, geopos, backward)
+}
+
+#' Computes the attributes of a lunar eclipse at a given time
+#' @param tjd_start  Julian day, UT time
+#' @return \code{swe_lun_eclipse_how} returns a list with named entries:
+#'      \code{return} visibility code,
+#'      \code{attr} pheneomena durign eclipse and \code{serr} error string
+#' @rdname eclipse_pheno
+#' @export
+swe_lun_eclipse_how <- function(tjd_start, ifl, geopos) {
+    .Call(`_swephR_lun_eclipse_how`, tjd_start, ifl, geopos)
+}
+
+#' Search a lunar eclipse on earth
+#' @param ifltype Type of eclipse event (SE_ECL_TOTAL etc.  or 0, if any eclipse type)
+#' @return \code{swe_lun_eclipse_when} returns a list with named entries:
+#'      \code{return} visibility code, \code{tret} for eclipse timing moments
+#'      and \code{serr} error string
+#' @rdname eclipse_pheno
+#' @export
+swe_lun_eclipse_when <- function(tjd_start, ifl, ifltype, backward) {
+    .Call(`_swephR_lun_eclipse_when`, tjd_start, ifl, ifltype, backward)
+}
+
+#' Compute the rise and set location of the object
+#' @rdname eclipse_pheno
+#' @export
+swe_rise_trans_true_hor <- function(tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp, horhgt) {
+    .Call(`_swephR_rise_trans_true_hor`, tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp, horhgt)
+}
+
+#' Compute horizon information: azimuth, altiiude
+#' @return \code{swe_azalt} returns a list with named entries:
+#'      \code{xaz} for azi/alt info.
+#' @rdname eclipse_pheno
+#' @export
+swe_azalt <- function(tjd_ut, calc_flag, geopos, atpress, attemp, xin) {
+    .Call(`_swephR_azalt`, tjd_ut, calc_flag, geopos, atpress, attemp, xin)
+}
+
+#' Provide phenomom information of celestial body (UT)
+#' @return \code{swe_pheno_ut} returns a list with named entries:
+#'      \code{return} ???, \code{attr} for phenomenon information
+#'      and \code{serr} error string
+#' @rdname eclipse_pheno
+#' @export
+swe_pheno_ut <- function(tjd_ut, ipl, iflag) {
+    .Call(`_swephR_pheno_ut`, tjd_ut, ipl, iflag)
+}
+
+#' Provide phenomom information of celestial body (ET)
+#' @return \code{swe_pheno} returns a list with named entries:
+#'      \code{return} ???, \code{attr} for phenomenon information
+#'      and \code{serr} error string
+#' @rdname eclipse_pheno
+#' @export
+swe_pheno <- function(tjd_et, ipl, iflag) {
+    .Call(`_swephR_pheno`, tjd_et, ipl, iflag)
+}
+
+#' Compute heliacal event details
+#' @return \code{swe_heliacal_pheno_ut} returns a list with named entries: \code{i} success of function
+#'      \code{darr} for heliacal details and \code{serr} for possible error code
+#' @rdname eclipse_pheno
+#' @export
+swe_heliacal_pheno_ut <- function(tjd_ut, dgeo, datm, dobs, objectname, event_type, helflag) {
+    .Call(`_swephR_heliacal_pheno_ut`, tjd_ut, dgeo, datm, dobs, objectname, event_type, helflag)
+}
+
+#' Compute heliacal event details
+#' @param mag   The object's magnitude
+#' @param AziO  The object's azimut
+#' @param AltO  The object's altitude
+#' @param AziS  The sun's azimut
+#' @param AziM  The moon's azimut
+#' @param AltM  The moon's altitude
+#' @return \code{swe_topo_arcus_visionis} returns a list with named entries: \code{i} success of function
+#'      \code{darr} for heliacal details and \code{serr} for possible error code
+#' @rdname eclipse_pheno
+#' @export
+swe_topo_arcus_visionis <- function(tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AltO, AziS, AziM, AltM) {
+    .Call(`_swephR_topo_arcus_visionis`, tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AltO, AziS, AziM, AltM)
+}
+
+#' Compute heliacal event details
+#' @return \code{swe_heliacal_angle} returns a list with named entries: \code{i} success of function
+#'      \code{darr} for heliacal angle and \code{serr} for possible error code
+#' @rdname eclipse_pheno
+#' @export
+swe_heliacal_angle <- function(tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM, AltM) {
+    .Call(`_swephR_heliacal_angle`, tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM, AltM)
+}
+
+#' Compute the heliacale event of celestial object
+#' @param tjdstart  Julian day, UT time
+#' @param dgeo Geographic position
+#' @param datm Atmospheric conditions
+#' @param dobs Observer description
+#' @param objectname  celectial object
+#' @param event_type  event type
+#' @param helflag calcuation flag
+#' @return \code{swe_heliacal_ut} returns a list with named entries \code{return},
+#'         \code{dret} results, and \code{serr} error message.
+#' @rdname eclipse_pheno
+#' @export
+swe_heliacal_ut <- function(tjdstart, dgeo, datm, dobs, objectname, event_type, helflag) {
+    .Call(`_swephR_heliacal_ut`, tjdstart, dgeo, datm, dobs, objectname, event_type, helflag)
+}
+
+#' Compute the limiting visibiliy magnitude
+#' @return \code{swe_vis_limit_mag} returns a list with named entries: \code{i} success of function
+#'      \code{dret} for magnitude info and \code{serr} for possible error code
+#' @rdname eclipse_pheno
+#' @export
+swe_vis_limit_mag <- function(tjd_ut, dgeo, datm, dobs, objectname, helflag) {
+    .Call(`_swephR_vis_limit_mag`, tjd_ut, dgeo, datm, dobs, objectname, helflag)
+}
+
+#' @title Expert interface
+#'
+#' @description For experts that are familiar with the C API of the underlying
+#'   \code{libswe}, an expert interface that mimicks that interface as closely
+#'   as possbile is provided.
+#' @param jd  Julian date as numeric vector
+#' @param t_acc tidal acceleration as double (arcsec/century^2)
+#' @param tjd  Julian day Number
+#' @param path  the directory where the ephemeris files are stored (a string)
+#' @param delta_t DeltaT value (sec)
 #' @return  \code{swe_deltat} returns the DeltaT (sec)
 #' @return \code{swe_day_of_week} retruns the day of week as integer vector
 #' @return \code{get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
@@ -139,22 +278,6 @@ swe_set_delta_t_userdef <- function(delta_t) {
     invisible(.Call(`_swephR_set_delta_t_userdef`, delta_t))
 }
 
-#' Compute the heliacale event of celestial object
-#' @param tjdstart  Julian day, UT time
-#' @param dgeo Geographic position
-#' @param datm Atmospheric conditions
-#' @param dobs Observer description
-#' @param objectname  celectial object
-#' @param event_type  event type
-#' @param helflag calcuation flag
-#' @return \code{swe_heliacal_ut} returns a list with named entries \code{return},
-#'         \code{dret} results, and \code{serr} error message.
-#' @rdname expert-interface
-#' @export
-swe_heliacal_ut <- function(tjdstart, dgeo, datm, dobs, objectname, event_type, helflag) {
-    .Call(`_swephR_heliacal_ut`, tjdstart, dgeo, datm, dobs, objectname, event_type, helflag)
-}
-
 #' Determine DeltaT
 #' @param ephe_flag  the epheemris flag (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)
 #' @return \code{swe_deltat_ex} returns a list with named entries: \code{return} for return value
@@ -165,132 +288,10 @@ swe_deltat_ex <- function(tjd, ephe_flag) {
     .Call(`_swephR_deltat_ex`, tjd, ephe_flag)
 }
 
-#' Compute horizon information: azimuth, altiiude
-#' @return \code{swe_azalt} returns a list with named entries: 
-#'      \code{xaz} for azi/alt info.
-#' @rdname expert-interface
-#' @export
-swe_azalt <- function(tjd_ut, calc_flag, geopos, atpress, attemp, xin) {
-    .Call(`_swephR_azalt`, tjd_ut, calc_flag, geopos, atpress, attemp, xin)
-}
-
-#' Provide phenomom information of celestial body (UT)
-#' @return \code{swe_pheno_ut} returns a list with named entries: 
-#'      \code{return} ???, \code{attr} for phenomenon information 
-#'      and \code{serr} error string
-#' @rdname expert-interface
-#' @export
-swe_pheno_ut <- function(tjd_ut, ipl, iflag) {
-    .Call(`_swephR_pheno_ut`, tjd_ut, ipl, iflag)
-}
-
-#' Provide phenomom information of celestial body (ET)
-#' @return \code{swe_pheno} returns a list with named entries: 
-#'      \code{return} ???, \code{attr} for phenomenon information 
-#'      and \code{serr} error string
-#' @rdname expert-interface
-#' @export
-swe_pheno <- function(tjd_et, ipl, iflag) {
-    .Call(`_swephR_pheno`, tjd_et, ipl, iflag)
-}
-
-#' Compute lunar eclipse at location
-#' @param ifl Type of ephemeris (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)
-#' @param backward TRUE for backwards search
-#' @return \code{swe_lun_eclipse_when_loc} returns a list with named entries: 
-#'      \code{return} visibility code, \code{tret} for eclipse timing moments, 
-#'      \code{attr} pheneomena durign eclipse and \code{serr} error string
-#' @rdname expert-interface
-#' @export
-swe_lun_eclipse_when_loc <- function(tjd_start, ifl, geopos, backward) {
-    .Call(`_swephR_lun_eclipse_when_loc`, tjd_start, ifl, geopos, backward)
-}
-
-#' Computes the attributes of a lunar eclipse at a given time
-#' @param tjd_start  Julian day, UT time
-#' @return \code{swe_lun_eclipse_how} returns a list with named entries: 
-#'      \code{return} visibility code, 
-#'      \code{attr} pheneomena durign eclipse and \code{serr} error string
-#' @rdname expert-interface
-#' @export
-swe_lun_eclipse_how <- function(tjd_start, ifl, geopos) {
-    .Call(`_swephR_lun_eclipse_how`, tjd_start, ifl, geopos)
-}
-
-#' Search a lunar eclipse on earth
-#' @param ifltype Type of eclipse event (SE_ECL_TOTAL etc.  or 0, if any eclipse type)
-#' @return \code{swe_lun_eclipse_when} returns a list with named entries: 
-#'      \code{return} visibility code, \code{tret} for eclipse timing moments 
-#'      and \code{serr} error string
-#' @rdname expert-interface
-#' @export
-swe_lun_eclipse_when <- function(tjd_start, ifl, ifltype, backward) {
-    .Call(`_swephR_lun_eclipse_when`, tjd_start, ifl, ifltype, backward)
-}
-
-#' Compute solar eclipse at location
-#' @return \code{swe_sol_eclipse_when_loc} returns a list with named entries: 
-#'      \code{return} visibility code, \code{tret} for eclipse timing moments, 
-#'      \code{attr} pheneomena durign eclipse and \code{serr} error string
-#' @rdname expert-interface
-#' @export
-swe_sol_eclipse_when_loc <- function(tjd_start, ifl, geopos, backward) {
-    .Call(`_swephR_sol_eclipse_when_loc`, tjd_start, ifl, geopos, backward)
-}
-
-#' Compute the rise and set location of the object
-#' @rdname expert-interface
-#' @export
-swe_rise_trans_true_hor <- function(tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp, horhgt) {
-    .Call(`_swephR_rise_trans_true_hor`, tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp, horhgt)
-}
-
 #' Close Swiss Ephemeris files
 #' @rdname expert-interface
 #' @export
 swe_close <- function() {
     invisible(.Call(`_swephR_close`))
-}
-
-#' Compute the limiting visibiliy magnitude
-#' @return \code{swe_vis_limit_mag} returns a list with named entries: \code{i} success of function
-#'      \code{dret} for magnitude info and \code{serr} for possible error code
-#' @rdname expert-interface
-#' @export
-swe_vis_limit_mag <- function(tjd_ut, dgeo, datm, dobs, objectname, helflag) {
-    .Call(`_swephR_vis_limit_mag`, tjd_ut, dgeo, datm, dobs, objectname, helflag)
-}
-
-#' Compute heliacal event details
-#' @return \code{swe_heliacal_pheno_ut} returns a list with named entries: \code{i} success of function
-#'      \code{darr} for heliacal details and \code{serr} for possible error code
-#' @rdname expert-interface
-#' @export
-swe_heliacal_pheno_ut <- function(tjd_ut, dgeo, datm, dobs, objectname, event_type, helflag) {
-    .Call(`_swephR_heliacal_pheno_ut`, tjd_ut, dgeo, datm, dobs, objectname, event_type, helflag)
-}
-
-#' Compute heliacal event details
-#' @param mag   The object's magnitude
-#' @param AziO  The object's azimut
-#' @param AltO  The object's altitude
-#' @param AziS  The sun's azimut
-#' @param AziM  The moon's azimut
-#' @param AltM  The moon's altitude
-#' @return \code{swe_topo_arcus_visionis} returns a list with named entries: \code{i} success of function
-#'      \code{darr} for heliacal details and \code{serr} for possible error code
-#' @rdname expert-interface
-#' @export
-swe_topo_arcus_visionis <- function(tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AltO, AziS, AziM, AltM) {
-    .Call(`_swephR_topo_arcus_visionis`, tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AltO, AziS, AziM, AltM)
-}
-
-#' Compute heliacal event details
-#' @return \code{swe_heliacal_angle} returns a list with named entries: \code{i} success of function
-#'      \code{darr} for heliacal angle and \code{serr} for possible error code
-#' @rdname expert-interface
-#' @export
-swe_heliacal_angle <- function(tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM, AltM) {
-    .Call(`_swephR_heliacal_angle`, tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM, AltM)
 }
 

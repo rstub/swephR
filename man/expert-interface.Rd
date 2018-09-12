@@ -10,21 +10,8 @@
 \alias{swe_set_ephe_path}
 \alias{swe_julday}
 \alias{swe_set_delta_t_userdef}
-\alias{swe_heliacal_ut}
 \alias{swe_deltat_ex}
-\alias{swe_azalt}
-\alias{swe_pheno_ut}
-\alias{swe_pheno}
-\alias{swe_lun_eclipse_when_loc}
-\alias{swe_lun_eclipse_how}
-\alias{swe_lun_eclipse_when}
-\alias{swe_sol_eclipse_when_loc}
-\alias{swe_rise_trans_true_hor}
 \alias{swe_close}
-\alias{swe_vis_limit_mag}
-\alias{swe_heliacal_pheno_ut}
-\alias{swe_topo_arcus_visionis}
-\alias{swe_heliacal_angle}
 \title{Expert interface}
 \usage{
 swe_day_of_week(jd)
@@ -43,40 +30,9 @@ swe_julday(year, month, day, hour, gregflag)
 
 swe_set_delta_t_userdef(delta_t)
 
-swe_heliacal_ut(tjdstart, dgeo, datm, dobs, objectname, event_type,
-  helflag)
-
 swe_deltat_ex(tjd, ephe_flag)
 
-swe_azalt(tjd_ut, calc_flag, geopos, atpress, attemp, xin)
-
-swe_pheno_ut(tjd_ut, ipl, iflag)
-
-swe_pheno(tjd_et, ipl, iflag)
-
-swe_lun_eclipse_when_loc(tjd_start, ifl, geopos, backward)
-
-swe_lun_eclipse_how(tjd_start, ifl, geopos)
-
-swe_lun_eclipse_when(tjd_start, ifl, ifltype, backward)
-
-swe_sol_eclipse_when_loc(tjd_start, ifl, geopos, backward)
-
-swe_rise_trans_true_hor(tjd_ut, ipl, starname, epheflag, rsmi, geopos,
-  atpress, attemp, horhgt)
-
 swe_close()
-
-swe_vis_limit_mag(tjd_ut, dgeo, datm, dobs, objectname, helflag)
-
-swe_heliacal_pheno_ut(tjd_ut, dgeo, datm, dobs, objectname, event_type,
-  helflag)
-
-swe_topo_arcus_visionis(tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AltO,
-  AziS, AziM, AltM)
-
-swe_heliacal_angle(tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS,
-  AziM, AltM)
 }
 \arguments{
 \item{jd}{Julian date as numeric vector}
@@ -99,76 +55,9 @@ swe_heliacal_angle(tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS,
 
 \item{delta_t}{DeltaT value (sec)}
 
-\item{tjdstart}{Julian day, UT time}
-
-\item{dgeo}{Geographic position}
-
-\item{datm}{Atmospheric conditions}
-
-\item{dobs}{Observer description}
-
-\item{objectname}{celectial object}
-
-\item{event_type}{event type}
-
-\item{helflag}{calcuation flag}
-
 \item{ephe_flag}{the epheemris flag (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)}
-
-\item{tjd_ut}{Julian day, UT time}
-
-\item{calc_flag}{Type of reference system}
-
-\item{geopos}{The position vector (longitude, latitude, height)}
-
-\item{atpress}{atmospheric pressure in mbar (hPa)}
-
-\item{attemp}{atmospheric temperature in degrees Celsius}
-
-\item{xin}{position of body in either ecliptical or equatorial coordinates, depending on calc_flag}
-
-\item{ipl}{body/planet number (-1 for no planet possible with \code{swe_rise_trans_true_hor})}
-
-\item{iflag}{a 32 bit integer containing bit flags that indicate what
-kind of computation is wanted}
-
-\item{tjd_et}{Julian day, Ephemeris time}
-
-\item{tjd_start}{Julian day, UT time}
-
-\item{ifl}{Type of ephemeris (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)}
-
-\item{backward}{TRUE for backwards search}
-
-\item{ifltype}{Type of eclipse event (SE_ECL_TOTAL etc.  or 0, if any eclipse type)}
-
-\item{starname}{star name ("" for no star)}
-
-\item{epheflag}{Type of ephemeris (4=Moshier, 1=JPL, 2=SE)}
-
-\item{rsmi}{integer specifying that rise, set, or one of the two meridian transits is wanted}
-
-\item{horhgt}{The apparent horizon at rise/set in degrees}
-
-\item{mag}{The object's magnitude}
-
-\item{AziO}{The object's azimut}
-
-\item{AltO}{The object's altitude}
-
-\item{AziS}{The sun's azimut}
-
-\item{AziM}{The moon's azimut}
-
-\item{AltM}{The moon's altitude}
 }
 \value{
-\code{swe_rise_trans_true_hor} returns a list with named entries: \code{i} success of function
-     \code{tret} for azi/alt info and \code{serr} for possible error code
-
-\code{swe_azalt} returns a list with named entries:
-     \code{xaz} for azi/alt info.
-
 \code{swe_deltat} returns the DeltaT (sec)
 
 \code{swe_day_of_week} retruns the day of week as integer vector
@@ -177,50 +66,8 @@ kind of computation is wanted}
 
 \code{swe_version} returns the Swiss Ephemeris version number as string
 
-\code{swe_heliacal_ut} returns a list with named entries \code{return},
-        \code{dret} results, and \code{serr} error message.
-
 \code{swe_deltat_ex} returns a list with named entries: \code{return} for return value
          and \code{serr} for error message.
-
-\code{swe_azalt} returns a list with named entries: 
-     \code{xaz} for azi/alt info.
-
-\code{swe_pheno_ut} returns a list with named entries: 
-     \code{return} ???, \code{attr} for phenomenon information 
-     and \code{serr} error string
-
-\code{swe_pheno} returns a list with named entries: 
-     \code{return} ???, \code{attr} for phenomenon information 
-     and \code{serr} error string
-
-\code{swe_lun_eclipse_when_loc} returns a list with named entries: 
-     \code{return} visibility code, \code{tret} for eclipse timing moments, 
-     \code{attr} pheneomena durign eclipse and \code{serr} error string
-
-\code{swe_lun_eclipse_how} returns a list with named entries: 
-     \code{return} visibility code, 
-     \code{attr} pheneomena durign eclipse and \code{serr} error string
-
-\code{swe_lun_eclipse_when} returns a list with named entries: 
-     \code{return} visibility code, \code{tret} for eclipse timing moments 
-     and \code{serr} error string
-
-\code{swe_sol_eclipse_when_loc} returns a list with named entries: 
-     \code{return} visibility code, \code{tret} for eclipse timing moments, 
-     \code{attr} pheneomena durign eclipse and \code{serr} error string
-
-\code{swe_vis_limit_mag} returns a list with named entries: \code{i} success of function
-     \code{dret} for magnitude info and \code{serr} for possible error code
-
-\code{swe_heliacal_pheno_ut} returns a list with named entries: \code{i} success of function
-     \code{darr} for heliacal details and \code{serr} for possible error code
-
-\code{swe_topo_arcus_visionis} returns a list with named entries: \code{i} success of function
-     \code{darr} for heliacal details and \code{serr} for possible error code
-
-\code{swe_heliacal_angle} returns a list with named entries: \code{i} success of function
-     \code{darr} for heliacal angle and \code{serr} for possible error code
 }
 \description{
 For experts that are familiar with the C API of the underlying
