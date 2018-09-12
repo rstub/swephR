@@ -28,16 +28,13 @@
 //' @param t_acc tidal acceleration as double (arcsec/century^2)
 //' @param tjd  Julian day Number
 //' @param path  the directory where the ephemeris files are stored (a string)
-//' @param geolon  Topocentric Longitude (deg)
-//' @param geolat  Topocentric Latitude (deg)
 //' @param geopos The position vector (longitude, latitude, height)
-//' @param altitude  the height (m)
 //' @param delta_t DeltaT value (sec)
 //' @param tjd_et  Julian day, Ephemeris time
 //' @param ipl  body/planet number (-1 for no planet possible with \code{swe_rise_trans_true_hor})
 //' @param iflag  a 32 bit integer containing bit flags that indicate what
 //'               kind of computation is wanted
-//' @param star,starname  star name ("" for no star possible with \code{swe_rise_trans_true_hor})
+//' @param starname  star name ("" for no star)
 //' @param tjd_ut  Julian day, UT time
 //' @param calc_flag Type of reference system
 //' @param atpress atmospheric pressure in mbar (hPa)
@@ -50,9 +47,6 @@
 //'      \code{tret} for azi/alt info and \code{serr} for possible error code
 //' @return \code{swe_azalt} returns a list with named entries:
 //'      \code{xaz} for azi/alt info.
-//' @return \code{swe_calc} returns a list with named entries \code{rc},
-//'         \code{xx}, and \code{serr} for return code, calculated values
-//'         and error message.
 //' @return  \code{swe_deltat} returns the DeltaT (sec)
 //' @return \code{swe_day_of_week} retruns the day of week as integer vector
 //' @return \code{get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
@@ -133,14 +127,6 @@ double julday(int year, int month, int day, double hour, int gregflag) {
   return i;
 }
 
-//' Set the topocentric location (lon, lat, height)
-//' @rdname expert-interface
-//' @export
-// [[Rcpp::export(swe_set_topo)]]
-void set_topo(double geolon, double geolat, double altitude) {
-  swe_set_topo(geolon, geolat, altitude);
-}
-
 //' Set one's own DeltaT
 //' @rdname expert-interface
 //' @export
@@ -149,154 +135,8 @@ void set_delta_t_userdef (double delta_t) {
   swe_set_delta_t_userdef (delta_t);
 }
 
-// Compute information of planet (ET)
-// [[Rcpp::export]]
-Rcpp::List calc(Rcpp::NumericVector tjd_et, Rcpp::IntegerVector ipl, int iflag) {
-  if (tjd_et.length() != ipl.length())
-    Rcpp::stop("The number of bodies in 'ipl' and the number of dates in 'tjd_et' must be identical!");
-
-  Rcpp::IntegerVector rc_(ipl.length());
-  Rcpp::CharacterVector serr_(ipl.length());
-  Rcpp::NumericMatrix xx_(ipl.length(), 6);
-
-  for (int i = 0; i < ipl.length(); ++i) {
-    std::array<double, 6> xx{0.0};
-    std::array<char, 256> serr{'\0'};
-    rc_(i) = swe_calc(tjd_et[i], ipl(i), iflag, &xx[0], &serr[0]);
-    Rcpp::NumericVector tmp(xx.begin(), xx.end());
-    xx_(i, Rcpp::_) = tmp;
-    serr_(i) = std::string(&serr[0]);
-  }
-  // remove dim attribute to return a vector
-  if (ipl.length() == 1)
-    xx_.attr("dim") = R_NilValue;
-  
-  return Rcpp::List::create(Rcpp::Named("return") = rc_,
-                            Rcpp::Named("xx") = xx_,
-                            Rcpp::Named("serr") = serr_);
-}
-
-  // Compute information of planet (UT)
-  // [[Rcpp::export]]
-  Rcpp::List calc_ut(Rcpp::NumericVector tjd_ut, Rcpp::IntegerVector ipl, int iflag) {
-    if (tjd_ut.length() != ipl.length())
-      Rcpp::stop("The number of bodies in 'ipl' and the number of dates in 'tjd_ut' must be identical!");
-    
-    Rcpp::IntegerVector rc_(ipl.length());
-    Rcpp::CharacterVector serr_(ipl.length());
-    Rcpp::NumericMatrix xx_(ipl.length(), 6);
-    
-    for (int i = 0; i < ipl.length(); ++i) {
-      std::array<double, 6> xx{0.0};
-      std::array<char, 256> serr{'\0'};
-      rc_(i) = swe_calc_ut(tjd_ut[i], ipl(i), iflag, &xx[0], &serr[0]);
-      Rcpp::NumericVector tmp(xx.begin(), xx.end());
-      xx_(i, Rcpp::_) = tmp;
-      serr_(i) = std::string(&serr[0]);
-    }
-    
-  // remove dim attribute to return a vector
-  if (ipl.length() == 1)
-    xx_.attr("dim") = R_NilValue;
-
-  return Rcpp::List::create(Rcpp::Named("return") = rc_,
-			    Rcpp::Named("xx") = xx_,
-			    Rcpp::Named("serr") = serr_);
-}
 
 
-//' Compute the magnitude of star
-//' @return \code{swe_fixstar2_mag} returns a list with named entries \code{return},
-//'         \code{star} updated star name, \code{mag} magnitude of star, and \code{serr} for error message.
-//' @rdname expert-interface
-//' @export
-// [[Rcpp::export(swe_fixstar2_mag)]]
-Rcpp::List fixstar2_mag(Rcpp::CharacterVector star) {
-  Rcpp::IntegerVector rc_(star.length());
-  Rcpp::CharacterVector serr_(star.length());
-  Rcpp::NumericVector mag_(star.length());
-
-  for (int i = 0; i < star.length(); ++i) {
-    double mag;
-    std::array<char, 256> serr{'\0'};
-    std::string star_(star(i));
-    star_.resize(41);
-    rc_(i) = swe_fixstar2_mag(&star_[0], &mag, &serr[0]);
-    mag_(i) = mag;
-    serr_(i) = std::string(&serr[0]);
-    star(i) = star_;
-  }
-    
-  return Rcpp::List::create(Rcpp::Named("return") = rc_,
-                            Rcpp::Named("star") = star,
-                            Rcpp::Named("mag") = mag_,
-                            Rcpp::Named("serr") = serr_);
-}
-
-
-// Compute information of star
-// [[Rcpp::export]]
-Rcpp::List fixstar2(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_et, int iflag) {
-  if (tjd_et.length() != star.length())
-    Rcpp::stop("The number of stars in 'star' and the number of dates in 'tjd_et' must be identical!");
-  
-  Rcpp::IntegerVector rc_(star.length());
-  Rcpp::CharacterVector serr_(star.length());
-  Rcpp::NumericMatrix xx_(star.length(), 6);
-  
-  for (int i = 0; i < star.length(); ++i) {
-    std::array<double, 6> xx{0.0};
-    std::array<char, 256> serr{'\0'};
-    std::string star_(star(i));
-    star_.resize(41);
-    rc_(i) = swe_fixstar2(&star_[0], tjd_et(i), iflag, &xx[0], &serr[0]);
-    Rcpp::NumericVector tmp(xx.begin(), xx.end());
-    xx_(i, Rcpp::_) = tmp;
-    serr_(i) = std::string(&serr[0]);
-    star(i) = star_;
-  }
-  
-  // remove dim attribute to return a vector
-  if (star.length() == 1)
-    xx_.attr("dim") = R_NilValue;
-  
-  return Rcpp::List::create(Rcpp::Named("return") = rc_,
-                            Rcpp::Named("star") = star,
-                            Rcpp::Named("xx") = xx_,
-                            Rcpp::Named("serr") = serr_);
-}
-
-// Compute information of star (UT)
-// [[Rcpp::export]]
-Rcpp::List fixstar2_ut(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_ut, int iflag) {
-  if (tjd_ut.length() != star.length())
-    Rcpp::stop("The number of stars in 'star' and the number of dates in 'tjd_ut' must be identical!");
-  
-  Rcpp::IntegerVector rc_(star.length());
-  Rcpp::CharacterVector serr_(star.length());
-  Rcpp::NumericMatrix xx_(star.length(), 6);
-  
-  for (int i = 0; i < star.length(); ++i) {
-    std::array<double, 6> xx{0.0};
-    std::array<char, 256> serr{'\0'};
-    std::string star_(star(i));
-    star_.resize(41);
-    rc_(i) = swe_fixstar2_ut(&star_[0], tjd_ut(i), iflag, &xx[0], &serr[0]);
-    Rcpp::NumericVector tmp(xx.begin(), xx.end());
-    xx_(i, Rcpp::_) = tmp;
-    serr_(i) = std::string(&serr[0]);
-    star(i) = star_;
-  }
-  
-  // remove dim attribute to return a vector
-  if (star.length() == 1)
-    xx_.attr("dim") = R_NilValue;
-  
-  return Rcpp::List::create(Rcpp::Named("return") = rc_,
-                            Rcpp::Named("star") = star,
-                            Rcpp::Named("xx") = xx_,
-                            Rcpp::Named("serr") = serr_);
-}
 
 //' Compute the heliacale event of celestial object
 //' @param tjdstart  Julian day, UT time

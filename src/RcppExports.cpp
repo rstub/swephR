@@ -5,6 +5,81 @@
 
 using namespace Rcpp;
 
+// calc_ut
+Rcpp::List calc_ut(Rcpp::NumericVector tjd_ut, Rcpp::IntegerVector ipl, int iflag);
+RcppExport SEXP _swephR_calc_ut(SEXP tjd_utSEXP, SEXP iplSEXP, SEXP iflagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tjd_ut(tjd_utSEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type ipl(iplSEXP);
+    Rcpp::traits::input_parameter< int >::type iflag(iflagSEXP);
+    rcpp_result_gen = Rcpp::wrap(calc_ut(tjd_ut, ipl, iflag));
+    return rcpp_result_gen;
+END_RCPP
+}
+// calc
+Rcpp::List calc(Rcpp::NumericVector tjd_et, Rcpp::IntegerVector ipl, int iflag);
+RcppExport SEXP _swephR_calc(SEXP tjd_etSEXP, SEXP iplSEXP, SEXP iflagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tjd_et(tjd_etSEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type ipl(iplSEXP);
+    Rcpp::traits::input_parameter< int >::type iflag(iflagSEXP);
+    rcpp_result_gen = Rcpp::wrap(calc(tjd_et, ipl, iflag));
+    return rcpp_result_gen;
+END_RCPP
+}
+// fixstar2_ut
+Rcpp::List fixstar2_ut(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_ut, int iflag);
+RcppExport SEXP _swephR_fixstar2_ut(SEXP starSEXP, SEXP tjd_utSEXP, SEXP iflagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type star(starSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tjd_ut(tjd_utSEXP);
+    Rcpp::traits::input_parameter< int >::type iflag(iflagSEXP);
+    rcpp_result_gen = Rcpp::wrap(fixstar2_ut(star, tjd_ut, iflag));
+    return rcpp_result_gen;
+END_RCPP
+}
+// fixstar2
+Rcpp::List fixstar2(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_et, int iflag);
+RcppExport SEXP _swephR_fixstar2(SEXP starSEXP, SEXP tjd_etSEXP, SEXP iflagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type star(starSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tjd_et(tjd_etSEXP);
+    Rcpp::traits::input_parameter< int >::type iflag(iflagSEXP);
+    rcpp_result_gen = Rcpp::wrap(fixstar2(star, tjd_et, iflag));
+    return rcpp_result_gen;
+END_RCPP
+}
+// fixstar2_mag
+Rcpp::List fixstar2_mag(Rcpp::CharacterVector star);
+RcppExport SEXP _swephR_fixstar2_mag(SEXP starSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type star(starSEXP);
+    rcpp_result_gen = Rcpp::wrap(fixstar2_mag(star));
+    return rcpp_result_gen;
+END_RCPP
+}
+// set_topo
+void set_topo(double geolon, double geolat, double altitude);
+RcppExport SEXP _swephR_set_topo(SEXP geolonSEXP, SEXP geolatSEXP, SEXP altitudeSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type geolon(geolonSEXP);
+    Rcpp::traits::input_parameter< double >::type geolat(geolatSEXP);
+    Rcpp::traits::input_parameter< double >::type altitude(altitudeSEXP);
+    set_topo(geolon, geolat, altitude);
+    return R_NilValue;
+END_RCPP
+}
 // day_of_week
 Rcpp::IntegerVector day_of_week(Rcpp::NumericVector jd);
 RcppExport SEXP _swephR_day_of_week(SEXP jdSEXP) {
@@ -82,18 +157,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// set_topo
-void set_topo(double geolon, double geolat, double altitude);
-RcppExport SEXP _swephR_set_topo(SEXP geolonSEXP, SEXP geolatSEXP, SEXP altitudeSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type geolon(geolonSEXP);
-    Rcpp::traits::input_parameter< double >::type geolat(geolatSEXP);
-    Rcpp::traits::input_parameter< double >::type altitude(altitudeSEXP);
-    set_topo(geolon, geolat, altitude);
-    return R_NilValue;
-END_RCPP
-}
 // set_delta_t_userdef
 void set_delta_t_userdef(double delta_t);
 RcppExport SEXP _swephR_set_delta_t_userdef(SEXP delta_tSEXP) {
@@ -102,69 +165,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type delta_t(delta_tSEXP);
     set_delta_t_userdef(delta_t);
     return R_NilValue;
-END_RCPP
-}
-// calc
-Rcpp::List calc(Rcpp::NumericVector tjd_et, Rcpp::IntegerVector ipl, int iflag);
-RcppExport SEXP _swephR_calc(SEXP tjd_etSEXP, SEXP iplSEXP, SEXP iflagSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tjd_et(tjd_etSEXP);
-    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type ipl(iplSEXP);
-    Rcpp::traits::input_parameter< int >::type iflag(iflagSEXP);
-    rcpp_result_gen = Rcpp::wrap(calc(tjd_et, ipl, iflag));
-    return rcpp_result_gen;
-END_RCPP
-}
-// calc_ut
-Rcpp::List calc_ut(Rcpp::NumericVector tjd_ut, Rcpp::IntegerVector ipl, int iflag);
-RcppExport SEXP _swephR_calc_ut(SEXP tjd_utSEXP, SEXP iplSEXP, SEXP iflagSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tjd_ut(tjd_utSEXP);
-    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type ipl(iplSEXP);
-    Rcpp::traits::input_parameter< int >::type iflag(iflagSEXP);
-    rcpp_result_gen = Rcpp::wrap(calc_ut(tjd_ut, ipl, iflag));
-    return rcpp_result_gen;
-END_RCPP
-}
-// fixstar2_mag
-Rcpp::List fixstar2_mag(Rcpp::CharacterVector star);
-RcppExport SEXP _swephR_fixstar2_mag(SEXP starSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type star(starSEXP);
-    rcpp_result_gen = Rcpp::wrap(fixstar2_mag(star));
-    return rcpp_result_gen;
-END_RCPP
-}
-// fixstar2
-Rcpp::List fixstar2(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_et, int iflag);
-RcppExport SEXP _swephR_fixstar2(SEXP starSEXP, SEXP tjd_etSEXP, SEXP iflagSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type star(starSEXP);
-    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tjd_et(tjd_etSEXP);
-    Rcpp::traits::input_parameter< int >::type iflag(iflagSEXP);
-    rcpp_result_gen = Rcpp::wrap(fixstar2(star, tjd_et, iflag));
-    return rcpp_result_gen;
-END_RCPP
-}
-// fixstar2_ut
-Rcpp::List fixstar2_ut(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_ut, int iflag);
-RcppExport SEXP _swephR_fixstar2_ut(SEXP starSEXP, SEXP tjd_utSEXP, SEXP iflagSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type star(starSEXP);
-    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tjd_ut(tjd_utSEXP);
-    Rcpp::traits::input_parameter< int >::type iflag(iflagSEXP);
-    rcpp_result_gen = Rcpp::wrap(fixstar2_ut(star, tjd_ut, iflag));
-    return rcpp_result_gen;
 END_RCPP
 }
 // heliacal_ut
@@ -397,6 +397,12 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_swephR_calc_ut", (DL_FUNC) &_swephR_calc_ut, 3},
+    {"_swephR_calc", (DL_FUNC) &_swephR_calc, 3},
+    {"_swephR_fixstar2_ut", (DL_FUNC) &_swephR_fixstar2_ut, 3},
+    {"_swephR_fixstar2", (DL_FUNC) &_swephR_fixstar2, 3},
+    {"_swephR_fixstar2_mag", (DL_FUNC) &_swephR_fixstar2_mag, 1},
+    {"_swephR_set_topo", (DL_FUNC) &_swephR_set_topo, 3},
     {"_swephR_day_of_week", (DL_FUNC) &_swephR_day_of_week, 1},
     {"_swephR_get_tid_acc", (DL_FUNC) &_swephR_get_tid_acc, 0},
     {"_swephR_version", (DL_FUNC) &_swephR_version, 0},
@@ -404,13 +410,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_deltat", (DL_FUNC) &_swephR_deltat, 1},
     {"_swephR_set_ephe_path", (DL_FUNC) &_swephR_set_ephe_path, 1},
     {"_swephR_julday", (DL_FUNC) &_swephR_julday, 5},
-    {"_swephR_set_topo", (DL_FUNC) &_swephR_set_topo, 3},
     {"_swephR_set_delta_t_userdef", (DL_FUNC) &_swephR_set_delta_t_userdef, 1},
-    {"_swephR_calc", (DL_FUNC) &_swephR_calc, 3},
-    {"_swephR_calc_ut", (DL_FUNC) &_swephR_calc_ut, 3},
-    {"_swephR_fixstar2_mag", (DL_FUNC) &_swephR_fixstar2_mag, 1},
-    {"_swephR_fixstar2", (DL_FUNC) &_swephR_fixstar2, 3},
-    {"_swephR_fixstar2_ut", (DL_FUNC) &_swephR_fixstar2_ut, 3},
     {"_swephR_heliacal_ut", (DL_FUNC) &_swephR_heliacal_ut, 7},
     {"_swephR_deltat_ex", (DL_FUNC) &_swephR_deltat_ex, 2},
     {"_swephR_azalt", (DL_FUNC) &_swephR_azalt, 6},
