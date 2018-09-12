@@ -4,15 +4,22 @@
 \name{swephR-package}
 \alias{swephR}
 \alias{swephR-package}
-\title{R interface to the Swiss Ephemeris}
+\title{swephR: High Precision Swiss Ephemeris}
 \description{
-The swephR package provides an R interface for the
-\href{http://www.astro.com/swisseph/swephinfo_e.htm}{\code{Swiss Ephemeris}}.
+The Swiss Ephemeris is a high precision ephemeris developed
+    by Astrodienst, based upon the DE431 ephemerides from NASA's JPL. This
+    package uses the semianalytic theory by Steve Moshier. For faster and more
+    accurate calculations, the compressed Swiss Ephemeris data is available in
+    the 'swephRdata' package. To access this data package, run
+    'install.packages("swephRdata", repos = "https://rstub.github.io/drat/",
+    type = "source")'. The size of the 'swephRdata' package is approximately
+    115 MB.
 }
 \seealso{
 Useful links:
 \itemize{
   \item \url{https://github.com/rstub/swephR/}
+  \item \url{http://www.astro.com/swisseph/swephinfo_e.htm}
   \item Report bugs at \url{https://github.com/rstub/swephR/issues/}
 }
 

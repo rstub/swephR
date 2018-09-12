@@ -20,6 +20,6 @@ Suggests:
     testthat,
     swephRdata
 Encoding: UTF-8
-URL: https://github.com/rstub/swephR/
+URL: https://github.com/rstub/swephR/, http://www.astro.com/swisseph/swephinfo_e.htm
 BugReports: https://github.com/rstub/swephR/issues/
 Additional_repositories: https://rstub.github.io/drat
