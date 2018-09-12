@@ -586,7 +586,7 @@ struct sid_data {
 };
 
 struct fixed_star {
-  char skey[40];
+  char skey[41];
   char starname[40];
   char starbayer[40];
   char starno[10];

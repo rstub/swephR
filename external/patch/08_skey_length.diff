@@ -1,0 +1,11 @@
+--- external/src/sweph.h	2018-02-01 10:05:47.000000000 +0100
++++ src/libswe/sweph.h	2018-09-12 23:06:08.955444909 +0200
+@@ -586,7 +586,7 @@
+ };
+ 
+ struct fixed_star {
+-  char skey[40];
++  char skey[41];
+   char starname[40];
+   char starbayer[40];
+   char starno[10];
