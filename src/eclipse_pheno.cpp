@@ -27,7 +27,7 @@
 //'               kind of computation is wanted
 //' @param starname  star name ("" for no star)
 //' @param tjd_ut  Julian day, UT time
-//' @param calc_flag Type of reference system
+//' @param calc_flag Type of reference system or SE_TRUE_TO_APP=0 / SE_APP_TO_TRUE=1
 //' @param atpress atmospheric pressure in mbar (hPa)
 //' @param attemp atmospheric temperature in degrees Celsius
 //' @param epheflag Type of ephemeris (4=Moshier, 1=JPL, 2=SE)
@@ -49,10 +49,10 @@ Rcpp::List sol_eclipse_when_loc(double tjd_start, int ifl, Rcpp::NumericVector g
   std::array<double, 10> tret{0.0};
   std::array<double, 20> attr{0.0};
   std::array<char, 256> serr{'\0'};
-  int rtn = swe_sol_eclipse_when_loc(tjd_start, ifl, &geopos[0], &tret[0], &attr[0], backward, &serr[0]);
+  int rtn = swe_sol_eclipse_when_loc(tjd_start, ifl, geopos.begin(), tret.begin(), attr.begin(), backward, serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = rtn, Rcpp::Named("tret") = tret,
                             Rcpp::Named("attr") = attr,
-                            Rcpp::Named("serr") = std::string(&serr[0])
+                            Rcpp::Named("serr") = std::string(serr.begin())
     );
 }
 
@@ -290,8 +290,24 @@ Rcpp::List vis_limit_mag(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericV
   if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
   std::array<double, 50> dret{0.0};
   std::array<char, 256> serr{'\0'};
-  int i = swe_vis_limit_mag(tjd_ut, &dgeo[0], &datm[0],&dobs[0], &objectname[0], helflag, &dret[0], &serr[0]);
+  int i = swe_vis_limit_mag(tjd_ut, dgeo.begin(), datm.begin(),dobs.begin(), &objectname[0], helflag, dret.begin(), serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = i,
                             Rcpp::Named("dret") = dret,
-                            Rcpp::Named("serr") = std::string(&serr[0]));
+                            Rcpp::Named("serr") = std::string(serr.begin()));
+}
+
+//' Compute the refraction
+//' @param InAlt  The object's apparent/topocentric altitude (depending on calc_flag)
+//' @param geoheight  The observer's height
+//' @param lapse_rate  The lapse rate pK/m]
+//' @return \code{swe_refrac_extended} returns a list with named entries: \code{i} success of function
+//'      \code{dret} for refraction related calculations (TopoAlt, AppAlt, refraction)
+//' @rdname eclipse_pheno
+//' @export
+// [[Rcpp::export(swe_refrac_extended)]]
+Rcpp::List refrac_extended(double InAlt, double geoheight, double atpress, double attemp, double lapse_rate, int calc_flag) {
+  std::array<double, 10> dret{0.0};
+  int i = swe_refrac_extended(InAlt,geoheight,atpress,attemp,lapse_rate,calc_flag, dret.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("dret") = dret);
 }

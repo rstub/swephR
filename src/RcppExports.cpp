@@ -80,22 +80,6 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
-// refrac_extended
-Rcpp::List refrac_extended(double InAlt, double geoheight, double atpress, double attemp, double lapse_rate, int calc_flag);
-RcppExport SEXP _swephR_refrac_extended(SEXP InAltSEXP, SEXP geoheightSEXP, SEXP atpressSEXP, SEXP attempSEXP, SEXP lapse_rateSEXP, SEXP calc_flagSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type InAlt(InAltSEXP);
-    Rcpp::traits::input_parameter< double >::type geoheight(geoheightSEXP);
-    Rcpp::traits::input_parameter< double >::type atpress(atpressSEXP);
-    Rcpp::traits::input_parameter< double >::type attemp(attempSEXP);
-    Rcpp::traits::input_parameter< double >::type lapse_rate(lapse_rateSEXP);
-    Rcpp::traits::input_parameter< int >::type calc_flag(calc_flagSEXP);
-    rcpp_result_gen = Rcpp::wrap(refrac_extended(InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag));
-    return rcpp_result_gen;
-END_RCPP
-}
 // sol_eclipse_when_loc
 Rcpp::List sol_eclipse_when_loc(double tjd_start, int ifl, Rcpp::NumericVector geopos, bool backward);
 RcppExport SEXP _swephR_sol_eclipse_when_loc(SEXP tjd_startSEXP, SEXP iflSEXP, SEXP geoposSEXP, SEXP backwardSEXP) {
@@ -317,6 +301,22 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// refrac_extended
+Rcpp::List refrac_extended(double InAlt, double geoheight, double atpress, double attemp, double lapse_rate, int calc_flag);
+RcppExport SEXP _swephR_refrac_extended(SEXP InAltSEXP, SEXP geoheightSEXP, SEXP atpressSEXP, SEXP attempSEXP, SEXP lapse_rateSEXP, SEXP calc_flagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type InAlt(InAltSEXP);
+    Rcpp::traits::input_parameter< double >::type geoheight(geoheightSEXP);
+    Rcpp::traits::input_parameter< double >::type atpress(atpressSEXP);
+    Rcpp::traits::input_parameter< double >::type attemp(attempSEXP);
+    Rcpp::traits::input_parameter< double >::type lapse_rate(lapse_rateSEXP);
+    Rcpp::traits::input_parameter< int >::type calc_flag(calc_flagSEXP);
+    rcpp_result_gen = Rcpp::wrap(refrac_extended(InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag));
+    return rcpp_result_gen;
+END_RCPP
+}
 // day_of_week
 Rcpp::IntegerVector day_of_week(Rcpp::NumericVector jd);
 RcppExport SEXP _swephR_day_of_week(SEXP jdSEXP) {
@@ -433,7 +433,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_fixstar2", (DL_FUNC) &_swephR_fixstar2, 3},
     {"_swephR_fixstar2_mag", (DL_FUNC) &_swephR_fixstar2_mag, 1},
     {"_swephR_set_topo", (DL_FUNC) &_swephR_set_topo, 3},
-    {"_swephR_refrac_extended", (DL_FUNC) &_swephR_refrac_extended, 6},
     {"_swephR_sol_eclipse_when_loc", (DL_FUNC) &_swephR_sol_eclipse_when_loc, 4},
     {"_swephR_lun_eclipse_when_loc", (DL_FUNC) &_swephR_lun_eclipse_when_loc, 4},
     {"_swephR_lun_eclipse_how", (DL_FUNC) &_swephR_lun_eclipse_how, 3},
@@ -448,6 +447,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_heliacal_angle", (DL_FUNC) &_swephR_heliacal_angle, 10},
     {"_swephR_heliacal_ut", (DL_FUNC) &_swephR_heliacal_ut, 7},
     {"_swephR_vis_limit_mag", (DL_FUNC) &_swephR_vis_limit_mag, 6},
+    {"_swephR_refrac_extended", (DL_FUNC) &_swephR_refrac_extended, 6},
     {"_swephR_day_of_week", (DL_FUNC) &_swephR_day_of_week, 1},
     {"_swephR_get_tid_acc", (DL_FUNC) &_swephR_get_tid_acc, 0},
     {"_swephR_version", (DL_FUNC) &_swephR_version, 0},
