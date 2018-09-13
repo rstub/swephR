@@ -6,6 +6,18 @@ test_that("Azimuth and altitude postions", {
   swe_close()
 })
 
+test_that("Ecliptic postions", {
+  result <- swe_azalt_rev(1234567,0,c(0, 50,10),c(123,2))
+  expect_equal(result$xout[1:2], c(166.0465305159982,  18.0853031826458),tolerance = .0000001)
+  swe_close()
+})
+
+test_that("Equatorial postions", {
+  result <- swe_azalt_rev(1234567,1,c(0, 50,10),c(123,2))
+  expect_equal(result$xout[1:2], c(174.78989 , 22.12376),tolerance = .0000001)
+  swe_close()
+})
+
 
 test_that("Rise/set azimuth", {
   result <- swe_rise_trans_true_hor(1234567.5,0,"",4,0,c(0,50,10),1013.25,15,0)

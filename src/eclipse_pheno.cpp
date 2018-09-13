@@ -148,6 +148,19 @@ Rcpp::List azalt(double tjd_ut, int calc_flag, Rcpp::NumericVector geopos, doubl
   return Rcpp::List::create(Rcpp::Named("xaz") = xaz);
 }
 
+//' Compute equatorial/ecliptical information
+//' @return \code{swe_azalt_rev} returns a list with named entries:
+//'      \code{xaz} for celestial info.
+//' @rdname eclipse_pheno
+//' @export
+// [[Rcpp::export(swe_azalt_rev)]]
+Rcpp::List azalt_rev(double tjd_ut, int calc_flag, Rcpp::NumericVector geopos, Rcpp::NumericVector xin) {
+  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
+  std::array<double, 3> xout{0.0};
+  swe_azalt_rev(tjd_ut, calc_flag, geopos.begin(), xin.begin(), xout.begin());
+  return Rcpp::List::create(Rcpp::Named("xout") = xout);
+}
+
 //' Provide phenomom information of celestial body (UT)
 //' @return \code{swe_pheno_ut} returns a list with named entries:
 //'      \code{return} ???, \code{attr} for phenomenon information

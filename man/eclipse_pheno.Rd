@@ -7,6 +7,7 @@
 \alias{swe_lun_eclipse_when}
 \alias{swe_rise_trans_true_hor}
 \alias{swe_azalt}
+\alias{swe_azalt_rev}
 \alias{swe_pheno_ut}
 \alias{swe_pheno}
 \alias{swe_heliacal_pheno_ut}
@@ -30,6 +31,8 @@ swe_rise_trans_true_hor(tjd_ut, ipl, starname, epheflag, rsmi, geopos,
   atpress, attemp, horhgt)
 
 swe_azalt(tjd_ut, calc_flag, geopos, atpress, attemp, xin)
+
+swe_azalt_rev(tjd_ut, calc_flag, geopos, xin)
 
 swe_pheno_ut(tjd_ut, ipl, iflag)
 
@@ -146,6 +149,9 @@ kind of computation is wanted}
 \code{swe_azalt} returns a list with named entries:
      \code{xaz} for azi/alt info.
 
+\code{swe_azalt_rev} returns a list with named entries:
+     \code{xaz} for celestial info.
+
 \code{swe_pheno_ut} returns a list with named entries:
      \code{return} ???, \code{attr} for phenomenon information
      and \code{serr} error string
@@ -185,6 +191,8 @@ Search a lunar eclipse on earth
 Compute the rise and set location of the object
 
 Compute horizon information: azimuth, altiiude
+
+Compute equatorial/ecliptical information
 
 Provide phenomom information of celestial body (UT)
 

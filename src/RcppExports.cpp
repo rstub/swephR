@@ -170,6 +170,20 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// azalt_rev
+Rcpp::List azalt_rev(double tjd_ut, int calc_flag, Rcpp::NumericVector geopos, Rcpp::NumericVector xin);
+RcppExport SEXP _swephR_azalt_rev(SEXP tjd_utSEXP, SEXP calc_flagSEXP, SEXP geoposSEXP, SEXP xinSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type tjd_ut(tjd_utSEXP);
+    Rcpp::traits::input_parameter< int >::type calc_flag(calc_flagSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type geopos(geoposSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type xin(xinSEXP);
+    rcpp_result_gen = Rcpp::wrap(azalt_rev(tjd_ut, calc_flag, geopos, xin));
+    return rcpp_result_gen;
+END_RCPP
+}
 // pheno_ut
 Rcpp::List pheno_ut(double tjd_ut, int ipl, int iflag);
 RcppExport SEXP _swephR_pheno_ut(SEXP tjd_utSEXP, SEXP iplSEXP, SEXP iflagSEXP) {
@@ -425,6 +439,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_lun_eclipse_when", (DL_FUNC) &_swephR_lun_eclipse_when, 4},
     {"_swephR_rise_trans_true_hor", (DL_FUNC) &_swephR_rise_trans_true_hor, 9},
     {"_swephR_azalt", (DL_FUNC) &_swephR_azalt, 6},
+    {"_swephR_azalt_rev", (DL_FUNC) &_swephR_azalt_rev, 4},
     {"_swephR_pheno_ut", (DL_FUNC) &_swephR_pheno_ut, 3},
     {"_swephR_pheno", (DL_FUNC) &_swephR_pheno, 3},
     {"_swephR_heliacal_pheno_ut", (DL_FUNC) &_swephR_heliacal_pheno_ut, 7},
