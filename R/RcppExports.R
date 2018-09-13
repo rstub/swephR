@@ -43,19 +43,6 @@ swe_set_topo <- function(geolon, geolat, altitude) {
     invisible(.Call(`_swephR_set_topo`, geolon, geolat, altitude))
 }
 
-#' Compute the refraction
-#' @param InAlt  The object's apparent/topocentric altitude (depending on calc_flag)
-#' @param geoheight  The observer's height
-#' @param lapse_rate  The lapse rate pK/m]
-#' @param calc_flag SE_TRUE_TO_APP=0 or SE_APP_TO_TRUE=1
-#' @return \code{swe_refrac_extended} returns a list with named entries: \code{i} success of function
-#'      \code{dret} for refraction related calculations (TopoAlt, AppAlt, refraction)
-#' @rdname expert-interface
-#' @export
-swe_refrac_extended <- function(InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag) {
-    .Call(`_swephR_refrac_extended`, InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag)
-}
-
 #' @title Eclipses and planetary phenomena
 #' Compute solar eclipse at location
 #' @param tjd_et  Julian day, Ephemeris time
@@ -64,7 +51,7 @@ swe_refrac_extended <- function(InAlt, geoheight, atpress, attemp, lapse_rate, c
 #'               kind of computation is wanted
 #' @param starname  star name ("" for no star)
 #' @param tjd_ut  Julian day, UT time
-#' @param calc_flag Type of reference system
+#' @param calc_flag Type of reference system or SE_TRUE_TO_APP=0 / SE_APP_TO_TRUE=1
 #' @param atpress atmospheric pressure in mbar (hPa)
 #' @param attemp atmospheric temperature in degrees Celsius
 #' @param epheflag Type of ephemeris (4=Moshier, 1=JPL, 2=SE)
@@ -211,6 +198,18 @@ swe_heliacal_ut <- function(tjdstart, dgeo, datm, dobs, objectname, event_type, 
 #' @export
 swe_vis_limit_mag <- function(tjd_ut, dgeo, datm, dobs, objectname, helflag) {
     .Call(`_swephR_vis_limit_mag`, tjd_ut, dgeo, datm, dobs, objectname, helflag)
+}
+
+#' Compute the refraction
+#' @param InAlt  The object's apparent/topocentric altitude (depending on calc_flag)
+#' @param geoheight  The observer's height
+#' @param lapse_rate  The lapse rate pK/m]
+#' @return \code{swe_refrac_extended} returns a list with named entries: \code{i} success of function
+#'      \code{dret} for refraction related calculations (TopoAlt, AppAlt, refraction)
+#' @rdname eclipse_pheno
+#' @export
+swe_refrac_extended <- function(InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag) {
+    .Call(`_swephR_refrac_extended`, InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag)
 }
 
 #' @title Expert interface
