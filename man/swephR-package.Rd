@@ -6,21 +6,31 @@
 \alias{swephR-package}
 \title{swephR: High Precision Swiss Ephemeris}
 \description{
-The Swiss Ephemeris is a high precision ephemeris developed
-    by Astrodienst, based upon the DE431 ephemerides from NASA's JPL. This
-    package uses the semianalytic theory by Steve Moshier. For faster and more
-    accurate calculations, the compressed Swiss Ephemeris data is available in
-    the 'swephRdata' package. To access this data package, run
-    'install.packages("swephRdata", repos = "https://rstub.github.io/drat/",
+The Swiss Ephemeris is a high precision ephemeris based upon the
+    DE431 ephemerides from NASA's JPL. It covers the time range 13201 BC to
+    AD 17191. This package uses the semi-analytic theory by Steve Moshier.
+    For faster and more accurate calculations, the compressed Swiss Ephemeris
+    data is available in the 'swephRdata' package. To access this data package,
+    run 'install.packages("swephRdata", repos = "https://rstub.github.io/drat/",
     type = "source")'. The size of the 'swephRdata' package is approximately
-    115 MB.
+    115 MB. The user can also use the original JPL DE431 data
 }
 \seealso{
 Useful links:
 \itemize{
   \item \url{https://github.com/rstub/swephR/}
-  \item \url{http://www.astro.com/swisseph/swephinfo_e.htm}
+  \item \url{http://www.astro.com/swisseph/}
   \item Report bugs at \url{https://github.com/rstub/swephR/issues/}
+}
+
+}
+\author{
+\strong{Maintainer}: Ralf Stubner \email{ralf.stubner@gmail.com}
+
+Authors:
+\itemize{
+  \item Victor Reijs
+  \item Authors of the Swiss Ephemeris
 }
 
 }
