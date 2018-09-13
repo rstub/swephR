@@ -43,6 +43,19 @@ swe_set_topo <- function(geolon, geolat, altitude) {
     invisible(.Call(`_swephR_set_topo`, geolon, geolat, altitude))
 }
 
+#' Compute the refraction
+#' @param InAlt  The object's apparent/topocentric altitude (depending on calc_flag)
+#' @param geoheight  The observer's height
+#' @param lapse_rate  The lapse rate pK/m]
+#' @param calc_flag SE_TRUE_TO_APP=0 or SE_APP_TO_TRUE=1
+#' @return \code{swe_refrac_extended} returns a list with named entries: \code{i} success of function
+#'      \code{dret} for refraction related calculations (TopoAlt, AppAlt, refraction)
+#' @rdname expert-interface
+#' @export
+swe_refrac_extended <- function(InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag) {
+    .Call(`_swephR_refrac_extended`, InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag)
+}
+
 #' @title Eclipses and planetary phenomena
 #' Compute solar eclipse at location
 #' @param tjd_et  Julian day, Ephemeris time
