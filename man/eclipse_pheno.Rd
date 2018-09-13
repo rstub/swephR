@@ -14,6 +14,7 @@
 \alias{swe_heliacal_angle}
 \alias{swe_heliacal_ut}
 \alias{swe_vis_limit_mag}
+\alias{swe_refrac_extended}
 \title{Eclipses and planetary phenomena
 Compute solar eclipse at location}
 \usage{
@@ -47,6 +48,9 @@ swe_heliacal_ut(tjdstart, dgeo, datm, dobs, objectname, event_type,
   helflag)
 
 swe_vis_limit_mag(tjd_ut, dgeo, datm, dobs, objectname, helflag)
+
+swe_refrac_extended(InAlt, geoheight, atpress, attemp, lapse_rate,
+  calc_flag)
 }
 \arguments{
 \item{tjd_start}{Julian day, UT time}
@@ -75,7 +79,7 @@ swe_vis_limit_mag(tjd_ut, dgeo, datm, dobs, objectname, helflag)
 
 \item{horhgt}{The apparent horizon at rise/set in degrees}
 
-\item{calc_flag}{Type of reference system}
+\item{calc_flag}{Type of reference system or SE_TRUE_TO_APP=0 / SE_APP_TO_TRUE=1}
 
 \item{xin}{position of body in either ecliptical or equatorial coordinates, depending on calc_flag}
 
@@ -109,6 +113,12 @@ kind of computation is wanted}
 \item{AltM}{The moon's altitude}
 
 \item{tjdstart}{Julian day, UT time}
+
+\item{InAlt}{The object's apparent/topocentric altitude (depending on calc_flag)}
+
+\item{geoheight}{The observer's height}
+
+\item{lapse_rate}{The lapse rate pK/m]}
 }
 \value{
 \code{swe_rise_trans_true_hor} returns a list with named entries: \code{i} success of function
@@ -158,6 +168,9 @@ kind of computation is wanted}
 
 \code{swe_vis_limit_mag} returns a list with named entries: \code{i} success of function
      \code{dret} for magnitude info and \code{serr} for possible error code
+
+\code{swe_refrac_extended} returns a list with named entries: \code{i} success of function
+     \code{dret} for refraction related calculations (TopoAlt, AppAlt, refraction)
 }
 \description{
 Eclipses and planetary phenomena
@@ -186,4 +199,6 @@ Compute heliacal event details
 Compute the heliacale event of celestial object
 
 Compute the limiting visibiliy magnitude
+
+Compute the refraction
 }

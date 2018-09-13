@@ -185,22 +185,3 @@ Rcpp::List fixstar2_mag(Rcpp::CharacterVector star) {
 void set_topo(double geolon, double geolat, double altitude) {
   swe_set_topo(geolon, geolat, altitude);
 }
-
-//' Compute the refraction
-//' @param InAlt  The object's apparent/topocentric altitude (depending on calc_flag)
-//' @param geoheight  The observer's height
-//' @param lapse_rate  The lapse rate pK/m]
-//' @param calc_flag SE_TRUE_TO_APP=0 or SE_APP_TO_TRUE=1
-//' @return \code{swe_refrac_extended} returns a list with named entries: \code{i} success of function
-//'      \code{dret} for refraction related calculations (TopoAlt, AppAlt, refraction)
-//' @rdname expert-interface
-//' @export
-// [[Rcpp::export(swe_refrac_extended)]]
-Rcpp::List refrac_extended(double InAlt, double geoheight, double atpress, double attemp, double lapse_rate, int calc_flag) {
-  std::array<double, 10> dret{0.0};
-  int i = swe_refrac_extended(InAlt,geoheight,atpress,attemp,lapse_rate,calc_flag, &dret[0]);
-  return Rcpp::List::create(Rcpp::Named("return") = i,
-                            Rcpp::Named("dret") = dret);
-}
-
-
