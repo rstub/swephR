@@ -135,6 +135,15 @@ swe_azalt <- function(tjd_ut, calc_flag, geopos, atpress, attemp, xin) {
     .Call(`_swephR_azalt`, tjd_ut, calc_flag, geopos, atpress, attemp, xin)
 }
 
+#' Compute equatorial/ecliptical information
+#' @return \code{swe_azalt_rev} returns a list with named entries:
+#'      \code{xaz} for celestial info.
+#' @rdname eclipse_pheno
+#' @export
+swe_azalt_rev <- function(tjd_ut, calc_flag, geopos, xin) {
+    .Call(`_swephR_azalt_rev`, tjd_ut, calc_flag, geopos, xin)
+}
+
 #' Provide phenomom information of celestial body (UT)
 #' @return \code{swe_pheno_ut} returns a list with named entries:
 #'      \code{return} ???, \code{attr} for phenomenon information
