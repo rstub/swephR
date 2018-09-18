@@ -17,7 +17,7 @@
 
 #include <Rcpp.h>
 #include <array>
-#include "swephapi.h"
+#include <swephexp.h>
 
 //' @title Eclipses and planetary phenomena
 //' Compute solar eclipse at location
