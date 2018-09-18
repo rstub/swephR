@@ -1,3 +1,16 @@
+##' @title Calculation of planets and stars
+##' @param tjd_ut  Julian day, UT time
+##' @param tjd_et  Julian day, Ephemeris time
+##' @param ipl  body/planet number (-1 for no planet possible with \code{swe_rise_trans_true_hor})
+##' @param iflag  a 32 bit integer containing bit flags that indicate what
+##'               kind of computation is wanted
+##' @param star  star name
+##' @param geolon  Topocentric Longitude (deg)
+##' @param geolat  Topocentric Latitude (deg)
+##' @param altitude  the height (m)
+##' @name calculation
+NULL
+
 ##' Compute information of planet (ET)
 ##' @return \code{swe_calc} returns a list with named entries \code{rc},
 ##'         \code{xx} updated planet name, and \code{serr} error message.

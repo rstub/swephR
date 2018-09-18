@@ -25,3 +25,8 @@ Encoding: UTF-8
 URL: https://github.com/rstub/swephR/, http://www.astro.com/swisseph/
 BugReports: https://github.com/rstub/swephR/issues/
 Additional_repositories: https://rstub.github.io/drat
+Collate: 
+    'calculation.R'
+    'RcppExports.R'
+    'swephR-package.R'
+    'zzz.R'

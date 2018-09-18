@@ -19,6 +19,7 @@
 #include <array>
 #include <swephexp.h>
 
+//' @include calculation.R
 // Compute information of planet (UT)
 // [[Rcpp::export]]
 Rcpp::List calc_ut(Rcpp::NumericVector tjd_ut, Rcpp::IntegerVector ipl, int iflag) {
@@ -139,14 +140,7 @@ Rcpp::List fixstar2(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_et, int 
                             Rcpp::Named("serr") = serr_);
 }
 
-//' @title Calculation of planets and stars
-//' @param tjd_ut  Julian day, UT time
-//' @param tjd_et  Julian day, Ephemeris time
-//' @param ipl  body/planet number (-1 for no planet possible with \code{swe_rise_trans_true_hor})
-//' @param iflag  a 32 bit integer containing bit flags that indicate what
-//'               kind of computation is wanted
-//' @param star  star name
-//' Compute the magnitude of star
+// Compute the magnitude of star
 //' @return \code{swe_fixstar2_mag} returns a list with named entries \code{return},
 //'         \code{star} updated star name, \code{mag} magnitude of star, and \code{serr} for error message.
 //' @rdname calculation
@@ -174,11 +168,8 @@ Rcpp::List fixstar2_mag(Rcpp::CharacterVector star) {
                             Rcpp::Named("serr") = serr_);
 }
 
-//' Set the topocentric location (lon, lat, height)
+// Set the topocentric location (lon, lat, height)
 //' @rdname calculation
-//' @param geolon  Topocentric Longitude (deg)
-//' @param geolat  Topocentric Latitude (deg)
-//' @param altitude  the height (m)
 //' @export
 // [[Rcpp::export(swe_set_topo)]]
 void set_topo(double geolon, double geolat, double altitude) {
