@@ -307,7 +307,7 @@ Rcpp::List vis_limit_mag(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericV
 // [[Rcpp::export(swe_refrac_extended)]]
 Rcpp::List refrac_extended(double InAlt, double geoheight, double atpress, double attemp, double lapse_rate, int calc_flag) {
   std::array<double, 10> dret{0.0};
-  int i = swe_refrac_extended(InAlt,geoheight,atpress,attemp,lapse_rate,calc_flag, dret.begin());
+  double i = swe_refrac_extended(InAlt,geoheight,atpress,attemp,lapse_rate,calc_flag, dret.begin());
   return Rcpp::List::create(Rcpp::Named("return") = i,
                             Rcpp::Named("dret") = dret);
 }

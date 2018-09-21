@@ -122,12 +122,12 @@ test_that("Determine Heliacal angle", {
 
 test_that("Topocentric to Apparent altitude", {
   result <- swe_refrac_extended(2,0,1013.25,15,-0.065,0)
-  expect_equal(result$return, 2)
+  expect_equal(result$return, 2.2787088)
   expect_equal(result$dret[1:3], c(2.0000000, 2.2787088, 0.2787088), tolerance=.000001)
 })
 
 test_that("Apparent to Topocentric altitude", {
   result <- swe_refrac_extended(2,0,1013.25,15,-0.065,1)
-  expect_equal(result$return, 1)
+  expect_equal(result$return, 1.701016)
   expect_equal(result$dret[1:3], c(1.701016, 2.000000, 0.298984), tolerance=.000001)
 })
