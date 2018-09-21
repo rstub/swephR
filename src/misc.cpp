@@ -19,71 +19,29 @@
 #include <array>
 #include <swephexp.h>
 
-//' @title Expert interface
+//' @title Miscellaneous functions
 //'
-//' @description For experts that are familiar with the C API of the underlying
-//'   \code{libswe}, an expert interface that mimicks that interface as closely
-//'   as possbile is provided.
-//' @param jd  Julian date as numeric vector
-//' @param t_acc tidal acceleration as double (arcsec/century^2)
-//' @param tjd  Julian day Number
+//' @description Miscellaneous functions from the C API of the underlying
+//'   \code{libswe}.
 //' @param path  the directory where the ephemeris files are stored (a string)
+//' @param tjd  Julian day Number
+//' @param ephe_flag  the epheemris flag (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)
+//' @param jd  Julian day as numeric vector
+//' @param t_acc tidal acceleration as double (arcsec/century^2)
 //' @param delta_t DeltaT value (sec)
+//' @param year  Year
+//' @param month  Month
+//' @param day  Day
+//' @param hour  Hour
+//' @param gregflag  Gregorian (1) or Julian calandar (0)
 //' @return  \code{swe_deltat} returns the DeltaT (sec)
-//' @return \code{swe_day_of_week} retruns the day of week as integer vector
-//' @return \code{get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
+//' @return \code{swe_day_of_week} retruns the day of week as integer vector (Monday = 0, ... Sunday = 6)
+//' @return \code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
 //' @return \code{swe_version} returns the Swiss Ephemeris version number as string
-//' @name expert-interface
-
-
-//' Compute day of week
-//' @rdname expert-interface
-//' @export
-// [[Rcpp::export(swe_day_of_week)]]
-Rcpp::IntegerVector day_of_week(Rcpp::NumericVector jd) {
-  Rcpp::IntegerVector result(jd.size());
-  std::transform(jd.begin(), jd.end(), result.begin(), swe_day_of_week);
-  return result;
-}
-
-//' Get the present configured tidal acceleration
-//' @rdname expert-interface
-//' @export
-// [[Rcpp::export(swe_get_tid_acc)]]
-double get_tid_acc() {
-  return swe_get_tid_acc();
-}
-
-//' Get the Swiss Ephemeris version number
-//' @rdname expert-interface
-//' @export
-// [[Rcpp::export(swe_version)]]
-std::string version() {
-  std::array<char, 256> version{'\0'};
-  swe_version(&version[0]);
-  return std::string(&version[0]);
-}
-
-//' Set the tidal acceleration
-//' @rdname expert-interface
-//' @export
-// [[Rcpp::export(swe_set_tid_acc)]]
-void set_tid_acc(double t_acc) {
-  swe_set_tid_acc(t_acc);
-}
-
-//' Determine the DeltaT at a certain date
-//' @rdname expert-interface
-//' @export
-// [[Rcpp::export(swe_deltat)]]
-Rcpp::NumericVector deltat(Rcpp::NumericVector tjd) {
-  Rcpp::NumericVector result(tjd.size());
-  std::transform(tjd.begin(), tjd.end(), result.begin(), swe_deltat);
-  return result;
-}
+//' @name misc
 
 //' Set the directory for the sefstar.txt, swe_deltat.txt and jpl files
-//' @rdname expert-interface
+//' @rdname misc
 //' @export
 // [[Rcpp::export(swe_set_ephe_path)]]
 void set_ephe_path(Rcpp::Nullable<Rcpp::CharacterVector> path) {
@@ -94,37 +52,29 @@ void set_ephe_path(Rcpp::Nullable<Rcpp::CharacterVector> path) {
   }
 }
 
-//' Determine Julian date number from calendar date
-//' @param year  Year
-//' @param month  Month
-//' @param day  Day
-//' @param hour  Hour
-//' @param gregflag  Greogiran (1) or juian calandar (0)
-//' @rdname expert-interface
+//' Close Swiss Ephemeris files
+//' @rdname misc
 //' @export
-// [[Rcpp::export(swe_julday)]]
-double julday(int year, int month, int day, double hour, int gregflag) { 
-    double i;
-    i = swe_julday(year, month, day, hour, gregflag);
-  return i;
+// [[Rcpp::export(swe_close)]]
+void close() {
+  swe_close();
 }
 
-//' Set one's own DeltaT
-//' @rdname expert-interface
+//' Get the Swiss Ephemeris version number
+//' @rdname misc
 //' @export
-// [[Rcpp::export(swe_set_delta_t_userdef)]]
-void set_delta_t_userdef (double delta_t) {
-  swe_set_delta_t_userdef (delta_t);
+// [[Rcpp::export(swe_version)]]
+std::string version() {
+  std::array<char, 256> version{'\0'};
+  swe_version(&version[0]);
+  return std::string(&version[0]);
 }
-
-
 
 
 //' Determine DeltaT
-//' @param ephe_flag  the epheemris flag (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)
 //' @return \code{swe_deltat_ex} returns a list with named entries: \code{return} for return value
 //'          and \code{serr} for error message.
-//' @rdname expert-interface
+//' @rdname misc
 //' @export
 // [[Rcpp::export(swe_deltat_ex)]]
 Rcpp::List deltat_ex(Rcpp::NumericVector tjd, int ephe_flag) {
@@ -141,11 +91,59 @@ Rcpp::List deltat_ex(Rcpp::NumericVector tjd, int ephe_flag) {
                             Rcpp::Named("serr") = serr_);
 }
 
-
-//' Close Swiss Ephemeris files
-//' @rdname expert-interface
+//' Determine the DeltaT at a certain date
+//' @rdname misc
 //' @export
-// [[Rcpp::export(swe_close)]]
-void close() {
-  swe_close();
+// [[Rcpp::export(swe_deltat)]]
+Rcpp::NumericVector deltat(Rcpp::NumericVector tjd) {
+  Rcpp::NumericVector result(tjd.size());
+  std::transform(tjd.begin(), tjd.end(), result.begin(), swe_deltat);
+  return result;
 }
+
+//' Get the present configured tidal acceleration
+//' @rdname misc
+//' @export
+// [[Rcpp::export(swe_get_tid_acc)]]
+double get_tid_acc() {
+  return swe_get_tid_acc();
+}
+
+//' Set the tidal acceleration
+//' @rdname misc
+//' @export
+// [[Rcpp::export(swe_set_tid_acc)]]
+void set_tid_acc(double t_acc) {
+  swe_set_tid_acc(t_acc);
+}
+
+//' Set one's own DeltaT
+//' @rdname misc
+//' @export
+// [[Rcpp::export(swe_set_delta_t_userdef)]]
+void set_delta_t_userdef (double delta_t) {
+  swe_set_delta_t_userdef (delta_t);
+}
+
+
+
+//' Compute day of week
+//' @rdname misc
+//' @export
+// [[Rcpp::export(swe_day_of_week)]]
+Rcpp::IntegerVector day_of_week(Rcpp::NumericVector jd) {
+  Rcpp::IntegerVector result(jd.size());
+  std::transform(jd.begin(), jd.end(), result.begin(), swe_day_of_week);
+  return result;
+}
+
+//' Determine Julian date number from calendar date
+//' @rdname misc
+//' @export
+// [[Rcpp::export(swe_julday)]]
+double julday(int year, int month, int day, double hour, int gregflag) { 
+    double i;
+    i = swe_julday(year, month, day, hour, gregflag);
+  return i;
+}
+

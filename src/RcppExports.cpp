@@ -317,25 +317,23 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// day_of_week
-Rcpp::IntegerVector day_of_week(Rcpp::NumericVector jd);
-RcppExport SEXP _swephR_day_of_week(SEXP jdSEXP) {
+// set_ephe_path
+void set_ephe_path(Rcpp::Nullable<Rcpp::CharacterVector> path);
+RcppExport SEXP _swephR_set_ephe_path(SEXP pathSEXP) {
 BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type jd(jdSEXP);
-    rcpp_result_gen = Rcpp::wrap(day_of_week(jd));
-    return rcpp_result_gen;
+    Rcpp::traits::input_parameter< Rcpp::Nullable<Rcpp::CharacterVector> >::type path(pathSEXP);
+    set_ephe_path(path);
+    return R_NilValue;
 END_RCPP
 }
-// get_tid_acc
-double get_tid_acc();
-RcppExport SEXP _swephR_get_tid_acc() {
+// close
+void close();
+RcppExport SEXP _swephR_close() {
 BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(get_tid_acc());
-    return rcpp_result_gen;
+    close();
+    return R_NilValue;
 END_RCPP
 }
 // version
@@ -348,14 +346,16 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// set_tid_acc
-void set_tid_acc(double t_acc);
-RcppExport SEXP _swephR_set_tid_acc(SEXP t_accSEXP) {
+// deltat_ex
+Rcpp::List deltat_ex(Rcpp::NumericVector tjd, int ephe_flag);
+RcppExport SEXP _swephR_deltat_ex(SEXP tjdSEXP, SEXP ephe_flagSEXP) {
 BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type t_acc(t_accSEXP);
-    set_tid_acc(t_acc);
-    return R_NilValue;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tjd(tjdSEXP);
+    Rcpp::traits::input_parameter< int >::type ephe_flag(ephe_flagSEXP);
+    rcpp_result_gen = Rcpp::wrap(deltat_ex(tjd, ephe_flag));
+    return rcpp_result_gen;
 END_RCPP
 }
 // deltat
@@ -369,14 +369,45 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// set_ephe_path
-void set_ephe_path(Rcpp::Nullable<Rcpp::CharacterVector> path);
-RcppExport SEXP _swephR_set_ephe_path(SEXP pathSEXP) {
+// get_tid_acc
+double get_tid_acc();
+RcppExport SEXP _swephR_get_tid_acc() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(get_tid_acc());
+    return rcpp_result_gen;
+END_RCPP
+}
+// set_tid_acc
+void set_tid_acc(double t_acc);
+RcppExport SEXP _swephR_set_tid_acc(SEXP t_accSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::Nullable<Rcpp::CharacterVector> >::type path(pathSEXP);
-    set_ephe_path(path);
+    Rcpp::traits::input_parameter< double >::type t_acc(t_accSEXP);
+    set_tid_acc(t_acc);
     return R_NilValue;
+END_RCPP
+}
+// set_delta_t_userdef
+void set_delta_t_userdef(double delta_t);
+RcppExport SEXP _swephR_set_delta_t_userdef(SEXP delta_tSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type delta_t(delta_tSEXP);
+    set_delta_t_userdef(delta_t);
+    return R_NilValue;
+END_RCPP
+}
+// day_of_week
+Rcpp::IntegerVector day_of_week(Rcpp::NumericVector jd);
+RcppExport SEXP _swephR_day_of_week(SEXP jdSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type jd(jdSEXP);
+    rcpp_result_gen = Rcpp::wrap(day_of_week(jd));
+    return rcpp_result_gen;
 END_RCPP
 }
 // julday
@@ -392,37 +423,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type gregflag(gregflagSEXP);
     rcpp_result_gen = Rcpp::wrap(julday(year, month, day, hour, gregflag));
     return rcpp_result_gen;
-END_RCPP
-}
-// set_delta_t_userdef
-void set_delta_t_userdef(double delta_t);
-RcppExport SEXP _swephR_set_delta_t_userdef(SEXP delta_tSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type delta_t(delta_tSEXP);
-    set_delta_t_userdef(delta_t);
-    return R_NilValue;
-END_RCPP
-}
-// deltat_ex
-Rcpp::List deltat_ex(Rcpp::NumericVector tjd, int ephe_flag);
-RcppExport SEXP _swephR_deltat_ex(SEXP tjdSEXP, SEXP ephe_flagSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tjd(tjdSEXP);
-    Rcpp::traits::input_parameter< int >::type ephe_flag(ephe_flagSEXP);
-    rcpp_result_gen = Rcpp::wrap(deltat_ex(tjd, ephe_flag));
-    return rcpp_result_gen;
-END_RCPP
-}
-// close
-void close();
-RcppExport SEXP _swephR_close() {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    close();
-    return R_NilValue;
 END_RCPP
 }
 
@@ -448,16 +448,16 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_heliacal_ut", (DL_FUNC) &_swephR_heliacal_ut, 7},
     {"_swephR_vis_limit_mag", (DL_FUNC) &_swephR_vis_limit_mag, 6},
     {"_swephR_refrac_extended", (DL_FUNC) &_swephR_refrac_extended, 6},
-    {"_swephR_day_of_week", (DL_FUNC) &_swephR_day_of_week, 1},
-    {"_swephR_get_tid_acc", (DL_FUNC) &_swephR_get_tid_acc, 0},
-    {"_swephR_version", (DL_FUNC) &_swephR_version, 0},
-    {"_swephR_set_tid_acc", (DL_FUNC) &_swephR_set_tid_acc, 1},
-    {"_swephR_deltat", (DL_FUNC) &_swephR_deltat, 1},
     {"_swephR_set_ephe_path", (DL_FUNC) &_swephR_set_ephe_path, 1},
-    {"_swephR_julday", (DL_FUNC) &_swephR_julday, 5},
-    {"_swephR_set_delta_t_userdef", (DL_FUNC) &_swephR_set_delta_t_userdef, 1},
-    {"_swephR_deltat_ex", (DL_FUNC) &_swephR_deltat_ex, 2},
     {"_swephR_close", (DL_FUNC) &_swephR_close, 0},
+    {"_swephR_version", (DL_FUNC) &_swephR_version, 0},
+    {"_swephR_deltat_ex", (DL_FUNC) &_swephR_deltat_ex, 2},
+    {"_swephR_deltat", (DL_FUNC) &_swephR_deltat, 1},
+    {"_swephR_get_tid_acc", (DL_FUNC) &_swephR_get_tid_acc, 0},
+    {"_swephR_set_tid_acc", (DL_FUNC) &_swephR_set_tid_acc, 1},
+    {"_swephR_set_delta_t_userdef", (DL_FUNC) &_swephR_set_delta_t_userdef, 1},
+    {"_swephR_day_of_week", (DL_FUNC) &_swephR_day_of_week, 1},
+    {"_swephR_julday", (DL_FUNC) &_swephR_julday, 5},
     {NULL, NULL, 0}
 };
 

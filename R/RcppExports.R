@@ -212,98 +212,97 @@ swe_refrac_extended <- function(InAlt, geoheight, atpress, attemp, lapse_rate, c
     .Call(`_swephR_refrac_extended`, InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag)
 }
 
-#' @title Expert interface
+#' @title Miscellaneous functions
 #'
-#' @description For experts that are familiar with the C API of the underlying
-#'   \code{libswe}, an expert interface that mimicks that interface as closely
-#'   as possbile is provided.
-#' @param jd  Julian date as numeric vector
-#' @param t_acc tidal acceleration as double (arcsec/century^2)
-#' @param tjd  Julian day Number
+#' @description Miscellaneous functions from the C API of the underlying
+#'   \code{libswe}.
 #' @param path  the directory where the ephemeris files are stored (a string)
+#' @param tjd  Julian day Number
+#' @param ephe_flag  the epheemris flag (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)
+#' @param jd  Julian day as numeric vector
+#' @param t_acc tidal acceleration as double (arcsec/century^2)
 #' @param delta_t DeltaT value (sec)
+#' @param year  Year
+#' @param month  Month
+#' @param day  Day
+#' @param hour  Hour
+#' @param gregflag  Gregorian (1) or Julian calandar (0)
 #' @return  \code{swe_deltat} returns the DeltaT (sec)
-#' @return \code{swe_day_of_week} retruns the day of week as integer vector
-#' @return \code{get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
+#' @return \code{swe_day_of_week} retruns the day of week as integer vector (Monday = 0, ... Sunday = 6)
+#' @return \code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
 #' @return \code{swe_version} returns the Swiss Ephemeris version number as string
-#' @name expert-interface
+#' @name misc
 NULL
 
-#' Compute day of week
-#' @rdname expert-interface
-#' @export
-swe_day_of_week <- function(jd) {
-    .Call(`_swephR_day_of_week`, jd)
-}
-
-#' Get the present configured tidal acceleration
-#' @rdname expert-interface
-#' @export
-swe_get_tid_acc <- function() {
-    .Call(`_swephR_get_tid_acc`)
-}
-
-#' Get the Swiss Ephemeris version number
-#' @rdname expert-interface
-#' @export
-swe_version <- function() {
-    .Call(`_swephR_version`)
-}
-
-#' Set the tidal acceleration
-#' @rdname expert-interface
-#' @export
-swe_set_tid_acc <- function(t_acc) {
-    invisible(.Call(`_swephR_set_tid_acc`, t_acc))
-}
-
-#' Determine the DeltaT at a certain date
-#' @rdname expert-interface
-#' @export
-swe_deltat <- function(tjd) {
-    .Call(`_swephR_deltat`, tjd)
-}
-
 #' Set the directory for the sefstar.txt, swe_deltat.txt and jpl files
-#' @rdname expert-interface
+#' @rdname misc
 #' @export
 swe_set_ephe_path <- function(path) {
     invisible(.Call(`_swephR_set_ephe_path`, path))
 }
 
-#' Determine Julian date number from calendar date
-#' @param year  Year
-#' @param month  Month
-#' @param day  Day
-#' @param hour  Hour
-#' @param gregflag  Greogiran (1) or juian calandar (0)
-#' @rdname expert-interface
+#' Close Swiss Ephemeris files
+#' @rdname misc
 #' @export
-swe_julday <- function(year, month, day, hour, gregflag) {
-    .Call(`_swephR_julday`, year, month, day, hour, gregflag)
+swe_close <- function() {
+    invisible(.Call(`_swephR_close`))
 }
 
-#' Set one's own DeltaT
-#' @rdname expert-interface
+#' Get the Swiss Ephemeris version number
+#' @rdname misc
 #' @export
-swe_set_delta_t_userdef <- function(delta_t) {
-    invisible(.Call(`_swephR_set_delta_t_userdef`, delta_t))
+swe_version <- function() {
+    .Call(`_swephR_version`)
 }
 
 #' Determine DeltaT
-#' @param ephe_flag  the epheemris flag (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)
 #' @return \code{swe_deltat_ex} returns a list with named entries: \code{return} for return value
 #'          and \code{serr} for error message.
-#' @rdname expert-interface
+#' @rdname misc
 #' @export
 swe_deltat_ex <- function(tjd, ephe_flag) {
     .Call(`_swephR_deltat_ex`, tjd, ephe_flag)
 }
 
-#' Close Swiss Ephemeris files
-#' @rdname expert-interface
+#' Determine the DeltaT at a certain date
+#' @rdname misc
 #' @export
-swe_close <- function() {
-    invisible(.Call(`_swephR_close`))
+swe_deltat <- function(tjd) {
+    .Call(`_swephR_deltat`, tjd)
+}
+
+#' Get the present configured tidal acceleration
+#' @rdname misc
+#' @export
+swe_get_tid_acc <- function() {
+    .Call(`_swephR_get_tid_acc`)
+}
+
+#' Set the tidal acceleration
+#' @rdname misc
+#' @export
+swe_set_tid_acc <- function(t_acc) {
+    invisible(.Call(`_swephR_set_tid_acc`, t_acc))
+}
+
+#' Set one's own DeltaT
+#' @rdname misc
+#' @export
+swe_set_delta_t_userdef <- function(delta_t) {
+    invisible(.Call(`_swephR_set_delta_t_userdef`, delta_t))
+}
+
+#' Compute day of week
+#' @rdname misc
+#' @export
+swe_day_of_week <- function(jd) {
+    .Call(`_swephR_day_of_week`, jd)
+}
+
+#' Determine Julian date number from calendar date
+#' @rdname misc
+#' @export
+swe_julday <- function(year, month, day, hour, gregflag) {
+    .Call(`_swephR_julday`, year, month, day, hour, gregflag)
 }
 
