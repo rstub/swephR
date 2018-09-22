@@ -75,17 +75,6 @@ swe_lun_eclipse_when_loc <- function(tjd_start, ifl, geopos, backward) {
     .Call(`_swephR_lun_eclipse_when_loc`, tjd_start, ifl, geopos, backward)
 }
 
-#' Computes the attributes of a lunar eclipse at a given time
-#' @param tjd_start  Julian day, UT time
-#' @return \code{swe_lun_eclipse_how} returns a list with named entries:
-#'      \code{return} visibility code,
-#'      \code{attr} pheneomena durign eclipse and \code{serr} error string
-#' @rdname eclipse_pheno
-#' @export
-swe_lun_eclipse_how <- function(tjd_start, ifl, geopos) {
-    .Call(`_swephR_lun_eclipse_how`, tjd_start, ifl, geopos)
-}
-
 #' Search a lunar eclipse on earth
 #' @param ifltype Type of eclipse event (SE_ECL_TOTAL etc.  or 0, if any eclipse type)
 #' @return \code{swe_lun_eclipse_when} returns a list with named entries:
@@ -97,29 +86,22 @@ swe_lun_eclipse_when <- function(tjd_start, ifl, ifltype, backward) {
     .Call(`_swephR_lun_eclipse_when`, tjd_start, ifl, ifltype, backward)
 }
 
+#' Computes the attributes of a lunar eclipse at a given time
+#' @param tjd_start  Julian day, UT time
+#' @return \code{swe_lun_eclipse_how} returns a list with named entries:
+#'      \code{return} visibility code,
+#'      \code{attr} pheneomena durign eclipse and \code{serr} error string
+#' @rdname eclipse_pheno
+#' @export
+swe_lun_eclipse_how <- function(tjd_start, ifl, geopos) {
+    .Call(`_swephR_lun_eclipse_how`, tjd_start, ifl, geopos)
+}
+
 #' Compute the rise and set location of the object
 #' @rdname eclipse_pheno
 #' @export
 swe_rise_trans_true_hor <- function(tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp, horhgt) {
     .Call(`_swephR_rise_trans_true_hor`, tjd_ut, ipl, starname, epheflag, rsmi, geopos, atpress, attemp, horhgt)
-}
-
-#' Compute horizon information: azimuth, altiiude
-#' @return \code{swe_azalt} returns a list with named entries:
-#'      \code{xaz} for azi/alt info.
-#' @rdname eclipse_pheno
-#' @export
-swe_azalt <- function(tjd_ut, calc_flag, geopos, atpress, attemp, xin) {
-    .Call(`_swephR_azalt`, tjd_ut, calc_flag, geopos, atpress, attemp, xin)
-}
-
-#' Compute equatorial/ecliptical information
-#' @return \code{swe_azalt_rev} returns a list with named entries:
-#'      \code{xaz} for celestial info.
-#' @rdname eclipse_pheno
-#' @export
-swe_azalt_rev <- function(tjd_ut, calc_flag, geopos, xin) {
-    .Call(`_swephR_azalt_rev`, tjd_ut, calc_flag, geopos, xin)
 }
 
 #' Provide phenomom information of celestial body (UT)
@@ -140,6 +122,61 @@ swe_pheno_ut <- function(tjd_ut, ipl, iflag) {
 #' @export
 swe_pheno <- function(tjd_et, ipl, iflag) {
     .Call(`_swephR_pheno`, tjd_et, ipl, iflag)
+}
+
+#' Compute horizon information: azimuth, altiiude
+#' @return \code{swe_azalt} returns a list with named entries:
+#'      \code{xaz} for azi/alt info.
+#' @rdname eclipse_pheno
+#' @export
+swe_azalt <- function(tjd_ut, calc_flag, geopos, atpress, attemp, xin) {
+    .Call(`_swephR_azalt`, tjd_ut, calc_flag, geopos, atpress, attemp, xin)
+}
+
+#' Compute equatorial/ecliptical information
+#' @return \code{swe_azalt_rev} returns a list with named entries:
+#'      \code{xaz} for celestial info.
+#' @rdname eclipse_pheno
+#' @export
+swe_azalt_rev <- function(tjd_ut, calc_flag, geopos, xin) {
+    .Call(`_swephR_azalt_rev`, tjd_ut, calc_flag, geopos, xin)
+}
+
+#' Compute the refraction
+#' @param InAlt  The object's apparent/topocentric altitude (depending on calc_flag)
+#' @param geoheight  The observer's height
+#' @param lapse_rate  The lapse rate pK/m]
+#' @return \code{swe_refrac_extended} returns a list with named entries: \code{i} success of function
+#'      \code{dret} for refraction related calculations (TopoAlt, AppAlt, refraction)
+#' @rdname eclipse_pheno
+#' @export
+swe_refrac_extended <- function(InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag) {
+    .Call(`_swephR_refrac_extended`, InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag)
+}
+
+#' Compute the heliacale event of celestial object
+#' @param tjdstart  Julian day, UT time
+#' @param dgeo Geographic position
+#' @param datm Atmospheric conditions
+#' @param dobs Observer description
+#' @param objectname  celectial object
+#' @param event_type  event type
+#' @param helflag calcuation flag
+#' @return \code{swe_heliacal_ut} returns a list with named entries \code{return},
+#'         \code{dret} results, and \code{serr} error message.
+#' @rdname eclipse_pheno
+#' @export
+swe_heliacal_ut <- function(tjdstart, dgeo, datm, dobs, objectname, event_type, helflag) {
+    .Call(`_swephR_heliacal_ut`, tjdstart, dgeo, datm, dobs, objectname, event_type, helflag)
+}
+
+#' Compute the limiting visibiliy magnitude
+#' @return \code{swe_vis_limit_mag} returns a list with named entries: \code{i} success of function
+#'      \code{dret} for magnitude info and \code{serr} for possible error code
+#' @rdname eclipse_pheno
+#' @export
+swe_vis_limit_mag <- function(tjd_ut, dgeo, datm, dobs, objectname, helflag) {
+    .Call(`_swephR_vis_limit_mag`, tjd_ut, dgeo, datm, dobs, objectname, helflag)
 }
 
 #' Compute heliacal event details
@@ -173,43 +210,6 @@ swe_topo_arcus_visionis <- function(tjd_ut, dgeo, datm, dobs, helflag, mag, AziO
 #' @export
 swe_heliacal_angle <- function(tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM, AltM) {
     .Call(`_swephR_heliacal_angle`, tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM, AltM)
-}
-
-#' Compute the heliacale event of celestial object
-#' @param tjdstart  Julian day, UT time
-#' @param dgeo Geographic position
-#' @param datm Atmospheric conditions
-#' @param dobs Observer description
-#' @param objectname  celectial object
-#' @param event_type  event type
-#' @param helflag calcuation flag
-#' @return \code{swe_heliacal_ut} returns a list with named entries \code{return},
-#'         \code{dret} results, and \code{serr} error message.
-#' @rdname eclipse_pheno
-#' @export
-swe_heliacal_ut <- function(tjdstart, dgeo, datm, dobs, objectname, event_type, helflag) {
-    .Call(`_swephR_heliacal_ut`, tjdstart, dgeo, datm, dobs, objectname, event_type, helflag)
-}
-
-#' Compute the limiting visibiliy magnitude
-#' @return \code{swe_vis_limit_mag} returns a list with named entries: \code{i} success of function
-#'      \code{dret} for magnitude info and \code{serr} for possible error code
-#' @rdname eclipse_pheno
-#' @export
-swe_vis_limit_mag <- function(tjd_ut, dgeo, datm, dobs, objectname, helflag) {
-    .Call(`_swephR_vis_limit_mag`, tjd_ut, dgeo, datm, dobs, objectname, helflag)
-}
-
-#' Compute the refraction
-#' @param InAlt  The object's apparent/topocentric altitude (depending on calc_flag)
-#' @param geoheight  The observer's height
-#' @param lapse_rate  The lapse rate pK/m]
-#' @return \code{swe_refrac_extended} returns a list with named entries: \code{i} success of function
-#'      \code{dret} for refraction related calculations (TopoAlt, AppAlt, refraction)
-#' @rdname eclipse_pheno
-#' @export
-swe_refrac_extended <- function(InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag) {
-    .Call(`_swephR_refrac_extended`, InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag)
 }
 
 #' @title Miscellaneous functions
