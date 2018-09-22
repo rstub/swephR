@@ -1,4 +1,6 @@
 ##' @title Calculation of planets and stars
+##' @description A short general description of these functions ...
+##' @details A More detailed description ...
 ##' @param tjd_ut  Julian day, UT time
 ##' @param tjd_et  Julian day, Ephemeris time
 ##' @param ipl  body/planet number (-1 for no planet possible with \code{swe_rise_trans_true_hor})
@@ -8,6 +10,8 @@
 ##' @param geolon  Topocentric Longitude (deg)
 ##' @param geolat  Topocentric Latitude (deg)
 ##' @param altitude  the height (m)
+##' @return All these functions return a list with named entries. The general
+##'         structure is ...
 ##' @name calculation
 NULL
 

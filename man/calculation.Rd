@@ -41,6 +41,9 @@ kind of computation is wanted}
 \item{altitude}{the height (m)}
 }
 \value{
+All these functions return a list with named entries. The general
+        structure is ...
+
 \code{swe_calc} returns a list with named entries \code{rc},
         \code{xx} updated planet name, and \code{serr} error message.
 
@@ -57,13 +60,8 @@ kind of computation is wanted}
         \code{star} updated star name, \code{mag} magnitude of star, and \code{serr} for error message.
 }
 \description{
-Calculation of planets and stars
-
-Compute information of planet (ET)
-
-Compute information of planet (UT)
-
-Compute information of star
-
-Compute information of star
+A short general description of these functions ...
+}
+\details{
+A More detailed description ...
 }
