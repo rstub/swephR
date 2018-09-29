@@ -27,11 +27,11 @@
 //' @param jd  Julian day number as numeric vector
 //' @param t_acc tidal acceleration as double (arcsec/century^2)
 //' @param path  directory as string, where the ephemeris files are stored
-//' @param delta_t DeltaT (sec)
+//' @param delta_t DeltaT (day)
 //' @return \code{swe_day_of_week} retruns the day of week as integer vector (0 Monday .. 6 Sunday)
 //' @return \code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
 //' @return \code{swe_version} returns the Swiss Ephemeris version number as string
-//' @return \code{swe_deltat} returns the DeltaT as double (sec)
+//' @return \code{swe_deltat} returns the DeltaT as double (day)
 //' @name expert-interface
 
 
@@ -118,7 +118,7 @@ void set_delta_t_userdef (double delta_t) {
 
 //' Determine DeltaT
 //' @param ephe_flag  ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4)
-//' @return \code{swe_deltat_ex} returns a list with named entries: \code{deltat} for DeltaT as double (sec)
+//' @return \code{swe_deltat_ex} returns a list with named entries: \code{deltat} for DeltaT as double (day)
 //'          and \code{serr} for error message as string.
 //' @rdname expert-interface
 //' @export
