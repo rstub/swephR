@@ -12,7 +12,7 @@
 \alias{swe_set_delta_t_userdef}
 \alias{swe_deltat_ex}
 \alias{swe_close}
-\title{Expert interface}
+\title{Expert interface: miscellanious functions}
 \usage{
 swe_day_of_week(jd)
 

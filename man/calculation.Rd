@@ -13,13 +13,13 @@ swe_fixstar2_mag(star)
 
 swe_set_topo(geolon, geolat, altitude)
 
-swe_calc(tjd_et, ipl, iflag)
+swe_calc(jd_et, ipl, iflag)
 
-swe_calc_ut(tjd_ut, ipl, iflag)
+swe_calc_ut(jd_ut, ipl, iflag)
 
-swe_fixstar2(star, tjd_et, iflag)
+swe_fixstar2(star, jd_et, iflag)
 
-swe_fixstar2_ut(star, tjd_ut, iflag)
+swe_fixstar2_ut(star, jd_ut, iflag)
 }
 \arguments{
 \item{geolon}{geographic longitude as double (deg)}
@@ -32,17 +32,17 @@ swe_fixstar2_ut(star, tjd_ut, iflag)
 \code{swe_fixstar2_mag} returns a list with named entries \code{return} status flag as interger,
         \code{star} updated star name as string, \code{mag} magnitude of star as double, and \code{serr} for error message as string.
 
-\code{swe_calc} returns a list with named entries \code{rc},
-        \code{xx} updated planet name, and \code{serr} error message.
+\code{swe_calc} returns a list with named entries \code{return} status flag as integer,
+        \code{xx} updated planet name as string, and \code{serr} error message as string.
 
-\code{swe_calc_ut} returns a list with named entries \code{rc},
-        \code{xx} updated star name, and \code{serr} error message.
+\code{swe_calc_ut} returns a list with named entries \code{return} status flag as integer,
+        \code{xx} updated star name as string and \code{serr} error message as string.
 
-\code{swe_fixstar2} returns a list with named entries \code{return},
-        \code{star} updated star name, \code{xx}, and \code{serr} error message.
+\code{swe_fixstar2} returns a list with named entries \code{return} status flag as integer,
+        \code{star} updated star name as string, \code{xx} star phenomena as numeric vector, and \code{serr} error message as string.
 
-\code{swe_fixstar2_ut} returns a list with named entries \code{return},
-        \code{star} updated star name, \code{xx}, and \code{serr} error message.
+\code{swe_fixstar2_ut} returns a list with named entries \code{return} status flag as integer,
+        \code{star} updated star name as string, \code{xx} star phenomena as numeric vector, and \code{serr} error message as string.
 }
 \description{
 Calculation magnitude of star
@@ -53,7 +53,7 @@ Compute information of planet (ET)
 
 Compute information of planet (UT)
 
-Compute information of star
+Compute information of star (ET)
 
-Compute information of star
+Compute information of star (UT)
 }

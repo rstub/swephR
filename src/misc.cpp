@@ -19,7 +19,7 @@
 #include <array>
 #include "swephapi.h"
 
-//' @title Expert interface
+//' @title Expert interface: miscellanious functions
 //'
 //' @description For experts that are familiar with the C API of the underlying
 //'   \code{libswe}, an expert interface that mimicks that interface as closely

@@ -19,7 +19,7 @@
 #include <array>
 #include "swephapi.h"
 
-//' @title Eclipses and planetary phenomena and computation of solar eclipse at location
+//' @title Expert interface: Eclipses and planetary phenomena
 //' @param jd_et  Julian day number as double (ET)
 //' @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
 //' @param starname  star name as string ("" for no star)

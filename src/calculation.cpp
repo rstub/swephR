@@ -19,7 +19,7 @@
 #include <array>
 #include "swephapi.h"
 
-
+// @title  Expert interface: Planet and star phenomena
 // Compute information of planet (UT)
 // [[Rcpp::export]]
 Rcpp::List calc_ut(Rcpp::NumericVector jd_ut, Rcpp::IntegerVector ipl, int iflag) {

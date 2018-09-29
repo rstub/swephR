@@ -36,7 +36,7 @@ swe_set_topo <- function(geolon, geolat, altitude) {
     invisible(.Call(`_swephR_set_topo`, geolon, geolat, altitude))
 }
 
-#' @title Eclipses and planetary phenomena and computation of solar eclipse at location
+#' @title Expert interface: Eclipses and planetary phenomena
 #' @param jd_et  Julian day number as double (ET)
 #' @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
 #' @param starname  star name as string ("" for no star)
@@ -210,7 +210,7 @@ swe_refrac_extended <- function(InAlt, geoheight, atpress, attemp, lapse_rate, c
     .Call(`_swephR_refrac_extended`, InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag)
 }
 
-#' @title Expert interface
+#' @title Expert interface: miscellanious functions
 #'
 #' @description For experts that are familiar with the C API of the underlying
 #'   \code{libswe}, an expert interface that mimicks that interface as closely

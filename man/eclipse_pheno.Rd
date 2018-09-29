@@ -16,7 +16,7 @@
 \alias{swe_heliacal_ut}
 \alias{swe_vis_limit_mag}
 \alias{swe_refrac_extended}
-\title{Eclipses and planetary phenomena and computation of solar eclipse at location}
+\title{Expert interface: Eclipses and planetary phenomena}
 \usage{
 swe_sol_eclipse_when_loc(jd_start, ephe_flag, geopos, backward)
 
@@ -172,7 +172,7 @@ swe_refrac_extended(InAlt, geoheight, atpress, attemp, lapse_rate,
      \code{dret} refraction results as nemeric vector (TopoAlt, AppAlt, refraction)
 }
 \description{
-Eclipses and planetary phenomena and computation of solar eclipse at location
+Expert interface: Eclipses and planetary phenomena
 
 Compute lunar eclipse at location
 
