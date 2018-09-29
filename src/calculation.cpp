@@ -21,9 +21,9 @@
 
 // Compute information of planet (UT)
 // [[Rcpp::export]]
-Rcpp::List calc_ut(Rcpp::NumericVector tjd_ut, Rcpp::IntegerVector ipl, int iflag) {
-  if (tjd_ut.length() != ipl.length())
-    Rcpp::stop("The number of bodies in 'ipl' and the number of dates in 'tjd_ut' must be identical!");
+Rcpp::List calc_ut(Rcpp::NumericVector jd_ut, Rcpp::IntegerVector ipl, int iflag) {
+  if (jd_ut.length() != ipl.length())
+    Rcpp::stop("The number of bodies in 'ipl' and the number of dates in 'jd_ut' must be identical!");
 
   Rcpp::IntegerVector rc_(ipl.length());
   Rcpp::CharacterVector serr_(ipl.length());
@@ -32,7 +32,7 @@ Rcpp::List calc_ut(Rcpp::NumericVector tjd_ut, Rcpp::IntegerVector ipl, int ifla
   for (int i = 0; i < ipl.length(); ++i) {
     std::array<double, 6> xx{0.0};
     std::array<char, 256> serr{'\0'};
-    rc_(i) = swe_calc_ut(tjd_ut[i], ipl(i), iflag, xx.begin(), serr.begin());
+    rc_(i) = swe_calc_ut(jd_ut[i], ipl(i), iflag, xx.begin(), serr.begin());
     Rcpp::NumericVector tmp(xx.begin(), xx.end());
     xx_(i, Rcpp::_) = tmp;
     serr_(i) = std::string(serr.begin());
@@ -49,9 +49,9 @@ Rcpp::List calc_ut(Rcpp::NumericVector tjd_ut, Rcpp::IntegerVector ipl, int ifla
 
 // Compute information of planet (ET)
 // [[Rcpp::export]]
-Rcpp::List calc(Rcpp::NumericVector tjd_et, Rcpp::IntegerVector ipl, int iflag) {
-  if (tjd_et.length() != ipl.length())
-    Rcpp::stop("The number of bodies in 'ipl' and the number of dates in 'tjd_et' must be identical!");
+Rcpp::List calc(Rcpp::NumericVector jd_et, Rcpp::IntegerVector ipl, int iflag) {
+  if (jd_et.length() != ipl.length())
+    Rcpp::stop("The number of bodies in 'ipl' and the number of dates in 'jd_et' must be identical!");
 
   Rcpp::IntegerVector rc_(ipl.length());
   Rcpp::CharacterVector serr_(ipl.length());
@@ -60,7 +60,7 @@ Rcpp::List calc(Rcpp::NumericVector tjd_et, Rcpp::IntegerVector ipl, int iflag) 
   for (int i = 0; i < ipl.length(); ++i) {
     std::array<double, 6> xx{0.0};
     std::array<char, 256> serr{'\0'};
-    rc_(i) = swe_calc(tjd_et[i], ipl(i), iflag, xx.begin(), serr.begin());
+    rc_(i) = swe_calc(jd_et[i], ipl(i), iflag, xx.begin(), serr.begin());
     Rcpp::NumericVector tmp(xx.begin(), xx.end());
     xx_(i, Rcpp::_) = tmp;
     serr_(i) = std::string(serr.begin());
@@ -76,9 +76,9 @@ Rcpp::List calc(Rcpp::NumericVector tjd_et, Rcpp::IntegerVector ipl, int iflag) 
 
 // Compute information of star (UT)
 // [[Rcpp::export]]
-Rcpp::List fixstar2_ut(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_ut, int iflag) {
-  if (tjd_ut.length() != star.length())
-    Rcpp::stop("The number of stars in 'star' and the number of dates in 'tjd_ut' must be identical!");
+Rcpp::List fixstar2_ut(Rcpp::CharacterVector star, Rcpp::NumericVector jd_ut, int iflag) {
+  if (jd_ut.length() != star.length())
+    Rcpp::stop("The number of stars in 'star' and the number of dates in 'jd_ut' must be identical!");
 
   Rcpp::IntegerVector rc_(star.length());
   Rcpp::CharacterVector serr_(star.length());
@@ -89,7 +89,7 @@ Rcpp::List fixstar2_ut(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_ut, i
     std::array<char, 256> serr{'\0'};
     std::string star_(star(i));
     star_.resize(41);
-    rc_(i) = swe_fixstar2_ut(&star_[0], tjd_ut(i), iflag, xx.begin(), serr.begin());
+    rc_(i) = swe_fixstar2_ut(&star_[0], jd_ut(i), iflag, xx.begin(), serr.begin());
     Rcpp::NumericVector tmp(xx.begin(), xx.end());
     xx_(i, Rcpp::_) = tmp;
     serr_(i) = std::string(serr.begin());
@@ -107,11 +107,11 @@ Rcpp::List fixstar2_ut(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_ut, i
 }
 
 
-// Compute information of star
+// Compute information of star (ET)
 // [[Rcpp::export]]
-Rcpp::List fixstar2(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_et, int iflag) {
-  if (tjd_et.length() != star.length())
-    Rcpp::stop("The number of stars in 'star' and the number of dates in 'tjd_et' must be identical!");
+Rcpp::List fixstar2(Rcpp::CharacterVector star, Rcpp::NumericVector jd_et, int iflag) {
+  if (jd_et.length() != star.length())
+    Rcpp::stop("The number of stars in 'star' and the number of dates in 'jd_et' must be identical!");
 
   Rcpp::IntegerVector rc_(star.length());
   Rcpp::CharacterVector serr_(star.length());
@@ -122,7 +122,7 @@ Rcpp::List fixstar2(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_et, int 
     std::array<char, 256> serr{'\0'};
     std::string star_(star(i));
     star_.resize(41);
-    rc_(i) = swe_fixstar2(&star_[0], tjd_et(i), iflag, xx.begin(), serr.begin());
+    rc_(i) = swe_fixstar2(&star_[0], jd_et(i), iflag, xx.begin(), serr.begin());
     Rcpp::NumericVector tmp(xx.begin(), xx.end());
     xx_(i, Rcpp::_) = tmp;
     serr_(i) = std::string(serr.begin());
@@ -139,16 +139,9 @@ Rcpp::List fixstar2(Rcpp::CharacterVector star, Rcpp::NumericVector tjd_et, int 
                             Rcpp::Named("serr") = serr_);
 }
 
-//' @title Calculation of planets and stars
-//' @param tjd_ut  Julian day, UT time
-//' @param tjd_et  Julian day, Ephemeris time
-//' @param ipl  body/planet number (-1 for no planet possible with \code{swe_rise_trans_true_hor})
-//' @param iflag  a 32 bit integer containing bit flags that indicate what
-//'               kind of computation is wanted
-//' @param star  star name
-//' Compute the magnitude of star
-//' @return \code{swe_fixstar2_mag} returns a list with named entries \code{return},
-//'         \code{star} updated star name, \code{mag} magnitude of star, and \code{serr} for error message.
+//' Calculation magnitude of star
+//' @return \code{swe_fixstar2_mag} returns a list with named entries \code{return} status flag as interger,
+//'         \code{star} updated star name as string, \code{mag} magnitude of star as double, and \code{serr} for error message as string.
 //' @rdname calculation
 //' @export
 // [[Rcpp::export(swe_fixstar2_mag)]]
@@ -174,11 +167,11 @@ Rcpp::List fixstar2_mag(Rcpp::CharacterVector star) {
                             Rcpp::Named("serr") = serr_);
 }
 
-//' Set the topocentric location (lon, lat, height)
+//' Set the geographic location
 //' @rdname calculation
-//' @param geolon  Topocentric Longitude (deg)
-//' @param geolat  Topocentric Latitude (deg)
-//' @param altitude  the height (m)
+//' @param geolon  geographic longitude as double (deg)
+//' @param geolat  geographic latitude as double (deg)
+//' @param altitude  height as double (m)
 //' @export
 // [[Rcpp::export(swe_set_topo)]]
 void set_topo(double geolon, double geolat, double altitude) {
