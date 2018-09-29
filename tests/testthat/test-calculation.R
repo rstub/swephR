@@ -8,7 +8,7 @@ test_that("non-existent planet produces error (ET)", {
   swe_close()
 })
 
-test_that("Sun near present day with build in ephemeris (ET)", {
+test_that("Sun near present day with SEFLG_MOSEPH (ET)", {
     result <- swe_calc(2458346.82639, 0, 4)
     expect_true(is.list(result))
     expect_equal(result$return, 4)
@@ -17,7 +17,7 @@ test_that("Sun near present day with build in ephemeris (ET)", {
     swe_close()
 })
 
-test_that("Sun near present day with SE (ET)", {
+test_that("Sun near present day with SEFLG_SWIEPH (ET)", {
     skip_if_not_installed("swephRdata")
     result <- swe_calc(2458346.82639, 0, 2)
     expect_true(is.list(result))
@@ -27,7 +27,7 @@ test_that("Sun near present day with SE (ET)", {
     swe_close()
 })
 
-test_that("Moon near present day with build in ephemeris (ET)", {
+test_that("Moon near present day with SEFLG_MOSEPH (ET)", {
   result <- swe_calc(2458346.82639, 1, 4)
   expect_true(is.list(result))
   expect_equal(result$return, 4)
@@ -36,7 +36,7 @@ test_that("Moon near present day with build in ephemeris (ET)", {
   swe_close()
 })
 
-test_that("Moon near present day with build in ephemeris (UT)", {
+test_that("Moon near present day with SEFLG_MOSEPH (UT)", {
   result <- swe_calc_ut(2458346.82639, 1, 4)
   expect_true(is.list(result))
   expect_equal(result$return, 4)
@@ -45,7 +45,7 @@ test_that("Moon near present day with build in ephemeris (UT)", {
   swe_close()
 })
 
-test_that("Moon near present day with SE (ET)", {
+test_that("Moon near present day with SEFLG_SWIEPH (ET)", {
     skip_if_not_installed("swephRdata")
     result <- swe_calc(2458346.82639, 1, 2)
     expect_true(is.list(result))
@@ -55,7 +55,7 @@ test_that("Moon near present day with SE (ET)", {
     swe_close()
 })
 
-test_that("Sun and Moon near present day with build in ephemeris (ET)", {
+test_that("Sun and Moon near present day with SEFLG_MOSEPH (ET)", {
     result <- swe_calc(2458346.82639, c(0, 1), 4)
     expect_true(is.list(result))
     expect_equal(result$return, c(4, 4))
@@ -66,7 +66,7 @@ test_that("Sun and Moon near present day with build in ephemeris (ET)", {
     swe_close()
 })
 
-test_that("Mercury near present day with build in ephemeris (ET)", {
+test_that("Mercury near present day with SEFLG_MOSEPH (ET)", {
     result <- swe_calc(2458346.82639, 2, 4)
     expect_true(is.list(result))
     expect_equal(result$return, 4)
@@ -75,7 +75,7 @@ test_that("Mercury near present day with build in ephemeris (ET)", {
     swe_close()
 })
 
-test_that("Mercury near present day with SE (ET)", {
+test_that("Mercury near present day with SEFLG_SWIEPH (ET)", {
     skip_if_not_installed("swephRdata")
     result <- swe_calc(2458346.82639, 2, 2)
     expect_true(is.list(result))

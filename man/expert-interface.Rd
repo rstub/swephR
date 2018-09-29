@@ -51,7 +51,7 @@ swe_close()
 
 \item{gregflag}{calendar type (SE_JUL_CAL=0 or SE_GREG_CAL=1)}
 
-\item{delta_t}{DeltaT (sec)}
+\item{delta_t}{DeltaT (day)}
 
 \item{ephe_flag}{ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4)}
 }
@@ -62,9 +62,9 @@ swe_close()
 
 \code{swe_version} returns the Swiss Ephemeris version number as string
 
-\code{swe_deltat} returns the DeltaT as double (sec)
+\code{swe_deltat} returns the DeltaT as double (day)
 
-\code{swe_deltat_ex} returns a list with named entries: \code{deltat} for DeltaT as double (sec)
+\code{swe_deltat_ex} returns a list with named entries: \code{deltat} for DeltaT as double (day)
          and \code{serr} for error message as string.
 }
 \description{

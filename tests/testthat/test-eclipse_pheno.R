@@ -59,7 +59,7 @@ test_that("Solar eclipse", {
   swe_close()
 })
 
-test_that("Phenomenology info from Moon (UT)", {
+test_that("Phenomena of Moon (UT)", {
   result <- swe_pheno_ut(1234567,1,4)
   expect_equal(result$return, 4)
   expect_equal(result$attr[1:6],c(149.6307215971651772,0.0686075615100681,30.2944345224700591, 0.5180433249746146, -6.8235614464226826 , 0.9505687417907285))
@@ -67,7 +67,7 @@ test_that("Phenomenology info from Moon (UT)", {
   swe_close()
 })
 
-test_that("Phenomenology info from Moon (ET)", {
+test_that("Phenomena of Moon (ET)", {
   result <- swe_pheno(1234567,1,4)
   expect_equal(result$return, 4)
   expect_equal(result$attr[1:6],c(154.1161000624804274,0.0501597578258811, 25.8196104808596623, 0.5205532974955946, -6.4659828673145414, 0.9551682301559420))
