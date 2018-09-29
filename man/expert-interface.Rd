@@ -22,7 +22,7 @@ swe_version()
 
 swe_set_tid_acc(t_acc)
 
-swe_deltat(tjd)
+swe_deltat(jd)
 
 swe_set_ephe_path(path)
 
@@ -30,44 +30,42 @@ swe_julday(year, month, day, hour, gregflag)
 
 swe_set_delta_t_userdef(delta_t)
 
-swe_deltat_ex(tjd, ephe_flag)
+swe_deltat_ex(jd, ephe_flag)
 
 swe_close()
 }
 \arguments{
-\item{jd}{Julian date as numeric vector}
+\item{jd}{Julian day number as numeric vector}
 
 \item{t_acc}{tidal acceleration as double (arcsec/century^2)}
 
-\item{tjd}{Julian day Number}
+\item{path}{directory as string, where the ephemeris files are stored}
 
-\item{path}{the directory where the ephemeris files are stored (a string)}
+\item{year}{Year as interger}
 
-\item{year}{Year}
+\item{month}{Month as interger}
 
-\item{month}{Month}
+\item{day}{Day as interger}
 
-\item{day}{Day}
+\item{hour}{Hour as double}
 
-\item{hour}{Hour}
+\item{gregflag}{calendar type (SE_JUL_CAL=0 or SE_GREG_CAL=1)}
 
-\item{gregflag}{Greogiran (1) or juian calandar (0)}
+\item{delta_t}{DeltaT (sec)}
 
-\item{delta_t}{DeltaT value (sec)}
-
-\item{ephe_flag}{the epheemris flag (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)}
+\item{ephe_flag}{the ephemeris flag (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4)}
 }
 \value{
-\code{swe_deltat} returns the DeltaT (sec)
+\code{swe_day_of_week} retruns the day of week as integer vector (0 Monday .. 6 Sunday)
 
-\code{swe_day_of_week} retruns the day of week as integer vector
-
-\code{get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
+\code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
 
 \code{swe_version} returns the Swiss Ephemeris version number as string
 
-\code{swe_deltat_ex} returns a list with named entries: \code{return} for return value
-         and \code{serr} for error message.
+\code{swe_deltat} returns the DeltaT as double (sec)
+
+\code{swe_deltat_ex} returns a list with named entries: \code{deltat} for DeltaT as double (sec)
+         and \code{serr} for error message as string.
 }
 \description{
 For experts that are familiar with the C API of the underlying

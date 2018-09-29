@@ -359,13 +359,13 @@ BEGIN_RCPP
 END_RCPP
 }
 // deltat
-Rcpp::NumericVector deltat(Rcpp::NumericVector tjd);
-RcppExport SEXP _swephR_deltat(SEXP tjdSEXP) {
+Rcpp::NumericVector deltat(Rcpp::NumericVector jd);
+RcppExport SEXP _swephR_deltat(SEXP jdSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tjd(tjdSEXP);
-    rcpp_result_gen = Rcpp::wrap(deltat(tjd));
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type jd(jdSEXP);
+    rcpp_result_gen = Rcpp::wrap(deltat(jd));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -405,14 +405,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // deltat_ex
-Rcpp::List deltat_ex(Rcpp::NumericVector tjd, int ephe_flag);
-RcppExport SEXP _swephR_deltat_ex(SEXP tjdSEXP, SEXP ephe_flagSEXP) {
+Rcpp::List deltat_ex(Rcpp::NumericVector jd, int ephe_flag);
+RcppExport SEXP _swephR_deltat_ex(SEXP jdSEXP, SEXP ephe_flagSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type tjd(tjdSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type jd(jdSEXP);
     Rcpp::traits::input_parameter< int >::type ephe_flag(ephe_flagSEXP);
-    rcpp_result_gen = Rcpp::wrap(deltat_ex(tjd, ephe_flag));
+    rcpp_result_gen = Rcpp::wrap(deltat_ex(jd, ephe_flag));
     return rcpp_result_gen;
 END_RCPP
 }
