@@ -19,37 +19,34 @@
 #include <array>
 #include "swephapi.h"
 
-//' @title Eclipses and planetary phenomena
-//' Compute solar eclipse at location
-//' @param tjd_et  Julian day, Ephemeris time
-//' @param ipl  body/planet number (-1 for no planet possible with \code{swe_rise_trans_true_hor})
-//' @param iflag  a 32 bit integer containing bit flags that indicate what
-//'               kind of computation is wanted
-//' @param starname  star name ("" for no star)
-//' @param tjd_ut  Julian day, UT time
-//' @param calc_flag Type of reference system or SE_TRUE_TO_APP=0 / SE_APP_TO_TRUE=1
-//' @param atpress atmospheric pressure in mbar (hPa)
-//' @param attemp atmospheric temperature in degrees Celsius
-//' @param epheflag Type of ephemeris (4=Moshier, 1=JPL, 2=SE)
-//' @param horhgt The apparent horizon at rise/set in degrees
-//' @param xin  position of body in either ecliptical or equatorial coordinates, depending on calc_flag
-//' @param rsmi  integer specifying that rise, set, or one of the two meridian transits is wanted
-//' @return \code{swe_rise_trans_true_hor} returns a list with named entries: \code{i} success of function
-//'      \code{tret} for azi/alt info and \code{serr} for possible error code
+//' @title Eclipses and planetary phenomena and computation of solar eclipse at location
+//' @param jd_et  Julian day number as double (ET)
+//' @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
+//' @param starname  star name as string ("" for no star)
+//' @param jd_ut  Julian day number (UT)
+//' @param calc_flag flag as interger: reference system (e.g.: SEFLG_EQUATORIAL	2048 or ecliptic) or refraction direction (SE_TRUE_TO_APP=0, SE_APP_TO_TRUE=1)
+//' @param atpress atmospheric pressure as double (hPa)
+//' @param attemp atmospheric temperature as double (Celsius)
+//' @param ephe_flag ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4)
+//' @param horhgt horizon apparent altitude as double (deg)
+//' @param xin  position of body as numeric vector (either ecliptical or equatorial coordinates, depending on calc_flag)
+//' @param rsmi  event flag as integer (e.g.: SE_CALC_RISE=1, SE_CALC_SET=2,SE_CALC_MTRANSIT=4,SE_CALC_ITRANSIT=8)
+//' @return \code{swe_rise_trans_true_hor} returns a list with named entries: \code{return} status flag as interger,
+//'      \code{tret} for azi/alt info as numeric vector and \code{serr} error message as string
 //' @return \code{swe_azalt} returns a list with named entries:
-//'      \code{xaz} for azi/alt info.
+//'      \code{xaz} for azi/alt info as numeric vector.
 //' @return \code{swe_sol_eclipse_when_loc} returns a list with named entries: 
-//'      \code{return} visibility code, \code{tret} for eclipse timing moments, 
-//'      \code{attr} pheneomena durign eclipse and \code{serr} error string
+//'      \code{return} status flag as interger, \code{tret} for eclipse timing moments as numeric vector, 
+//'      \code{attr} pheneomena during eclipse as numeric vector and \code{serr} error message as string
 //' @rdname eclipse_pheno
 //' @export
 // [[Rcpp::export(swe_sol_eclipse_when_loc)]]
-Rcpp::List sol_eclipse_when_loc(double tjd_start, int ifl, Rcpp::NumericVector geopos, bool backward) {
+Rcpp::List sol_eclipse_when_loc(double jd_start, int ephe_flag, Rcpp::NumericVector geopos, bool backward) {
   if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
   std::array<double, 10> tret{0.0};
   std::array<double, 20> attr{0.0};
   std::array<char, 256> serr{'\0'};
-  int rtn = swe_sol_eclipse_when_loc(tjd_start, ifl, geopos.begin(), tret.begin(), attr.begin(), backward, serr.begin());
+  int rtn = swe_sol_eclipse_when_loc(jd_start, ephe_flag, geopos.begin(), tret.begin(), attr.begin(), backward, serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = rtn, Rcpp::Named("tret") = tret,
                             Rcpp::Named("attr") = attr,
                             Rcpp::Named("serr") = std::string(serr.begin())
@@ -57,21 +54,20 @@ Rcpp::List sol_eclipse_when_loc(double tjd_start, int ifl, Rcpp::NumericVector g
 }
 
 //' Compute lunar eclipse at location
-//' @param ifl Type of ephemeris (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)
-//' @param geopos The position vector (longitude, latitude, height)
-//' @param backward TRUE for backwards search
+//' @param geopos The position numeric vector (longitude, latitude, height)
+//' @param backward backwards search as boolean (TRUE)
 //' @return \code{swe_lun_eclipse_when_loc} returns a list with named entries:
-//'      \code{return} visibility code, \code{tret} for eclipse timing moments,
-//'      \code{attr} pheneomena durign eclipse and \code{serr} error string
+//'      \code{return} status flag as integer, \code{tret} for eclipse timing moments,
+//'      \code{attr} pheneomena during eclipse and \code{serr} error warning as string
 //' @rdname eclipse_pheno
 //' @export
 // [[Rcpp::export(swe_lun_eclipse_when_loc)]]
-Rcpp::List lun_eclipse_when_loc(double tjd_start, int ifl, Rcpp::NumericVector geopos, bool backward) {
+Rcpp::List lun_eclipse_when_loc(double jd_start, int ephe_flag, Rcpp::NumericVector geopos, bool backward) {
   if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
   std::array<double, 10> tret{0.0};
   std::array<double, 20> attr{0.0};
   std::array<char, 256> serr{'\0'};
-  int rtn = swe_lun_eclipse_when_loc(tjd_start, ifl, geopos.begin(), tret.begin(), attr.begin(), backward, serr.begin());
+  int rtn = swe_lun_eclipse_when_loc(jd_start, ephe_flag, geopos.begin(), tret.begin(), attr.begin(), backward, serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = rtn, Rcpp::Named("tret") = tret,
                             Rcpp::Named("attr") = attr,
                             Rcpp::Named("serr") = std::string(serr.begin())
@@ -79,18 +75,18 @@ Rcpp::List lun_eclipse_when_loc(double tjd_start, int ifl, Rcpp::NumericVector g
 }
 
 //' Computes the attributes of a lunar eclipse at a given time
-//' @param tjd_start  Julian day, UT time
+//' @param jd_start  Julian day number (UT)
 //' @return \code{swe_lun_eclipse_how} returns a list with named entries:
-//'      \code{return} visibility code,
-//'      \code{attr} pheneomena durign eclipse and \code{serr} error string
+//'      \code{return} status flag as integer,
+//'      \code{attr} pheneomena during eclipse as numeric vector and \code{serr} error message as string
 //' @rdname eclipse_pheno
 //' @export
 // [[Rcpp::export(swe_lun_eclipse_how)]]
-Rcpp::List lun_eclipse_how(double tjd_start, int ifl, Rcpp::NumericVector geopos) {
+Rcpp::List lun_eclipse_how(double jd_start, int ephe_flag, Rcpp::NumericVector geopos) {
   if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
   std::array<double, 20> attr{0.0};
   std::array<char, 256> serr{'\0'};
-  int rtn = swe_lun_eclipse_how(tjd_start, ifl, geopos.begin(), attr.begin(), serr.begin());
+  int rtn = swe_lun_eclipse_how(jd_start, ephe_flag, geopos.begin(), attr.begin(), serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = rtn,
                             Rcpp::Named("attr") = attr,
                             Rcpp::Named("serr") = std::string(serr.begin())
@@ -99,36 +95,32 @@ Rcpp::List lun_eclipse_how(double tjd_start, int ifl, Rcpp::NumericVector geopos
 
 
 //' Search a lunar eclipse on earth
-//' @param ifltype Type of eclipse event (SE_ECL_TOTAL etc.  or 0, if any eclipse type)
+//' @param ifltype eclipse tper as interger (e.g.: SE_ECL_CENTRAL=1,SE_ECL_NONCENTRAL=2,SE_ECL_TOTAL=4,SE_ECL_ANNULAR=8,SE_ECL_PARTIAL=16,SE_ECL_ANNULAR_TOTAL=32)
 //' @return \code{swe_lun_eclipse_when} returns a list with named entries:
-//'      \code{return} visibility code, \code{tret} for eclipse timing moments
-//'      and \code{serr} error string
+//'      \code{return} status flag as interger, \code{tret} for eclipse timing moments as numeric vector
+//'      and \code{serr} error warning as string
 //' @rdname eclipse_pheno
 //' @export
 // [[Rcpp::export(swe_lun_eclipse_when)]]
-Rcpp::List lun_eclipse_when(double tjd_start, int ifl, int ifltype, bool backward) {
+Rcpp::List lun_eclipse_when(double jd_start, int ephe_flag, int ifltype, bool backward) {
   std::array<double, 20> tret{0.0};
   std::array<char, 256> serr{'\0'};
-  int rtn = swe_lun_eclipse_when(tjd_start, ifl, ifltype, tret.begin(), backward, serr.begin());
+  int rtn = swe_lun_eclipse_when(jd_start, ephe_flag, ifltype, tret.begin(), backward, serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = rtn, Rcpp::Named("tret") = tret,
                             Rcpp::Named("serr") = std::string(serr.begin())
   );
 }
 
-
-
-
-
 //' Compute the rise and set location of the object
 //' @rdname eclipse_pheno
 //' @export
 // [[Rcpp::export(swe_rise_trans_true_hor)]]
-Rcpp::List rise_trans_true_hor(double tjd_ut, int ipl, std::string starname, int epheflag, int rsmi,Rcpp::NumericVector geopos, double atpress, double attemp, double horhgt) {
+Rcpp::List rise_trans_true_hor(double jd_ut, int ipl, std::string starname, int ephe_flag, int rsmi,Rcpp::NumericVector geopos, double atpress, double attemp, double horhgt) {
   if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
   std::array<char, 256> serr{'\0'};
   double tret;
   starname.resize(41);
-  int i = swe_rise_trans_true_hor(tjd_ut, ipl, &starname[0], epheflag, rsmi, geopos.begin(), atpress, attemp, horhgt, &tret, serr.begin());
+  int i = swe_rise_trans_true_hor(jd_ut, ipl, &starname[0], ephe_flag, rsmi, geopos.begin(), atpress, attemp, horhgt, &tret, serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = i,
                             Rcpp::Named("tret") = tret,
                             Rcpp::Named("serr") = std::string(serr.begin()));
@@ -137,41 +129,41 @@ Rcpp::List rise_trans_true_hor(double tjd_ut, int ipl, std::string starname, int
 
 //' Compute horizon information: azimuth, altiiude
 //' @return \code{swe_azalt} returns a list with named entries:
-//'      \code{xaz} for azi/alt info.
+//'      \code{xaz} for azi/alt info as numeric vector.
 //' @rdname eclipse_pheno
 //' @export
 // [[Rcpp::export(swe_azalt)]]
-Rcpp::List azalt(double tjd_ut, int calc_flag, Rcpp::NumericVector geopos, double atpress, double attemp, Rcpp::NumericVector xin) {
+Rcpp::List azalt(double jd_ut, int calc_flag, Rcpp::NumericVector geopos, double atpress, double attemp, Rcpp::NumericVector xin) {
   if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
   std::array<double, 3> xaz{0.0};
-  swe_azalt(tjd_ut, calc_flag, geopos.begin(), atpress, attemp, xin.begin(), xaz.begin());
+  swe_azalt(jd_ut, calc_flag, geopos.begin(), atpress, attemp, xin.begin(), xaz.begin());
   return Rcpp::List::create(Rcpp::Named("xaz") = xaz);
 }
 
 //' Compute equatorial/ecliptical information
 //' @return \code{swe_azalt_rev} returns a list with named entries:
-//'      \code{xaz} for celestial info.
+//'      \code{xaz} for celestial info a snumeric vector.
 //' @rdname eclipse_pheno
 //' @export
 // [[Rcpp::export(swe_azalt_rev)]]
-Rcpp::List azalt_rev(double tjd_ut, int calc_flag, Rcpp::NumericVector geopos, Rcpp::NumericVector xin) {
+Rcpp::List azalt_rev(double jd_ut, int calc_flag, Rcpp::NumericVector geopos, Rcpp::NumericVector xin) {
   if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
   std::array<double, 3> xout{0.0};
-  swe_azalt_rev(tjd_ut, calc_flag, geopos.begin(), xin.begin(), xout.begin());
+  swe_azalt_rev(jd_ut, calc_flag, geopos.begin(), xin.begin(), xout.begin());
   return Rcpp::List::create(Rcpp::Named("xout") = xout);
 }
 
 //' Provide phenomom information of celestial body (UT)
 //' @return \code{swe_pheno_ut} returns a list with named entries:
-//'      \code{return} ???, \code{attr} for phenomenon information
-//'      and \code{serr} error string
+//'      \code{return} status fag as integer, \code{attr} for phenomenon information as numeric vector
+//'      and \code{serr} error warning as string
 //' @rdname eclipse_pheno
 //' @export
 // [[Rcpp::export(swe_pheno_ut)]]
-Rcpp::List pheno_ut(double tjd_ut, int ipl, int iflag) {
+Rcpp::List pheno_ut(double jd_ut, int ipl, int ephe_flag) {
   std::array<double, 20> attr{0.0};
   std::array<char, 256> serr{'\0'};
-  int rtn = swe_pheno_ut(tjd_ut, ipl, iflag, attr.begin(), serr.begin());
+  int rtn = swe_pheno_ut(jd_ut, ipl, ephe_flag, attr.begin(), serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = rtn, Rcpp::Named("attr") = attr,
                             Rcpp::Named("serr") = std::string(serr.begin())
   );
@@ -180,128 +172,128 @@ Rcpp::List pheno_ut(double tjd_ut, int ipl, int iflag) {
 
 //' Provide phenomom information of celestial body (ET)
 //' @return \code{swe_pheno} returns a list with named entries:
-//'      \code{return} ???, \code{attr} for phenomenon information
-//'      and \code{serr} error string
+//'      \code{return} status fag as integer, \code{attr} for phenomenon information as numeric vector
+//'      and \code{serr} error message as string
 //' @rdname eclipse_pheno
 //' @export
 // [[Rcpp::export(swe_pheno)]]
-Rcpp::List pheno(double tjd_et, int ipl, int iflag) {
+Rcpp::List pheno(double jd_et, int ipl, int ephe_flag) {
   std::array<double, 20> attr{0.0};
   std::array<char, 256> serr{'\0'};
-  int rtn = swe_pheno(tjd_et, ipl, iflag, attr.begin(), serr.begin());
+  int rtn = swe_pheno(jd_et, ipl, ephe_flag, attr.begin(), serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = rtn, Rcpp::Named("attr") = attr,
                             Rcpp::Named("serr") = std::string(serr.begin())
   );
 }
 
-//' Compute heliacal event details
-//' @return \code{swe_heliacal_pheno_ut} returns a list with named entries: \code{i} success of function
-//'      \code{darr} for heliacal details and \code{serr} for possible error code
+//' Compute heliacal phenomena
+//' @return \code{swe_heliacal_pheno_ut} returns a list with named entries: \code{return} status flag as integer
+//'      \code{darr} for heliacal details as numeric vector and \code{serr} error message as string
 //' @rdname eclipse_pheno
 //' @export
 // [[Rcpp::export(swe_heliacal_pheno_ut)]]
-Rcpp::List heliacal_pheno_ut(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int event_type, int helflag ){
+Rcpp::List heliacal_pheno_ut(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int event_type, int helflag ){
   if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
   if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
   if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
   std::array<double, 50> darr{0.0};
   std::array<char, 256> serr{'\0'};
-  int i = swe_heliacal_pheno_ut(tjd_ut, dgeo.begin(), datm.begin(),dobs.begin(), &objectname[0], event_type, helflag, darr.begin(), serr.begin());
+  int i = swe_heliacal_pheno_ut(jd_ut, dgeo.begin(), datm.begin(),dobs.begin(), &objectname[0], event_type, helflag, darr.begin(), serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = i,
                             Rcpp::Named("darr") = darr,
                             Rcpp::Named("serr") = std::string(serr.begin()));
 }
 
-//' Compute heliacal event details
-//' @param mag   The object's magnitude
-//' @param AziO  The object's azimut
-//' @param AltO  The object's altitude
-//' @param AziS  The sun's azimut
-//' @param AziM  The moon's azimut
-//' @param AltM  The moon's altitude
-//' @return \code{swe_topo_arcus_visionis} returns a list with named entries: \code{i} success of function
-//'      \code{darr} for heliacal details and \code{serr} for possible error code
+//' Compute topocentric arcus visionis
+//' @param mag   object's magnitude as double (-)
+//' @param AziO  object's azimuth as double (deg)
+//' @param AltO  object's altitude as double (deg)
+//' @param AziS  Sun's azimuth as double (deg)
+//' @param AziM  Moon's azimut as double (deg)
+//' @param AltM  Moon's altitude as double (deg)
+//' @return \code{swe_topo_arcus_visionis} returns a list with named entries: \code{return} status flag as integer,
+//'      \code{darr} heliacal details as numeric vector and \code{serr} error message as string
 //' @rdname eclipse_pheno
 //' @export
 // [[Rcpp::export(swe_topo_arcus_visionis)]]
-Rcpp::List topo_arcus_visionis(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,int helflag,double mag,double AziO, double AltO,double AziS, double AziM, double AltM){
+Rcpp::List topo_arcus_visionis(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,int helflag,double mag,double AziO, double AltO,double AziS, double AziM, double AltM){
   if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
   if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
   if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
   std::array<char, 256> serr{'\0'};
   double tav;
-  int i = swe_topo_arcus_visionis(tjd_ut, dgeo.begin(), datm.begin(),dobs.begin(), helflag, mag,AziO, AltO, AziS,  AziM,  AltM, &tav, serr.begin());
+  int i = swe_topo_arcus_visionis(jd_ut, dgeo.begin(), datm.begin(),dobs.begin(), helflag, mag,AziO, AltO, AziS,  AziM,  AltM, &tav, serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = i,
                             Rcpp::Named("tav") = tav,
                             Rcpp::Named("serr") = std::string(serr.begin()));
 }
 
-//' Compute heliacal event details
-//' @return \code{swe_heliacal_angle} returns a list with named entries: \code{i} success of function
-//'      \code{darr} for heliacal angle and \code{serr} for possible error code
+//' Compute heliacal angle
+//' @return \code{swe_heliacal_angle} returns a list with named entries: \code{return} status flag as integer,
+//'      \code{dret} heliacal angle as numeric vector and \code{serr} error message as string
 //' @rdname eclipse_pheno
 //' @export
 // [[Rcpp::export(swe_heliacal_angle)]]
-Rcpp::List heliacal_angle(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,int helflag,double mag,double AziO, double AziS, double AziM, double AltM){
+Rcpp::List heliacal_angle(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,int helflag,double mag,double AziO, double AziS, double AziM, double AltM){
   if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
   if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
   if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
   std::array<double, 50> dret{0.0};
   std::array<char, 256> serr{'\0'};
-  int i = swe_heliacal_angle(tjd_ut, dgeo.begin(), datm.begin(),dobs.begin(), helflag, mag,AziO, AziS,  AziM,  AltM, dret.begin(), serr.begin());
+  int i = swe_heliacal_angle(jd_ut, dgeo.begin(), datm.begin(),dobs.begin(), helflag, mag,AziO, AziS,  AziM,  AltM, dret.begin(), serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = i,
                             Rcpp::Named("dret") = dret,
                             Rcpp::Named("serr") = std::string(serr.begin()));
 }
 //' Compute the heliacale event of celestial object
-//' @param tjdstart  Julian day, UT time
-//' @param dgeo Geographic position
-//' @param datm Atmospheric conditions
-//' @param dobs Observer description
-//' @param objectname  celectial object
-//' @param event_type  event type
-//' @param helflag calcuation flag
-//' @return \code{swe_heliacal_ut} returns a list with named entries \code{return},
-//'         \code{dret} results, and \code{serr} error message.
+//' @param jdstart  Julian day number as double (UT)
+//' @param dgeo Geographic position as numeric vector
+//' @param datm Atmospheric conditions as numeric vector
+//' @param dobs Observer description as numeric vector
+//' @param objectname  celectial object as string
+//' @param event_type  event type as integer
+//' @param helflag calcuation flag as integer
+//' @return \code{swe_heliacal_ut} returns a list with named entries \code{return} status flag as integer,
+//'         \code{dret} heliacal results as numeric vector, and \code{serr} error message as string.
 //' @rdname eclipse_pheno
 //' @export
 // [[Rcpp::export(swe_heliacal_ut)]]
-Rcpp::List heliacal_ut(double tjdstart, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int event_type, int helflag) {
+Rcpp::List heliacal_ut(double jdstart, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int event_type, int helflag) {
   if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
   if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
   if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
   std::array<double, 50> dret{0.0};
   std::array<char, 256> serr{'\0'};
-  int rtn = swe_heliacal_ut(tjdstart, dgeo.begin(),datm.begin(),dobs.begin(),&objectname[0],event_type,helflag, dret.begin(), serr.begin());
+  int rtn = swe_heliacal_ut(jdstart, dgeo.begin(),datm.begin(),dobs.begin(),&objectname[0],event_type,helflag, dret.begin(), serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = rtn,
 			    Rcpp::Named("dret") = dret,
                             Rcpp::Named("serr") = std::string(serr.begin()));
 }
 
 //' Compute the limiting visibiliy magnitude
-//' @return \code{swe_vis_limit_mag} returns a list with named entries: \code{i} success of function
-//'      \code{dret} for magnitude info and \code{serr} for possible error code
+//' @return \code{swe_vis_limit_mag} returns a list with named entries: \code{return} status flag as interger,
+//'      \code{dret} limiting magnitude as double and \code{serr} error message as string
 //' @rdname eclipse_pheno
 //' @export
 // [[Rcpp::export(swe_vis_limit_mag)]]
-Rcpp::List vis_limit_mag(double tjd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int helflag ){
+Rcpp::List vis_limit_mag(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int helflag ){
   if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
   if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
   if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
   std::array<double, 50> dret{0.0};
   std::array<char, 256> serr{'\0'};
-  int i = swe_vis_limit_mag(tjd_ut, dgeo.begin(), datm.begin(),dobs.begin(), &objectname[0], helflag, dret.begin(), serr.begin());
+  int i = swe_vis_limit_mag(jd_ut, dgeo.begin(), datm.begin(),dobs.begin(), &objectname[0], helflag, dret.begin(), serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = i,
                             Rcpp::Named("dret") = dret,
                             Rcpp::Named("serr") = std::string(serr.begin()));
 }
 
 //' Compute the refraction
-//' @param InAlt  The object's apparent/topocentric altitude (depending on calc_flag)
-//' @param geoheight  The observer's height
-//' @param lapse_rate  The lapse rate pK/m]
-//' @return \code{swe_refrac_extended} returns a list with named entries: \code{i} success of function
-//'      \code{dret} for refraction related calculations (TopoAlt, AppAlt, refraction)
+//' @param InAlt  object's apparent/topocentric altitude as double (depending on calc_flag) (deg)
+//' @param geoheight  observer's height as double (m)
+//' @param lapse_rate  lapse rate as double (K/m)
+//' @return \code{swe_refrac_extended} returns a list with named entries: \code{return} status flag as interger,
+//'      \code{dret} refraction results as nemeric vector (TopoAlt, AppAlt, refraction)
 //' @rdname eclipse_pheno
 //' @export
 // [[Rcpp::export(swe_refrac_extended)]]

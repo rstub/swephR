@@ -16,171 +16,163 @@
 \alias{swe_heliacal_ut}
 \alias{swe_vis_limit_mag}
 \alias{swe_refrac_extended}
-\title{Eclipses and planetary phenomena
-Compute solar eclipse at location}
+\title{Eclipses and planetary phenomena and computation of solar eclipse at location}
 \usage{
-swe_sol_eclipse_when_loc(tjd_start, ifl, geopos, backward)
+swe_sol_eclipse_when_loc(jd_start, ephe_flag, geopos, backward)
 
-swe_lun_eclipse_when_loc(tjd_start, ifl, geopos, backward)
+swe_lun_eclipse_when_loc(jd_start, ephe_flag, geopos, backward)
 
-swe_lun_eclipse_how(tjd_start, ifl, geopos)
+swe_lun_eclipse_how(jd_start, ephe_flag, geopos)
 
-swe_lun_eclipse_when(tjd_start, ifl, ifltype, backward)
+swe_lun_eclipse_when(jd_start, ephe_flag, ifltype, backward)
 
-swe_rise_trans_true_hor(tjd_ut, ipl, starname, epheflag, rsmi, geopos,
+swe_rise_trans_true_hor(jd_ut, ipl, starname, ephe_flag, rsmi, geopos,
   atpress, attemp, horhgt)
 
-swe_azalt(tjd_ut, calc_flag, geopos, atpress, attemp, xin)
+swe_azalt(jd_ut, calc_flag, geopos, atpress, attemp, xin)
 
-swe_azalt_rev(tjd_ut, calc_flag, geopos, xin)
+swe_azalt_rev(jd_ut, calc_flag, geopos, xin)
 
-swe_pheno_ut(tjd_ut, ipl, iflag)
+swe_pheno_ut(jd_ut, ipl, ephe_flag)
 
-swe_pheno(tjd_et, ipl, iflag)
+swe_pheno(jd_et, ipl, ephe_flag)
 
-swe_heliacal_pheno_ut(tjd_ut, dgeo, datm, dobs, objectname, event_type,
+swe_heliacal_pheno_ut(jd_ut, dgeo, datm, dobs, objectname, event_type,
   helflag)
 
-swe_topo_arcus_visionis(tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AltO,
+swe_topo_arcus_visionis(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AltO,
   AziS, AziM, AltM)
 
-swe_heliacal_angle(tjd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS,
-  AziM, AltM)
+swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
+  AltM)
 
-swe_heliacal_ut(tjdstart, dgeo, datm, dobs, objectname, event_type,
-  helflag)
+swe_heliacal_ut(jdstart, dgeo, datm, dobs, objectname, event_type, helflag)
 
-swe_vis_limit_mag(tjd_ut, dgeo, datm, dobs, objectname, helflag)
+swe_vis_limit_mag(jd_ut, dgeo, datm, dobs, objectname, helflag)
 
 swe_refrac_extended(InAlt, geoheight, atpress, attemp, lapse_rate,
   calc_flag)
 }
 \arguments{
-\item{tjd_start}{Julian day, UT time}
+\item{jd_start}{Julian day number (UT)}
 
-\item{ifl}{Type of ephemeris (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)}
+\item{ephe_flag}{ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4)}
 
-\item{geopos}{The position vector (longitude, latitude, height)}
+\item{geopos}{The position numeric vector (longitude, latitude, height)}
 
-\item{backward}{TRUE for backwards search}
+\item{backward}{backwards search as boolean (TRUE)}
 
-\item{ifltype}{Type of eclipse event (SE_ECL_TOTAL etc.  or 0, if any eclipse type)}
+\item{ifltype}{eclipse tper as interger (e.g.: SE_ECL_CENTRAL=1,SE_ECL_NONCENTRAL=2,SE_ECL_TOTAL=4,SE_ECL_ANNULAR=8,SE_ECL_PARTIAL=16,SE_ECL_ANNULAR_TOTAL=32)}
 
-\item{tjd_ut}{Julian day, UT time}
+\item{jd_ut}{Julian day number (UT)}
 
-\item{ipl}{body/planet number (-1 for no planet possible with \code{swe_rise_trans_true_hor})}
+\item{ipl}{body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)}
 
-\item{starname}{star name ("" for no star)}
+\item{starname}{star name as string ("" for no star)}
 
-\item{epheflag}{Type of ephemeris (4=Moshier, 1=JPL, 2=SE)}
+\item{rsmi}{event flag as integer (e.g.: SE_CALC_RISE=1, SE_CALC_SET=2,SE_CALC_MTRANSIT=4,SE_CALC_ITRANSIT=8)}
 
-\item{rsmi}{integer specifying that rise, set, or one of the two meridian transits is wanted}
+\item{atpress}{atmospheric pressure as double (hPa)}
 
-\item{atpress}{atmospheric pressure in mbar (hPa)}
+\item{attemp}{atmospheric temperature as double (Celsius)}
 
-\item{attemp}{atmospheric temperature in degrees Celsius}
+\item{horhgt}{horizon apparent altitude as double (deg)}
 
-\item{horhgt}{The apparent horizon at rise/set in degrees}
+\item{calc_flag}{flag as interger: reference system (e.g.: SEFLG_EQUATORIAL    2048 or ecliptic) or refraction direction (SE_TRUE_TO_APP=0, SE_APP_TO_TRUE=1)}
 
-\item{calc_flag}{Type of reference system or SE_TRUE_TO_APP=0 / SE_APP_TO_TRUE=1}
+\item{xin}{position of body as numeric vector (either ecliptical or equatorial coordinates, depending on calc_flag)}
 
-\item{xin}{position of body in either ecliptical or equatorial coordinates, depending on calc_flag}
+\item{jd_et}{Julian day number as double (ET)}
 
-\item{iflag}{a 32 bit integer containing bit flags that indicate what
-kind of computation is wanted}
+\item{dgeo}{Geographic position as numeric vector}
 
-\item{tjd_et}{Julian day, Ephemeris time}
+\item{datm}{Atmospheric conditions as numeric vector}
 
-\item{dgeo}{Geographic position}
+\item{dobs}{Observer description as numeric vector}
 
-\item{datm}{Atmospheric conditions}
+\item{objectname}{celectial object as string}
 
-\item{dobs}{Observer description}
+\item{event_type}{event type as integer}
 
-\item{objectname}{celectial object}
+\item{helflag}{calcuation flag as integer}
 
-\item{event_type}{event type}
+\item{mag}{object's magnitude as double (-)}
 
-\item{helflag}{calcuation flag}
+\item{AziO}{object's azimuth as double (deg)}
 
-\item{mag}{The object's magnitude}
+\item{AltO}{object's altitude as double (deg)}
 
-\item{AziO}{The object's azimut}
+\item{AziS}{Sun's azimuth as double (deg)}
 
-\item{AltO}{The object's altitude}
+\item{AziM}{Moon's azimut as double (deg)}
 
-\item{AziS}{The sun's azimut}
+\item{AltM}{Moon's altitude as double (deg)}
 
-\item{AziM}{The moon's azimut}
+\item{jdstart}{Julian day number as double (UT)}
 
-\item{AltM}{The moon's altitude}
+\item{InAlt}{object's apparent/topocentric altitude as double (depending on calc_flag) (deg)}
 
-\item{tjdstart}{Julian day, UT time}
+\item{geoheight}{observer's height as double (m)}
 
-\item{InAlt}{The object's apparent/topocentric altitude (depending on calc_flag)}
-
-\item{geoheight}{The observer's height}
-
-\item{lapse_rate}{The lapse rate pK/m]}
+\item{lapse_rate}{lapse rate as double (K/m)}
 }
 \value{
-\code{swe_rise_trans_true_hor} returns a list with named entries: \code{i} success of function
-     \code{tret} for azi/alt info and \code{serr} for possible error code
+\code{swe_rise_trans_true_hor} returns a list with named entries: \code{return} status flag as interger,
+     \code{tret} for azi/alt info as numeric vector and \code{serr} error message as string
 
 \code{swe_azalt} returns a list with named entries:
-     \code{xaz} for azi/alt info.
+     \code{xaz} for azi/alt info as numeric vector.
 
 \code{swe_sol_eclipse_when_loc} returns a list with named entries: 
-     \code{return} visibility code, \code{tret} for eclipse timing moments, 
-     \code{attr} pheneomena durign eclipse and \code{serr} error string
+     \code{return} status flag as interger, \code{tret} for eclipse timing moments as numeric vector, 
+     \code{attr} pheneomena during eclipse as numeric vector and \code{serr} error message as string
 
 \code{swe_lun_eclipse_when_loc} returns a list with named entries:
-     \code{return} visibility code, \code{tret} for eclipse timing moments,
-     \code{attr} pheneomena durign eclipse and \code{serr} error string
+     \code{return} status flag as integer, \code{tret} for eclipse timing moments,
+     \code{attr} pheneomena during eclipse and \code{serr} error warning as string
 
 \code{swe_lun_eclipse_how} returns a list with named entries:
-     \code{return} visibility code,
-     \code{attr} pheneomena durign eclipse and \code{serr} error string
+     \code{return} status flag as integer,
+     \code{attr} pheneomena during eclipse as numeric vector and \code{serr} error message as string
 
 \code{swe_lun_eclipse_when} returns a list with named entries:
-     \code{return} visibility code, \code{tret} for eclipse timing moments
-     and \code{serr} error string
+     \code{return} status flag as interger, \code{tret} for eclipse timing moments as numeric vector
+     and \code{serr} error warning as string
 
 \code{swe_azalt} returns a list with named entries:
-     \code{xaz} for azi/alt info.
+     \code{xaz} for azi/alt info as numeric vector.
 
 \code{swe_azalt_rev} returns a list with named entries:
-     \code{xaz} for celestial info.
+     \code{xaz} for celestial info a snumeric vector.
 
 \code{swe_pheno_ut} returns a list with named entries:
-     \code{return} ???, \code{attr} for phenomenon information
-     and \code{serr} error string
+     \code{return} status fag as integer, \code{attr} for phenomenon information as numeric vector
+     and \code{serr} error warning as string
 
 \code{swe_pheno} returns a list with named entries:
-     \code{return} ???, \code{attr} for phenomenon information
-     and \code{serr} error string
+     \code{return} status fag as integer, \code{attr} for phenomenon information as numeric vector
+     and \code{serr} error message as string
 
-\code{swe_heliacal_pheno_ut} returns a list with named entries: \code{i} success of function
-     \code{darr} for heliacal details and \code{serr} for possible error code
+\code{swe_heliacal_pheno_ut} returns a list with named entries: \code{return} status flag as integer
+     \code{darr} for heliacal details as numeric vector and \code{serr} error message as string
 
-\code{swe_topo_arcus_visionis} returns a list with named entries: \code{i} success of function
-     \code{darr} for heliacal details and \code{serr} for possible error code
+\code{swe_topo_arcus_visionis} returns a list with named entries: \code{return} status flag as integer,
+     \code{darr} heliacal details as numeric vector and \code{serr} error message as string
 
-\code{swe_heliacal_angle} returns a list with named entries: \code{i} success of function
-     \code{darr} for heliacal angle and \code{serr} for possible error code
+\code{swe_heliacal_angle} returns a list with named entries: \code{return} status flag as integer,
+     \code{dret} heliacal angle as numeric vector and \code{serr} error message as string
 
-\code{swe_heliacal_ut} returns a list with named entries \code{return},
-        \code{dret} results, and \code{serr} error message.
+\code{swe_heliacal_ut} returns a list with named entries \code{return} status flag as integer,
+        \code{dret} heliacal results as numeric vector, and \code{serr} error message as string.
 
-\code{swe_vis_limit_mag} returns a list with named entries: \code{i} success of function
-     \code{dret} for magnitude info and \code{serr} for possible error code
+\code{swe_vis_limit_mag} returns a list with named entries: \code{return} status flag as interger,
+     \code{dret} limiting magnitude as double and \code{serr} error message as string
 
-\code{swe_refrac_extended} returns a list with named entries: \code{i} success of function
-     \code{dret} for refraction related calculations (TopoAlt, AppAlt, refraction)
+\code{swe_refrac_extended} returns a list with named entries: \code{return} status flag as interger,
+     \code{dret} refraction results as nemeric vector (TopoAlt, AppAlt, refraction)
 }
 \description{
-Eclipses and planetary phenomena
-Compute solar eclipse at location
+Eclipses and planetary phenomena and computation of solar eclipse at location
 
 Compute lunar eclipse at location
 
@@ -198,11 +190,11 @@ Provide phenomom information of celestial body (UT)
 
 Provide phenomom information of celestial body (ET)
 
-Compute heliacal event details
+Compute heliacal phenomena
 
-Compute heliacal event details
+Compute topocentric arcus visionis
 
-Compute heliacal event details
+Compute heliacal angle
 
 Compute the heliacale event of celestial object
 
