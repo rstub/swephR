@@ -75,9 +75,9 @@ void set_tid_acc(double t_acc) {
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_deltat)]]
-Rcpp::NumericVector deltat(Rcpp::NumericVector jd) {
-  Rcpp::NumericVector result(jd.size());
-  std::transform(jd.begin(), jd.end(), result.begin(), swe_deltat);
+Rcpp::NumericVector deltat(Rcpp::NumericVector jd_ut) {
+  Rcpp::NumericVector result(jd_ut.size());
+  std::transform(jd_ut.begin(), jd_ut.end(), result.begin(), swe_deltat);
   return result;
 }
 
@@ -123,13 +123,13 @@ void set_delta_t_userdef (double delta_t) {
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_deltat_ex)]]
-Rcpp::List deltat_ex(Rcpp::NumericVector jd, int ephe_flag) {
-  Rcpp::NumericVector deltat(jd.length());
-  Rcpp::CharacterVector serr_(jd.length());
+Rcpp::List deltat_ex(Rcpp::NumericVector jd_ut, int ephe_flag) {
+  Rcpp::NumericVector deltat(jd_ut.length());
+  Rcpp::CharacterVector serr_(jd_ut.length());
 
-  for (int i = 0; i < jd.length(); ++i) {
+  for (int i = 0; i < jd_ut.length(); ++i) {
     std::array<char, 256> serr{'\0'};
-    deltat(i) = swe_deltat_ex(jd(i), ephe_flag, &serr[0]);
+    deltat(i) = swe_deltat_ex(jd_ut(i), ephe_flag, &serr[0]);
     serr_(i) = std::string(&serr[0]);
   }
   return Rcpp::List::create(Rcpp::Named("deltat") = deltat,
