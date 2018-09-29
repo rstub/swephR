@@ -226,15 +226,14 @@ swe_refrac_extended <- function(InAlt, geoheight, atpress, attemp, lapse_rate, c
 #' @description For experts that are familiar with the C API of the underlying
 #'   \code{libswe}, an expert interface that mimicks that interface as closely
 #'   as possbile is provided.
-#' @param jd  Julian date as numeric vector
+#' @param jd  Julian day number as numeric vector
 #' @param t_acc tidal acceleration as double (arcsec/century^2)
-#' @param tjd  Julian day Number
-#' @param path  the directory where the ephemeris files are stored (a string)
-#' @param delta_t DeltaT value (sec)
-#' @return  \code{swe_deltat} returns the DeltaT (sec)
-#' @return \code{swe_day_of_week} retruns the day of week as integer vector
-#' @return \code{get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
+#' @param path  directory as string, where the ephemeris files are stored
+#' @param delta_t DeltaT (sec)
+#' @return \code{swe_day_of_week} retruns the day of week as integer vector (0 Monday .. 6 Sunday)
+#' @return \code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
 #' @return \code{swe_version} returns the Swiss Ephemeris version number as string
+#' @return \code{swe_deltat} returns the DeltaT as double (sec)
 #' @name expert-interface
 NULL
 
@@ -269,23 +268,23 @@ swe_set_tid_acc <- function(t_acc) {
 #' Determine the DeltaT at a certain date
 #' @rdname expert-interface
 #' @export
-swe_deltat <- function(tjd) {
-    .Call(`_swephR_deltat`, tjd)
+swe_deltat <- function(jd) {
+    .Call(`_swephR_deltat`, jd)
 }
 
-#' Set the directory for the sefstar.txt, swe_deltat.txt and jpl files
+#' Set the directory for the sefstars.txt, swe_deltat.txt and jpl files
 #' @rdname expert-interface
 #' @export
 swe_set_ephe_path <- function(path) {
     invisible(.Call(`_swephR_set_ephe_path`, path))
 }
 
-#' Determine Julian date number from calendar date
-#' @param year  Year
-#' @param month  Month
-#' @param day  Day
-#' @param hour  Hour
-#' @param gregflag  Greogiran (1) or juian calandar (0)
+#' Determine Julian day number from calendar date
+#' @param year  Year as interger
+#' @param month  Month as interger
+#' @param day  Day as interger
+#' @param hour  Hour as double
+#' @param gregflag  calendar type (SE_JUL_CAL=0 or SE_GREG_CAL=1)
 #' @rdname expert-interface
 #' @export
 swe_julday <- function(year, month, day, hour, gregflag) {
@@ -300,13 +299,13 @@ swe_set_delta_t_userdef <- function(delta_t) {
 }
 
 #' Determine DeltaT
-#' @param ephe_flag  the epheemris flag (one of SEFLG_SWIEPH=2, SEFLG_JPLEPH=1, SEFLG_MOSEPH=4)
-#' @return \code{swe_deltat_ex} returns a list with named entries: \code{return} for return value
-#'          and \code{serr} for error message.
+#' @param ephe_flag  the ephemeris flag (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4)
+#' @return \code{swe_deltat_ex} returns a list with named entries: \code{deltat} for DeltaT as double (sec)
+#'          and \code{serr} for error message as string.
 #' @rdname expert-interface
 #' @export
-swe_deltat_ex <- function(tjd, ephe_flag) {
-    .Call(`_swephR_deltat_ex`, tjd, ephe_flag)
+swe_deltat_ex <- function(jd, ephe_flag) {
+    .Call(`_swephR_deltat_ex`, jd, ephe_flag)
 }
 
 #' Close Swiss Ephemeris files
