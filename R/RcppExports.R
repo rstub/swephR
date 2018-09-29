@@ -257,8 +257,8 @@ swe_set_tid_acc <- function(t_acc) {
 #' Determine the DeltaT at a certain date
 #' @rdname expert-interface
 #' @export
-swe_deltat <- function(jd) {
-    .Call(`_swephR_deltat`, jd)
+swe_deltat <- function(jd_ut) {
+    .Call(`_swephR_deltat`, jd_ut)
 }
 
 #' Set the directory for the sefstars.txt, swe_deltat.txt and jpl files
@@ -293,8 +293,8 @@ swe_set_delta_t_userdef <- function(delta_t) {
 #'          and \code{serr} for error message as string.
 #' @rdname expert-interface
 #' @export
-swe_deltat_ex <- function(jd, ephe_flag) {
-    .Call(`_swephR_deltat_ex`, jd, ephe_flag)
+swe_deltat_ex <- function(jd_ut, ephe_flag) {
+    .Call(`_swephR_deltat_ex`, jd_ut, ephe_flag)
 }
 
 #' Close Swiss Ephemeris files

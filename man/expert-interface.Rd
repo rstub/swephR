@@ -22,7 +22,7 @@ swe_version()
 
 swe_set_tid_acc(t_acc)
 
-swe_deltat(jd)
+swe_deltat(jd_ut)
 
 swe_set_ephe_path(path)
 
@@ -30,7 +30,7 @@ swe_julday(year, month, day, hour, gregflag)
 
 swe_set_delta_t_userdef(delta_t)
 
-swe_deltat_ex(jd, ephe_flag)
+swe_deltat_ex(jd_ut, ephe_flag)
 
 swe_close()
 }
