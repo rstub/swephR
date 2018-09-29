@@ -117,7 +117,7 @@ void set_delta_t_userdef (double delta_t) {
 }
 
 //' Determine DeltaT
-//' @param ephe_flag  the ephemeris flag (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4)
+//' @param ephe_flag  ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4)
 //' @return \code{swe_deltat_ex} returns a list with named entries: \code{deltat} for DeltaT as double (sec)
 //'          and \code{serr} for error message as string.
 //' @rdname expert-interface

@@ -7,7 +7,7 @@
 \alias{swe_calc_ut}
 \alias{swe_fixstar2}
 \alias{swe_fixstar2_ut}
-\title{Calculation of planets and stars}
+\title{Calculation magnitude of star}
 \usage{
 swe_fixstar2_mag(star)
 
@@ -22,27 +22,15 @@ swe_fixstar2(star, tjd_et, iflag)
 swe_fixstar2_ut(star, tjd_ut, iflag)
 }
 \arguments{
-\item{star}{star name
-Compute the magnitude of star}
+\item{geolon}{geographic longitude as double (deg)}
 
-\item{geolon}{Topocentric Longitude (deg)}
+\item{geolat}{geographic latitude as double (deg)}
 
-\item{geolat}{Topocentric Latitude (deg)}
-
-\item{altitude}{the height (m)}
-
-\item{tjd_et}{Julian day, Ephemeris time}
-
-\item{ipl}{body/planet number (-1 for no planet possible with \code{swe_rise_trans_true_hor})}
-
-\item{iflag}{a 32 bit integer containing bit flags that indicate what
-kind of computation is wanted}
-
-\item{tjd_ut}{Julian day, UT time}
+\item{altitude}{height as double (m)}
 }
 \value{
-\code{swe_fixstar2_mag} returns a list with named entries \code{return},
-        \code{star} updated star name, \code{mag} magnitude of star, and \code{serr} for error message.
+\code{swe_fixstar2_mag} returns a list with named entries \code{return} status flag as interger,
+        \code{star} updated star name as string, \code{mag} magnitude of star as double, and \code{serr} for error message as string.
 
 \code{swe_calc} returns a list with named entries \code{rc},
         \code{xx} updated planet name, and \code{serr} error message.
@@ -57,9 +45,9 @@ kind of computation is wanted}
         \code{star} updated star name, \code{xx}, and \code{serr} error message.
 }
 \description{
-Calculation of planets and stars
+Calculation magnitude of star
 
-Set the topocentric location (lon, lat, height)
+Set the geographic location
 
 Compute information of planet (ET)
 

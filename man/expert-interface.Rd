@@ -53,7 +53,7 @@ swe_close()
 
 \item{delta_t}{DeltaT (sec)}
 
-\item{ephe_flag}{the ephemeris flag (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4)}
+\item{ephe_flag}{ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4)}
 }
 \value{
 \code{swe_day_of_week} retruns the day of week as integer vector (0 Monday .. 6 Sunday)
