@@ -22,7 +22,6 @@ test_that("deltat can be retrieved", {
     if (requireNamespace("swephRdata", quietly = TRUE))
         expect_equal(swe_deltat(1234.567), 1.5976757, tolerance = .0000001)
     else
-      print(swe_deltat(1234.567))
         expect_equal(swe_deltat(1234.567), 1.58738640540236, tolerance = .0000001)
 })
 
