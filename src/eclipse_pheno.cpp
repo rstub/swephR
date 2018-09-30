@@ -20,10 +20,10 @@
 #include <swephexp.h>
 
 //' @title Expert interface: Eclipses and planetary phenomena
-//' @param jd_et  Julian day number as double (ET)
+//' @param jd_et  ET Julian day number as double (day)
 //' @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
 //' @param starname  star name as string ("" for no star)
-//' @param jd_ut  Julian day number (UT)
+//' @param jd_ut  UT Julian day number (day)
 //' @param calc_flag flag as interger: reference system (e.g.: SEFLG_EQUATORIAL	2048 or ecliptic) or refraction direction (SE_TRUE_TO_APP=0, SE_APP_TO_TRUE=1)
 //' @param atpress atmospheric pressure as double (hPa)
 //' @param attemp atmospheric temperature as double (Celsius)
@@ -246,7 +246,7 @@ Rcpp::List heliacal_angle(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericV
                             Rcpp::Named("serr") = std::string(serr.begin()));
 }
 //' Compute the heliacale event of celestial object
-//' @param jdstart  Julian day number as double (UT)
+//' @param jd_utstart  UT Julian day number as double (day)
 //' @param dgeo Geographic position as numeric vector
 //' @param datm Atmospheric conditions as numeric vector
 //' @param dobs Observer description as numeric vector
@@ -258,13 +258,13 @@ Rcpp::List heliacal_angle(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericV
 //' @rdname eclipse_pheno
 //' @export
 // [[Rcpp::export(swe_heliacal_ut)]]
-Rcpp::List heliacal_ut(double jdstart, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int event_type, int helflag) {
+Rcpp::List heliacal_ut(double jd_utstart, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int event_type, int helflag) {
   if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
   if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
   if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
   std::array<double, 50> dret{0.0};
   std::array<char, 256> serr{'\0'};
-  int rtn = swe_heliacal_ut(jdstart, dgeo.begin(),datm.begin(),dobs.begin(),&objectname[0],event_type,helflag, dret.begin(), serr.begin());
+  int rtn = swe_heliacal_ut(jd_utstart, dgeo.begin(),datm.begin(),dobs.begin(),&objectname[0],event_type,helflag, dret.begin(), serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = rtn,
 			    Rcpp::Named("dret") = dret,
                             Rcpp::Named("serr") = std::string(serr.begin()));

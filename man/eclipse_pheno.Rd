@@ -64,7 +64,7 @@ swe_refrac_extended(InAlt, geoheight, atpress, attemp, lapse_rate,
 
 \item{ifltype}{eclipse tper as interger (e.g.: SE_ECL_CENTRAL=1,SE_ECL_NONCENTRAL=2,SE_ECL_TOTAL=4,SE_ECL_ANNULAR=8,SE_ECL_PARTIAL=16,SE_ECL_ANNULAR_TOTAL=32)}
 
-\item{jd_ut}{Julian day number (UT)}
+\item{jd_ut}{UT Julian day number (day)}
 
 \item{ipl}{body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)}
 
@@ -82,7 +82,7 @@ swe_refrac_extended(InAlt, geoheight, atpress, attemp, lapse_rate,
 
 \item{xin}{position of body as numeric vector (either ecliptical or equatorial coordinates, depending on calc_flag)}
 
-\item{jd_et}{Julian day number as double (ET)}
+\item{jd_et}{ET Julian day number as double (day)}
 
 \item{dgeo}{Geographic position as numeric vector}
 
