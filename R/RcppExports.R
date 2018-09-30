@@ -39,7 +39,7 @@ swe_set_topo <- function(geolon, geolat, altitude) {
 #' @title Expert interface: Eclipses and planetary phenomena
 #' @param jd_et  ET Julian day number as double (day)
 #' @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
-#' @param starname  star name as string ("" for no star)
+#' @param star  star name as string ("" for no star)
 #' @param jd_ut  UT Julian day number (day)
 #' @param calc_flag flag as interger: reference system (e.g.: SEFLG_EQUATORIAL	2048 or ecliptic) or refraction direction (SE_TRUE_TO_APP=0, SE_APP_TO_TRUE=1)
 #' @param atpress atmospheric pressure as double (hPa)
@@ -98,8 +98,8 @@ swe_lun_eclipse_when <- function(jd_start, ephe_flag, ifltype, backward) {
 #' Compute the rise and set location of the object
 #' @rdname eclipse_pheno
 #' @export
-swe_rise_trans_true_hor <- function(jd_ut, ipl, starname, ephe_flag, rsmi, geopos, atpress, attemp, horhgt) {
-    .Call(`_swephR_rise_trans_true_hor`, jd_ut, ipl, starname, ephe_flag, rsmi, geopos, atpress, attemp, horhgt)
+swe_rise_trans_true_hor <- function(jd_ut, ipl, star, ephe_flag, rsmi, geopos, atpress, attemp, horhgt) {
+    .Call(`_swephR_rise_trans_true_hor`, jd_ut, ipl, star, ephe_flag, rsmi, geopos, atpress, attemp, horhgt)
 }
 
 #' Compute horizon information: azimuth, altiiude
@@ -174,7 +174,7 @@ swe_heliacal_angle <- function(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS
 }
 
 #' Compute the heliacale event of celestial object
-#' @param jdstart  Julian day number as double (UT)
+#' @param jd_utstart  UT Julian day number as double (day)
 #' @param dgeo Geographic position as numeric vector
 #' @param datm Atmospheric conditions as numeric vector
 #' @param dobs Observer description as numeric vector
@@ -185,8 +185,8 @@ swe_heliacal_angle <- function(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS
 #'         \code{dret} heliacal results as numeric vector, and \code{serr} error message as string.
 #' @rdname eclipse_pheno
 #' @export
-swe_heliacal_ut <- function(jdstart, dgeo, datm, dobs, objectname, event_type, helflag) {
-    .Call(`_swephR_heliacal_ut`, jdstart, dgeo, datm, dobs, objectname, event_type, helflag)
+swe_heliacal_ut <- function(jd_utstart, dgeo, datm, dobs, objectname, event_type, helflag) {
+    .Call(`_swephR_heliacal_ut`, jd_utstart, dgeo, datm, dobs, objectname, event_type, helflag)
 }
 
 #' Compute the limiting visibiliy magnitude

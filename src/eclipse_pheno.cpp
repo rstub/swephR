@@ -22,7 +22,7 @@
 //' @title Expert interface: Eclipses and planetary phenomena
 //' @param jd_et  ET Julian day number as double (day)
 //' @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
-//' @param starname  star name as string ("" for no star)
+//' @param star  star name as string ("" for no star)
 //' @param jd_ut  UT Julian day number (day)
 //' @param calc_flag flag as interger: reference system (e.g.: SEFLG_EQUATORIAL	2048 or ecliptic) or refraction direction (SE_TRUE_TO_APP=0, SE_APP_TO_TRUE=1)
 //' @param atpress atmospheric pressure as double (hPa)
@@ -115,12 +115,12 @@ Rcpp::List lun_eclipse_when(double jd_start, int ephe_flag, int ifltype, bool ba
 //' @rdname eclipse_pheno
 //' @export
 // [[Rcpp::export(swe_rise_trans_true_hor)]]
-Rcpp::List rise_trans_true_hor(double jd_ut, int ipl, std::string starname, int ephe_flag, int rsmi,Rcpp::NumericVector geopos, double atpress, double attemp, double horhgt) {
+Rcpp::List rise_trans_true_hor(double jd_ut, int ipl, std::string star, int ephe_flag, int rsmi,Rcpp::NumericVector geopos, double atpress, double attemp, double horhgt) {
   if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
   std::array<char, 256> serr{'\0'};
   double tret;
-  starname.resize(41);
-  int i = swe_rise_trans_true_hor(jd_ut, ipl, &starname[0], ephe_flag, rsmi, geopos.begin(), atpress, attemp, horhgt, &tret, serr.begin());
+  star.resize(41);
+  int i = swe_rise_trans_true_hor(jd_ut, ipl, &star[0], ephe_flag, rsmi, geopos.begin(), atpress, attemp, horhgt, &tret, serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = i,
                             Rcpp::Named("tret") = tret,
                             Rcpp::Named("serr") = std::string(serr.begin()));

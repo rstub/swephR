@@ -26,8 +26,8 @@ swe_lun_eclipse_how(jd_start, ephe_flag, geopos)
 
 swe_lun_eclipse_when(jd_start, ephe_flag, ifltype, backward)
 
-swe_rise_trans_true_hor(jd_ut, ipl, starname, ephe_flag, rsmi, geopos,
-  atpress, attemp, horhgt)
+swe_rise_trans_true_hor(jd_ut, ipl, star, ephe_flag, rsmi, geopos, atpress,
+  attemp, horhgt)
 
 swe_azalt(jd_ut, calc_flag, geopos, atpress, attemp, xin)
 
@@ -46,7 +46,8 @@ swe_topo_arcus_visionis(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AltO,
 swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
   AltM)
 
-swe_heliacal_ut(jdstart, dgeo, datm, dobs, objectname, event_type, helflag)
+swe_heliacal_ut(jd_utstart, dgeo, datm, dobs, objectname, event_type,
+  helflag)
 
 swe_vis_limit_mag(jd_ut, dgeo, datm, dobs, objectname, helflag)
 
@@ -68,7 +69,7 @@ swe_refrac_extended(InAlt, geoheight, atpress, attemp, lapse_rate,
 
 \item{ipl}{body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)}
 
-\item{starname}{star name as string ("" for no star)}
+\item{star}{star name as string ("" for no star)}
 
 \item{rsmi}{event flag as integer (e.g.: SE_CALC_RISE=1, SE_CALC_SET=2,SE_CALC_MTRANSIT=4,SE_CALC_ITRANSIT=8)}
 
@@ -108,7 +109,7 @@ swe_refrac_extended(InAlt, geoheight, atpress, attemp, lapse_rate,
 
 \item{AltM}{Moon's altitude as double (deg)}
 
-\item{jdstart}{Julian day number as double (UT)}
+\item{jd_utstart}{UT Julian day number as double (day)}
 
 \item{InAlt}{object's apparent/topocentric altitude as double (depending on calc_flag) (deg)}
 
