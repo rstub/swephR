@@ -37,10 +37,10 @@ swe_set_topo <- function(geolon, geolat, altitude) {
 }
 
 #' @title Expert interface: Eclipses and planetary phenomena
-#' @param jd_et  Julian day number as double (ET)
+#' @param jd_et  ET Julian day number as double (day)
 #' @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
 #' @param starname  star name as string ("" for no star)
-#' @param jd_ut  Julian day number (UT)
+#' @param jd_ut  UT Julian day number (day)
 #' @param calc_flag flag as interger: reference system (e.g.: SEFLG_EQUATORIAL	2048 or ecliptic) or refraction direction (SE_TRUE_TO_APP=0, SE_APP_TO_TRUE=1)
 #' @param atpress atmospheric pressure as double (hPa)
 #' @param attemp atmospheric temperature as double (Celsius)
@@ -215,7 +215,7 @@ swe_refrac_extended <- function(InAlt, geoheight, atpress, attemp, lapse_rate, c
 #' @description For experts that are familiar with the C API of the underlying
 #'   \code{libswe}, an expert interface that mimicks that interface as closely
 #'   as possbile is provided.
-#' @param jd  Julian day number as numeric vector
+#' @param jd  Julian day number as numeric vector (day)
 #' @param t_acc tidal acceleration as double (arcsec/century^2)
 #' @param path  directory as string, where the ephemeris files are stored
 #' @param delta_t DeltaT (day)

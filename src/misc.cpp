@@ -24,7 +24,7 @@
 //' @description For experts that are familiar with the C API of the underlying
 //'   \code{libswe}, an expert interface that mimicks that interface as closely
 //'   as possbile is provided.
-//' @param jd  Julian day number as numeric vector
+//' @param jd  Julian day number as numeric vector (day)
 //' @param t_acc tidal acceleration as double (arcsec/century^2)
 //' @param path  directory as string, where the ephemeris files are stored
 //' @param delta_t DeltaT (day)
