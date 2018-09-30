@@ -21,7 +21,7 @@
 
 //it seems the below can't be added by using ' after the two /
 // @title  Expert interface: Planet and star phenomena
-// @param iflag flag as interger, many options possible
+// @param iflag flag as interger, many options possible (section 2.3)
 // @param jd_et  ET Julian day number as double (day)
 // @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
 // @param star  star name as string ("" for no star)
@@ -185,3 +185,7 @@ Rcpp::List fixstar2_mag(Rcpp::CharacterVector star) {
 void set_topo(double geolon, double geolat, double altitude) {
   swe_set_topo(geolon, geolat, altitude);
 }
+
+// to be added in future:
+// swe_get_planet_name()
+// Kepler elements (section 5)
