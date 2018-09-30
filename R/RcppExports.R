@@ -62,6 +62,7 @@ swe_sol_eclipse_when_loc <- function(jd_start, ephe_flag, geopos, backward) {
 }
 
 #' Compute lunar eclipse at location
+#' @description swe_lun_eclipse_when_loc: This function determines the moment a lunar eclipse event happens.
 #' @param geopos The position numeric vector (longitude, latitude, height)
 #' @param backward backwards search as boolean (TRUE)
 #' @return \code{swe_lun_eclipse_when_loc} returns a list with named entries:
@@ -288,7 +289,7 @@ swe_set_delta_t_userdef <- function(delta_t) {
 }
 
 #' Determine DeltaT
-#' @param ephe_flag  ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4)
+#' @param ephe_flag  ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4) (section 2.3.2)
 #' @return \code{swe_deltat_ex} returns a list with named entries: \code{deltat} for DeltaT as double (day)
 #'          and \code{serr} for error message as string.
 #' @rdname expert-interface
