@@ -173,33 +173,5 @@ swe_refrac_extended(InAlt, geoheight, atpress, attemp, lapse_rate,
      \code{dret} refraction results as nemeric vector (TopoAlt, AppAlt, refraction)
 }
 \description{
-Expert interface: Eclipses and planetary phenomena
-
-Compute lunar eclipse at location
-
-Computes the attributes of a lunar eclipse at a given time
-
-Search a lunar eclipse on earth
-
-Compute the rise and set location of the object
-
-Compute horizon information: azimuth, altiiude
-
-Compute equatorial/ecliptical information
-
-Provide phenomom information of celestial body (UT)
-
-Provide phenomom information of celestial body (ET)
-
-Compute heliacal phenomena
-
-Compute topocentric arcus visionis
-
-Compute heliacal angle
-
-Compute the heliacale event of celestial object
-
-Compute the limiting visibiliy magnitude
-
-Compute the refraction
+swe_lun_eclipse_when_loc: This function determines the moment a lunar eclipse event happens.
 }

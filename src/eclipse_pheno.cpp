@@ -54,6 +54,7 @@ Rcpp::List sol_eclipse_when_loc(double jd_start, int ephe_flag, Rcpp::NumericVec
 }
 
 //' Compute lunar eclipse at location
+//' @description swe_lun_eclipse_when_loc: This function determines the moment a lunar eclipse event happens.
 //' @param geopos The position numeric vector (longitude, latitude, height)
 //' @param backward backwards search as boolean (TRUE)
 //' @return \code{swe_lun_eclipse_when_loc} returns a list with named entries:
@@ -303,3 +304,13 @@ Rcpp::List refrac_extended(double InAlt, double geoheight, double atpress, doubl
   return Rcpp::List::create(Rcpp::Named("return") = i,
                             Rcpp::Named("dret") = dret);
 }
+
+// to be added in future:
+// swe_sol_eclipse_when_glob( tjd...) finds the next eclipse globally.
+// swe_sol_eclipse_where() computes the geographic location of a solar eclipse for a given tjd. 
+// swe_sol_eclipse_how() computes attributes of a solar eclipse for a given tjd, geographic longitude, latitude and height.
+
+// swe_lun_occult_when_loc( tjd...) finds the next occultation for a body and a given geographic position.
+// swe_lun_occult_when_glob( tjd...) finds the next occultation of a given body globally.
+// swe_lun_occult_where() computes the geographic location of an occultation for a given tjd. 
+
