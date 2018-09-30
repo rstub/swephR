@@ -136,21 +136,21 @@ BEGIN_RCPP
 END_RCPP
 }
 // rise_trans_true_hor
-Rcpp::List rise_trans_true_hor(double jd_ut, int ipl, std::string starname, int ephe_flag, int rsmi, Rcpp::NumericVector geopos, double atpress, double attemp, double horhgt);
-RcppExport SEXP _swephR_rise_trans_true_hor(SEXP jd_utSEXP, SEXP iplSEXP, SEXP starnameSEXP, SEXP ephe_flagSEXP, SEXP rsmiSEXP, SEXP geoposSEXP, SEXP atpressSEXP, SEXP attempSEXP, SEXP horhgtSEXP) {
+Rcpp::List rise_trans_true_hor(double jd_ut, int ipl, std::string star, int ephe_flag, int rsmi, Rcpp::NumericVector geopos, double atpress, double attemp, double horhgt);
+RcppExport SEXP _swephR_rise_trans_true_hor(SEXP jd_utSEXP, SEXP iplSEXP, SEXP starSEXP, SEXP ephe_flagSEXP, SEXP rsmiSEXP, SEXP geoposSEXP, SEXP atpressSEXP, SEXP attempSEXP, SEXP horhgtSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< double >::type jd_ut(jd_utSEXP);
     Rcpp::traits::input_parameter< int >::type ipl(iplSEXP);
-    Rcpp::traits::input_parameter< std::string >::type starname(starnameSEXP);
+    Rcpp::traits::input_parameter< std::string >::type star(starSEXP);
     Rcpp::traits::input_parameter< int >::type ephe_flag(ephe_flagSEXP);
     Rcpp::traits::input_parameter< int >::type rsmi(rsmiSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type geopos(geoposSEXP);
     Rcpp::traits::input_parameter< double >::type atpress(atpressSEXP);
     Rcpp::traits::input_parameter< double >::type attemp(attempSEXP);
     Rcpp::traits::input_parameter< double >::type horhgt(horhgtSEXP);
-    rcpp_result_gen = Rcpp::wrap(rise_trans_true_hor(jd_ut, ipl, starname, ephe_flag, rsmi, geopos, atpress, attemp, horhgt));
+    rcpp_result_gen = Rcpp::wrap(rise_trans_true_hor(jd_ut, ipl, star, ephe_flag, rsmi, geopos, atpress, attemp, horhgt));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -269,19 +269,19 @@ BEGIN_RCPP
 END_RCPP
 }
 // heliacal_ut
-Rcpp::List heliacal_ut(double jdstart, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs, std::string objectname, int event_type, int helflag);
-RcppExport SEXP _swephR_heliacal_ut(SEXP jdstartSEXP, SEXP dgeoSEXP, SEXP datmSEXP, SEXP dobsSEXP, SEXP objectnameSEXP, SEXP event_typeSEXP, SEXP helflagSEXP) {
+Rcpp::List heliacal_ut(double jd_utstart, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs, std::string objectname, int event_type, int helflag);
+RcppExport SEXP _swephR_heliacal_ut(SEXP jd_utstartSEXP, SEXP dgeoSEXP, SEXP datmSEXP, SEXP dobsSEXP, SEXP objectnameSEXP, SEXP event_typeSEXP, SEXP helflagSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type jdstart(jdstartSEXP);
+    Rcpp::traits::input_parameter< double >::type jd_utstart(jd_utstartSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type dgeo(dgeoSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type datm(datmSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type dobs(dobsSEXP);
     Rcpp::traits::input_parameter< std::string >::type objectname(objectnameSEXP);
     Rcpp::traits::input_parameter< int >::type event_type(event_typeSEXP);
     Rcpp::traits::input_parameter< int >::type helflag(helflagSEXP);
-    rcpp_result_gen = Rcpp::wrap(heliacal_ut(jdstart, dgeo, datm, dobs, objectname, event_type, helflag));
+    rcpp_result_gen = Rcpp::wrap(heliacal_ut(jd_utstart, dgeo, datm, dobs, objectname, event_type, helflag));
     return rcpp_result_gen;
 END_RCPP
 }
