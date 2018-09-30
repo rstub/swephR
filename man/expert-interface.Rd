@@ -35,7 +35,7 @@ swe_deltat_ex(jd_ut, ephe_flag)
 swe_close()
 }
 \arguments{
-\item{jd}{Julian day number as numeric vector}
+\item{jd}{Julian day number as numeric vector (day)}
 
 \item{t_acc}{tidal acceleration as double (arcsec/century^2)}
 
