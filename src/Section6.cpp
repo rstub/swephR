@@ -19,7 +19,7 @@
 #include <array>
 #include <swephexp.h>
 
-//' @title Expert interface: Eclipses and planetary phenomena
+//' @title Section 6: Eclipses, Risings, Settings, Meridian Transits, Planetary Phenomena
 //' @param jd_et  ET Julian day number as double (day)
 //' @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
 //' @param star  star name as string ("" for no star)

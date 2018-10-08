@@ -19,14 +19,6 @@
 #include <array>
 #include "swephapi.h"
 
-//' @title Expert interface: miscellanious functions
-//'
-//' @description For experts that are familiar with the C API of the underlying
-//'   \code{libswe}, an expert interface that mimicks that interface as closely
-//'   as possbile is provided.
-//' @param path  directory as string, where the ephemeris files are stored
-//' @return \code{swe_version} returns the Swiss Ephemeris version number as string
-//' @name expert-interface
 
 
 //' Set the directory for the sefstars.txt, swe_deltat.txt and jpl files

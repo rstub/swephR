@@ -6,7 +6,7 @@
 \alias{swe_set_tid_acc}
 \alias{swe_get_tid_acc}
 \alias{swe_set_delta_t_userdef}
-\title{Determine DeltaT}
+\title{Section 8: Delta T-related functions}
 \usage{
 swe_deltat_ex(jd_ut, ephe_flag)
 
@@ -19,14 +19,24 @@ swe_get_tid_acc()
 swe_set_delta_t_userdef(delta_t)
 }
 \arguments{
+\item{jd_ut}{Julian day number (UT) as numeric vector (day)}
+
 \item{ephe_flag}{ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4) (section 2.3.2)}
+
+\item{t_acc}{tidal acceleration as double (arcsec/century^2)}
+
+\item{delta_t}{DeltaT (day)}
 }
 \value{
+\code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
+
+\code{swe_deltat} returns the DeltaT as double (day)
+
 \code{swe_deltat_ex} returns a list with named entries: \code{deltat} for DeltaT as double (day)
          and \code{serr} for error message as string.
 }
 \description{
-Determine DeltaT
+Section 8: Delta T-related functions
 
 Determine the DeltaT at a certain date
 
