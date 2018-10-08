@@ -2,58 +2,15 @@
 % Please edit documentation in R/RcppExports.R
 \name{expert-interface}
 \alias{expert-interface}
-\alias{swe_version}
-\alias{swe_set_ephe_path}
-\alias{swe_close}
-\alias{swe_day_of_week}
-\alias{swe_julday}
-\alias{swe_get_tid_acc}
-\alias{swe_set_tid_acc}
-\alias{swe_deltat}
-\alias{swe_set_delta_t_userdef}
-\alias{swe_deltat_ex}
 \title{Expert interface: miscellanious functions}
-\usage{
-swe_version()
-
-swe_set_ephe_path(path)
-
-swe_close()
-
-swe_day_of_week(jd)
-
-swe_julday(year, month, day, hour, gregflag)
-
-swe_get_tid_acc()
-
-swe_set_tid_acc(t_acc)
-
-swe_deltat(jd_ut)
-
-swe_set_delta_t_userdef(delta_t)
-
-swe_deltat_ex(jd_ut, ephe_flag)
-}
 \arguments{
-\item{path}{directory as string, where the ephemeris files are stored}
-
 \item{jd}{Julian day number as numeric vector (day)}
-
-\item{year}{Year as interger}
-
-\item{month}{Month as interger}
-
-\item{day}{Day as interger}
-
-\item{hour}{Hour as double}
-
-\item{gregflag}{calendar type (SE_JUL_CAL=0 or SE_GREG_CAL=1)}
 
 \item{t_acc}{tidal acceleration as double (arcsec/century^2)}
 
-\item{delta_t}{DeltaT (day)}
+\item{path}{directory as string, where the ephemeris files are stored}
 
-\item{ephe_flag}{ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4) (section 2.3.2)}
+\item{delta_t}{DeltaT (day)}
 
 \item{jd}{Julian day number as numeric vector (day)}
 
@@ -111,9 +68,6 @@ swe_deltat_ex(jd_ut, ephe_flag)
 \code{swe_version} returns the Swiss Ephemeris version number as string
 
 \code{swe_deltat} returns the DeltaT as double (day)
-
-\code{swe_deltat_ex} returns a list with named entries: \code{deltat} for DeltaT as double (day)
-         and \code{serr} for error message as string.
 }
 \description{
 For experts that are familiar with the C API of the underlying
