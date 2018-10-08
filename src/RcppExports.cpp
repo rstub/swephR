@@ -5,6 +5,46 @@
 
 using namespace Rcpp;
 
+// version
+std::string version();
+RcppExport SEXP _swephR_version() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(version());
+    return rcpp_result_gen;
+END_RCPP
+}
+// set_ephe_path
+void set_ephe_path(Rcpp::Nullable<Rcpp::CharacterVector> path);
+RcppExport SEXP _swephR_set_ephe_path(SEXP pathSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::Nullable<Rcpp::CharacterVector> >::type path(pathSEXP);
+    set_ephe_path(path);
+    return R_NilValue;
+END_RCPP
+}
+// close
+void close();
+RcppExport SEXP _swephR_close() {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    close();
+    return R_NilValue;
+END_RCPP
+}
+// day_of_week
+Rcpp::IntegerVector day_of_week(Rcpp::NumericVector jd);
+RcppExport SEXP _swephR_day_of_week(SEXP jdSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type jd(jdSEXP);
+    rcpp_result_gen = Rcpp::wrap(day_of_week(jd));
+    return rcpp_result_gen;
+END_RCPP
+}
 // calc_ut
 Rcpp::List calc_ut(Rcpp::NumericVector jd_ut, Rcpp::IntegerVector ipl, int iflag);
 RcppExport SEXP _swephR_calc_ut(SEXP jd_utSEXP, SEXP iplSEXP, SEXP iflagSEXP) {
@@ -32,52 +72,40 @@ BEGIN_RCPP
 END_RCPP
 }
 // fixstar2_ut
-Rcpp::List fixstar2_ut(Rcpp::CharacterVector star, Rcpp::NumericVector jd_ut, int iflag);
-RcppExport SEXP _swephR_fixstar2_ut(SEXP starSEXP, SEXP jd_utSEXP, SEXP iflagSEXP) {
+Rcpp::List fixstar2_ut(Rcpp::CharacterVector starname, Rcpp::NumericVector jd_ut, int iflag);
+RcppExport SEXP _swephR_fixstar2_ut(SEXP starnameSEXP, SEXP jd_utSEXP, SEXP iflagSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type star(starSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type starname(starnameSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type jd_ut(jd_utSEXP);
     Rcpp::traits::input_parameter< int >::type iflag(iflagSEXP);
-    rcpp_result_gen = Rcpp::wrap(fixstar2_ut(star, jd_ut, iflag));
+    rcpp_result_gen = Rcpp::wrap(fixstar2_ut(starname, jd_ut, iflag));
     return rcpp_result_gen;
 END_RCPP
 }
 // fixstar2
-Rcpp::List fixstar2(Rcpp::CharacterVector star, Rcpp::NumericVector jd_et, int iflag);
-RcppExport SEXP _swephR_fixstar2(SEXP starSEXP, SEXP jd_etSEXP, SEXP iflagSEXP) {
+Rcpp::List fixstar2(Rcpp::CharacterVector starname, Rcpp::NumericVector jd_et, int iflag);
+RcppExport SEXP _swephR_fixstar2(SEXP starnameSEXP, SEXP jd_etSEXP, SEXP iflagSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type star(starSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type starname(starnameSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type jd_et(jd_etSEXP);
     Rcpp::traits::input_parameter< int >::type iflag(iflagSEXP);
-    rcpp_result_gen = Rcpp::wrap(fixstar2(star, jd_et, iflag));
+    rcpp_result_gen = Rcpp::wrap(fixstar2(starname, jd_et, iflag));
     return rcpp_result_gen;
 END_RCPP
 }
 // fixstar2_mag
-Rcpp::List fixstar2_mag(Rcpp::CharacterVector star);
-RcppExport SEXP _swephR_fixstar2_mag(SEXP starSEXP) {
+Rcpp::List fixstar2_mag(Rcpp::CharacterVector starname);
+RcppExport SEXP _swephR_fixstar2_mag(SEXP starnameSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type star(starSEXP);
-    rcpp_result_gen = Rcpp::wrap(fixstar2_mag(star));
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type starname(starnameSEXP);
+    rcpp_result_gen = Rcpp::wrap(fixstar2_mag(starname));
     return rcpp_result_gen;
-END_RCPP
-}
-// set_topo
-void set_topo(double geolon, double geolat, double altitude);
-RcppExport SEXP _swephR_set_topo(SEXP geolonSEXP, SEXP geolatSEXP, SEXP altitudeSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type geolon(geolonSEXP);
-    Rcpp::traits::input_parameter< double >::type geolat(geolatSEXP);
-    Rcpp::traits::input_parameter< double >::type altitude(altitudeSEXP);
-    set_topo(geolon, geolat, altitude);
-    return R_NilValue;
 END_RCPP
 }
 // sol_eclipse_when_loc
@@ -317,14 +345,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// day_of_week
-Rcpp::IntegerVector day_of_week(Rcpp::NumericVector jd);
-RcppExport SEXP _swephR_day_of_week(SEXP jdSEXP) {
+// julday
+double julday(int year, int month, int day, double hour, int gregflag);
+RcppExport SEXP _swephR_julday(SEXP yearSEXP, SEXP monthSEXP, SEXP daySEXP, SEXP hourSEXP, SEXP gregflagSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type jd(jdSEXP);
-    rcpp_result_gen = Rcpp::wrap(day_of_week(jd));
+    Rcpp::traits::input_parameter< int >::type year(yearSEXP);
+    Rcpp::traits::input_parameter< int >::type month(monthSEXP);
+    Rcpp::traits::input_parameter< int >::type day(daySEXP);
+    Rcpp::traits::input_parameter< double >::type hour(hourSEXP);
+    Rcpp::traits::input_parameter< int >::type gregflag(gregflagSEXP);
+    rcpp_result_gen = Rcpp::wrap(julday(year, month, day, hour, gregflag));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -335,16 +367,6 @@ BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     rcpp_result_gen = Rcpp::wrap(get_tid_acc());
-    return rcpp_result_gen;
-END_RCPP
-}
-// version
-std::string version();
-RcppExport SEXP _swephR_version() {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(version());
     return rcpp_result_gen;
 END_RCPP
 }
@@ -366,31 +388,6 @@ BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type jd_ut(jd_utSEXP);
     rcpp_result_gen = Rcpp::wrap(deltat(jd_ut));
-    return rcpp_result_gen;
-END_RCPP
-}
-// set_ephe_path
-void set_ephe_path(Rcpp::Nullable<Rcpp::CharacterVector> path);
-RcppExport SEXP _swephR_set_ephe_path(SEXP pathSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::Nullable<Rcpp::CharacterVector> >::type path(pathSEXP);
-    set_ephe_path(path);
-    return R_NilValue;
-END_RCPP
-}
-// julday
-double julday(int year, int month, int day, double hour, int gregflag);
-RcppExport SEXP _swephR_julday(SEXP yearSEXP, SEXP monthSEXP, SEXP daySEXP, SEXP hourSEXP, SEXP gregflagSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< int >::type year(yearSEXP);
-    Rcpp::traits::input_parameter< int >::type month(monthSEXP);
-    Rcpp::traits::input_parameter< int >::type day(daySEXP);
-    Rcpp::traits::input_parameter< double >::type hour(hourSEXP);
-    Rcpp::traits::input_parameter< int >::type gregflag(gregflagSEXP);
-    rcpp_result_gen = Rcpp::wrap(julday(year, month, day, hour, gregflag));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -416,23 +413,29 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// close
-void close();
-RcppExport SEXP _swephR_close() {
+// set_topo
+void set_topo(double geolon, double geolat, double altitude);
+RcppExport SEXP _swephR_set_topo(SEXP geolonSEXP, SEXP geolatSEXP, SEXP altitudeSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    close();
+    Rcpp::traits::input_parameter< double >::type geolon(geolonSEXP);
+    Rcpp::traits::input_parameter< double >::type geolat(geolatSEXP);
+    Rcpp::traits::input_parameter< double >::type altitude(altitudeSEXP);
+    set_topo(geolon, geolat, altitude);
     return R_NilValue;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_swephR_version", (DL_FUNC) &_swephR_version, 0},
+    {"_swephR_set_ephe_path", (DL_FUNC) &_swephR_set_ephe_path, 1},
+    {"_swephR_close", (DL_FUNC) &_swephR_close, 0},
+    {"_swephR_day_of_week", (DL_FUNC) &_swephR_day_of_week, 1},
     {"_swephR_calc_ut", (DL_FUNC) &_swephR_calc_ut, 3},
     {"_swephR_calc", (DL_FUNC) &_swephR_calc, 3},
     {"_swephR_fixstar2_ut", (DL_FUNC) &_swephR_fixstar2_ut, 3},
     {"_swephR_fixstar2", (DL_FUNC) &_swephR_fixstar2, 3},
     {"_swephR_fixstar2_mag", (DL_FUNC) &_swephR_fixstar2_mag, 1},
-    {"_swephR_set_topo", (DL_FUNC) &_swephR_set_topo, 3},
     {"_swephR_sol_eclipse_when_loc", (DL_FUNC) &_swephR_sol_eclipse_when_loc, 4},
     {"_swephR_lun_eclipse_when_loc", (DL_FUNC) &_swephR_lun_eclipse_when_loc, 4},
     {"_swephR_lun_eclipse_how", (DL_FUNC) &_swephR_lun_eclipse_how, 3},
@@ -448,16 +451,13 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_heliacal_ut", (DL_FUNC) &_swephR_heliacal_ut, 7},
     {"_swephR_vis_limit_mag", (DL_FUNC) &_swephR_vis_limit_mag, 6},
     {"_swephR_refrac_extended", (DL_FUNC) &_swephR_refrac_extended, 6},
-    {"_swephR_day_of_week", (DL_FUNC) &_swephR_day_of_week, 1},
+    {"_swephR_julday", (DL_FUNC) &_swephR_julday, 5},
     {"_swephR_get_tid_acc", (DL_FUNC) &_swephR_get_tid_acc, 0},
-    {"_swephR_version", (DL_FUNC) &_swephR_version, 0},
     {"_swephR_set_tid_acc", (DL_FUNC) &_swephR_set_tid_acc, 1},
     {"_swephR_deltat", (DL_FUNC) &_swephR_deltat, 1},
-    {"_swephR_set_ephe_path", (DL_FUNC) &_swephR_set_ephe_path, 1},
-    {"_swephR_julday", (DL_FUNC) &_swephR_julday, 5},
     {"_swephR_set_delta_t_userdef", (DL_FUNC) &_swephR_set_delta_t_userdef, 1},
     {"_swephR_deltat_ex", (DL_FUNC) &_swephR_deltat_ex, 2},
-    {"_swephR_close", (DL_FUNC) &_swephR_close, 0},
+    {"_swephR_set_topo", (DL_FUNC) &_swephR_set_topo, 3},
     {NULL, NULL, 0}
 };
 

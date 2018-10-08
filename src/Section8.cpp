@@ -35,32 +35,12 @@
 //' @name expert-interface
 
 
-//' Compute day of week
-//' @rdname expert-interface
-//' @export
-// [[Rcpp::export(swe_day_of_week)]]
-Rcpp::IntegerVector day_of_week(Rcpp::NumericVector jd) {
-  Rcpp::IntegerVector result(jd.size());
-  std::transform(jd.begin(), jd.end(), result.begin(), swe_day_of_week);
-  return result;
-}
-
 //' Get the present configured tidal acceleration
 //' @rdname expert-interface
 //' @export
 // [[Rcpp::export(swe_get_tid_acc)]]
 double get_tid_acc() {
   return swe_get_tid_acc();
-}
-
-//' Get the Swiss Ephemeris version number
-//' @rdname expert-interface
-//' @export
-// [[Rcpp::export(swe_version)]]
-std::string version() {
-  std::array<char, 256> version{'\0'};
-  swe_version(&version[0]);
-  return std::string(&version[0]);
 }
 
 //' Set the tidal acceleration
@@ -79,33 +59,6 @@ Rcpp::NumericVector deltat(Rcpp::NumericVector jd_ut) {
   Rcpp::NumericVector result(jd_ut.size());
   std::transform(jd_ut.begin(), jd_ut.end(), result.begin(), swe_deltat);
   return result;
-}
-
-//' Set the directory for the sefstars.txt, swe_deltat.txt and jpl files
-//' @rdname expert-interface
-//' @export
-// [[Rcpp::export(swe_set_ephe_path)]]
-void set_ephe_path(Rcpp::Nullable<Rcpp::CharacterVector> path) {
-  if (path.isNotNull()) {
-    swe_set_ephe_path(path.as().at(0));
-  } else {
-    swe_set_ephe_path(NULL);
-  }
-}
-
-//' Determine Julian day number from calendar date
-//' @param year  Year as interger
-//' @param month  Month as interger
-//' @param day  Day as interger
-//' @param hour  Hour as double
-//' @param gregflag  calendar type (SE_JUL_CAL=0 or SE_GREG_CAL=1)
-//' @rdname expert-interface
-//' @export
-// [[Rcpp::export(swe_julday)]]
-double julday(int year, int month, int day, double hour, int gregflag) { 
-    double i;
-    i = swe_julday(year, month, day, hour, gregflag);
-  return i;
 }
 
 //' Set one's own DeltaT
@@ -137,13 +90,3 @@ Rcpp::List deltat_ex(Rcpp::NumericVector jd_ut, int ephe_flag) {
 }
 
 
-//' Close Swiss Ephemeris files
-//' @rdname expert-interface
-//' @export
-// [[Rcpp::export(swe_close)]]
-void close() {
-  swe_close();
-}
-
-// to be added in future:
-// swe_set_jpl_file()

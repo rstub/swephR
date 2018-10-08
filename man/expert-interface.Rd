@@ -2,44 +2,42 @@
 % Please edit documentation in R/RcppExports.R
 \name{expert-interface}
 \alias{expert-interface}
-\alias{swe_day_of_week}
-\alias{swe_get_tid_acc}
 \alias{swe_version}
+\alias{swe_set_ephe_path}
+\alias{swe_close}
+\alias{swe_day_of_week}
+\alias{swe_julday}
+\alias{swe_get_tid_acc}
 \alias{swe_set_tid_acc}
 \alias{swe_deltat}
-\alias{swe_set_ephe_path}
-\alias{swe_julday}
 \alias{swe_set_delta_t_userdef}
 \alias{swe_deltat_ex}
-\alias{swe_close}
 \title{Expert interface: miscellanious functions}
 \usage{
+swe_version()
+
+swe_set_ephe_path(path)
+
+swe_close()
+
 swe_day_of_week(jd)
 
-swe_get_tid_acc()
+swe_julday(year, month, day, hour, gregflag)
 
-swe_version()
+swe_get_tid_acc()
 
 swe_set_tid_acc(t_acc)
 
 swe_deltat(jd_ut)
 
-swe_set_ephe_path(path)
-
-swe_julday(year, month, day, hour, gregflag)
-
 swe_set_delta_t_userdef(delta_t)
 
 swe_deltat_ex(jd_ut, ephe_flag)
-
-swe_close()
 }
 \arguments{
-\item{jd}{Julian day number as numeric vector (day)}
-
-\item{t_acc}{tidal acceleration as double (arcsec/century^2)}
-
 \item{path}{directory as string, where the ephemeris files are stored}
+
+\item{jd}{Julian day number as numeric vector (day)}
 
 \item{year}{Year as interger}
 
@@ -51,11 +49,61 @@ swe_close()
 
 \item{gregflag}{calendar type (SE_JUL_CAL=0 or SE_GREG_CAL=1)}
 
+\item{t_acc}{tidal acceleration as double (arcsec/century^2)}
+
 \item{delta_t}{DeltaT (day)}
 
 \item{ephe_flag}{ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4) (section 2.3.2)}
+
+\item{jd}{Julian day number as numeric vector (day)}
+
+\item{t_acc}{tidal acceleration as double (arcsec/century^2)}
+
+\item{path}{directory as string, where the ephemeris files are stored}
+
+\item{delta_t}{DeltaT (day)}
+
+\item{jd}{Julian day number as numeric vector (day)}
+
+\item{t_acc}{tidal acceleration as double (arcsec/century^2)}
+
+\item{path}{directory as string, where the ephemeris files are stored}
+
+\item{delta_t}{DeltaT (day)}
+
+\item{jd}{Julian day number as numeric vector (day)}
+
+\item{t_acc}{tidal acceleration as double (arcsec/century^2)}
+
+\item{path}{directory as string, where the ephemeris files are stored}
+
+\item{delta_t}{DeltaT (day)}
 }
 \value{
+\code{swe_day_of_week} retruns the day of week as integer vector (0 Monday .. 6 Sunday)
+
+\code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
+
+\code{swe_version} returns the Swiss Ephemeris version number as string
+
+\code{swe_deltat} returns the DeltaT as double (day)
+
+\code{swe_day_of_week} retruns the day of week as integer vector (0 Monday .. 6 Sunday)
+
+\code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
+
+\code{swe_version} returns the Swiss Ephemeris version number as string
+
+\code{swe_deltat} returns the DeltaT as double (day)
+
+\code{swe_day_of_week} retruns the day of week as integer vector (0 Monday .. 6 Sunday)
+
+\code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
+
+\code{swe_version} returns the Swiss Ephemeris version number as string
+
+\code{swe_deltat} returns the DeltaT as double (day)
+
 \code{swe_day_of_week} retruns the day of week as integer vector (0 Monday .. 6 Sunday)
 
 \code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
@@ -68,6 +116,18 @@ swe_close()
          and \code{serr} for error message as string.
 }
 \description{
+For experts that are familiar with the C API of the underlying
+  \code{libswe}, an expert interface that mimicks that interface as closely
+  as possbile is provided.
+
+For experts that are familiar with the C API of the underlying
+  \code{libswe}, an expert interface that mimicks that interface as closely
+  as possbile is provided.
+
+For experts that are familiar with the C API of the underlying
+  \code{libswe}, an expert interface that mimicks that interface as closely
+  as possbile is provided.
+
 For experts that are familiar with the C API of the underlying
   \code{libswe}, an expert interface that mimicks that interface as closely
   as possbile is provided.
