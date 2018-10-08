@@ -41,7 +41,7 @@
 //' @param day  Day as interger
 //' @param hour  Hour as double
 //' @param gregflag  calendar type (SE_JUL_CAL=0 or SE_GREG_CAL=1)
-//' @rdname expert-interface
+//' @rdname Section7
 //' @export
 // [[Rcpp::export(swe_julday)]]
 double julday(int year, int month, int day, double hour, int gregflag) { 

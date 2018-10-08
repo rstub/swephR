@@ -36,7 +36,7 @@
 
 
 //' Get the Swiss Ephemeris version number
-//' @rdname expert-interface
+//' @rdname Section1
 //' @export
 // [[Rcpp::export(swe_version)]]
 std::string version() {
@@ -46,7 +46,7 @@ std::string version() {
 }
 
 //' Set the directory for the sefstars.txt, swe_deltat.txt and jpl files
-//' @rdname expert-interface
+//' @rdname Section1
 //' @export
 // [[Rcpp::export(swe_set_ephe_path)]]
 void set_ephe_path(Rcpp::Nullable<Rcpp::CharacterVector> path) {
@@ -58,7 +58,7 @@ void set_ephe_path(Rcpp::Nullable<Rcpp::CharacterVector> path) {
 }
 
 //' Close Swiss Ephemeris files
-//' @rdname expert-interface
+//' @rdname Section1
 //' @export
 // [[Rcpp::export(swe_close)]]
 void close() {

@@ -36,7 +36,7 @@
 
 
 //' Compute day of week
-//' @rdname expert-interface
+//' @rdname Section16
 //' @export
 // [[Rcpp::export(swe_day_of_week)]]
 Rcpp::IntegerVector day_of_week(Rcpp::NumericVector jd) {

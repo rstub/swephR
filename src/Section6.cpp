@@ -38,7 +38,7 @@
 //' @return \code{swe_sol_eclipse_when_loc} returns a list with named entries: 
 //'      \code{return} status flag as interger, \code{tret} for eclipse timing moments as numeric vector, 
 //'      \code{attr} pheneomena during eclipse as numeric vector and \code{serr} error message as string
-//' @rdname eclipse_pheno
+//' @rdname Section6
 //' @export
 // [[Rcpp::export(swe_sol_eclipse_when_loc)]]
 Rcpp::List sol_eclipse_when_loc(double jd_start, int ephe_flag, Rcpp::NumericVector geopos, bool backward) {
@@ -60,7 +60,7 @@ Rcpp::List sol_eclipse_when_loc(double jd_start, int ephe_flag, Rcpp::NumericVec
 //' @return \code{swe_lun_eclipse_when_loc} returns a list with named entries:
 //'      \code{return} status flag as integer, \code{tret} for eclipse timing moments,
 //'      \code{attr} pheneomena during eclipse and \code{serr} error warning as string
-//' @rdname eclipse_pheno
+//' @rdname Section6
 //' @export
 // [[Rcpp::export(swe_lun_eclipse_when_loc)]]
 Rcpp::List lun_eclipse_when_loc(double jd_start, int ephe_flag, Rcpp::NumericVector geopos, bool backward) {
@@ -80,7 +80,7 @@ Rcpp::List lun_eclipse_when_loc(double jd_start, int ephe_flag, Rcpp::NumericVec
 //' @return \code{swe_lun_eclipse_how} returns a list with named entries:
 //'      \code{return} status flag as integer,
 //'      \code{attr} pheneomena during eclipse as numeric vector and \code{serr} error message as string
-//' @rdname eclipse_pheno
+//' @rdname Section6
 //' @export
 // [[Rcpp::export(swe_lun_eclipse_how)]]
 Rcpp::List lun_eclipse_how(double jd_start, int ephe_flag, Rcpp::NumericVector geopos) {
@@ -100,7 +100,7 @@ Rcpp::List lun_eclipse_how(double jd_start, int ephe_flag, Rcpp::NumericVector g
 //' @return \code{swe_lun_eclipse_when} returns a list with named entries:
 //'      \code{return} status flag as interger, \code{tret} for eclipse timing moments as numeric vector
 //'      and \code{serr} error warning as string
-//' @rdname eclipse_pheno
+//' @rdname Section6
 //' @export
 // [[Rcpp::export(swe_lun_eclipse_when)]]
 Rcpp::List lun_eclipse_when(double jd_start, int ephe_flag, int ifltype, bool backward) {
@@ -113,7 +113,7 @@ Rcpp::List lun_eclipse_when(double jd_start, int ephe_flag, int ifltype, bool ba
 }
 
 //' Compute the rise and set location of the object
-//' @rdname eclipse_pheno
+//' @rdname Section6
 //' @export
 // [[Rcpp::export(swe_rise_trans_true_hor)]]
 Rcpp::List rise_trans_true_hor(double jd_ut, int ipl, std::string star, int ephe_flag, int rsmi,Rcpp::NumericVector geopos, double atpress, double attemp, double horhgt) {
@@ -131,7 +131,7 @@ Rcpp::List rise_trans_true_hor(double jd_ut, int ipl, std::string star, int ephe
 //' Compute horizon information: azimuth, altiiude
 //' @return \code{swe_azalt} returns a list with named entries:
 //'      \code{xaz} for azi/alt info as numeric vector.
-//' @rdname eclipse_pheno
+//' @rdname Section6
 //' @export
 // [[Rcpp::export(swe_azalt)]]
 Rcpp::List azalt(double jd_ut, int calc_flag, Rcpp::NumericVector geopos, double atpress, double attemp, Rcpp::NumericVector xin) {
@@ -144,7 +144,7 @@ Rcpp::List azalt(double jd_ut, int calc_flag, Rcpp::NumericVector geopos, double
 //' Compute equatorial/ecliptical information
 //' @return \code{swe_azalt_rev} returns a list with named entries:
 //'      \code{xaz} for celestial info a snumeric vector.
-//' @rdname eclipse_pheno
+//' @rdname Section6
 //' @export
 // [[Rcpp::export(swe_azalt_rev)]]
 Rcpp::List azalt_rev(double jd_ut, int calc_flag, Rcpp::NumericVector geopos, Rcpp::NumericVector xin) {
@@ -158,7 +158,7 @@ Rcpp::List azalt_rev(double jd_ut, int calc_flag, Rcpp::NumericVector geopos, Rc
 //' @return \code{swe_pheno_ut} returns a list with named entries:
 //'      \code{return} status fag as integer, \code{attr} for phenomenon information as numeric vector
 //'      and \code{serr} error warning as string
-//' @rdname eclipse_pheno
+//' @rdname Section6
 //' @export
 // [[Rcpp::export(swe_pheno_ut)]]
 Rcpp::List pheno_ut(double jd_ut, int ipl, int ephe_flag) {
@@ -175,7 +175,7 @@ Rcpp::List pheno_ut(double jd_ut, int ipl, int ephe_flag) {
 //' @return \code{swe_pheno} returns a list with named entries:
 //'      \code{return} status fag as integer, \code{attr} for phenomenon information as numeric vector
 //'      and \code{serr} error message as string
-//' @rdname eclipse_pheno
+//' @rdname Section6
 //' @export
 // [[Rcpp::export(swe_pheno)]]
 Rcpp::List pheno(double jd_et, int ipl, int ephe_flag) {
@@ -190,7 +190,7 @@ Rcpp::List pheno(double jd_et, int ipl, int ephe_flag) {
 //' Compute heliacal phenomena
 //' @return \code{swe_heliacal_pheno_ut} returns a list with named entries: \code{return} status flag as integer
 //'      \code{darr} for heliacal details as numeric vector and \code{serr} error message as string
-//' @rdname eclipse_pheno
+//' @rdname Section6
 //' @export
 // [[Rcpp::export(swe_heliacal_pheno_ut)]]
 Rcpp::List heliacal_pheno_ut(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int event_type, int helflag ){
@@ -214,7 +214,7 @@ Rcpp::List heliacal_pheno_ut(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::Numer
 //' @param AltM  Moon's altitude as double (deg)
 //' @return \code{swe_topo_arcus_visionis} returns a list with named entries: \code{return} status flag as integer,
 //'      \code{darr} heliacal details as numeric vector and \code{serr} error message as string
-//' @rdname eclipse_pheno
+//' @rdname Section6
 //' @export
 // [[Rcpp::export(swe_topo_arcus_visionis)]]
 Rcpp::List topo_arcus_visionis(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,int helflag,double mag,double AziO, double AltO,double AziS, double AziM, double AltM){
@@ -232,7 +232,7 @@ Rcpp::List topo_arcus_visionis(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::Num
 //' Compute heliacal angle
 //' @return \code{swe_heliacal_angle} returns a list with named entries: \code{return} status flag as integer,
 //'      \code{dret} heliacal angle as numeric vector and \code{serr} error message as string
-//' @rdname eclipse_pheno
+//' @rdname Section6
 //' @export
 // [[Rcpp::export(swe_heliacal_angle)]]
 Rcpp::List heliacal_angle(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,int helflag,double mag,double AziO, double AziS, double AziM, double AltM){
@@ -256,7 +256,7 @@ Rcpp::List heliacal_angle(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericV
 //' @param helflag calcuation flag as integer
 //' @return \code{swe_heliacal_ut} returns a list with named entries \code{return} status flag as integer,
 //'         \code{dret} heliacal results as numeric vector, and \code{serr} error message as string.
-//' @rdname eclipse_pheno
+//' @rdname Section6
 //' @export
 // [[Rcpp::export(swe_heliacal_ut)]]
 Rcpp::List heliacal_ut(double jd_utstart, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int event_type, int helflag) {
@@ -274,7 +274,7 @@ Rcpp::List heliacal_ut(double jd_utstart, Rcpp::NumericVector dgeo, Rcpp::Numeri
 //' Compute the limiting visibiliy magnitude
 //' @return \code{swe_vis_limit_mag} returns a list with named entries: \code{return} status flag as interger,
 //'      \code{dret} limiting magnitude as double and \code{serr} error message as string
-//' @rdname eclipse_pheno
+//' @rdname Section6
 //' @export
 // [[Rcpp::export(swe_vis_limit_mag)]]
 Rcpp::List vis_limit_mag(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int helflag ){
@@ -295,7 +295,7 @@ Rcpp::List vis_limit_mag(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVe
 //' @param lapse_rate  lapse rate as double (K/m)
 //' @return \code{swe_refrac_extended} returns a list with named entries: \code{return} status flag as interger,
 //'      \code{dret} refraction results as nemeric vector (TopoAlt, AppAlt, refraction)
-//' @rdname eclipse_pheno
+//' @rdname Section6
 //' @export
 // [[Rcpp::export(swe_refrac_extended)]]
 Rcpp::List refrac_extended(double InAlt, double geoheight, double atpress, double attemp, double lapse_rate, int calc_flag) {
