@@ -18,21 +18,21 @@
 NULL
 
 #' Get the Swiss Ephemeris version number
-#' @rdname expert-interface
+#' @rdname Section1
 #' @export
 swe_version <- function() {
     .Call(`_swephR_version`)
 }
 
 #' Set the directory for the sefstars.txt, swe_deltat.txt and jpl files
-#' @rdname expert-interface
+#' @rdname Section1
 #' @export
 swe_set_ephe_path <- function(path) {
     invisible(.Call(`_swephR_set_ephe_path`, path))
 }
 
 #' Close Swiss Ephemeris files
-#' @rdname expert-interface
+#' @rdname Section1
 #' @export
 swe_close <- function() {
     invisible(.Call(`_swephR_close`))
@@ -55,7 +55,7 @@ swe_close <- function() {
 NULL
 
 #' Compute day of week
-#' @rdname expert-interface
+#' @rdname Section16
 #' @export
 swe_day_of_week <- function(jd) {
     .Call(`_swephR_day_of_week`, jd)
@@ -80,7 +80,7 @@ fixstar2 <- function(starname, jd_et, iflag) {
 #' Calculation magnitude of star
 #' @return \code{swe_fixstar2_mag} returns a list with named entries \code{return} status flag as interger,
 #'         \code{starname} updated star name as string, \code{mag} magnitude of star as double, and \code{serr} for error message as string.
-#' @rdname calculation
+#' @rdname Section4
 #' @export
 swe_fixstar2_mag <- function(starname) {
     .Call(`_swephR_fixstar2_mag`, starname)
@@ -105,7 +105,7 @@ swe_fixstar2_mag <- function(starname) {
 #' @return \code{swe_sol_eclipse_when_loc} returns a list with named entries: 
 #'      \code{return} status flag as interger, \code{tret} for eclipse timing moments as numeric vector, 
 #'      \code{attr} pheneomena during eclipse as numeric vector and \code{serr} error message as string
-#' @rdname eclipse_pheno
+#' @rdname Section6
 #' @export
 swe_sol_eclipse_when_loc <- function(jd_start, ephe_flag, geopos, backward) {
     .Call(`_swephR_sol_eclipse_when_loc`, jd_start, ephe_flag, geopos, backward)
@@ -118,7 +118,7 @@ swe_sol_eclipse_when_loc <- function(jd_start, ephe_flag, geopos, backward) {
 #' @return \code{swe_lun_eclipse_when_loc} returns a list with named entries:
 #'      \code{return} status flag as integer, \code{tret} for eclipse timing moments,
 #'      \code{attr} pheneomena during eclipse and \code{serr} error warning as string
-#' @rdname eclipse_pheno
+#' @rdname Section6
 #' @export
 swe_lun_eclipse_when_loc <- function(jd_start, ephe_flag, geopos, backward) {
     .Call(`_swephR_lun_eclipse_when_loc`, jd_start, ephe_flag, geopos, backward)
@@ -129,7 +129,7 @@ swe_lun_eclipse_when_loc <- function(jd_start, ephe_flag, geopos, backward) {
 #' @return \code{swe_lun_eclipse_how} returns a list with named entries:
 #'      \code{return} status flag as integer,
 #'      \code{attr} pheneomena during eclipse as numeric vector and \code{serr} error message as string
-#' @rdname eclipse_pheno
+#' @rdname Section6
 #' @export
 swe_lun_eclipse_how <- function(jd_start, ephe_flag, geopos) {
     .Call(`_swephR_lun_eclipse_how`, jd_start, ephe_flag, geopos)
@@ -140,7 +140,7 @@ swe_lun_eclipse_how <- function(jd_start, ephe_flag, geopos) {
 #' @return \code{swe_lun_eclipse_when} returns a list with named entries:
 #'      \code{return} status flag as interger, \code{tret} for eclipse timing moments as numeric vector
 #'      and \code{serr} error warning as string
-#' @rdname eclipse_pheno
+#' @rdname Section6
 #' @export
 swe_lun_eclipse_when <- function(jd_start, ephe_flag, ifltype, backward) {
     .Call(`_swephR_lun_eclipse_when`, jd_start, ephe_flag, ifltype, backward)
@@ -156,7 +156,7 @@ swe_rise_trans_true_hor <- function(jd_ut, ipl, star, ephe_flag, rsmi, geopos, a
 #' Compute horizon information: azimuth, altiiude
 #' @return \code{swe_azalt} returns a list with named entries:
 #'      \code{xaz} for azi/alt info as numeric vector.
-#' @rdname eclipse_pheno
+#' @rdname Section6
 #' @export
 swe_azalt <- function(jd_ut, calc_flag, geopos, atpress, attemp, xin) {
     .Call(`_swephR_azalt`, jd_ut, calc_flag, geopos, atpress, attemp, xin)
@@ -175,7 +175,7 @@ swe_azalt_rev <- function(jd_ut, calc_flag, geopos, xin) {
 #' @return \code{swe_pheno_ut} returns a list with named entries:
 #'      \code{return} status fag as integer, \code{attr} for phenomenon information as numeric vector
 #'      and \code{serr} error warning as string
-#' @rdname eclipse_pheno
+#' @rdname Section6
 #' @export
 swe_pheno_ut <- function(jd_ut, ipl, ephe_flag) {
     .Call(`_swephR_pheno_ut`, jd_ut, ipl, ephe_flag)
@@ -194,7 +194,7 @@ swe_pheno <- function(jd_et, ipl, ephe_flag) {
 #' Compute heliacal phenomena
 #' @return \code{swe_heliacal_pheno_ut} returns a list with named entries: \code{return} status flag as integer
 #'      \code{darr} for heliacal details as numeric vector and \code{serr} error message as string
-#' @rdname eclipse_pheno
+#' @rdname Section6
 #' @export
 swe_heliacal_pheno_ut <- function(jd_ut, dgeo, datm, dobs, objectname, event_type, helflag) {
     .Call(`_swephR_heliacal_pheno_ut`, jd_ut, dgeo, datm, dobs, objectname, event_type, helflag)
@@ -209,7 +209,7 @@ swe_heliacal_pheno_ut <- function(jd_ut, dgeo, datm, dobs, objectname, event_typ
 #' @param AltM  Moon's altitude as double (deg)
 #' @return \code{swe_topo_arcus_visionis} returns a list with named entries: \code{return} status flag as integer,
 #'      \code{darr} heliacal details as numeric vector and \code{serr} error message as string
-#' @rdname eclipse_pheno
+#' @rdname Section6
 #' @export
 swe_topo_arcus_visionis <- function(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AltO, AziS, AziM, AltM) {
     .Call(`_swephR_topo_arcus_visionis`, jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AltO, AziS, AziM, AltM)
@@ -218,7 +218,7 @@ swe_topo_arcus_visionis <- function(jd_ut, dgeo, datm, dobs, helflag, mag, AziO,
 #' Compute heliacal angle
 #' @return \code{swe_heliacal_angle} returns a list with named entries: \code{return} status flag as integer,
 #'      \code{dret} heliacal angle as numeric vector and \code{serr} error message as string
-#' @rdname eclipse_pheno
+#' @rdname Section6
 #' @export
 swe_heliacal_angle <- function(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM, AltM) {
     .Call(`_swephR_heliacal_angle`, jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM, AltM)
@@ -255,7 +255,7 @@ swe_vis_limit_mag <- function(jd_ut, dgeo, datm, dobs, objectname, helflag) {
 #' @param lapse_rate  lapse rate as double (K/m)
 #' @return \code{swe_refrac_extended} returns a list with named entries: \code{return} status flag as interger,
 #'      \code{dret} refraction results as nemeric vector (TopoAlt, AppAlt, refraction)
-#' @rdname eclipse_pheno
+#' @rdname Section6
 #' @export
 swe_refrac_extended <- function(InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag) {
     .Call(`_swephR_refrac_extended`, InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag)
@@ -283,7 +283,7 @@ NULL
 #' @param day  Day as interger
 #' @param hour  Hour as double
 #' @param gregflag  calendar type (SE_JUL_CAL=0 or SE_GREG_CAL=1)
-#' @rdname expert-interface
+#' @rdname Section7
 #' @export
 swe_julday <- function(year, month, day, hour, gregflag) {
     .Call(`_swephR_julday`, year, month, day, hour, gregflag)
@@ -306,28 +306,28 @@ swe_julday <- function(year, month, day, hour, gregflag) {
 NULL
 
 #' Get the present configured tidal acceleration
-#' @rdname expert-interface
+#' @rdname Section8
 #' @export
 swe_get_tid_acc <- function() {
     .Call(`_swephR_get_tid_acc`)
 }
 
 #' Set the tidal acceleration
-#' @rdname expert-interface
+#' @rdname Section8
 #' @export
 swe_set_tid_acc <- function(t_acc) {
     invisible(.Call(`_swephR_set_tid_acc`, t_acc))
 }
 
 #' Determine the DeltaT at a certain date
-#' @rdname expert-interface
+#' @rdname Section8
 #' @export
 swe_deltat <- function(jd_ut) {
     .Call(`_swephR_deltat`, jd_ut)
 }
 
 #' Set one's own DeltaT
-#' @rdname expert-interface
+#' @rdname Section8
 #' @export
 swe_set_delta_t_userdef <- function(delta_t) {
     invisible(.Call(`_swephR_set_delta_t_userdef`, delta_t))
@@ -337,7 +337,7 @@ swe_set_delta_t_userdef <- function(delta_t) {
 #' @param ephe_flag  ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4) (section 2.3.2)
 #' @return \code{swe_deltat_ex} returns a list with named entries: \code{deltat} for DeltaT as double (day)
 #'          and \code{serr} for error message as string.
-#' @rdname expert-interface
+#' @rdname Section8
 #' @export
 swe_deltat_ex <- function(jd_ut, ephe_flag) {
     .Call(`_swephR_deltat_ex`, jd_ut, ephe_flag)

@@ -36,7 +36,7 @@
 
 
 //' Get the present configured tidal acceleration
-//' @rdname expert-interface
+//' @rdname Section8
 //' @export
 // [[Rcpp::export(swe_get_tid_acc)]]
 double get_tid_acc() {
@@ -44,7 +44,7 @@ double get_tid_acc() {
 }
 
 //' Set the tidal acceleration
-//' @rdname expert-interface
+//' @rdname Section8
 //' @export
 // [[Rcpp::export(swe_set_tid_acc)]]
 void set_tid_acc(double t_acc) {
@@ -52,7 +52,7 @@ void set_tid_acc(double t_acc) {
 }
 
 //' Determine the DeltaT at a certain date
-//' @rdname expert-interface
+//' @rdname Section8
 //' @export
 // [[Rcpp::export(swe_deltat)]]
 Rcpp::NumericVector deltat(Rcpp::NumericVector jd_ut) {
@@ -62,7 +62,7 @@ Rcpp::NumericVector deltat(Rcpp::NumericVector jd_ut) {
 }
 
 //' Set one's own DeltaT
-//' @rdname expert-interface
+//' @rdname Section8
 //' @export
 // [[Rcpp::export(swe_set_delta_t_userdef)]]
 void set_delta_t_userdef (double delta_t) {
@@ -73,7 +73,7 @@ void set_delta_t_userdef (double delta_t) {
 //' @param ephe_flag  ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4) (section 2.3.2)
 //' @return \code{swe_deltat_ex} returns a list with named entries: \code{deltat} for DeltaT as double (day)
 //'          and \code{serr} for error message as string.
-//' @rdname expert-interface
+//' @rdname Section8
 //' @export
 // [[Rcpp::export(swe_deltat_ex)]]
 Rcpp::List deltat_ex(Rcpp::NumericVector jd_ut, int ephe_flag) {
