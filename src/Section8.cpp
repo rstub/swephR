@@ -22,12 +22,11 @@
 
 
 //' @title Section 8: Delta T-related functions
+//' @description FUnctions rleated to DeltaT and tidal acceleration
 //' @param ephe_flag  ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4) (section 2.3.2)
 //' @param jd_ut  Julian day number (UT) as numeric vector (day)
 //' @param t_acc tidal acceleration as double (arcsec/century^2)
 //' @param delta_t DeltaT (day)
-//' @return \code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
-//' @return \code{swe_deltat} returns the DeltaT as double (day)
 //' @return \code{swe_deltat_ex} returns a list with named entries: \code{deltat} for DeltaT as double (day)
 //'          and \code{serr} for error message as string.
 //' @rdname Section8
@@ -47,6 +46,7 @@ Rcpp::List deltat_ex(Rcpp::NumericVector jd_ut, int ephe_flag) {
 }
 
 //' Determine the DeltaT at a certain date
+//' @return \code{swe_deltat} returns the DeltaT as double (day)
 //' @rdname Section8
 //' @export
 // [[Rcpp::export(swe_deltat)]]
@@ -65,6 +65,7 @@ void set_tid_acc(double t_acc) {
 }
 
 //' Get the present configured tidal acceleration
+//' @return \code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
 //' @rdname Section8
 //' @export
 // [[Rcpp::export(swe_get_tid_acc)]]

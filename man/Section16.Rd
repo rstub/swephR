@@ -13,5 +13,5 @@ swe_day_of_week(jd)
 \code{swe_day_of_week} retruns the day of week as integer vector (0 Monday .. 6 Sunday)
 }
 \description{
-Section 16.7: Other functions that may be useful
+Useful functions
 }

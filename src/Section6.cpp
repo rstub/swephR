@@ -20,6 +20,10 @@
 #include "swephapi.h"
 
 //' @title Section 6: Eclipses, Risings, Settings, Meridian Transits, Planetary Phenomena
+//' @description Functions for: determining eclipse and occultation calculations, computing the times of rising, setting and 
+//' meridian transits for all planets, asteroids, the moon and the fixed stars; computing phase, phase angle, elongation, 
+//' apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids; and determing 
+//' heliacal phenomenon after a given start date
 //' @param jd_et  ET Julian day number as double (day)
 //' @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
 //' @param star  star name as string ("" for no star)
@@ -31,10 +35,6 @@
 //' @param horhgt horizon apparent altitude as double (deg)
 //' @param xin  position of body as numeric vector (either ecliptical or equatorial coordinates, depending on calc_flag)
 //' @param rsmi  event flag as integer (e.g.: SE_CALC_RISE=1, SE_CALC_SET=2,SE_CALC_MTRANSIT=4,SE_CALC_ITRANSIT=8)
-//' @return \code{swe_rise_trans_true_hor} returns a list with named entries: \code{return} status flag as interger,
-//'      \code{tret} for azi/alt info as numeric vector and \code{serr} error message as string
-//' @return \code{swe_azalt} returns a list with named entries:
-//'      \code{xaz} for azi/alt info as numeric vector.
 //' @return \code{swe_sol_eclipse_when_loc} returns a list with named entries: 
 //'      \code{return} status flag as interger, \code{tret} for eclipse timing moments as numeric vector, 
 //'      \code{attr} pheneomena during eclipse as numeric vector and \code{serr} error message as string
@@ -54,7 +54,6 @@ Rcpp::List sol_eclipse_when_loc(double jd_start, int ephe_flag, Rcpp::NumericVec
 }
 
 //' Compute lunar eclipse at location
-//' @description swe_lun_eclipse_when_loc: This function determines the moment a lunar eclipse event happens.
 //' @param geopos The position numeric vector (longitude, latitude, height)
 //' @param backward backwards search as boolean (TRUE)
 //' @return \code{swe_lun_eclipse_when_loc} returns a list with named entries:
@@ -113,6 +112,8 @@ Rcpp::List lun_eclipse_when(double jd_start, int ephe_flag, int ifltype, bool ba
 }
 
 //' Compute the rise and set location of the object
+//' //' @return \code{swe_rise_trans_true_hor} returns a list with named entries: \code{return} status flag as interger,
+//'      \code{tret} for azi/alt info as numeric vector and \code{serr} error message as string
 //' @rdname Section6
 //' @export
 // [[Rcpp::export(swe_rise_trans_true_hor)]]
@@ -140,6 +141,7 @@ Rcpp::List azalt(double jd_ut, int calc_flag, Rcpp::NumericVector geopos, double
   swe_azalt(jd_ut, calc_flag, geopos.begin(), atpress, attemp, xin.begin(), xaz.begin());
   return Rcpp::List::create(Rcpp::Named("xaz") = xaz);
 }
+
 
 //' Compute equatorial/ecliptical information
 //' @return \code{swe_azalt_rev} returns a list with named entries:

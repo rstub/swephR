@@ -21,10 +21,11 @@
 
 
 //' @title Section 9: The function for topocentric planet positions
-//' @rdname Section9
+//' @description Function for topocentric planet positions
 //' @param geolon  geographic longitude as double (deg)
 //' @param geolat  geographic latitude as double (deg)
 //' @param altitude  height as double (m)
+//' @rdname Section9
 //' @export
 // [[Rcpp::export(swe_set_topo)]]
 void set_topo(double geolon, double geolat, double altitude) {

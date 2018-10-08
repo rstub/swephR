@@ -4,7 +4,7 @@
 \alias{swe_set_ephe_path}
 \alias{swe_close}
 \alias{swe_version}
-\title{Set the directory for the sefstars.txt, swe_deltat.txt and jpl files}
+\title{Section 1: The Ephemeris file related functions}
 \usage{
 swe_set_ephe_path(path)
 
@@ -12,10 +12,9 @@ swe_close()
 
 swe_version()
 }
+\arguments{
+\item{path}{directory for the sefstars.txt, swe_deltat.txt and jpl files}
+}
 \description{
-Set the directory for the sefstars.txt, swe_deltat.txt and jpl files
-
-Close Swiss Ephemeris files
-
-Get the Swiss Ephemeris version number
+Several initialisation and generic functions
 }
