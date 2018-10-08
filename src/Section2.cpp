@@ -21,11 +21,10 @@
 
 //it seems the below can't be added by using ' after the two /
 // @title  Expert interface: Planet and star phenomena
-// @param iflag flag as interger, many options possible (section 2.3)
+// @param jd_ut  UT Julian day number (day)
 // @param jd_et  ET Julian day number as double (day)
 // @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
-// @param starname  star name as string ("" for no star)
-// @param jd_ut  UT Julian day number (day)
+// @param iflag flag as interger, many options possible (section 2.3)
 
 // Compute information of planet (UT)
 // [[Rcpp::export]]
