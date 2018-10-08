@@ -28,21 +28,13 @@ swe_set_delta_t_userdef(delta_t)
 \item{delta_t}{DeltaT (day)}
 }
 \value{
-\code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
+\code{swe_deltat_ex} returns a list with named entries: \code{deltat} for DeltaT as double (day)
+         and \code{serr} for error message as string.
 
 \code{swe_deltat} returns the DeltaT as double (day)
 
-\code{swe_deltat_ex} returns a list with named entries: \code{deltat} for DeltaT as double (day)
-         and \code{serr} for error message as string.
+\code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
 }
 \description{
-Section 8: Delta T-related functions
-
-Determine the DeltaT at a certain date
-
-Set the tidal acceleration
-
-Get the present configured tidal acceleration
-
-Set one's own DeltaT
+FUnctions rleated to DeltaT and tidal acceleration
 }

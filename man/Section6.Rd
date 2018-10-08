@@ -118,12 +118,6 @@ swe_refrac_extended(InAlt, geoheight, atpress, attemp, lapse_rate,
 \item{lapse_rate}{lapse rate as double (K/m)}
 }
 \value{
-\code{swe_rise_trans_true_hor} returns a list with named entries: \code{return} status flag as interger,
-     \code{tret} for azi/alt info as numeric vector and \code{serr} error message as string
-
-\code{swe_azalt} returns a list with named entries:
-     \code{xaz} for azi/alt info as numeric vector.
-
 \code{swe_sol_eclipse_when_loc} returns a list with named entries: 
      \code{return} status flag as interger, \code{tret} for eclipse timing moments as numeric vector, 
      \code{attr} pheneomena during eclipse as numeric vector and \code{serr} error message as string
@@ -173,5 +167,8 @@ swe_refrac_extended(InAlt, geoheight, atpress, attemp, lapse_rate,
      \code{dret} refraction results as nemeric vector (TopoAlt, AppAlt, refraction)
 }
 \description{
-swe_lun_eclipse_when_loc: This function determines the moment a lunar eclipse event happens.
+Functions for: determining eclipse and occultation calculations, computing the times of rising, setting and 
+meridian transits for all planets, asteroids, the moon and the fixed stars; computing phase, phase angle, elongation, 
+apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids; and determing 
+heliacal phenomenon after a given start date
 }

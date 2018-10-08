@@ -19,9 +19,9 @@
 #include <array>
 #include "swephapi.h"
 
-
-
-//' Set the directory for the sefstars.txt, swe_deltat.txt and jpl files
+//' @title Section 1: The Ephemeris file related functions
+//' @description Several initialisation and generic functions
+//' @param path directory for the sefstars.txt, swe_deltat.txt and jpl files
 //' @rdname Section1
 //' @export
 // [[Rcpp::export(swe_set_ephe_path)]]
@@ -40,9 +40,6 @@ void set_ephe_path(Rcpp::Nullable<Rcpp::CharacterVector> path) {
 void close() {
   swe_close();
 }
-
-// to be added in future:
-// swe_set_jpl_file()
 
 
 //' Get the Swiss Ephemeris version number

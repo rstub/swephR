@@ -14,5 +14,5 @@ swe_set_topo(geolon, geolat, altitude)
 \item{altitude}{height as double (m)}
 }
 \description{
-Section 9: The function for topocentric planet positions
+Function for topocentric planet positions
 }

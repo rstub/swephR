@@ -19,16 +19,17 @@
 #include <array>
 #include "swephapi.h"
 
-// @title Section 4: Fixed stars functions
-// @param jd_ut  UT Julian day number (day)
-// @param jd_et  ET Julian day number as double (day)
-// @param starname  star name as string ("" for no star)
-// @param iflag flag as interger, many options possible (section 2.3)
-
-
-
-// Compute information of star (UT)
-// [[Rcpp::export]]
+//' @title Section 4: Fixed stars functions
+//' @description The following functions are used to calculate positions of fixed stars. 
+//' @param jd_ut  UT Julian day number (day)
+//' @param jd_et  ET Julian day number as double (day)
+//' @param starname  star name as string ("" for no star)
+//' @param iflag flag as interger, many options possible (section 2.3)
+//' @return \code{swe_fixstar2_ut} returns a list with named entries \code{return} status flag as interger,
+//'         \code{starname} updated star name as string, \code{xx} star information as numeric vector, and \code{serr} for error message as string.
+//' @rdname Section4
+//' @export
+// [[Rcpp::export(swe_fixstar2_ut)]]
 Rcpp::List fixstar2_ut(Rcpp::CharacterVector starname, Rcpp::NumericVector jd_ut, int iflag) {
   if (jd_ut.length() != starname.length())
     Rcpp::stop("The number of stars in 'starname' and the number of dates in 'jd_ut' must be identical!");
@@ -60,8 +61,12 @@ Rcpp::List fixstar2_ut(Rcpp::CharacterVector starname, Rcpp::NumericVector jd_ut
 }
 
 
-// Compute information of star (ET)
-// [[Rcpp::export]]
+//' Compute information of star (ET)
+//' @return \code{swe_fixstar2} returns a list with named entries \code{return} status flag as interger,
+//'         \code{starname} updated star name as string, \code{xx} star information as numeric vector, and \code{serr} for error message as string.
+//' @rdname Section4
+//' @export
+// [[Rcpp::export(swe_fixstar2)]]
 Rcpp::List fixstar2(Rcpp::CharacterVector starname, Rcpp::NumericVector jd_et, int iflag) {
   if (jd_et.length() != starname.length())
     Rcpp::stop("The number of stars in 'starname' and the number of dates in 'jd_et' must be identical!");

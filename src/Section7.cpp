@@ -21,6 +21,7 @@
 
 
 //' @title Section 7: Date and time conversion functions 
+//' @description Functions related to calendar and time conversions
 //' @param year  Year as interger
 //' @param month  Month as interger
 //' @param day  Day as interger
