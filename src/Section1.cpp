@@ -35,16 +35,6 @@
 //' @name expert-interface
 
 
-//' Get the Swiss Ephemeris version number
-//' @rdname Section1
-//' @export
-// [[Rcpp::export(swe_version)]]
-std::string version() {
-  std::array<char, 256> version{'\0'};
-  swe_version(&version[0]);
-  return std::string(&version[0]);
-}
-
 //' Set the directory for the sefstars.txt, swe_deltat.txt and jpl files
 //' @rdname Section1
 //' @export
@@ -67,3 +57,15 @@ void close() {
 
 // to be added in future:
 // swe_set_jpl_file()
+
+
+//' Get the Swiss Ephemeris version number
+//' @rdname Section1
+//' @export
+// [[Rcpp::export(swe_version)]]
+std::string version() {
+  std::array<char, 256> version{'\0'};
+  swe_version(&version[0]);
+  return std::string(&version[0]);
+}
+

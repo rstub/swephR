@@ -17,13 +17,6 @@
 #' @name expert-interface
 NULL
 
-#' Get the Swiss Ephemeris version number
-#' @rdname Section1
-#' @export
-swe_version <- function() {
-    .Call(`_swephR_version`)
-}
-
 #' Set the directory for the sefstars.txt, swe_deltat.txt and jpl files
 #' @rdname Section1
 #' @export
@@ -36,6 +29,13 @@ swe_set_ephe_path <- function(path) {
 #' @export
 swe_close <- function() {
     invisible(.Call(`_swephR_close`))
+}
+
+#' Get the Swiss Ephemeris version number
+#' @rdname Section1
+#' @export
+swe_version <- function() {
+    .Call(`_swephR_version`)
 }
 
 #' @title Expert interface: miscellanious functions
@@ -305,18 +305,14 @@ swe_julday <- function(year, month, day, hour, gregflag) {
 #' @name expert-interface
 NULL
 
-#' Get the present configured tidal acceleration
+#' Determine DeltaT
+#' @param ephe_flag  ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4) (section 2.3.2)
+#' @return \code{swe_deltat_ex} returns a list with named entries: \code{deltat} for DeltaT as double (day)
+#'          and \code{serr} for error message as string.
 #' @rdname Section8
 #' @export
-swe_get_tid_acc <- function() {
-    .Call(`_swephR_get_tid_acc`)
-}
-
-#' Set the tidal acceleration
-#' @rdname Section8
-#' @export
-swe_set_tid_acc <- function(t_acc) {
-    invisible(.Call(`_swephR_set_tid_acc`, t_acc))
+swe_deltat_ex <- function(jd_ut, ephe_flag) {
+    .Call(`_swephR_deltat_ex`, jd_ut, ephe_flag)
 }
 
 #' Determine the DeltaT at a certain date
@@ -326,21 +322,25 @@ swe_deltat <- function(jd_ut) {
     .Call(`_swephR_deltat`, jd_ut)
 }
 
+#' Set the tidal acceleration
+#' @rdname Section8
+#' @export
+swe_set_tid_acc <- function(t_acc) {
+    invisible(.Call(`_swephR_set_tid_acc`, t_acc))
+}
+
+#' Get the present configured tidal acceleration
+#' @rdname Section8
+#' @export
+swe_get_tid_acc <- function() {
+    .Call(`_swephR_get_tid_acc`)
+}
+
 #' Set one's own DeltaT
 #' @rdname Section8
 #' @export
 swe_set_delta_t_userdef <- function(delta_t) {
     invisible(.Call(`_swephR_set_delta_t_userdef`, delta_t))
-}
-
-#' Determine DeltaT
-#' @param ephe_flag  ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4) (section 2.3.2)
-#' @return \code{swe_deltat_ex} returns a list with named entries: \code{deltat} for DeltaT as double (day)
-#'          and \code{serr} for error message as string.
-#' @rdname Section8
-#' @export
-swe_deltat_ex <- function(jd_ut, ephe_flag) {
-    .Call(`_swephR_deltat_ex`, jd_ut, ephe_flag)
 }
 
 #' Set the geographic location

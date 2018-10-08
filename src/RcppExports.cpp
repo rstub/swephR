@@ -5,16 +5,6 @@
 
 using namespace Rcpp;
 
-// version
-std::string version();
-RcppExport SEXP _swephR_version() {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(version());
-    return rcpp_result_gen;
-END_RCPP
-}
 // set_ephe_path
 void set_ephe_path(Rcpp::Nullable<Rcpp::CharacterVector> path);
 RcppExport SEXP _swephR_set_ephe_path(SEXP pathSEXP) {
@@ -32,6 +22,16 @@ BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     close();
     return R_NilValue;
+END_RCPP
+}
+// version
+std::string version();
+RcppExport SEXP _swephR_version() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(version());
+    return rcpp_result_gen;
 END_RCPP
 }
 // day_of_week
@@ -360,24 +360,16 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// get_tid_acc
-double get_tid_acc();
-RcppExport SEXP _swephR_get_tid_acc() {
+// deltat_ex
+Rcpp::List deltat_ex(Rcpp::NumericVector jd_ut, int ephe_flag);
+RcppExport SEXP _swephR_deltat_ex(SEXP jd_utSEXP, SEXP ephe_flagSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(get_tid_acc());
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type jd_ut(jd_utSEXP);
+    Rcpp::traits::input_parameter< int >::type ephe_flag(ephe_flagSEXP);
+    rcpp_result_gen = Rcpp::wrap(deltat_ex(jd_ut, ephe_flag));
     return rcpp_result_gen;
-END_RCPP
-}
-// set_tid_acc
-void set_tid_acc(double t_acc);
-RcppExport SEXP _swephR_set_tid_acc(SEXP t_accSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type t_acc(t_accSEXP);
-    set_tid_acc(t_acc);
-    return R_NilValue;
 END_RCPP
 }
 // deltat
@@ -391,6 +383,26 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// set_tid_acc
+void set_tid_acc(double t_acc);
+RcppExport SEXP _swephR_set_tid_acc(SEXP t_accSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type t_acc(t_accSEXP);
+    set_tid_acc(t_acc);
+    return R_NilValue;
+END_RCPP
+}
+// get_tid_acc
+double get_tid_acc();
+RcppExport SEXP _swephR_get_tid_acc() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(get_tid_acc());
+    return rcpp_result_gen;
+END_RCPP
+}
 // set_delta_t_userdef
 void set_delta_t_userdef(double delta_t);
 RcppExport SEXP _swephR_set_delta_t_userdef(SEXP delta_tSEXP) {
@@ -399,18 +411,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type delta_t(delta_tSEXP);
     set_delta_t_userdef(delta_t);
     return R_NilValue;
-END_RCPP
-}
-// deltat_ex
-Rcpp::List deltat_ex(Rcpp::NumericVector jd_ut, int ephe_flag);
-RcppExport SEXP _swephR_deltat_ex(SEXP jd_utSEXP, SEXP ephe_flagSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type jd_ut(jd_utSEXP);
-    Rcpp::traits::input_parameter< int >::type ephe_flag(ephe_flagSEXP);
-    rcpp_result_gen = Rcpp::wrap(deltat_ex(jd_ut, ephe_flag));
-    return rcpp_result_gen;
 END_RCPP
 }
 // set_topo
@@ -427,9 +427,9 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_swephR_version", (DL_FUNC) &_swephR_version, 0},
     {"_swephR_set_ephe_path", (DL_FUNC) &_swephR_set_ephe_path, 1},
     {"_swephR_close", (DL_FUNC) &_swephR_close, 0},
+    {"_swephR_version", (DL_FUNC) &_swephR_version, 0},
     {"_swephR_day_of_week", (DL_FUNC) &_swephR_day_of_week, 1},
     {"_swephR_calc_ut", (DL_FUNC) &_swephR_calc_ut, 3},
     {"_swephR_calc", (DL_FUNC) &_swephR_calc, 3},
@@ -452,11 +452,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_vis_limit_mag", (DL_FUNC) &_swephR_vis_limit_mag, 6},
     {"_swephR_refrac_extended", (DL_FUNC) &_swephR_refrac_extended, 6},
     {"_swephR_julday", (DL_FUNC) &_swephR_julday, 5},
-    {"_swephR_get_tid_acc", (DL_FUNC) &_swephR_get_tid_acc, 0},
-    {"_swephR_set_tid_acc", (DL_FUNC) &_swephR_set_tid_acc, 1},
-    {"_swephR_deltat", (DL_FUNC) &_swephR_deltat, 1},
-    {"_swephR_set_delta_t_userdef", (DL_FUNC) &_swephR_set_delta_t_userdef, 1},
     {"_swephR_deltat_ex", (DL_FUNC) &_swephR_deltat_ex, 2},
+    {"_swephR_deltat", (DL_FUNC) &_swephR_deltat, 1},
+    {"_swephR_set_tid_acc", (DL_FUNC) &_swephR_set_tid_acc, 1},
+    {"_swephR_get_tid_acc", (DL_FUNC) &_swephR_get_tid_acc, 0},
+    {"_swephR_set_delta_t_userdef", (DL_FUNC) &_swephR_set_delta_t_userdef, 1},
     {"_swephR_set_topo", (DL_FUNC) &_swephR_set_topo, 3},
     {NULL, NULL, 0}
 };
