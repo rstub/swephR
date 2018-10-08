@@ -4,21 +4,9 @@
 \alias{expert-interface}
 \title{Expert interface: miscellanious functions}
 \arguments{
-\item{jd}{Julian day number as numeric vector (day)}
-
-\item{t_acc}{tidal acceleration as double (arcsec/century^2)}
-
 \item{path}{directory as string, where the ephemeris files are stored}
 
-\item{delta_t}{DeltaT (day)}
-
 \item{jd}{Julian day number as numeric vector (day)}
-
-\item{t_acc}{tidal acceleration as double (arcsec/century^2)}
-
-\item{path}{directory as string, where the ephemeris files are stored}
-
-\item{delta_t}{DeltaT (day)}
 
 \item{jd}{Julian day number as numeric vector (day)}
 
@@ -31,27 +19,13 @@
 \item{jd}{Julian day number as numeric vector (day)}
 
 \item{t_acc}{tidal acceleration as double (arcsec/century^2)}
-
-\item{path}{directory as string, where the ephemeris files are stored}
 
 \item{delta_t}{DeltaT (day)}
 }
 \value{
-\code{swe_day_of_week} retruns the day of week as integer vector (0 Monday .. 6 Sunday)
-
-\code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
-
 \code{swe_version} returns the Swiss Ephemeris version number as string
 
-\code{swe_deltat} returns the DeltaT as double (day)
-
 \code{swe_day_of_week} retruns the day of week as integer vector (0 Monday .. 6 Sunday)
-
-\code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
-
-\code{swe_version} returns the Swiss Ephemeris version number as string
-
-\code{swe_deltat} returns the DeltaT as double (day)
 
 \code{swe_day_of_week} retruns the day of week as integer vector (0 Monday .. 6 Sunday)
 
@@ -61,11 +35,7 @@
 
 \code{swe_deltat} returns the DeltaT as double (day)
 
-\code{swe_day_of_week} retruns the day of week as integer vector (0 Monday .. 6 Sunday)
-
 \code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
-
-\code{swe_version} returns the Swiss Ephemeris version number as string
 
 \code{swe_deltat} returns the DeltaT as double (day)
 }

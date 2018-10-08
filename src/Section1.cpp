@@ -24,14 +24,8 @@
 //' @description For experts that are familiar with the C API of the underlying
 //'   \code{libswe}, an expert interface that mimicks that interface as closely
 //'   as possbile is provided.
-//' @param jd  Julian day number as numeric vector (day)
-//' @param t_acc tidal acceleration as double (arcsec/century^2)
 //' @param path  directory as string, where the ephemeris files are stored
-//' @param delta_t DeltaT (day)
-//' @return \code{swe_day_of_week} retruns the day of week as integer vector (0 Monday .. 6 Sunday)
-//' @return \code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
 //' @return \code{swe_version} returns the Swiss Ephemeris version number as string
-//' @return \code{swe_deltat} returns the DeltaT as double (day)
 //' @name expert-interface
 
 
