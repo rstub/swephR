@@ -19,18 +19,10 @@
 #include <array>
 #include "swephapi.h"
 
-//' @title Expert interface: miscellanious functions
-//'
-//' @description For experts that are familiar with the C API of the underlying
-//'   \code{libswe}, an expert interface that mimicks that interface as closely
-//'   as possbile is provided.
+//' Section 16.7: Other functions that may be useful
+//' @rdname Section16
 //' @param jd  Julian day number as numeric vector (day)
 //' @return \code{swe_day_of_week} retruns the day of week as integer vector (0 Monday .. 6 Sunday)
-//' @name expert-interface
-
-
-//' Compute day of week
-//' @rdname Section16
 //' @export
 // [[Rcpp::export(swe_day_of_week)]]
 Rcpp::IntegerVector day_of_week(Rcpp::NumericVector jd) {

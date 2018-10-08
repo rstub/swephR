@@ -20,7 +20,7 @@
 #include "swephapi.h"
 
 
-//' Set the geographic location
+//' @title Section 9: The function for topocentric planet positions
 //' @rdname Section9
 //' @param geolon  geographic longitude as double (deg)
 //' @param geolat  geographic latitude as double (deg)
