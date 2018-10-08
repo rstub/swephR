@@ -2,10 +2,16 @@
 % Please edit documentation in R/RcppExports.R
 \name{swe_day_of_week}
 \alias{swe_day_of_week}
-\title{Compute day of week}
+\title{Section 16.7: Other functions that may be useful}
 \usage{
 swe_day_of_week(jd)
 }
+\arguments{
+\item{jd}{Julian day number as numeric vector (day)}
+}
+\value{
+\code{swe_day_of_week} retruns the day of week as integer vector (0 Monday .. 6 Sunday)
+}
 \description{
-Compute day of week
+Section 16.7: Other functions that may be useful
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{swe_julday}
 \alias{swe_julday}
-\title{Determine Julian day number from calendar date}
+\title{Section 7: Date and time conversion functions}
 \usage{
 swe_julday(year, month, day, hour, gregflag)
 }
@@ -18,5 +18,5 @@ swe_julday(year, month, day, hour, gregflag)
 \item{gregflag}{calendar type (SE_JUL_CAL=0 or SE_GREG_CAL=1)}
 }
 \description{
-Determine Julian day number from calendar date
+Section 7: Date and time conversion functions
 }

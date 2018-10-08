@@ -16,7 +16,7 @@
 \alias{swe_heliacal_ut}
 \alias{swe_vis_limit_mag}
 \alias{swe_refrac_extended}
-\title{Expert interface: Eclipses and planetary phenomena}
+\title{Section 6: Eclipses, Risings, Settings, Meridian Transits, Planetary Phenomena}
 \usage{
 swe_sol_eclipse_when_loc(jd_start, ephe_flag, geopos, backward)
 

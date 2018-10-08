@@ -19,12 +19,13 @@
 #include <array>
 #include "swephapi.h"
 
-//it seems the below can't be added by using ' after the two /
-// @title  Expert interface: Planet and star phenomena
+// @title Section 4: Fixed stars functions
 // @param jd_ut  UT Julian day number (day)
 // @param jd_et  ET Julian day number as double (day)
 // @param starname  star name as string ("" for no star)
 // @param iflag flag as interger, many options possible (section 2.3)
+
+
 
 // Compute information of star (UT)
 // [[Rcpp::export]]

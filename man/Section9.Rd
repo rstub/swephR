@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{swe_set_topo}
 \alias{swe_set_topo}
-\title{Set the geographic location}
+\title{Section 9: The function for topocentric planet positions}
 \usage{
 swe_set_topo(geolon, geolat, altitude)
 }
@@ -14,5 +14,5 @@ swe_set_topo(geolon, geolat, altitude)
 \item{altitude}{height as double (m)}
 }
 \description{
-Set the geographic location
+Section 9: The function for topocentric planet positions
 }
