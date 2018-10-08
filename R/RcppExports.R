@@ -147,7 +147,7 @@ swe_lun_eclipse_when <- function(jd_start, ephe_flag, ifltype, backward) {
 }
 
 #' Compute the rise and set location of the object
-#' @rdname eclipse_pheno
+#' @rdname Section6
 #' @export
 swe_rise_trans_true_hor <- function(jd_ut, ipl, star, ephe_flag, rsmi, geopos, atpress, attemp, horhgt) {
     .Call(`_swephR_rise_trans_true_hor`, jd_ut, ipl, star, ephe_flag, rsmi, geopos, atpress, attemp, horhgt)
@@ -165,7 +165,7 @@ swe_azalt <- function(jd_ut, calc_flag, geopos, atpress, attemp, xin) {
 #' Compute equatorial/ecliptical information
 #' @return \code{swe_azalt_rev} returns a list with named entries:
 #'      \code{xaz} for celestial info a snumeric vector.
-#' @rdname eclipse_pheno
+#' @rdname Section6
 #' @export
 swe_azalt_rev <- function(jd_ut, calc_flag, geopos, xin) {
     .Call(`_swephR_azalt_rev`, jd_ut, calc_flag, geopos, xin)
@@ -185,7 +185,7 @@ swe_pheno_ut <- function(jd_ut, ipl, ephe_flag) {
 #' @return \code{swe_pheno} returns a list with named entries:
 #'      \code{return} status fag as integer, \code{attr} for phenomenon information as numeric vector
 #'      and \code{serr} error message as string
-#' @rdname eclipse_pheno
+#' @rdname Section6
 #' @export
 swe_pheno <- function(jd_et, ipl, ephe_flag) {
     .Call(`_swephR_pheno`, jd_et, ipl, ephe_flag)
@@ -234,7 +234,7 @@ swe_heliacal_angle <- function(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS
 #' @param helflag calcuation flag as integer
 #' @return \code{swe_heliacal_ut} returns a list with named entries \code{return} status flag as integer,
 #'         \code{dret} heliacal results as numeric vector, and \code{serr} error message as string.
-#' @rdname eclipse_pheno
+#' @rdname Section6
 #' @export
 swe_heliacal_ut <- function(jd_utstart, dgeo, datm, dobs, objectname, event_type, helflag) {
     .Call(`_swephR_heliacal_ut`, jd_utstart, dgeo, datm, dobs, objectname, event_type, helflag)
@@ -243,7 +243,7 @@ swe_heliacal_ut <- function(jd_utstart, dgeo, datm, dobs, objectname, event_type
 #' Compute the limiting visibiliy magnitude
 #' @return \code{swe_vis_limit_mag} returns a list with named entries: \code{return} status flag as interger,
 #'      \code{dret} limiting magnitude as double and \code{serr} error message as string
-#' @rdname eclipse_pheno
+#' @rdname Section6
 #' @export
 swe_vis_limit_mag <- function(jd_ut, dgeo, datm, dobs, objectname, helflag) {
     .Call(`_swephR_vis_limit_mag`, jd_ut, dgeo, datm, dobs, objectname, helflag)
