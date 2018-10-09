@@ -29,7 +29,7 @@ test_that("deltat can be retrieved for vector", {
     if (requireNamespace("swephRdata", quietly = TRUE))
         expect_equal(swe_deltat(c(1234.567, 1234567)), c(1.5976757, 0.3685434), tolerance = .0000001)
     else
-        expect_equal(swe_deltat(c(1234.567, 1234567)), c(1.5873864, 0.3685434), tolerance = .0000001)
+        expect_equal(swe_deltat(c(1234.567, 1234567)), c(1.5873864, 0.366039979375346), tolerance = .0000001)
 })
 
 test_that("deltat can be set and retrieved", {

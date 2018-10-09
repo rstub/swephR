@@ -29,7 +29,7 @@
 //'         \code{starname} updated star name as string, \code{xx} star information as numeric vector, and \code{serr} for error message as string.
 //' @rdname Section4
 //' @export
-// [[Rcpp::export(swe_fixstar2_ut)]]
+// [[Rcpp::export]]
 Rcpp::List fixstar2_ut(Rcpp::CharacterVector starname, Rcpp::NumericVector jd_ut, int iflag) {
   if (jd_ut.length() != starname.length())
     Rcpp::stop("The number of stars in 'starname' and the number of dates in 'jd_ut' must be identical!");
@@ -66,7 +66,7 @@ Rcpp::List fixstar2_ut(Rcpp::CharacterVector starname, Rcpp::NumericVector jd_ut
 //'         \code{starname} updated star name as string, \code{xx} star information as numeric vector, and \code{serr} for error message as string.
 //' @rdname Section4
 //' @export
-// [[Rcpp::export(swe_fixstar2)]]
+// [[Rcpp::export]]
 Rcpp::List fixstar2(Rcpp::CharacterVector starname, Rcpp::NumericVector jd_et, int iflag) {
   if (jd_et.length() != starname.length())
     Rcpp::stop("The number of stars in 'starname' and the number of dates in 'jd_et' must be identical!");
