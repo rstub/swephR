@@ -192,7 +192,7 @@ SEFLG_NOGDEFL <-	512   # /* turn off gravitational deflection */
 SEFLG_NOABERR	<-
   1024   #/* turn off 'annual' aberration of light */
 SEFLG_ASTROMETRIC <-
-  (SEFLG_NOABERR & SEFLG_NOGDEFL) #/* astrometric position,
+  (SEFLG_NOABERR + SEFLG_NOGDEFL) #/* astrometric position,
 #   * i.e. with light-time, but without aberration and
 # * light deflection */
 SEFLG_EQUATORIAL <-
@@ -298,12 +298,12 @@ SE_ECL_ANNULAR_TOTAL <-	32
 SE_ECL_PENUMBRAL <-	64
 SE_ECL_ALLTYPES_SOLAR <-
   (
-    SE_ECL_CENTRAL   &
-      SE_ECL_NONCENTRAL   &
-      SE_ECL_TOTAL   & SE_ECL_ANNULAR   & SE_ECL_PARTIAL   & SE_ECL_ANNULAR_TOTAL
+    SE_ECL_CENTRAL   +
+      SE_ECL_NONCENTRAL   +
+      SE_ECL_TOTAL   + SE_ECL_ANNULAR   + SE_ECL_PARTIAL   + SE_ECL_ANNULAR_TOTAL
   )
 SE_ECL_ALLTYPES_LUNAR <-
-  (SE_ECL_TOTAL   & SE_ECL_PARTIAL   & SE_ECL_PENUMBRAL)
+  (SE_ECL_TOTAL   + SE_ECL_PARTIAL   + SE_ECL_PENUMBRAL)
 SE_ECL_VISIBLE		<-	128
 SE_ECL_MAX_VISIBLE <-		256
 SE_ECL_1ST_VISIBLE	<-	512	#/* begin of partial eclipse */
@@ -359,7 +359,7 @@ SE_BIT_FORCE_SLOW_METHOD <-
 # * of the old, slow calculation of
 # * risings and settings. */
 SE_BIT_HINDU_RISING <-
-  (SE_BIT_DISC_CENTER   & SE_BIT_NO_REFRACTION   &
+  (SE_BIT_DISC_CENTER   + SE_BIT_NO_REFRACTION   +
      SE_BIT_GEOCTR_NO_ECL_LAT)
 
 # /* for swe_azalt() and swe_azalt_rev() */
@@ -439,8 +439,8 @@ SE_HELFLAG_AVKIND_MIN7 	<-	65536 * 4
 SE_HELFLAG_AVKIND_MIN9 		<- 65536 * 8
 SE_HELFLAG_AVKIND <-
   (
-    SE_HELFLAG_AVKIND_VR   &
-      SE_HELFLAG_AVKIND_PTO   & SE_HELFLAG_AVKIND_MIN7   &
+    SE_HELFLAG_AVKIND_VR   +
+      SE_HELFLAG_AVKIND_PTO   + SE_HELFLAG_AVKIND_MIN7   +
       SE_HELFLAG_AVKIND_MIN9
   )
 TJD_INVALID		<- 	99999999.0
@@ -461,8 +461,8 @@ SE_HELIACAL_AVKIND_MIN7 	<-	65536 * 2
 SE_HELIACAL_AVKIND_MIN9 	<-	65536 * 4
 SE_HELIACAL_AVKIND <-
   (
-    SE_HELFLAG_AVKIND_VR   &
-      SE_HELFLAG_AVKIND_PTO   & SE_HELFLAG_AVKIND_MIN7   &
+    SE_HELFLAG_AVKIND_VR   +
+      SE_HELFLAG_AVKIND_PTO   + SE_HELFLAG_AVKIND_MIN7   +
       SE_HELFLAG_AVKIND_MIN9
   )
 
