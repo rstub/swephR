@@ -52,7 +52,7 @@ calc <- function(jd_et, ipl, iflag) {
 #'         \code{starname} updated star name as string, \code{xx} star information as numeric vector, and \code{serr} for error message as string.
 #' @rdname Section4
 #' @export
-swe_fixstar2_ut <- function(starname, jd_ut, iflag) {
+fixstar2_ut <- function(starname, jd_ut, iflag) {
     .Call(`_swephR_fixstar2_ut`, starname, jd_ut, iflag)
 }
 
@@ -61,7 +61,7 @@ swe_fixstar2_ut <- function(starname, jd_ut, iflag) {
 #'         \code{starname} updated star name as string, \code{xx} star information as numeric vector, and \code{serr} for error message as string.
 #' @rdname Section4
 #' @export
-swe_fixstar2 <- function(starname, jd_et, iflag) {
+fixstar2 <- function(starname, jd_et, iflag) {
     .Call(`_swephR_fixstar2`, starname, jd_et, iflag)
 }
 
