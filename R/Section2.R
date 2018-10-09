@@ -1,6 +1,4 @@
 ##' Compute information of planet (ET)
-##' @return \code{swe_calc} returns a list with named entries \code{return} status flag as integer,
-##'         \code{xx} updated planet name as string, and \code{serr} error message as string.
 ##' @rdname Section2
 ##' @export
 swe_calc <- function(jd_et, ipl, iflag) {
@@ -14,8 +12,6 @@ swe_calc <- function(jd_et, ipl, iflag) {
 }
 
 ##' Compute information of planet (UT)
-##' @return \code{swe_calc_ut} returns a list with named entries \code{return} status flag as integer,
-##'         \code{xx} updated star name as string and \code{serr} error message as string.
 ##' @rdname Section2
 ##' @export
 swe_calc_ut <- function(jd_ut, ipl, iflag) {
