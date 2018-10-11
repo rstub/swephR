@@ -19,12 +19,6 @@
 #include <array>
 #include "swephapi.h"
 
-// @param jd_ut  UT Julian day number (day)
-// @param jd_et  ET Julian day number as double (day)
-// @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
-// @param iflag flag as interger, many options possible (section 2.3)
-// @return \code{swe_calc_ut} returns a list with named entries \code{return} status flag as integer,
-//         \code{xx} updated star name as string and \code{serr} error message as string.
 
 // Compute information of planet (UT)
 // [[Rcpp::export]]
@@ -55,8 +49,6 @@ Rcpp::List calc_ut(Rcpp::NumericVector jd_ut, Rcpp::IntegerVector ipl, int iflag
 }
 
 // Compute information of planet (ET)
-// @return \code{swe_calc} returns a list with named entries \code{return} status flag as integer,
-//        \code{xx} updated planet name as string, and \code{serr} error message as string.
 // [[Rcpp::export]]
 Rcpp::List calc(Rcpp::NumericVector jd_et, Rcpp::IntegerVector ipl, int iflag) {
   if (jd_et.length() != ipl.length())
