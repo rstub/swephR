@@ -3,14 +3,28 @@
 \name{swe_calc}
 \alias{swe_calc}
 \alias{swe_calc_ut}
-\title{Compute information of planet (ET)}
+\title{Section 2: Does planetary calculations}
 \usage{
 swe_calc(jd_et, ipl, iflag)
 
 swe_calc_ut(jd_ut, ipl, iflag)
 }
-\description{
-Compute information of planet (ET)
+\arguments{
+\item{jd_et}{ET Julian day number as double (day)}
 
-Compute information of planet (UT)
+\item{ipl}{body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)}
+
+\item{iflag}{flag as interger, many options possible (section 2.3)}
+
+\item{jd_ut}{UT Julian day number (day)}
+}
+\value{
+\code{swe_calc} returns a list with named entries \code{return} status flag as integer,
+        \code{xx} updated star name as string and \code{serr} error message as string.
+
+\code{swe_calc_ut} returns a list with named entries \code{return} status flag as integer,
+       \code{xx} updated planet name as string, and \code{serr} error message as string.
+}
+\description{
+Does planetary calculations using ephemeris
 }
