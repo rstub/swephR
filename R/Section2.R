@@ -1,5 +1,6 @@
 ##' @title Section 2: Does planetary calculations 
 ##' @description Does planetary calculations using ephemeris
+##' Compute information of planet (ET)
 ##' @param jd_ut  UT Julian day number (day)
 ##' @param jd_et  ET Julian day number as double (day)
 ##' @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
@@ -8,7 +9,6 @@
 ##'         \code{xx} updated star name as string and \code{serr} error message as string.
 ##' @rdname Section2
 ##' @export
-##' Compute information of planet (ET)
 swe_calc <- function(jd_et, ipl, iflag) {
   if (length(jd_et) == 1 && length(ipl) > 1)
     jd_et = rep_len(jd_et, length(ipl))
