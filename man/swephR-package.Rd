@@ -13,7 +13,7 @@ The Swiss Ephemeris is a high precision ephemeris based upon the
     data is available in the 'swephRdata' package. To access this data package,
     run 'install.packages("swephRdata", repos = "https://rstub.github.io/drat/",
     type = "source")'. The size of the 'swephRdata' package is approximately
-    115 MB. The user can also use the original JPL DE431 data
+    115 MB. The user can also use the original JPL DE431 data.
 }
 \seealso{
 Useful links:

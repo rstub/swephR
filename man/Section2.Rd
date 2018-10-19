@@ -27,4 +27,5 @@ swe_calc_ut(jd_ut, ipl, iflag)
 }
 \description{
 Does planetary calculations using ephemeris
+Compute information of planet (ET)
 }
