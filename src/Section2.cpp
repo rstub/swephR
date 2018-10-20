@@ -21,6 +21,7 @@
 
 
 // Compute information of planet (UT)
+// internal function that is called in Section2.R
 // [[Rcpp::export]]
 Rcpp::List calc_ut(Rcpp::NumericVector jd_ut, Rcpp::IntegerVector ipl, int iflag) {
   if (jd_ut.length() != ipl.length())
@@ -49,6 +50,7 @@ Rcpp::List calc_ut(Rcpp::NumericVector jd_ut, Rcpp::IntegerVector ipl, int iflag
 }
 
 // Compute information of planet (ET)
+// internal function that is called in Section2.R
 // [[Rcpp::export]]
 Rcpp::List calc(Rcpp::NumericVector jd_et, Rcpp::IntegerVector ipl, int iflag) {
   if (jd_et.length() != ipl.length())

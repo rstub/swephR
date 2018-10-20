@@ -42,30 +42,15 @@ calc <- function(jd_et, ipl, iflag) {
     .Call(`_swephR_calc`, jd_et, ipl, iflag)
 }
 
-#' @title Section 4: Fixed stars functions
-#' @description The following functions are used to calculate positions of fixed stars. 
-#' @param jd_ut  UT Julian day number (day)
-#' @param jd_et  ET Julian day number as double (day)
-#' @param starname  star name as string ("" for no star)
-#' @param iflag flag as interger, many options possible (section 2.3)
-#' @return \code{swe_fixstar2_ut} returns a list with named entries \code{return} status flag as interger,
-#'         \code{starname} updated star name as string, \code{xx} star information as numeric vector, and \code{serr} for error message as string.
-#' @rdname Section4
-#' @export
 fixstar2_ut <- function(starname, jd_ut, iflag) {
     .Call(`_swephR_fixstar2_ut`, starname, jd_ut, iflag)
 }
 
-#' Compute information of star (ET)
-#' @return \code{swe_fixstar2} returns a list with named entries \code{return} status flag as interger,
-#'         \code{starname} updated star name as string, \code{xx} star information as numeric vector, and \code{serr} for error message as string.
-#' @rdname Section4
-#' @export
 fixstar2 <- function(starname, jd_et, iflag) {
     .Call(`_swephR_fixstar2`, starname, jd_et, iflag)
 }
 
-#' Calculation magnitude of star
+#' @details Calculation magnitude of star
 #' @return \code{swe_fixstar2_mag} returns a list with named entries \code{return} status flag as interger,
 #'         \code{starname} updated star name as string, \code{mag} magnitude of star as double, and \code{serr} for error message as string.
 #' @rdname Section4
