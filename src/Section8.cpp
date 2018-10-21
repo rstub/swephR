@@ -24,6 +24,9 @@
 //' @title Section 8: Delta T-related functions
 //' @description FUnctions rleated to DeltaT and tidal acceleration
 //' @param ephe_flag  ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4) (section 2.3.2)
+//' @details swe_deltat_ex()
+//' 
+//' Determine DeltaT from Julian day number for a specific ephemeris 
 //' @param jd_ut  Julian day number (UT) as numeric vector (day)
 //' @param t_acc tidal acceleration as double (arcsec/century^2)
 //' @param delta_t DeltaT (day)
@@ -45,7 +48,16 @@ Rcpp::List deltat_ex(Rcpp::NumericVector jd_ut, int ephe_flag) {
                             Rcpp::Named("serr") = serr_);
 }
 
-//' Determine the DeltaT at a certain date
+//' @details swe_deltat()
+//' 
+//' Determine DeltaT from Julian day number for a used ephemeris.
+//' This function is only safe if:
+//' 
+//' . your software consistently uses the same ephemeris flag 
+//' 
+//' . if software consistently uses the same ephemeris files (with SEFLG_SWIEPH and SEFLG_MOSEPH)
+//' 
+//' . if swe_set_ephe_path() is first called (with SEFLG_SWIEPH) and swe_set_jpl_file() (with SEFLG_JPLEPH) 
 //' @return \code{swe_deltat} returns the DeltaT as double (day)
 //' @rdname Section8
 //' @export
@@ -56,6 +68,8 @@ Rcpp::NumericVector deltat(Rcpp::NumericVector jd_ut) {
   return result;
 }
 
+//' @details swe_set_tid_acc()
+//' 
 //' Set the tidal acceleration
 //' @rdname Section8
 //' @export
@@ -64,6 +78,8 @@ void set_tid_acc(double t_acc) {
   swe_set_tid_acc(t_acc);
 }
 
+//' @details swe_get_tid_acc()
+//' 
 //' Get the present configured tidal acceleration
 //' @return \code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
 //' @rdname Section8
@@ -73,7 +89,9 @@ double get_tid_acc() {
   return swe_get_tid_acc();
 }
 
-//' Set one's own DeltaT
+//' @details swe_set_delta_t_userdef()
+//' 
+//' Allows the user to set a fixed DeltaT value that will be returned by swe_deltat() or swe_deltat_ex().
 //' @rdname Section8
 //' @export
 // [[Rcpp::export(swe_set_delta_t_userdef)]]

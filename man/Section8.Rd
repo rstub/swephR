@@ -38,3 +38,31 @@ swe_set_delta_t_userdef(delta_t)
 \description{
 FUnctions rleated to DeltaT and tidal acceleration
 }
+\details{
+swe_deltat_ex()
+
+Determine DeltaT from Julian day number for a specific ephemeris
+
+swe_deltat()
+
+Determine DeltaT from Julian day number for a used ephemeris.
+This function is only safe if:
+
+. your software consistently uses the same ephemeris flag 
+
+. if software consistently uses the same ephemeris files (with SEFLG_SWIEPH and SEFLG_MOSEPH)
+
+. if swe_set_ephe_path() is first called (with SEFLG_SWIEPH) and swe_set_jpl_file() (with SEFLG_JPLEPH)
+
+swe_set_tid_acc()
+
+Set the tidal acceleration
+
+swe_get_tid_acc()
+
+Get the present configured tidal acceleration
+
+swe_set_delta_t_userdef()
+
+Allows the user to set a fixed DeltaT value that will be returned by swe_deltat() or swe_deltat_ex().
+}

@@ -22,6 +22,9 @@
 
 //' @title Section 9: The function for topocentric planet positions
 //' @description Function for topocentric planet positions
+//' @details swe_set_topo{}
+//' 
+//' Function for topocentric planet positions
 //' @param geolon  geographic longitude as double (deg)
 //' @param geolat  geographic latitude as double (deg)
 //' @param altitude  height as double (m)

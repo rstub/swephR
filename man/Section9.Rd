@@ -16,3 +16,8 @@ swe_set_topo(geolon, geolat, altitude)
 \description{
 Function for topocentric planet positions
 }
+\details{
+swe_set_topo{}
+
+Function for topocentric planet positions
+}

@@ -24,11 +24,14 @@
 //' meridian transits for all planets, asteroids, the moon and the fixed stars; computing phase, phase angle, elongation, 
 //' apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids; and determing 
 //' heliacal phenomenon after a given start date
+//' @details swe_sol_eclipse_when_loc()
+//' 
+//' Finds the next solar eclipse for a given geographic position
 //' @param jd_et  ET Julian day number as double (day)
 //' @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
-//' @param star  star name as string ("" for no star)
-//' @param jd_ut  UT Julian day number (day)
-//' @param calc_flag flag as interger: reference system (e.g.: SEFLG_EQUATORIAL	2048 or ecliptic) or refraction direction (SE_TRUE_TO_APP=0, SE_APP_TO_TRUE=1)
+//' @param starname  star name as string ("" for no star)
+//' @param jd_ut  UT Julian day number as double (day)
+//' @param calc_flag flag as interger (reference system (e.g.: SEFLG_EQUATORIAL	2048 or ecliptic) or refraction direction (SE_TRUE_TO_APP=0, SE_APP_TO_TRUE=1))
 //' @param atpress atmospheric pressure as double (hPa)
 //' @param attemp atmospheric temperature as double (Celsius)
 //' @param ephe_flag ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4)
@@ -53,8 +56,10 @@ Rcpp::List sol_eclipse_when_loc(double jd_start, int ephe_flag, Rcpp::NumericVec
     );
 }
 
-//' Compute lunar eclipse at location
-//' @param geopos The position numeric vector (longitude, latitude, height)
+//' @details swe_lun_eclipse_when_loc()
+//' 
+//' Finds the next lunar eclipse for a given geographic position.
+//' @param geopos position as numeric vector (longitude, latitude, height)
 //' @param backward backwards search as boolean (TRUE)
 //' @return \code{swe_lun_eclipse_when_loc} returns a list with named entries:
 //'      \code{return} status flag as integer, \code{tret} for eclipse timing moments,
@@ -74,8 +79,10 @@ Rcpp::List lun_eclipse_when_loc(double jd_start, int ephe_flag, Rcpp::NumericVec
   );
 }
 
-//' Computes the attributes of a lunar eclipse at a given time
-//' @param jd_start  Julian day number (UT)
+//' @details swe_lun_eclipse_how()
+//' 
+//' Computes the attributes of a lunar eclipse for a given time
+//' @param jd_start  Julian day number as double (UT)
 //' @return \code{swe_lun_eclipse_how} returns a list with named entries:
 //'      \code{return} status flag as integer,
 //'      \code{attr} pheneomena during eclipse as numeric vector and \code{serr} error message as string
@@ -94,7 +101,9 @@ Rcpp::List lun_eclipse_how(double jd_start, int ephe_flag, Rcpp::NumericVector g
 }
 
 
-//' Search a lunar eclipse on earth
+//' @details swe_lun_eclipse_when()
+//' 
+//' Finds the next lunar eclipse on earth
 //' @param ifltype eclipse tper as interger (e.g.: SE_ECL_CENTRAL=1,SE_ECL_NONCENTRAL=2,SE_ECL_TOTAL=4,SE_ECL_ANNULAR=8,SE_ECL_PARTIAL=16,SE_ECL_ANNULAR_TOTAL=32)
 //' @return \code{swe_lun_eclipse_when} returns a list with named entries:
 //'      \code{return} status flag as interger, \code{tret} for eclipse timing moments as numeric vector
@@ -111,52 +120,29 @@ Rcpp::List lun_eclipse_when(double jd_start, int ephe_flag, int ifltype, bool ba
   );
 }
 
-//' Compute the rise and set location of the object
-//' //' @return \code{swe_rise_trans_true_hor} returns a list with named entries: \code{return} status flag as interger,
+//' @details swe_rise_trans_true_hor()
+//' 
+//' Computes the times of rising, setting and meridian transits for planets, asteroids, the moon, and the fixed stars for a local horizon that has an altitude. 
+//' @return \code{swe_rise_trans_true_hor} returns a list with named entries: \code{return} status flag as interger,
 //'      \code{tret} for azi/alt info as numeric vector and \code{serr} error message as string
 //' @rdname Section6
 //' @export
 // [[Rcpp::export(swe_rise_trans_true_hor)]]
-Rcpp::List rise_trans_true_hor(double jd_ut, int ipl, std::string star, int ephe_flag, int rsmi,Rcpp::NumericVector geopos, double atpress, double attemp, double horhgt) {
+Rcpp::List rise_trans_true_hor(double jd_ut, int ipl, std::string starname, int ephe_flag, int rsmi,Rcpp::NumericVector geopos, double atpress, double attemp, double horhgt) {
   if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
   std::array<char, 256> serr{'\0'};
   double tret;
-  star.resize(41);
-  int i = swe_rise_trans_true_hor(jd_ut, ipl, &star[0], ephe_flag, rsmi, geopos.begin(), atpress, attemp, horhgt, &tret, serr.begin());
+  starname.resize(41);
+  int i = swe_rise_trans_true_hor(jd_ut, ipl, &starname[0], ephe_flag, rsmi, geopos.begin(), atpress, attemp, horhgt, &tret, serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = i,
                             Rcpp::Named("tret") = tret,
                             Rcpp::Named("serr") = std::string(serr.begin()));
 }
 
 
-//' Compute horizon information: azimuth, altiiude
-//' @return \code{swe_azalt} returns a list with named entries:
-//'      \code{xaz} for azi/alt info as numeric vector.
-//' @rdname Section6
-//' @export
-// [[Rcpp::export(swe_azalt)]]
-Rcpp::List azalt(double jd_ut, int calc_flag, Rcpp::NumericVector geopos, double atpress, double attemp, Rcpp::NumericVector xin) {
-  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
-  std::array<double, 3> xaz{0.0};
-  swe_azalt(jd_ut, calc_flag, geopos.begin(), atpress, attemp, xin.begin(), xaz.begin());
-  return Rcpp::List::create(Rcpp::Named("xaz") = xaz);
-}
-
-
-//' Compute equatorial/ecliptical information
-//' @return \code{swe_azalt_rev} returns a list with named entries:
-//'      \code{xaz} for celestial info a snumeric vector.
-//' @rdname Section6
-//' @export
-// [[Rcpp::export(swe_azalt_rev)]]
-Rcpp::List azalt_rev(double jd_ut, int calc_flag, Rcpp::NumericVector geopos, Rcpp::NumericVector xin) {
-  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
-  std::array<double, 3> xout{0.0};
-  swe_azalt_rev(jd_ut, calc_flag, geopos.begin(), xin.begin(), xout.begin());
-  return Rcpp::List::create(Rcpp::Named("xout") = xout);
-}
-
-//' Provide phenomom information of celestial body (UT)
+//' @details swe_pheno_ut()
+//' 
+//' Computes phase, phase angle, elongation, apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids (UT)
 //' @return \code{swe_pheno_ut} returns a list with named entries:
 //'      \code{return} status fag as integer, \code{attr} for phenomenon information as numeric vector
 //'      and \code{serr} error warning as string
@@ -173,7 +159,9 @@ Rcpp::List pheno_ut(double jd_ut, int ipl, int ephe_flag) {
 }
 
 
-//' Provide phenomom information of celestial body (ET)
+//' @details swe_pheno()
+//' 
+//' Computes phase, phase angle, elongation, apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids (ET)
 //' @return \code{swe_pheno} returns a list with named entries:
 //'      \code{return} status fag as integer, \code{attr} for phenomenon information as numeric vector
 //'      and \code{serr} error message as string
@@ -189,7 +177,116 @@ Rcpp::List pheno(double jd_et, int ipl, int ephe_flag) {
   );
 }
 
-//' Compute heliacal phenomena
+//' @details swe_azalt()
+//' 
+//' Computes the horizontal coordinates (azimuth and altitude) of a planet or a star from either ecliptical or equatorial coordinates. 
+//' @return \code{swe_azalt} returns a list with named entries:
+//'      \code{xaz} for azi/alt info as numeric vector.
+//' @rdname Section6
+//' @export
+// [[Rcpp::export(swe_azalt)]]
+Rcpp::List azalt(double jd_ut, int calc_flag, Rcpp::NumericVector geopos, double atpress, double attemp, Rcpp::NumericVector xin) {
+  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
+  std::array<double, 3> xaz{0.0};
+  swe_azalt(jd_ut, calc_flag, geopos.begin(), atpress, attemp, xin.begin(), xaz.begin());
+  return Rcpp::List::create(Rcpp::Named("xaz") = xaz);
+}
+
+
+//' @details swe_azalt_rev()
+//' 
+//' It computes either ecliptical or equatorial coordinates from azimuth and true altitude. 
+//' If only an apparent altitude is given, the true altitude has to be computed first with 
+//' e.g. the function swe_refrac_extended().
+//' @return \code{swe_azalt_rev} returns a list with named entries:
+//'      \code{xaz} for celestial info a snumeric vector.
+//' @rdname Section6
+//' @export
+// [[Rcpp::export(swe_azalt_rev)]]
+Rcpp::List azalt_rev(double jd_ut, int calc_flag, Rcpp::NumericVector geopos, Rcpp::NumericVector xin) {
+  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
+  std::array<double, 3> xout{0.0};
+  swe_azalt_rev(jd_ut, calc_flag, geopos.begin(), xin.begin(), xout.begin());
+  return Rcpp::List::create(Rcpp::Named("xout") = xout);
+}
+
+//' @details swe_refrac_extended()
+//' 
+//' Calculates either the topocentric altitude from the apparent altitude 
+//' or the apparent altitude from the topocentric altitude.
+//' It allows correct calculation of refraction for heights above sea > 0, 
+//' where the ideal horizon and planets that are visible may have a negative altitude. 
+//' @param InAlt  object's apparent/topocentric altitude as double (depending on calc_flag) (deg)
+//' @param geoheight  observer's height as double (m)
+//' @param lapse_rate  lapse rate as double (K/m)
+//' @return \code{swe_refrac_extended} returns a list with named entries: \code{return} status flag as interger,
+//'      \code{dret} refraction results as nemeric vector (TopoAlt, AppAlt, refraction)
+//' @rdname Section6
+//' @export
+// [[Rcpp::export(swe_refrac_extended)]]
+Rcpp::List refrac_extended(double InAlt, double geoheight, double atpress, double attemp, double lapse_rate, int calc_flag) {
+  std::array<double, 10> dret{0.0};
+  int i = swe_refrac_extended(InAlt,geoheight,atpress,attemp,lapse_rate,calc_flag, dret.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("dret") = dret);
+}
+
+//' @details swe_heliacal_ut()
+//' 
+//' Compute the Julian day of the next heliacal phenomenon after a given UT start date. 
+//' It works between geographic latitudes 60 South and 60 North
+//' @param jd_utstart  UT Julian day number as double (day)
+//' @param dgeo Geographic position as numeric vector
+//' @param datm Atmospheric conditions as numeric vector
+//' @param dobs Observer description as numeric vector
+//' @param objectname  name of fixed star or planet as string
+//' @param event_type  event type as integer
+//' @param helflag calculation flag as integer
+//' @return \code{swe_heliacal_ut} returns a list with named entries \code{return} status flag as integer,
+//'         \code{dret} heliacal results as numeric vector, and \code{serr} error message as string.
+//' @rdname Section6
+//' @export
+// [[Rcpp::export(swe_heliacal_ut)]]
+Rcpp::List heliacal_ut(double jd_utstart, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int event_type, int helflag) {
+  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
+  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
+  if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
+  std::array<double, 50> dret{0.0};
+  std::array<char, 256> serr{'\0'};
+  int rtn = swe_heliacal_ut(jd_utstart, dgeo.begin(),datm.begin(),dobs.begin(),&objectname[0],event_type,helflag, dret.begin(), serr.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = rtn,
+                            Rcpp::Named("dret") = dret,
+                            Rcpp::Named("serr") = std::string(serr.begin()));
+}
+
+//' @details swe_vis_limit_mag()
+//' 
+//' Determines the limiting visual magnitude in dark skies. If the visual magnitude mag of an object is known 
+//' for a given date (e. g. from a call of function swe_pheno_ut(), and if magnitude is smaller than the value returned 
+//' by swe_vis_limt_mag(), then it is visible
+//' @return \code{swe_vis_limit_mag} returns a list with named entries: \code{return} status flag as interger,
+//'      \code{dret} limiting magnitude as double and \code{serr} error message as string
+//' @rdname Section6
+//' @export
+// [[Rcpp::export(swe_vis_limit_mag)]]
+Rcpp::List vis_limit_mag(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int helflag ){
+  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
+  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
+  if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
+  std::array<double, 50> dret{0.0};
+  std::array<char, 256> serr{'\0'};
+  int i = swe_vis_limit_mag(jd_ut, dgeo.begin(), datm.begin(),dobs.begin(), &objectname[0], helflag, dret.begin(), serr.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("dret") = dret,
+                            Rcpp::Named("serr") = std::string(serr.begin()));
+}
+
+//' @details swe_heliacal_pheno_ut()
+//' 
+//' provides data that are relevant for the calculation of heliacal risings and settings. 
+//' This function does not provide data of heliacal risings and settings itself, just some 
+//' additional data mostly used for test purposes. To calculate heliacal risings and settings, 
+//' use the function swe_heliacal_ut().
 //' @return \code{swe_heliacal_pheno_ut} returns a list with named entries: \code{return} status flag as integer
 //'      \code{darr} for heliacal details as numeric vector and \code{serr} error message as string
 //' @rdname Section6
@@ -207,8 +304,10 @@ Rcpp::List heliacal_pheno_ut(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::Numer
                             Rcpp::Named("serr") = std::string(serr.begin()));
 }
 
+//' @details swe_topo_arcus_visionis()
+//' 
 //' Compute topocentric arcus visionis
-//' @param mag   object's magnitude as double (-)
+//' @param mag   object's visible magnitude (Vmag) as double (-)
 //' @param AziO  object's azimuth as double (deg)
 //' @param AltO  object's altitude as double (deg)
 //' @param AziS  Sun's azimuth as double (deg)
@@ -231,6 +330,8 @@ Rcpp::List topo_arcus_visionis(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::Num
                             Rcpp::Named("serr") = std::string(serr.begin()));
 }
 
+//' @details swe_heliacal_angle()
+//' 
 //' Compute heliacal angle
 //' @return \code{swe_heliacal_angle} returns a list with named entries: \code{return} status flag as integer,
 //'      \code{dret} heliacal angle as numeric vector and \code{serr} error message as string
@@ -247,64 +348,6 @@ Rcpp::List heliacal_angle(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericV
   return Rcpp::List::create(Rcpp::Named("return") = i,
                             Rcpp::Named("dret") = dret,
                             Rcpp::Named("serr") = std::string(serr.begin()));
-}
-//' Compute the heliacale event of celestial object
-//' @param jd_utstart  UT Julian day number as double (day)
-//' @param dgeo Geographic position as numeric vector
-//' @param datm Atmospheric conditions as numeric vector
-//' @param dobs Observer description as numeric vector
-//' @param objectname  celectial object as string
-//' @param event_type  event type as integer
-//' @param helflag calcuation flag as integer
-//' @return \code{swe_heliacal_ut} returns a list with named entries \code{return} status flag as integer,
-//'         \code{dret} heliacal results as numeric vector, and \code{serr} error message as string.
-//' @rdname Section6
-//' @export
-// [[Rcpp::export(swe_heliacal_ut)]]
-Rcpp::List heliacal_ut(double jd_utstart, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int event_type, int helflag) {
-  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
-  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
-  if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
-  std::array<double, 50> dret{0.0};
-  std::array<char, 256> serr{'\0'};
-  int rtn = swe_heliacal_ut(jd_utstart, dgeo.begin(),datm.begin(),dobs.begin(),&objectname[0],event_type,helflag, dret.begin(), serr.begin());
-  return Rcpp::List::create(Rcpp::Named("return") = rtn,
-			    Rcpp::Named("dret") = dret,
-                            Rcpp::Named("serr") = std::string(serr.begin()));
-}
-
-//' Compute the limiting visibiliy magnitude
-//' @return \code{swe_vis_limit_mag} returns a list with named entries: \code{return} status flag as interger,
-//'      \code{dret} limiting magnitude as double and \code{serr} error message as string
-//' @rdname Section6
-//' @export
-// [[Rcpp::export(swe_vis_limit_mag)]]
-Rcpp::List vis_limit_mag(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int helflag ){
-  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
-  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
-  if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
-  std::array<double, 50> dret{0.0};
-  std::array<char, 256> serr{'\0'};
-  int i = swe_vis_limit_mag(jd_ut, dgeo.begin(), datm.begin(),dobs.begin(), &objectname[0], helflag, dret.begin(), serr.begin());
-  return Rcpp::List::create(Rcpp::Named("return") = i,
-                            Rcpp::Named("dret") = dret,
-                            Rcpp::Named("serr") = std::string(serr.begin()));
-}
-
-//' Compute the refraction
-//' @param InAlt  object's apparent/topocentric altitude as double (depending on calc_flag) (deg)
-//' @param geoheight  observer's height as double (m)
-//' @param lapse_rate  lapse rate as double (K/m)
-//' @return \code{swe_refrac_extended} returns a list with named entries: \code{return} status flag as interger,
-//'      \code{dret} refraction results as nemeric vector (TopoAlt, AppAlt, refraction)
-//' @rdname Section6
-//' @export
-// [[Rcpp::export(swe_refrac_extended)]]
-Rcpp::List refrac_extended(double InAlt, double geoheight, double atpress, double attemp, double lapse_rate, int calc_flag) {
-  std::array<double, 10> dret{0.0};
-  int i = swe_refrac_extended(InAlt,geoheight,atpress,attemp,lapse_rate,calc_flag, dret.begin());
-  return Rcpp::List::create(Rcpp::Named("return") = i,
-                            Rcpp::Named("dret") = dret);
 }
 
 // to be added in future:

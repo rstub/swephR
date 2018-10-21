@@ -3,6 +3,7 @@
 \name{swe_set_ephe_path}
 \alias{swe_set_ephe_path}
 \alias{swe_close}
+\alias{swe_set_jpl_file}
 \alias{swe_version}
 \title{Section 1: The Ephemeris file related functions}
 \usage{
@@ -10,16 +11,20 @@ swe_set_ephe_path(path)
 
 swe_close()
 
+swe_set_jpl_file(fname)
+
 swe_version()
 }
 \arguments{
 \item{path}{directory for the sefstars.txt, swe_deltat.txt and jpl files}
+
+\item{fname}{JPL ephemeris name as string (JPL ephemeris file, e.g. de431.eph)}
 }
 \description{
 Several initialisation and generic functions
 }
 \details{
-swe_set_ephe_path(path)
+swe_set_ephe_path()
 
 This is the first function that should be called before any other function of the Swiss Ephemeris. 
 Even if you do not want to set an ephemeris path and use the Moshier ephemeris, it is nevertheless 
@@ -29,6 +34,10 @@ If you do not do that, the Swiss Ephemeris may work, but the results may be not 
 swe_close()
 
 At the end of your computations this function releases most resources (open files and allocated memory) used by Swiss Ephemeris.
+
+swe_set_jpl_file()
+
+Set name of JPL ephemeris file
 
 swe_version()
 

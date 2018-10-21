@@ -29,11 +29,11 @@ swe_calc_ut(jd_ut, ipl, iflag)
 Computing positions of planets, asteroids, lunar nodes and apogees using Swiss Ephemeris.
 }
 \details{
-swe_calc(jd_et, ipl, iflag)
+swe_calc()
 
 It compute positions using ET.
 
-swe_calc_ut(jd_ut, ipl, iflag)
+swe_calc_ut()
 
 It compute positions using UT.
 }
