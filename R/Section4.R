@@ -1,6 +1,8 @@
 ##' @title Section 4: Fixed stars functions
 ##' @description The following functions are used to calculate positions of fixed stars. 
-##' @details Compute information of star (ET)
+##' @details swe_fixstar2(starname, jd_et, iflag)
+##' 
+##' Compute information of star (ET)
 ##' @param jd_ut  UT Julian day number (day)
 ##' @param jd_et  ET Julian day number as double (day)
 ##' @param starname  star name as string ("" for no star)
@@ -19,7 +21,9 @@ swe_fixstar2 <- function(starname, jd_et, iflag) {
   fixstar2(starname, jd_et, iflag)
 }
 
-##' @details Compute information of star (UT)
+##' @details swe_fixstar2_ut(starname, jd_ut, iflag)
+##' 
+##' Compute information of star (UT)
 ##' @return \code{swe_fixstar2} returns a list with named entries \code{return} status flag as interger,
 ##'         \code{starname} updated star name as string, \code{xx} star information as numeric vector, and \code{serr} for error message as string.
 ##' @rdname Section4
