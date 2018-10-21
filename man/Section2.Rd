@@ -3,7 +3,7 @@
 \name{swe_calc}
 \alias{swe_calc}
 \alias{swe_calc_ut}
-\title{Section 2: Does planetary calculations}
+\title{Section 2: Computing positions}
 \usage{
 swe_calc(jd_et, ipl, iflag)
 
@@ -16,7 +16,7 @@ swe_calc_ut(jd_ut, ipl, iflag)
 
 \item{iflag}{flag as interger, many options possible (section 2.3)}
 
-\item{jd_ut}{UT Julian day number (day)}
+\item{jd_ut}{UT Julian day number as double (day)}
 }
 \value{
 \code{swe_calc} returns a list with named entries \code{return} status flag as integer,
@@ -26,6 +26,14 @@ swe_calc_ut(jd_ut, ipl, iflag)
        \code{xx} updated planet name as string, and \code{serr} error message as string.
 }
 \description{
-Does planetary calculations using ephemeris
-Compute information of planet (ET)
+Computing positions of planets, asteroids, lunar nodes and apogees using Swiss Ephemeris.
+}
+\details{
+swe_calc(jd_et, ipl, iflag)
+
+It compute positions using ET.
+
+swe_calc_ut(jd_ut, ipl, iflag)
+
+It compute positions using UT.
 }
