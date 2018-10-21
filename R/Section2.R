@@ -1,7 +1,9 @@
-##' @title Section 2: Does planetary calculations 
-##' @description Does planetary calculations using ephemeris
-##' Compute information of planet (ET)
-##' @param jd_ut  UT Julian day number (day)
+##' @title Section 2: Computing positions 
+##' @description Computing positions of planets, asteroids, lunar nodes and apogees using Swiss Ephemeris.
+##' @details swe_calc(jd_et, ipl, iflag)
+##' 
+##' It compute positions using ET. 
+##' @param jd_ut  UT Julian day number as double (day)
 ##' @param jd_et  ET Julian day number as double (day)
 ##' @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
 ##' @param iflag flag as interger, many options possible (section 2.3)
@@ -19,7 +21,9 @@ swe_calc <- function(jd_et, ipl, iflag) {
   calc(jd_et, ipl, iflag)
 }
 
-##' Compute information of planet (UT)
+##' @details swe_calc_ut(jd_ut, ipl, iflag)
+##' 
+##' It compute positions using UT.
 ##' @return \code{swe_calc_ut} returns a list with named entries \code{return} status flag as integer,
 ##'        \code{xx} updated planet name as string, and \code{serr} error message as string.
 ##' @rdname Section2
