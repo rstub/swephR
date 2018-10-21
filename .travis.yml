@@ -22,7 +22,7 @@ notifications:
     on_failure: change
 r_packages:
   - covr
-env:
-  - _R_CHECK_FORCE_SUGGESTS_=0
+r_github_packages:
+  - rstub/swephRdata
 after_success:
   - test "$TRAVIS_R_VERSION_STRING" = "release" && Rscript -e 'covr::codecov()' || true
