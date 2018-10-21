@@ -16,8 +16,7 @@
 // along with swephR.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <Rcpp.h>
-#include <array>
-#include "swephapi.h"
+#include <swephexp.h>
 
 
 //' @title Section 7: Date and time conversion functions 

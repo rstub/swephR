@@ -16,8 +16,7 @@
 // along with swephR.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <Rcpp.h>
-#include <array>
-#include "swephapi.h"
+#include <swephexp.h>
 
 //' @title Section 1: The Ephemeris file related functions
 //' @description Several initialisation and generic functions
