@@ -17,7 +17,7 @@
 
 #include <Rcpp.h>
 #include <array>
-#include "swephapi.h"
+#include <swephexp.h>
 
 
 // Compute information of planet (UT)
