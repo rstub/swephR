@@ -22,6 +22,7 @@ notifications:
     on_failure: change
 r_packages:
   - covr
+  - testthat
 r_github_packages:
   - rstub/swephRdata
 after_success:
