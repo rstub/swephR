@@ -3,7 +3,7 @@
 
 #' @title Section 1: The Ephemeris file related functions
 #' @description Several initialisation and generic functions
-#' @details swe_set_ephe_path(path)
+#' @details swe_set_ephe_path()
 #' 
 #' This is the first function that should be called before any other function of the Swiss Ephemeris. 
 #' Even if you do not want to set an ephemeris path and use the Moshier ephemeris, it is nevertheless 
@@ -25,6 +25,16 @@ swe_close <- function() {
     invisible(.Call(`_swephR_close`))
 }
 
+#' @details swe_set_jpl_file()
+#' 
+#' Set name of JPL ephemeris file 
+#' @param fname JPL ephemeris name as string (JPL ephemeris file, e.g. de431.eph)
+#' @rdname Section1
+#' @export
+swe_set_jpl_file <- function(fname) {
+    invisible(.Call(`_swephR_set_jpl_file`, fname))
+}
+
 #' @details swe_version()
 #' 
 #' The function returns the version number of the Swiss Ephemeris software.
@@ -36,6 +46,9 @@ swe_version <- function() {
 
 #' @title Section 16.7: Other functions that may be useful
 #' @description Useful functions
+#' @details swe_day_of_week()
+#' 
+#' Determine day of week from Julian day number
 #' @param jd  Julian day number as numeric vector (day)
 #' @return \code{swe_day_of_week} retruns the day of week as integer vector (0 Monday .. 6 Sunday)
 #' @rdname Section16
@@ -60,7 +73,7 @@ fixstar2 <- function(starname, jd_et, iflag) {
     .Call(`_swephR_fixstar2`, starname, jd_et, iflag)
 }
 
-#' @details swe_fixstar2_mag(starname)
+#' @details swe_fixstar2_mag()
 #' 
 #' Calculation visible magnitude (Vmag) of star
 #' @return \code{swe_fixstar2_mag} returns a list with named entries \code{return} status flag as interger,
@@ -76,11 +89,14 @@ swe_fixstar2_mag <- function(starname) {
 #' meridian transits for all planets, asteroids, the moon and the fixed stars; computing phase, phase angle, elongation, 
 #' apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids; and determing 
 #' heliacal phenomenon after a given start date
+#' @details swe_sol_eclipse_when_loc()
+#' 
+#' Finds the next solar eclipse for a given geographic position
 #' @param jd_et  ET Julian day number as double (day)
 #' @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
-#' @param star  star name as string ("" for no star)
-#' @param jd_ut  UT Julian day number (day)
-#' @param calc_flag flag as interger: reference system (e.g.: SEFLG_EQUATORIAL	2048 or ecliptic) or refraction direction (SE_TRUE_TO_APP=0, SE_APP_TO_TRUE=1)
+#' @param starname  star name as string ("" for no star)
+#' @param jd_ut  UT Julian day number as double (day)
+#' @param calc_flag flag as interger (reference system (e.g.: SEFLG_EQUATORIAL	2048 or ecliptic) or refraction direction (SE_TRUE_TO_APP=0, SE_APP_TO_TRUE=1))
 #' @param atpress atmospheric pressure as double (hPa)
 #' @param attemp atmospheric temperature as double (Celsius)
 #' @param ephe_flag ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4)
@@ -96,8 +112,10 @@ swe_sol_eclipse_when_loc <- function(jd_start, ephe_flag, geopos, backward) {
     .Call(`_swephR_sol_eclipse_when_loc`, jd_start, ephe_flag, geopos, backward)
 }
 
-#' Compute lunar eclipse at location
-#' @param geopos The position numeric vector (longitude, latitude, height)
+#' @details swe_lun_eclipse_when_loc()
+#' 
+#' Finds the next lunar eclipse for a given geographic position.
+#' @param geopos position as numeric vector (longitude, latitude, height)
 #' @param backward backwards search as boolean (TRUE)
 #' @return \code{swe_lun_eclipse_when_loc} returns a list with named entries:
 #'      \code{return} status flag as integer, \code{tret} for eclipse timing moments,
@@ -108,8 +126,10 @@ swe_lun_eclipse_when_loc <- function(jd_start, ephe_flag, geopos, backward) {
     .Call(`_swephR_lun_eclipse_when_loc`, jd_start, ephe_flag, geopos, backward)
 }
 
-#' Computes the attributes of a lunar eclipse at a given time
-#' @param jd_start  Julian day number (UT)
+#' @details swe_lun_eclipse_how()
+#' 
+#' Computes the attributes of a lunar eclipse for a given time
+#' @param jd_start  Julian day number as double (UT)
 #' @return \code{swe_lun_eclipse_how} returns a list with named entries:
 #'      \code{return} status flag as integer,
 #'      \code{attr} pheneomena during eclipse as numeric vector and \code{serr} error message as string
@@ -119,7 +139,9 @@ swe_lun_eclipse_how <- function(jd_start, ephe_flag, geopos) {
     .Call(`_swephR_lun_eclipse_how`, jd_start, ephe_flag, geopos)
 }
 
-#' Search a lunar eclipse on earth
+#' @details swe_lun_eclipse_when()
+#' 
+#' Finds the next lunar eclipse on earth
 #' @param ifltype eclipse tper as interger (e.g.: SE_ECL_CENTRAL=1,SE_ECL_NONCENTRAL=2,SE_ECL_TOTAL=4,SE_ECL_ANNULAR=8,SE_ECL_PARTIAL=16,SE_ECL_ANNULAR_TOTAL=32)
 #' @return \code{swe_lun_eclipse_when} returns a list with named entries:
 #'      \code{return} status flag as interger, \code{tret} for eclipse timing moments as numeric vector
@@ -130,34 +152,20 @@ swe_lun_eclipse_when <- function(jd_start, ephe_flag, ifltype, backward) {
     .Call(`_swephR_lun_eclipse_when`, jd_start, ephe_flag, ifltype, backward)
 }
 
-#' Compute the rise and set location of the object
-#' //' @return \code{swe_rise_trans_true_hor} returns a list with named entries: \code{return} status flag as interger,
+#' @details swe_rise_trans_true_hor()
+#' 
+#' Computes the times of rising, setting and meridian transits for planets, asteroids, the moon, and the fixed stars for a local horizon that has an altitude. 
+#' @return \code{swe_rise_trans_true_hor} returns a list with named entries: \code{return} status flag as interger,
 #'      \code{tret} for azi/alt info as numeric vector and \code{serr} error message as string
 #' @rdname Section6
 #' @export
-swe_rise_trans_true_hor <- function(jd_ut, ipl, star, ephe_flag, rsmi, geopos, atpress, attemp, horhgt) {
-    .Call(`_swephR_rise_trans_true_hor`, jd_ut, ipl, star, ephe_flag, rsmi, geopos, atpress, attemp, horhgt)
+swe_rise_trans_true_hor <- function(jd_ut, ipl, starname, ephe_flag, rsmi, geopos, atpress, attemp, horhgt) {
+    .Call(`_swephR_rise_trans_true_hor`, jd_ut, ipl, starname, ephe_flag, rsmi, geopos, atpress, attemp, horhgt)
 }
 
-#' Compute horizon information: azimuth, altiiude
-#' @return \code{swe_azalt} returns a list with named entries:
-#'      \code{xaz} for azi/alt info as numeric vector.
-#' @rdname Section6
-#' @export
-swe_azalt <- function(jd_ut, calc_flag, geopos, atpress, attemp, xin) {
-    .Call(`_swephR_azalt`, jd_ut, calc_flag, geopos, atpress, attemp, xin)
-}
-
-#' Compute equatorial/ecliptical information
-#' @return \code{swe_azalt_rev} returns a list with named entries:
-#'      \code{xaz} for celestial info a snumeric vector.
-#' @rdname Section6
-#' @export
-swe_azalt_rev <- function(jd_ut, calc_flag, geopos, xin) {
-    .Call(`_swephR_azalt_rev`, jd_ut, calc_flag, geopos, xin)
-}
-
-#' Provide phenomom information of celestial body (UT)
+#' @details swe_pheno_ut()
+#' 
+#' Computes phase, phase angle, elongation, apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids (UT)
 #' @return \code{swe_pheno_ut} returns a list with named entries:
 #'      \code{return} status fag as integer, \code{attr} for phenomenon information as numeric vector
 #'      and \code{serr} error warning as string
@@ -167,7 +175,9 @@ swe_pheno_ut <- function(jd_ut, ipl, ephe_flag) {
     .Call(`_swephR_pheno_ut`, jd_ut, ipl, ephe_flag)
 }
 
-#' Provide phenomom information of celestial body (ET)
+#' @details swe_pheno()
+#' 
+#' Computes phase, phase angle, elongation, apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids (ET)
 #' @return \code{swe_pheno} returns a list with named entries:
 #'      \code{return} status fag as integer, \code{attr} for phenomenon information as numeric vector
 #'      and \code{serr} error message as string
@@ -177,7 +187,85 @@ swe_pheno <- function(jd_et, ipl, ephe_flag) {
     .Call(`_swephR_pheno`, jd_et, ipl, ephe_flag)
 }
 
-#' Compute heliacal phenomena
+#' @details swe_azalt()
+#' 
+#' Computes the horizontal coordinates (azimuth and altitude) of a planet or a star from either ecliptical or equatorial coordinates. 
+#' @return \code{swe_azalt} returns a list with named entries:
+#'      \code{xaz} for azi/alt info as numeric vector.
+#' @rdname Section6
+#' @export
+swe_azalt <- function(jd_ut, calc_flag, geopos, atpress, attemp, xin) {
+    .Call(`_swephR_azalt`, jd_ut, calc_flag, geopos, atpress, attemp, xin)
+}
+
+#' @details swe_azalt_rev()
+#' 
+#' It computes either ecliptical or equatorial coordinates from azimuth and true altitude. 
+#' If only an apparent altitude is given, the true altitude has to be computed first with 
+#' e.g. the function swe_refrac_extended().
+#' @return \code{swe_azalt_rev} returns a list with named entries:
+#'      \code{xaz} for celestial info a snumeric vector.
+#' @rdname Section6
+#' @export
+swe_azalt_rev <- function(jd_ut, calc_flag, geopos, xin) {
+    .Call(`_swephR_azalt_rev`, jd_ut, calc_flag, geopos, xin)
+}
+
+#' @details swe_refrac_extended()
+#' 
+#' Calculates either the topocentric altitude from the apparent altitude 
+#' or the apparent altitude from the topocentric altitude.
+#' It allows correct calculation of refraction for heights above sea > 0, 
+#' where the ideal horizon and planets that are visible may have a negative altitude. 
+#' @param InAlt  object's apparent/topocentric altitude as double (depending on calc_flag) (deg)
+#' @param geoheight  observer's height as double (m)
+#' @param lapse_rate  lapse rate as double (K/m)
+#' @return \code{swe_refrac_extended} returns a list with named entries: \code{return} status flag as interger,
+#'      \code{dret} refraction results as nemeric vector (TopoAlt, AppAlt, refraction)
+#' @rdname Section6
+#' @export
+swe_refrac_extended <- function(InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag) {
+    .Call(`_swephR_refrac_extended`, InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag)
+}
+
+#' @details swe_heliacal_ut()
+#' 
+#' Compute the Julian day of the next heliacal phenomenon after a given UT start date. 
+#' It works between geographic latitudes 60 South and 60 North
+#' @param jd_utstart  UT Julian day number as double (day)
+#' @param dgeo Geographic position as numeric vector
+#' @param datm Atmospheric conditions as numeric vector
+#' @param dobs Observer description as numeric vector
+#' @param objectname  name of fixed star or planet as string
+#' @param event_type  event type as integer
+#' @param helflag calculation flag as integer
+#' @return \code{swe_heliacal_ut} returns a list with named entries \code{return} status flag as integer,
+#'         \code{dret} heliacal results as numeric vector, and \code{serr} error message as string.
+#' @rdname Section6
+#' @export
+swe_heliacal_ut <- function(jd_utstart, dgeo, datm, dobs, objectname, event_type, helflag) {
+    .Call(`_swephR_heliacal_ut`, jd_utstart, dgeo, datm, dobs, objectname, event_type, helflag)
+}
+
+#' @details swe_vis_limit_mag()
+#' 
+#' Determines the limiting visual magnitude in dark skies. If the visual magnitude mag of an object is known 
+#' for a given date (e. g. from a call of function swe_pheno_ut(), and if magnitude is smaller than the value returned 
+#' by swe_vis_limt_mag(), then it is visible
+#' @return \code{swe_vis_limit_mag} returns a list with named entries: \code{return} status flag as interger,
+#'      \code{dret} limiting magnitude as double and \code{serr} error message as string
+#' @rdname Section6
+#' @export
+swe_vis_limit_mag <- function(jd_ut, dgeo, datm, dobs, objectname, helflag) {
+    .Call(`_swephR_vis_limit_mag`, jd_ut, dgeo, datm, dobs, objectname, helflag)
+}
+
+#' @details swe_heliacal_pheno_ut()
+#' 
+#' provides data that are relevant for the calculation of heliacal risings and settings. 
+#' This function does not provide data of heliacal risings and settings itself, just some 
+#' additional data mostly used for test purposes. To calculate heliacal risings and settings, 
+#' use the function swe_heliacal_ut().
 #' @return \code{swe_heliacal_pheno_ut} returns a list with named entries: \code{return} status flag as integer
 #'      \code{darr} for heliacal details as numeric vector and \code{serr} error message as string
 #' @rdname Section6
@@ -186,8 +274,10 @@ swe_heliacal_pheno_ut <- function(jd_ut, dgeo, datm, dobs, objectname, event_typ
     .Call(`_swephR_heliacal_pheno_ut`, jd_ut, dgeo, datm, dobs, objectname, event_type, helflag)
 }
 
+#' @details swe_topo_arcus_visionis()
+#' 
 #' Compute topocentric arcus visionis
-#' @param mag   object's magnitude as double (-)
+#' @param mag   object's visible magnitude (Vmag) as double (-)
 #' @param AziO  object's azimuth as double (deg)
 #' @param AltO  object's altitude as double (deg)
 #' @param AziS  Sun's azimuth as double (deg)
@@ -201,6 +291,8 @@ swe_topo_arcus_visionis <- function(jd_ut, dgeo, datm, dobs, helflag, mag, AziO,
     .Call(`_swephR_topo_arcus_visionis`, jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AltO, AziS, AziM, AltM)
 }
 
+#' @details swe_heliacal_angle()
+#' 
 #' Compute heliacal angle
 #' @return \code{swe_heliacal_angle} returns a list with named entries: \code{return} status flag as integer,
 #'      \code{dret} heliacal angle as numeric vector and \code{serr} error message as string
@@ -210,45 +302,11 @@ swe_heliacal_angle <- function(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS
     .Call(`_swephR_heliacal_angle`, jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM, AltM)
 }
 
-#' Compute the heliacale event of celestial object
-#' @param jd_utstart  UT Julian day number as double (day)
-#' @param dgeo Geographic position as numeric vector
-#' @param datm Atmospheric conditions as numeric vector
-#' @param dobs Observer description as numeric vector
-#' @param objectname  celectial object as string
-#' @param event_type  event type as integer
-#' @param helflag calcuation flag as integer
-#' @return \code{swe_heliacal_ut} returns a list with named entries \code{return} status flag as integer,
-#'         \code{dret} heliacal results as numeric vector, and \code{serr} error message as string.
-#' @rdname Section6
-#' @export
-swe_heliacal_ut <- function(jd_utstart, dgeo, datm, dobs, objectname, event_type, helflag) {
-    .Call(`_swephR_heliacal_ut`, jd_utstart, dgeo, datm, dobs, objectname, event_type, helflag)
-}
-
-#' Compute the limiting visibiliy magnitude
-#' @return \code{swe_vis_limit_mag} returns a list with named entries: \code{return} status flag as interger,
-#'      \code{dret} limiting magnitude as double and \code{serr} error message as string
-#' @rdname Section6
-#' @export
-swe_vis_limit_mag <- function(jd_ut, dgeo, datm, dobs, objectname, helflag) {
-    .Call(`_swephR_vis_limit_mag`, jd_ut, dgeo, datm, dobs, objectname, helflag)
-}
-
-#' Compute the refraction
-#' @param InAlt  object's apparent/topocentric altitude as double (depending on calc_flag) (deg)
-#' @param geoheight  observer's height as double (m)
-#' @param lapse_rate  lapse rate as double (K/m)
-#' @return \code{swe_refrac_extended} returns a list with named entries: \code{return} status flag as interger,
-#'      \code{dret} refraction results as nemeric vector (TopoAlt, AppAlt, refraction)
-#' @rdname Section6
-#' @export
-swe_refrac_extended <- function(InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag) {
-    .Call(`_swephR_refrac_extended`, InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag)
-}
-
 #' @title Section 7: Date and time conversion functions 
 #' @description Functions related to calendar and time conversions
+#' @details swe_julday()
+#' 
+#' Convert calendar dates to the astronomical time scale which measures time in Julian day number
 #' @param year  Year as interger
 #' @param month  Month as interger
 #' @param day  Day as interger
@@ -263,6 +321,9 @@ swe_julday <- function(year, month, day, hour, gregflag) {
 #' @title Section 8: Delta T-related functions
 #' @description FUnctions rleated to DeltaT and tidal acceleration
 #' @param ephe_flag  ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4) (section 2.3.2)
+#' @details swe_deltat_ex()
+#' 
+#' Determine DeltaT from Julian day number for a specific ephemeris 
 #' @param jd_ut  Julian day number (UT) as numeric vector (day)
 #' @param t_acc tidal acceleration as double (arcsec/century^2)
 #' @param delta_t DeltaT (day)
@@ -274,7 +335,16 @@ swe_deltat_ex <- function(jd_ut, ephe_flag) {
     .Call(`_swephR_deltat_ex`, jd_ut, ephe_flag)
 }
 
-#' Determine the DeltaT at a certain date
+#' @details swe_deltat()
+#' 
+#' Determine DeltaT from Julian day number for a used ephemeris.
+#' This function is only safe if:
+#' 
+#' . your software consistently uses the same ephemeris flag 
+#' 
+#' . if software consistently uses the same ephemeris files (with SEFLG_SWIEPH and SEFLG_MOSEPH)
+#' 
+#' . if swe_set_ephe_path() is first called (with SEFLG_SWIEPH) and swe_set_jpl_file() (with SEFLG_JPLEPH) 
 #' @return \code{swe_deltat} returns the DeltaT as double (day)
 #' @rdname Section8
 #' @export
@@ -282,6 +352,8 @@ swe_deltat <- function(jd_ut) {
     .Call(`_swephR_deltat`, jd_ut)
 }
 
+#' @details swe_set_tid_acc()
+#' 
 #' Set the tidal acceleration
 #' @rdname Section8
 #' @export
@@ -289,6 +361,8 @@ swe_set_tid_acc <- function(t_acc) {
     invisible(.Call(`_swephR_set_tid_acc`, t_acc))
 }
 
+#' @details swe_get_tid_acc()
+#' 
 #' Get the present configured tidal acceleration
 #' @return \code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
 #' @rdname Section8
@@ -297,7 +371,9 @@ swe_get_tid_acc <- function() {
     .Call(`_swephR_get_tid_acc`)
 }
 
-#' Set one's own DeltaT
+#' @details swe_set_delta_t_userdef()
+#' 
+#' Allows the user to set a fixed DeltaT value that will be returned by swe_deltat() or swe_deltat_ex().
 #' @rdname Section8
 #' @export
 swe_set_delta_t_userdef <- function(delta_t) {
@@ -306,6 +382,9 @@ swe_set_delta_t_userdef <- function(delta_t) {
 
 #' @title Section 9: The function for topocentric planet positions
 #' @description Function for topocentric planet positions
+#' @details swe_set_topo{}
+#' 
+#' Function for topocentric planet positions
 #' @param geolon  geographic longitude as double (deg)
 #' @param geolat  geographic latitude as double (deg)
 #' @param altitude  height as double (m)

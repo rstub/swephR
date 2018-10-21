@@ -1,6 +1,6 @@
 ##' @title Section 2: Computing positions 
 ##' @description Computing positions of planets, asteroids, lunar nodes and apogees using Swiss Ephemeris.
-##' @details swe_calc(jd_et, ipl, iflag)
+##' @details swe_calc()
 ##' 
 ##' It compute positions using ET. 
 ##' @param jd_ut  UT Julian day number as double (day)
@@ -21,7 +21,7 @@ swe_calc <- function(jd_et, ipl, iflag) {
   calc(jd_et, ipl, iflag)
 }
 
-##' @details swe_calc_ut(jd_ut, ipl, iflag)
+##' @details swe_calc_ut()
 ##' 
 ##' It compute positions using UT.
 ##' @return \code{swe_calc_ut} returns a list with named entries \code{return} status flag as integer,

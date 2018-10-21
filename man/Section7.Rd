@@ -20,3 +20,8 @@ swe_julday(year, month, day, hour, gregflag)
 \description{
 Functions related to calendar and time conversions
 }
+\details{
+swe_julday()
+
+Convert calendar dates to the astronomical time scale which measures time in Julian day number
+}

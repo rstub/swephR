@@ -35,15 +35,15 @@ swe_fixstar2_ut(starname, jd_ut, iflag)
 The following functions are used to calculate positions of fixed stars.
 }
 \details{
-swe_fixstar2_mag(starname)
+swe_fixstar2_mag()
 
 Calculation visible magnitude (Vmag) of star
 
-swe_fixstar2(starname, jd_et, iflag)
+swe_fixstar2()
 
 Compute information of star (ET)
 
-swe_fixstar2_ut(starname, jd_ut, iflag)
+swe_fixstar2_ut()
 
 Compute information of star (UT)
 }
