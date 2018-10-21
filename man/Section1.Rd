@@ -18,3 +18,19 @@ swe_version()
 \description{
 Several initialisation and generic functions
 }
+\details{
+swe_set_ephe_path(path)
+
+This is the first function that should be called before any other function of the Swiss Ephemeris. 
+Even if you do not want to set an ephemeris path and use the Moshier ephemeris, it is nevertheless 
+recommended to call swe_set_ephe_path(NULL), because this function makes important initializations. 
+If you do not do that, the Swiss Ephemeris may work, but the results may be not 100 percent consistent.
+
+swe_close()
+
+At the end of your computations this function releases most resources (open files and allocated memory) used by Swiss Ephemeris.
+
+swe_version()
+
+The function returns the version number of the Swiss Ephemeris software.
+}
