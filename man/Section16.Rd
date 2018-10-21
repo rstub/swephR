@@ -15,3 +15,8 @@ swe_day_of_week(jd)
 \description{
 Useful functions
 }
+\details{
+swe_day_of_week()
+
+Determine day of week from Julian day number
+}

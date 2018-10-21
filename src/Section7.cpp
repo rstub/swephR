@@ -21,6 +21,9 @@
 
 //' @title Section 7: Date and time conversion functions 
 //' @description Functions related to calendar and time conversions
+//' @details swe_julday()
+//' 
+//' Convert calendar dates to the astronomical time scale which measures time in Julian day number
 //' @param year  Year as interger
 //' @param month  Month as interger
 //' @param day  Day as interger

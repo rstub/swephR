@@ -20,7 +20,7 @@
 
 //' @title Section 1: The Ephemeris file related functions
 //' @description Several initialisation and generic functions
-//' @details swe_set_ephe_path(path)
+//' @details swe_set_ephe_path()
 //' 
 //' This is the first function that should be called before any other function of the Swiss Ephemeris. 
 //' Even if you do not want to set an ephemeris path and use the Moshier ephemeris, it is nevertheless 
@@ -48,6 +48,17 @@ void close() {
   swe_close();
 }
 
+
+//' @details swe_set_jpl_file()
+//' 
+//' Set name of JPL ephemeris file 
+//' @param fname JPL ephemeris name as string (JPL ephemeris file, e.g. de431.eph)
+//' @rdname Section1
+//' @export
+// [[Rcpp::export(swe_set_jpl_file)]]
+void set_jpl_file(Rcpp::Nullable<Rcpp::CharacterVector> fname) {
+    swe_set_jpl_file(fname.as().at(0));
+ }
 
 //' @details swe_version()
 //' 
