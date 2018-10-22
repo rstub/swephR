@@ -5,7 +5,7 @@
 \alias{swe_close}
 \alias{swe_set_jpl_file}
 \alias{swe_version}
-\title{Section 1: The Ephemeris file related functions}
+\title{The Ephemeris file related functions}
 \usage{
 swe_set_ephe_path(path)
 
@@ -24,22 +24,19 @@ swe_version()
 Several initialisation and generic functions
 }
 \details{
-swe_set_ephe_path()
-
-This is the first function that should be called before any other function of the Swiss Ephemeris. 
-Even if you do not want to set an ephemeris path and use the Moshier ephemeris, it is nevertheless 
-recommended to call swe_set_ephe_path(NULL), because this function makes important initializations. 
-If you do not do that, the Swiss Ephemeris may work, but the results may be not 100 percent consistent.
-
-swe_close()
-
-At the end of your computations this function releases most resources (open files and allocated memory) used by Swiss Ephemeris.
-
-swe_set_jpl_file()
-
-Set name of JPL ephemeris file
-
-swe_version()
-
-The function returns the version number of the Swiss Ephemeris software.
+\describe{
+  \item{swe_set_ephe_path()}{This is the first function that should be called
+       before any other function of the Swiss Ephemeris. Even if you do not
+       want to set an ephemeris path and use the Moshier ephemeris, it is
+       nevertheless recommended to call swe_set_ephe_path(NULL), because this
+       function makes important initializations. If you do not do that, the
+       Swiss Ephemeris may work, but the results may be not 100 percent consistent.}
+  \item{swe_close()}{At the end of your computations this function releases most
+       resources (open files and allocated memory) used by Swiss Ephemeris.}
+  \item{swe_set_jpl_file()}{Set name of JPL ephemeris file.} 
+  \item{swe_version()}{The function returns the version number of the Swiss Ephemeris software.}
+}
+}
+\seealso{
+\url{http://www.astro.com/swisseph/swephprg.htm?lang=g#_Toc505244831}
 }
