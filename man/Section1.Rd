@@ -21,7 +21,7 @@ swe_version()
 \item{fname}{JPL ephemeris name as string (JPL ephemeris file, e.g. de431.eph)}
 }
 \description{
-Several initialisation and generic functions
+Several initialisation functions
 }
 \details{
 \describe{

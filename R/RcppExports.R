@@ -2,7 +2,7 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #' @title The Ephemeris file related functions
-#' @description Several initialisation and generic functions
+#' @description Several initialisation functions
 #' @seealso \url{http://www.astro.com/swisseph/swephprg.htm?lang=g#_Toc505244831}
 #' @details
 #' \describe{
