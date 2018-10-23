@@ -26,11 +26,11 @@ Several initialisation and generic functions
 \details{
 \describe{
   \item{swe_set_ephe_path()}{This is the first function that should be called
-       before any other function of the Swiss Ephemeris. Even if you do not
+       before any other function of the Swiss Ephemeris. Even if you don't
        want to set an ephemeris path and use the Moshier ephemeris, it is
        nevertheless recommended to call swe_set_ephe_path(NULL), because this
-       function makes important initializations. If you do not do that, the
-       Swiss Ephemeris may work, but the results may be not 100 percent consistent.}
+       function makes important initializations. If you don't do that, the
+       Swiss Ephemeris may work, but the results may be not 100\% consistent.}
   \item{swe_close()}{At the end of your computations this function releases most
        resources (open files and allocated memory) used by Swiss Ephemeris.}
   \item{swe_set_jpl_file()}{Set name of JPL ephemeris file.} 
