@@ -20,6 +20,9 @@ swe_version()
 
 \item{fname}{JPL ephemeris name as string (JPL ephemeris file, e.g. de431.eph)}
 }
+\value{
+\code{swe_version} returns Swiss Ephemeris software version as string
+}
 \description{
 Several initialisation functions
 }
@@ -34,7 +37,7 @@ Several initialisation functions
   \item{swe_close()}{At the end of your computations this function releases most
        resources (open files and allocated memory) used by Swiss Ephemeris.}
   \item{swe_set_jpl_file()}{Set name of JPL ephemeris file.} 
-  \item{swe_version()}{The function returns the version number of the Swiss Ephemeris software.}
+  \item{swe_version()}{The function provides the version number of the Swiss Ephemeris software.}
 }
 }
 \seealso{
