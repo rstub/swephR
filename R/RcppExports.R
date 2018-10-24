@@ -15,7 +15,7 @@
 #'   \item{swe_close()}{At the end of your computations this function releases most
 #'        resources (open files and allocated memory) used by Swiss Ephemeris.}
 #'   \item{swe_set_jpl_file()}{Set name of JPL ephemeris file.} 
-#'   \item{swe_version()}{The function returns the version number of the Swiss Ephemeris software.}
+#'   \item{swe_version()}{The function provides the version number of the Swiss Ephemeris software.}
 #' }
 #' @param path directory for the sefstars.txt, swe_deltat.txt and jpl files
 #' @rdname Section1
@@ -37,6 +37,7 @@ swe_set_jpl_file <- function(fname) {
     invisible(.Call(`_swephR_set_jpl_file`, fname))
 }
 
+#' @return \code{swe_version} returns Swiss Ephemeris software version as string
 #' @rdname Section1
 #' @export
 swe_version <- function() {
