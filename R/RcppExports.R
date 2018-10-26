@@ -18,6 +18,11 @@
 #'   \item{swe_version()}{The function provides the version number of the Swiss Ephemeris software.}
 #' }
 #' @param path directory for the sefstars.txt, swe_deltat.txt and jpl files
+#' @examples
+#' swe_set_ephe_path("c:\\sweph\\ephe")
+#' swe_close()
+#' swe_set_jpl_file("de431.eph")
+#' swe_version()
 #' @rdname Section1
 #' @export
 swe_set_ephe_path <- function(path) {

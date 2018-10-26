@@ -40,6 +40,12 @@ Several initialisation functions
   \item{swe_version()}{The function provides the version number of the Swiss Ephemeris software.}
 }
 }
+\examples{
+swe_set_ephe_path("c:\\\\sweph\\\\ephe")
+swe_close()
+swe_set_jpl_file("de431.eph")
+swe_version()
+}
 \seealso{
 \url{http://www.astro.com/swisseph/swephprg.htm?lang=g#_Toc505244831}
 }
