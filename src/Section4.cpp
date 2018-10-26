@@ -86,10 +86,7 @@ Rcpp::List fixstar2(Rcpp::CharacterVector starname, Rcpp::NumericVector jd_et, i
                             Rcpp::Named("serr") = serr_);
 }
 
-//' @details swe_fixstar2_mag()
-//' 
-//' Calculation visible magnitude (Vmag) of star
-//' @return \code{swe_fixstar2_mag} returns a list with named entries \code{return} status flag as interger,
+//' @return \code{swe_fixstar2_mag} returns a list with named entries: \code{return} status flag as interger,
 //'         \code{starname} updated star name as string, \code{mag} magnitude of star as double, and \code{serr} for error message as string.
 //' @rdname Section4
 //' @export
