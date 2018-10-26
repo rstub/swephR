@@ -33,9 +33,9 @@ swe_pheno_ut(jd_ut, ipl, ephe_flag)
 
 swe_pheno(jd_et, ipl, ephe_flag)
 
-swe_azalt(jd_ut, calc_flag, geopos, atpress, attemp, xin)
+swe_azalt(jd_ut, coord_flag, geopos, atpress, attemp, xin)
 
-swe_azalt_rev(jd_ut, calc_flag, geopos, xin)
+swe_azalt_rev(jd_ut, coord_flag, geopos, xin)
 
 swe_refrac_extended(InAlt, geoheight, atpress, attemp, lapse_rate,
   calc_flag)
@@ -81,15 +81,17 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 
 \item{jd_et}{ET Julian day number as double (day)}
 
-\item{calc_flag}{flag as interger (reference system (e.g.: SEFLG_EQUATORIAL    2048 or ecliptic) or refraction direction (SE_TRUE_TO_APP=0, SE_APP_TO_TRUE=1))}
+\item{coord_flag}{flag as integer (reference system (SE_ECL2HOR=0 or SE_EQU2HOR=1))}
 
-\item{xin}{position of body as numeric vector (either ecliptical or equatorial coordinates, depending on calc_flag)}
+\item{xin}{position of body as numeric vector (either ecliptical or equatorial coordinates, depending on coord_flag)}
 
 \item{InAlt}{object's apparent/topocentric altitude as double (depending on calc_flag) (deg)}
 
 \item{geoheight}{observer's height as double (m)}
 
 \item{lapse_rate}{lapse rate as double (K/m)}
+
+\item{calc_flag}{flag as integer (refraction direction (SE_TRUE_TO_APP=0 or SE_APP_TO_TRUE=1))}
 
 \item{jd_utstart}{UT Julian day number as double (day)}
 
@@ -103,7 +105,7 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 
 \item{event_type}{event type as integer}
 
-\item{helflag}{calculation flag as integer}
+\item{helflag}{calculation flag (incl. ephe_flag values) as integer}
 
 \item{mag}{object's visible magnitude (Vmag) as double (-)}
 
