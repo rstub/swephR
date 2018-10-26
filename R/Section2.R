@@ -1,5 +1,6 @@
 ##' @title Section 2: Computing positions 
 ##' @description Computing positions of planets, asteroids, lunar nodes and apogees using Swiss Ephemeris.
+##' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244837}
 ##' @details 
 ##' \describe{
 ##'   \item{swe_calc_ut()}{It compute positions using UT.} 
@@ -12,8 +13,8 @@
 ##' @return \code{swe_calc_ut} returns a list with named entries: \code{return} status flag as integer,
 ##'        \code{xx} updated planet name as string, and \code{serr} error message as string.
 ##' @examples
-##' swe_calc_ut(2458346.82639, 1, 4)
-##' swe_calc(2458346.82639, 1, 4)
+##' swe_calc_ut(2458346.82639, SE_MOON, SEFLG_MOSEPH)
+##' swe_calc(2458346.82639, SE_MOON, SEFLG_MOSEPH)
 ##' @rdname Section2
 ##' @export
 swe_calc_ut <- function(jd_ut, ipl, iflag) {

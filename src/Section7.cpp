@@ -20,10 +20,14 @@
 
 
 //' @title Section 7: Date and time conversion functions 
-//' @description Functions related to calendar and time conversions
-//' @details swe_julday()
-//' 
-//' Convert calendar dates to the astronomical time scale which measures time in Julian day number
+//' @description Functions related to calendar and time conversions.
+//' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244873}
+//' @details
+//' \describe{
+//'   \item{swe_julday()}{Convert calendar dates to the astronomical time scale which measures time in Julian day number.}
+//' }
+//' @examples
+//' swe_julday(2000,1,1,12,SE_GREG_CAL)
 //' @param year  Year as interger
 //' @param month  Month as interger
 //' @param day  Day as interger

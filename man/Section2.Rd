@@ -35,6 +35,9 @@ Computing positions of planets, asteroids, lunar nodes and apogees using Swiss E
 }
 }
 \examples{
-swe_calc_ut(2458346.82639, 1, 4)
-swe_calc(2458346.82639, 1, 4)
+swe_calc_ut(2458346.82639, SE_MOON, SEFLG_MOSEPH)
+swe_calc(2458346.82639, SE_MOON, SEFLG_MOSEPH)
+}
+\seealso{
+\url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244837}
 }

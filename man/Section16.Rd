@@ -16,7 +16,13 @@ swe_day_of_week(jd)
 Useful functions
 }
 \details{
-swe_day_of_week()
-
-Determine day of week from Julian day number
+\describe{
+  \item{we_day_of_week()}{Determine day of week from Julian day number.}
+}
+}
+\examples{
+swe_day_of_week(1234.567)
+}
+\seealso{
+\url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244906}
 }

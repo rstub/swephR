@@ -24,6 +24,7 @@
 //' meridian transits for all planets, asteroids, the moon and the fixed stars; computing phase, phase angle, elongation, 
 //' apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids; and determing 
 //' heliacal phenomenon after a given start date
+//' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244853}
 //' @param jd_et  ET Julian day number as double (day)
 //' @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
 //' @param starname  star name as string ("" for no star)

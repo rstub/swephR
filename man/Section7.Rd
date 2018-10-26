@@ -18,10 +18,16 @@ swe_julday(year, month, day, hour, gregflag)
 \item{gregflag}{calendar type (SE_JUL_CAL=0 or SE_GREG_CAL=1)}
 }
 \description{
-Functions related to calendar and time conversions
+Functions related to calendar and time conversions.
 }
 \details{
-swe_julday()
-
-Convert calendar dates to the astronomical time scale which measures time in Julian day number
+\describe{
+  \item{swe_julday()}{Convert calendar dates to the astronomical time scale which measures time in Julian day number.}
+}
+}
+\examples{
+swe_julday(2000,1,1,12,SE_GREG_CAL)
+}
+\seealso{
+\url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244873}
 }
