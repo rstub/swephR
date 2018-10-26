@@ -219,32 +219,32 @@ BEGIN_RCPP
 END_RCPP
 }
 // azalt
-Rcpp::List azalt(double jd_ut, int calc_flag, Rcpp::NumericVector geopos, double atpress, double attemp, Rcpp::NumericVector xin);
-RcppExport SEXP _swephR_azalt(SEXP jd_utSEXP, SEXP calc_flagSEXP, SEXP geoposSEXP, SEXP atpressSEXP, SEXP attempSEXP, SEXP xinSEXP) {
+Rcpp::List azalt(double jd_ut, int coord_flag, Rcpp::NumericVector geopos, double atpress, double attemp, Rcpp::NumericVector xin);
+RcppExport SEXP _swephR_azalt(SEXP jd_utSEXP, SEXP coord_flagSEXP, SEXP geoposSEXP, SEXP atpressSEXP, SEXP attempSEXP, SEXP xinSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< double >::type jd_ut(jd_utSEXP);
-    Rcpp::traits::input_parameter< int >::type calc_flag(calc_flagSEXP);
+    Rcpp::traits::input_parameter< int >::type coord_flag(coord_flagSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type geopos(geoposSEXP);
     Rcpp::traits::input_parameter< double >::type atpress(atpressSEXP);
     Rcpp::traits::input_parameter< double >::type attemp(attempSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type xin(xinSEXP);
-    rcpp_result_gen = Rcpp::wrap(azalt(jd_ut, calc_flag, geopos, atpress, attemp, xin));
+    rcpp_result_gen = Rcpp::wrap(azalt(jd_ut, coord_flag, geopos, atpress, attemp, xin));
     return rcpp_result_gen;
 END_RCPP
 }
 // azalt_rev
-Rcpp::List azalt_rev(double jd_ut, int calc_flag, Rcpp::NumericVector geopos, Rcpp::NumericVector xin);
-RcppExport SEXP _swephR_azalt_rev(SEXP jd_utSEXP, SEXP calc_flagSEXP, SEXP geoposSEXP, SEXP xinSEXP) {
+Rcpp::List azalt_rev(double jd_ut, int coord_flag, Rcpp::NumericVector geopos, Rcpp::NumericVector xin);
+RcppExport SEXP _swephR_azalt_rev(SEXP jd_utSEXP, SEXP coord_flagSEXP, SEXP geoposSEXP, SEXP xinSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< double >::type jd_ut(jd_utSEXP);
-    Rcpp::traits::input_parameter< int >::type calc_flag(calc_flagSEXP);
+    Rcpp::traits::input_parameter< int >::type coord_flag(coord_flagSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type geopos(geoposSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type xin(xinSEXP);
-    rcpp_result_gen = Rcpp::wrap(azalt_rev(jd_ut, calc_flag, geopos, xin));
+    rcpp_result_gen = Rcpp::wrap(azalt_rev(jd_ut, coord_flag, geopos, xin));
     return rcpp_result_gen;
 END_RCPP
 }

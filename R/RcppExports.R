@@ -100,12 +100,13 @@ swe_fixstar2_mag <- function(starname) {
 #' @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
 #' @param starname  star name as string ("" for no star)
 #' @param jd_ut  UT Julian day number as double (day)
-#' @param calc_flag flag as interger (reference system (e.g.: SEFLG_EQUATORIAL	2048 or ecliptic) or refraction direction (SE_TRUE_TO_APP=0, SE_APP_TO_TRUE=1))
+#' @param calc_flag flag as integer (refraction direction (SE_TRUE_TO_APP=0 or SE_APP_TO_TRUE=1))
+#' @param coord_flag flag as integer (reference system (SE_ECL2HOR=0 or SE_EQU2HOR=1)) 
 #' @param atpress atmospheric pressure as double (hPa)
 #' @param attemp atmospheric temperature as double (Celsius)
 #' @param ephe_flag ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4)
 #' @param horhgt horizon apparent altitude as double (deg)
-#' @param xin  position of body as numeric vector (either ecliptical or equatorial coordinates, depending on calc_flag)
+#' @param xin  position of body as numeric vector (either ecliptical or equatorial coordinates, depending on coord_flag)
 #' @param rsmi  event flag as integer (e.g.: SE_CALC_RISE=1, SE_CALC_SET=2,SE_CALC_MTRANSIT=4,SE_CALC_ITRANSIT=8)
 #' @details
 #' \describe{
@@ -225,8 +226,8 @@ swe_pheno <- function(jd_et, ipl, ephe_flag) {
 #'      \code{xaz} for azi/alt info as numeric vector.
 #' @rdname Section6
 #' @export
-swe_azalt <- function(jd_ut, calc_flag, geopos, atpress, attemp, xin) {
-    .Call(`_swephR_azalt`, jd_ut, calc_flag, geopos, atpress, attemp, xin)
+swe_azalt <- function(jd_ut, coord_flag, geopos, atpress, attemp, xin) {
+    .Call(`_swephR_azalt`, jd_ut, coord_flag, geopos, atpress, attemp, xin)
 }
 
 #' @details 
@@ -239,8 +240,8 @@ swe_azalt <- function(jd_ut, calc_flag, geopos, atpress, attemp, xin) {
 #'      \code{xaz} for celestial info a snumeric vector.
 #' @rdname Section6
 #' @export
-swe_azalt_rev <- function(jd_ut, calc_flag, geopos, xin) {
-    .Call(`_swephR_azalt_rev`, jd_ut, calc_flag, geopos, xin)
+swe_azalt_rev <- function(jd_ut, coord_flag, geopos, xin) {
+    .Call(`_swephR_azalt_rev`, jd_ut, coord_flag, geopos, xin)
 }
 
 #' @details 
@@ -272,7 +273,7 @@ swe_refrac_extended <- function(InAlt, geoheight, atpress, attemp, lapse_rate, c
 #' @param dobs Observer description as numeric vector
 #' @param objectname  name of fixed star or planet as string
 #' @param event_type  event type as integer
-#' @param helflag calculation flag as integer
+#' @param helflag calculation flag (incl. ephe_flag values) as integer
 #' @return \code{swe_heliacal_ut} returns a list with named entries \code{return} status flag as integer,
 #'         \code{dret} heliacal results as numeric vector, and \code{serr} error message as string.
 #' @rdname Section6
