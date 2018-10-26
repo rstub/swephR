@@ -1,5 +1,6 @@
 ##' @title Section 4: Fixed stars functions
 ##' @description The following functions are used to calculate positions of fixed stars. 
+##' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244844}
 ##' @details 
 ##' \describe{
 ##'   \item{swe_fixstar2_mag()}{Calculate visible magnitude (Vmag) of star.} 
@@ -13,9 +14,10 @@
 ##' @return \code{swe_fixstar2} returns a list with named entries: \code{return} status flag as integer,
 ##'         \code{starname} updated star name as string, \code{xx} star phenomena as numeric vector, and \code{serr} error message as string.
 ##' @examples
-##' swe_fixstar2_mag("sirius")       
-##' swe_fixstar2("sirius",1234567,34820)
-##' swe_fixstar2_ut("sirius",1234567,34820)
+##' swe_fixstar2_mag("sirius") 
+##' swe_set_topo(0,50,10)      
+##' swe_fixstar2("sirius",1234567,SEFLG_TOPOCTR+SEFLG_MOSEPH+SEFLG_EQUATORIAL)
+##' swe_fixstar2_ut("sirius",1234567,SEFLG_TOPOCTR+SEFLG_MOSEPH+SEFLG_EQUATORIAL)
 ##' @rdname Section4
 ##' @export
 swe_fixstar2 <- function(starname, jd_et, iflag) {

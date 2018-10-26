@@ -51,11 +51,15 @@ swe_version <- function() {
 
 #' @title Section 16.7: Other functions that may be useful
 #' @description Useful functions
-#' @details swe_day_of_week()
-#' 
-#' Determine day of week from Julian day number
+#' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244906}
+#' @details
+#' \describe{
+#'   \item{we_day_of_week()}{Determine day of week from Julian day number.}
+#' }
 #' @param jd  Julian day number as numeric vector (day)
 #' @return \code{swe_day_of_week} retruns the day of week as integer vector (0 Monday .. 6 Sunday)
+#' @examples
+#' swe_day_of_week(1234.567)
 #' @rdname Section16
 #' @export
 swe_day_of_week <- function(jd) {
@@ -91,6 +95,7 @@ swe_fixstar2_mag <- function(starname) {
 #' meridian transits for all planets, asteroids, the moon and the fixed stars; computing phase, phase angle, elongation, 
 #' apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids; and determing 
 #' heliacal phenomenon after a given start date
+#' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244853}
 #' @param jd_et  ET Julian day number as double (day)
 #' @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
 #' @param starname  star name as string ("" for no star)
@@ -336,10 +341,14 @@ swe_heliacal_angle <- function(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS
 }
 
 #' @title Section 7: Date and time conversion functions 
-#' @description Functions related to calendar and time conversions
-#' @details swe_julday()
-#' 
-#' Convert calendar dates to the astronomical time scale which measures time in Julian day number
+#' @description Functions related to calendar and time conversions.
+#' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244873}
+#' @details
+#' \describe{
+#'   \item{swe_julday()}{Convert calendar dates to the astronomical time scale which measures time in Julian day number.}
+#' }
+#' @examples
+#' swe_julday(2000,1,1,12,SE_GREG_CAL)
 #' @param year  Year as interger
 #' @param month  Month as interger
 #' @param day  Day as interger
@@ -353,13 +362,21 @@ swe_julday <- function(year, month, day, hour, gregflag) {
 
 #' @title Section 8: Delta T-related functions
 #' @description FUnctions rleated to DeltaT and tidal acceleration
+#' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244878}
 #' @param ephe_flag  ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4) (section 2.3.2)
-#' @details swe_deltat_ex()
-#' 
-#' Determine DeltaT from Julian day number for a specific ephemeris 
+#' @details 
+#' \describe{
+#' \item{swe_deltat_ex()}{Determine DeltaT from Julian day number for a specific ephemeris.}
+#' }
 #' @param jd_ut  Julian day number (UT) as numeric vector (day)
 #' @param t_acc tidal acceleration as double (arcsec/century^2)
 #' @param delta_t DeltaT (day)
+#' @examples
+#' swe_deltat_ex(1234.567, SEFLG_MOSEPH)
+#' swe_deltat(1234.567)
+#' swe_set_tid_acc(1.23)
+#' swe_get_tid_acc()
+#' swe_set_delta_t_userdef(0.23)
 #' @return \code{swe_deltat_ex} returns a list with named entries: \code{deltat} for DeltaT as double (day)
 #'          and \code{serr} for error message as string.
 #' @rdname Section8
@@ -368,16 +385,17 @@ swe_deltat_ex <- function(jd_ut, ephe_flag) {
     .Call(`_swephR_deltat_ex`, jd_ut, ephe_flag)
 }
 
-#' @details swe_deltat()
-#' 
-#' Determine DeltaT from Julian day number for a used ephemeris.
+#' @details 
+#' \describe{
+#' \item{swe_deltat()}{Determine DeltaT from Julian day number for a used ephemeris.
 #' This function is only safe if:
-#' 
-#' . your software consistently uses the same ephemeris flag 
-#' 
-#' . if software consistently uses the same ephemeris files (with SEFLG_SWIEPH and SEFLG_MOSEPH)
-#' 
-#' . if swe_set_ephe_path() is first called (with SEFLG_SWIEPH) and swe_set_jpl_file() (with SEFLG_JPLEPH) 
+#'   \itemize{
+#'   \item your software consistently uses the same ephemeris flag
+#'   \item if software consistently uses the same ephemeris files (with SEFLG_SWIEPH and SEFLG_MOSEPH)
+#'   \item if swe_set_ephe_path() is first called (with SEFLG_SWIEPH) and swe_set_jpl_file() (with SEFLG_JPLEPH)
+#' }
+#' }
+#' }
 #' @return \code{swe_deltat} returns the DeltaT as double (day)
 #' @rdname Section8
 #' @export
@@ -385,18 +403,20 @@ swe_deltat <- function(jd_ut) {
     .Call(`_swephR_deltat`, jd_ut)
 }
 
-#' @details swe_set_tid_acc()
-#' 
-#' Set the tidal acceleration
+#' @details 
+#' \describe{
+#' \item{swe_set_tid_acc()}{Set the tidal acceleration.}
+#' }
 #' @rdname Section8
 #' @export
 swe_set_tid_acc <- function(t_acc) {
     invisible(.Call(`_swephR_set_tid_acc`, t_acc))
 }
 
-#' @details swe_get_tid_acc()
-#' 
-#' Get the present configured tidal acceleration
+#' @details 
+#' \describe{
+#' \item{swe_get_tid_acc()}{Get the present configured tidal acceleration.}
+#' }
 #' @return \code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
 #' @rdname Section8
 #' @export
@@ -404,23 +424,28 @@ swe_get_tid_acc <- function() {
     .Call(`_swephR_get_tid_acc`)
 }
 
-#' @details swe_set_delta_t_userdef()
-#' 
-#' Allows the user to set a fixed DeltaT value that will be returned by swe_deltat() or swe_deltat_ex().
+#' @details 
+#' \describe{
+#' \item{swe_set_delta_t_userdef()}{Allows the user to set a fixed DeltaT value that will be returned by swe_deltat() or swe_deltat_ex().}
+#' }
 #' @rdname Section8
 #' @export
 swe_set_delta_t_userdef <- function(delta_t) {
     invisible(.Call(`_swephR_set_delta_t_userdef`, delta_t))
 }
 
-#' @title Section 9: The function for topocentric planet positions
+#' @title Section 9: The function for calculating topocentric planet position
 #' @description Function for topocentric planet positions
-#' @details swe_set_topo{}
-#' 
-#' Function for topocentric planet positions
+#' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244884}
+#' @details
+#' \describe{
+#'   \item{we_set_topo{}}{Set the topocentric location of the observer.}
+#' }
 #' @param geolon  geographic longitude as double (deg)
 #' @param geolat  geographic latitude as double (deg)
 #' @param altitude  height as double (m)
+#' @examples
+#' swe_set_topo(0,50,10)
 #' @rdname Section9
 #' @export
 swe_set_topo <- function(geolon, geolat, altitude) {

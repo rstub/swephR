@@ -19,14 +19,18 @@
 #include <swephexp.h>
 
 
-//' @title Section 9: The function for topocentric planet positions
+//' @title Section 9: The function for calculating topocentric planet position
 //' @description Function for topocentric planet positions
-//' @details swe_set_topo{}
-//' 
-//' Function for topocentric planet positions
+//' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244884}
+//' @details
+//' \describe{
+//'   \item{we_set_topo{}}{Set the topocentric location of the observer.}
+//' }
 //' @param geolon  geographic longitude as double (deg)
 //' @param geolat  geographic latitude as double (deg)
 //' @param altitude  height as double (m)
+//' @examples
+//' swe_set_topo(0,50,10)
 //' @rdname Section9
 //' @export
 // [[Rcpp::export(swe_set_topo)]]

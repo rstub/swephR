@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{swe_set_topo}
 \alias{swe_set_topo}
-\title{Section 9: The function for topocentric planet positions}
+\title{Section 9: The function for calculating topocentric planet position}
 \usage{
 swe_set_topo(geolon, geolat, altitude)
 }
@@ -17,7 +17,13 @@ swe_set_topo(geolon, geolat, altitude)
 Function for topocentric planet positions
 }
 \details{
-swe_set_topo{}
-
-Function for topocentric planet positions
+\describe{
+  \item{we_set_topo{}}{Set the topocentric location of the observer.}
+}
+}
+\examples{
+swe_set_topo(0,50,10)
+}
+\seealso{
+\url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244884}
 }
