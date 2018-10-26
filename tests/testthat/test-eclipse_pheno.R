@@ -19,8 +19,8 @@ test_that("Equatorial postions", {
 })
 
 
-test_that("Rise/set azimuth", {
-  result <- swe_rise_trans_true_hor(1234567.5,0,"",4,0,c(0,50,10),1013.25,15,0)
+test_that("Rise time of Sun", {
+  result <- swe_rise_trans_true_hor(1234567.5,0,"",4,1,c(0,50,10),1013.25,15,0)
   expect_equal(result$tret, 1234567.83559187, tolerance = .0000001)
   swe_close()
 })
@@ -41,8 +41,8 @@ test_that("Lunar eclipse conditions", {
   swe_close()
 })
 
-test_that("Lunar eclipse", {
-  result <- swe_lun_eclipse_when_loc(1234567,4,c(0,50,10),0)
+test_that("Lunar eclipse at a certain location", {
+  result <- swe_lun_eclipse_when_loc(1234567,4,c(0,50,10),FALSE)
   expect_equal(result$return, 20624)
   expect_equal(result$tret,c(1234580.19,0,0,1234580.23691550,0,0,0,1234580.28328264,1234580.19960447,0))
   expect_equal(result$attr[1:11],c(0.718169986750774,1.74556231683580,0 ,0,240.642969834840244,-0.351069739087650,0.185738292657396,  0.586663260830164  ,0.718169986750774,12,58))
@@ -50,8 +50,18 @@ test_that("Lunar eclipse", {
   swe_close()
 })
 
+test_that("Lunar eclipse on earth", {
+  result <- swe_lun_eclipse_when(1234567,4,1,FALSE)
+  expect_equal(result$return, 4)
+  expect_equal(result$tret,c(1234580.16758062,0.00000000 ,1234580.09824349, 1234580.23691550, 1234580.16112524, 1234580.17402406, 1234580.05176974,
+                             1234580.28328264  ,     0.00000000  ,     0.00000000  ,     0.00000000  ,     0.00000000 ,     0.00000000   ,    0.00000000,
+                              0.00000000    ,   0.00000000 ,      0.00000000 ,      0.00000000    ,   0.00000000 ,     0.00000000))
+  expect_equal(result$serr, "")
+  swe_close()
+})
+
 test_that("Solar eclipse", {
-  result <- swe_sol_eclipse_when_loc(1234567,4,c(0,50,10),0)
+  result <- swe_sol_eclipse_when_loc(1234567,4,c(0,50,10),FALSE)
   expect_equal(result$return, 4242)
   expect_equal(result$tret[1:7],c(1.23477168584597e+06, 1.23477163960865e+06,0,0,  1.23477171224360e+06,  1.23477168584597e+06,0))
   expect_equal(result$attr[1:11],c( 5.45656645429638e-01, 9.61071876161396e-01,4.36668429108189e-01 , 1.40827740655886e+02, 2.40581275123498e+02,-3.45422559148016e-01 , 1.90452771420542e-01, 2.31444434882052e-01, 5.45656645429638e-01, 43,11))

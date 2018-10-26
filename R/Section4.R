@@ -1,14 +1,21 @@
 ##' @title Section 4: Fixed stars functions
 ##' @description The following functions are used to calculate positions of fixed stars. 
-##' @details swe_fixstar2()
-##' 
-##' Compute information of star (ET)
+##' @details 
+##' \describe{
+##'   \item{swe_fixstar2_mag()}{Calculate visible magnitude (Vmag) of star.} 
+##'   \item{swe_fixstar2()}{Compute information of star using ET.}
+##'   \item{swe_fixstar2_ut()}{Compute information of star using UT} 
+##' }
 ##' @param jd_ut  UT Julian day number (day)
 ##' @param jd_et  ET Julian day number as double (day)
 ##' @param starname  star name as string ("" for no star)
 ##' @param iflag flag as interger, many options possible (section 2.3)
-##' @return \code{swe_fixstar2} returns a list with named entries \code{return} status flag as integer,
-##'         \code{star} updated star name as string, \code{xx} star phenomena as numeric vector, and \code{serr} error message as string.
+##' @return \code{swe_fixstar2} returns a list with named entries: \code{return} status flag as integer,
+##'         \code{starname} updated star name as string, \code{xx} star phenomena as numeric vector, and \code{serr} error message as string.
+##' @examples
+##' swe_fixstar2_mag("sirius")       
+##' swe_fixstar2("sirius",1234567,34820)
+##' swe_fixstar2_ut("sirius",1234567,34820)
 ##' @rdname Section4
 ##' @export
 swe_fixstar2 <- function(starname, jd_et, iflag) {
@@ -21,10 +28,7 @@ swe_fixstar2 <- function(starname, jd_et, iflag) {
   fixstar2(starname, jd_et, iflag)
 }
 
-##' @details swe_fixstar2_ut()
-##' 
-##' Compute information of star (UT)
-##' @return \code{swe_fixstar2} returns a list with named entries \code{return} status flag as interger,
+##' @return \code{swe_fixstar2_ut} returns a list with named entries: \code{return} status flag as interger,
 ##'         \code{starname} updated star name as string, \code{xx} star information as numeric vector, and \code{serr} for error message as string.
 ##' @rdname Section4
 ##' @export

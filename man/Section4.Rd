@@ -22,28 +22,27 @@ swe_fixstar2_ut(starname, jd_ut, iflag)
 \item{jd_ut}{UT Julian day number (day)}
 }
 \value{
-\code{swe_fixstar2_mag} returns a list with named entries \code{return} status flag as interger,
+\code{swe_fixstar2_mag} returns a list with named entries: \code{return} status flag as interger,
         \code{starname} updated star name as string, \code{mag} magnitude of star as double, and \code{serr} for error message as string.
 
-\code{swe_fixstar2} returns a list with named entries \code{return} status flag as integer,
-        \code{star} updated star name as string, \code{xx} star phenomena as numeric vector, and \code{serr} error message as string.
+\code{swe_fixstar2} returns a list with named entries: \code{return} status flag as integer,
+        \code{starname} updated star name as string, \code{xx} star phenomena as numeric vector, and \code{serr} error message as string.
 
-\code{swe_fixstar2} returns a list with named entries \code{return} status flag as interger,
+\code{swe_fixstar2_ut} returns a list with named entries: \code{return} status flag as interger,
         \code{starname} updated star name as string, \code{xx} star information as numeric vector, and \code{serr} for error message as string.
 }
 \description{
 The following functions are used to calculate positions of fixed stars.
 }
 \details{
-swe_fixstar2_mag()
-
-Calculation visible magnitude (Vmag) of star
-
-swe_fixstar2()
-
-Compute information of star (ET)
-
-swe_fixstar2_ut()
-
-Compute information of star (UT)
+\describe{
+  \item{swe_fixstar2_mag()}{Calculate visible magnitude (Vmag) of star.} 
+  \item{swe_fixstar2()}{Compute information of star using ET.}
+  \item{swe_fixstar2_ut()}{Compute information of star using UT} 
+}
+}
+\examples{
+swe_fixstar2_mag("sirius")       
+swe_fixstar2("sirius",1234567,34820)
+swe_fixstar2_ut("sirius",1234567,34820)
 }

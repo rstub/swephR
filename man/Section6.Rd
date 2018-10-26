@@ -176,74 +176,91 @@ apparent diameter, apparent magnitude for the Sun, the Moon, all planets and ast
 heliacal phenomenon after a given start date
 }
 \details{
-swe_sol_eclipse_when_loc()
+\describe{
+  \item{swe_sol_eclipse_when_loc()}{Find the next solar eclipse for a given geographic position.}
+  }
 
-Finds the next solar eclipse for a given geographic position
+\describe{
+\item{swe_lun_eclipse_when_loc()}{Find the next lunar eclipse for a given geographic position.}
+}
 
-swe_lun_eclipse_when_loc()
+\describe{
+\item{swe_lun_eclipse_how()}{Compute the attributes of a lunar eclipse for a given time.}
+}
 
-Finds the next lunar eclipse for a given geographic position.
+\describe{
+\item{swe_lun_eclipse_when()}{Find the next lunar eclipse on earth.}
+}
 
-swe_lun_eclipse_how()
+\describe{
+\item{swe_rise_trans_true_hor()}{Compute the times of rising, setting and meridian transits for planets, asteroids, the moon, and the fixed stars for a local horizon that has an altitude. }
+}
 
-Computes the attributes of a lunar eclipse for a given time
+\describe{
+\item{swe_pheno_ut()}{Compute phase, phase angle, elongation, apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids (UT)}
+}
 
-swe_lun_eclipse_when()
+\describe{
+\item{swe_pheno()}{Compute phase, phase angle, elongation, apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids (ET).}
+}
 
-Finds the next lunar eclipse on earth
+\describe{
+\item{swe_azalt()}{Compute the horizontal coordinates (azimuth and altitude) of a planet or a star from either ecliptical or equatorial coordinates.}
+}
 
-swe_rise_trans_true_hor()
-
-Computes the times of rising, setting and meridian transits for planets, asteroids, the moon, and the fixed stars for a local horizon that has an altitude.
-
-swe_pheno_ut()
-
-Computes phase, phase angle, elongation, apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids (UT)
-
-swe_pheno()
-
-Computes phase, phase angle, elongation, apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids (ET)
-
-swe_azalt()
-
-Computes the horizontal coordinates (azimuth and altitude) of a planet or a star from either ecliptical or equatorial coordinates.
-
-swe_azalt_rev()
-
-It computes either ecliptical or equatorial coordinates from azimuth and true altitude. 
+\describe{
+\item{swe_azalt_rev()}{compute either ecliptical or equatorial coordinates from azimuth and true altitude.
 If only an apparent altitude is given, the true altitude has to be computed first with 
-e.g. the function swe_refrac_extended().
+e.g. the function swe_refrac_extended().}
+}
 
-swe_refrac_extended()
-
-Calculates either the topocentric altitude from the apparent altitude 
+\describe{
+\item{swe_refrac_extended()}{Calculate either the topocentric altitude from the apparent altitude 
 or the apparent altitude from the topocentric altitude.
 It allows correct calculation of refraction for heights above sea > 0, 
-where the ideal horizon and planets that are visible may have a negative altitude.
+where the ideal horizon and planets that are visible may have a negative altitude. }
+}
 
-swe_heliacal_ut()
+\describe{
+\item{swe_heliacal_ut()}{Compute the Julian day of the next heliacal phenomenon after a given UT start date. 
+It works between geographic latitudes 60 South and 60 North.}
+}
 
-Compute the Julian day of the next heliacal phenomenon after a given UT start date. 
-It works between geographic latitudes 60 South and 60 North
-
-swe_vis_limit_mag()
-
-Determines the limiting visual magnitude in dark skies. If the visual magnitude mag of an object is known 
+\describe{
+\item{swe_vis_limit_mag()}{Determine the limiting visual magnitude in dark skies. If the visual magnitude mag of an object is known 
 for a given date (e. g. from a call of function swe_pheno_ut(), and if magnitude is smaller than the value returned 
-by swe_vis_limt_mag(), then it is visible
+by swe_vis_limt_mag(), then it is visible.}
+}
 
-swe_heliacal_pheno_ut()
-
-provides data that are relevant for the calculation of heliacal risings and settings. 
+\describe{
+\item{swe_heliacal_pheno_ut()}{Provide data that are relevant for the calculation of heliacal risings and settings. 
 This function does not provide data of heliacal risings and settings itself, just some 
 additional data mostly used for test purposes. To calculate heliacal risings and settings, 
-use the function swe_heliacal_ut().
+use the function swe_heliacal_ut().}
+}
 
-swe_topo_arcus_visionis()
+\describe{
+\item{swe_topo_arcus_visionis()}{Compute topocentric arcus visionis.}
+}
 
-Compute topocentric arcus visionis
-
-swe_heliacal_angle()
-
-Compute heliacal angle
+\describe{
+\item{swe_heliacal_angle()}{Compute heliacal angle.}
+}
+}
+\examples{
+swe_sol_eclipse_when_loc(1234567,SEFLG_MOSEPH,c(0,50,10),FALSE)
+swe_lun_eclipse_when_loc(1234567,SEFLG_MOSEPH,c(0,50,10),FALSE)
+swe_lun_eclipse_how(1234580.19960447,SEFLG_MOSEPH,c(0,50,10))
+swe_lun_eclipse_when(1234567,SEFLG_MOSEPH,SE_ECL_CENTRAL,FALSE)
+swe_rise_trans_true_hor(1234567.5,SE_SUN,"",SEFLG_MOSEPH,0,c(0,50,10),1013.25,15,0)
+swe_pheno_ut(1234567,1,SEFLG_MOSEPH)
+swe_pheno(1234567,1,SEFLG_MOSEPH)
+swe_azalt(1234567,SE_APP_TO_TRUE,c(0,50,10),15,1013.25,c(186,22))
+swe_azalt_rev(1234567,SE_TRUE_TO_APP,c(0, 50,10),c(123,2))
+swe_refrac_extended(2,0,1013.25,15,-0.065,SE_TRUE_TO_APP)
+swe_heliacal_ut(1234567,c(0,50,10),c(1013.25,15,50,0.25),c(25,1,1,1,5,0.8),"sirius",SE_HELIACAL_RISING,SE_HELFLAG_HIGH_PRECISION+SEFLG_MOSEPH)
+swe_vis_limit_mag(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),'sirius',SE_HELFLAG_HIGH_PRECISION+SEFLG_MOSEPH)
+swe_heliacal_pheno_ut(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),'sirius',SE_HELIACAL_RISING,SE_HELFLAG_HIGH_PRECISION+SEFLG_MOSEPH)
+swe_topo_arcus_visionis(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),768,-1,124,2,120,0,-45)
+swe_heliacal_angle(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),768,-1,124,120,0,-45)
 }
