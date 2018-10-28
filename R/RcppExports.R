@@ -74,6 +74,23 @@ calc <- function(jd_et, ipl, iflag) {
     .Call(`_swephR_calc`, jd_et, ipl, iflag)
 }
 
+#' @title Section 3: Find a planetary or asteroid name 
+#' @description Find a planetary or asteroid name.
+#' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244843}
+#' @details
+#' \describe{
+#'   \item{swe_get_planet_name()}{Convert object number into ubject name.}
+#' }
+#' @examples
+#' swe_get_planet_name(SE_MOON)
+#' @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
+#' @return \code{swe_get_planet_name} returns objectname as string
+#' @rdname Section3
+#' @export
+swe_get_planet_name <- function(ipl) {
+    .Call(`_swephR_get_planet_name`, ipl)
+}
+
 fixstar2_ut <- function(starname, jd_ut, iflag) {
     .Call(`_swephR_fixstar2_ut`, starname, jd_ut, iflag)
 }

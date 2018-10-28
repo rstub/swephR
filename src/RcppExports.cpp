@@ -81,6 +81,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// get_planet_name
+std::string get_planet_name(int ipl);
+RcppExport SEXP _swephR_get_planet_name(SEXP iplSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type ipl(iplSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_planet_name(ipl));
+    return rcpp_result_gen;
+END_RCPP
+}
 // fixstar2_ut
 Rcpp::List fixstar2_ut(Rcpp::CharacterVector starname, Rcpp::NumericVector jd_ut, int iflag);
 RcppExport SEXP _swephR_fixstar2_ut(SEXP starnameSEXP, SEXP jd_utSEXP, SEXP iflagSEXP) {
@@ -444,6 +455,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_day_of_week", (DL_FUNC) &_swephR_day_of_week, 1},
     {"_swephR_calc_ut", (DL_FUNC) &_swephR_calc_ut, 3},
     {"_swephR_calc", (DL_FUNC) &_swephR_calc, 3},
+    {"_swephR_get_planet_name", (DL_FUNC) &_swephR_get_planet_name, 1},
     {"_swephR_fixstar2_ut", (DL_FUNC) &_swephR_fixstar2_ut, 3},
     {"_swephR_fixstar2", (DL_FUNC) &_swephR_fixstar2, 3},
     {"_swephR_fixstar2_mag", (DL_FUNC) &_swephR_fixstar2_mag, 1},
