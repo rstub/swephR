@@ -18,43 +18,42 @@ knitr::opts_chunk$set(
 
 
 # Some simple steps to do calculations
-To compute a celestial body or point with SWISSEPH, you have to do the following steps (use swetest.c as an example). 
+To compute a celestial body or point with SWISSEPH, you have to do the following steps.
 
-First load:
+
+1. First load the C and R-code:
 ```{r}
-library(swephR)
+devtools::load_all(".")
 ```
-The details of the functions will be explained in the following chapters.
 
-1. Set the directory path of the ephemeris files, e.g.:
+2. Set the directory path of the ephemeris files, e.g.:
 ```{r}
 swe_set_ephe_path("C:\\sweph\\ephe")
 ```
-1. From the birth date, compute the Julian day number:
+3. From the birth date, compute the Julian day number:
 ```{r}
 year <- 2000
 month <- 1
 day <- 1
 hour <- 12
-SE_GREG_CAL <- 1
 jdut <- swe_julday(year, month, day, hour, SE_GREG_CAL)
 jdut
 ```
-1. Compute a planet or other bodies:
+4. Compute a planet or other bodies:
 ```{r}
-planet_no <- 0
-flag <- 4
-result <- swe_calc_ut(jdut, planet_no, flag)
+ipl <- SE_SUN
+iflag <- SEFLG_MOSEPH
+result <- swe_calc_ut(jdut, ipl, iflag)
 result
 ```
 or a fixed star:
 ```{r}
 starname = "sirius"
-result <- swe_fixstar2_ut(starname, jdut, flag)
+result <- swe_fixstar2_ut(starname, jdut, iflag)
 result
 ```
 
-1.	At the end of your computations close all files and free memory calling 
+5.	At the end of your computations close all files and free memory calling 
 ```{r}
-swe_close();
+swe_close()
 ```
