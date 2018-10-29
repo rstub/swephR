@@ -20,8 +20,11 @@ LinkingTo: Rcpp
 RoxygenNote: 6.1.0
 Suggests:
     testthat,
-    swephRdata
+    swephRdata,
+    knitr,
+    rmarkdown
 Encoding: UTF-8
 URL: https://github.com/rstub/swephR/, http://www.astro.com/swisseph/
 BugReports: https://github.com/rstub/swephR/issues/
 Additional_repositories: https://rstub.github.io/drat
+VignetteBuilder: knitr

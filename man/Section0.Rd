@@ -2,7 +2,7 @@
 % Please edit documentation in R/Section0.R
 \name{SEtest}
 \alias{SEtest}
-\title{Section 0: The programming steps to get planet positions}
+\title{Section 0: The programming steps to get planet position}
 \usage{
 SEtest()
 }

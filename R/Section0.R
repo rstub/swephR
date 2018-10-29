@@ -1,4 +1,4 @@
-##' @title Section 0: The programming steps to get planet positions
+##' @title Section 0: The programming steps to get planet position
 ##' @description A miniature sample program to calcuate the planet's positions.
 ##' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244830}
 ##' @details 
