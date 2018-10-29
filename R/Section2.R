@@ -11,7 +11,7 @@
 ##' @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
 ##' @param iflag flag as interger, many options possible (section 2.3)
 ##' @return \code{swe_calc_ut} returns a list with named entries: \code{return} status flag as integer,
-##'        \code{xx} updated planet name as string, and \code{serr} error message as string.
+##'        \code{xx} information on planet position, and \code{serr} error message as string.
 ##' @examples
 ##' swe_calc_ut(2458346.82639, SE_MOON, SEFLG_MOSEPH)
 ##' swe_calc(2458346.82639, SE_MOON, SEFLG_MOSEPH)
