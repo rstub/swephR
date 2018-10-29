@@ -35,9 +35,9 @@ SEtest <- function() {
     tjd_ut <- swe_julday(jyear, jmon, jday, jhour, SE_GREG_CAL)
     cat("Julian day number (UT) :", tjd_ut, "(",jyear,",",jmon,",",jday,"; proleptic Gregorian cal.)\n")
     cat("planet :",
-        c("longitude", "latitude", "distance", "speed long"),
+        c("longitude", "latitude", "distance", "long. speed", "lat. speed"),
         "\n")
-    cat("===================================================\n")
+    cat("===========================================================\n")
     # loop over all planets
     for (p in SE_SUN:SE_OSCU_APOG) {
       # get the name of the planet p
@@ -50,7 +50,7 @@ SEtest <- function() {
         else
         {
           # print data
-          cat (objectname, ":", i$xx[0:4], "\n")
+          cat (objectname, ":", i$xx[0:5], "\n")
         }
     
     }
