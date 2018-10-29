@@ -39,10 +39,10 @@ hour <- 12
 jdut <- swe_julday(year, month, day, hour, SE_GREG_CAL)
 jdut
 ```
-4. Compute a planet or other bodies:
+4. Compute the positions (longitude, latitude, distance, longitude speed and latitude speed) of a planet or other bodies:
 ```{r}
 ipl <- SE_SUN
-iflag <- SEFLG_MOSEPH
+iflag <- SEFLG_MOSEPH + SEFLG_SPEED
 result <- swe_calc_ut(jdut, ipl, iflag)
 result
 ```
