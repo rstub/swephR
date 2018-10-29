@@ -20,7 +20,7 @@ swe_calc(jd_et, ipl, iflag)
 }
 \value{
 \code{swe_calc_ut} returns a list with named entries: \code{return} status flag as integer,
-       \code{xx} updated planet name as string, and \code{serr} error message as string.
+       \code{xx} information on planet position, and \code{serr} error message as string.
 
 \code{swe_calc} returns a list with named entries: \code{return} status flag as integer,
         \code{xx} updated star name as string and \code{serr} error message as string.
