@@ -21,28 +21,31 @@ knitr::opts_chunk$set(
 To compute the position of celestial body or star with SE (Swiss Ephemeris), you do the following steps ([see also](http://www.astro.com/swisseph/swephprg.htm#_Toc505244830)):
 
 
-1. First load all the C and R-code:
+1. First load `swephR`:
 ```{r}
-devtools::load_all(".")
+library(swephR)
 ```
 
-2. Set the directory path of the ephemeris files, e.g.:
-```{r}
+2. Optionaly set the directory path of the ephemeris files, e.g.:
+```{r, eval = FALSE}
 swe_set_ephe_path("C:\\sweph\\ephe")
 ```
+
+
 3. For a specific date, compute the Julian day number (in below example: J2000.0, 1 January 2000 at 12:00 UT):
 ```{r}
 year <- 2000
 month <- 1
 day <- 1
 hour <- 12
-jdut <- swe_julday(year, month, day, hour, SE_GREG_CAL)
+jdut <- swe_julday(year, month, day, hour, swephR:::SE_GREG_CAL)
 jdut
 ```
+
 4. Compute (using Moshier ephemeris) the positions (longitude, latitude, distance, longitude speed and latitude speed) of a planet or other celestial bodies (in below example: the Sun):
 ```{r}
-ipl <- SE_SUN
-iflag <- SEFLG_MOSEPH + SEFLG_SPEED
+ipl <- swephR:::SE_SUN
+iflag <- swephR:::SEFLG_MOSEPH + swephR:::SEFLG_SPEED
 result <- swe_calc_ut(jdut, ipl, iflag)
 result
 ```

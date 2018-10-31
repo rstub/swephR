@@ -15,7 +15,9 @@ A miniature sample program to calcuate the planet's positions.
  }
 }
 \examples{
+\dontrun{
 SEtest()
+}
 }
 \seealso{
 \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244830}

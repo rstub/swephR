@@ -19,7 +19,7 @@
 #' }
 #' @param path directory for the sefstars.txt, swe_deltat.txt and jpl files
 #' @examples
-#' swe_set_ephe_path("c:\\sweph\\ephe")
+#' \dontrun{swe_set_ephe_path("c:\\sweph\\ephe")}
 #' swe_close()
 #' swe_set_jpl_file("de431.eph")
 #' swe_version()
@@ -82,7 +82,7 @@ calc <- function(jd_et, ipl, iflag) {
 #'   \item{swe_get_planet_name()}{Convert object number into ubject name.}
 #' }
 #' @examples
-#' swe_get_planet_name(SE_MOON)
+#' swe_get_planet_name(swephR:::SE_MOON)
 #' @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
 #' @return \code{swe_get_planet_name} returns objectname as string
 #' @rdname Section3
@@ -130,19 +130,19 @@ swe_fixstar2_mag <- function(starname) {
 #'   \item{swe_sol_eclipse_when_loc()}{Find the next solar eclipse for a given geographic position.}
 #'   }
 #' @examples
-#' swe_sol_eclipse_when_loc(1234567,SEFLG_MOSEPH,c(0,50,10),FALSE)
-#' swe_lun_eclipse_when_loc(1234567,SEFLG_MOSEPH,c(0,50,10),FALSE)
-#' swe_lun_eclipse_how(1234580.19960447,SEFLG_MOSEPH,c(0,50,10))
-#' swe_lun_eclipse_when(1234567,SEFLG_MOSEPH,SE_ECL_CENTRAL,FALSE)
-#' swe_rise_trans_true_hor(1234567.5,SE_SUN,"",SEFLG_MOSEPH,0,c(0,50,10),1013.25,15,0)
-#' swe_pheno_ut(1234567,1,SEFLG_MOSEPH)
-#' swe_pheno(1234567,1,SEFLG_MOSEPH)
-#' swe_azalt(1234567,SE_EQU2HOR,c(0,50,10),15,1013.25,c(186,22))
-#' swe_azalt_rev(1234567,SE_ECL2HOR,c(0, 50,10),c(123,2))
-#' swe_refrac_extended(2,0,1013.25,15,-0.065,SE_TRUE_TO_APP)
-#' swe_heliacal_ut(1234567,c(0,50,10),c(1013.25,15,50,0.25),c(25,1,1,1,5,0.8),"sirius",SE_HELIACAL_RISING,SE_HELFLAG_HIGH_PRECISION+SEFLG_MOSEPH)
-#' swe_vis_limit_mag(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),'sirius',SE_HELFLAG_HIGH_PRECISION+SEFLG_MOSEPH)
-#' swe_heliacal_pheno_ut(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),'sirius',SE_HELIACAL_RISING,SE_HELFLAG_HIGH_PRECISION+SEFLG_MOSEPH)
+#' swe_sol_eclipse_when_loc(1234567,swephR:::SEFLG_MOSEPH,c(0,50,10),FALSE)
+#' swe_lun_eclipse_when_loc(1234567,swephR:::SEFLG_MOSEPH,c(0,50,10),FALSE)
+#' swe_lun_eclipse_how(1234580.19960447,swephR:::SEFLG_MOSEPH,c(0,50,10))
+#' swe_lun_eclipse_when(1234567,swephR:::SEFLG_MOSEPH,swephR:::SE_ECL_CENTRAL,FALSE)
+#' swe_rise_trans_true_hor(1234567.5,swephR:::SE_SUN,"",swephR:::SEFLG_MOSEPH,0,c(0,50,10),1013.25,15,0)
+#' swe_pheno_ut(1234567,1,swephR:::SEFLG_MOSEPH)
+#' swe_pheno(1234567,1,swephR:::SEFLG_MOSEPH)
+#' swe_azalt(1234567,swephR:::SE_EQU2HOR,c(0,50,10),15,1013.25,c(186,22))
+#' swe_azalt_rev(1234567,swephR:::SE_ECL2HOR,c(0, 50,10),c(123,2))
+#' swe_refrac_extended(2,0,1013.25,15,-0.065,swephR:::SE_TRUE_TO_APP)
+#' swe_heliacal_ut(1234567,c(0,50,10),c(1013.25,15,50,0.25),c(25,1,1,1,5,0.8),"sirius",swephR:::SE_HELIACAL_RISING,swephR:::SE_HELFLAG_HIGH_PRECISION+swephR:::SEFLG_MOSEPH)
+#' swe_vis_limit_mag(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),'sirius',swephR:::SE_HELFLAG_HIGH_PRECISION+swephR:::SEFLG_MOSEPH)
+#' swe_heliacal_pheno_ut(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),'sirius',swephR:::SE_HELIACAL_RISING,swephR:::SE_HELFLAG_HIGH_PRECISION+swephR:::SEFLG_MOSEPH)
 #' swe_topo_arcus_visionis(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),768,-1,124,2,120,0,-45)
 #' swe_heliacal_angle(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),768,-1,124,120,0,-45)
 #' @return \code{swe_sol_eclipse_when_loc} returns a list with named entries: 
@@ -366,7 +366,7 @@ swe_heliacal_angle <- function(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS
 #'   \item{swe_julday()}{Convert calendar dates to the astronomical time scale which measures time in Julian day number.}
 #' }
 #' @examples
-#' swe_julday(2000,1,1,12,SE_GREG_CAL)
+#' swe_julday(2000,1,1,12,swephR:::SE_GREG_CAL)
 #' @param year  Year as interger
 #' @param month  Month as interger
 #' @param day  Day as interger
@@ -390,7 +390,7 @@ swe_julday <- function(year, month, day, hour, gregflag) {
 #' @param t_acc tidal acceleration as double (arcsec/century^2)
 #' @param delta_t DeltaT (day)
 #' @examples
-#' swe_deltat_ex(1234.567, SEFLG_MOSEPH)
+#' swe_deltat_ex(1234.567, swephR:::SEFLG_MOSEPH)
 #' swe_deltat(1234.567)
 #' swe_set_tid_acc(1.23)
 #' swe_get_tid_acc()

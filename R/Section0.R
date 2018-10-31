@@ -6,7 +6,9 @@
 ##'   \item{SEtest()}{Calcuate the planets' positions.} 
 ##'  }
 ##' @examples
+##' \dontrun{
 ##' SEtest()
+##' }
 ##' @rdname Section0
 ##' @export
 

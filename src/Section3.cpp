@@ -27,7 +27,7 @@
 //'   \item{swe_get_planet_name()}{Convert object number into ubject name.}
 //' }
 //' @examples
-//' swe_get_planet_name(SE_MOON)
+//' swe_get_planet_name(swephR:::SE_MOON)
 //' @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
 //' @return \code{swe_get_planet_name} returns objectname as string
 //' @rdname Section3

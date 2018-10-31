@@ -27,7 +27,7 @@
 //'   \item{swe_julday()}{Convert calendar dates to the astronomical time scale which measures time in Julian day number.}
 //' }
 //' @examples
-//' swe_julday(2000,1,1,12,SE_GREG_CAL)
+//' swe_julday(2000,1,1,12,swephR:::SE_GREG_CAL)
 //' @param year  Year as interger
 //' @param month  Month as interger
 //' @param day  Day as interger

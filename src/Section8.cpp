@@ -33,7 +33,7 @@
 //' @param t_acc tidal acceleration as double (arcsec/century^2)
 //' @param delta_t DeltaT (day)
 //' @examples
-//' swe_deltat_ex(1234.567, SEFLG_MOSEPH)
+//' swe_deltat_ex(1234.567, swephR:::SEFLG_MOSEPH)
 //' swe_deltat(1234.567)
 //' swe_set_tid_acc(1.23)
 //' swe_get_tid_acc()
