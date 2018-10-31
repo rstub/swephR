@@ -16,8 +16,8 @@
 ##' @examples
 ##' swe_fixstar2_mag("sirius") 
 ##' swe_set_topo(0,50,10)      
-##' swe_fixstar2("sirius",1234567,SEFLG_TOPOCTR+SEFLG_MOSEPH+SEFLG_EQUATORIAL)
-##' swe_fixstar2_ut("sirius",1234567,SEFLG_TOPOCTR+SEFLG_MOSEPH+SEFLG_EQUATORIAL)
+##' swe_fixstar2("sirius",1234567,swephR:::SEFLG_TOPOCTR+swephR:::SEFLG_MOSEPH+swephR:::SEFLG_EQUATORIAL)
+##' swe_fixstar2_ut("sirius",1234567,swephR:::SEFLG_TOPOCTR+swephR:::SEFLG_MOSEPH+swephR:::SEFLG_EQUATORIAL)
 ##' @rdname Section4
 ##' @export
 swe_fixstar2 <- function(starname, jd_et, iflag) {

@@ -37,7 +37,7 @@
 //' }
 //' @param path directory for the sefstars.txt, swe_deltat.txt and jpl files
 //' @examples
-//' swe_set_ephe_path("c:\\sweph\\ephe")
+//' \dontrun{swe_set_ephe_path("c:\\sweph\\ephe")}
 //' swe_close()
 //' swe_set_jpl_file("de431.eph")
 //' swe_version()

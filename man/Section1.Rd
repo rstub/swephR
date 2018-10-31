@@ -41,7 +41,7 @@ Several initialisation functions
 }
 }
 \examples{
-swe_set_ephe_path("c:\\\\sweph\\\\ephe")
+\dontrun{swe_set_ephe_path("c:\\\\sweph\\\\ephe")}
 swe_close()
 swe_set_jpl_file("de431.eph")
 swe_version()

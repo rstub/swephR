@@ -21,7 +21,7 @@ Find a planetary or asteroid name.
 }
 }
 \examples{
-swe_get_planet_name(SE_MOON)
+swe_get_planet_name(swephR:::SE_MOON)
 }
 \seealso{
 \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244843}
