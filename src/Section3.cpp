@@ -15,6 +15,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with swephR.  If not, see <http://www.gnu.org/licenses/>.
 
+#include <array>
 #include <Rcpp.h>
 #include <swephexp.h>
 
