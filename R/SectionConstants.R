@@ -79,7 +79,7 @@
 
 ##' @title Initialising Constants: Initialising constants used for the SE function calls.
 ##' @description The constants defined in SE are in R defined as a list. 
-##' If the function retunr is store din the variable SE: for instance SE_MOON becomes SE$MOON 
+##' If the function return is stored in the variable SE than for instance SE_MOON becomes SE$MOON 
 ##' and SEFLG_JPLEPH becomes SE$FLG_JPLEPH.
 ##' @seealso \url{http://www.astro.com/swisseph/swephprg.htm}
 ##' @details 
@@ -89,7 +89,6 @@
 ##' @return \code{SEConstants} returns a list with named entries: the constants in SE
 ##' @examples
 ##' SEConstants()
-##' }
 ##' @rdname SectionConstants
 ##' @export
 

@@ -11,13 +11,16 @@ SEConstants()
 }
 \description{
 The constants defined in SE are in R defined as a list. 
-If the function retunr is store din the variable SE: for instance SE_MOON becomes SE$MOON 
+If the function return is stored in the variable SE than for instance SE_MOON becomes SE$MOON 
 and SEFLG_JPLEPH becomes SE$FLG_JPLEPH.
 }
 \details{
 \describe{
   \item{SEConstants()}{Initialise SE constants in R.} 
  }
+}
+\examples{
+SEConstants()
 }
 \seealso{
 \url{http://www.astro.com/swisseph/swephprg.htm}
