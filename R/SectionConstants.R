@@ -77,10 +77,6 @@
 #   * definitions for use also by non-C programmers
 # ***********************************************************/
 
-SE_AUNIT_TO_KM        <- 149597870.691
-SE_AUNIT_TO_LIGHTYEAR <- 1.0 / 63241.077088071
-SE_AUNIT_TO_PARSEC    <- 1.0 / 206264.8062471
-
 # /* values for gregflag in swe_julday() and swe_revjul() */
 SE_JUL_CAL <-	0
 SE_GREG_CAL	<- 1
@@ -89,7 +85,6 @@ SE_GREG_CAL	<- 1
 #   * planet numbers for the ipl parameter in swe_calc()
 # */
 SE_ECL_NUT     <- -1
-
 SE_SUN       <-   0
 SE_MOON       <-  1
 SE_MERCURY  <-    2
@@ -113,20 +108,14 @@ SE_JUNO       <-  19
 SE_VESTA      <-  20
 SE_INTP_APOG <-    21
 SE_INTP_PERG  <-  22
-
 SE_NPLANETS   <-  23
-
 SE_AST_OFFSET <-  10000
 SE_VARUNA   <- SE_AST_OFFSET + 20000
-
 SE_FICT_OFFSET  <-	40
 SE_FICT_OFFSET_1 <-  	39
 SE_FICT_MAX  	  <-     999
 SE_NFICT_ELEM     <-      15
-
 SE_COMET_OFFSET <- 1000
-
-SE_NALL_NAT_POINTS  <-    (SE_NPLANETS + SE_NFICT_ELEM)
 
 # /* Hamburger or Uranian "planets" */
 SE_CUPIDO      <- 	40
@@ -137,6 +126,7 @@ SE_APOLLON    <-  	44
 SE_ADMETOS    <-  	45
 SE_VULKANUS   <-  	46
 SE_POSEIDON   <-  	47
+
 # /* other fictitious bodies */
 SE_ISIS      <-   	48
 SE_NIBIRU     <-  	49
@@ -150,8 +140,7 @@ SE_WHITE_MOON  	<-	56
 SE_PROSERPINA  	<-	57
 SE_WALDEMATH  	<-	58
 
-SE_FIXSTAR  <-    -10
-
+# for swe_house
 SE_ASC		<-	0
 SE_MC	<-		1
 SE_ARMC	<-		2
@@ -179,28 +168,19 @@ SEFLG_SWIEPH  <-  2       #/* use SWISSEPH ephemeris */
 SEFLG_MOSEPH  <-  4       #/* use Moshier ephemeris */
 
 SEFLG_HELCTR <-	8      #/* heliocentric position */
-SEFLG_TRUEPOS <-
-  16     #/* true/geometric position, not apparent position */
-SEFLG_J2000	<-
-  32     #/* no precession, i.e. give J2000 equinox */
-SEFLG_NONUT <-
-  64     #/* no nutation, i.e. mean equinox of date */
-SEFLG_SPEED3 <-	128   # /* speed from 3 positions (do not use it,
-# * SEFLG_SPEED is faster and more precise.) */
+SEFLG_TRUEPOS <- 16     #/* true/geometric position, not apparent position */
+SEFLG_J2000	<- 32     #/* no precession, i.e. give J2000 equinox */
+SEFLG_NONUT <-  64     #/* no nutation, i.e. mean equinox of date */
 SEFLG_SPEED	<- 256    #/* high precision speed  */
 SEFLG_NOGDEFL <-	512   # /* turn off gravitational deflection */
-SEFLG_NOABERR	<-
-  1024   #/* turn off 'annual' aberration of light */
+SEFLG_NOABERR	<- 1024   #/* turn off 'annual' aberration of light */
 SEFLG_ASTROMETRIC <-
   (SEFLG_NOABERR + SEFLG_NOGDEFL) #/* astrometric position,
 #   * i.e. with light-time, but without aberration and
 # * light deflection */
-SEFLG_EQUATORIAL <-
-  (2 * 1024)    #/* equatorial positions are wanted */
-SEFLG_XYZ <-
-  (4 * 1024)     #/* cartesian, not polar, coordinates */
-SEFLG_RADIANS <-
-  (8 * 1024)  #   /* coordinates in radians, not degrees */
+SEFLG_EQUATORIAL <-(2 * 1024)    #/* equatorial positions are wanted */
+SEFLG_XYZ <-(4 * 1024)     #/* cartesian, not polar, coordinates */
+SEFLG_RADIANS <-(8 * 1024)  #   /* coordinates in radians, not degrees */
 SEFLG_BARYCTR	<- (16 * 1024)  #  /* barycentric position */
 SEFLG_TOPOCTR	<- (32 * 1024)   # /* topocentric position */
 SEFLG_ORBEL_AA <-
@@ -211,16 +191,7 @@ SEFLG_ICRS <-	(128 * 1024)   #/* ICRS (DE406 reference frame) */
 SEFLG_DPSIDEPS_1980	<- (256 * 1024) #/* reproduce JPL Horizons
 # * 1962 - today to 0.002 arcsec. */
 SEFLG_JPLHOR <-	SEFLG_DPSIDEPS_1980
-SEFLG_JPLHOR_APPROX	<-
-  (512 * 1024)   #/* approximate JPL Horizons 1962 - today */
-
-SE_SIDBITS	<-	256
-#  /* for projection onto ecliptic of t0 */
-SE_SIDBIT_ECL_T0    <-    256
-#  /* for projection onto solar system plane */
-SE_SIDBIT_SSY_PLANE  <-   512
-#  /* with user-defined ayanamsha, t0 is UT */
-SE_SIDBIT_USER_UT   <-    1024
+SEFLG_JPLHOR_APPROX	<- (512 * 1024)   #/* approximate JPL Horizons 1962 - today */
 
 #  /* sidereal modes (ayanamsas) */
 SE_SIDM_FAGAN_BRADLEY  <-  0
@@ -265,30 +236,23 @@ SE_SIDM_BABYL_BRITTON   <- 38
 SE_SIDM_TRUE_SHEORAN  	<- 39
 #//  SE_SIDM_GALCENT_COCHRANE  <- 	40
 #  //  SE_SIDM_MANJULA       <-  41
-SE_SIDM_USER          <-
-  255 #/* user-defined ayanamsha, t0 is TT */
-
-SE_NSIDM_PREDEF	  <-      40
+SE_SIDM_USER  <- 255 #/* user-defined ayanamsha, t0 is TT */
 
 #  /* used for swe_nod_aps(): */
 SE_NODBIT_MEAN	<-	1   #/* mean nodes/apsides */
 SE_NODBIT_OSCU <-		2   #/* osculating nodes/apsides */
-SE_NODBIT_OSCU_BAR <-
-  4  # /* same, but motion about solar system barycenter is considered */
-SE_NODBIT_FOPOINT	<-
-  256   #/* focal point of orbit instead of aphelion */
+SE_NODBIT_OSCU_BAR <- 4  # /* same, but motion about solar system barycenter is considered */
+SE_NODBIT_FOPOINT	<- 256   #/* focal point of orbit instead of aphelion */
 
 #  /* default ephemeris used when no ephemeris flagbit is set */
 SEFLG_DEFAULTEPH <- SEFLG_SWIEPH
-
 SE_MAX_STNAME	<-	256	#/* maximum size of fixstar name;
 #   * the parameter star in swe_fixstar
 # * must allow twice this space for
 # * the returned star name.
 # */
-#
+
 #   /* defines for eclipse computations */
-#
 SE_ECL_CENTRAL	<-	1
 SE_ECL_NONCENTRAL <-	2
 SE_ECL_TOTAL	<-	4
@@ -324,7 +288,7 @@ SE_ECL_OCC_END_DAYLIGHT <-
 SE_ECL_ONE_TRY    <-      (32 * 1024)
 # /* check if the next conjunction of the moon with
 # * a planet is an occultation; don't search further */
-#
+
 # /* for swe_rise_transit() */
 SE_CALC_RISE <-		1
 SE_CALC_SET	<-	2
@@ -333,28 +297,21 @@ SE_CALC_ITRANSIT <-	8
 SE_BIT_DISC_CENTER  <-    256 #/* to be or'ed to SE_CALC_RISE/SET,
 # * if rise or set of disc center is
 # * required */
-SE_BIT_DISC_BOTTOM   <-
-  8192 #/* to be or'ed to SE_CALC_RISE/SET,
+SE_BIT_DISC_BOTTOM   <-  8192 #/* to be or'ed to SE_CALC_RISE/SET,
 #   * if rise or set of lower limb of
 # * disc is requried */
-SE_BIT_GEOCTR_NO_ECL_LAT <-
-  128 #/* use geocentric rather than topocentric
+SE_BIT_GEOCTR_NO_ECL_LAT <- 128 #/* use geocentric rather than topocentric
 #   position of object and
 # ignore its ecliptic latitude */
-SE_BIT_NO_REFRACTION  <-
-  512 #/* to be or'ed to SE_CALC_RISE/SET,
+SE_BIT_NO_REFRACTION  <- 512 #/* to be or'ed to SE_CALC_RISE/SET,
 #  * if refraction is to be ignored */
-SE_BIT_CIVIL_TWILIGHT  <-
-  1024 #/* to be or'ed to SE_CALC_RISE/SET */
-SE_BIT_NAUTIC_TWILIGHT  <-
-  2048 #/* to be or'ed to SE_CALC_RISE/SET */
-SE_BIT_ASTRO_TWILIGHT   <-
-  4096 #/* to be or'ed to SE_CALC_RISE/SET */
+SE_BIT_CIVIL_TWILIGHT  <- 1024 #/* to be or'ed to SE_CALC_RISE/SET */
+SE_BIT_NAUTIC_TWILIGHT  <- 2048 #/* to be or'ed to SE_CALC_RISE/SET */
+SE_BIT_ASTRO_TWILIGHT   <- 4096 #/* to be or'ed to SE_CALC_RISE/SET */
 SE_BIT_FIXED_DISC_SIZE <-  16384 #/* or'ed to SE_CALC_RISE/SET:
 #   * neglect the effect of distance on
 # * disc size */
-SE_BIT_FORCE_SLOW_METHOD <-
-  32768 #/* This is only a Astrodienst in-house
+SE_BIT_FORCE_SLOW_METHOD <- 32768 #/* This is only a Astrodienst in-house
 #   * test flag. It forces the usage
 # * of the old, slow calculation of
 # * risings and settings. */
@@ -389,7 +346,6 @@ SE_STARFILE_OLD <- "fixstars.cat"
 SE_STARFILE   <-  "sefstars.txt"
 SE_ASTNAMFILE <-  "seasnam.txt"
 SE_FICTFILE     <- "seorbel.txt"
-
 # /*
 # * ephemeris path
 # * this defines where ephemeris files are expected if the function
@@ -446,173 +402,3 @@ SE_HELFLAG_AVKIND <-
 TJD_INVALID		<- 	99999999.0
 SIMULATE_VICTORVB        <-       1
 
-##if 0  // unused and redundant
-SE_HELIACAL_LONG_SEARCH <-	128
-SE_HELIACAL_HIGH_PRECISION <-	256
-SE_HELIACAL_OPTICAL_PARAMS <-	512
-SE_HELIACAL_NO_DETAILS	<-	1024
-SE_HELIACAL_SEARCH_1_PERIOD	<- 2048
-SE_HELIACAL_VISLIM_DARK		<-  4096
-SE_HELIACAL_VISLIM_NOMOON	<-  8192
-SE_HELIACAL_VISLIM_PHOTOPIC	<- 16384
-SE_HELIACAL_AVKIND_VR 		<- 32768
-SE_HELIACAL_AVKIND_PTO 	<-	65536
-SE_HELIACAL_AVKIND_MIN7 	<-	65536 * 2
-SE_HELIACAL_AVKIND_MIN9 	<-	65536 * 4
-SE_HELIACAL_AVKIND <-
-  (
-    SE_HELFLAG_AVKIND_VR   +
-      SE_HELFLAG_AVKIND_PTO   + SE_HELFLAG_AVKIND_MIN7   +
-      SE_HELFLAG_AVKIND_MIN9
-  )
-
-SE_PHOTOPIC_FLAG <-		0
-SE_SCOTOPIC_FLAG	<-	1
-SE_MIXEDOPIC_FLAG		<- 2
-
-# /* for swe_set_tid_acc() and ephemeris-dependent delta t:
-#   * intrinsic tidal acceleration in the mean motion of the moon,
-# * not given in the parameters list of the ephemeris files but computed
-# * by Chapront/Chapront-Touzé/Francou A&A 387 (2002), p. 705.
-# */
-SE_TIDAL_DE200       <-   (-23.8946)
-SE_TIDAL_DE403        <-
-  (-25.580)  #/* was (-25.8) until V. 1.76.2 */
-SE_TIDAL_DE404      <-
-  (-25.580)  #/* was (-25.8) until V. 1.76.2 */
-SE_TIDAL_DE405    <-
-  (-25.826)  #/* was (-25.7376) until V. 1.76.2 */
-SE_TIDAL_DE406      <-
-  (-25.826)  #/* was (-25.7376) until V. 1.76.2 */
-SE_TIDAL_DE421      <-
-  (-25.85)   #/* JPL Interoffice Memorandum 14-mar-2008 on DE421 Lunar Orbit */
-SE_TIDAL_DE422      <-
-  (-25.85)   #/* JPL Interoffice Memorandum 14-mar-2008 on DE421 (sic!) Lunar Orbit */
-SE_TIDAL_DE430      <-
-  (-25.82)   #/* JPL Interoffice Memorandum 9-jul-2013 on DE430 Lunar Orbit */
-SE_TIDAL_DE431      <-
-  (-25.80)   #/* IPN Progress Report 42-196 • February 15, 2014, p. 15; was (-25.82) in V. 2.00.00 */
-SE_TIDAL_26         <-    (-26.0)
-SE_TIDAL_STEPHENSON_2016      <-       (-25.85)
-SE_TIDAL_DEFAULT    <-    SE_TIDAL_DE431
-SE_TIDAL_AUTOMATIC    <-         999999
-SE_TIDAL_MOSEPH       <-         SE_TIDAL_DE404
-SE_TIDAL_SWIEPH       <-         SE_TIDAL_DEFAULT
-SE_TIDAL_JPLEPH       <-         SE_TIDAL_DEFAULT
-
-# /* for function swe_set_delta_t_userdef() */
-SE_DELTAT_AUTOMATIC          <-   (-1E-10)
-
-SE_MODEL_DELTAT     <-    0
-SE_MODEL_PREC_LONGTERM <-  1
-SE_MODEL_PREC_SHORTTERM <- 2
-SE_MODEL_NUT        <-    3
-SE_MODEL_BIAS       <-    4
-SE_MODEL_JPLHOR_MODE  <-  5
-SE_MODEL_JPLHORA_MODE <-  6
-SE_MODEL_SIDT     <-      7
-NSE_MODELS        <-      8
-
-#/* precession models */
-SEMOD_NPREC		<- 10
-SEMOD_PREC_IAU_1976 <-      1
-SEMOD_PREC_LASKAR_1986 <-   2
-SEMOD_PREC_WILL_EPS_LASK <- 3
-SEMOD_PREC_WILLIAMS_1994 <- 4
-SEMOD_PREC_SIMON_1994    <- 5
-SEMOD_PREC_IAU_2000      <- 6
-SEMOD_PREC_BRETAGNON_2003  <-    7
-SEMOD_PREC_IAU_2006      <- 8
-SEMOD_PREC_VONDRAK_2011  <- 9
-SEMOD_PREC_OWEN_1990    <- 10
-SEMOD_PREC_DEFAULT    <-   SEMOD_PREC_VONDRAK_2011
-# /* SE versions before 1.70 used IAU 1976 precession for
-# * a limited time range of 2 centuries in combination with
-# * the long-term precession Simon 1994.
-# */
-SEMOD_PREC_DEFAULT_SHORT <- SEMOD_PREC_VONDRAK_2011
-
-# /* nutation models */
-SEMOD_NNUT	<-	4
-SEMOD_NUT_IAU_1980 <-          1
-SEMOD_NUT_IAU_CORR_1987 <-
-  2 #/* Herring's (1987) corrections to IAU 1980
-# * nutation series. AA (1996) neglects them.*/
-SEMOD_NUT_IAU_2000A       <-  3 #/* very time consuming ! */
-SEMOD_NUT_IAU_2000B       <-
-  4 #/* fast, but precision of milli-arcsec */
-SEMOD_NUT_DEFAULT         <-
-  SEMOD_NUT_IAU_2000B  #/* fast, but precision of milli-arcsec */
-
-#  /* methods for sidereal time */
-SEMOD_NSIDT	<-	4
-SEMOD_SIDT_IAU_1976     <-    1
-SEMOD_SIDT_IAU_2006     <-    2
-SEMOD_SIDT_IERS_CONV_2010 <-  3
-SEMOD_SIDT_LONGTERM       <-  4
-SEMOD_SIDT_DEFAULT        <-  SEMOD_SIDT_LONGTERM
-#  //  SEMOD_SIDT_DEFAULT      <-    SEMOD_SIDT_IERS_CONV_2010
-
-#  /* frame bias methods */
-SEMOD_NBIAS	<-	3
-SEMOD_BIAS_NONE   <-          1  #/* ignore frame bias */
-SEMOD_BIAS_IAU2000  <-
-  2  #/* use frame bias matrix IAU 2000 */
-SEMOD_BIAS_IAU2006    <-
-  3  #/* use frame bias matrix IAU 2006 */
-SEMOD_BIAS_DEFAULT      <-    SEMOD_BIAS_IAU2006
-
-#   /* methods of JPL Horizons (iflag & SEFLG_JPLHOR),
-# * using daily dpsi, deps;  see explanations below */
-SEMOD_NJPLHOR	<-	2
-SEMOD_JPLHOR_LONG_AGREEMENT <-
-  1  #/* daily dpsi and deps from file are
-#   * limited to 1962 - today. JPL uses the
-# * first and last value for all  dates
-# * beyond this time range. */
-SEMOD_JPLHOR_DEFAULT    <-    SEMOD_JPLHOR_LONG_AGREEMENT
-#   /* Note, currently this is the only option for SEMOD_JPLHOR..*/
-#   /* SEMOD_JPLHOR_LONG_AGREEMENT, if combined with SEFLG_JPLHOR provides good
-# * agreement with JPL Horizons for 9998 BC (-9997) until 9999 CE.
-# * - After 20-jan-1962 until today, Horizons uses correct dpsi and deps.
-# * - For dates before that, it uses dpsi and deps of 20-jan-1962, which
-# *   provides a continuous ephemeris, but does not make sense otherwise.
-# * - Before 1.1.1799 and after 1.1.2202, the precession model Owen 1990
-# *   is used, as in Horizons.
-# * An agreement with Horizons to a couple of milli arc seconds is achieved
-# * for the whole time range of Horizons. (BC 9998-Mar-20 to AD 9999-Dec-31 TT.)
-# */
-#
-#   /* methods of approximation of JPL Horizons (iflag & SEFLG_JPLHORA),
-# * without dpsi, deps; see explanations below */
-SEMOD_NJPLHORA <-		3
-SEMOD_JPLHORA_1 <-    1
-SEMOD_JPLHORA_2   <- 2
-SEMOD_JPLHORA_3   <- 3
-SEMOD_JPLHORA_DEFAULT     <- SEMOD_JPLHORA_3
-
-#   /* With SEMOD_JPLHORA_1, planetary positions are always calculated
-# * using a recent precession/nutation model. Frame bias matrix is applied
-# * with some correction to RA and another correction added to epsilon.
-# * This provides a very good approximation of JPL Horizons positions.
-# *
-#   * With SEMOD_JPLHORA_2, frame bias as recommended by IERS Conventions 2003
-# * and 2010 is *not* applied. Instead, dpsi_bias and deps_bias are added to
-# * nutation. This procedure is found in some older astronomical software.
-# * Equatorial apparent positions will be close to JPL Horizons
-# * (within a few mas) between 1962 and current years. Ecl. longitude
-# * will be good, latitude bad.
-# *
-#   * With SEMOD_JPLHORA_3 works like SEMOD_JPLHORA_3 after 1962, but like
-# * SEFLG_JPLHOR before that. This allows EXTREMELY good agreement with JPL
-# * Horizons over its whole time range.
-# */
-
-SEMOD_NDELTAT	<-	5
-SEMOD_DELTAT_STEPHENSON_MORRISON_1984  <- 1
-SEMOD_DELTAT_STEPHENSON_1997 <-  2
-SEMOD_DELTAT_STEPHENSON_MORRISON_2004 <-  3
-SEMOD_DELTAT_ESPENAK_MEEUS_2006 <-  4
-SEMOD_DELTAT_STEPHENSON_ETC_2016 <-  5
-# //  SEMOD_DELTAT_DEFAULT   SEMOD_DELTAT_ESPENAK_MEEUS_2006
-SEMOD_DELTAT_DEFAULT  <- SEMOD_DELTAT_STEPHENSON_ETC_2016
