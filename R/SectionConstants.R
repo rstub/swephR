@@ -77,79 +77,98 @@
 #   * definitions for use also by non-C programmers
 # ***********************************************************/
 
+##' @title Initialising Constants: Initialising constants used for the SE function calls.
+##' @description The constants defined in SE are in R defined as a list. 
+##' If the function retunr is store din the variable SE: for instance SE_MOON becomes SE$MOON 
+##' and SEFLG_JPLEPH becomes SE$FLG_JPLEPH.
+##' @seealso \url{http://www.astro.com/swisseph/swephprg.htm}
+##' @details 
+##' \describe{
+##'   \item{SEConstants()}{Initialise SE constants in R.} 
+##'  }
+##' @return \code{SEConstants} returns a list with named entries: the constants in SE
+##' @examples
+##' SEConstants()
+##' }
+##' @rdname SectionConstants
+##' @export
+
+
+SEConstants <-function() {
+SE<-c()
 # /* values for gregflag in swe_julday() and swe_revjul() */
-SE_JUL_CAL <-	0
-SE_GREG_CAL	<- 1
+SE$JUL_CAL <-	0
+SE$GREG_CAL	<- 1
 
 #   /*
 #   * planet numbers for the ipl parameter in swe_calc()
 # */
-SE_ECL_NUT     <- -1
-SE_SUN       <-   0
-SE_MOON       <-  1
-SE_MERCURY  <-    2
-SE_VENUS    <-    3
-SE_MARS     <-    4
-SE_JUPITER  <-    5
-SE_SATURN   <-    6
-SE_URANUS   <-    7
-SE_NEPTUNE  <-    8
-SE_PLUTO      <-  9
-SE_MEAN_NODE  <-  10
-SE_TRUE_NODE  <-  11
-SE_MEAN_APOG  <-  12
-SE_OSCU_APOG  <-  13
-SE_EARTH      <-  14
-SE_CHIRON     <-  15
-SE_PHOLUS     <-  16
-SE_CERES      <-  17
-SE_PALLAS     <-  18
-SE_JUNO       <-  19
-SE_VESTA      <-  20
-SE_INTP_APOG <-    21
-SE_INTP_PERG  <-  22
-SE_NPLANETS   <-  23
-SE_AST_OFFSET <-  10000
-SE_VARUNA   <- SE_AST_OFFSET + 20000
-SE_FICT_OFFSET  <-	40
-SE_FICT_OFFSET_1 <-  	39
-SE_FICT_MAX  	  <-     999
-SE_NFICT_ELEM     <-      15
-SE_COMET_OFFSET <- 1000
+SE$ECL_NUT     <- -1
+SE$SUN       <-   0
+SE$MOON       <-  1
+SE$MERCURY  <-    2
+SE$VENUS    <-    3
+SE$MARS     <-    4
+SE$JUPITER  <-    5
+SE$SATURN   <-    6
+SE$URANUS   <-    7
+SE$NEPTUNE  <-    8
+SE$PLUTO      <-  9
+SE$MEAN_NODE  <-  10
+SE$TRUE_NODE  <-  11
+SE$MEAN_APOG  <-  12
+SE$OSCU_APOG  <-  13
+SE$EARTH      <-  14
+SE$CHIRON     <-  15
+SE$PHOLUS     <-  16
+SE$CERES      <-  17
+SE$PALLAS     <-  18
+SE$JUNO       <-  19
+SE$VESTA      <-  20
+SE$INTP_APOG <-    21
+SE$INTP_PERG  <-  22
+SE$NPLANETS   <-  23
+SE$AST_OFFSET <-  10000
+SE$VARUNA   <- SE$AST_OFFSET + 20000
+SE$FICT_OFFSET  <-	40
+SE$FICT_OFFSET_1 <-  	39
+SE$FICT_MAX  	  <-     999
+SE$NFICT_ELEM     <-      15
+SE$COMET_OFFSET <- 1000
 
 # /* Hamburger or Uranian "planets" */
-SE_CUPIDO      <- 	40
-SE_HADES      <-  	41
-SE_ZEUS        <- 	42
-SE_KRONOS     <-  	43
-SE_APOLLON    <-  	44
-SE_ADMETOS    <-  	45
-SE_VULKANUS   <-  	46
-SE_POSEIDON   <-  	47
+SE$CUPIDO      <- 	40
+SE$HADES      <-  	41
+SE$ZEUS        <- 	42
+SE$KRONOS     <-  	43
+SE$APOLLON    <-  	44
+SE$ADMETOS    <-  	45
+SE$VULKANUS   <-  	46
+SE$POSEIDON   <-  	47
 
 # /* other fictitious bodies */
-SE_ISIS      <-   	48
-SE_NIBIRU     <-  	49
-SE_HARRINGTON   <-        50
-SE_NEPTUNE_LEVERRIER <-    51
-SE_NEPTUNE_ADAMS    <-    52
-SE_PLUTO_LOWELL     <-    53
-SE_PLUTO_PICKERING  <-    54
-SE_VULCAN      	<-	55
-SE_WHITE_MOON  	<-	56
-SE_PROSERPINA  	<-	57
-SE_WALDEMATH  	<-	58
+SE$ISIS      <-   	48
+SE$NIBIRU     <-  	49
+SE$HARRINGTON   <-        50
+SE$NEPTUNE_LEVERRIER <-    51
+SE$NEPTUNE_ADAMS    <-    52
+SE$PLUTO_LOWELL     <-    53
+SE$PLUTO_PICKERING  <-    54
+SE$VULCAN      	<-	55
+SE$WHITE_MOON  	<-	56
+SE$PROSERPINA  	<-	57
+SE$WALDEMATH  	<-	58
 
 # for swe_house
-SE_ASC		<-	0
-SE_MC	<-		1
-SE_ARMC	<-		2
-SE_VERTEX	<-	3
-SE_EQUASC  	<-	4	#/* "equatorial ascendant" */
-SE_COASC1	<-	5	#/* "co-ascendant" (W. Koch) */
-SE_COASC2	<-	6	#/* "co-ascendant" (M. Munkasey) */
-SE_POLASC	<-	7	#/* "polar ascendant" (M. Munkasey) */
-SE_NASCMC	<-	8
+SE$ASC		<-	0
+SE$MC	<-		1
+SE$ARMC	<-		2
+SE$VERTEX	<-	3
+SE$EQUASC  	<-	4	#/* "equatorial ascendant" */
+SE$COASC1	<-	5	#/* "co-ascendant" (W. Koch) */
+SE$COASC2	<-	6	#/* "co-ascendant" (M. Munkasey) */
+SE$POLASC	<-	7	#/* "polar ascendant" (M. Munkasey) */
+SE$NASCMC	<-	8
 
 # /*
 #   * flag bits for parameter iflag in function swe_calc()
@@ -159,228 +178,229 @@ SE_NASCMC	<-	8
 # *    - apparent geocentric positions referring to the true equinox of date
 # *      are returned.
 # * If not only coordinates, but also speed values are required, use
-# * flag = SEFLG_SPEED.
+# * flag = SE$FLG_SPEED.
 # *
 #   * The 'L' behind the number indicates that 32-bit integers (Long) are used.
 # */
-SEFLG_JPLEPH   <- 1       #/* use JPL ephemeris */
-SEFLG_SWIEPH  <-  2       #/* use SWISSEPH ephemeris */
-SEFLG_MOSEPH  <-  4       #/* use Moshier ephemeris */
+SE$FLG_JPLEPH   <- 1       #/* use JPL ephemeris */
+SE$FLG_SWIEPH  <-  2       #/* use SWISSEPH ephemeris */
+SE$FLG_MOSEPH  <-  4       #/* use Moshier ephemeris */
 
-SEFLG_HELCTR <-	8      #/* heliocentric position */
-SEFLG_TRUEPOS <- 16     #/* true/geometric position, not apparent position */
-SEFLG_J2000	<- 32     #/* no precession, i.e. give J2000 equinox */
-SEFLG_NONUT <-  64     #/* no nutation, i.e. mean equinox of date */
-SEFLG_SPEED	<- 256    #/* high precision speed  */
-SEFLG_NOGDEFL <-	512   # /* turn off gravitational deflection */
-SEFLG_NOABERR	<- 1024   #/* turn off 'annual' aberration of light */
-SEFLG_ASTROMETRIC <-
-  (SEFLG_NOABERR + SEFLG_NOGDEFL) #/* astrometric position,
+SE$FLG_HELCTR <-	8      #/* heliocentric position */
+SE$FLG_TRUEPOS <- 16     #/* true/geometric position, not apparent position */
+SE$FLG_J2000	<- 32     #/* no precession, i.e. give J2000 equinox */
+SE$FLG_NONUT <-  64     #/* no nutation, i.e. mean equinox of date */
+SE$FLG_SPEED	<- 256    #/* high precision speed  */
+SE$FLG_NOGDEFL <-	512   # /* turn off gravitational deflection */
+SE$FLG_NOABERR	<- 1024   #/* turn off 'annual' aberration of light */
+SE$FLG_ASTROMETRIC <-
+  (SE$FLG_NOABERR + SE$FLG_NOGDEFL) #/* astrometric position,
 #   * i.e. with light-time, but without aberration and
 # * light deflection */
-SEFLG_EQUATORIAL <-(2 * 1024)    #/* equatorial positions are wanted */
-SEFLG_XYZ <-(4 * 1024)     #/* cartesian, not polar, coordinates */
-SEFLG_RADIANS <-(8 * 1024)  #   /* coordinates in radians, not degrees */
-SEFLG_BARYCTR	<- (16 * 1024)  #  /* barycentric position */
-SEFLG_TOPOCTR	<- (32 * 1024)   # /* topocentric position */
-SEFLG_ORBEL_AA <-
-  SEFLG_TOPOCTR #/* used for Astronomical Almanac mode in
+SE$FLG_EQUATORIAL <-(2 * 1024)    #/* equatorial positions are wanted */
+SE$FLG_XYZ <-(4 * 1024)     #/* cartesian, not polar, coordinates */
+SE$FLG_RADIANS <-(8 * 1024)  #   /* coordinates in radians, not degrees */
+SE$FLG_BARYCTR	<- (16 * 1024)  #  /* barycentric position */
+SE$FLG_TOPOCTR	<- (32 * 1024)   # /* topocentric position */
+SE$FLG_ORBEL_AA <-
+  SE$FLG_TOPOCTR #/* used for Astronomical Almanac mode in
 # * calculation of Kepler elipses */
-SEFLG_SIDEREAL <-	(64 * 1024)    #/* sidereal position */
-SEFLG_ICRS <-	(128 * 1024)   #/* ICRS (DE406 reference frame) */
-SEFLG_DPSIDEPS_1980	<- (256 * 1024) #/* reproduce JPL Horizons
+SE$FLG_SIDEREAL <-	(64 * 1024)    #/* sidereal position */
+SE$FLG_ICRS <-	(128 * 1024)   #/* ICRS (DE406 reference frame) */
+SE$FLG_DPSIDEPS_1980	<- (256 * 1024) #/* reproduce JPL Horizons
 # * 1962 - today to 0.002 arcsec. */
-SEFLG_JPLHOR <-	SEFLG_DPSIDEPS_1980
-SEFLG_JPLHOR_APPROX	<- (512 * 1024)   #/* approximate JPL Horizons 1962 - today */
+SE$FLG_JPLHOR <-	SE$FLG_DPSIDEPS_1980
+SE$FLG_JPLHOR_APPROX	<- (512 * 1024)   #/* approximate JPL Horizons 1962 - today */
 
 #  /* sidereal modes (ayanamsas) in swe_set_sid_mode() */
-SE_SIDM_FAGAN_BRADLEY  <-  0
-SE_SIDM_LAHIRI        <-   1
-SE_SIDM_DELUCE    <-       2
-SE_SIDM_RAMAN       <-     3
-SE_SIDM_USHASHASHI    <-   4
-SE_SIDM_KRISHNAMURTI  <-   5
-SE_SIDM_DJWHAL_KHUL <-     6
-SE_SIDM_YUKTESHWAR    <-   7
-SE_SIDM_JN_BHASIN   <-     8
-SE_SIDM_BABYL_KUGLER1 <-   9
-SE_SIDM_BABYL_KUGLER2 <-  10
-SE_SIDM_BABYL_KUGLER3 <-  11
-SE_SIDM_BABYL_HUBER    <-	12
-SE_SIDM_BABYL_ETPSC   <- 	13
-SE_SIDM_ALDEBARAN_15TAU <- 14
-SE_SIDM_HIPPARCHOS     <- 15
-SE_SIDM_SASSANIAN   <-    16
-SE_SIDM_GALCENT_0SAG  <-  17
-SE_SIDM_J2000     <-      18
-SE_SIDM_J1900       <-    19
-SE_SIDM_B1950     <-      20
-SE_SIDM_SURYASIDDHANTA <-  21
-SE_SIDM_SURYASIDDHANTA_MSUN <-  22
-SE_SIDM_ARYABHATA   <-    23
-SE_SIDM_ARYABHATA_MSUN <-  24
-SE_SIDM_SS_REVATI   <-    25
-SE_SIDM_SS_CITRA      <-  26
-SE_SIDM_TRUE_CITRA    <-  27
-SE_SIDM_TRUE_REVATI   <-  28
-SE_SIDM_TRUE_PUSHYA   <-  29
-SE_SIDM_GALCENT_RGILBRAND <- 30
-SE_SIDM_GALEQU_IAU1958  <- 31
-SE_SIDM_GALEQU_TRUE <-    32
-SE_SIDM_GALEQU_MULA <-    33
-SE_SIDM_GALALIGN_MARDYKS <- 34
-SE_SIDM_TRUE_MULA     <-  35
-SE_SIDM_GALCENT_MULA_WILHELM  <-     36
-SE_SIDM_ARYABHATA_522   <- 37
-SE_SIDM_BABYL_BRITTON   <- 38
-SE_SIDM_TRUE_SHEORAN  	<- 39
-SE_SIDM_USER  <- 255 #/* user-defined ayanamsha, t0 is TT */
+SE$SIDM_FAGAN_BRADLEY  <-  0
+SE$SIDM_LAHIRI        <-   1
+SE$SIDM_DELUCE    <-       2
+SE$SIDM_RAMAN       <-     3
+SE$SIDM_USHASHASHI    <-   4
+SE$SIDM_KRISHNAMURTI  <-   5
+SE$SIDM_DJWHAL_KHUL <-     6
+SE$SIDM_YUKTESHWAR    <-   7
+SE$SIDM_JN_BHASIN   <-     8
+SE$SIDM_BABYL_KUGLER1 <-   9
+SE$SIDM_BABYL_KUGLER2 <-  10
+SE$SIDM_BABYL_KUGLER3 <-  11
+SE$SIDM_BABYL_HUBER    <-	12
+SE$SIDM_BABYL_ETPSC   <- 	13
+SE$SIDM_ALDEBARAN_15TAU <- 14
+SE$SIDM_HIPPARCHOS     <- 15
+SE$SIDM_SASSANIAN   <-    16
+SE$SIDM_GALCENT_0SAG  <-  17
+SE$SIDM_J2000     <-      18
+SE$SIDM_J1900       <-    19
+SE$SIDM_B1950     <-      20
+SE$SIDM_SURYASIDDHANTA <-  21
+SE$SIDM_SURYASIDDHANTA_MSUN <-  22
+SE$SIDM_ARYABHATA   <-    23
+SE$SIDM_ARYABHATA_MSUN <-  24
+SE$SIDM_SS_REVATI   <-    25
+SE$SIDM_SS_CITRA      <-  26
+SE$SIDM_TRUE_CITRA    <-  27
+SE$SIDM_TRUE_REVATI   <-  28
+SE$SIDM_TRUE_PUSHYA   <-  29
+SE$SIDM_GALCENT_RGILBRAND <- 30
+SE$SIDM_GALEQU_IAU1958  <- 31
+SE$SIDM_GALEQU_TRUE <-    32
+SE$SIDM_GALEQU_MULA <-    33
+SE$SIDM_GALALIGN_MARDYKS <- 34
+SE$SIDM_TRUE_MULA     <-  35
+SE$SIDM_GALCENT_MULA_WILHELM  <-     36
+SE$SIDM_ARYABHATA_522   <- 37
+SE$SIDM_BABYL_BRITTON   <- 38
+SE$SIDM_TRUE_SHEORAN  	<- 39
+SE$SIDM_USER  <- 255 #/* user-defined ayanamsha, t0 is TT */
 
 #  /* used for swe_nod_aps(): */
-SE_NODBIT_MEAN	<-	1   #/* mean nodes/apsides */
-SE_NODBIT_OSCU <-		2   #/* osculating nodes/apsides */
-SE_NODBIT_OSCU_BAR <- 4  # /* same, but motion about solar system barycenter is considered */
-SE_NODBIT_FOPOINT	<- 256   #/* focal point of orbit instead of aphelion */
+SE$NODBIT_MEAN	<-	1   #/* mean nodes/apsides */
+SE$NODBIT_OSCU <-		2   #/* osculating nodes/apsides */
+SE$NODBIT_OSCU_BAR <- 4  # /* same, but motion about solar system barycenter is considered */
+SE$NODBIT_FOPOINT	<- 256   #/* focal point of orbit instead of aphelion */
 
 #  /* default ephemeris used when no ephemeris flagbit is set */
-SEFLG_DEFAULTEPH <- SEFLG_SWIEPH
+SE$FLG_DEFAULTEPH <- SE$FLG_SWIEPH
 
 #   /* defines for eclipse computations */
-SE_ECL_CENTRAL	<-	1
-SE_ECL_NONCENTRAL <-	2
-SE_ECL_TOTAL	<-	4
-SE_ECL_ANNULAR	<-	8
-SE_ECL_PARTIAL	<-	16
-SE_ECL_ANNULAR_TOTAL <-	32
-SE_ECL_PENUMBRAL <-	64
-SE_ECL_ALLTYPES_SOLAR <-
+SE$ECL_CENTRAL	<-	1
+SE$ECL_NONCENTRAL <-	2
+SE$ECL_TOTAL	<-	4
+SE$ECL_ANNULAR	<-	8
+SE$ECL_PARTIAL	<-	16
+SE$ECL_ANNULAR_TOTAL <-	32
+SE$ECL_PENUMBRAL <-	64
+SE$ECL_ALLTYPES_SOLAR <-
   (
-    SE_ECL_CENTRAL   +
-      SE_ECL_NONCENTRAL   +
-      SE_ECL_TOTAL   + SE_ECL_ANNULAR   + SE_ECL_PARTIAL   + SE_ECL_ANNULAR_TOTAL
+    SE$ECL_CENTRAL   +
+      SE$ECL_NONCENTRAL   +
+      SE$ECL_TOTAL   + SE$ECL_ANNULAR   + SE$ECL_PARTIAL   + SE$ECL_ANNULAR_TOTAL
   )
-SE_ECL_ALLTYPES_LUNAR <-
-  (SE_ECL_TOTAL   + SE_ECL_PARTIAL   + SE_ECL_PENUMBRAL)
-SE_ECL_VISIBLE		<-	128
-SE_ECL_MAX_VISIBLE <-		256
-SE_ECL_1ST_VISIBLE	<-	512	#/* begin of partial eclipse */
-SE_ECL_PARTBEG_VISIBLE <-		512	#/* begin of partial eclipse */
-SE_ECL_2ND_VISIBLE	<-	1024	#/* begin of total eclipse */
-SE_ECL_TOTBEG_VISIBLE	<-	1024#	/* begin of total eclipse */
-SE_ECL_3RD_VISIBLE <-		2048   # /* end of total eclipse */
-SE_ECL_TOTEND_VISIBLE <-		2048  #  /* end of total eclipse */
-SE_ECL_4TH_VISIBLE <-		4096    #/* end of partial eclipse */
-SE_ECL_PARTEND_VISIBLE <-		4096 #   /* end of partial eclipse */
-SE_ECL_PENUMBBEG_VISIBLE <- 8192  #  /* begin of penumbral eclipse */
-SE_ECL_PENUMBEND_VISIBLE <-	16384  # /* end of penumbral eclipse */
-SE_ECL_OCC_BEG_DAYLIGHT <- 8192    #/* occultation begins during the day */
-SE_ECL_OCC_END_DAYLIGHT <- 16384   #/* occultation ends during the day */
-SE_ECL_ONE_TRY    <-      (32 * 1024)
+SE$ECL_ALLTYPES_LUNAR <-
+  (SE$ECL_TOTAL   + SE$ECL_PARTIAL   + SE$ECL_PENUMBRAL)
+SE$ECL_VISIBLE		<-	128
+SE$ECL_MAX_VISIBLE <-		256
+SE$ECL_1ST_VISIBLE	<-	512	#/* begin of partial eclipse */
+SE$ECL_PARTBEG_VISIBLE <-		512	#/* begin of partial eclipse */
+SE$ECL_2ND_VISIBLE	<-	1024	#/* begin of total eclipse */
+SE$ECL_TOTBEG_VISIBLE	<-	1024#	/* begin of total eclipse */
+SE$ECL_3RD_VISIBLE <-		2048   # /* end of total eclipse */
+SE$ECL_TOTEND_VISIBLE <-		2048  #  /* end of total eclipse */
+SE$ECL_4TH_VISIBLE <-		4096    #/* end of partial eclipse */
+SE$ECL_PARTEND_VISIBLE <-		4096 #   /* end of partial eclipse */
+SE$ECL_PENUMBBEG_VISIBLE <- 8192  #  /* begin of penumbral eclipse */
+SE$ECL_PENUMBEND_VISIBLE <-	16384  # /* end of penumbral eclipse */
+SE$ECL_OCC_BEG_DAYLIGHT <- 8192    #/* occultation begins during the day */
+SE$ECL_OCC_END_DAYLIGHT <- 16384   #/* occultation ends during the day */
+SE$ECL_ONE_TRY    <-      (32 * 1024)
 # /* check if the next conjunction of the moon with
 # * a planet is an occultation; don't search further */
 
 # /* for swe_rise_transit() */
-SE_CALC_RISE <-		1
-SE_CALC_SET	<-	2
-SE_CALC_MTRANSIT <-	4
-SE_CALC_ITRANSIT <-	8
-SE_BIT_DISC_CENTER  <-    256 #/* to be or'ed to SE_CALC_RISE/SET,
+SE$CALC_RISE <-		1
+SE$CALC_SET	<-	2
+SE$CALC_MTRANSIT <-	4
+SE$CALC_ITRANSIT <-	8
+SE$BIT_DISC_CENTER  <-    256 #/* to be or'ed to SE$CALC_RISE/SET,
 # * if rise or set of disc center is
 # * required */
-SE_BIT_DISC_BOTTOM   <-  8192 #/* to be or'ed to SE_CALC_RISE/SET,
+SE$BIT_DISC_BOTTOM   <-  8192 #/* to be or'ed to SE$CALC_RISE/SET,
 #   * if rise or set of lower limb of
 # * disc is requried */
-SE_BIT_GEOCTR_NO_ECL_LAT <- 128 #/* use geocentric rather than topocentric
+SE$BIT_GEOCTR_NO_ECL_LAT <- 128 #/* use geocentric rather than topocentric
 #   position of object and
 # ignore its ecliptic latitude */
-SE_BIT_NO_REFRACTION  <- 512 #/* to be or'ed to SE_CALC_RISE/SET,
+SE$BIT_NO_REFRACTION  <- 512 #/* to be or'ed to SE$CALC_RISE/SET,
 #  * if refraction is to be ignored */
-SE_BIT_CIVIL_TWILIGHT  <- 1024 #/* to be or'ed to SE_CALC_RISE/SET */
-SE_BIT_NAUTIC_TWILIGHT  <- 2048 #/* to be or'ed to SE_CALC_RISE/SET */
-SE_BIT_ASTRO_TWILIGHT   <- 4096 #/* to be or'ed to SE_CALC_RISE/SET */
-SE_BIT_FIXED_DISC_SIZE <-  16384 #/* or'ed to SE_CALC_RISE/SET:
+SE$BIT_CIVIL_TWILIGHT  <- 1024 #/* to be or'ed to SE$CALC_RISE/SET */
+SE$BIT_NAUTIC_TWILIGHT  <- 2048 #/* to be or'ed to SE$CALC_RISE/SET */
+SE$BIT_ASTRO_TWILIGHT   <- 4096 #/* to be or'ed to SE$CALC_RISE/SET */
+SE$BIT_FIXED_DISC_SIZE <-  16384 #/* or'ed to SE$CALC_RISE/SET:
 #   * neglect the effect of distance on
 # * disc size */
-SE_BIT_FORCE_SLOW_METHOD <- 32768 #/* This is only a Astrodienst in-house
+SE$BIT_FORCE_SLOW_METHOD <- 32768 #/* This is only a Astrodienst in-house
 #   * test flag. It forces the usage
 # * of the old, slow calculation of
 # * risings and settings. */
-SE_BIT_HINDU_RISING <-
-  (SE_BIT_DISC_CENTER   + SE_BIT_NO_REFRACTION   +
-     SE_BIT_GEOCTR_NO_ECL_LAT)
+SE$BIT_HINDU_RISING <-
+  (SE$BIT_DISC_CENTER   + SE$BIT_NO_REFRACTION   +
+     SE$BIT_GEOCTR_NO_ECL_LAT)
 
 # /* for swe_azalt() and swe_azalt_rev() */
-SE_ECL2HOR	<-	0
-SE_EQU2HOR	<-	1
-SE_HOR2ECL	<-	0
-SE_HOR2EQU	<-	1
+SE$ECL2HOR	<-	0
+SE$EQU2HOR	<-	1
+SE$HOR2ECL	<-	0
+SE$HOR2EQU	<-	1
 
 # /* for swe_refrac() */
-SE_TRUE_TO_APP <-	0
-SE_APP_TO_TRUE <-	1
+SE$TRUE_TO_APP <-	0
+SE$APP_TO_TRUE <-	1
 
 #   for swe_set_jpl_file()
 #   * only used for experimenting with various JPL ephemeris files
 # * which are available at Astrodienst's internal network
 # */
-SE_DE_NUMBER  <-  431
-SE_FNAME_DE200 <-  "de200.eph"
-SE_FNAME_DE403  <- "de403.eph"
-SE_FNAME_DE404  <- "de404.eph"
-SE_FNAME_DE405 <-  "de405.eph"
-SE_FNAME_DE406 <-  "de406.eph"
-SE_FNAME_DE431 <-  "de431.eph"
-SE_FNAME_DFT  <-  SE_FNAME_DE431
-SE_FNAME_DFT2   <- SE_FNAME_DE406
-SE_STARFILE   <-  "sefstars.txt"
-SE_ASTNAMFILE <-  "seasnam.txt"
-SE_FICTFILE     <- "seorbel.txt"
+SE$DE_NUMBER  <-  431
+SE$FNAME_DE200 <-  "de200.eph"
+SE$FNAME_DE403  <- "de403.eph"
+SE$FNAME_DE404  <- "de404.eph"
+SE$FNAME_DE405 <-  "de405.eph"
+SE$FNAME_DE406 <-  "de406.eph"
+SE$FNAME_DE431 <-  "de431.eph"
+SE$FNAME_DFT  <-  SE$FNAME_DE431
+SE$FNAME_DFT2   <- SE$FNAME_DE406
+SE$STARFILE   <-  "sefstars.txt"
+SE$ASTNAMFILE <-  "seasnam.txt"
+SE$FICTFILE     <- "seorbel.txt"
 
 #/* defines for function swe_split_deg() (in swephlib.c) */
-SE_SPLIT_DEG_ROUND_SEC  <-  1
-SE_SPLIT_DEG_ROUND_MIN   <- 2
-SE_SPLIT_DEG_ROUND_DEG   <- 4
-SE_SPLIT_DEG_ZODIACAL    <- 8
-SE_SPLIT_DEG_NAKSHATRA <- 1024
-SE_SPLIT_DEG_KEEP_SIGN <-  16	#/* don't round to next sign,
+SE$SPLIT_DEG_ROUND_SEC  <-  1
+SE$SPLIT_DEG_ROUND_MIN   <- 2
+SE$SPLIT_DEG_ROUND_DEG   <- 4
+SE$SPLIT_DEG_ZODIACAL    <- 8
+SE$SPLIT_DEG_NAKSHATRA <- 1024
+SE$SPLIT_DEG_KEEP_SIGN <-  16	#/* don't round to next sign,
 # * e.g. 29.9999999 will be rounded
 # * to 29d59'59" (or 29d59' or 29d) */
-SE_SPLIT_DEG_KEEP_DEG  <-  32	#/* don't round to next degree
+SE$SPLIT_DEG_KEEP_DEG  <-  32	#/* don't round to next degree
 #   * e.g. 13.9999999 will be rounded
 # * to 13d59'59" (or 13d59' or 13d) */
 
 #   /* for heliacal functions */
-SE_HELIACAL_RISING	<-	1
-SE_HELIACAL_SETTING	<-	2
-SE_MORNING_FIRST	<-	SE_HELIACAL_RISING
-SE_EVENING_LAST		<-	SE_HELIACAL_SETTING
-SE_EVENING_FIRST	<-	3
-SE_MORNING_LAST		<-	4
-SE_ACRONYCHAL_RISING <-		5  #/* still not implemented */
-SE_ACRONYCHAL_SETTING	<-	6  #/* still not implemented */
-SE_COSMICAL_SETTING	<-	SE_ACRONYCHAL_SETTING
+SE$HELIACAL_RISING	<-	1
+SE$HELIACAL_SETTING	<-	2
+SE$MORNING_FIRST	<-	SE$HELIACAL_RISING
+SE$EVENING_LAST		<-	SE$HELIACAL_SETTING
+SE$EVENING_FIRST	<-	3
+SE$MORNING_LAST		<-	4
+SE$ACRONYCHAL_RISING <-		5  #/* still not implemented */
+SE$ACRONYCHAL_SETTING	<-	6  #/* still not implemented */
+SE$COSMICAL_SETTING	<-	SE$ACRONYCHAL_SETTING
 
-SE_HELFLAG_LONG_SEARCH 	<-	128
-SE_HELFLAG_HIGH_PRECISION <-	256
-SE_HELFLAG_OPTICAL_PARAMS	<- 512
-SE_HELFLAG_NO_DETAILS		<- 1024
-SE_HELFLAG_SEARCH_1_PERIOD	<- 2048
-SE_HELFLAG_VISLIM_DARK		<-  4096
-SE_HELFLAG_VISLIM_NOMOON <-	  8192
+SE$HELFLAG_LONG_SEARCH 	<-	128
+SE$HELFLAG_HIGH_PRECISION <-	256
+SE$HELFLAG_OPTICAL_PARAMS	<- 512
+SE$HELFLAG_NO_DETAILS		<- 1024
+SE$HELFLAG_SEARCH_1_PERIOD	<- 2048
+SE$HELFLAG_VISLIM_DARK		<-  4096
+SE$HELFLAG_VISLIM_NOMOON <-	  8192
 #/* the following undocumented defines are for test reasons only */
-SE_HELFLAG_VISLIM_PHOTOPIC	<- 16384
-SE_HELFLAG_VISLIM_SCOTOPIC	<- 32768
-SE_HELFLAG_AV	 		<- 65536
-SE_HELFLAG_AVKIND_VR 		<- 65536
-SE_HELFLAG_AVKIND_PTO 	<-	65536 * 2
-SE_HELFLAG_AVKIND_MIN7 	<-	65536 * 4
-SE_HELFLAG_AVKIND_MIN9 		<- 65536 * 8
-SE_HELFLAG_AVKIND <-
+SE$HELFLAG_VISLIM_PHOTOPIC	<- 16384
+SE$HELFLAG_VISLIM_SCOTOPIC	<- 32768
+SE$HELFLAG_AV	 		<- 65536
+SE$HELFLAG_AVKIND_VR 		<- 65536
+SE$HELFLAG_AVKIND_PTO 	<-	65536 * 2
+SE$HELFLAG_AVKIND_MIN7 	<-	65536 * 4
+SE$HELFLAG_AVKIND_MIN9 		<- 65536 * 8
+SE$HELFLAG_AVKIND <-
   (
-    SE_HELFLAG_AVKIND_VR   +
-      SE_HELFLAG_AVKIND_PTO   + SE_HELFLAG_AVKIND_MIN7   +
-      SE_HELFLAG_AVKIND_MIN9
+    SE$HELFLAG_AVKIND_VR   +
+      SE$HELFLAG_AVKIND_PTO   + SE$HELFLAG_AVKIND_MIN7   +
+      SE$HELFLAG_AVKIND_MIN9
   )
-TJD_INVALID		<- 	99999999.0
-SIMULATE_VICTORVB        <-       1
-
+#TJD_INVALID		<- 	99999999.0
+#SIMULATE_VICTORVB        <-       1
+return(SE)
+}
