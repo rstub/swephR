@@ -399,7 +399,8 @@ SE$HELFLAG_AVKIND <-
       SE$HELFLAG_AVKIND_PTO   + SE$HELFLAG_AVKIND_MIN7   +
       SE$HELFLAG_AVKIND_MIN9
   )
-#TJD_INVALID		<- 	99999999.0
-#SIMULATE_VICTORVB        <-       1
+#some variables not starting with SE. Perhaps they could be removed
+SE$TJD_INVALID		<- 	99999999.0
+SE$SIMULATE_VICTORVB        <-       1
 return(SE)
 }
