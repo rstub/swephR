@@ -246,11 +246,6 @@ SE_NODBIT_FOPOINT	<- 256   #/* focal point of orbit instead of aphelion */
 
 #  /* default ephemeris used when no ephemeris flagbit is set */
 SEFLG_DEFAULTEPH <- SEFLG_SWIEPH
-SE_MAX_STNAME	<-	256	#/* maximum size of fixstar name;
-#   * the parameter star in swe_fixstar
-# * must allow twice this space for
-# * the returned star name.
-# */
 
 #   /* defines for eclipse computations */
 SE_ECL_CENTRAL	<-	1
@@ -278,13 +273,10 @@ SE_ECL_3RD_VISIBLE <-		2048   # /* end of total eclipse */
 SE_ECL_TOTEND_VISIBLE <-		2048  #  /* end of total eclipse */
 SE_ECL_4TH_VISIBLE <-		4096    #/* end of partial eclipse */
 SE_ECL_PARTEND_VISIBLE <-		4096 #   /* end of partial eclipse */
-SE_ECL_PENUMBBEG_VISIBLE <-
-  8192  #  /* begin of penumbral eclipse */
+SE_ECL_PENUMBBEG_VISIBLE <- 8192  #  /* begin of penumbral eclipse */
 SE_ECL_PENUMBEND_VISIBLE <-	16384  # /* end of penumbral eclipse */
-SE_ECL_OCC_BEG_DAYLIGHT <-
-  8192    #/* occultation begins during the day */
-SE_ECL_OCC_END_DAYLIGHT <-
-  16384   #/* occultation ends during the day */
+SE_ECL_OCC_BEG_DAYLIGHT <- 8192    #/* occultation begins during the day */
+SE_ECL_OCC_END_DAYLIGHT <- 16384   #/* occultation ends during the day */
 SE_ECL_ONE_TRY    <-      (32 * 1024)
 # /* check if the next conjunction of the moon with
 # * a planet is an occultation; don't search further */
@@ -342,7 +334,6 @@ SE_FNAME_DE406 <-  "de406.eph"
 SE_FNAME_DE431 <-  "de431.eph"
 SE_FNAME_DFT  <-  SE_FNAME_DE431
 SE_FNAME_DFT2   <- SE_FNAME_DE406
-SE_STARFILE_OLD <- "fixstars.cat"
 SE_STARFILE   <-  "sefstars.txt"
 SE_ASTNAMFILE <-  "seasnam.txt"
 SE_FICTFILE     <- "seorbel.txt"
@@ -366,7 +357,7 @@ SE_SPLIT_DEG_KEEP_SIGN <-  16	#/* don't round to next sign,
 SE_SPLIT_DEG_KEEP_DEG  <-  32	#/* don't round to next degree
 #   * e.g. 13.9999999 will be rounded
 # * to 13d59'59" (or 13d59' or 13d) */
-#
+
 #   /* for heliacal functions */
 SE_HELIACAL_RISING	<-	1
 SE_HELIACAL_SETTING	<-	2
