@@ -193,7 +193,7 @@ SEFLG_DPSIDEPS_1980	<- (256 * 1024) #/* reproduce JPL Horizons
 SEFLG_JPLHOR <-	SEFLG_DPSIDEPS_1980
 SEFLG_JPLHOR_APPROX	<- (512 * 1024)   #/* approximate JPL Horizons 1962 - today */
 
-#  /* sidereal modes (ayanamsas) */
+#  /* sidereal modes (ayanamsas) in swe_set_sid_mode() */
 SE_SIDM_FAGAN_BRADLEY  <-  0
 SE_SIDM_LAHIRI        <-   1
 SE_SIDM_DELUCE    <-       2
@@ -234,8 +234,6 @@ SE_SIDM_GALCENT_MULA_WILHELM  <-     36
 SE_SIDM_ARYABHATA_522   <- 37
 SE_SIDM_BABYL_BRITTON   <- 38
 SE_SIDM_TRUE_SHEORAN  	<- 39
-#//  SE_SIDM_GALCENT_COCHRANE  <- 	40
-#  //  SE_SIDM_MANJULA       <-  41
 SE_SIDM_USER  <- 255 #/* user-defined ayanamsha, t0 is TT */
 
 #  /* used for swe_nod_aps(): */
@@ -321,7 +319,7 @@ SE_HOR2EQU	<-	1
 SE_TRUE_TO_APP <-	0
 SE_APP_TO_TRUE <-	1
 
-#   /*
+#   for swe_set_jpl_file()
 #   * only used for experimenting with various JPL ephemeris files
 # * which are available at Astrodienst's internal network
 # */
@@ -337,13 +335,6 @@ SE_FNAME_DFT2   <- SE_FNAME_DE406
 SE_STARFILE   <-  "sefstars.txt"
 SE_ASTNAMFILE <-  "seasnam.txt"
 SE_FICTFILE     <- "seorbel.txt"
-# /*
-# * ephemeris path
-# * this defines where ephemeris files are expected if the function
-# * swe_set_ephe_path() is not called by the application.
-# * Normally, every application should make this call to define its
-# * own place for the ephemeris files.
-# */
 
 #/* defines for function swe_split_deg() (in swephlib.c) */
 SE_SPLIT_DEG_ROUND_SEC  <-  1
