@@ -1,5 +1,5 @@
 ##' @title Section 0: The programming steps to get planet position
-##' @description A miniature sample program to calcuate the planet's positions. Teh input is year, month, day.
+##' @description A miniature sample program to calculate the planet's positions. The input is year, month and day.
 ##' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244830}
 ##' @details 
 ##' \describe{
