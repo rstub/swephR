@@ -7,7 +7,7 @@
 swe_get_planet_name(ipl)
 }
 \arguments{
-\item{ipl}{body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)}
+\item{ipl}{body/planet as integer (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)}
 }
 \value{
 \code{swe_get_planet_name} returns objectname as string
@@ -21,7 +21,7 @@ Find a planetary or asteroid name.
 }
 }
 \examples{
-swe_get_planet_name(swephR:::SE_MOON)
+swe_get_planet_name(SE$MOON)
 }
 \seealso{
 \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244843}

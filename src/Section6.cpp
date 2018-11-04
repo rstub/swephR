@@ -26,39 +26,39 @@
 //' heliacal phenomenon after a given start date
 //' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244853}
 //' @param jd_et  ET Julian day number as double (day)
-//' @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
+//' @param ipl  body/planet as integer (SE$SUN=0, SE$MOON=1,  ... SE$PLUTO=9)
 //' @param starname  star name as string ("" for no star)
 //' @param jd_ut  UT Julian day number as double (day)
-//' @param calc_flag flag as integer (refraction direction (SE_TRUE_TO_APP=0 or SE_APP_TO_TRUE=1))
-//' @param coord_flag flag as integer (reference system (SE_ECL2HOR=0 or SE_EQU2HOR=1)) 
+//' @param calc_flag flag as integer (refraction direction (SE$TRUE_TO_APP=0 or SE$APP_TO_TRUE=1))
+//' @param coord_flag flag as integer (reference system (SE$ECL2HOR=0 or SE$EQU2HOR=1)) 
 //' @param atpress atmospheric pressure as double (hPa)
 //' @param attemp atmospheric temperature as double (Celsius)
-//' @param ephe_flag ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4)
+//' @param ephe_flag ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4)
 //' @param horhgt horizon apparent altitude as double (deg)
 //' @param xin  position of body as numeric vector (either ecliptical or equatorial coordinates, depending on coord_flag)
-//' @param rsmi  event flag as integer (e.g.: SE_CALC_RISE=1, SE_CALC_SET=2,SE_CALC_MTRANSIT=4,SE_CALC_ITRANSIT=8)
+//' @param rsmi  event flag as integer (e.g.: SE$CALC_RISE=1, SE$CALC_SET=2,SE$CALC_MTRANSIT=4,SE$CALC_ITRANSIT=8)
 //' @details
 //' \describe{
 //'   \item{swe_sol_eclipse_when_loc()}{Find the next solar eclipse for a given geographic position.}
 //'   }
 //' @examples
-//' swe_sol_eclipse_when_loc(1234567,swephR:::SEFLG_MOSEPH,c(0,50,10),FALSE)
-//' swe_lun_eclipse_when_loc(1234567,swephR:::SEFLG_MOSEPH,c(0,50,10),FALSE)
-//' swe_lun_eclipse_how(1234580.19960447,swephR:::SEFLG_MOSEPH,c(0,50,10))
-//' swe_lun_eclipse_when(1234567,swephR:::SEFLG_MOSEPH,swephR:::SE_ECL_CENTRAL,FALSE)
-//' swe_rise_trans_true_hor(1234567.5,swephR:::SE_SUN,"",swephR:::SEFLG_MOSEPH,0,c(0,50,10),1013.25,15,0)
-//' swe_pheno_ut(1234567,1,swephR:::SEFLG_MOSEPH)
-//' swe_pheno(1234567,1,swephR:::SEFLG_MOSEPH)
-//' swe_azalt(1234567,swephR:::SE_EQU2HOR,c(0,50,10),15,1013.25,c(186,22))
-//' swe_azalt_rev(1234567,swephR:::SE_ECL2HOR,c(0, 50,10),c(123,2))
-//' swe_refrac_extended(2,0,1013.25,15,-0.065,swephR:::SE_TRUE_TO_APP)
-//' swe_heliacal_ut(1234567,c(0,50,10),c(1013.25,15,50,0.25),c(25,1,1,1,5,0.8),"sirius",swephR:::SE_HELIACAL_RISING,swephR:::SE_HELFLAG_HIGH_PRECISION+swephR:::SEFLG_MOSEPH)
-//' swe_vis_limit_mag(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),'sirius',swephR:::SE_HELFLAG_HIGH_PRECISION+swephR:::SEFLG_MOSEPH)
-//' swe_heliacal_pheno_ut(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),'sirius',swephR:::SE_HELIACAL_RISING,swephR:::SE_HELFLAG_HIGH_PRECISION+swephR:::SEFLG_MOSEPH)
+//' swe_sol_eclipse_when_loc(1234567,SE$FLG_MOSEPH,c(0,50,10),FALSE)
+//' swe_lun_eclipse_when_loc(1234567,SE$FLG_MOSEPH,c(0,50,10),FALSE)
+//' swe_lun_eclipse_how(1234580.19960447,SE$FLG_MOSEPH,c(0,50,10))
+//' swe_lun_eclipse_when(1234567,SE$FLG_MOSEPH,SE$ECL_CENTRAL,FALSE)
+//' swe_rise_trans_true_hor(1234567.5,SE$SUN,"",SE$FLG_MOSEPH,0,c(0,50,10),1013.25,15,0)
+//' swe_pheno_ut(1234567,1,SE$FLG_MOSEPH)
+//' swe_pheno(1234567,1,SE$FLG_MOSEPH)
+//' swe_azalt(1234567,SE$EQU2HOR,c(0,50,10),15,1013.25,c(186,22))
+//' swe_azalt_rev(1234567,SE$ECL2HOR,c(0, 50,10),c(123,2))
+//' swe_refrac_extended(2,0,1013.25,15,-0.065,SE$TRUE_TO_APP)
+//' swe_heliacal_ut(1234567,c(0,50,10),c(1013.25,15,50,0.25),c(25,1,1,1,5,0.8),"sirius",SE$HELIACAL_RISING,SE$HELFLAG_HIGH_PRECISION+SE$FLG_MOSEPH)
+//' swe_vis_limit_mag(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),'sirius',SE$HELFLAG_HIGH_PRECISION+SE$FLG_MOSEPH)
+//' swe_heliacal_pheno_ut(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),'sirius',SE$HELIACAL_RISING,SE$HELFLAG_HIGH_PRECISION+SE$FLG_MOSEPH)
 //' swe_topo_arcus_visionis(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),768,-1,124,2,120,0,-45)
 //' swe_heliacal_angle(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),768,-1,124,120,0,-45)
 //' @return \code{swe_sol_eclipse_when_loc} returns a list with named entries: 
-//'      \code{return} status flag as interger, \code{tret} for eclipse timing moments as numeric vector, 
+//'      \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector, 
 //'      \code{attr} pheneomena during eclipse as numeric vector and \code{serr} error message as string
 //' @rdname Section6
 //' @export
@@ -126,9 +126,9 @@ Rcpp::List lun_eclipse_how(double jd_start, int ephe_flag, Rcpp::NumericVector g
 //' \describe{
 //' \item{swe_lun_eclipse_when()}{Find the next lunar eclipse on earth.}
 //' }
-//' @param ifltype eclipse tper as interger (e.g.: SE_ECL_CENTRAL=1,SE_ECL_NONCENTRAL=2,SE_ECL_TOTAL=4,SE_ECL_ANNULAR=8,SE_ECL_PARTIAL=16,SE_ECL_ANNULAR_TOTAL=32)
+//' @param ifltype eclipse type as integer (e.g.: SE$ECL_CENTRAL=1,SE$ECL_NONCENTRAL=2,SE$ECL_TOTAL=4,SE$ECL_ANNULAR=8,SE$ECL_PARTIAL=16,SE$ECL_ANNULAR_TOTAL=32)
 //' @return \code{swe_lun_eclipse_when} returns a list with named entries:
-//'      \code{return} status flag as interger, \code{tret} for eclipse timing moments as numeric vector
+//'      \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector
 //'      and \code{serr} error warning as string
 //' @rdname Section6
 //' @export
@@ -146,7 +146,7 @@ Rcpp::List lun_eclipse_when(double jd_start, int ephe_flag, int ifltype, bool ba
 //' \describe{
 //' \item{swe_rise_trans_true_hor()}{Compute the times of rising, setting and meridian transits for planets, asteroids, the moon, and the fixed stars for a local horizon that has an altitude. }
 //' }
-//' @return \code{swe_rise_trans_true_hor} returns a list with named entries: \code{return} status flag as interger,
+//' @return \code{swe_rise_trans_true_hor} returns a list with named entries: \code{return} status flag as integer,
 //'      \code{tret} for azi/alt info as numeric vector and \code{serr} error message as string
 //' @rdname Section6
 //' @export
@@ -247,7 +247,7 @@ Rcpp::List azalt_rev(double jd_ut, int coord_flag, Rcpp::NumericVector geopos, R
 //' @param InAlt  object's apparent/topocentric altitude as double (depending on calc_flag) (deg)
 //' @param geoheight  observer's height as double (m)
 //' @param lapse_rate  lapse rate as double (K/m)
-//' @return \code{swe_refrac_extended} returns a list with named entries: \code{return} status flag as interger,
+//' @return \code{swe_refrac_extended} returns a list with named entries: \code{return} status flag as integer,
 //'      \code{dret} refraction results as nemeric vector (TopoAlt, AppAlt, refraction)
 //' @rdname Section6
 //' @export
@@ -294,7 +294,7 @@ Rcpp::List heliacal_ut(double jd_utstart, Rcpp::NumericVector dgeo, Rcpp::Numeri
 //' for a given date (e. g. from a call of function swe_pheno_ut(), and if magnitude is smaller than the value returned 
 //' by swe_vis_limt_mag(), then it is visible.}
 //' }
-//' @return \code{swe_vis_limit_mag} returns a list with named entries: \code{return} status flag as interger,
+//' @return \code{swe_vis_limit_mag} returns a list with named entries: \code{return} status flag as integer,
 //'      \code{dret} limiting magnitude as double and \code{serr} error message as string
 //' @rdname Section6
 //' @export

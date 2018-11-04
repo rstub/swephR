@@ -67,7 +67,7 @@ This function is only safe if:
 }
 }
 \examples{
-swe_deltat_ex(1234.567, swephR:::SEFLG_MOSEPH)
+swe_deltat_ex(1234.567, SE$FLG_MOSEPH)
 swe_deltat(1234.567)
 swe_set_tid_acc(1.23)
 swe_get_tid_acc()
