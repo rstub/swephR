@@ -17,7 +17,7 @@
 ##' SE<-SEConstants()
 ##' swe_fixstar2_mag("sirius") 
 ##' swe_set_topo(0,50,10)      
-##' swe_fixstar2("sirius",1234567,SE$FLG_TOPOCTR+SE$FLG_MOSEPH+SEF$LG_EQUATORIAL)
+##' swe_fixstar2("sirius",1234567,SE$FLG_TOPOCTR+SE$FLG_MOSEPH+SE$FLG_EQUATORIAL)
 ##' swe_fixstar2_ut("sirius",1234567,SE$FLG_TOPOCTR+SE$FLG_MOSEPH+SE$FLG_EQUATORIAL)
 ##' @rdname Section4
 ##' @export
