@@ -60,7 +60,7 @@ result
 5. Determine the Julian day number of the Heliacal Rise of Sirius:
 ```{r}
 options(digits=15)
-result <- swe_heliacal_ut(1234567,c(0,50,10),c(1013.25,15,50,0.25),c(25,1,1,1,5,0.8),starname,
+result <- swe_heliacal_ut(jdut,c(0,50,10),c(1013.25,15,50,0.25),c(25,1,1,1,5,0.8),starname,
   SE$HELIACAL_RISING,SE$HELFLAG_HIGH_PRECISION+SE$FLG_MOSEPH)
 result
 ```
