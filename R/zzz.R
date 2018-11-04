@@ -5,5 +5,4 @@
         swe_set_ephe_path(system.file("ephemeris", package = "swephR"))
     }
   packageStartupMessage("Welcome to swephR")
-  SE<-SEConstants()
 }
