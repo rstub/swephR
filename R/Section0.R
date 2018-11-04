@@ -7,6 +7,7 @@
 ##'  }
 ##' @examples
 ##' \dontrun{
+##' SE<-SEConstant()
 ##' SEtest()
 ##' }
 ##' @rdname Section0
