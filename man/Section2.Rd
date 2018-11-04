@@ -12,9 +12,9 @@ swe_calc(jd_et, ipl, iflag)
 \arguments{
 \item{jd_ut}{UT Julian day number as double (day)}
 
-\item{ipl}{body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)}
+\item{ipl}{body/planet as integer (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)}
 
-\item{iflag}{flag as interger, many options possible (section 2.3)}
+\item{iflag}{flag as integer, many options possible (section 2.3)}
 
 \item{jd_et}{ET Julian day number as double (day)}
 }
@@ -35,8 +35,8 @@ Computing positions of planets, asteroids, lunar nodes and apogees using Swiss E
 }
 }
 \examples{
-swe_calc_ut(2458346.82639, swephR:::SE_MOON, swephR:::SEFLG_MOSEPH)
-swe_calc(2458346.82639, swephR:::SE_MOON, swephR:::SEFLG_MOSEPH)
+swe_calc_ut(2458346.82639, SE$MOON, SE$FLG_MOSEPH)
+swe_calc(2458346.82639, SE$MOON, SE$FLG_MOSEPH)
 }
 \seealso{
 \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244837}

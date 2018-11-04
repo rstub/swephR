@@ -7,11 +7,11 @@
 SEtest()
 }
 \description{
-A miniature sample program to calcuate the planet's positions.
+A miniature sample program to calcuate the planet's positions. Teh input is year, month, day.
 }
 \details{
 \describe{
-  \item{SEtest()}{Calcuate the planets' positions.} 
+  \item{SEtest()}{Calculate the planets' positions.} 
  }
 }
 \examples{

@@ -8,13 +8,13 @@
 ##' }
 ##' @param jd_ut  UT Julian day number as double (day)
 ##' @param jd_et  ET Julian day number as double (day)
-##' @param ipl  body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)
-##' @param iflag flag as interger, many options possible (section 2.3)
+##' @param ipl  body/planet as integer (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)
+##' @param iflag flag as integer, many options possible (section 2.3)
 ##' @return \code{swe_calc_ut} returns a list with named entries: \code{return} status flag as integer,
 ##'        \code{xx} information on planet position, and \code{serr} error message as string.
 ##' @examples
-##' swe_calc_ut(2458346.82639, swephR:::SE_MOON, swephR:::SEFLG_MOSEPH)
-##' swe_calc(2458346.82639, swephR:::SE_MOON, swephR:::SEFLG_MOSEPH)
+##' swe_calc_ut(2458346.82639, SE$MOON, SE$FLG_MOSEPH)
+##' swe_calc(2458346.82639, SE$MOON, SE$FLG_MOSEPH)
 ##' @rdname Section2
 ##' @export
 swe_calc_ut <- function(jd_ut, ipl, iflag) {

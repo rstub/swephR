@@ -17,18 +17,18 @@ swe_fixstar2_ut(starname, jd_ut, iflag)
 
 \item{jd_et}{ET Julian day number as double (day)}
 
-\item{iflag}{flag as interger, many options possible (section 2.3)}
+\item{iflag}{flag as integer, many options possible (section 2.3)}
 
 \item{jd_ut}{UT Julian day number (day)}
 }
 \value{
-\code{swe_fixstar2_mag} returns a list with named entries: \code{return} status flag as interger,
+\code{swe_fixstar2_mag} returns a list with named entries: \code{return} status flag as integer,
         \code{starname} updated star name as string, \code{mag} magnitude of star as double, and \code{serr} for error message as string.
 
 \code{swe_fixstar2} returns a list with named entries: \code{return} status flag as integer,
         \code{starname} updated star name as string, \code{xx} star phenomena as numeric vector, and \code{serr} error message as string.
 
-\code{swe_fixstar2_ut} returns a list with named entries: \code{return} status flag as interger,
+\code{swe_fixstar2_ut} returns a list with named entries: \code{return} status flag as integer,
         \code{starname} updated star name as string, \code{xx} star information as numeric vector, and \code{serr} for error message as string.
 }
 \description{
@@ -44,8 +44,8 @@ The following functions are used to calculate positions of fixed stars.
 \examples{
 swe_fixstar2_mag("sirius") 
 swe_set_topo(0,50,10)      
-swe_fixstar2("sirius",1234567,swephR:::SEFLG_TOPOCTR+swephR:::SEFLG_MOSEPH+swephR:::SEFLG_EQUATORIAL)
-swe_fixstar2_ut("sirius",1234567,swephR:::SEFLG_TOPOCTR+swephR:::SEFLG_MOSEPH+swephR:::SEFLG_EQUATORIAL)
+swe_fixstar2("sirius",1234567,SE$FLG_TOPOCTR+SE$FLG_MOSEPH+SEF$LG_EQUATORIAL)
+swe_fixstar2_ut("sirius",1234567,SE$FLG_TOPOCTR+SE$FLG_MOSEPH+SE$FLG_EQUATORIAL)
 }
 \seealso{
 \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244844}

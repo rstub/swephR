@@ -10,14 +10,14 @@
 ##' @param jd_ut  UT Julian day number (day)
 ##' @param jd_et  ET Julian day number as double (day)
 ##' @param starname  star name as string ("" for no star)
-##' @param iflag flag as interger, many options possible (section 2.3)
+##' @param iflag flag as integer, many options possible (section 2.3)
 ##' @return \code{swe_fixstar2} returns a list with named entries: \code{return} status flag as integer,
 ##'         \code{starname} updated star name as string, \code{xx} star phenomena as numeric vector, and \code{serr} error message as string.
 ##' @examples
 ##' swe_fixstar2_mag("sirius") 
 ##' swe_set_topo(0,50,10)      
-##' swe_fixstar2("sirius",1234567,swephR:::SEFLG_TOPOCTR+swephR:::SEFLG_MOSEPH+swephR:::SEFLG_EQUATORIAL)
-##' swe_fixstar2_ut("sirius",1234567,swephR:::SEFLG_TOPOCTR+swephR:::SEFLG_MOSEPH+swephR:::SEFLG_EQUATORIAL)
+##' swe_fixstar2("sirius",1234567,SE$FLG_TOPOCTR+SE$FLG_MOSEPH+SEF$LG_EQUATORIAL)
+##' swe_fixstar2_ut("sirius",1234567,SE$FLG_TOPOCTR+SE$FLG_MOSEPH+SE$FLG_EQUATORIAL)
 ##' @rdname Section4
 ##' @export
 swe_fixstar2 <- function(starname, jd_et, iflag) {
@@ -30,7 +30,7 @@ swe_fixstar2 <- function(starname, jd_et, iflag) {
   fixstar2(starname, jd_et, iflag)
 }
 
-##' @return \code{swe_fixstar2_ut} returns a list with named entries: \code{return} status flag as interger,
+##' @return \code{swe_fixstar2_ut} returns a list with named entries: \code{return} status flag as integer,
 ##'         \code{starname} updated star name as string, \code{xx} star information as numeric vector, and \code{serr} for error message as string.
 ##' @rdname Section4
 ##' @export

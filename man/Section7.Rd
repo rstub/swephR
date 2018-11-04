@@ -7,11 +7,11 @@
 swe_julday(year, month, day, hour, gregflag)
 }
 \arguments{
-\item{year}{Year as interger}
+\item{year}{Year as integer}
 
-\item{month}{Month as interger}
+\item{month}{Month as integer}
 
-\item{day}{Day as interger}
+\item{day}{Day as integer}
 
 \item{hour}{Hour as double}
 
@@ -26,7 +26,7 @@ Functions related to calendar and time conversions.
 }
 }
 \examples{
-swe_julday(2000,1,1,12,swephR:::SE_GREG_CAL)
+swe_julday(2000,1,1,12,SE$GREG_CAL)
 }
 \seealso{
 \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244873}

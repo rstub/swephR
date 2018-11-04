@@ -10,13 +10,13 @@ SEConstants()
 \code{SEConstants} returns a list with named entries: the constants in SE
 }
 \description{
-The constants defined in SE are in R defined as a list. 
-If the function return is stored in the variable SE than for instance SE_MOON becomes SE$MOON 
+The constants defined in SE are in R defined as a list.
+If the function return is stored in the variable SE than for instance SE_MOON becomes SE$MOON
 and SEFLG_JPLEPH becomes SE$FLG_JPLEPH.
 }
 \details{
 \describe{
-  \item{SEConstants()}{Initialise SE constants in R.} 
+  \item{SEConstants()}{Initialise SE constants in R.}
  }
 }
 \examples{

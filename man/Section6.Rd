@@ -57,21 +57,21 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 \arguments{
 \item{jd_start}{Julian day number as double (UT)}
 
-\item{ephe_flag}{ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4)}
+\item{ephe_flag}{ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4)}
 
 \item{geopos}{position as numeric vector (longitude, latitude, height)}
 
 \item{backward}{backwards search as boolean (TRUE)}
 
-\item{ifltype}{eclipse tper as interger (e.g.: SE_ECL_CENTRAL=1,SE_ECL_NONCENTRAL=2,SE_ECL_TOTAL=4,SE_ECL_ANNULAR=8,SE_ECL_PARTIAL=16,SE_ECL_ANNULAR_TOTAL=32)}
+\item{ifltype}{eclipse type as integer (e.g.: SE$ECL_CENTRAL=1,SE$ECL_NONCENTRAL=2,SE$ECL_TOTAL=4,SE$ECL_ANNULAR=8,SE$ECL_PARTIAL=16,SE$ECL_ANNULAR_TOTAL=32)}
 
 \item{jd_ut}{UT Julian day number as double (day)}
 
-\item{ipl}{body/planet as interger (SE_SUN=0, SE_Moon=1,  ... SE_PLUTO=9)}
+\item{ipl}{body/planet as integer (SE$SUN=0, SE$MOON=1,  ... SE$PLUTO=9)}
 
 \item{starname}{star name as string ("" for no star)}
 
-\item{rsmi}{event flag as integer (e.g.: SE_CALC_RISE=1, SE_CALC_SET=2,SE_CALC_MTRANSIT=4,SE_CALC_ITRANSIT=8)}
+\item{rsmi}{event flag as integer (e.g.: SE$CALC_RISE=1, SE$CALC_SET=2,SE$CALC_MTRANSIT=4,SE$CALC_ITRANSIT=8)}
 
 \item{atpress}{atmospheric pressure as double (hPa)}
 
@@ -81,7 +81,7 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 
 \item{jd_et}{ET Julian day number as double (day)}
 
-\item{coord_flag}{flag as integer (reference system (SE_ECL2HOR=0 or SE_EQU2HOR=1))}
+\item{coord_flag}{flag as integer (reference system (SE$ECL2HOR=0 or SE$EQU2HOR=1))}
 
 \item{xin}{position of body as numeric vector (either ecliptical or equatorial coordinates, depending on coord_flag)}
 
@@ -91,7 +91,7 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 
 \item{lapse_rate}{lapse rate as double (K/m)}
 
-\item{calc_flag}{flag as integer (refraction direction (SE_TRUE_TO_APP=0 or SE_APP_TO_TRUE=1))}
+\item{calc_flag}{flag as integer (refraction direction (SE$TRUE_TO_APP=0 or SE$APP_TO_TRUE=1))}
 
 \item{jd_utstart}{UT Julian day number as double (day)}
 
@@ -121,7 +121,7 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 }
 \value{
 \code{swe_sol_eclipse_when_loc} returns a list with named entries: 
-     \code{return} status flag as interger, \code{tret} for eclipse timing moments as numeric vector, 
+     \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector, 
      \code{attr} pheneomena during eclipse as numeric vector and \code{serr} error message as string
 
 \code{swe_lun_eclipse_when_loc} returns a list with named entries:
@@ -133,10 +133,10 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
      \code{attr} pheneomena during eclipse as numeric vector and \code{serr} error message as string
 
 \code{swe_lun_eclipse_when} returns a list with named entries:
-     \code{return} status flag as interger, \code{tret} for eclipse timing moments as numeric vector
+     \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector
      and \code{serr} error warning as string
 
-\code{swe_rise_trans_true_hor} returns a list with named entries: \code{return} status flag as interger,
+\code{swe_rise_trans_true_hor} returns a list with named entries: \code{return} status flag as integer,
      \code{tret} for azi/alt info as numeric vector and \code{serr} error message as string
 
 \code{swe_pheno_ut} returns a list with named entries:
@@ -153,13 +153,13 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 \code{swe_azalt_rev} returns a list with named entries:
      \code{xaz} for celestial info a snumeric vector.
 
-\code{swe_refrac_extended} returns a list with named entries: \code{return} status flag as interger,
+\code{swe_refrac_extended} returns a list with named entries: \code{return} status flag as integer,
      \code{dret} refraction results as nemeric vector (TopoAlt, AppAlt, refraction)
 
 \code{swe_heliacal_ut} returns a list with named entries \code{return} status flag as integer,
         \code{dret} heliacal results as numeric vector, and \code{serr} error message as string.
 
-\code{swe_vis_limit_mag} returns a list with named entries: \code{return} status flag as interger,
+\code{swe_vis_limit_mag} returns a list with named entries: \code{return} status flag as integer,
      \code{dret} limiting magnitude as double and \code{serr} error message as string
 
 \code{swe_heliacal_pheno_ut} returns a list with named entries: \code{return} status flag as integer
@@ -250,19 +250,19 @@ use the function swe_heliacal_ut().}
 }
 }
 \examples{
-swe_sol_eclipse_when_loc(1234567,swephR:::SEFLG_MOSEPH,c(0,50,10),FALSE)
-swe_lun_eclipse_when_loc(1234567,swephR:::SEFLG_MOSEPH,c(0,50,10),FALSE)
-swe_lun_eclipse_how(1234580.19960447,swephR:::SEFLG_MOSEPH,c(0,50,10))
-swe_lun_eclipse_when(1234567,swephR:::SEFLG_MOSEPH,swephR:::SE_ECL_CENTRAL,FALSE)
-swe_rise_trans_true_hor(1234567.5,swephR:::SE_SUN,"",swephR:::SEFLG_MOSEPH,0,c(0,50,10),1013.25,15,0)
-swe_pheno_ut(1234567,1,swephR:::SEFLG_MOSEPH)
-swe_pheno(1234567,1,swephR:::SEFLG_MOSEPH)
-swe_azalt(1234567,swephR:::SE_EQU2HOR,c(0,50,10),15,1013.25,c(186,22))
-swe_azalt_rev(1234567,swephR:::SE_ECL2HOR,c(0, 50,10),c(123,2))
-swe_refrac_extended(2,0,1013.25,15,-0.065,swephR:::SE_TRUE_TO_APP)
-swe_heliacal_ut(1234567,c(0,50,10),c(1013.25,15,50,0.25),c(25,1,1,1,5,0.8),"sirius",swephR:::SE_HELIACAL_RISING,swephR:::SE_HELFLAG_HIGH_PRECISION+swephR:::SEFLG_MOSEPH)
-swe_vis_limit_mag(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),'sirius',swephR:::SE_HELFLAG_HIGH_PRECISION+swephR:::SEFLG_MOSEPH)
-swe_heliacal_pheno_ut(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),'sirius',swephR:::SE_HELIACAL_RISING,swephR:::SE_HELFLAG_HIGH_PRECISION+swephR:::SEFLG_MOSEPH)
+swe_sol_eclipse_when_loc(1234567,SE$FLG_MOSEPH,c(0,50,10),FALSE)
+swe_lun_eclipse_when_loc(1234567,SE$FLG_MOSEPH,c(0,50,10),FALSE)
+swe_lun_eclipse_how(1234580.19960447,SE$FLG_MOSEPH,c(0,50,10))
+swe_lun_eclipse_when(1234567,SE$FLG_MOSEPH,SE$ECL_CENTRAL,FALSE)
+swe_rise_trans_true_hor(1234567.5,SE$SUN,"",SE$FLG_MOSEPH,0,c(0,50,10),1013.25,15,0)
+swe_pheno_ut(1234567,1,SE$FLG_MOSEPH)
+swe_pheno(1234567,1,SE$FLG_MOSEPH)
+swe_azalt(1234567,SE$EQU2HOR,c(0,50,10),15,1013.25,c(186,22))
+swe_azalt_rev(1234567,SE$ECL2HOR,c(0, 50,10),c(123,2))
+swe_refrac_extended(2,0,1013.25,15,-0.065,SE$TRUE_TO_APP)
+swe_heliacal_ut(1234567,c(0,50,10),c(1013.25,15,50,0.25),c(25,1,1,1,5,0.8),"sirius",SE$HELIACAL_RISING,SE$HELFLAG_HIGH_PRECISION+SE$FLG_MOSEPH)
+swe_vis_limit_mag(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),'sirius',SE$HELFLAG_HIGH_PRECISION+SE$FLG_MOSEPH)
+swe_heliacal_pheno_ut(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),'sirius',SE$HELIACAL_RISING,SE$HELFLAG_HIGH_PRECISION+SE$FLG_MOSEPH)
 swe_topo_arcus_visionis(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),768,-1,124,2,120,0,-45)
 swe_heliacal_angle(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),768,-1,124,120,0,-45)
 }
