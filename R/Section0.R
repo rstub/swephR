@@ -7,7 +7,6 @@
 ##'  }
 ##' @examples
 ##' \dontrun{
-##' SE<-SEConstant()
 ##' SEtest()
 ##' }
 ##' @rdname Section0
@@ -15,6 +14,7 @@
 
 SEtest <- function() {
   swe_set_ephe_path(NULL)
+  SE<-SEConstants()
   iflag = SE$FLG_SPEED
   while (TRUE)
   {
