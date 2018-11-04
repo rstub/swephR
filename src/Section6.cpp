@@ -53,9 +53,12 @@
 //' swe_azalt(1234567,SE$EQU2HOR,c(0,50,10),15,1013.25,c(186,22))
 //' swe_azalt_rev(1234567,SE$ECL2HOR,c(0, 50,10),c(123,2))
 //' swe_refrac_extended(2,0,1013.25,15,-0.065,SE$TRUE_TO_APP)
-//' swe_heliacal_ut(1234567,c(0,50,10),c(1013.25,15,50,0.25),c(25,1,1,1,5,0.8),"sirius",SE$HELIACAL_RISING,SE$HELFLAG_HIGH_PRECISION+SE$FLG_MOSEPH)
-//' swe_vis_limit_mag(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),'sirius',SE$HELFLAG_HIGH_PRECISION+SE$FLG_MOSEPH)
-//' swe_heliacal_pheno_ut(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),'sirius',SE$HELIACAL_RISING,SE$HELFLAG_HIGH_PRECISION+SE$FLG_MOSEPH)
+//' swe_heliacal_ut(1234567,c(0,50,10),c(1013.25,15,50,0.25),c(25,1,1,1,5,0.8),"sirius",
+//'   SE$HELIACAL_RISING,SE$HELFLAG_HIGH_PRECISION+SE$FLG_MOSEPH)
+//' swe_vis_limit_mag(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),'sirius',
+//'   SE$HELFLAG_HIGH_PRECISION+SE$FLG_MOSEPH)
+//' swe_heliacal_pheno_ut(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),'sirius',
+//'   SE$HELIACAL_RISING,SE$HELFLAG_HIGH_PRECISION+SE$FLG_MOSEPH)
 //' swe_topo_arcus_visionis(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),768,-1,124,2,120,0,-45)
 //' swe_heliacal_angle(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),768,-1,124,120,0,-45)
 //' @return \code{swe_sol_eclipse_when_loc} returns a list with named entries: 
