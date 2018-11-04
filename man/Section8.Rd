@@ -21,7 +21,7 @@ swe_set_delta_t_userdef(delta_t)
 \arguments{
 \item{jd_ut}{Julian day number (UT) as numeric vector (day)}
 
-\item{ephe_flag}{ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4) (section 2.3.2)}
+\item{ephe_flag}{ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4) (section 2.3.2)}
 
 \item{t_acc}{tidal acceleration as double (arcsec/century^2)}
 
@@ -48,8 +48,8 @@ FUnctions rleated to DeltaT and tidal acceleration
 This function is only safe if:
   \itemize{
   \item your software consistently uses the same ephemeris flag
-  \item if software consistently uses the same ephemeris files (with SEFLG_SWIEPH and SEFLG_MOSEPH)
-  \item if swe_set_ephe_path() is first called (with SEFLG_SWIEPH) and swe_set_jpl_file() (with SEFLG_JPLEPH)
+  \item if software consistently uses the same ephemeris files (with SE$FLG_SWIEPH and SE$FLG_MOSEPH)
+  \item if swe_set_ephe_path() is first called (with SE$FLG_SWIEPH) and swe_set_jpl_file() (with SE$FLG_JPLEPH)
 }
 }
 }
@@ -63,10 +63,12 @@ This function is only safe if:
 }
 
 \describe{
-\item{swe_set_delta_t_userdef()}{Allows the user to set a fixed DeltaT value that will be returned by swe_deltat() or swe_deltat_ex().}
+\item{swe_set_delta_t_userdef()}{Allows the user to set a fixed DeltaT value that will 
+be returned by swe_deltat() or swe_deltat_ex().}
 }
 }
 \examples{
+SE<-SEConstants()
 swe_deltat_ex(1234.567, SE$FLG_MOSEPH)
 swe_deltat(1234.567)
 swe_set_tid_acc(1.23)

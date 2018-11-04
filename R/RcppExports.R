@@ -82,6 +82,7 @@ calc <- function(jd_et, ipl, iflag) {
 #'   \item{swe_get_planet_name()}{Convert object number into ubject name.}
 #' }
 #' @examples
+#' SE<-SEConstants()
 #' swe_get_planet_name(SE$MOON)
 #' @param ipl  body/planet as integer (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)
 #' @return \code{swe_get_planet_name} returns objectname as string
@@ -130,6 +131,7 @@ swe_fixstar2_mag <- function(starname) {
 #'   \item{swe_sol_eclipse_when_loc()}{Find the next solar eclipse for a given geographic position.}
 #'   }
 #' @examples
+#' SE<-SEConstants()
 #' swe_sol_eclipse_when_loc(1234567,SE$FLG_MOSEPH,c(0,50,10),FALSE)
 #' swe_lun_eclipse_when_loc(1234567,SE$FLG_MOSEPH,c(0,50,10),FALSE)
 #' swe_lun_eclipse_how(1234580.19960447,SE$FLG_MOSEPH,c(0,50,10))
@@ -366,12 +368,13 @@ swe_heliacal_angle <- function(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS
 #'   \item{swe_julday()}{Convert calendar dates to the astronomical time scale which measures time in Julian day number.}
 #' }
 #' @examples
+#' SE<-SEConstants()
 #' swe_julday(2000,1,1,12,SE$GREG_CAL)
 #' @param year  Year as integer
 #' @param month  Month as integer
 #' @param day  Day as integer
 #' @param hour  Hour as double
-#' @param gregflag  calendar type (SE_JUL_CAL=0 or SE_GREG_CAL=1)
+#' @param gregflag  calendar type (SE$JUL_CAL=0 or SE$GREG_CAL=1)
 #' @rdname Section7
 #' @export
 swe_julday <- function(year, month, day, hour, gregflag) {
@@ -381,7 +384,7 @@ swe_julday <- function(year, month, day, hour, gregflag) {
 #' @title Section 8: Delta T-related functions
 #' @description FUnctions rleated to DeltaT and tidal acceleration
 #' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244878}
-#' @param ephe_flag  ephemeris flag as integer (SEFLG_JPLEPH=1, SEFLG_SWIEPH=2 or SEFLG_MOSEPH=4) (section 2.3.2)
+#' @param ephe_flag  ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4) (section 2.3.2)
 #' @details 
 #' \describe{
 #' \item{swe_deltat_ex()}{Determine DeltaT from Julian day number for a specific ephemeris.}
@@ -390,6 +393,7 @@ swe_julday <- function(year, month, day, hour, gregflag) {
 #' @param t_acc tidal acceleration as double (arcsec/century^2)
 #' @param delta_t DeltaT (day)
 #' @examples
+#' SE<-SEConstants()
 #' swe_deltat_ex(1234.567, SE$FLG_MOSEPH)
 #' swe_deltat(1234.567)
 #' swe_set_tid_acc(1.23)
@@ -409,8 +413,8 @@ swe_deltat_ex <- function(jd_ut, ephe_flag) {
 #' This function is only safe if:
 #'   \itemize{
 #'   \item your software consistently uses the same ephemeris flag
-#'   \item if software consistently uses the same ephemeris files (with SEFLG_SWIEPH and SEFLG_MOSEPH)
-#'   \item if swe_set_ephe_path() is first called (with SEFLG_SWIEPH) and swe_set_jpl_file() (with SEFLG_JPLEPH)
+#'   \item if software consistently uses the same ephemeris files (with SE$FLG_SWIEPH and SE$FLG_MOSEPH)
+#'   \item if swe_set_ephe_path() is first called (with SE$FLG_SWIEPH) and swe_set_jpl_file() (with SE$FLG_JPLEPH)
 #' }
 #' }
 #' }
@@ -444,7 +448,8 @@ swe_get_tid_acc <- function() {
 
 #' @details 
 #' \describe{
-#' \item{swe_set_delta_t_userdef()}{Allows the user to set a fixed DeltaT value that will be returned by swe_deltat() or swe_deltat_ex().}
+#' \item{swe_set_delta_t_userdef()}{Allows the user to set a fixed DeltaT value that will 
+#' be returned by swe_deltat() or swe_deltat_ex().}
 #' }
 #' @rdname Section8
 #' @export

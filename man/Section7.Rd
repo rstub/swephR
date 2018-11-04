@@ -15,7 +15,7 @@ swe_julday(year, month, day, hour, gregflag)
 
 \item{hour}{Hour as double}
 
-\item{gregflag}{calendar type (SE_JUL_CAL=0 or SE_GREG_CAL=1)}
+\item{gregflag}{calendar type (SE$JUL_CAL=0 or SE$GREG_CAL=1)}
 }
 \description{
 Functions related to calendar and time conversions.
@@ -26,6 +26,7 @@ Functions related to calendar and time conversions.
 }
 }
 \examples{
+SE<-SEConstants()
 swe_julday(2000,1,1,12,SE$GREG_CAL)
 }
 \seealso{
