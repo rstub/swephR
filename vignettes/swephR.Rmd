@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 To compute the position of celestial body or star with SE (Swiss Ephemeris), you do the following steps ([see also](http://www.astro.com/swisseph/swephprg.htm#_Toc505244830)):
 
 
-1. First load `swephR` and the Se constants:
+1. First load `swephR` and constants used in swephR/SE:
 ```{r}
 library(swephR)
 SE<-SEConstants()

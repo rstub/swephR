@@ -16,6 +16,7 @@ A miniature sample program to calcuate the planet's positions. Teh input is year
 }
 \examples{
 \dontrun{
+SE<-SEConstant()
 SEtest()
 }
 }
