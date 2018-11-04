@@ -148,8 +148,10 @@ swe_fixstar2_mag <- function(starname) {
 #'   SE$HELFLAG_HIGH_PRECISION+SE$FLG_MOSEPH)
 #' swe_heliacal_pheno_ut(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),'sirius',
 #'   SE$HELIACAL_RISING,SE$HELFLAG_HIGH_PRECISION+SE$FLG_MOSEPH)
-#' swe_topo_arcus_visionis(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),768,-1,124,2,120,0,-45)
-#' swe_heliacal_angle(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),768,-1,124,120,0,-45)
+#' swe_topo_arcus_visionis(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),
+#'   SE$HELFLAG_HIGH_PRECISION+HELFLAG_OPTICAL_PARAMS,-1,124,2,120,0,-45)
+#' swe_heliacal_angle(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),
+#'   SE$HELFLAG_HIGH_PRECISION+HELFLAG_OPTICAL_PARAMS,-1,124,120,0,-45)
 #' @return \code{swe_sol_eclipse_when_loc} returns a list with named entries: 
 #'      \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector, 
 #'      \code{attr} pheneomena during eclipse as numeric vector and \code{serr} error message as string
