@@ -7,7 +7,7 @@
 SEtest()
 }
 \description{
-A miniature sample program to calcuate the planet's positions. Teh input is year, month, day.
+A miniature sample program to calculate the planet's positions. The input is year, month and day.
 }
 \details{
 \describe{
