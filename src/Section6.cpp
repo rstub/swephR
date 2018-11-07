@@ -70,7 +70,7 @@
 //' @export
 // [[Rcpp::export(swe_sol_eclipse_when_loc)]]
 Rcpp::List sol_eclipse_when_loc(double jd_start, int ephe_flag, Rcpp::NumericVector geopos, bool backward) {
-  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
+  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have a length of 3");
   std::array<double, 10> tret{0.0};
   std::array<double, 20> attr{0.0};
   std::array<char, 256> serr{'\0'};
@@ -94,7 +94,7 @@ Rcpp::List sol_eclipse_when_loc(double jd_start, int ephe_flag, Rcpp::NumericVec
 //' @export
 // [[Rcpp::export(swe_lun_eclipse_when_loc)]]
 Rcpp::List lun_eclipse_when_loc(double jd_start, int ephe_flag, Rcpp::NumericVector geopos, bool backward) {
-  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
+  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have a length of 3");
   std::array<double, 10> tret{0.0};
   std::array<double, 20> attr{0.0};
   std::array<char, 256> serr{'\0'};
@@ -117,7 +117,7 @@ Rcpp::List lun_eclipse_when_loc(double jd_start, int ephe_flag, Rcpp::NumericVec
 //' @export
 // [[Rcpp::export(swe_lun_eclipse_how)]]
 Rcpp::List lun_eclipse_how(double jd_start, int ephe_flag, Rcpp::NumericVector geopos) {
-  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
+  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have a length of 3");
   std::array<double, 20> attr{0.0};
   std::array<char, 256> serr{'\0'};
   int rtn = swe_lun_eclipse_how(jd_start, ephe_flag, geopos.begin(), attr.begin(), serr.begin());
@@ -158,7 +158,7 @@ Rcpp::List lun_eclipse_when(double jd_start, int ephe_flag, int ifltype, bool ba
 //' @export
 // [[Rcpp::export(swe_rise_trans_true_hor)]]
 Rcpp::List rise_trans_true_hor(double jd_ut, int ipl, std::string starname, int ephe_flag, int rsmi,Rcpp::NumericVector geopos, double atpress, double attemp, double horhgt) {
-  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
+  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have a length of 3");
   std::array<char, 256> serr{'\0'};
   double tret;
   starname.resize(41);
@@ -218,7 +218,7 @@ Rcpp::List pheno(double jd_et, int ipl, int ephe_flag) {
 //' @export
 // [[Rcpp::export(swe_azalt)]]
 Rcpp::List azalt(double jd_ut, int coord_flag, Rcpp::NumericVector geopos, double atpress, double attemp, Rcpp::NumericVector xin) {
-  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
+  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have a length of 3");
   std::array<double, 3> xaz{0.0};
   swe_azalt(jd_ut, coord_flag, geopos.begin(), atpress, attemp, xin.begin(), xaz.begin());
   return Rcpp::List::create(Rcpp::Named("xaz") = xaz);
@@ -237,7 +237,7 @@ Rcpp::List azalt(double jd_ut, int coord_flag, Rcpp::NumericVector geopos, doubl
 //' @export
 // [[Rcpp::export(swe_azalt_rev)]]
 Rcpp::List azalt_rev(double jd_ut, int coord_flag, Rcpp::NumericVector geopos, Rcpp::NumericVector xin) {
-  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have at least length 3");
+  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have a length of 3");
   std::array<double, 3> xout{0.0};
   swe_azalt_rev(jd_ut, coord_flag, geopos.begin(), xin.begin(), xout.begin());
   return Rcpp::List::create(Rcpp::Named("xout") = xout);
@@ -283,7 +283,7 @@ Rcpp::List refrac_extended(double InAlt, double geoheight, double atpress, doubl
 //' @export
 // [[Rcpp::export(swe_heliacal_ut)]]
 Rcpp::List heliacal_ut(double jd_utstart, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int event_type, int helflag) {
-  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
+  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have a length of 3");
   if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
   if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
   std::array<double, 50> dret{0.0};
@@ -306,7 +306,7 @@ Rcpp::List heliacal_ut(double jd_utstart, Rcpp::NumericVector dgeo, Rcpp::Numeri
 //' @export
 // [[Rcpp::export(swe_vis_limit_mag)]]
 Rcpp::List vis_limit_mag(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int helflag ){
-  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
+  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have a length of 3");
   if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
   if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
   std::array<double, 50> dret{0.0};
@@ -330,7 +330,7 @@ Rcpp::List vis_limit_mag(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVe
 //' @export
 // [[Rcpp::export(swe_heliacal_pheno_ut)]]
 Rcpp::List heliacal_pheno_ut(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int event_type, int helflag ){
-  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
+  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have a length of 3");
   if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
   if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
   std::array<double, 50> darr{0.0};
@@ -357,7 +357,7 @@ Rcpp::List heliacal_pheno_ut(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::Numer
 //' @export
 // [[Rcpp::export(swe_topo_arcus_visionis)]]
 Rcpp::List topo_arcus_visionis(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,int helflag,double mag,double AziO, double AltO,double AziS, double AziM, double AltM){
-  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
+  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have a length of 3");
   if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
   if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
   std::array<char, 256> serr{'\0'};
@@ -378,7 +378,7 @@ Rcpp::List topo_arcus_visionis(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::Num
 //' @export
 // [[Rcpp::export(swe_heliacal_angle)]]
 Rcpp::List heliacal_angle(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,int helflag,double mag,double AziO, double AziS, double AziM, double AltM){
-  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have at least length 3");
+  if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have a length of 3");
   if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
   if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
   std::array<double, 50> dret{0.0};
