@@ -4,7 +4,7 @@ M_get_planet_name <- function(ipl) {
   ResultVector <- c(0)
   for (i in 1:nrow(functionvector))
   {
-    ResultVector[i] <- swe_get_planet_name(functionvector$ipl[i])
+    ResultVector[[i]] <- swe_get_planet_name(functionvector$ipl[i])
   }
   return(ResultVector)
 }
@@ -26,18 +26,12 @@ M_sol_eclipse_when_loc <-
         c(functionvector$long[i],
           functionvector$lat[i],
           functionvector$height[i])
-      ResultA <- swe_sol_eclipse_when_loc(
+      ResultVector[[i]] <- swe_sol_eclipse_when_loc(
         functionvector$jd_start[i],
         functionvector$ephe_flag[i],
         geopos,
         functionvector$backward[i]
       )
-     # print(ResultA)
-      if (i == 1) {
-          ResultVector[[i]]<- ResultA
-        } else {
-          ResultVector[[i]] <- ResultA
-        }
     }
     return(ResultVector)
     
