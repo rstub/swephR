@@ -9,8 +9,8 @@
 ##' }
 ##' @param jd_ut  UT Julian day number (day)
 ##' @param jd_et  ET Julian day number as double (day)
-##' @param starname  star name as string ("" for no star)
-##' @param iflag flag as integer, many options possible (section 2.3)
+##' @param starname  Star name as string ("" for no star)
+##' @param iflag Calculation flag as integer, many options possible (section 2.3)
 ##' @return \code{swe_fixstar2} returns a list with named entries: \code{return} status flag as integer,
 ##'         \code{starname} updated star name as string, \code{xx} star phenomena as numeric vector, and \code{serr} error message as string.
 ##' @examples

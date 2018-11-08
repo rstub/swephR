@@ -30,7 +30,7 @@
 //' @examples
 //' SE<-SEConstants()
 //' swe_get_planet_name(SE$MOON)
-//' @param ipl  body/planet as integer (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)
+//' @param ipl  Body/planet as integer (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)
 //' @return \code{swe_get_planet_name} returns objectname as string
 //' @rdname Section3
 //' @export

@@ -23,7 +23,7 @@ swe_set_delta_t_userdef(delta_t)
 
 \item{ephe_flag}{ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4) (section 2.3.2)}
 
-\item{t_acc}{tidal acceleration as double (arcsec/century^2)}
+\item{t_acc}{Tidal acceleration as double (arcsec/century^2)}
 
 \item{delta_t}{DeltaT (day)}
 }

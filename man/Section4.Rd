@@ -13,11 +13,11 @@ swe_fixstar2(starname, jd_et, iflag)
 swe_fixstar2_ut(starname, jd_ut, iflag)
 }
 \arguments{
-\item{starname}{star name as string ("" for no star)}
+\item{starname}{Star name as string ("" for no star)}
 
 \item{jd_et}{ET Julian day number as double (day)}
 
-\item{iflag}{flag as integer, many options possible (section 2.3)}
+\item{iflag}{Calculation flag as integer, many options possible (section 2.3)}
 
 \item{jd_ut}{UT Julian day number (day)}
 }

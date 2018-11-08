@@ -16,7 +16,7 @@ swe_set_jpl_file(fname)
 swe_version()
 }
 \arguments{
-\item{path}{directory for the sefstars.txt, swe_deltat.txt and jpl files}
+\item{path}{Directory for the sefstars.txt, swe_deltat.txt and jpl files}
 
 \item{fname}{JPL ephemeris name as string (JPL ephemeris file, e.g. de431.eph)}
 }

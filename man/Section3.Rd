@@ -7,7 +7,7 @@
 swe_get_planet_name(ipl)
 }
 \arguments{
-\item{ipl}{body/planet as integer (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)}
+\item{ipl}{Body/planet as integer (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)}
 }
 \value{
 \code{swe_get_planet_name} returns objectname as string
