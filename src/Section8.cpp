@@ -30,7 +30,7 @@
 //' \item{swe_deltat_ex()}{Determine DeltaT from Julian day number for a specific ephemeris.}
 //' }
 //' @param jd_ut  Julian day number (UT) as numeric vector (day)
-//' @param t_acc tidal acceleration as double (arcsec/century^2)
+//' @param t_acc Tidal acceleration as double (arcsec/century^2)
 //' @param delta_t DeltaT (day)
 //' @examples
 //' SE<-SEConstants()

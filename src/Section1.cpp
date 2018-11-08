@@ -35,7 +35,7 @@
 //'   \item{swe_set_jpl_file()}{Set name of JPL ephemeris file.} 
 //'   \item{swe_version()}{The function provides the version number of the Swiss Ephemeris software.}
 //' }
-//' @param path directory for the sefstars.txt, swe_deltat.txt and jpl files
+//' @param path Directory for the sefstars.txt, swe_deltat.txt and jpl files
 //' @examples
 //' \dontrun{swe_set_ephe_path("c:\\sweph\\ephe")}
 //' swe_close()

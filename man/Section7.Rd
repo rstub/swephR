@@ -15,7 +15,7 @@ swe_julday(year, month, day, hour, gregflag)
 
 \item{hour}{Hour as double}
 
-\item{gregflag}{calendar type (SE$JUL_CAL=0 or SE$GREG_CAL=1)}
+\item{gregflag}{Calendar type (SE$JUL_CAL=0 or SE$GREG_CAL=1)}
 }
 \description{
 Functions related to calendar and time conversions.

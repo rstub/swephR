@@ -33,7 +33,7 @@
 //' @param month  Month as integer
 //' @param day  Day as integer
 //' @param hour  Hour as double
-//' @param gregflag  calendar type (SE$JUL_CAL=0 or SE$GREG_CAL=1)
+//' @param gregflag  Calendar type (SE$JUL_CAL=0 or SE$GREG_CAL=1)
 //' @rdname Section7
 //' @export
 // [[Rcpp::export(swe_julday)]]

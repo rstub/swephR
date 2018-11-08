@@ -26,17 +26,17 @@
 //' heliacal phenomenon after a given start date
 //' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244853}
 //' @param jd_et  ET Julian day number as double (day)
-//' @param ipl  body/planet as integer (SE$SUN=0, SE$MOON=1,  ... SE$PLUTO=9)
-//' @param starname  star name as string ("" for no star)
+//' @param ipl  Body/planet as integer (SE$SUN=0, SE$MOON=1,  ... SE$PLUTO=9)
+//' @param starname  Star name as string ("" for no star)
 //' @param jd_ut  UT Julian day number as double (day)
-//' @param calc_flag flag as integer (refraction direction (SE$TRUE_TO_APP=0 or SE$APP_TO_TRUE=1))
-//' @param coord_flag flag as integer (reference system (SE$ECL2HOR=0 or SE$EQU2HOR=1)) 
-//' @param atpress atmospheric pressure as double (hPa)
-//' @param attemp atmospheric temperature as double (Celsius)
-//' @param ephe_flag ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4)
-//' @param horhgt horizon apparent altitude as double (deg)
-//' @param xin  position of body as numeric vector (either ecliptical or equatorial coordinates, depending on coord_flag)
-//' @param rsmi  event flag as integer (e.g.: SE$CALC_RISE=1, SE$CALC_SET=2,SE$CALC_MTRANSIT=4,SE$CALC_ITRANSIT=8)
+//' @param calc_flag Calculation flag as integer (refraction direction (SE$TRUE_TO_APP=0 or SE$APP_TO_TRUE=1))
+//' @param coord_flag Coordinate flag as integer (reference system (SE$ECL2HOR=0 or SE$EQU2HOR=1)) 
+//' @param atpress Atmospheric pressure as double (hPa)
+//' @param attemp Atmospheric temperature as double (Celsius)
+//' @param ephe_flag Ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4)
+//' @param horhgt Horizon apparent altitude as double (deg)
+//' @param xin  Position of body as numeric vector (either ecliptical or equatorial coordinates, depending on coord_flag)
+//' @param rsmi  Event flag as integer (e.g.: SE$CALC_RISE=1, SE$CALC_SET=2,SE$CALC_MTRANSIT=4,SE$CALC_ITRANSIT=8)
 //' @details
 //' \describe{
 //'   \item{swe_sol_eclipse_when_loc()}{Find the next solar eclipse for a given geographic position.}
@@ -271,12 +271,12 @@ Rcpp::List refrac_extended(double InAlt, double geoheight, double atpress, doubl
 //' It works between geographic latitudes 60 South and 60 North.}
 //' }
 //' @param jd_utstart  UT Julian day number as double (day)
-//' @param dgeo Geographic position as numeric vector
-//' @param datm Atmospheric conditions as numeric vector
+//' @param dgeo Geographic position as numeric vector (longitude, latitude, height)
+//' @param datm Atmospheric conditions as numeric vector (pressure, temperature, relative humidity, visibility)
 //' @param dobs Observer description as numeric vector
-//' @param objectname  name of fixed star or planet as string
-//' @param event_type  event type as integer
-//' @param helflag calculation flag (incl. ephe_flag values) as integer
+//' @param objectname  Name of fixed star or planet as string
+//' @param event_type  Event type as integer
+//' @param helflag Calculation flag (incl. ephe_flag values) as integer
 //' @return \code{swe_heliacal_ut} returns a list with named entries \code{return} status flag as integer,
 //'         \code{dret} heliacal results as numeric vector, and \code{serr} error message as string.
 //' @rdname Section6
@@ -284,7 +284,7 @@ Rcpp::List refrac_extended(double InAlt, double geoheight, double atpress, doubl
 // [[Rcpp::export(swe_heliacal_ut)]]
 Rcpp::List heliacal_ut(double jd_utstart, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int event_type, int helflag) {
   if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have a length of 3");
-  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
+  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have a length of 4");
   if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
   std::array<double, 50> dret{0.0};
   std::array<char, 256> serr{'\0'};
@@ -307,7 +307,7 @@ Rcpp::List heliacal_ut(double jd_utstart, Rcpp::NumericVector dgeo, Rcpp::Numeri
 // [[Rcpp::export(swe_vis_limit_mag)]]
 Rcpp::List vis_limit_mag(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int helflag ){
   if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have a length of 3");
-  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
+  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have a length of 4");
   if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
   std::array<double, 50> dret{0.0};
   std::array<char, 256> serr{'\0'};
@@ -331,7 +331,7 @@ Rcpp::List vis_limit_mag(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVe
 // [[Rcpp::export(swe_heliacal_pheno_ut)]]
 Rcpp::List heliacal_pheno_ut(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,std::string objectname,int event_type, int helflag ){
   if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have a length of 3");
-  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
+  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have a length of 4");
   if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
   std::array<double, 50> darr{0.0};
   std::array<char, 256> serr{'\0'};
@@ -345,9 +345,9 @@ Rcpp::List heliacal_pheno_ut(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::Numer
 //' \describe{
 //' \item{swe_topo_arcus_visionis()}{Compute topocentric arcus visionis.}
 //' }
-//' @param mag   object's visible magnitude (Vmag) as double (-)
-//' @param AziO  object's azimuth as double (deg)
-//' @param AltO  object's altitude as double (deg)
+//' @param mag   Object's visible magnitude (Vmag) as double (-)
+//' @param AziO  Object's azimuth as double (deg)
+//' @param AltO  Object's altitude as double (deg)
 //' @param AziS  Sun's azimuth as double (deg)
 //' @param AziM  Moon's azimut as double (deg)
 //' @param AltM  Moon's altitude as double (deg)
@@ -358,7 +358,7 @@ Rcpp::List heliacal_pheno_ut(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::Numer
 // [[Rcpp::export(swe_topo_arcus_visionis)]]
 Rcpp::List topo_arcus_visionis(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,int helflag,double mag,double AziO, double AltO,double AziS, double AziM, double AltM){
   if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have a length of 3");
-  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
+  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have a length of 4");
   if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
   std::array<char, 256> serr{'\0'};
   double tav;
@@ -379,7 +379,7 @@ Rcpp::List topo_arcus_visionis(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::Num
 // [[Rcpp::export(swe_heliacal_angle)]]
 Rcpp::List heliacal_angle(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericVector datm, Rcpp::NumericVector dobs,int helflag,double mag,double AziO, double AziS, double AziM, double AltM){
   if (dgeo.length() < 3) Rcpp::stop("Geographic position 'dgeo' must have a length of 3");
-  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have at least length 4");
+  if (datm.length() < 4) Rcpp::stop("Atmospheric conditions 'datm' must have a length of 4");
   if (dobs.length() < 6) Rcpp::stop("Observer description 'dobs' must have at least length 6");
   std::array<double, 50> dret{0.0};
   std::array<char, 256> serr{'\0'};

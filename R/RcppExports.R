@@ -17,7 +17,7 @@
 #'   \item{swe_set_jpl_file()}{Set name of JPL ephemeris file.} 
 #'   \item{swe_version()}{The function provides the version number of the Swiss Ephemeris software.}
 #' }
-#' @param path directory for the sefstars.txt, swe_deltat.txt and jpl files
+#' @param path Directory for the sefstars.txt, swe_deltat.txt and jpl files
 #' @examples
 #' \dontrun{swe_set_ephe_path("c:\\sweph\\ephe")}
 #' swe_close()
@@ -84,7 +84,7 @@ calc <- function(jd_et, ipl, iflag) {
 #' @examples
 #' SE<-SEConstants()
 #' swe_get_planet_name(SE$MOON)
-#' @param ipl  body/planet as integer (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)
+#' @param ipl  Body/planet as integer (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)
 #' @return \code{swe_get_planet_name} returns objectname as string
 #' @rdname Section3
 #' @export
@@ -115,17 +115,17 @@ swe_fixstar2_mag <- function(starname) {
 #' heliacal phenomenon after a given start date
 #' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244853}
 #' @param jd_et  ET Julian day number as double (day)
-#' @param ipl  body/planet as integer (SE$SUN=0, SE$MOON=1,  ... SE$PLUTO=9)
-#' @param starname  star name as string ("" for no star)
+#' @param ipl  Body/planet as integer (SE$SUN=0, SE$MOON=1,  ... SE$PLUTO=9)
+#' @param starname  Star name as string ("" for no star)
 #' @param jd_ut  UT Julian day number as double (day)
-#' @param calc_flag flag as integer (refraction direction (SE$TRUE_TO_APP=0 or SE$APP_TO_TRUE=1))
-#' @param coord_flag flag as integer (reference system (SE$ECL2HOR=0 or SE$EQU2HOR=1)) 
-#' @param atpress atmospheric pressure as double (hPa)
-#' @param attemp atmospheric temperature as double (Celsius)
-#' @param ephe_flag ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4)
-#' @param horhgt horizon apparent altitude as double (deg)
-#' @param xin  position of body as numeric vector (either ecliptical or equatorial coordinates, depending on coord_flag)
-#' @param rsmi  event flag as integer (e.g.: SE$CALC_RISE=1, SE$CALC_SET=2,SE$CALC_MTRANSIT=4,SE$CALC_ITRANSIT=8)
+#' @param calc_flag Calculation flag as integer (refraction direction (SE$TRUE_TO_APP=0 or SE$APP_TO_TRUE=1))
+#' @param coord_flag Coordinate flag as integer (reference system (SE$ECL2HOR=0 or SE$EQU2HOR=1)) 
+#' @param atpress Atmospheric pressure as double (hPa)
+#' @param attemp Atmospheric temperature as double (Celsius)
+#' @param ephe_flag Ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4)
+#' @param horhgt Horizon apparent altitude as double (deg)
+#' @param xin  Position of body as numeric vector (either ecliptical or equatorial coordinates, depending on coord_flag)
+#' @param rsmi  Event flag as integer (e.g.: SE$CALC_RISE=1, SE$CALC_SET=2,SE$CALC_MTRANSIT=4,SE$CALC_ITRANSIT=8)
 #' @details
 #' \describe{
 #'   \item{swe_sol_eclipse_when_loc()}{Find the next solar eclipse for a given geographic position.}
@@ -292,12 +292,12 @@ swe_refrac_extended <- function(InAlt, geoheight, atpress, attemp, lapse_rate, c
 #' It works between geographic latitudes 60 South and 60 North.}
 #' }
 #' @param jd_utstart  UT Julian day number as double (day)
-#' @param dgeo Geographic position as numeric vector
-#' @param datm Atmospheric conditions as numeric vector
+#' @param dgeo Geographic position as numeric vector (longitude, latitude, height)
+#' @param datm Atmospheric conditions as numeric vector (pressure, temperature, relative humidity, visibility)
 #' @param dobs Observer description as numeric vector
-#' @param objectname  name of fixed star or planet as string
-#' @param event_type  event type as integer
-#' @param helflag calculation flag (incl. ephe_flag values) as integer
+#' @param objectname  Name of fixed star or planet as string
+#' @param event_type  Event type as integer
+#' @param helflag Calculation flag (incl. ephe_flag values) as integer
 #' @return \code{swe_heliacal_ut} returns a list with named entries \code{return} status flag as integer,
 #'         \code{dret} heliacal results as numeric vector, and \code{serr} error message as string.
 #' @rdname Section6
@@ -339,9 +339,9 @@ swe_heliacal_pheno_ut <- function(jd_ut, dgeo, datm, dobs, objectname, event_typ
 #' \describe{
 #' \item{swe_topo_arcus_visionis()}{Compute topocentric arcus visionis.}
 #' }
-#' @param mag   object's visible magnitude (Vmag) as double (-)
-#' @param AziO  object's azimuth as double (deg)
-#' @param AltO  object's altitude as double (deg)
+#' @param mag   Object's visible magnitude (Vmag) as double (-)
+#' @param AziO  Object's azimuth as double (deg)
+#' @param AltO  Object's altitude as double (deg)
 #' @param AziS  Sun's azimuth as double (deg)
 #' @param AziM  Moon's azimut as double (deg)
 #' @param AltM  Moon's altitude as double (deg)
@@ -379,7 +379,7 @@ swe_heliacal_angle <- function(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS
 #' @param month  Month as integer
 #' @param day  Day as integer
 #' @param hour  Hour as double
-#' @param gregflag  calendar type (SE$JUL_CAL=0 or SE$GREG_CAL=1)
+#' @param gregflag  Calendar type (SE$JUL_CAL=0 or SE$GREG_CAL=1)
 #' @rdname Section7
 #' @export
 swe_julday <- function(year, month, day, hour, gregflag) {
@@ -395,7 +395,7 @@ swe_julday <- function(year, month, day, hour, gregflag) {
 #' \item{swe_deltat_ex()}{Determine DeltaT from Julian day number for a specific ephemeris.}
 #' }
 #' @param jd_ut  Julian day number (UT) as numeric vector (day)
-#' @param t_acc tidal acceleration as double (arcsec/century^2)
+#' @param t_acc Tidal acceleration as double (arcsec/century^2)
 #' @param delta_t DeltaT (day)
 #' @examples
 #' SE<-SEConstants()
@@ -469,9 +469,9 @@ swe_set_delta_t_userdef <- function(delta_t) {
 #' \describe{
 #'   \item{we_set_topo{}}{Set the topocentric location of the observer.}
 #' }
-#' @param geolon  geographic longitude as double (deg)
-#' @param geolat  geographic latitude as double (deg)
-#' @param altitude  height as double (m)
+#' @param geolon  Geographic longitude as double (deg)
+#' @param geolat  Geographic latitude as double (deg)
+#' @param altitude  Height as double (m)
 #' @examples
 #' swe_set_topo(0,50,10)
 #' @rdname Section9

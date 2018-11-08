@@ -57,7 +57,7 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 \arguments{
 \item{jd_start}{Julian day number as double (UT)}
 
-\item{ephe_flag}{ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4)}
+\item{ephe_flag}{Ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4)}
 
 \item{geopos}{position as numeric vector (longitude, latitude, height)}
 
@@ -67,23 +67,23 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 
 \item{jd_ut}{UT Julian day number as double (day)}
 
-\item{ipl}{body/planet as integer (SE$SUN=0, SE$MOON=1,  ... SE$PLUTO=9)}
+\item{ipl}{Body/planet as integer (SE$SUN=0, SE$MOON=1,  ... SE$PLUTO=9)}
 
-\item{starname}{star name as string ("" for no star)}
+\item{starname}{Star name as string ("" for no star)}
 
-\item{rsmi}{event flag as integer (e.g.: SE$CALC_RISE=1, SE$CALC_SET=2,SE$CALC_MTRANSIT=4,SE$CALC_ITRANSIT=8)}
+\item{rsmi}{Event flag as integer (e.g.: SE$CALC_RISE=1, SE$CALC_SET=2,SE$CALC_MTRANSIT=4,SE$CALC_ITRANSIT=8)}
 
-\item{atpress}{atmospheric pressure as double (hPa)}
+\item{atpress}{Atmospheric pressure as double (hPa)}
 
-\item{attemp}{atmospheric temperature as double (Celsius)}
+\item{attemp}{Atmospheric temperature as double (Celsius)}
 
-\item{horhgt}{horizon apparent altitude as double (deg)}
+\item{horhgt}{Horizon apparent altitude as double (deg)}
 
 \item{jd_et}{ET Julian day number as double (day)}
 
-\item{coord_flag}{flag as integer (reference system (SE$ECL2HOR=0 or SE$EQU2HOR=1))}
+\item{coord_flag}{Coordinate flag as integer (reference system (SE$ECL2HOR=0 or SE$EQU2HOR=1))}
 
-\item{xin}{position of body as numeric vector (either ecliptical or equatorial coordinates, depending on coord_flag)}
+\item{xin}{Position of body as numeric vector (either ecliptical or equatorial coordinates, depending on coord_flag)}
 
 \item{InAlt}{object's apparent/topocentric altitude as double (depending on calc_flag) (deg)}
 
@@ -91,27 +91,27 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 
 \item{lapse_rate}{lapse rate as double (K/m)}
 
-\item{calc_flag}{flag as integer (refraction direction (SE$TRUE_TO_APP=0 or SE$APP_TO_TRUE=1))}
+\item{calc_flag}{Calculation flag as integer (refraction direction (SE$TRUE_TO_APP=0 or SE$APP_TO_TRUE=1))}
 
 \item{jd_utstart}{UT Julian day number as double (day)}
 
-\item{dgeo}{Geographic position as numeric vector}
+\item{dgeo}{Geographic position as numeric vector (longitude, latitude, height)}
 
-\item{datm}{Atmospheric conditions as numeric vector}
+\item{datm}{Atmospheric conditions as numeric vector (pressure, temperature, relative humidity, visibility)}
 
 \item{dobs}{Observer description as numeric vector}
 
-\item{objectname}{name of fixed star or planet as string}
+\item{objectname}{Name of fixed star or planet as string}
 
-\item{event_type}{event type as integer}
+\item{event_type}{Event type as integer}
 
-\item{helflag}{calculation flag (incl. ephe_flag values) as integer}
+\item{helflag}{Calculation flag (incl. ephe_flag values) as integer}
 
-\item{mag}{object's visible magnitude (Vmag) as double (-)}
+\item{mag}{Object's visible magnitude (Vmag) as double (-)}
 
-\item{AziO}{object's azimuth as double (deg)}
+\item{AziO}{Object's azimuth as double (deg)}
 
-\item{AltO}{object's altitude as double (deg)}
+\item{AltO}{Object's altitude as double (deg)}
 
 \item{AziS}{Sun's azimuth as double (deg)}
 

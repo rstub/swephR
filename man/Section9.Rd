@@ -7,11 +7,11 @@
 swe_set_topo(geolon, geolat, altitude)
 }
 \arguments{
-\item{geolon}{geographic longitude as double (deg)}
+\item{geolon}{Geographic longitude as double (deg)}
 
-\item{geolat}{geographic latitude as double (deg)}
+\item{geolat}{Geographic latitude as double (deg)}
 
-\item{altitude}{height as double (m)}
+\item{altitude}{Height as double (m)}
 }
 \description{
 Function for topocentric planet positions

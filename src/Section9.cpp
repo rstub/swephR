@@ -26,9 +26,9 @@
 //' \describe{
 //'   \item{we_set_topo{}}{Set the topocentric location of the observer.}
 //' }
-//' @param geolon  geographic longitude as double (deg)
-//' @param geolat  geographic latitude as double (deg)
-//' @param altitude  height as double (m)
+//' @param geolon  Geographic longitude as double (deg)
+//' @param geolat  Geographic latitude as double (deg)
+//' @param altitude  Height as double (m)
 //' @examples
 //' swe_set_topo(0,50,10)
 //' @rdname Section9
