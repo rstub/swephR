@@ -49,18 +49,12 @@ P_sol_eclipse_when_loc <-
     ResultVector <- NULL
     for (i in 1:nrow(functionvector))
     {
-      ResultA <- swe_sol_eclipse_when_loc(
+      ResultVector[[i]] <- swe_sol_eclipse_when_loc(
         functionvector$jd_start[i],
         functionvector$ephe_flag[i],
         functionvector$geopos[i],
         functionvector$backward[i]
       )
-      # print(ResultA)
-      if (i == 1) {
-        ResultVector[[i]]<- ResultA
-      } else {
-        ResultVector[[i]] <- ResultA
-      }
     }
     return(ResultVector)
     
