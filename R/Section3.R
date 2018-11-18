@@ -19,7 +19,7 @@ M_sol_eclipse_when_loc <-
     functionvector <-
       data.frame(jd_start, ephe_flag, long, lat, height, backward)
     print(functionvector)
-    ResultVector <- NULL
+    ResultVector <- vector("list",nrow(functionvector))
     for (i in 1:nrow(functionvector))
     {
       geopos <-
