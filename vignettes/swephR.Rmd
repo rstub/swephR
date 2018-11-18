@@ -24,14 +24,13 @@ To compute the position of celestial body or star with SE (Swiss Ephemeris), you
 1. First load `swephR` and constants used in swephR/SE:
 ```{r}
 library(swephR)
-SE<-SEConstants()
+SE <- SEConstants()
 ```
 
 2. Optionaly set the directory path of the ephemeris files, e.g.:
 ```{r, eval = FALSE}
 swe_set_ephe_path("C:\\sweph\\ephe")
 ```
-
 
 3. For a specific date, compute the Julian day number (in below example: J2000.0, 1 January 2000 at 12:00 UT):
 ```{r}
@@ -69,15 +68,15 @@ result
 ```{r}
   options(digits=6)
   swe_set_ephe_path(NULL)
-  SE<-SEConstants()
+  SE <- SEConstants()
   iflag = SE$FLG_SPEED
   {
     #get year
     jyear <- 2000
     #get month
-    jmon=1
+    jmon <- 1
     #get day
-    jday=1
+    jday <- 1
     #get time
     jhour <- 12
     #determine julian day number (at 12:00 GMT)
@@ -103,8 +102,6 @@ result
         }
     }
   }
-  
-  
 ```
 
 7.	At the end of your computations close all files and free up memory:
