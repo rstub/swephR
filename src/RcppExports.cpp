@@ -158,15 +158,15 @@ BEGIN_RCPP
 END_RCPP
 }
 // lun_eclipse_how
-Rcpp::List lun_eclipse_how(double jd_start, int ephe_flag, Rcpp::NumericVector geopos);
-RcppExport SEXP _swephR_lun_eclipse_how(SEXP jd_startSEXP, SEXP ephe_flagSEXP, SEXP geoposSEXP) {
+Rcpp::List lun_eclipse_how(double jd_ut, int ephe_flag, Rcpp::NumericVector geopos);
+RcppExport SEXP _swephR_lun_eclipse_how(SEXP jd_utSEXP, SEXP ephe_flagSEXP, SEXP geoposSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type jd_start(jd_startSEXP);
+    Rcpp::traits::input_parameter< double >::type jd_ut(jd_utSEXP);
     Rcpp::traits::input_parameter< int >::type ephe_flag(ephe_flagSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type geopos(geoposSEXP);
-    rcpp_result_gen = Rcpp::wrap(lun_eclipse_how(jd_start, ephe_flag, geopos));
+    rcpp_result_gen = Rcpp::wrap(lun_eclipse_how(jd_ut, ephe_flag, geopos));
     return rcpp_result_gen;
 END_RCPP
 }

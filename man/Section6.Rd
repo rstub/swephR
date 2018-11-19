@@ -22,7 +22,7 @@ swe_sol_eclipse_when_loc(jd_start, ephe_flag, geopos, backward)
 
 swe_lun_eclipse_when_loc(jd_start, ephe_flag, geopos, backward)
 
-swe_lun_eclipse_how(jd_start, ephe_flag, geopos)
+swe_lun_eclipse_how(jd_ut, ephe_flag, geopos)
 
 swe_lun_eclipse_when(jd_start, ephe_flag, ifltype, backward)
 
@@ -63,9 +63,9 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 
 \item{backward}{backwards search as boolean (TRUE)}
 
-\item{ifltype}{eclipse type as integer (e.g.: SE$ECL_CENTRAL=1,SE$ECL_NONCENTRAL=2,SE$ECL_TOTAL=4,SE$ECL_ANNULAR=8,SE$ECL_PARTIAL=16,SE$ECL_ANNULAR_TOTAL=32)}
-
 \item{jd_ut}{UT Julian day number as double (day)}
+
+\item{ifltype}{eclipse type as integer (e.g.: SE$ECL_CENTRAL=1,SE$ECL_NONCENTRAL=2,SE$ECL_TOTAL=4,SE$ECL_ANNULAR=8,SE$ECL_PARTIAL=16,SE$ECL_ANNULAR_TOTAL=32)}
 
 \item{ipl}{Body/planet as integer (SE$SUN=0, SE$MOON=1,  ... SE$PLUTO=9)}
 
