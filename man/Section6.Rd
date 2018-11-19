@@ -37,8 +37,7 @@ swe_azalt(jd_ut, coord_flag, geopos, atpress, attemp, xin)
 
 swe_azalt_rev(jd_ut, coord_flag, geopos, xin)
 
-swe_refrac_extended(InAlt, geoheight, atpress, attemp, lapse_rate,
-  calc_flag)
+swe_refrac_extended(InAlt, height, atpress, attemp, lapse_rate, calc_flag)
 
 swe_heliacal_ut(jd_utstart, dgeo, datm, dobs, objectname, event_type,
   helflag)
@@ -87,7 +86,7 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 
 \item{InAlt}{object's apparent/topocentric altitude as double (depending on calc_flag) (deg)}
 
-\item{geoheight}{observer's height as double (m)}
+\item{height}{observer's height as double (m)}
 
 \item{lapse_rate}{lapse rate as double (K/m)}
 

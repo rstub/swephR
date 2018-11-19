@@ -260,18 +260,18 @@ BEGIN_RCPP
 END_RCPP
 }
 // refrac_extended
-Rcpp::List refrac_extended(double InAlt, double geoheight, double atpress, double attemp, double lapse_rate, int calc_flag);
-RcppExport SEXP _swephR_refrac_extended(SEXP InAltSEXP, SEXP geoheightSEXP, SEXP atpressSEXP, SEXP attempSEXP, SEXP lapse_rateSEXP, SEXP calc_flagSEXP) {
+Rcpp::List refrac_extended(double InAlt, double height, double atpress, double attemp, double lapse_rate, int calc_flag);
+RcppExport SEXP _swephR_refrac_extended(SEXP InAltSEXP, SEXP heightSEXP, SEXP atpressSEXP, SEXP attempSEXP, SEXP lapse_rateSEXP, SEXP calc_flagSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< double >::type InAlt(InAltSEXP);
-    Rcpp::traits::input_parameter< double >::type geoheight(geoheightSEXP);
+    Rcpp::traits::input_parameter< double >::type height(heightSEXP);
     Rcpp::traits::input_parameter< double >::type atpress(atpressSEXP);
     Rcpp::traits::input_parameter< double >::type attemp(attempSEXP);
     Rcpp::traits::input_parameter< double >::type lapse_rate(lapse_rateSEXP);
     Rcpp::traits::input_parameter< int >::type calc_flag(calc_flagSEXP);
-    rcpp_result_gen = Rcpp::wrap(refrac_extended(InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag));
+    rcpp_result_gen = Rcpp::wrap(refrac_extended(InAlt, height, atpress, attemp, lapse_rate, calc_flag));
     return rcpp_result_gen;
 END_RCPP
 }

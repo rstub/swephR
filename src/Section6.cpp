@@ -251,16 +251,16 @@ Rcpp::List azalt_rev(double jd_ut, int coord_flag, Rcpp::NumericVector geopos, R
 //' where the ideal horizon and planets that are visible may have a negative altitude. }
 //' }
 //' @param InAlt  object's apparent/topocentric altitude as double (depending on calc_flag) (deg)
-//' @param geoheight  observer's height as double (m)
+//' @param height  observer's height as double (m)
 //' @param lapse_rate  lapse rate as double (K/m)
 //' @return \code{swe_refrac_extended} returns a list with named entries: \code{return} status flag as integer,
 //'      \code{dret} refraction results as nemeric vector (TopoAlt, AppAlt, refraction)
 //' @rdname Section6
 //' @export
 // [[Rcpp::export(swe_refrac_extended)]]
-Rcpp::List refrac_extended(double InAlt, double geoheight, double atpress, double attemp, double lapse_rate, int calc_flag) {
+Rcpp::List refrac_extended(double InAlt, double height, double atpress, double attemp, double lapse_rate, int calc_flag) {
   std::array<double, 10> dret{0.0};
-  double i = swe_refrac_extended(InAlt,geoheight,atpress,attemp,lapse_rate,calc_flag, dret.begin());
+  double i = swe_refrac_extended(InAlt,height,atpress,attemp,lapse_rate,calc_flag, dret.begin());
   return Rcpp::List::create(Rcpp::Named("return") = i,
                             Rcpp::Named("dret") = dret);
 }
