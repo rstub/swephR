@@ -71,14 +71,14 @@ lun_eclipse_when_loc <-
   }
 
 lun_eclipse_how <-
-  function(jd_start,
+  function(jd_ut,
            ephe_flag = 4,
            # default Moshier epheemris
            long,
            lat,
            height = 0) {
     functionvector <-
-      data.frame(jd_start, ephe_flag, long, lat, height)
+      data.frame(jd_ut, ephe_flag, long, lat, height)
     print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
@@ -88,9 +88,10 @@ lun_eclipse_how <-
         c(functionvector$long[i],
           functionvector$lat[i],
           functionvector$height[i])
-      ResultVector[[i]] <- swe_lun_eclipse_how(functionvector$jd_start[i],
-                                               functionvector$ephe_flag[i],
-                                               geopos)
+      ResultVector[[i]] <-
+        swe_lun_eclipse_how(functionvector$jd_ut[i],
+                            functionvector$ephe_flag[i],
+                            geopos)
     }
     return(ResultVector)
     
@@ -120,11 +121,91 @@ lun_eclipse_when <-
     
   }
 
+rise_trans_true_hor <-
+  function(jd_ut,
+           ipl,
+           starname = "",
+           ephe_flag = 4,
+           # default Moshier epheemris
+           rsmi,
+          long,
+          lat,
+           height=0,
+          atpress = 1013.25,
+          attemp = 15,
+          horhgt = 0) {
+    functionvector <-
+      data.frame(jd_ut, ipl, starname, ephe_flag,rsmi,long,lat,height,atpress,attemp,horhgt, stringsAsFactors = FALSE)
+    print(functionvector)
+    listsize <- nrow(functionvector)
+    ResultVector <- vector("list", listsize)
+    for (i in 1:listsize)
+    {
+      geopos <-
+        c(functionvector$long[i],
+          functionvector$lat[i],
+          functionvector$height[i])
+      ResultVector[[i]] <- swe_rise_trans_true_hor(
+        functionvector$jd_ut[i],
+        functionvector$ipl[i],
+        functionvector$starname[i],
+        functionvector$ephe_flag[i],
+        functionvector$rsmi[i],
+        geopos,
+        functionvector$atpress[i],
+        functionvector$attemp[i],
+        functionvector$horhgt[i]
+      )
+    }
+    return(ResultVector)
+    
+  }
+
+pheno_ut <-
+  function(jd_ut,
+           ipl,
+           iflag = 4 ) {
+    #default Moshier epheemris
+    functionvector <-
+      data.frame(jd_ut, ipl, iflag)
+    print(functionvector)
+    listsize <- nrow(functionvector)
+    ResultVector <- vector("list", listsize)
+    for (i in 1:listsize)
+    {
+      ResultVector[[i]] <- swe_pheno_ut(functionvector$jd_ut[i],
+                                    functionvector$ipl[i],
+                                    functionvector$iflag[i])
+    }
+    return(ResultVector)
+    
+  }
+
+pheno <-
+  function(jd_et,
+           ipl,
+           iflag = 4 ) {
+    #default Moshier epheemris
+    functionvector <-
+      data.frame(jd_et, ipl, iflag)
+    print(functionvector)
+    listsize <- nrow(functionvector)
+    ResultVector <- vector("list", listsize)
+    for (i in 1:listsize)
+    {
+      ResultVector[[i]] <- swe_pheno(functionvector$jd_et[i],
+                                        functionvector$ipl[i],
+                                        functionvector$iflag[i])
+    }
+    return(ResultVector)
+    
+  }
+
 calc_ut <-
   function(jd_ut,
            ipl,
-           iflag = 4 # default Moshier epheemris
-           ) {
+           iflag = 4){
+           # default Moshier epheemris
            functionvector <-
              data.frame(jd_ut, ipl, iflag)
            print(functionvector)
@@ -143,8 +224,8 @@ calc_ut <-
 calc <-
   function(jd_et,
            ipl,
-           iflag = 4 # default Moshier epheemris
-           ) {
+           iflag = 4 ) {
+    #default Moshier epheemris
            functionvector <-
              data.frame(jd_et, ipl, iflag)
            print(functionvector)

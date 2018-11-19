@@ -186,8 +186,8 @@ swe_lun_eclipse_when_loc <- function(jd_start, ephe_flag, geopos, backward) {
 #'      \code{attr} pheneomena during eclipse as numeric vector and \code{serr} error message as string
 #' @rdname Section6
 #' @export
-swe_lun_eclipse_how <- function(jd_start, ephe_flag, geopos) {
-    .Call(`_swephR_lun_eclipse_how`, jd_start, ephe_flag, geopos)
+swe_lun_eclipse_how <- function(jd_ut, ephe_flag, geopos) {
+    .Call(`_swephR_lun_eclipse_how`, jd_ut, ephe_flag, geopos)
 }
 
 #' @details 

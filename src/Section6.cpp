@@ -116,11 +116,11 @@ Rcpp::List lun_eclipse_when_loc(double jd_start, int ephe_flag, Rcpp::NumericVec
 //' @rdname Section6
 //' @export
 // [[Rcpp::export(swe_lun_eclipse_how)]]
-Rcpp::List lun_eclipse_how(double jd_start, int ephe_flag, Rcpp::NumericVector geopos) {
+Rcpp::List lun_eclipse_how(double jd_ut, int ephe_flag, Rcpp::NumericVector geopos) {
   if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have a length of 3");
   std::array<double, 20> attr{0.0};
   std::array<char, 256> serr{'\0'};
-  int rtn = swe_lun_eclipse_how(jd_start, ephe_flag, geopos.begin(), attr.begin(), serr.begin());
+  int rtn = swe_lun_eclipse_how(jd_ut, ephe_flag, geopos.begin(), attr.begin(), serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = rtn,
                             Rcpp::Named("attr") = attr,
                             Rcpp::Named("serr") = std::string(serr.begin())
