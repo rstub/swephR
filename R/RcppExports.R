@@ -276,14 +276,14 @@ swe_azalt_rev <- function(jd_ut, coord_flag, geopos, xin) {
 #' where the ideal horizon and planets that are visible may have a negative altitude. }
 #' }
 #' @param InAlt  object's apparent/topocentric altitude as double (depending on calc_flag) (deg)
-#' @param geoheight  observer's height as double (m)
+#' @param height  observer's height as double (m)
 #' @param lapse_rate  lapse rate as double (K/m)
 #' @return \code{swe_refrac_extended} returns a list with named entries: \code{return} status flag as integer,
 #'      \code{dret} refraction results as nemeric vector (TopoAlt, AppAlt, refraction)
 #' @rdname Section6
 #' @export
-swe_refrac_extended <- function(InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag) {
-    .Call(`_swephR_refrac_extended`, InAlt, geoheight, atpress, attemp, lapse_rate, calc_flag)
+swe_refrac_extended <- function(InAlt, height, atpress, attemp, lapse_rate, calc_flag) {
+    .Call(`_swephR_refrac_extended`, InAlt, height, atpress, attemp, lapse_rate, calc_flag)
 }
 
 #' @details 
