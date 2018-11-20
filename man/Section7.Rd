@@ -2,9 +2,15 @@
 % Please edit documentation in R/RcppExports.R
 \name{swe_julday}
 \alias{swe_julday}
+\alias{swe_date_conversion}
+\alias{swe_revjul}
 \title{Section 7: Date and time conversion functions}
 \usage{
 swe_julday(year, month, day, hour, gregflag)
+
+swe_date_conversion(year, month, day, hour, cal)
+
+swe_revjul(jd, gregflag)
 }
 \arguments{
 \item{year}{Year as integer}
@@ -16,6 +22,17 @@ swe_julday(year, month, day, hour, gregflag)
 \item{hour}{Hour as double}
 
 \item{gregflag}{Calendar type (SE$JUL_CAL=0 or SE$GREG_CAL=1)}
+
+\item{cal}{Calendar type "g"[regorian] or "j"[ulian]}
+
+\item{jd}{Julian day number as double}
+}
+\value{
+\code{swe_date_conversion} returns a list with named entries: \code{return} status flag as integer,
+     \code{jd} Julian day number as double
+
+\code{swe_revjul} returns a list with named entries: \code{year} year as integer,
+     \code{month} month as interger, \code{day} day as integer and \code{hour} hour as double.
 }
 \description{
 Functions related to calendar and time conversions.
@@ -23,11 +40,16 @@ Functions related to calendar and time conversions.
 \details{
 \describe{
   \item{swe_julday()}{Convert calendar dates to the astronomical time scale which measures time in Julian day number.}
+  \item{swe_date_conversion()}{Convert calendar dates to the astronomical time scale which measures time in Julian day 
+  number and checks if the calendar date is legal.}
+  \item{swe_revjul()}{Compute year, month, day and hour from a Julian day number.}
 }
 }
 \examples{
 SE<-SEConstants()
 swe_julday(2000,1,1,12,SE$GREG_CAL)
+swe_date_conversion(2000,1,1,12,"g")
+swe_revjul(2452500,SE$GREG_CAL)
 }
 \seealso{
 \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244873}

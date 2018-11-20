@@ -1,5 +1,5 @@
 #section2
-calc_ut <-
+vec_calc_ut <-
   function(jd_ut,
            ipl,
            iflag = 4) {
@@ -18,7 +18,7 @@ calc_ut <-
     return(ResultVector)
   }
 
-calc <-
+vec_calc <-
   function(jd_et,
            ipl,
            iflag = 4) {
@@ -39,7 +39,7 @@ calc <-
   }
 
 #section3
-get_planet_name <- function(ipl) {
+vec_get_planet_name <- function(ipl) {
   functionvector <- data.frame(ipl)
   print(functionvector)
   listsize <- nrow(functionvector)
@@ -52,7 +52,7 @@ get_planet_name <- function(ipl) {
 }
 
 #section4
-sol_eclipse_when_loc <-
+vec_sol_eclipse_when_loc <-
   function(jd_start,
            ephe_flag = 4,
            # default Moshier epheemris
@@ -82,7 +82,7 @@ sol_eclipse_when_loc <-
   }
 
 #section4
-fixstar2_ut <-
+vec_fixstar2_ut <-
   function(starname,
            jd_ut,
            iflag = 4) {
@@ -100,7 +100,7 @@ fixstar2_ut <-
     return(ResultVector)
   }
 
-fixstar2 <-
+vec_fixstar2 <-
   function(starname,
            jd_et,
            iflag = 4) {
@@ -118,7 +118,7 @@ fixstar2 <-
     return(ResultVector)
   }
 
-fixstar2_mag <-
+vec_fixstar2_mag <-
   function(starname) {
     functionvector <-
       data.frame(starname, stringsAsFactors = FALSE)
@@ -133,7 +133,7 @@ fixstar2_mag <-
   }
 
 #section6
-lun_eclipse_when_loc <-
+vec_lun_eclipse_when_loc <-
   function(jd_start,
            ephe_flag = 4,
            # default Moshier epheemris
@@ -162,7 +162,7 @@ lun_eclipse_when_loc <-
     return(ResultVector)
   }
 
-lun_eclipse_how <-
+vec_lun_eclipse_how <-
   function(jd_ut,
            ephe_flag = 4,
            # default Moshier epheemris
@@ -188,7 +188,7 @@ lun_eclipse_how <-
     return(ResultVector)
   }
 
-lun_eclipse_when <-
+vec_lun_eclipse_when <-
   function(jd_start,
            ephe_flag = 4,
            # default Moshier epheemris
@@ -211,7 +211,7 @@ lun_eclipse_when <-
     return(ResultVector)
   }
 
-rise_trans_true_hor <-
+vec_rise_trans_true_hor <-
   function(jd_ut,
            ipl,
            starname = "",
@@ -263,7 +263,7 @@ rise_trans_true_hor <-
     return(ResultVector)
   }
 
-pheno_ut <-
+vec_pheno_ut <-
   function(jd_ut,
            ipl,
            iflag = 4) {
@@ -282,7 +282,7 @@ pheno_ut <-
     return(ResultVector)
   }
 
-pheno <-
+vec_pheno <-
   function(jd_et,
            ipl,
            iflag = 4) {
@@ -301,7 +301,7 @@ pheno <-
     return(ResultVector)
   }
 
-azalt <-
+vec_azalt <-
   function(jd_ut,
            coord_flag,
            long,
@@ -345,7 +345,7 @@ azalt <-
     return(ResultVector)
   }
 
-azalt_rev <-
+vec_azalt_rev <-
   function(jd_ut,
            coord_flag,
            long,
@@ -383,7 +383,7 @@ azalt_rev <-
     return(ResultVector)
   }
 
-refrac_extended <-
+vec_refrac_extended <-
   function(InAlt,
            height = 0,
            atpress = 1013.25,
@@ -414,8 +414,10 @@ refrac_extended <-
     return(ResultVector)
   }
 
+# heliacal event functions need to be added.
+
 #section 7
-julday <-
+vec_julday <-
   function(year,
            month,
            day,
@@ -441,8 +443,54 @@ julday <-
     return(ResultVector)
   }
 
+vec_date_conversion <-
+  function(year,
+           month,
+           day,
+           hour = 12,
+           #default is midday
+           cal = "g") {
+    #default (proleptic) Gregorian calendar
+    functionvector <-
+      data.frame(year, month, day, hour, cal,
+                 stringsAsFactors = FALSE)
+    print(functionvector)
+    listsize <- nrow(functionvector)
+    ResultVector <- vector("list", listsize)
+    for (i in 1:listsize)
+    {
+      ResultVector[[i]] <- swe_date_conversion(
+        functionvector$year[i],
+        functionvector$month[i],
+        functionvector$day[i],
+        functionvector$hour[i],
+        functionvector$cal[i]
+      )
+    }
+    return(ResultVector)
+  }
+
+vec_revjul <-
+  function(jd,
+           gregflag = 1) {
+    #default (proleptic) Gregorian calendar
+    functionvector <-
+      data.frame(jd, gregflag)
+    print(functionvector)
+    listsize <- nrow(functionvector)
+    ResultVector <- vector("list", listsize)
+    for (i in 1:listsize)
+    {
+      ResultVector[[i]] <- swe_revjul(
+        functionvector$jd[i],
+        functionvector$gregflag[i]
+      )
+    }
+    return(ResultVector)
+  }
+
 #section8
-deltat_ex <-
+vec_deltat_ex <-
   function(jd_ut,
            ephe_flag = 4) {
     functionvector <-
@@ -458,7 +506,7 @@ deltat_ex <-
     return(ResultVector)
   }
 
-deltat <-
+vec_deltat <-
   function(jd_ut) {
     functionvector <-
       data.frame(jd_ut)
@@ -473,7 +521,7 @@ deltat <-
   }
 
 #section16
-day_of_week <-
+vec_day_of_week <-
   function(jd) {
     functionvector <-
       data.frame(jd)

@@ -25,10 +25,15 @@
 //' @details
 //' \describe{
 //'   \item{swe_julday()}{Convert calendar dates to the astronomical time scale which measures time in Julian day number.}
+//'   \item{swe_date_conversion()}{Convert calendar dates to the astronomical time scale which measures time in Julian day 
+//'   number and checks if the calendar date is legal.}
+//'   \item{swe_revjul()}{Compute year, month, day and hour from a Julian day number.}
 //' }
 //' @examples
 //' SE<-SEConstants()
 //' swe_julday(2000,1,1,12,SE$GREG_CAL)
+//' swe_date_conversion(2000,1,1,12,"g")
+//' swe_revjul(2452500,SE$GREG_CAL)
 //' @param year  Year as integer
 //' @param month  Month as integer
 //' @param day  Day as integer
@@ -43,3 +48,33 @@ double julday(int year, int month, int day, double hour, int gregflag) {
   return i;
 }
 
+//' @param cal  Calendar type "g"[regorian] or "j"[ulian] 
+//' @return \code{swe_date_conversion} returns a list with named entries: \code{return} status flag as integer,
+//'      \code{jd} Julian day number as double
+//' @rdname Section7
+//' @export
+// [[Rcpp::export(swe_date_conversion)]]
+Rcpp::List date_conversion(int year, int month, int day, double hour, char cal) { 
+  double jd;
+  int i = swe_date_conversion(year, month, day, hour, cal, &jd);
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("jd") = jd);
+}
+
+//' @param jd  Julian day number as double
+//' @return \code{swe_revjul} returns a list with named entries: \code{year} year as integer,
+//'      \code{month} month as interger, \code{day} day as integer and \code{hour} hour as double.
+//' @rdname Section7
+//' @export
+// [[Rcpp::export(swe_revjul)]]
+Rcpp::List revjul(double jd, int gregflag ) { 
+  int year;
+  int month;
+  int day;
+  double hour;
+  swe_revjul(jd, gregflag, &year, &month, &day, &hour);
+  return Rcpp::List::create(Rcpp::Named("year") = year,
+                            Rcpp::Named("month") = month,
+                            Rcpp::Named("day") = day,
+                            Rcpp::Named("hour") = hour);
+}
