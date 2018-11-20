@@ -68,7 +68,7 @@ be returned by swe_deltat() or swe_deltat_ex().}
 }
 }
 \examples{
-SE<-SEConstants()
+data(SE)
 swe_deltat_ex(1234.567, SE$FLG_MOSEPH)
 swe_deltat(1234.567)
 swe_set_tid_acc(1.23)

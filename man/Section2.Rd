@@ -35,7 +35,7 @@ Computing positions of planets, asteroids, lunar nodes and apogees using Swiss E
 }
 }
 \examples{
-SE<-SEConstants()
+data(SE)
 swe_calc_ut(2458346.82639, SE$MOON, SE$FLG_MOSEPH)
 swe_calc(2458346.82639, SE$MOON, SE$FLG_MOSEPH)
 }

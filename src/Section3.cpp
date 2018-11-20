@@ -28,7 +28,7 @@
 //'   \item{swe_get_planet_name()}{Convert object number into ubject name.}
 //' }
 //' @examples
-//' SE<-SEConstants()
+//' data(SE)
 //' swe_get_planet_name(SE$MOON)
 //' @param ipl  Body/planet as integer (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)
 //' @return \code{swe_get_planet_name} returns objectname as string

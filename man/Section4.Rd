@@ -42,7 +42,7 @@ The following functions are used to calculate positions of fixed stars.
 }
 }
 \examples{
-SE<-SEConstants()
+data(SE)
 swe_fixstar2_mag("sirius") 
 swe_set_topo(0,50,10)      
 swe_fixstar2("sirius",1234567,SE$FLG_TOPOCTR+SE$FLG_MOSEPH+SE$FLG_EQUATORIAL)

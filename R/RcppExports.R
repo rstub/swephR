@@ -82,7 +82,7 @@ calc <- function(jd_et, ipl, iflag) {
 #'   \item{swe_get_planet_name()}{Convert object number into ubject name.}
 #' }
 #' @examples
-#' SE<-SEConstants()
+#' data(SE)
 #' swe_get_planet_name(SE$MOON)
 #' @param ipl  Body/planet as integer (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)
 #' @return \code{swe_get_planet_name} returns objectname as string
@@ -131,7 +131,7 @@ swe_fixstar2_mag <- function(starname) {
 #'   \item{swe_sol_eclipse_when_loc()}{Find the next solar eclipse for a given geographic position.}
 #'   }
 #' @examples
-#' SE<-SEConstants()
+#' data(SE)
 #' swe_sol_eclipse_when_loc(1234567,SE$FLG_MOSEPH,c(0,50,10),FALSE)
 #' swe_lun_eclipse_when_loc(1234567,SE$FLG_MOSEPH,c(0,50,10),FALSE)
 #' swe_lun_eclipse_how(1234580.19960447,SE$FLG_MOSEPH,c(0,50,10))
@@ -376,7 +376,7 @@ swe_heliacal_angle <- function(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS
 #'   \item{swe_revjul()}{Compute year, month, day and hour from a Julian day number.}
 #' }
 #' @examples
-#' SE<-SEConstants()
+#' data(SE)
 #' swe_julday(2000,1,1,12,SE$GREG_CAL)
 #' swe_date_conversion(2000,1,1,12,"g")
 #' swe_revjul(2452500,SE$GREG_CAL)
@@ -421,7 +421,7 @@ swe_revjul <- function(jd, gregflag) {
 #' @param t_acc Tidal acceleration as double (arcsec/century^2)
 #' @param delta_t DeltaT (day)
 #' @examples
-#' SE<-SEConstants()
+#' data(SE)
 #' swe_deltat_ex(1234.567, SE$FLG_MOSEPH)
 #' swe_deltat(1234.567)
 #' swe_set_tid_acc(1.23)
