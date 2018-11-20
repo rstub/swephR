@@ -1,4 +1,5 @@
 #section2
+##' @export
 vec_calc_ut <-
   function(jd_ut,
            ipl,
@@ -18,6 +19,7 @@ vec_calc_ut <-
     return(ResultVector)
   }
 
+##' @export
 vec_calc <-
   function(jd_et,
            ipl,
@@ -39,6 +41,7 @@ vec_calc <-
   }
 
 #section3
+##' @export
 vec_get_planet_name <- function(ipl) {
   functionvector <- data.frame(ipl)
   print(functionvector)
@@ -52,6 +55,7 @@ vec_get_planet_name <- function(ipl) {
 }
 
 #section4
+##' @export
 vec_sol_eclipse_when_loc <-
   function(jd_start,
            ephe_flag = 4,
@@ -82,6 +86,7 @@ vec_sol_eclipse_when_loc <-
   }
 
 #section4
+##' @export
 vec_fixstar2_ut <-
   function(starname,
            jd_ut,
@@ -100,6 +105,7 @@ vec_fixstar2_ut <-
     return(ResultVector)
   }
 
+##' @export
 vec_fixstar2 <-
   function(starname,
            jd_et,
@@ -118,6 +124,7 @@ vec_fixstar2 <-
     return(ResultVector)
   }
 
+##' @export
 vec_fixstar2_mag <-
   function(starname) {
     functionvector <-
@@ -133,6 +140,7 @@ vec_fixstar2_mag <-
   }
 
 #section6
+##' @export
 vec_lun_eclipse_when_loc <-
   function(jd_start,
            ephe_flag = 4,
@@ -162,6 +170,7 @@ vec_lun_eclipse_when_loc <-
     return(ResultVector)
   }
 
+##' @export
 vec_lun_eclipse_how <-
   function(jd_ut,
            ephe_flag = 4,
@@ -188,6 +197,7 @@ vec_lun_eclipse_how <-
     return(ResultVector)
   }
 
+##' @export
 vec_lun_eclipse_when <-
   function(jd_start,
            ephe_flag = 4,
@@ -211,6 +221,7 @@ vec_lun_eclipse_when <-
     return(ResultVector)
   }
 
+##' @export
 vec_rise_trans_true_hor <-
   function(jd_ut,
            ipl,
@@ -263,6 +274,7 @@ vec_rise_trans_true_hor <-
     return(ResultVector)
   }
 
+##' @export
 vec_pheno_ut <-
   function(jd_ut,
            ipl,
@@ -282,6 +294,7 @@ vec_pheno_ut <-
     return(ResultVector)
   }
 
+##' @export
 vec_pheno <-
   function(jd_et,
            ipl,
@@ -301,6 +314,7 @@ vec_pheno <-
     return(ResultVector)
   }
 
+##' @export
 vec_azalt <-
   function(jd_ut,
            coord_flag,
@@ -345,6 +359,7 @@ vec_azalt <-
     return(ResultVector)
   }
 
+##' @export
 vec_azalt_rev <-
   function(jd_ut,
            coord_flag,
@@ -383,6 +398,7 @@ vec_azalt_rev <-
     return(ResultVector)
   }
 
+##' @export
 vec_refrac_extended <-
   function(InAlt,
            height = 0,
@@ -417,6 +433,7 @@ vec_refrac_extended <-
 # heliacal event functions need to be added.
 
 #section 7
+##' @export
 vec_julday <-
   function(year,
            month,
@@ -443,6 +460,7 @@ vec_julday <-
     return(ResultVector)
   }
 
+##' @export
 vec_date_conversion <-
   function(year,
            month,
@@ -470,6 +488,7 @@ vec_date_conversion <-
     return(ResultVector)
   }
 
+##' @export
 vec_revjul <-
   function(jd,
            gregflag = 1) {
@@ -490,6 +509,7 @@ vec_revjul <-
   }
 
 #section8
+##' @export
 vec_deltat_ex <-
   function(jd_ut,
            ephe_flag = 4) {
@@ -506,6 +526,7 @@ vec_deltat_ex <-
     return(ResultVector)
   }
 
+##' @export
 vec_deltat <-
   function(jd_ut) {
     functionvector <-
@@ -521,6 +542,7 @@ vec_deltat <-
   }
 
 #section16
+##' @export
 vec_day_of_week <-
   function(jd) {
     functionvector <-
