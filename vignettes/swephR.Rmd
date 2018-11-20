@@ -24,7 +24,7 @@ To compute the position of celestial body or star with SE (Swiss Ephemeris), you
 1. First load `swephR` and constants used in swephR/SE:
 ```{r}
 library(swephR)
-SE <- SEConstants()
+data(SE)
 ```
 
 2. Optionaly set the directory path of the ephemeris files, e.g.:
@@ -68,7 +68,7 @@ result
 ```{r}
   options(digits=6)
   swe_set_ephe_path(NULL)
-  SE <- SEConstants()
+  data(SE)
   iflag = SE$FLG_SPEED
   {
     #get year
