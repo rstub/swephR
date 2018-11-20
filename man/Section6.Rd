@@ -249,7 +249,7 @@ use the function swe_heliacal_ut().}
 }
 }
 \examples{
-SE<-SEConstants()
+data(SE)
 swe_sol_eclipse_when_loc(1234567,SE$FLG_MOSEPH,c(0,50,10),FALSE)
 swe_lun_eclipse_when_loc(1234567,SE$FLG_MOSEPH,c(0,50,10),FALSE)
 swe_lun_eclipse_how(1234580.19960447,SE$FLG_MOSEPH,c(0,50,10))

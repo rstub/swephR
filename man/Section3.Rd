@@ -21,7 +21,7 @@ Find a planetary or asteroid name.
 }
 }
 \examples{
-SE<-SEConstants()
+data(SE)
 swe_get_planet_name(SE$MOON)
 }
 \seealso{

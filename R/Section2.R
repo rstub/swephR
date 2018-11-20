@@ -13,7 +13,7 @@
 ##' @return \code{swe_calc_ut} returns a list with named entries: \code{return} status flag as integer,
 ##'        \code{xx} information on planet position, and \code{serr} error message as string.
 ##' @examples
-##' SE<-SEConstants()
+##' data(SE)
 ##' swe_calc_ut(2458346.82639, SE$MOON, SE$FLG_MOSEPH)
 ##' swe_calc(2458346.82639, SE$MOON, SE$FLG_MOSEPH)
 ##' @rdname Section2

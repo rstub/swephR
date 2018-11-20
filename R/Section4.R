@@ -14,7 +14,7 @@
 ##' @return \code{swe_fixstar2} returns a list with named entries: \code{return} status flag as integer,
 ##'         \code{starname} updated star name as string, \code{xx} star phenomena as numeric vector, and \code{serr} error message as string.
 ##' @examples
-##' SE<-SEConstants()
+##' data(SE)
 ##' swe_fixstar2_mag("sirius") 
 ##' swe_set_topo(0,50,10)      
 ##' swe_fixstar2("sirius",1234567,SE$FLG_TOPOCTR+SE$FLG_MOSEPH+SE$FLG_EQUATORIAL)

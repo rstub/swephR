@@ -30,7 +30,7 @@
 //'   \item{swe_revjul()}{Compute year, month, day and hour from a Julian day number.}
 //' }
 //' @examples
-//' SE<-SEConstants()
+//' data(SE)
 //' swe_julday(2000,1,1,12,SE$GREG_CAL)
 //' swe_date_conversion(2000,1,1,12,"g")
 //' swe_revjul(2452500,SE$GREG_CAL)
