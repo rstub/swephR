@@ -388,12 +388,10 @@ vec_azalt_rev <-
       xin <-
         c(functionvector$xin1[i],
           functionvector$xin2[i])
-      ResultVector[[i]] <- swe_azalt_rev(
-        functionvector$jd_ut[i],
-        functionvector$coord_flag[i],
-        geopos,
-        xin
-      )
+      ResultVector[[i]] <- swe_azalt_rev(functionvector$jd_ut[i],
+                                         functionvector$coord_flag[i],
+                                         geopos,
+                                         xin)
     }
     return(ResultVector)
   }
@@ -448,7 +446,7 @@ vec_heliacal_ut <-
            obstrans = 0.8,
            objectname,
            event_type,
-           helflag =768) {
+           helflag = 768) {
     functionvector <-
       data.frame(
         jd_utstart,
@@ -525,7 +523,7 @@ vec_vis_limit_mag <-
            obsaper = 7,
            obstrans = 0.8,
            objectname,
-           helflag=768) {
+           helflag = 768) {
     functionvector <-
       data.frame(
         jd_ut,
@@ -601,7 +599,7 @@ vec_heliacal_pheno_ut <-
            obstrans = 0.8,
            objectname,
            event_type,
-           helflag=768) {
+           helflag = 768) {
     functionvector <-
       data.frame(
         jd_ut,
@@ -679,7 +677,7 @@ vec_topo_arcus_visionis <-
            obstrans = 0.8,
            helflag = 768,
            mag,
-           AziO, 
+           AziO,
            AltO,
            AziS,
            AziM,
@@ -702,7 +700,7 @@ vec_topo_arcus_visionis <-
         obstrans,
         helflag,
         mag,
-        AziO, 
+        AziO,
         AltO,
         AziS,
         AziM,
@@ -740,7 +738,7 @@ vec_topo_arcus_visionis <-
         dobs,
         functionvector$helflag[i],
         functionvector$mag[i],
-        functionvector$AziO[i], 
+        functionvector$AziO[i],
         functionvector$AltO[i],
         functionvector$AziS[i],
         functionvector$AziM[i],
@@ -768,7 +766,7 @@ vec_heliacal_angle <-
            obstrans = 0.8,
            helflag = 768,
            mag,
-           AziO, 
+           AziO,
            AziS,
            AziM,
            AltM) {
@@ -790,7 +788,7 @@ vec_heliacal_angle <-
         obstrans,
         helflag,
         mag,
-        AziO, 
+        AziO,
         AziS,
         AziM,
         AltM
@@ -827,7 +825,7 @@ vec_heliacal_angle <-
         dobs,
         functionvector$helflag[i],
         functionvector$mag[i],
-        functionvector$AziO[i], 
+        functionvector$AziO[i],
         functionvector$AziS[i],
         functionvector$AziM[i],
         functionvector$AltM[i]
@@ -904,10 +902,8 @@ vec_revjul <-
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
     {
-      ResultVector[[i]] <- swe_revjul(
-        functionvector$jd[i],
-        functionvector$gregflag[i]
-      )
+      ResultVector[[i]] <- swe_revjul(functionvector$jd[i],
+                                      functionvector$gregflag[i])
     }
     return(ResultVector)
   }
