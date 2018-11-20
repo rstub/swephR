@@ -440,15 +440,15 @@ vec_heliacal_ut <-
            attemp = 15,
            athum = 0,
            atvis = 0.2,
-           obsage = 25,
-           obssnellen = 1.1,
+           obsage = 36,
+           obssnellen = 1.4,
            obsbin = 1,
-           obsmag = 0,
+           obsmag = 1,
            obsaper = 7,
            obstrans = 0.8,
            objectname,
            event_type,
-           helflag) {
+           helflag =768) {
     functionvector <-
       data.frame(
         jd_utstart,
@@ -518,14 +518,14 @@ vec_vis_limit_mag <-
            attemp = 15,
            athum = 0,
            atvis = 0.2,
-           obsage = 25,
-           obssnellen = 1.1,
+           obsage = 36,
+           obssnellen = 1.4,
            obsbin = 1,
-           obsmag = 0,
+           obsmag = 1,
            obsaper = 7,
            obstrans = 0.8,
            objectname,
-           helflag) {
+           helflag=768) {
     functionvector <-
       data.frame(
         jd_ut,
@@ -593,15 +593,15 @@ vec_heliacal_pheno_ut <-
            attemp = 15,
            athum = 0,
            atvis = 0.2,
-           obsage = 25,
-           obssnellen = 1.1,
+           obsage = 36,
+           obssnellen = 1.4,
            obsbin = 1,
-           obsmag = 0,
+           obsmag = 1,
            obsaper = 7,
            obstrans = 0.8,
            objectname,
            event_type,
-           helflag) {
+           helflag=768) {
     functionvector <-
       data.frame(
         jd_ut,
