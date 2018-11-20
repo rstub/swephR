@@ -381,6 +381,33 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// date_conversion
+Rcpp::List date_conversion(int year, int month, int day, double hour, char cal);
+RcppExport SEXP _swephR_date_conversion(SEXP yearSEXP, SEXP monthSEXP, SEXP daySEXP, SEXP hourSEXP, SEXP calSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type year(yearSEXP);
+    Rcpp::traits::input_parameter< int >::type month(monthSEXP);
+    Rcpp::traits::input_parameter< int >::type day(daySEXP);
+    Rcpp::traits::input_parameter< double >::type hour(hourSEXP);
+    Rcpp::traits::input_parameter< char >::type cal(calSEXP);
+    rcpp_result_gen = Rcpp::wrap(date_conversion(year, month, day, hour, cal));
+    return rcpp_result_gen;
+END_RCPP
+}
+// revjul
+Rcpp::List revjul(double jd, int gregflag);
+RcppExport SEXP _swephR_revjul(SEXP jdSEXP, SEXP gregflagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type jd(jdSEXP);
+    Rcpp::traits::input_parameter< int >::type gregflag(gregflagSEXP);
+    rcpp_result_gen = Rcpp::wrap(revjul(jd, gregflag));
+    return rcpp_result_gen;
+END_RCPP
+}
 // deltat_ex
 Rcpp::List deltat_ex(Rcpp::NumericVector jd_ut, int ephe_flag);
 RcppExport SEXP _swephR_deltat_ex(SEXP jd_utSEXP, SEXP ephe_flagSEXP) {
@@ -475,6 +502,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_topo_arcus_visionis", (DL_FUNC) &_swephR_topo_arcus_visionis, 11},
     {"_swephR_heliacal_angle", (DL_FUNC) &_swephR_heliacal_angle, 10},
     {"_swephR_julday", (DL_FUNC) &_swephR_julday, 5},
+    {"_swephR_date_conversion", (DL_FUNC) &_swephR_date_conversion, 5},
+    {"_swephR_revjul", (DL_FUNC) &_swephR_revjul, 2},
     {"_swephR_deltat_ex", (DL_FUNC) &_swephR_deltat_ex, 2},
     {"_swephR_deltat", (DL_FUNC) &_swephR_deltat, 1},
     {"_swephR_set_tid_acc", (DL_FUNC) &_swephR_set_tid_acc, 1},
