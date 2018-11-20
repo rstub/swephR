@@ -430,7 +430,238 @@ vec_refrac_extended <-
     return(ResultVector)
   }
 
-# heliacal event functions need to be added.
+##' @export
+vec_heliacal_ut <-
+  function(jd_utstart,
+           long,
+           lat,
+           height = 0,
+           atpress = 1013.25,
+           attemp = 15,
+           athum = 0,
+           atvis = 0.2,
+           obsage = 25,
+           obssnellen = 1.1,
+           obsbin = 1,
+           obsmag = 0,
+           obsaper = 7,
+           obstrans = 0.8,
+           objectname,
+           event_type,
+           helflag) {
+    functionvector <-
+      data.frame(
+        jd_utstart,
+        long,
+        lat,
+        height,
+        atpress ,
+        attemp ,
+        athum,
+        atvis,
+        obsage,
+        obssnellen,
+        obsbin,
+        obsmag,
+        obsaper,
+        obstrans,
+        objectname,
+        event_type,
+        helflag,
+        stringsAsFactors = FALSE
+      )
+    print(functionvector)
+    listsize <- nrow(functionvector)
+    ResultVector <- vector("list", listsize)
+    for (i in 1:listsize)
+    {
+      geopos <-
+        c(functionvector$long[i],
+          functionvector$lat[i],
+          functionvector$height[i])
+      datm <-
+        c(
+          functionvector$atpress[i],
+          functionvector$attemp[i],
+          functionvector$athum[i],
+          functionvector$atvis[i]
+        )
+      dobs <-
+        c(
+          functionvector$obsage[i],
+          functionvector$obssnellen[i],
+          functionvector$obsbin[i],
+          functionvector$obsmag[i],
+          functionvector$obsaper[i],
+          functionvector$obstrans[i]
+        )
+      ResultVector[[i]] <- swe_heliacal_ut(
+        functionvector$jd_utstart[i],
+        geopos,
+        datm,
+        dobs,
+        functionvector$objectname[i],
+        functionvector$event_type[i],
+        functionvector$helflag[i]
+      )
+    }
+    return(ResultVector)
+  }
+
+##' @export
+vec_vis_limit_mag <-
+  function(jd_ut,
+           long,
+           lat,
+           height = 0,
+           atpress = 1013.25,
+           attemp = 15,
+           athum = 0,
+           atvis = 0.2,
+           obsage = 25,
+           obssnellen = 1.1,
+           obsbin = 1,
+           obsmag = 0,
+           obsaper = 7,
+           obstrans = 0.8,
+           objectname,
+           helflag) {
+    functionvector <-
+      data.frame(
+        jd_ut,
+        long,
+        lat,
+        height,
+        atpress ,
+        attemp ,
+        athum,
+        atvis,
+        obsage,
+        obssnellen,
+        obsbin,
+        obsmag,
+        obsaper,
+        obstrans,
+        objectname,
+        helflag,
+        stringsAsFactors = FALSE
+      )
+    print(functionvector)
+    listsize <- nrow(functionvector)
+    ResultVector <- vector("list", listsize)
+    for (i in 1:listsize)
+    {
+      geopos <-
+        c(functionvector$long[i],
+          functionvector$lat[i],
+          functionvector$height[i])
+      datm <-
+        c(
+          functionvector$atpress[i],
+          functionvector$attemp[i],
+          functionvector$athum[i],
+          functionvector$atvis[i]
+        )
+      dobs <-
+        c(
+          functionvector$obsage[i],
+          functionvector$obssnellen[i],
+          functionvector$obsbin[i],
+          functionvector$obsmag[i],
+          functionvector$obsaper[i],
+          functionvector$obstrans[i]
+        )
+      ResultVector[[i]] <- swe_vis_limit_mag(
+        functionvector$jd_ut[i],
+        geopos,
+        datm,
+        dobs,
+        functionvector$objectname[i],
+        functionvector$helflag[i]
+      )
+    }
+    return(ResultVector)
+  }
+
+##' @export
+vec_heliacal_pheno_ut <-
+  function(jd_ut,
+           long,
+           lat,
+           height = 0,
+           atpress = 1013.25,
+           attemp = 15,
+           athum = 0,
+           atvis = 0.2,
+           obsage = 25,
+           obssnellen = 1.1,
+           obsbin = 1,
+           obsmag = 0,
+           obsaper = 7,
+           obstrans = 0.8,
+           objectname,
+           event_type,
+           helflag) {
+    functionvector <-
+      data.frame(
+        jd_ut,
+        long,
+        lat,
+        height,
+        atpress ,
+        attemp ,
+        athum,
+        atvis,
+        obsage,
+        obssnellen,
+        obsbin,
+        obsmag,
+        obsaper,
+        obstrans,
+        objectname,
+        event_type,
+        helflag,
+        stringsAsFactors = FALSE
+      )
+    print(functionvector)
+    listsize <- nrow(functionvector)
+    ResultVector <- vector("list", listsize)
+    for (i in 1:listsize)
+    {
+      geopos <-
+        c(functionvector$long[i],
+          functionvector$lat[i],
+          functionvector$height[i])
+      datm <-
+        c(
+          functionvector$atpress[i],
+          functionvector$attemp[i],
+          functionvector$athum[i],
+          functionvector$atvis[i]
+        )
+      dobs <-
+        c(
+          functionvector$obsage[i],
+          functionvector$obssnellen[i],
+          functionvector$obsbin[i],
+          functionvector$obsmag[i],
+          functionvector$obsaper[i],
+          functionvector$obstrans[i]
+        )
+      ResultVector[[i]] <- swe_heliacal_pheno_ut(
+        functionvector$jd_ut[i],
+        geopos,
+        datm,
+        dobs,
+        functionvector$objectname[i],
+        functionvector$event_type[i],
+        functionvector$helflag[i]
+      )
+    }
+    return(ResultVector)
+  }
+
+# vec_topo_arcus_visionis and vec_heliacal_angle functions need to be added.
 
 #section 7
 ##' @export
