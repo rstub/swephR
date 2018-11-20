@@ -661,7 +661,180 @@ vec_heliacal_pheno_ut <-
     return(ResultVector)
   }
 
-# vec_topo_arcus_visionis and vec_heliacal_angle functions need to be added.
+##' @export
+vec_topo_arcus_visionis <-
+  function(jd_ut,
+           long,
+           lat,
+           height = 0,
+           atpress = 1013.25,
+           attemp = 15,
+           athum = 0,
+           atvis = 0.2,
+           obsage = 36,
+           obssnellen = 1.4,
+           obsbin = 1,
+           obsmag = 1,
+           obsaper = 7,
+           obstrans = 0.8,
+           helflag = 768,
+           mag,
+           AziO, 
+           AltO,
+           AziS,
+           AziM,
+           AltM) {
+    functionvector <-
+      data.frame(
+        jd_ut,
+        long,
+        lat,
+        height,
+        atpress ,
+        attemp ,
+        athum,
+        atvis,
+        obsage,
+        obssnellen,
+        obsbin,
+        obsmag,
+        obsaper,
+        obstrans,
+        helflag,
+        mag,
+        AziO, 
+        AltO,
+        AziS,
+        AziM,
+        AltM
+      )
+    print(functionvector)
+    listsize <- nrow(functionvector)
+    ResultVector <- vector("list", listsize)
+    for (i in 1:listsize)
+    {
+      geopos <-
+        c(functionvector$long[i],
+          functionvector$lat[i],
+          functionvector$height[i])
+      datm <-
+        c(
+          functionvector$atpress[i],
+          functionvector$attemp[i],
+          functionvector$athum[i],
+          functionvector$atvis[i]
+        )
+      dobs <-
+        c(
+          functionvector$obsage[i],
+          functionvector$obssnellen[i],
+          functionvector$obsbin[i],
+          functionvector$obsmag[i],
+          functionvector$obsaper[i],
+          functionvector$obstrans[i]
+        )
+      ResultVector[[i]] <- swe_topo_arcus_visionis(
+        functionvector$jd_ut[i],
+        geopos,
+        datm,
+        dobs,
+        functionvector$helflag[i],
+        functionvector$mag[i],
+        functionvector$AziO[i], 
+        functionvector$AltO[i],
+        functionvector$AziS[i],
+        functionvector$AziM[i],
+        functionvector$AltM[i]
+      )
+    }
+    return(ResultVector)
+  }
+
+##' @export
+vec_heliacal_angle <-
+  function(jd_ut,
+           long,
+           lat,
+           height = 0,
+           atpress = 1013.25,
+           attemp = 15,
+           athum = 0,
+           atvis = 0.2,
+           obsage = 36,
+           obssnellen = 1.4,
+           obsbin = 1,
+           obsmag = 1,
+           obsaper = 7,
+           obstrans = 0.8,
+           helflag = 768,
+           mag,
+           AziO, 
+           AziS,
+           AziM,
+           AltM) {
+    functionvector <-
+      data.frame(
+        jd_ut,
+        long,
+        lat,
+        height,
+        atpress ,
+        attemp ,
+        athum,
+        atvis,
+        obsage,
+        obssnellen,
+        obsbin,
+        obsmag,
+        obsaper,
+        obstrans,
+        helflag,
+        mag,
+        AziO, 
+        AziS,
+        AziM,
+        AltM
+      )
+    print(functionvector)
+    listsize <- nrow(functionvector)
+    ResultVector <- vector("list", listsize)
+    for (i in 1:listsize)
+    {
+      geopos <-
+        c(functionvector$long[i],
+          functionvector$lat[i],
+          functionvector$height[i])
+      datm <-
+        c(
+          functionvector$atpress[i],
+          functionvector$attemp[i],
+          functionvector$athum[i],
+          functionvector$atvis[i]
+        )
+      dobs <-
+        c(
+          functionvector$obsage[i],
+          functionvector$obssnellen[i],
+          functionvector$obsbin[i],
+          functionvector$obsmag[i],
+          functionvector$obsaper[i],
+          functionvector$obstrans[i]
+        )
+      ResultVector[[i]] <- swe_heliacal_angle(
+        functionvector$jd_ut[i],
+        geopos,
+        datm,
+        dobs,
+        functionvector$helflag[i],
+        functionvector$mag[i],
+        functionvector$AziO[i], 
+        functionvector$AziS[i],
+        functionvector$AziM[i],
+        functionvector$AltM[i]
+      )
+    }
+    return(ResultVector)
+  }
 
 #section 7
 ##' @export
