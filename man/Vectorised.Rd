@@ -108,106 +108,10 @@ vec_deltat(jd_ut)
 
 vec_day_of_week(jd)
 }
-\arguments{
-\item{jd_ut}{UT Julian day number vecor(day)}
-
-\item{ipl}{Body/planet as integer vector (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)}
-
-\item{iflag}{Computation flag as integer vector, many options possible (section 2.3)}
-
-\item{jd_et}{ET Julian day number as double vector (day)}
-
-\item{jd_start}{Julian day number as double vector (day)}
-
-\item{ephe_flag}{Ephemeris flag as integer vector (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4)}
-
-\item{longitude}{Geographic longitude as double vector (deg)}
-
-\item{lat}{Geographic latitude as double vector (deg)}
-
-\item{height}{Height as double vector (m)}
-
-\item{backward}{backwards search as boolean vector (TRUE)}
-
-\item{starname}{Star name as string vector ("" for no star)}
-
-\item{ifltype}{eclipse type as integer vector (e.g.: SE$ECL_CENTRAL=1,SE$ECL_NONCENTRAL=2,SE$ECL_TOTAL=4,SE$ECL_ANNULAR=8,SE$ECL_PARTIAL=16,SE$ECL_ANNULAR_TOTAL=32)}
-
-\item{rsmi}{Event flag as integer vector (e.g.: SE$CALC_RISE=1, SE$CALC_SET=2,SE$CALC_MTRANSIT=4,SE$CALC_ITRANSIT=8)}
-
-\item{atpress}{Atmospheric pressure as double vector (hPa)}
-
-\item{attemp}{Atmospheric temperature as double vector (Celsius)}
-
-\item{horhgt}{Horizon apparent altitude as double vecotr (deg)}
-
-\item{coord_flag}{Coordinate flag as integer vector (reference system (SE$ECL2HOR=0 or SE$EQU2HOR=1))}
-
-\item{xin1}{Position of body as numeric vector (either ecliptical or equatorial coordinates, depending on coord_flag)}
-
-\item{xin2}{Position of body as numeric vector (either ecliptical or equatorial coordinates, depending on coord_flag)}
-
-\item{InAlt}{object's apparent/topocentric altitude as double vector (depending on calc_flag) (deg)}
-
-\item{lapse_rate}{lapse rate as double vector (K/m)}
-
-\item{calc_flag}{Calculation flag as integer vector (refraction direction (SE$TRUE_TO_APP=0 or SE$APP_TO_TRUE=1))}
-
-\item{jd_utstart}{UT Julian day number as double vector (day)}
-
-\item{athum}{Atmospheric humidity as double vector (%)}
-
-\item{atvis}{Atmospheric visibiliy as double vector (km or -)}
-
-\item{obsage}{Age of observer as double vector (year)}
-
-\item{obssnellen}{Aquity of observer as double vector (-)}
-
-\item{obsbin}{Mono-/bi-nocular observation as double vector (-)}
-
-\item{obsmag}{Magnification as double vector (-)}
-
-\item{obsaper}{Aperture of optics as double vector (mm)}
-
-\item{obstrans}{Transmission as double vector (-)}
-
-\item{objectname}{Name of fixed star or planet as string vector}
-
-\item{event_type}{Event type as integer vector}
-
-\item{helflag}{Calculation flag (incl. ephe_flag values) as integer vector}
-
-\item{mag}{Object's visible magnitude (Vmag) as double vector (-)}
-
-\item{AziO}{Object's azimuth as double vector (deg)}
-
-\item{AltO}{Object's altitude as double vecor (deg)}
-
-\item{AziS}{Sun's azimuth as double (vector deg)}
-
-\item{AziM}{Moon's azimut as double vecor (deg)}
-
-\item{AltM}{Moon's altitude as double vector (deg)}
-
-\item{year}{Year as integer vector}
-
-\item{month}{Month as integer vector}
-
-\item{day}{Day as integer vector}
-
-\item{hour}{Hour as double vector}
-
-\item{gregflag}{Calendar type as integer vector (SE$JUL_CAL=0 or SE$GREG_CAL=1)}
-
-\item{cal}{Calendar type  as char vecor ("g"[regorian] or "j"[ulian])}
-
-\item{jd}{Julian day number as double vector (day)}
-}
 \description{
 This are the vectorised functions of the 
 ones that are namend swe_xxx. Each input parameter can be a vector.
 Make sure that the vector length of each input parameter matches 
 the rules around data-frames: so the largest vector length must be an integer 
 multiple of the other vector lengths.
-##' @param jd_ut  UT Julian day number as double vector (day)
 }
