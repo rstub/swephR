@@ -36,7 +36,7 @@ vec_calc(jd_et, ipl, iflag = 4)
 
 vec_get_planet_name(ipl)
 
-vec_sol_eclipse_when_loc(jd_start, ephe_flag = 4, long, lat,
+vec_sol_eclipse_when_loc(jd_start, ephe_flag = 4, longitude, lat,
   height = 0, backward = FALSE)
 
 vec_fixstar2_ut(starname, jd_ut, iflag = 4)
@@ -45,55 +45,56 @@ vec_fixstar2(starname, jd_et, iflag = 4)
 
 vec_fixstar2_mag(starname)
 
-vec_lun_eclipse_when_loc(jd_start, ephe_flag = 4, long, lat,
+vec_lun_eclipse_when_loc(jd_start, ephe_flag = 4, longitude, lat,
   height = 0, backward = FALSE)
 
-vec_lun_eclipse_how(jd_ut, ephe_flag = 4, long, lat, height = 0)
+vec_lun_eclipse_how(jd_ut, ephe_flag = 4, longitude, lat, height = 0)
 
 vec_lun_eclipse_when(jd_start, ephe_flag = 4, ifltype,
   backward = FALSE)
 
 vec_rise_trans_true_hor(jd_ut, ipl, starname = "", ephe_flag = 4, rsmi,
-  long, lat, height = 0, atpress = 1013.25, attemp = 15,
+  longitude, lat, height = 0, atpress = 1013.25, attemp = 15,
   horhgt = 0)
 
 vec_pheno_ut(jd_ut, ipl, iflag = 4)
 
 vec_pheno(jd_et, ipl, iflag = 4)
 
-vec_azalt(jd_ut, coord_flag, long, lat, height = 0, atpress = 1013.25,
-  attemp = 15, xin1, xin2)
+vec_azalt(jd_ut, coord_flag, longitude, lat, height = 0,
+  atpress = 1013.25, attemp = 15, xin1, xin2)
 
-vec_azalt_rev(jd_ut, coord_flag, long, lat, height = 0, xin1, xin2)
+vec_azalt_rev(jd_ut, coord_flag, longitude, lat, height = 0, xin1, xin2)
 
 vec_refrac_extended(InAlt, height = 0, atpress = 1013.25,
   attemp = 15, lapse_rate = 0.0065, calc_flag)
 
-vec_heliacal_ut(jd_utstart, long, lat, height = 0, atpress = 1013.25,
-  attemp = 15, athum = 0, atvis = 0.2, obsage = 36,
-  obssnellen = 1.4, obsbin = 1, obsmag = 1, obsaper = 7,
-  obstrans = 0.8, objectname, event_type, helflag = 768)
+vec_heliacal_ut(jd_utstart, longitude, lat, height = 0,
+  atpress = 1013.25, attemp = 15, athum = 0, atvis = 0.2,
+  obsage = 36, obssnellen = 1.4, obsbin = 1, obsmag = 1,
+  obsaper = 7, obstrans = 0.8, objectname, event_type, helflag = 768)
 
-vec_vis_limit_mag(jd_ut, long, lat, height = 0, atpress = 1013.25,
+vec_vis_limit_mag(jd_ut, longitude, lat, height = 0, atpress = 1013.25,
   attemp = 15, athum = 0, atvis = 0.2, obsage = 36,
   obssnellen = 1.4, obsbin = 1, obsmag = 1, obsaper = 7,
   obstrans = 0.8, objectname, helflag = 768)
 
-vec_heliacal_pheno_ut(jd_ut, long, lat, height = 0, atpress = 1013.25,
-  attemp = 15, athum = 0, atvis = 0.2, obsage = 36,
-  obssnellen = 1.4, obsbin = 1, obsmag = 1, obsaper = 7,
-  obstrans = 0.8, objectname, event_type, helflag = 768)
+vec_heliacal_pheno_ut(jd_ut, longitude, lat, height = 0,
+  atpress = 1013.25, attemp = 15, athum = 0, atvis = 0.2,
+  obsage = 36, obssnellen = 1.4, obsbin = 1, obsmag = 1,
+  obsaper = 7, obstrans = 0.8, objectname, event_type, helflag = 768)
 
-vec_topo_arcus_visionis(jd_ut, long, lat, height = 0,
+vec_topo_arcus_visionis(jd_ut, longitude, lat, height = 0,
   atpress = 1013.25, attemp = 15, athum = 0, atvis = 0.2,
   obsage = 36, obssnellen = 1.4, obsbin = 1, obsmag = 1,
   obsaper = 7, obstrans = 0.8, helflag = 768, mag, AziO, AltO, AziS,
   AziM, AltM)
 
-vec_heliacal_angle(jd_ut, long, lat, height = 0, atpress = 1013.25,
-  attemp = 15, athum = 0, atvis = 0.2, obsage = 36,
-  obssnellen = 1.4, obsbin = 1, obsmag = 1, obsaper = 7,
-  obstrans = 0.8, helflag = 768, mag, AziO, AziS, AziM, AltM)
+vec_heliacal_angle(jd_ut, longitude, lat, height = 0,
+  atpress = 1013.25, attemp = 15, athum = 0, atvis = 0.2,
+  obsage = 36, obssnellen = 1.4, obsbin = 1, obsmag = 1,
+  obsaper = 7, obstrans = 0.8, helflag = 768, mag, AziO, AziS, AziM,
+  AltM)
 
 vec_julday(year, month, day, hour = 12, gregflag = 1)
 
@@ -118,11 +119,11 @@ vec_day_of_week(jd)
 
 \item{ephe_flag}{Ephemeris flag as integer vector (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4)}
 
-\item{long}{Geographic longitude as double vector (deg)}
+\item{longitude}{Geographic longitude as double vector (deg)}
 
 \item{lat}{Geographic latitude as double vector (deg)}
 
-\item{height}{observer's height as double vector (m)}
+\item{height}{Height as double vector (m)}
 
 \item{backward}{backwards search as boolean vector (TRUE)}
 
@@ -134,7 +135,7 @@ vec_day_of_week(jd)
 
 \item{atpress}{Atmospheric pressure as double vector (hPa)}
 
-\item{attemp}{Atmospheric temperature as double vectir (Celsius)}
+\item{attemp}{Atmospheric temperature as double vector (Celsius)}
 
 \item{horhgt}{Horizon apparent altitude as double vecotr (deg)}
 
@@ -151,6 +152,10 @@ vec_day_of_week(jd)
 \item{calc_flag}{Calculation flag as integer vector (refraction direction (SE$TRUE_TO_APP=0 or SE$APP_TO_TRUE=1))}
 
 \item{jd_utstart}{UT Julian day number as double vector (day)}
+
+\item{athum}{Atmospheric humidity as double vector (%)}
+
+\item{atvis}{Atmospheric visibiliy as double vector (???)}
 
 \item{objectname}{Name of fixed star or planet as string vector}
 
@@ -182,17 +187,13 @@ vec_day_of_week(jd)
 
 \item{cal}{Calendar type  as char vecor ("g"[regorian] or "j"[ulian])}
 
-\item{jd}{Julian day number as double vector}
+\item{jd}{Julian day number as double vector (day)}
 
 \item{ephe_flag}{ephemeris flag as integer vector (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4) (section 2.3.2)}
 
 \item{t_acc}{Tidal acceleration as double vector (arcsec/century^2)}
 
 \item{delta_t}{DeltaT vector (day)}
-
-\item{height}{Height as double vector (m)}
-
-\item{jd}{Julian day number as numeric vector (day)}
 }
 \description{
 This are the vectorised functions of the 

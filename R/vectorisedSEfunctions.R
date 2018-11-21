@@ -14,7 +14,9 @@
 ##' @param calc_flag Calculation flag as integer vector (refraction direction (SE$TRUE_TO_APP=0 or SE$APP_TO_TRUE=1))
 ##' @param coord_flag Coordinate flag as integer vector (reference system (SE$ECL2HOR=0 or SE$EQU2HOR=1)) 
 ##' @param atpress Atmospheric pressure as double vector (hPa)
-##' @param attemp Atmospheric temperature as double vectir (Celsius)
+##' @param attemp Atmospheric temperature as double vector (Celsius)
+##' @param athum Atmospheric humidity as double vector (%)
+##' @param atvis Atmospheric visibiliy as double vector (???)
 ##' @param ephe_flag Ephemeris flag as integer vector (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4)
 ##' @param horhgt Horizon apparent altitude as double vecotr (deg)
 ##' @param xin1  Position of body as numeric vector (either ecliptical or equatorial coordinates, depending on coord_flag)
@@ -23,7 +25,6 @@
 ##' @param backward backwards search as boolean vector (TRUE)
 ##' @param ifltype eclipse type as integer vector (e.g.: SE$ECL_CENTRAL=1,SE$ECL_NONCENTRAL=2,SE$ECL_TOTAL=4,SE$ECL_ANNULAR=8,SE$ECL_PARTIAL=16,SE$ECL_ANNULAR_TOTAL=32)
 ##' @param InAlt  object's apparent/topocentric altitude as double vector (depending on calc_flag) (deg)
-##' @param height  observer's height as double vector (m)
 ##' @param lapse_rate  lapse rate as double vector (K/m)
 ##' @param jd_utstart  UT Julian day number as double vector (day)
 ##' @param objectname  Name of fixed star or planet as string vector
@@ -41,14 +42,13 @@
 ##' @param hour  Hour as double vector
 ##' @param gregflag  Calendar type as integer vector (SE$JUL_CAL=0 or SE$GREG_CAL=1)
 ##' @param cal  Calendar type  as char vecor ("g"[regorian] or "j"[ulian])
-##' @param jd  Julian day number as double vector
+##' @param jd  Julian day number as double vector (day)
 ##' @param ephe_flag  ephemeris flag as integer vector (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4) (section 2.3.2)
 ##' @param t_acc Tidal acceleration as double vector (arcsec/century^2)
 ##' @param delta_t DeltaT vector (day)
 ##' @param longitude  Geographic longitude as double vector (deg)
 ##' @param lat  Geographic latitude as double vector (deg)
 ##' @param height  Height as double vector (m)
-##' @param jd  Julian day number as numeric vector (day)
 ##' @rdname Vectorised
 ##' @export
 vec_calc_ut <-
