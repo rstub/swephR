@@ -109,7 +109,7 @@ vec_deltat(jd_ut)
 vec_day_of_week(jd)
 }
 \arguments{
-\item{jd_ut}{UT Julian day number vecor(day)}
+\item{jd_ut}{UT Julian day number vector (day)}
 
 \item{ipl}{Body/planet as integer vector (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)}
 
@@ -139,7 +139,7 @@ vec_day_of_week(jd)
 
 \item{attemp}{Atmospheric temperature as double vector (Celsius)}
 
-\item{horhgt}{Horizon apparent altitude as double vecotr (deg)}
+\item{horhgt}{Horizon apparent altitude as double vector (deg)}
 
 \item{coord_flag}{Coordinate flag as integer vector (reference system (SE$ECL2HOR=0 or SE$EQU2HOR=1))}
 
@@ -199,7 +199,7 @@ vec_day_of_week(jd)
 
 \item{gregflag}{Calendar type as integer vector (SE$JUL_CAL=0 or SE$GREG_CAL=1)}
 
-\item{cal}{Calendar type  as char vecor ("g"[regorian] or "j"[ulian])}
+\item{cal}{Calendar type  as char vector ("g"[regorian] or "j"[ulian])}
 
 \item{jd}{Julian day number as double vector (day)}
 }
