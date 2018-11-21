@@ -7,7 +7,7 @@
 ##' multiple of the other vector lengths.
 ##' @param ipl  Body/planet as integer vector (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)
 ##' @param iflag Computation flag as integer vector, many options possible (section 2.3)
-##' @param jd_ut  UT Julian day number vecor(day)
+##' @param jd_ut  UT Julian day number vector (day)
 ##' @param jd_et  ET Julian day number as double vector (day)
 ##' @param starname  Star name as string vector ("" for no star)
 ##' @param calc_flag Calculation flag as integer vector (refraction direction (SE$TRUE_TO_APP=0 or SE$APP_TO_TRUE=1))
@@ -23,7 +23,7 @@
 ##' @param obsaper Aperture of optics as double vector (mm)
 ##' @param obstrans Transmission as double vector (-)
 ##' @param ephe_flag Ephemeris flag as integer vector (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4)
-##' @param horhgt Horizon apparent altitude as double vecotr (deg)
+##' @param horhgt Horizon apparent altitude as double vector (deg)
 ##' @param xin1  Position of body as numeric vector (either ecliptical or equatorial coordinates, depending on coord_flag)
 ##' @param xin2  Position of body as numeric vector (either ecliptical or equatorial coordinates, depending on coord_flag)
 ##' @param rsmi  Event flag as integer vector (e.g.: SE$CALC_RISE=1, SE$CALC_SET=2,SE$CALC_MTRANSIT=4,SE$CALC_ITRANSIT=8)
@@ -47,12 +47,11 @@
 ##' @param day  Day as integer vector
 ##' @param hour  Hour as double vector
 ##' @param gregflag  Calendar type as integer vector (SE$JUL_CAL=0 or SE$GREG_CAL=1)
-##' @param cal  Calendar type  as char vecor ("g"[regorian] or "j"[ulian])
+##' @param cal  Calendar type  as char vector ("g"[regorian] or "j"[ulian])
 ##' @param jd  Julian day number as double vector (day)
 ##' @param longitude  Geographic longitude as double vector (deg)
 ##' @param lat  Geographic latitude as double vector (deg)
 ##' @param height  Height as double vector (m)
-
 ##' @rdname Vectorised
 ##' @export
 vec_calc_ut <-
