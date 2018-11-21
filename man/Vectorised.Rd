@@ -157,7 +157,7 @@ vec_day_of_week(jd)
 
 \item{athum}{Atmospheric humidity as double vector (%)}
 
-\item{atvis}{Atmospheric visibiliy as double vector (???)}
+\item{atvis}{Atmospheric visibiliy as double vector (km or -)}
 
 \item{obsage}{Age of observer as double vector (year)}
 
