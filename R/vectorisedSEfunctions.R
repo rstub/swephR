@@ -1,4 +1,7 @@
 #section2
+##' @title Vectorised swephR functions 
+##' @description This are the vectorised functions of the ones that are namend swe_xxx
+##' @rdname Vectorised
 ##' @export
 vec_calc_ut <-
   function(jd_ut,
@@ -19,6 +22,7 @@ vec_calc_ut <-
     return(ResultVector)
   }
 
+##' @rdname Vectorised
 ##' @export
 vec_calc <-
   function(jd_et,
@@ -41,6 +45,7 @@ vec_calc <-
   }
 
 #section3
+##' @rdname Vectorised
 ##' @export
 vec_get_planet_name <- function(ipl) {
   functionvector <- data.frame(ipl)
@@ -55,6 +60,7 @@ vec_get_planet_name <- function(ipl) {
 }
 
 #section4
+##' @rdname Vectorised
 ##' @export
 vec_sol_eclipse_when_loc <-
   function(jd_start,
@@ -86,6 +92,7 @@ vec_sol_eclipse_when_loc <-
   }
 
 #section4
+##' @rdname Vectorised
 ##' @export
 vec_fixstar2_ut <-
   function(starname,
@@ -105,6 +112,7 @@ vec_fixstar2_ut <-
     return(ResultVector)
   }
 
+##' @rdname Vectorised
 ##' @export
 vec_fixstar2 <-
   function(starname,
@@ -124,6 +132,7 @@ vec_fixstar2 <-
     return(ResultVector)
   }
 
+##' @rdname Vectorised
 ##' @export
 vec_fixstar2_mag <-
   function(starname) {
@@ -140,6 +149,7 @@ vec_fixstar2_mag <-
   }
 
 #section6
+##' @rdname Vectorised
 ##' @export
 vec_lun_eclipse_when_loc <-
   function(jd_start,
@@ -170,6 +180,7 @@ vec_lun_eclipse_when_loc <-
     return(ResultVector)
   }
 
+##' @rdname Vectorised
 ##' @export
 vec_lun_eclipse_how <-
   function(jd_ut,
@@ -197,6 +208,7 @@ vec_lun_eclipse_how <-
     return(ResultVector)
   }
 
+##' @rdname Vectorised
 ##' @export
 vec_lun_eclipse_when <-
   function(jd_start,
@@ -221,6 +233,7 @@ vec_lun_eclipse_when <-
     return(ResultVector)
   }
 
+##' @rdname Vectorised
 ##' @export
 vec_rise_trans_true_hor <-
   function(jd_ut,
@@ -274,6 +287,7 @@ vec_rise_trans_true_hor <-
     return(ResultVector)
   }
 
+##' @rdname Vectorised
 ##' @export
 vec_pheno_ut <-
   function(jd_ut,
@@ -294,6 +308,7 @@ vec_pheno_ut <-
     return(ResultVector)
   }
 
+##' @rdname Vectorised
 ##' @export
 vec_pheno <-
   function(jd_et,
@@ -314,6 +329,7 @@ vec_pheno <-
     return(ResultVector)
   }
 
+##' @rdname Vectorised
 ##' @export
 vec_azalt <-
   function(jd_ut,
@@ -359,6 +375,7 @@ vec_azalt <-
     return(ResultVector)
   }
 
+##' @rdname Vectorised
 ##' @export
 vec_azalt_rev <-
   function(jd_ut,
@@ -396,6 +413,7 @@ vec_azalt_rev <-
     return(ResultVector)
   }
 
+##' @rdname Vectorised
 ##' @export
 vec_refrac_extended <-
   function(InAlt,
@@ -428,6 +446,7 @@ vec_refrac_extended <-
     return(ResultVector)
   }
 
+##' @rdname Vectorised
 ##' @export
 vec_heliacal_ut <-
   function(jd_utstart,
@@ -506,6 +525,7 @@ vec_heliacal_ut <-
     return(ResultVector)
   }
 
+##' @rdname Vectorised
 ##' @export
 vec_vis_limit_mag <-
   function(jd_ut,
@@ -581,6 +601,7 @@ vec_vis_limit_mag <-
     return(ResultVector)
   }
 
+##' @rdname Vectorised
 ##' @export
 vec_heliacal_pheno_ut <-
   function(jd_ut,
@@ -659,6 +680,7 @@ vec_heliacal_pheno_ut <-
     return(ResultVector)
   }
 
+##' @rdname Vectorised
 ##' @export
 vec_topo_arcus_visionis <-
   function(jd_ut,
@@ -748,6 +770,7 @@ vec_topo_arcus_visionis <-
     return(ResultVector)
   }
 
+##' @rdname Vectorised
 ##' @export
 vec_heliacal_angle <-
   function(jd_ut,
@@ -835,6 +858,7 @@ vec_heliacal_angle <-
   }
 
 #section 7
+##' @rdname Vectorised
 ##' @export
 vec_julday <-
   function(year,
@@ -862,6 +886,7 @@ vec_julday <-
     return(ResultVector)
   }
 
+##' @rdname Vectorised
 ##' @export
 vec_date_conversion <-
   function(year,
@@ -890,6 +915,7 @@ vec_date_conversion <-
     return(ResultVector)
   }
 
+##' @rdname Vectorised
 ##' @export
 vec_revjul <-
   function(jd,
@@ -909,6 +935,7 @@ vec_revjul <-
   }
 
 #section8
+##' @rdname Vectorised
 ##' @export
 vec_deltat_ex <-
   function(jd_ut,
@@ -926,6 +953,7 @@ vec_deltat_ex <-
     return(ResultVector)
   }
 
+##' @rdname Vectorised
 ##' @export
 vec_deltat <-
   function(jd_ut) {
@@ -942,6 +970,7 @@ vec_deltat <-
   }
 
 #section16
+##' @rdname Vectorised
 ##' @export
 vec_day_of_week <-
   function(jd) {
