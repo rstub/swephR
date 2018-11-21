@@ -32,7 +32,7 @@ data(SE)
 swe_set_ephe_path("C:\\sweph\\ephe")
 ```
 
-3. For a specific date, compute the Julian day number (in below example: J2000.0, 1 January 2000 at 12:00 UT):
+3. For a specific date, compute the Julian day number (in below example: 1 January 2000CE at 12:00 UT (or J2000.0) and 1 January 1BCE at 12:00):
 ```{r}
 year1 <- 2000
 year2 <- 0
