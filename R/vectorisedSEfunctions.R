@@ -5,6 +5,54 @@
 ##' Make sure that the vector length of each input parameter matches 
 ##' the rules around data-frames: so the largest vector length must be an integer 
 ##' multiple of the other vector lengths.
+##' @param ipl  Body/planet as integer vector (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)
+##' @param iflag Computation flag as integer vector, many options possible (section 2.3)
+##' @param jd_ut  UT Julian day number vecor(day)
+##' @param jd_et  ET Julian day number as double vector (day)
+##' @param starname  Star name as string vector ("" for no star)
+##' @param calc_flag Calculation flag as integer vector (refraction direction (SE$TRUE_TO_APP=0 or SE$APP_TO_TRUE=1))
+##' @param coord_flag Coordinate flag as integer vector (reference system (SE$ECL2HOR=0 or SE$EQU2HOR=1)) 
+##' @param atpress Atmospheric pressure as double vector (hPa)
+##' @param attemp Atmospheric temperature as double vector (Celsius)
+##' @param athum Atmospheric humidity as double vector (\%)
+##' @param atvis Atmospheric visibiliy as double vector (km or -)
+##' @param obsage Age of observer as double vector (year)
+##' @param obssnellen Aquity of observer as double vector (-)
+##' @param obsbin Mono-/bi-nocular observation as double vector (-)
+##' @param obsmag Magnification as double vector (-)
+##' @param obsaper Aperture of optics as double vector (mm)
+##' @param obstrans Transmission as double vector (-)
+##' @param ephe_flag Ephemeris flag as integer vector (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4)
+##' @param horhgt Horizon apparent altitude as double vecotr (deg)
+##' @param xin1  Position of body as numeric vector (either ecliptical or equatorial coordinates, depending on coord_flag)
+##' @param xin2  Position of body as numeric vector (either ecliptical or equatorial coordinates, depending on coord_flag)
+##' @param rsmi  Event flag as integer vector (e.g.: SE$CALC_RISE=1, SE$CALC_SET=2,SE$CALC_MTRANSIT=4,SE$CALC_ITRANSIT=8)
+##' @param backward backwards search as boolean vector (TRUE)
+##' @param ifltype eclipse type as integer vector (e.g.: SE$ECL_CENTRAL=1,SE$ECL_NONCENTRAL=2,SE$ECL_TOTAL=4,SE$ECL_ANNULAR=8,SE$ECL_PARTIAL=16,SE$ECL_ANNULAR_TOTAL=32)
+##' @param InAlt  object's apparent/topocentric altitude as double vector (depending on calc_flag) (deg)
+##' @param lapse_rate  lapse rate as double vector (K/m)
+##' @param jd_utstart  UT Julian day number as double vector (day)
+##' @param jd_start  Julian day number as double vector (day)
+##' @param objectname  Name of fixed star or planet as string vector
+##' @param event_type  Event type as integer vector
+##' @param helflag Calculation flag (incl. ephe_flag values) as integer vector
+##' @param mag   Object's visible magnitude (Vmag) as double vector (-)
+##' @param AziO  Object's azimuth as double vector (deg)
+##' @param AltO  Object's altitude as double vecor (deg)
+##' @param AziS  Sun's azimuth as double (vector deg)
+##' @param AziM  Moon's azimut as double vecor (deg)
+##' @param AltM  Moon's altitude as double vector (deg)
+##' @param year  Year as integer vector
+##' @param month  Month as integer vector
+##' @param day  Day as integer vector
+##' @param hour  Hour as double vector
+##' @param gregflag  Calendar type as integer vector (SE$JUL_CAL=0 or SE$GREG_CAL=1)
+##' @param cal  Calendar type  as char vecor ("g"[regorian] or "j"[ulian])
+##' @param jd  Julian day number as double vector (day)
+##' @param longitude  Geographic longitude as double vector (deg)
+##' @param lat  Geographic latitude as double vector (deg)
+##' @param height  Height as double vector (m)
+
 ##' @rdname Vectorised
 ##' @export
 vec_calc_ut <-
