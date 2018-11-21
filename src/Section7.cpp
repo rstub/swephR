@@ -34,7 +34,7 @@
 //' swe_julday(2000,1,1,12,SE$GREG_CAL)
 //' swe_date_conversion(2000,1,1,12,"g")
 //' swe_revjul(2452500,SE$GREG_CAL)
-//' @param year  Year as integer
+//' @param year  Astronomical year as integer
 //' @param month  Month as integer
 //' @param day  Day as integer
 //' @param hour  Hour as double
