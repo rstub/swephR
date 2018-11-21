@@ -16,7 +16,7 @@
 ##' @param atpress Atmospheric pressure as double vector (hPa)
 ##' @param attemp Atmospheric temperature as double vector (Celsius)
 ##' @param athum Atmospheric humidity as double vector (%)
-##' @param atvis Atmospheric visibiliy as double vector (???)
+##' @param atvis Atmospheric visibiliy as double vector (km or -)
 ##' @param obsage Age of observer as double vector (year)
 ##' @param obssnellen Aquity of observer as double vector (-)
 ##' @param obsbin Mono-/bi-nocular observation as double vector (-)
