@@ -189,7 +189,7 @@ vec_day_of_week(jd)
 
 \item{AltM}{Moon's altitude as double vector (deg)}
 
-\item{year}{Year as integer vector}
+\item{year}{Astronomical year as integer vector}
 
 \item{month}{Month as integer vector}
 

@@ -42,7 +42,7 @@
 ##' @param AziS  Sun's azimuth as double (vector deg)
 ##' @param AziM  Moon's azimut as double vecor (deg)
 ##' @param AltM  Moon's altitude as double vector (deg)
-##' @param year  Year as integer vector
+##' @param year  Astronomical year as integer vector
 ##' @param month  Month as integer vector
 ##' @param day  Day as integer vector
 ##' @param hour  Hour as double vector

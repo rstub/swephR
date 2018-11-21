@@ -13,7 +13,7 @@ swe_date_conversion(year, month, day, hour, cal)
 swe_revjul(jd, gregflag)
 }
 \arguments{
-\item{year}{Year as integer}
+\item{year}{Astronomical year as integer}
 
 \item{month}{Month as integer}
 
