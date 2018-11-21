@@ -1,6 +1,10 @@
 #section2
 ##' @title Vectorised swephR functions 
-##' @description This are the vectorised functions of the ones that are namend swe_xxx
+##' @description This are the vectorised functions of the 
+##' ones that are namend swe_xxx. Each input parameter can be a vector.
+##' Make sure that the vector length of each input parameter matches 
+##' the rules around data-frames: so any vector length must be an integer 
+##' amount of the largest vector length.
 ##' @rdname Vectorised
 ##' @export
 vec_calc_ut <-
