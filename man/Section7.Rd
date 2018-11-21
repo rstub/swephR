@@ -21,9 +21,9 @@ swe_revjul(jd, gregflag)
 
 \item{hour}{Hour as double}
 
-\item{gregflag}{Calendar type (SE$JUL_CAL=0 or SE$GREG_CAL=1)}
+\item{gregflag}{Calendar type as integer (SE$JUL_CAL=0 or SE$GREG_CAL=1)}
 
-\item{cal}{Calendar type "g"[regorian] or "j"[ulian]}
+\item{cal}{Calendar type "g"[regorian] or "j"[ulian] as char}
 
 \item{jd}{Julian day number as double}
 }

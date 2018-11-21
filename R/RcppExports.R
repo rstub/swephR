@@ -384,14 +384,14 @@ swe_heliacal_angle <- function(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS
 #' @param month  Month as integer
 #' @param day  Day as integer
 #' @param hour  Hour as double
-#' @param gregflag  Calendar type (SE$JUL_CAL=0 or SE$GREG_CAL=1)
+#' @param gregflag  Calendar type as integer (SE$JUL_CAL=0 or SE$GREG_CAL=1)
 #' @rdname Section7
 #' @export
 swe_julday <- function(year, month, day, hour, gregflag) {
     .Call(`_swephR_julday`, year, month, day, hour, gregflag)
 }
 
-#' @param cal  Calendar type "g"[regorian] or "j"[ulian] 
+#' @param cal  Calendar type "g"[regorian] or "j"[ulian] as char
 #' @return \code{swe_date_conversion} returns a list with named entries: \code{return} status flag as integer,
 #'      \code{jd} Julian day number as double
 #' @rdname Section7
@@ -492,14 +492,14 @@ swe_set_delta_t_userdef <- function(delta_t) {
 #' \describe{
 #'   \item{we_set_topo{}}{Set the topocentric location of the observer.}
 #' }
-#' @param geolon  Geographic longitude as double (deg)
-#' @param geolat  Geographic latitude as double (deg)
-#' @param altitude  Height as double (m)
+#' @param longitude  Geographic longitude as double (deg)
+#' @param lat  Geographic latitude as double (deg)
+#' @param height  Height as double (m)
 #' @examples
 #' swe_set_topo(0,50,10)
 #' @rdname Section9
 #' @export
-swe_set_topo <- function(geolon, geolat, altitude) {
-    invisible(.Call(`_swephR_set_topo`, geolon, geolat, altitude))
+swe_set_topo <- function(longitude, lat, height) {
+    invisible(.Call(`_swephR_set_topo`, longitude, lat, height))
 }
 

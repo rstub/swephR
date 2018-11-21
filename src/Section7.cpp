@@ -38,7 +38,7 @@
 //' @param month  Month as integer
 //' @param day  Day as integer
 //' @param hour  Hour as double
-//' @param gregflag  Calendar type (SE$JUL_CAL=0 or SE$GREG_CAL=1)
+//' @param gregflag  Calendar type as integer (SE$JUL_CAL=0 or SE$GREG_CAL=1)
 //' @rdname Section7
 //' @export
 // [[Rcpp::export(swe_julday)]]
@@ -48,7 +48,7 @@ double julday(int year, int month, int day, double hour, int gregflag) {
   return i;
 }
 
-//' @param cal  Calendar type "g"[regorian] or "j"[ulian] 
+//' @param cal  Calendar type "g"[regorian] or "j"[ulian] as char
 //' @return \code{swe_date_conversion} returns a list with named entries: \code{return} status flag as integer,
 //'      \code{jd} Julian day number as double
 //' @rdname Section7
