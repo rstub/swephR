@@ -26,15 +26,15 @@
 //' \describe{
 //'   \item{we_set_topo{}}{Set the topocentric location of the observer.}
 //' }
-//' @param geolon  Geographic longitude as double (deg)
-//' @param geolat  Geographic latitude as double (deg)
-//' @param altitude  Height as double (m)
+//' @param longitude  Geographic longitude as double (deg)
+//' @param lat  Geographic latitude as double (deg)
+//' @param height  Height as double (m)
 //' @examples
 //' swe_set_topo(0,50,10)
 //' @rdname Section9
 //' @export
 // [[Rcpp::export(swe_set_topo)]]
-void set_topo(double geolon, double geolat, double altitude) {
-  swe_set_topo(geolon, geolat, altitude);
+void set_topo(double longitude, double lat, double height) {
+  swe_set_topo(longitude, lat, height);
 }
 

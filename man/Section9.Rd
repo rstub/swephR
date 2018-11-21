@@ -4,14 +4,14 @@
 \alias{swe_set_topo}
 \title{Section 9: The function for calculating topocentric planet position}
 \usage{
-swe_set_topo(geolon, geolat, altitude)
+swe_set_topo(longitude, lat, height)
 }
 \arguments{
-\item{geolon}{Geographic longitude as double (deg)}
+\item{longitude}{Geographic longitude as double (deg)}
 
-\item{geolat}{Geographic latitude as double (deg)}
+\item{lat}{Geographic latitude as double (deg)}
 
-\item{altitude}{Height as double (m)}
+\item{height}{Height as double (m)}
 }
 \description{
 Function for topocentric planet positions

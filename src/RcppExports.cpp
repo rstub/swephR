@@ -462,14 +462,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // set_topo
-void set_topo(double geolon, double geolat, double altitude);
-RcppExport SEXP _swephR_set_topo(SEXP geolonSEXP, SEXP geolatSEXP, SEXP altitudeSEXP) {
+void set_topo(double longitude, double lat, double height);
+RcppExport SEXP _swephR_set_topo(SEXP longitudeSEXP, SEXP latSEXP, SEXP heightSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type geolon(geolonSEXP);
-    Rcpp::traits::input_parameter< double >::type geolat(geolatSEXP);
-    Rcpp::traits::input_parameter< double >::type altitude(altitudeSEXP);
-    set_topo(geolon, geolat, altitude);
+    Rcpp::traits::input_parameter< double >::type longitude(longitudeSEXP);
+    Rcpp::traits::input_parameter< double >::type lat(latSEXP);
+    Rcpp::traits::input_parameter< double >::type height(heightSEXP);
+    set_topo(longitude, lat, height);
     return R_NilValue;
 END_RCPP
 }
