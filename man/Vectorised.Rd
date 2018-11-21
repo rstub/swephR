@@ -117,6 +117,8 @@ vec_day_of_week(jd)
 
 \item{jd_et}{ET Julian day number as double vector (day)}
 
+\item{jd_start}{Julian day number as double vector (day)}
+
 \item{ephe_flag}{Ephemeris flag as integer vector (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4)}
 
 \item{longitude}{Geographic longitude as double vector (deg)}
@@ -157,6 +159,18 @@ vec_day_of_week(jd)
 
 \item{atvis}{Atmospheric visibiliy as double vector (???)}
 
+\item{obsage}{Age of observer as double vector (year)}
+
+\item{obssnellen}{Aquity of observer as double vector (-)}
+
+\item{obsbin}{Mono-/bi-nocular observation as double vector (-)}
+
+\item{obsmag}{Magnification as double vector (-)}
+
+\item{obsaper}{Aperture of optics as double vector (mm)}
+
+\item{obstrans}{Transmission as double vector (-)}
+
 \item{objectname}{Name of fixed star or planet as string vector}
 
 \item{event_type}{Event type as integer vector}
@@ -188,12 +202,6 @@ vec_day_of_week(jd)
 \item{cal}{Calendar type  as char vecor ("g"[regorian] or "j"[ulian])}
 
 \item{jd}{Julian day number as double vector (day)}
-
-\item{ephe_flag}{ephemeris flag as integer vector (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4) (section 2.3.2)}
-
-\item{t_acc}{Tidal acceleration as double vector (arcsec/century^2)}
-
-\item{delta_t}{DeltaT vector (day)}
 }
 \description{
 This are the vectorised functions of the 
