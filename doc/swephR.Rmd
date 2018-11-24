@@ -1,0 +1,110 @@
+---
+title: "swephR"
+author: "Victor Reijs"
+date: "`r Sys.Date()`"
+output: html_document
+vignette: >
+  %\VignetteIndexEntry{swephR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+# Some simple steps to do calculations
+To compute the position of celestial body or star with SE (Swiss Ephemeris), you do the following steps:
+
+
+1. First load `swephR` and constants used in swephR/SE:
+```{r}
+library(swephR)
+data(SE)
+```
+
+2. Optionaly set the directory path of the ephemeris files, e.g.:
+```{r, eval = FALSE}
+swe_set_ephe_path("C:\\sweph\\ephe")
+```
+
+3. For a specific date, compute the Julian day number (in below example: J2000.0, 1 January 2000 at 12:00 UT):
+```{r}
+year <- 2000
+month <- 1
+day <- 1
+hour <- 12
+jdut <- swe_julday(year, month, day, hour, SE$GREG_CAL)
+jdut
+```
+
+4. Compute (using Moshier ephemeris) the positions (longitude, latitude, distance, longitude speed and latitude speed) of a planet or other celestial bodies (in below example: the Sun):
+```{r}
+ipl <- SE$SUN
+iflag <- SE$FLG_MOSEPH + SE$FLG_SPEED
+result <- swe_calc_ut(jdut, ipl, iflag)
+result
+```
+or a fixed star (in below example: Sirius):
+```{r}
+starname = "sirius"
+result <- swe_fixstar2_ut(starname, jdut, iflag)
+result
+```
+
+5. Determine the Julian day number of the Heliacal Rise of Sirius:
+```{r}
+options(digits=15)
+result <- swe_heliacal_ut(jdut,c(0,50,10),c(1013.25,15,50,0.25),c(25,1,1,1,5,0.8),starname,
+  SE$HELIACAL_RISING,SE$HELFLAG_HIGH_PRECISION+SE$FLG_MOSEPH)
+result
+```
+
+6. Here is a miniature sample program described in Chapter 0 of the programma's manual of SE ([see also](http://www.astro.com/swisseph/swephprg.htm#_Toc505244830)):
+```{r}
+  options(digits=6)
+  swe_set_ephe_path(NULL)
+  data(SE)
+  iflag = SE$FLG_SPEED
+  {
+    #get year
+    jyear <- 2000
+    #get month
+    jmon <- 1
+    #get day
+    jday <- 1
+    #get time
+    jhour <- 12
+    #determine julian day number (at 12:00 GMT)
+    tjd_ut <- swe_julday(jyear, jmon, jday, jhour, SE$GREG_CAL)
+    cat("Julian day number (UT) :", tjd_ut, "(",jyear,",",jmon,",",jday,"; proleptic Gregorian calendar)\n")
+    cat("planet :",
+        c("longitude", "latitude", "distance", "long. speed", "lat. speed"),
+        "\n")
+    cat("===========================================================\n")
+    # loop over all planets
+    for (p in SE$SUN:SE$OSCU_APOG) {
+      # get the name of the planet p
+      objectname = swe_get_planet_name(p)
+        # do the coordinate calculation for this planet p
+        i = swe_calc_ut(tjd_ut, p, iflag)
+        if (i$return < 0) {
+          cat("Error :", i$err, "(", objectname, ")\n")
+        }
+        else
+        {
+          # print data
+          cat (objectname, ":", i$xx[0:5], "\n")
+        }
+    }
+  }
+```
+
+7.	At the end of your computations close all files and free up memory:
+```{r}
+swe_close()
+```
