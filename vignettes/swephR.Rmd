@@ -2,10 +2,10 @@
 title: "swephR"
 author: "Victor Reijs"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: html_document
 vignette: >
   %\VignetteIndexEntry{swephR}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{knitr::markdown}
   %\VignetteEncoding{UTF-8}
 ---
 
