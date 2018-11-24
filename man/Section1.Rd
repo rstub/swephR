@@ -5,7 +5,7 @@
 \alias{swe_close}
 \alias{swe_set_jpl_file}
 \alias{swe_version}
-\title{The Ephemeris file related functions}
+\title{Section 1: The Ephemeris file related functions}
 \usage{
 swe_set_ephe_path(path)
 
