@@ -21,9 +21,10 @@ jdut <- vec_julday(c(year1,year2), month, day, hour, SE$GREG_CAL)
 jdut
 
 ## ------------------------------------------------------------------------
-ipl <- SE$SUN
+ipl1 <- SE$SUN
+ipl2 <- SE$MOON
 iflag <- SE$FLG_MOSEPH + SE$FLG_SPEED
-result <- vec_calc_ut(c(jdut[[1]],jdut[[2]]), ipl, iflag)
+result <- vec_calc_ut(c(jdut[[1]],jdut[[2]]), c(ipl1,ipl1,ipl2,ipl2), iflag)
 result
 
 ## ------------------------------------------------------------------------
