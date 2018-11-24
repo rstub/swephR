@@ -139,6 +139,7 @@ vec_sol_eclipse_when_loc <-
            lat,
            height = 0,
            backward = FALSE) {
+    #default is forward search
     functionvector <-
       data.frame(jd_start, ephe_flag, longitude, lat, height, backward)
     print(functionvector)
@@ -167,6 +168,7 @@ vec_fixstar2_ut <-
   function(starname,
            jd_ut,
            iflag = 4) {
+    # Default Moshier ephemeris
     functionvector <-
       data.frame(starname, jd_ut, iflag, stringsAsFactors = FALSE)
     print(functionvector)
@@ -187,6 +189,7 @@ vec_fixstar2 <-
   function(starname,
            jd_et,
            iflag = 4) {
+    # Default Moshier ephemeris
     functionvector <-
       data.frame(starname, jd_et, iflag, stringsAsFactors = FALSE)
     print(functionvector)
@@ -228,6 +231,7 @@ vec_lun_eclipse_when_loc <-
            lat,
            height = 0,
            backward = FALSE) {
+    #default is forward search
     functionvector <-
       data.frame(jd_start, ephe_flag, longitude, lat, height, backward)
     print(functionvector)
@@ -285,6 +289,7 @@ vec_lun_eclipse_when <-
            # default Moshier epheemris
            ifltype,
            backward = FALSE) {
+    #default is forward search
     functionvector <-
       data.frame(jd_start, ephe_flag, ifltype, backward)
     print(functionvector)
@@ -535,6 +540,7 @@ vec_heliacal_ut <-
            objectname,
            event_type,
            helflag = 768) {
+    # Default high precision and Moshier ephemeris
     functionvector <-
       data.frame(
         jd_utstart,
@@ -613,6 +619,7 @@ vec_vis_limit_mag <-
            obstrans = 0.8,
            objectname,
            helflag = 768) {
+    # Default high precision and Moshier ephemeris
     functionvector <-
       data.frame(
         jd_ut,
@@ -690,6 +697,7 @@ vec_heliacal_pheno_ut <-
            objectname,
            event_type,
            helflag = 768) {
+    # Default high precision and Moshier ephemeris
     functionvector <-
       data.frame(
         jd_ut,
@@ -767,6 +775,7 @@ vec_topo_arcus_visionis <-
            obsaper = 7,
            obstrans = 0.8,
            helflag = 768,
+           # Default high precision and Moshier ephemeris
            mag,
            AziO,
            AltO,
@@ -857,6 +866,7 @@ vec_heliacal_angle <-
            obsaper = 7,
            obstrans = 0.8,
            helflag = 768,
+           # Default high precision and Moshier ephemeris
            mag,
            AziO,
            AziS,
@@ -1009,6 +1019,7 @@ vec_revjul <-
 vec_deltat_ex <-
   function(jd_ut,
            ephe_flag = 4) {
+    # Default Moshier ephemeris
     functionvector <-
       data.frame(jd_ut, ephe_flag)
     print(functionvector)
