@@ -27,7 +27,7 @@ library(swephR)
 data(SE)
 ```
 
-2. Optionaly set the directory path of the ephemeris files, e.g.:
+2. Optionaly set the directory path of the ephemeris files  (the format of the path depends on your OS), e.g.:
 ```{r, eval = FALSE}
 swe_set_ephe_path("C:\\sweph\\ephe")
 ```
