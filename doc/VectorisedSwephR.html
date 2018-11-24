@@ -105,7 +105,7 @@ jdut
 <span class="co">#&gt; [[2]]</span>
 <span class="co">#&gt; [1] 1721060</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
-<li>Compute (using Moshier ephemeris) the positions (longitude, latitude, distance, longitude speed and latitude speed) of a planet or other celestial bodies (in below example: the Sun and Moon):</li>
+<li>Compute (using Moshier ephemeris) the positions (longitude, latitude, distance, longitude speed and latitude speed) of a planet or other celestial bodies for two dates (in below example: the Sun and Moon):</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ipl1 &lt;-<span class="st"> </span>SE<span class="op">$</span>SUN
 ipl2 &lt;-<span class="st"> </span>SE<span class="op">$</span>MOON
@@ -162,7 +162,7 @@ result
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[4]]$serr</span>
 <span class="co">#&gt; [1] &quot;&quot;</span></code></pre></div>
-<p>or a fixed star (in below example: Sirius):</p>
+<p>or a fixed star on two dates (in below example: Sirius):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">starname =<span class="st"> &quot;sirius&quot;</span>
 result &lt;-<span class="st"> </span><span class="kw">vec_fixstar2_ut</span>(starname, <span class="kw">c</span>(jdut[[<span class="dv">1</span>]],jdut[[<span class="dv">2</span>]]), iflag)
 <span class="co">#&gt;   starname   jd_ut iflag</span>
@@ -198,7 +198,7 @@ result
 <span class="co">#&gt; [[2]]$serr</span>
 <span class="co">#&gt; [1] &quot;&quot;</span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
-<li>Determine the Julian day number of the Heliacal Rise of Sirius:</li>
+<li>Determine the Julian day number of the Heliacal Rise of Sirius for two epochs:</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">digits=</span><span class="dv">15</span>)
 result &lt;-<span class="st"> </span><span class="kw">vec_heliacal_ut</span>(<span class="kw">c</span>(jdut[[<span class="dv">1</span>]],jdut[[<span class="dv">2</span>]]),<span class="dv">0</span>,<span class="dv">50</span>,<span class="dv">10</span>,<span class="fl">1013.25</span>,<span class="dv">15</span>,<span class="dv">50</span>,<span class="fl">0.25</span>,<span class="dv">25</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">5</span>,<span class="fl">0.8</span>,starname,
