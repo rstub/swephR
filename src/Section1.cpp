@@ -19,7 +19,7 @@
 #include <array>
 #include <swephexp.h>
 
-//' @title The Ephemeris file related functions
+//' @title Section 1: The Ephemeris file related functions
 //' @description Several initialisation functions
 //' @seealso \url{http://www.astro.com/swisseph/swephprg.htm?lang=g#_Toc505244831}
 //' @details
