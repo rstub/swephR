@@ -539,7 +539,7 @@ vec_heliacal_ut <-
            obstrans = 0.8,
            objectname,
            event_type,
-           helflag = 768) {
+           helflag = 260) {
     # Default high precision and Moshier ephemeris
     functionvector <-
       data.frame(
@@ -618,7 +618,7 @@ vec_vis_limit_mag <-
            obsaper = 7,
            obstrans = 0.8,
            objectname,
-           helflag = 768) {
+           helflag = 260) {
     # Default high precision and Moshier ephemeris
     functionvector <-
       data.frame(
@@ -696,7 +696,7 @@ vec_heliacal_pheno_ut <-
            obstrans = 0.8,
            objectname,
            event_type,
-           helflag = 768) {
+           helflag = 260) {
     # Default high precision and Moshier ephemeris
     functionvector <-
       data.frame(
@@ -774,7 +774,7 @@ vec_topo_arcus_visionis <-
            obsmag = 1,
            obsaper = 7,
            obstrans = 0.8,
-           helflag = 768,
+           helflag = 260,
            # Default high precision and Moshier ephemeris
            mag,
            AziO,
@@ -865,7 +865,7 @@ vec_heliacal_angle <-
            obsmag = 1,
            obsaper = 7,
            obstrans = 0.8,
-           helflag = 768,
+           helflag = 260,
            # Default high precision and Moshier ephemeris
            mag,
            AziO,
