@@ -533,6 +533,7 @@ vec_heliacal_ut <-
            atvis = 0.2,
            obsage = 36,
            obssnellen = 1.4,
+           # Default: average acuity
            obsbin = 1,
            obsmag = 1,
            obsaper = 7,
@@ -613,6 +614,7 @@ vec_vis_limit_mag <-
            atvis = 0.2,
            obsage = 36,
            obssnellen = 1.4,
+           # Default: average acuity
            obsbin = 1,
            obsmag = 1,
            obsaper = 7,
@@ -690,6 +692,7 @@ vec_heliacal_pheno_ut <-
            atvis = 0.2,
            obsage = 36,
            obssnellen = 1.4,
+           # Default: average acuity
            obsbin = 1,
            obsmag = 1,
            obsaper = 7,
@@ -770,6 +773,7 @@ vec_topo_arcus_visionis <-
            atvis = 0.2,
            obsage = 36,
            obssnellen = 1.4,
+           # Default: average acuity
            obsbin = 1,
            obsmag = 1,
            obsaper = 7,
@@ -861,6 +865,7 @@ vec_heliacal_angle <-
            atvis = 0.2,
            obsage = 36,
            obssnellen = 1.4,
+           # Default: average acuity
            obsbin = 1,
            obsmag = 1,
            obsaper = 7,
