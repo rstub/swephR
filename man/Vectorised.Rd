@@ -72,28 +72,28 @@ vec_refrac_extended(InAlt, height = 0, atpress = 1013.25,
 vec_heliacal_ut(jd_utstart, longitude, lat, height = 0,
   atpress = 1013.25, attemp = 15, athum = 0, atvis = 0.2,
   obsage = 36, obssnellen = 1.4, obsbin = 1, obsmag = 1,
-  obsaper = 7, obstrans = 0.8, objectname, event_type, helflag = 768)
+  obsaper = 7, obstrans = 0.8, objectname, event_type, helflag = 260)
 
 vec_vis_limit_mag(jd_ut, longitude, lat, height = 0, atpress = 1013.25,
   attemp = 15, athum = 0, atvis = 0.2, obsage = 36,
   obssnellen = 1.4, obsbin = 1, obsmag = 1, obsaper = 7,
-  obstrans = 0.8, objectname, helflag = 768)
+  obstrans = 0.8, objectname, helflag = 260)
 
 vec_heliacal_pheno_ut(jd_ut, longitude, lat, height = 0,
   atpress = 1013.25, attemp = 15, athum = 0, atvis = 0.2,
   obsage = 36, obssnellen = 1.4, obsbin = 1, obsmag = 1,
-  obsaper = 7, obstrans = 0.8, objectname, event_type, helflag = 768)
+  obsaper = 7, obstrans = 0.8, objectname, event_type, helflag = 260)
 
 vec_topo_arcus_visionis(jd_ut, longitude, lat, height = 0,
   atpress = 1013.25, attemp = 15, athum = 0, atvis = 0.2,
   obsage = 36, obssnellen = 1.4, obsbin = 1, obsmag = 1,
-  obsaper = 7, obstrans = 0.8, helflag = 768, mag, AziO, AltO, AziS,
+  obsaper = 7, obstrans = 0.8, helflag = 260, mag, AziO, AltO, AziS,
   AziM, AltM)
 
 vec_heliacal_angle(jd_ut, longitude, lat, height = 0,
   atpress = 1013.25, attemp = 15, athum = 0, atvis = 0.2,
   obsage = 36, obssnellen = 1.4, obsbin = 1, obsmag = 1,
-  obsaper = 7, obstrans = 0.8, helflag = 768, mag, AziO, AziS, AziM,
+  obsaper = 7, obstrans = 0.8, helflag = 260, mag, AziO, AziS, AziM,
   AltM)
 
 vec_julday(year, month, day, hour = 12, gregflag = 1)
