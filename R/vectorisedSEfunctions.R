@@ -79,7 +79,7 @@ vec_calc_ut <-
     # default Moshier epheemris
     functionvector <-
       data.frame(jd_ut, ipl, iflag)
-    print(functionvector)
+   #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -100,7 +100,7 @@ vec_calc <-
     #default Moshier epheemris
     functionvector <-
       data.frame(jd_et, ipl, iflag)
-    print(functionvector)
+#    ##print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -118,7 +118,7 @@ vec_calc <-
 ##' @export
 vec_get_planet_name <- function(ipl) {
   functionvector <- data.frame(ipl)
-  print(functionvector)
+  #print(functionvector)
   listsize <- nrow(functionvector)
   ResultVector <- vector("list", listsize)
   for (i in 1:listsize)
@@ -142,7 +142,7 @@ vec_sol_eclipse_when_loc <-
     #default is forward search
     functionvector <-
       data.frame(jd_start, ephe_flag, longitude, lat, height, backward)
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -171,7 +171,7 @@ vec_fixstar2_ut <-
     # Default Moshier ephemeris
     functionvector <-
       data.frame(starname, jd_ut, iflag, stringsAsFactors = FALSE)
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -192,7 +192,7 @@ vec_fixstar2 <-
     # Default Moshier ephemeris
     functionvector <-
       data.frame(starname, jd_et, iflag, stringsAsFactors = FALSE)
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -210,7 +210,7 @@ vec_fixstar2_mag <-
   function(starname) {
     functionvector <-
       data.frame(starname, stringsAsFactors = FALSE)
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -234,7 +234,7 @@ vec_lun_eclipse_when_loc <-
     #default is forward search
     functionvector <-
       data.frame(jd_start, ephe_flag, longitude, lat, height, backward)
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -264,7 +264,7 @@ vec_lun_eclipse_how <-
            height = 0) {
     functionvector <-
       data.frame(jd_ut, ephe_flag, longitude, lat, height)
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -292,7 +292,7 @@ vec_lun_eclipse_when <-
     #default is forward search
     functionvector <-
       data.frame(jd_start, ephe_flag, ifltype, backward)
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -337,7 +337,7 @@ vec_rise_trans_true_hor <-
         horhgt,
         stringsAsFactors = FALSE
       )
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -370,7 +370,7 @@ vec_pheno_ut <-
     #default Moshier epheemris
     functionvector <-
       data.frame(jd_ut, ipl, iflag)
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -391,7 +391,7 @@ vec_pheno <-
     #default Moshier epheemris
     functionvector <-
       data.frame(jd_et, ipl, iflag)
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -425,7 +425,7 @@ vec_azalt <-
                  attemp,
                  xin1,
                  xin2)
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -467,7 +467,7 @@ vec_azalt_rev <-
                  height,
                  xin1,
                  xin2)
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -503,7 +503,7 @@ vec_refrac_extended <-
                  attemp,
                  lapse_rate,
                  calc_flag)
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -563,7 +563,7 @@ vec_heliacal_ut <-
         helflag,
         stringsAsFactors = FALSE
       )
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -642,7 +642,7 @@ vec_vis_limit_mag <-
         helflag,
         stringsAsFactors = FALSE
       )
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -722,7 +722,7 @@ vec_heliacal_pheno_ut <-
         helflag,
         stringsAsFactors = FALSE
       )
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -810,7 +810,7 @@ vec_topo_arcus_visionis <-
         AziM,
         AltM
       )
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -900,7 +900,7 @@ vec_heliacal_angle <-
         AziM,
         AltM
       )
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -954,7 +954,7 @@ vec_julday <-
     #default (proleptic) Gregorian calendar
     functionvector <-
       data.frame(year, month, day, hour, gregflag)
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -983,7 +983,7 @@ vec_date_conversion <-
     functionvector <-
       data.frame(year, month, day, hour, cal,
                  stringsAsFactors = FALSE)
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -1007,7 +1007,7 @@ vec_revjul <-
     #default (proleptic) Gregorian calendar
     functionvector <-
       data.frame(jd, gregflag)
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -1027,7 +1027,7 @@ vec_deltat_ex <-
     # Default Moshier ephemeris
     functionvector <-
       data.frame(jd_ut, ephe_flag)
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -1044,7 +1044,7 @@ vec_deltat <-
   function(jd_ut) {
     functionvector <-
       data.frame(jd_ut)
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
@@ -1061,7 +1061,7 @@ vec_day_of_week <-
   function(jd) {
     functionvector <-
       data.frame(jd)
-    print(functionvector)
+    #print(functionvector)
     listsize <- nrow(functionvector)
     ResultVector <- vector("list", listsize)
     for (i in 1:listsize)
