@@ -88,6 +88,7 @@ vec_calc_ut <-
                                        functionvector$ipl[i],
                                        functionvector$iflag[i])
     }
+    class(ResultVector)<-"swephR.calc"
     return(ResultVector)
   }
 
@@ -109,6 +110,7 @@ vec_calc <-
                                     functionvector$ipl[i],
                                     functionvector$iflag[i])
     }
+    class(ResultVector)<-"swephR.calc"
     return(ResultVector)
     
   }
@@ -158,6 +160,7 @@ vec_sol_eclipse_when_loc <-
         functionvector$backward[i]
       )
     }
+    class(ResultVector)<-"swephR.eclipse"
     return(ResultVector)
   }
 
@@ -180,6 +183,7 @@ vec_fixstar2_ut <-
                                            functionvector$jd_ut[i],
                                            functionvector$iflag[i])
     }
+    class(ResultVector)<-"swephR.star"
     return(ResultVector)
   }
 
@@ -201,6 +205,7 @@ vec_fixstar2 <-
                                         functionvector$jd_et[i],
                                         functionvector$iflag[i])
     }
+    class(ResultVector)<-"swephR.star"
     return(ResultVector)
   }
 
@@ -250,6 +255,7 @@ vec_lun_eclipse_when_loc <-
         functionvector$backward[i]
       )
     }
+    class(ResultVector)<-"swephR.eclipse"
     return(ResultVector)
   }
 
@@ -278,6 +284,7 @@ vec_lun_eclipse_how <-
                             functionvector$ephe_flag[i],
                             geopos)
     }
+    class(ResultVector)<-"swephR.eclipse"
     return(ResultVector)
   }
 
@@ -304,6 +311,7 @@ vec_lun_eclipse_when <-
         functionvector$backward[i]
       )
     }
+    class(ResultVector)<-"swephR.eclipse"
     return(ResultVector)
   }
 
