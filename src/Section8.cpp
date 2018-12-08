@@ -22,6 +22,7 @@
 
 
 //' @title Section 8: Delta T-related functions
+//' @name Section8
 //' @description FUnctions rleated to DeltaT and tidal acceleration
 //' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244878}
 //' @param ephe_flag  ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4) (section 2.3.2)

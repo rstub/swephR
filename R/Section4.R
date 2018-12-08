@@ -1,4 +1,5 @@
 ##' @title Section 4: Fixed stars functions
+##' @name Section4
 ##' @description The following functions are used to calculate positions of fixed stars. 
 ##' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244844}
 ##' @details 
