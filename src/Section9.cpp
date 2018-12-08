@@ -20,6 +20,7 @@
 
 
 //' @title Section 9: The function for calculating topocentric planet position
+//' @name Section9
 //' @description Function for topocentric planet positions
 //' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244884}
 //' @details

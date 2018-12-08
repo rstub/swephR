@@ -20,6 +20,7 @@
 #include <swephexp.h>
 
 //' @title Section 6: Eclipses, Risings, Settings, Meridian Transits, Planetary Phenomena
+//' @name Section6
 //' @description Functions for: determining eclipse and occultation calculations, computing the times of rising, setting and 
 //' meridian transits for all planets, asteroids, the moon and the fixed stars; computing phase, phase angle, elongation, 
 //' apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids; and determing 

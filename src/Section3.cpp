@@ -20,7 +20,8 @@
 #include <swephexp.h>
 
 
-//' @title Section 3: Find a planetary or asteroid name 
+//' @title Section 3: Find a planetary or asteroid name
+//' @name Section3
 //' @description Find a planetary or asteroid name.
 //' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244843}
 //' @details

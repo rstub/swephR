@@ -19,7 +19,8 @@
 #include <swephexp.h>
 
 
-//' @title Section 7: Date and time conversion functions 
+//' @title Section 7: Date and time conversion functions
+//' @name Section7
 //' @description Functions related to calendar and time conversions.
 //' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244873}
 //' @details

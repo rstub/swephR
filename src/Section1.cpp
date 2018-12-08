@@ -20,6 +20,7 @@
 #include <swephexp.h>
 
 //' @title Section 1: The Ephemeris file related functions
+//' @name Section1
 //' @description Several initialisation functions
 //' @seealso \url{http://www.astro.com/swisseph/swephprg.htm?lang=g#_Toc505244831}
 //' @details
@@ -73,7 +74,7 @@ void set_jpl_file(Rcpp::Nullable<Rcpp::CharacterVector> fname) {
 //' @export
 // [[Rcpp::export(swe_version)]]
 std::string version() {
-  std::array<char, 256> version{'\0'};
+  std::array<char, 256> version{{'\0'}};
   swe_version(&version[0]);
   return std::string(&version[0]);
 }

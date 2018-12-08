@@ -1,4 +1,5 @@
-##' @title Section 2: Computing positions 
+##' @title Section 2: Computing positions
+##' @name Section2
 ##' @description Computing positions of planets, asteroids, lunar nodes and apogees using Swiss Ephemeris.
 ##' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244837}
 ##' @details 

@@ -2,6 +2,7 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #' @title Section 1: The Ephemeris file related functions
+#' @name Section1
 #' @description Several initialisation functions
 #' @seealso \url{http://www.astro.com/swisseph/swephprg.htm?lang=g#_Toc505244831}
 #' @details
@@ -50,6 +51,7 @@ swe_version <- function() {
 }
 
 #' @title Section 16.7: Other functions that may be useful
+#' @name Section16
 #' @description Useful functions
 #' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244906}
 #' @details
@@ -74,7 +76,8 @@ calc <- function(jd_et, ipl, iflag) {
     .Call(`_swephR_calc`, jd_et, ipl, iflag)
 }
 
-#' @title Section 3: Find a planetary or asteroid name 
+#' @title Section 3: Find a planetary or asteroid name
+#' @name Section3
 #' @description Find a planetary or asteroid name.
 #' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244843}
 #' @details
@@ -102,6 +105,7 @@ fixstar2 <- function(starname, jd_et, iflag) {
 
 #' @return \code{swe_fixstar2_mag} returns a list with named entries: \code{return} status flag as integer,
 #'         \code{starname} updated star name as string, \code{mag} magnitude of star as double, and \code{serr} for error message as string.
+#' @name Section4
 #' @rdname Section4
 #' @export
 swe_fixstar2_mag <- function(starname) {
@@ -109,6 +113,7 @@ swe_fixstar2_mag <- function(starname) {
 }
 
 #' @title Section 6: Eclipses, Risings, Settings, Meridian Transits, Planetary Phenomena
+#' @name Section6
 #' @description Functions for: determining eclipse and occultation calculations, computing the times of rising, setting and 
 #' meridian transits for all planets, asteroids, the moon and the fixed stars; computing phase, phase angle, elongation, 
 #' apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids; and determing 
@@ -365,7 +370,8 @@ swe_heliacal_angle <- function(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS
     .Call(`_swephR_heliacal_angle`, jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM, AltM)
 }
 
-#' @title Section 7: Date and time conversion functions 
+#' @title Section 7: Date and time conversion functions
+#' @name Section7
 #' @description Functions related to calendar and time conversions.
 #' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244873}
 #' @details
@@ -410,6 +416,7 @@ swe_revjul <- function(jd, gregflag) {
 }
 
 #' @title Section 8: Delta T-related functions
+#' @name Section8
 #' @description FUnctions rleated to DeltaT and tidal acceleration
 #' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244878}
 #' @param ephe_flag  ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4) (section 2.3.2)
@@ -486,6 +493,7 @@ swe_set_delta_t_userdef <- function(delta_t) {
 }
 
 #' @title Section 9: The function for calculating topocentric planet position
+#' @name Section9
 #' @description Function for topocentric planet positions
 #' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244884}
 #' @details

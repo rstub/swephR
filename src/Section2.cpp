@@ -32,8 +32,8 @@ Rcpp::List calc_ut(Rcpp::NumericVector jd_ut, Rcpp::IntegerVector ipl, int iflag
   Rcpp::NumericMatrix xx_(ipl.length(), 6);
 
   for (int i = 0; i < ipl.length(); ++i) {
-    std::array<double, 6> xx{0.0};
-    std::array<char, 256> serr{'\0'};
+    std::array<double, 6> xx{{0.0}};
+    std::array<char, 256> serr{{'\0'}};
     rc_(i) = swe_calc_ut(jd_ut[i], ipl(i), iflag, xx.begin(), serr.begin());
     Rcpp::NumericVector tmp(xx.begin(), xx.end());
     xx_(i, Rcpp::_) = tmp;
@@ -61,8 +61,8 @@ Rcpp::List calc(Rcpp::NumericVector jd_et, Rcpp::IntegerVector ipl, int iflag) {
   Rcpp::NumericMatrix xx_(ipl.length(), 6);
 
   for (int i = 0; i < ipl.length(); ++i) {
-    std::array<double, 6> xx{0.0};
-    std::array<char, 256> serr{'\0'};
+    std::array<double, 6> xx{{0.0}};
+    std::array<char, 256> serr{{'\0'}};
     rc_(i) = swe_calc(jd_et[i], ipl(i), iflag, xx.begin(), serr.begin());
     Rcpp::NumericVector tmp(xx.begin(), xx.end());
     xx_(i, Rcpp::_) = tmp;
@@ -76,4 +76,3 @@ Rcpp::List calc(Rcpp::NumericVector jd_et, Rcpp::IntegerVector ipl, int iflag) {
                             Rcpp::Named("xx") = xx_,
                             Rcpp::Named("serr") = serr_);
 }
-

@@ -19,6 +19,7 @@
 #include <swephexp.h>
 
 //' @title Section 16.7: Other functions that may be useful
+//' @name Section16
 //' @description Useful functions
 //' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244906}
 //' @details
