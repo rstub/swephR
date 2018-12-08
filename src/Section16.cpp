@@ -24,7 +24,7 @@
 //' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244906}
 //' @details
 //' \describe{
-//'   \item{we_day_of_week()}{Determine day of week from Julian day number.}
+//'   \item{swe_day_of_week()}{Determine day of week from Julian day number.}
 //' }
 //' @param jd  Julian day number as numeric vector (day)
 //' @return \code{swe_day_of_week} retruns the day of week as integer vector (0 Monday .. 6 Sunday)

@@ -88,7 +88,7 @@ vec_calc_ut <-
                                        functionvector$ipl[i],
                                        functionvector$iflag[i])
     }
-    class(ResultVector)<-"swephR.calc"
+    class(ResultVector)<-"swephR.object.ephe"
     return(ResultVector)
   }
 
@@ -110,7 +110,7 @@ vec_calc <-
                                     functionvector$ipl[i],
                                     functionvector$iflag[i])
     }
-    class(ResultVector)<-"swephR.calc"
+    class(ResultVector)<-"swephR.object.ephe"
     return(ResultVector)
     
   }
@@ -160,7 +160,7 @@ vec_sol_eclipse_when_loc <-
         functionvector$backward[i]
       )
     }
-    class(ResultVector)<-"swephR.eclipse"
+    class(ResultVector)<-"swephR.eclipse.loc"
     return(ResultVector)
   }
 
@@ -183,7 +183,7 @@ vec_fixstar2_ut <-
                                            functionvector$jd_ut[i],
                                            functionvector$iflag[i])
     }
-    class(ResultVector)<-"swephR.star"
+    class(ResultVector)<-"swephR.star.ephe"
     return(ResultVector)
   }
 
@@ -205,7 +205,7 @@ vec_fixstar2 <-
                                         functionvector$jd_et[i],
                                         functionvector$iflag[i])
     }
-    class(ResultVector)<-"swephR.star"
+    class(ResultVector)<-"swephR.star.ephe"
     return(ResultVector)
   }
 
@@ -222,6 +222,7 @@ vec_fixstar2_mag <-
     {
       ResultVector[[i]] <- swe_fixstar2_mag(functionvector$starname[i])
     }
+    class(ResultVector)<-"swephR.star.mag"
     return(ResultVector)
   }
 
@@ -255,7 +256,7 @@ vec_lun_eclipse_when_loc <-
         functionvector$backward[i]
       )
     }
-    class(ResultVector)<-"swephR.eclipse"
+    class(ResultVector)<-"swephR.eclipse.loc"
     return(ResultVector)
   }
 
@@ -284,7 +285,7 @@ vec_lun_eclipse_how <-
                             functionvector$ephe_flag[i],
                             geopos)
     }
-    class(ResultVector)<-"swephR.eclipse"
+    class(ResultVector)<-"swephR.eclipse.how"
     return(ResultVector)
   }
 
@@ -311,7 +312,7 @@ vec_lun_eclipse_when <-
         functionvector$backward[i]
       )
     }
-    class(ResultVector)<-"swephR.eclipse"
+    class(ResultVector)<-"swephR.eclipse.when"
     return(ResultVector)
   }
 
@@ -366,6 +367,7 @@ vec_rise_trans_true_hor <-
         functionvector$horhgt[i]
       )
     }
+    class(ResultVector)<-"swephR.object.event"
     return(ResultVector)
   }
 
@@ -387,6 +389,7 @@ vec_pheno_ut <-
                                         functionvector$ipl[i],
                                         functionvector$iflag[i])
     }
+    class(ResultVector)<-"swephR.object.pheno"
     return(ResultVector)
   }
 
@@ -408,6 +411,7 @@ vec_pheno <-
                                      functionvector$ipl[i],
                                      functionvector$iflag[i])
     }
+    class(ResultVector)<-"swephR.object.pheno"
     return(ResultVector)
   }
 
@@ -454,6 +458,7 @@ vec_azalt <-
         xin
       )
     }
+    class(ResultVector)<-"swephR.coord"
     return(ResultVector)
   }
 
@@ -492,6 +497,7 @@ vec_azalt_rev <-
                                          geopos,
                                          xin)
     }
+    class(ResultVector)<-"swephR.coord"
     return(ResultVector)
   }
 
@@ -525,6 +531,7 @@ vec_refrac_extended <-
         functionvector$calc_flag[i]
       )
     }
+    class(ResultVector)<-"swephR.refract"
     return(ResultVector)
   }
 
@@ -606,6 +613,7 @@ vec_heliacal_ut <-
         functionvector$helflag[i]
       )
     }
+    class(ResultVector)<-"swephR.heliacal.event"
     return(ResultVector)
   }
 
@@ -684,6 +692,7 @@ vec_vis_limit_mag <-
         functionvector$helflag[i]
       )
     }
+    class(ResultVector)<-"swephR.heliacal.mag"
     return(ResultVector)
   }
 
@@ -765,6 +774,7 @@ vec_heliacal_pheno_ut <-
         functionvector$helflag[i]
       )
     }
+    class(ResultVector)<-"swephR.heliacal.pheno"
     return(ResultVector)
   }
 
@@ -857,6 +867,7 @@ vec_topo_arcus_visionis <-
         functionvector$AltM[i]
       )
     }
+    class(ResultVector)<-"swephR.heliacal.av"
     return(ResultVector)
   }
 
@@ -946,6 +957,7 @@ vec_heliacal_angle <-
         functionvector$AltM[i]
       )
     }
+    class(ResultVector)<-"swephR.heliacal.angle"
     return(ResultVector)
   }
 
