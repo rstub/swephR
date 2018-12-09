@@ -1016,6 +1016,7 @@ vec_date_conversion <-
         functionvector$cal[i]
       )
     }
+    class(ResultVector)<-"swephR.jdn"
     return(ResultVector)
   }
 
@@ -1035,6 +1036,7 @@ vec_revjul <-
       ResultVector[[i]] <- swe_revjul(functionvector$jd[i],
                                       functionvector$gregflag[i])
     }
+    class(ResultVector)<-"swephR.calendar"
     return(ResultVector)
   }
 
