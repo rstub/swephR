@@ -32,4 +32,4 @@ deploy:
   script: Rscript -e 'pkgdown::deploy_site_github()'
   skip_cleanup: true
   on:
-    condition: $TRAVIS_R_VERSION_STRING = release -a $TRAVIS_OS_NAME == linux
+    condition: $TRAVIS_R_VERSION_STRING = release AND $TRAVIS_OS_NAME = linux
