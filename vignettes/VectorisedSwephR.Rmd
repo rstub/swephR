@@ -16,6 +16,10 @@ knitr::opts_chunk$set(
 )
 ```
 
+# Introduction
+This vignette provides input how the vectorised swephR functions can be used (these function names start with 'vec-').The vectorised functions provide a list of lists as results. 
+These functions are not finalised and are in testing. A decision STILL has to be made if the reuslts should be a list of matrices or a list of lists.
+
 
 # Some simple steps to do calculations
 To compute the position of celestial body or star with SE (Swiss Ephemeris) for two dates (aka using vectorisation), you do the following steps:
