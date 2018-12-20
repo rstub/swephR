@@ -2,7 +2,7 @@
 title: "swephR"
 author: "Victor Reijs"
 date: "`r Sys.Date()`"
-output: html_document
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{swephR}
   %\VignetteEngine{knitr::rmarkdown}
