@@ -29,8 +29,7 @@ after_success:
 before_deploy: Rscript -e 'remotes::install_cran("pkgdown")'
 deploy:
   provider: script
-  script: Rscript -e 'pkgdown::deploy_site_github()'
+  script: test "$TRAVIS_R_VERSION_STRING" = "release" && Rscript -e 'pkgdown::deploy_site_github()' || true
   skip_cleanup: true
   on:
-    r: release
     condition: $TRAVIS_OS_NAME = linux
