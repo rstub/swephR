@@ -19,6 +19,250 @@
 #include <array>
 #include <swephexp.h>
 
+//////////////////////////////////////////////////////////////////////////
+//' @title Section 1: The Ephemeris file related functions
+//' @name Section1
+//' @description Several initialisation functions
+//' @seealso \url{http://www.astro.com/swisseph/swephprg.htm?lang=g#_Toc505244831}
+//' @details
+//' \describe{
+//'   \item{swe_set_ephe_path()}{This is the first function that should be called
+//'        before any other function of the Swiss Ephemeris. Even if you don't
+//'        want to set an ephemeris path and use the Moshier ephemeris, it is
+//'        nevertheless recommended to call swe_set_ephe_path(NULL), because this
+//'        function makes important initializations. If you don't do that, the
+//'        Swiss Ephemeris may work, but the results may be not 100\% consistent.}
+//'   \item{swe_close()}{At the end of your computations this function releases most
+//'        resources (open files and allocated memory) used by Swiss Ephemeris.}
+//'   \item{swe_set_jpl_file()}{Set name of JPL ephemeris file.} 
+//'   \item{swe_version()}{The function provides the version number of the Swiss Ephemeris software.}
+//' }
+//' @param path Directory for the sefstars.txt, swe_deltat.txt and jpl files
+//' @examples
+//' \dontrun{swe_set_ephe_path("c:\\sweph\\ephe")}
+//' swe_close()
+//' swe_set_jpl_file("de431.eph")
+//' swe_version()
+//' @rdname Section1
+//' @export
+// [[Rcpp::export(swe_set_ephe_path)]]
+void set_ephe_path(Rcpp::Nullable<Rcpp::CharacterVector> path) {
+  if (path.isNotNull()) {
+    swe_set_ephe_path(path.as().at(0));
+  } else {
+    swe_set_ephe_path(NULL);
+  }
+}
+
+//' @rdname Section1
+//' @export
+// [[Rcpp::export(swe_close)]]
+void close() {
+  swe_close();
+}
+
+
+//' @param fname JPL ephemeris name as string (JPL ephemeris file, e.g. de431.eph)
+//' @rdname Section1
+//' @export
+// [[Rcpp::export(swe_set_jpl_file)]]
+void set_jpl_file(Rcpp::Nullable<Rcpp::CharacterVector> fname) {
+    swe_set_jpl_file(fname.as().at(0));
+ }
+
+//' @return \code{swe_version} returns Swiss Ephemeris software version as string
+//' @rdname Section1
+//' @export
+// [[Rcpp::export(swe_version)]]
+std::string version() {
+  std::array<char, 256> version{{'\0'}};
+  swe_version(&version[0]);
+  return std::string(&version[0]);
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+// Section 2: Computing positions
+// Compute information of planet (UT)
+// internal function that is called in Section2.R
+// [[Rcpp::export]]
+Rcpp::List calc_ut(Rcpp::NumericVector jd_ut, Rcpp::IntegerVector ipl, int iflag) {
+  if (jd_ut.length() != ipl.length())
+    Rcpp::stop("The number of bodies in 'ipl' and the number of dates in 'jd_ut' must be identical!");
+
+  Rcpp::IntegerVector rc_(ipl.length());
+  Rcpp::CharacterVector serr_(ipl.length());
+  Rcpp::NumericMatrix xx_(ipl.length(), 6);
+
+  for (int i = 0; i < ipl.length(); ++i) {
+    std::array<double, 6> xx{{0.0}};
+    std::array<char, 256> serr{{'\0'}};
+    rc_(i) = swe_calc_ut(jd_ut[i], ipl(i), iflag, xx.begin(), serr.begin());
+    Rcpp::NumericVector tmp(xx.begin(), xx.end());
+    xx_(i, Rcpp::_) = tmp;
+    serr_(i) = std::string(serr.begin());
+  }
+
+  // remove dim attribute to return a vector
+  if (ipl.length() == 1)
+    xx_.attr("dim") = R_NilValue;
+
+  return Rcpp::List::create(Rcpp::Named("return") = rc_,
+			    Rcpp::Named("xx") = xx_,
+			    Rcpp::Named("serr") = serr_);
+}
+
+// Compute information of planet (ET)
+// internal function that is called in Section2.R
+// [[Rcpp::export]]
+Rcpp::List calc(Rcpp::NumericVector jd_et, Rcpp::IntegerVector ipl, int iflag) {
+  if (jd_et.length() != ipl.length())
+    Rcpp::stop("The number of bodies in 'ipl' and the number of dates in 'jd_et' must be identical!");
+
+  Rcpp::IntegerVector rc_(ipl.length());
+  Rcpp::CharacterVector serr_(ipl.length());
+  Rcpp::NumericMatrix xx_(ipl.length(), 6);
+
+  for (int i = 0; i < ipl.length(); ++i) {
+    std::array<double, 6> xx{{0.0}};
+    std::array<char, 256> serr{{'\0'}};
+    rc_(i) = swe_calc(jd_et[i], ipl(i), iflag, xx.begin(), serr.begin());
+    Rcpp::NumericVector tmp(xx.begin(), xx.end());
+    xx_(i, Rcpp::_) = tmp;
+    serr_(i) = std::string(serr.begin());
+  }
+  // remove dim attribute to return a vector
+  if (ipl.length() == 1)
+    xx_.attr("dim") = R_NilValue;
+
+  return Rcpp::List::create(Rcpp::Named("return") = rc_,
+                            Rcpp::Named("xx") = xx_,
+                            Rcpp::Named("serr") = serr_);
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+//' @title Section 3: Find a planetary or asteroid name
+//' @name Section3
+//' @description Find a planetary or asteroid name.
+//' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244843}
+//' @details
+//' \describe{
+//'   \item{swe_get_planet_name()}{Convert object number into ubject name.}
+//' }
+//' @examples
+//' data(SE)
+//' swe_get_planet_name(SE$MOON)
+//' @param ipl  Body/planet as integer (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)
+//' @return \code{swe_get_planet_name} returns objectname as string
+//' @rdname Section3
+//' @export
+// [[Rcpp::export(swe_get_planet_name)]]
+std::string get_planet_name(int ipl) { 
+  std::array<char, 41> objectname{'\0'};
+  swe_get_planet_name(ipl,&objectname[0]);
+  return std::string(&objectname[0]);
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+// Section 4: Fixed stars functions
+// Compute information of star (UT)
+// internal function that is called in Section4.R
+// [[Rcpp::export]]
+Rcpp::List fixstar2_ut(Rcpp::CharacterVector starname, Rcpp::NumericVector jd_ut, int iflag) {
+  if (jd_ut.length() != starname.length())
+    Rcpp::stop("The number of stars in 'starname' and the number of dates in 'jd_ut' must be identical!");
+
+  Rcpp::IntegerVector rc_(starname.length());
+  Rcpp::CharacterVector serr_(starname.length());
+  Rcpp::NumericMatrix xx_(starname.length(), 6);
+
+  for (int i = 0; i < starname.length(); ++i) {
+    std::array<double, 6> xx{0.0};
+    std::array<char, 256> serr{'\0'};
+    std::string starname_(starname(i));
+    starname_.resize(41);
+    rc_(i) = swe_fixstar2_ut(&starname_[0], jd_ut(i), iflag, xx.begin(), serr.begin());
+    Rcpp::NumericVector tmp(xx.begin(), xx.end());
+    xx_(i, Rcpp::_) = tmp;
+    serr_(i) = std::string(serr.begin());
+    starname(i) = starname_;
+  }
+
+  // remove dim attribute to return a vector
+  if (starname.length() == 1)
+    xx_.attr("dim") = R_NilValue;
+
+  return Rcpp::List::create(Rcpp::Named("return") = rc_,
+                            Rcpp::Named("starname") = starname,
+                            Rcpp::Named("xx") = xx_,
+                            Rcpp::Named("serr") = serr_);
+}
+
+
+// Compute information of star (ET)
+// internal function that is called in Section4.R
+// [[Rcpp::export]]
+Rcpp::List fixstar2(Rcpp::CharacterVector starname, Rcpp::NumericVector jd_et, int iflag) {
+  if (jd_et.length() != starname.length())
+    Rcpp::stop("The number of stars in 'starname' and the number of dates in 'jd_et' must be identical!");
+
+  Rcpp::IntegerVector rc_(starname.length());
+  Rcpp::CharacterVector serr_(starname.length());
+  Rcpp::NumericMatrix xx_(starname.length(), 6);
+
+  for (int i = 0; i < starname.length(); ++i) {
+    std::array<double, 6> xx{0.0};
+    std::array<char, 256> serr{'\0'};
+    std::string starname_(starname(i));
+    starname_.resize(41);
+    rc_(i) = swe_fixstar2(&starname_[0], jd_et(i), iflag, xx.begin(), serr.begin());
+    Rcpp::NumericVector tmp(xx.begin(), xx.end());
+    xx_(i, Rcpp::_) = tmp;
+    serr_(i) = std::string(serr.begin());
+    starname(i) = starname_;
+  }
+
+  // remove dim attribute to return a vector
+  if (starname.length() == 1)
+    xx_.attr("dim") = R_NilValue;
+
+  return Rcpp::List::create(Rcpp::Named("return") = rc_,
+                            Rcpp::Named("starname") = starname,
+                            Rcpp::Named("xx") = xx_,
+                            Rcpp::Named("serr") = serr_);
+}
+
+//' @return \code{swe_fixstar2_mag} returns a list with named entries: \code{return} status flag as integer,
+//'         \code{starname} updated star name as string, \code{mag} magnitude of star as double, and \code{serr} for error message as string.
+//' @name Section4
+//' @rdname Section4
+//' @export
+// [[Rcpp::export(swe_fixstar2_mag)]]
+Rcpp::List fixstar2_mag(Rcpp::CharacterVector starname) {
+  Rcpp::IntegerVector rc_(starname.length());
+  Rcpp::CharacterVector serr_(starname.length());
+  Rcpp::NumericVector mag_(starname.length());
+
+  for (int i = 0; i < starname.length(); ++i) {
+    double mag;
+    std::array<char, 256> serr{'\0'};
+    std::string starname_(starname(i));
+    starname_.resize(41);
+    rc_(i) = swe_fixstar2_mag(&starname_[0], &mag, serr.begin());
+    mag_(i) = mag;
+    serr_(i) = std::string(serr.begin());
+    starname(i) = starname_;
+  }
+
+  return Rcpp::List::create(Rcpp::Named("return") = rc_,
+                            Rcpp::Named("starname") = starname,
+                            Rcpp::Named("mag") = mag_,
+                            Rcpp::Named("serr") = serr_);
+}
+
+//////////////////////////////////////////////////////////////////////////
 //' @title Section 6: Eclipses, Risings, Settings, Meridian Transits, Planetary Phenomena
 //' @name Section6
 //' @description Functions for: determining eclipse and occultation calculations, computing the times of rising, setting and 
@@ -399,3 +643,203 @@ Rcpp::List heliacal_angle(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericV
 // swe_lun_occult_when_glob( tjd...) finds the next occultation of a given body globally.
 // swe_lun_occult_where() computes the geographic location of an occultation for a given tjd. 
 
+
+//////////////////////////////////////////////////////////////////////////
+//' @title Section 7: Date and time conversion functions
+//' @name Section7
+//' @description Functions related to calendar and time conversions.
+//' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244873}
+//' @details
+//' \describe{
+//'   \item{swe_julday()}{Convert calendar dates to the astronomical time scale which measures time in Julian day number.}
+//'   \item{swe_date_conversion()}{Convert calendar dates to the astronomical time scale which measures time in Julian day 
+//'   number and checks if the calendar date is legal.}
+//'   \item{swe_revjul()}{Compute year, month, day and hour from a Julian day number.}
+//' }
+//' @examples
+//' data(SE)
+//' swe_julday(2000,1,1,12,SE$GREG_CAL)
+//' swe_date_conversion(2000,1,1,12,"g")
+//' swe_revjul(2452500,SE$GREG_CAL)
+//' @param year  Astronomical year as integer
+//' @param month  Month as integer
+//' @param day  Day as integer
+//' @param hour  Hour as double
+//' @param gregflag  Calendar type as integer (SE$JUL_CAL=0 or SE$GREG_CAL=1)
+//' @rdname Section7
+//' @export
+// [[Rcpp::export(swe_julday)]]
+double julday(int year, int month, int day, double hour, int gregflag) { 
+    double i;
+    i = swe_julday(year, month, day, hour, gregflag);
+  return i;
+}
+
+//' @param cal  Calendar type "g"[regorian] or "j"[ulian] as char
+//' @return \code{swe_date_conversion} returns a list with named entries: \code{return} status flag as integer,
+//'      \code{jd} Julian day number as double
+//' @rdname Section7
+//' @export
+// [[Rcpp::export(swe_date_conversion)]]
+Rcpp::List date_conversion(int year, int month, int day, double hour, char cal) { 
+  double jd;
+  int i = swe_date_conversion(year, month, day, hour, cal, &jd);
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("jd") = jd);
+}
+
+//' @param jd  Julian day number as double
+//' @return \code{swe_revjul} returns a list with named entries: \code{year} year as integer,
+//'      \code{month} month as interger, \code{day} day as integer and \code{hour} hour as double.
+//' @rdname Section7
+//' @export
+// [[Rcpp::export(swe_revjul)]]
+Rcpp::List revjul(double jd, int gregflag ) { 
+  int year;
+  int month;
+  int day;
+  double hour;
+  swe_revjul(jd, gregflag, &year, &month, &day, &hour);
+  return Rcpp::List::create(Rcpp::Named("year") = year,
+                            Rcpp::Named("month") = month,
+                            Rcpp::Named("day") = day,
+                            Rcpp::Named("hour") = hour);
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+//' @title Section 8: Delta T-related functions
+//' @name Section8
+//' @description FUnctions rleated to DeltaT and tidal acceleration
+//' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244878}
+//' @param ephe_flag  ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4) (section 2.3.2)
+//' @details 
+//' \describe{
+//' \item{swe_deltat_ex()}{Determine DeltaT from Julian day number for a specific ephemeris.}
+//' }
+//' @param jd_ut  Julian day number (UT) as numeric vector (day)
+//' @param t_acc Tidal acceleration as double (arcsec/century^2)
+//' @param delta_t DeltaT (day)
+//' @examples
+//' data(SE)
+//' swe_deltat_ex(1234.567, SE$FLG_MOSEPH)
+//' swe_deltat(1234.567)
+//' swe_set_tid_acc(1.23)
+//' swe_get_tid_acc()
+//' swe_set_delta_t_userdef(0.23)
+//' @return \code{swe_deltat_ex} returns a list with named entries: \code{deltat} for DeltaT as double (day)
+//'          and \code{serr} for error message as string.
+//' @rdname Section8
+//' @export
+// [[Rcpp::export(swe_deltat_ex)]]
+Rcpp::List deltat_ex(Rcpp::NumericVector jd_ut, int ephe_flag) {
+  Rcpp::NumericVector deltat(jd_ut.length());
+  Rcpp::CharacterVector serr_(jd_ut.length());
+  
+  for (int i = 0; i < jd_ut.length(); ++i) {
+    std::array<char, 256> serr{'\0'};
+    deltat(i) = swe_deltat_ex(jd_ut(i), ephe_flag, &serr[0]);
+    serr_(i) = std::string(&serr[0]);
+  }
+  return Rcpp::List::create(Rcpp::Named("deltat") = deltat,
+                            Rcpp::Named("serr") = serr_);
+}
+
+//' @details 
+//' \describe{
+//' \item{swe_deltat()}{Determine DeltaT from Julian day number for a used ephemeris.
+//' This function is only safe if:
+//'   \itemize{
+//'   \item your software consistently uses the same ephemeris flag
+//'   \item if software consistently uses the same ephemeris files (with SE$FLG_SWIEPH and SE$FLG_MOSEPH)
+//'   \item if swe_set_ephe_path() is first called (with SE$FLG_SWIEPH) and swe_set_jpl_file() (with SE$FLG_JPLEPH)
+//' }
+//' }
+//' }
+//' @return \code{swe_deltat} returns the DeltaT as double (day)
+//' @rdname Section8
+//' @export
+// [[Rcpp::export(swe_deltat)]]
+Rcpp::NumericVector deltat(Rcpp::NumericVector jd_ut) {
+  Rcpp::NumericVector result(jd_ut.size());
+  std::transform(jd_ut.begin(), jd_ut.end(), result.begin(), swe_deltat);
+  return result;
+}
+
+//' @details 
+//' \describe{
+//' \item{swe_set_tid_acc()}{Set the tidal acceleration.}
+//' }
+//' @rdname Section8
+//' @export
+// [[Rcpp::export(swe_set_tid_acc)]]
+void set_tid_acc(double t_acc) {
+  swe_set_tid_acc(t_acc);
+}
+
+//' @details 
+//' \describe{
+//' \item{swe_get_tid_acc()}{Get the present configured tidal acceleration.}
+//' }
+//' @return \code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
+//' @rdname Section8
+//' @export
+// [[Rcpp::export(swe_get_tid_acc)]]
+double get_tid_acc() {
+  return swe_get_tid_acc();
+}
+
+//' @details 
+//' \describe{
+//' \item{swe_set_delta_t_userdef()}{Allows the user to set a fixed DeltaT value that will 
+//' be returned by swe_deltat() or swe_deltat_ex().}
+//' }
+//' @rdname Section8
+//' @export
+// [[Rcpp::export(swe_set_delta_t_userdef)]]
+void set_delta_t_userdef (double delta_t) {
+  swe_set_delta_t_userdef (delta_t);
+}
+
+//////////////////////////////////////////////////////////////////////////
+//' @title Section 9: The function for calculating topocentric planet position
+//' @name Section9
+//' @description Function for topocentric planet positions
+//' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244884}
+//' @details
+//' \describe{
+//'   \item{we_set_topo{}}{Set the topocentric location of the observer.}
+//' }
+//' @param longitude  Geographic longitude as double (deg)
+//' @param lat  Geographic latitude as double (deg)
+//' @param height  Height as double (m)
+//' @examples
+//' swe_set_topo(0,50,10)
+//' @rdname Section9
+//' @export
+// [[Rcpp::export(swe_set_topo)]]
+void set_topo(double longitude, double lat, double height) {
+  swe_set_topo(longitude, lat, height);
+}
+
+//////////////////////////////////////////////////////////////////////////
+//' @title Section 16.7: Other functions that may be useful
+//' @name Section16
+//' @description Useful functions
+//' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244906}
+//' @details
+//' \describe{
+//'   \item{swe_day_of_week()}{Determine day of week from Julian day number.}
+//' }
+//' @param jd  Julian day number as numeric vector (day)
+//' @return \code{swe_day_of_week} returns the day of week as integer vector (0 Monday .. 6 Sunday)
+//' @examples
+//' swe_day_of_week(1234.567)
+//' @rdname Section16
+//' @export
+// [[Rcpp::export(swe_day_of_week)]]
+Rcpp::IntegerVector day_of_week(Rcpp::NumericVector jd) {
+  Rcpp::IntegerVector result(jd.size());
+  std::transform(jd.begin(), jd.end(), result.begin(), swe_day_of_week);
+  return result;
+}

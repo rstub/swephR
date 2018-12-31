@@ -50,24 +50,6 @@ swe_version <- function() {
     .Call(`_swephR_version`)
 }
 
-#' @title Section 16.7: Other functions that may be useful
-#' @name Section16
-#' @description Useful functions
-#' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244906}
-#' @details
-#' \describe{
-#'   \item{swe_day_of_week()}{Determine day of week from Julian day number.}
-#' }
-#' @param jd  Julian day number as numeric vector (day)
-#' @return \code{swe_day_of_week} returns the day of week as integer vector (0 Monday .. 6 Sunday)
-#' @examples
-#' swe_day_of_week(1234.567)
-#' @rdname Section16
-#' @export
-swe_day_of_week <- function(jd) {
-    .Call(`_swephR_day_of_week`, jd)
-}
-
 calc_ut <- function(jd_ut, ipl, iflag) {
     .Call(`_swephR_calc_ut`, jd_ut, ipl, iflag)
 }
@@ -509,5 +491,23 @@ swe_set_delta_t_userdef <- function(delta_t) {
 #' @export
 swe_set_topo <- function(longitude, lat, height) {
     invisible(.Call(`_swephR_set_topo`, longitude, lat, height))
+}
+
+#' @title Section 16.7: Other functions that may be useful
+#' @name Section16
+#' @description Useful functions
+#' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244906}
+#' @details
+#' \describe{
+#'   \item{swe_day_of_week()}{Determine day of week from Julian day number.}
+#' }
+#' @param jd  Julian day number as numeric vector (day)
+#' @return \code{swe_day_of_week} returns the day of week as integer vector (0 Monday .. 6 Sunday)
+#' @examples
+#' swe_day_of_week(1234.567)
+#' @rdname Section16
+#' @export
+swe_day_of_week <- function(jd) {
+    .Call(`_swephR_day_of_week`, jd)
 }
 

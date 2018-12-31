@@ -44,17 +44,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// day_of_week
-Rcpp::IntegerVector day_of_week(Rcpp::NumericVector jd);
-RcppExport SEXP _swephR_day_of_week(SEXP jdSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type jd(jdSEXP);
-    rcpp_result_gen = Rcpp::wrap(day_of_week(jd));
-    return rcpp_result_gen;
-END_RCPP
-}
 // calc_ut
 Rcpp::List calc_ut(Rcpp::NumericVector jd_ut, Rcpp::IntegerVector ipl, int iflag);
 RcppExport SEXP _swephR_calc_ut(SEXP jd_utSEXP, SEXP iplSEXP, SEXP iflagSEXP) {
@@ -473,13 +462,23 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// day_of_week
+Rcpp::IntegerVector day_of_week(Rcpp::NumericVector jd);
+RcppExport SEXP _swephR_day_of_week(SEXP jdSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type jd(jdSEXP);
+    rcpp_result_gen = Rcpp::wrap(day_of_week(jd));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_swephR_set_ephe_path", (DL_FUNC) &_swephR_set_ephe_path, 1},
     {"_swephR_close", (DL_FUNC) &_swephR_close, 0},
     {"_swephR_set_jpl_file", (DL_FUNC) &_swephR_set_jpl_file, 1},
     {"_swephR_version", (DL_FUNC) &_swephR_version, 0},
-    {"_swephR_day_of_week", (DL_FUNC) &_swephR_day_of_week, 1},
     {"_swephR_calc_ut", (DL_FUNC) &_swephR_calc_ut, 3},
     {"_swephR_calc", (DL_FUNC) &_swephR_calc, 3},
     {"_swephR_get_planet_name", (DL_FUNC) &_swephR_get_planet_name, 1},
@@ -510,6 +509,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_get_tid_acc", (DL_FUNC) &_swephR_get_tid_acc, 0},
     {"_swephR_set_delta_t_userdef", (DL_FUNC) &_swephR_set_delta_t_userdef, 1},
     {"_swephR_set_topo", (DL_FUNC) &_swephR_set_topo, 3},
+    {"_swephR_day_of_week", (DL_FUNC) &_swephR_day_of_week, 1},
     {NULL, NULL, 0}
 };
 
