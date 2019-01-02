@@ -1,0 +1,11 @@
+--- src/libswe/swephlib.c	2019-01-01 22:34:04.706871671 +0100
++++ external/src/swephlib.c	2018-12-21 00:11:47.044930488 +0100
+@@ -3622,7 +3622,7 @@
+ 
+ static void init_crc32(void)
+ {
+-  uint32 i, j;
++  int32 i, j;
+   uint32 c;
+   for (i = 0; i < 256; ++i) {
+     for (c = i << 24, j = 8; j > 0; --j)
