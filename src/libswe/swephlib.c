@@ -3622,7 +3622,7 @@ uint32 swi_crc32(unsigned char *buf, int len)
 
 static void init_crc32(void)
 {
-  int32 i, j;
+  uint32 i, j;
   uint32 c;
   for (i = 0; i < 256; ++i) {
     for (c = i << 24, j = 8; j > 0; --j)
