@@ -8,7 +8,7 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 errors | 0 warnings | 2 notes
 
 * This is a new release.
 * Possibly mis-spelled words in DESCRIPTION are false positives:
@@ -19,5 +19,7 @@
   Moshier (11:67)
   repos (14:41)
   swephRdata (14:28)
-* Suggested package swephRdata is available in the 'additional repository'
+* The remark to use angle brackets on the URL is a false positive since the
+  URL is part of literal R code.
+* Suggested package swephRdata is only available in the 'additional repository'
   https://rstub.github.io/drat
