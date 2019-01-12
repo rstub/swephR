@@ -7362,9 +7362,8 @@ static int32 swi_fixstar_load_record(char *star, char *srecord, char *sname, cha
     *sp = '\0';	/* cut off after first field to get star name, ',' -> '\0' */
     size_t length = strnlen(s, SE_MAX_STNAME);
     memcpy(fstar, s, length);
-    fstar[length] = '\0';
+    fstar[length] = '\0';  /* force termination */
     *sp = ',';  /* add comma again */
-    fstar[SE_MAX_STNAME] = '\0';	/* force termination */
     // remove white spaces from star name
     while ((sp = strchr(fstar, ' ')) != NULL)
       swi_strcpy(sp, sp+1);
