@@ -1,3 +1,11 @@
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Explicitly included the copyright holder of the included
+  Swiss Ephemeris code without giving any names in places that might
+  be interpreted as "adverticement" as request by the upstream authors
+  in their license statement, c.f. LICENSE.
+
 ## Test environments
 
 * local Linux install: R 3.5.2

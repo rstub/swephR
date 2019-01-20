@@ -30,7 +30,7 @@ Useful links:
 Authors:
 \itemize{
   \item Victor Reijs
-  \item Authors of the Swiss Ephemeris
+  \item Authors and copyright holder of the Swiss Ephemeris (see LICENSE for details) [copyright holder]
 }
 
 }
