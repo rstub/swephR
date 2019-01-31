@@ -3583,7 +3583,7 @@ int swi_cutstr(char *s, char *cutlist, char *cpos[], int nmax)
 char *swi_right_trim(char *s)
 {
   char *sp = s + strlen(s) - 1;
-  while (isspace((int)(unsigned char) *sp) && sp >= s)
+  while (sp >= s && isspace((int)(unsigned char) *sp))
     *sp-- = '\0';
   return s;
 }
