@@ -6,6 +6,10 @@ This is a resubmission. In this version I have:
 * Renamed ERR to SE_ERR.
 * Fixed a buffer underrun issue.
 
+These changes were triggered by ERRORs reported by CRAN servers. Since I am
+not able to reproduce the corresponding ERRORs, the fixes are made on a
+"best effort" basis.
+
 ## Test environments
 
 * local Linux install: R 3.5.2
