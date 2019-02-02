@@ -10,3 +10,6 @@ inst/doc
 *.dll
 *~
 swephR.Rproj
+src/Makevars
+config.log
+config.status
