@@ -338,5 +338,13 @@ typedef int32    centisec;       /* centiseconds used for angles and times */
 #include <string.h>
 #include <ctype.h>
 
+/* autoconf based strnlen as used by gnuplot, c.f. https://github.com/gdraheim/zziplib/issues/25 */
+#ifndef HAVE_STRNLEN
+static size_t strnlen(const char *str, size_t n) {
+    const char * stop = (char *)memchr(str, '\0', n);
+    return stop ? stop - str : n;
+}
+#endif
+
 #endif /* _SWEODEF_INCLUDED */
 #endif /* _OURDEF_INCLUDED */

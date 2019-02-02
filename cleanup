@@ -1,1 +1,4 @@
-rm -rf src/*.o src/*.so src/*.a src/*/*.o src/*.dll
+#!/bin/sh
+
+rm -f config.log config.status src/Makevars \
+	src/*.o src/*.so src/*.a src/*/*.o src/*.dll
