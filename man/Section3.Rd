@@ -11,14 +11,14 @@ swe_get_planet_name(ipl)
 \item{ipl}{Body/planet as integer (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)}
 }
 \value{
-\code{swe_get_planet_name} returns objectname as string
+\code{swe_get_planet_name} returns the object's name as string
 }
 \description{
 Find a planetary or asteroid name.
 }
 \details{
 \describe{
-  \item{swe_get_planet_name()}{Convert object number into ubject name.}
+  \item{swe_get_planet_name()}{Convert object number into object name.}
 }
 }
 \examples{

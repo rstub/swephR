@@ -24,7 +24,7 @@ swe_revjul(jd, gregflag)
 
 \item{gregflag}{Calendar type as integer (SE$JUL_CAL=0 or SE$GREG_CAL=1)}
 
-\item{cal}{Calendar type "g"[regorian] or "j"[ulian] as char}
+\item{cal}{Calendar type "g" [Gregorian] or "j" [Julian] as char}
 
 \item{jd}{Julian day number as double}
 }
@@ -33,7 +33,7 @@ swe_revjul(jd, gregflag)
      \code{jd} Julian day number as double
 
 \code{swe_revjul} returns a list with named entries: \code{year} year as integer,
-     \code{month} month as interger, \code{day} day as integer and \code{hour} hour as double.
+     \code{month} month as integer, \code{day} day as integer and \code{hour} hour as double.
 }
 \description{
 Functions related to calendar and time conversions.
