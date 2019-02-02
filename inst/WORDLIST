@@ -1,6 +1,8 @@
+AppAlt
+AppVeyor
 arcsec
 arcus
-azimut
+azi
 calc
 CALC
 coord
@@ -22,12 +24,15 @@ Heliacal
 HOR
 hPa
 https
+initializations
 io
+ITRANSIT
 jpl
 JPL
 JPLEPH
 MOSEPH
 Moshier
+MTRANSIT
 NONCENTRAL
 occultation
 pheno
@@ -38,6 +43,9 @@ sefstars
 swe
 swephRdata
 SWIEPH
+TopoAlt
 topocentric
 ut
+vis
+visionis
 Vmag

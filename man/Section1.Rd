@@ -25,7 +25,7 @@ swe_version()
 \code{swe_version} returns Swiss Ephemeris software version as string
 }
 \description{
-Several initialisation functions
+Several initialization functions
 }
 \details{
 \describe{

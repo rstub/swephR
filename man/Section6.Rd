@@ -115,29 +115,29 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 
 \item{AziS}{Sun's azimuth as double (deg)}
 
-\item{AziM}{Moon's azimut as double (deg)}
+\item{AziM}{Moon's azimuth as double (deg)}
 
 \item{AltM}{Moon's altitude as double (deg)}
 }
 \value{
 \code{swe_sol_eclipse_when_loc} returns a list with named entries: 
      \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector, 
-     \code{attr} pheneomena during eclipse as numeric vector and \code{serr} error message as string
+     \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
 
 \code{swe_lun_eclipse_when_loc} returns a list with named entries:
      \code{return} status flag as integer, \code{tret} for eclipse timing moments,
-     \code{attr} pheneomena during eclipse and \code{serr} error warning as string
+     \code{attr} phenomena during eclipse and \code{serr} error warning as string
 
 \code{swe_lun_eclipse_how} returns a list with named entries:
      \code{return} status flag as integer,
-     \code{attr} pheneomena during eclipse as numeric vector and \code{serr} error message as string
+     \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
 
 \code{swe_lun_eclipse_when} returns a list with named entries:
      \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector
      and \code{serr} error warning as string
 
 \code{swe_rise_trans_true_hor} returns a list with named entries: \code{return} status flag as integer,
-     \code{tret} for azi/alt info as numeric vector and \code{serr} error message as string
+     \code{tret} for azimuth/altitude info as numeric vector and \code{serr} error message as string
 
 \code{swe_pheno_ut} returns a list with named entries:
      \code{return} status fag as integer, \code{attr} for phenomenon information as numeric vector
@@ -151,10 +151,10 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
      \code{xaz} for azi/alt info as numeric vector.
 
 \code{swe_azalt_rev} returns a list with named entries:
-     \code{xaz} for celestial info a snumeric vector.
+     \code{xaz} for celestial info as numeric vector.
 
 \code{swe_refrac_extended} returns a list with named entries: \code{return} status flag as integer,
-     \code{dret} refraction results as nemeric vector (TopoAlt, AppAlt, refraction)
+     \code{dret} refraction results as numeric vector (TopoAlt, AppAlt, refraction)
 
 \code{swe_heliacal_ut} returns a list with named entries \code{return} status flag as integer,
         \code{dret} heliacal results as numeric vector, and \code{serr} error message as string.
@@ -174,7 +174,7 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 \description{
 Functions for: determining eclipse and occultation calculations, computing the times of rising, setting and 
 meridian transits for all planets, asteroids, the moon and the fixed stars; computing phase, phase angle, elongation, 
-apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids; and determing 
+apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids; and determining
 heliacal phenomenon after a given start date
 }
 \details{
@@ -231,7 +231,7 @@ It works between geographic latitudes 60 South and 60 North.}
 \describe{
 \item{swe_vis_limit_mag()}{Determine the limiting visual magnitude in dark skies. If the visual magnitude mag of an object is known 
 for a given date (e. g. from a call of function swe_pheno_ut(), and if magnitude is smaller than the value returned 
-by swe_vis_limt_mag(), then it is visible.}
+by swe_vis_limit_mag(), then it is visible.}
 }
 
 \describe{

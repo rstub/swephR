@@ -37,7 +37,7 @@ swe_set_delta_t_userdef(delta_t)
 \code{swe_get_tid_acc} returns the tidal acceleration as double (arcsec/century^2)
 }
 \description{
-FUnctions rleated to DeltaT and tidal acceleration
+Functions related to DeltaT and tidal acceleration
 }
 \details{
 \describe{
