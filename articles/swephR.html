@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">swephR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
       </span>
     </div>
 
@@ -74,7 +74,7 @@
       <h1>swephR</h1>
                         <h4 class="author">Victor Reijs</h4>
             
-            <h4 class="date">2019-02-02</h4>
+            <h4 class="date">2019-02-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rstub/swephR/blob/master/vignettes/swephR.Rmd"><code>vignettes/swephR.Rmd</code></a></small>
       <div class="hidden name"><code>swephR.Rmd</code></div>
@@ -93,7 +93,7 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(swephR)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(SE)</a></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
-<li>Optionaly set the directory path of the ephemeris files (the format of the path depends on your OS), e.g.:</li>
+<li>Optionally set the directory path of the ephemeris files (the format of the path depends on your OS), e.g.:</li>
 </ol>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="../reference/Section1.html">swe_set_ephe_path</a></span>(<span class="st">"C:</span><span class="ch">\\</span><span class="st">sweph</span><span class="ch">\\</span><span class="st">ephe"</span>)</a></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
@@ -166,7 +166,7 @@
 <a class="sourceLine" id="cb6-23" data-line-number="23"><span class="co">#&gt; $serr</span></a>
 <a class="sourceLine" id="cb6-24" data-line-number="24"><span class="co">#&gt; [1] ""</span></a></code></pre></div>
 <ol start="6" style="list-style-type: decimal">
-<li>Here is a miniature sample program described in Chapter 0 of the programma’s manual of SE (<a href="http://www.astro.com/swisseph/swephprg.htm#_Toc505244830">see also</a>):</li>
+<li>Here is a miniature sample program described in Chapter 0 of the programmer’s manual of SE (<a href="http://www.astro.com/swisseph/swephprg.htm#_Toc505244830">see also</a>):</li>
 </ol>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">digits=</span><span class="dv">6</span>)</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2">  <span class="kw"><a href="../reference/Section1.html">swe_set_ephe_path</a></span>(<span class="ot">NULL</span>)</a>
