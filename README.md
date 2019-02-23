@@ -1,16 +1,126 @@
-  [![Travis build status](https://travis-ci.org/rstub/swephR.svg?branch=master)](https://travis-ci.org/rstub/swephR)
-  [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/rstub/swephR?branch=master&svg=true)](https://ci.appveyor.com/project/rstub/swephR)
-  [![Coverage status](https://codecov.io/gh/rstub/swephR/branch/master/graph/badge.svg)](https://codecov.io/github/rstub/swephR?branch=master)
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+[![Travis build
+status](https://travis-ci.org/rstub/swephR.svg?branch=master)](https://travis-ci.org/rstub/swephR)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/rstub/swephR?branch=master&svg=true)](https://ci.appveyor.com/project/rstub/swephR)
+[![Coverage
+status](https://codecov.io/gh/rstub/swephR/branch/master/graph/badge.svg)](https://codecov.io/github/rstub/swephR?branch=master)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/swephR)](https://cran.r-project.org/package=swephR)
+[![Downloads](http://cranlogs.r-pkg.org/badges/swephR?color=brightgreen)](http://www.r-pkg.org/pkg/swephR)
 
 # swephR
-High Precision Swiss Ephemeris
 
-# Installation
+The goal of swephR is to provide an R interface to the [Swiss
+Ephemeris](https://www.astro.com/swisseph/). The Swiss Ephemeris is a
+high precision ephemeris based upon the DE431 ephemerides from NASA’s
+JPL. It covers the time range 13201 BC to AD 17191.
 
-At the moment `swephR` is not on CRAN, but you can install the current version via [drat](https://cran.r-project.org/package=drat):
+## Installation
+
+You can install the released version of swephR from
+[CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("swephR")
+```
+
+Intermediate releases can also be obtained via
+[drat](https://cran.r-project.org/package=drat):
 
 ``` r
 if (!requireNamespace("drat", quietly = TRUE)) install.packages("drat")
 drat::addRepo("rstub")
 install.packages("swephR")
 ```
+
+This package uses the semi-analytic theory by Steve Moshier. For faster
+and more accurate calculations, the compressed Swiss Ephemeris data is
+available in the ‘swephRdata’ package. To access this data package,
+run
+
+``` r
+install.packages("swephRdata", repos = "https://rstub.github.io/drat/", type = "source")
+```
+
+The size of the ‘swephRdata’ package is approximately 115 MB. The user
+can also use the original JPL DE431 data.
+
+## Example
+
+To compute the position of celestial body or star with SE (Swiss
+Ephemeris), you do the following steps:
+
+``` r
+library(swephR)
+data(SE)
+swe_version()
+#> [1] "2.07.01"
+```
+
+For a specific date, compute the Julian day number (in below example:
+J2000.0, 1 January 2000 at 12:00 UT):
+
+``` r
+year <- 2000
+month <- 1
+day <- 1
+hour <- 12
+jdut <- swe_julday(year, month, day, hour, SE$GREG_CAL)
+jdut
+#> [1] 2451545
+```
+
+Compute (using Moshier ephemeris) the positions (longitude, latitude,
+distance, longitude speed and latitude speed) of a planet or other
+celestial bodies (in below example: the Sun):
+
+``` r
+ipl <- SE$SUN
+iflag <- SE$FLG_MOSEPH + SE$FLG_SPEED
+result <- swe_calc_ut(jdut, ipl, iflag)
+result
+#> $return
+#> [1] 260
+#> 
+#> $xx
+#> [1]  2.803689e+02  2.323265e-04  9.833276e-01  1.019432e+00 -8.922491e-07
+#> [6] -7.339409e-06
+#> 
+#> $serr
+#> [1] ""
+```
+
+or a fixed star (in below example: Sirius):
+
+``` r
+starname = "sirius"
+result <- swe_fixstar2_ut(starname, jdut, iflag)
+result
+#> $return
+#> [1] 260
+#> 
+#> $starname
+#> [1] "Sirius,alCMa"
+#> 
+#> $xx
+#> [1]  1.040853e+02 -3.960507e+01  5.439322e+05  4.329362e-05 -6.562173e-05
+#> [6] -4.049452e-03
+#> 
+#> $serr
+#> [1] ""
+```
+
+The current R interface is modled after the C interface. It is therefore
+often helpful to consult the [general
+documentation](https://www.astro.com/swisseph/swisseph.htm) and
+[programmer’s
+documentation](https://www.astro.com/swisseph/swephprg.htm) for the
+Swiss Ephemeris.
+
+## Feedback
+
+All feedback (bug reports, security issues, feature requests, …) should
+be provided as [issues](https://github.com/rstub/swephR/issues).
