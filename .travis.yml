@@ -1,35 +1,28 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
+dist: xenial
 cache: packages
-os:
-  - linux
-  - osx
-r:
-  - 3.4
-  - release
-  - devel
+
 matrix:
-  exclude:
+  include:
   - r: 3.4
-    os: osx
+  - r: release
+    r_packages:
+    - covr
+    - pkgdown
+    after_success:
+    - Rscript -e "covr::codecov()"
+    deploy:
+      provider: script
+      script: Rscript -e 'pkgdown::deploy_site_github()'
+      skip_cleanup: true
   - r: devel
+  - r: release
     os: osx
 notifications:
   email:
     on_success: change
     on_failure: change
-r_packages:
-  - covr
-  - testthat
 r_github_packages:
   - rstub/swephRdata
-after_success:
-  - test "$TRAVIS_R_VERSION_STRING" = "release" && Rscript -e 'covr::codecov()' || true
-before_deploy: Rscript -e 'remotes::install_cran("pkgdown")'
-deploy:
-  provider: script
-  script: test "$TRAVIS_R_VERSION_STRING" = "release" && Rscript -e 'pkgdown::deploy_site_github()' || true
-  skip_cleanup: true
-  on:
-    condition: $TRAVIS_OS_NAME = linux
