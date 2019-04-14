@@ -10,6 +10,7 @@ status](https://codecov.io/gh/rstub/swephR/branch/master/graph/badge.svg)](https
 [![CRAN
 status](https://www.r-pkg.org/badges/version/swephR)](https://cran.r-project.org/package=swephR)
 [![Downloads](http://cranlogs.r-pkg.org/badges/swephR?color=brightgreen)](http://www.r-pkg.org/pkg/swephR)
+[![Dependencies](https://tinyverse.netlify.com/badge/swephR)](https://cran.r-project.org/package=swephR)
 
 # swephR
 
