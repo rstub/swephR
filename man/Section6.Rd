@@ -57,7 +57,7 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 \arguments{
 \item{jd_start}{Julian day number as double (UT)}
 
-\item{ephe_flag}{Ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4)}
+\item{ephe_flag}{Ephemeris flag as integer (\code{SE$FLG_JPLEPH=1}, \code{SE$FLG_SWIEPH=2} or \code{SE$FLG_MOSEPH=4})}
 
 \item{geopos}{position as numeric vector (longitude, latitude, height)}
 
@@ -65,13 +65,14 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 
 \item{jd_ut}{UT Julian day number as double (day)}
 
-\item{ifltype}{eclipse type as integer (e.g.: SE$ECL_CENTRAL=1,SE$ECL_NONCENTRAL=2,SE$ECL_TOTAL=4,SE$ECL_ANNULAR=8,SE$ECL_PARTIAL=16,SE$ECL_ANNULAR_TOTAL=32)}
+\item{ifltype}{eclipse type as integer (\code{SE$ECL_CENTRAL=1}, \code{SE$ECL_NONCENTRAL=2},
+\code{SE$ECL_TOTAL=4}, \code{SE$ECL_ANNULAR=8}, \code{SE$ECL_PARTIAL=16} or \code{SE$ECL_ANNULAR_TOTAL=32})}
 
-\item{ipl}{Body/planet as integer (SE$SUN=0, SE$MOON=1,  ... SE$PLUTO=9)}
+\item{ipl}{Body/planet as integer (\code{SE$SUN=0}, \code{SE$MOON=1}, ... \code{SE$PLUTO=9})}
 
-\item{starname}{Star name as string ("" for no star)}
+\item{starname}{Star name as string (\code{""} for no star)}
 
-\item{rsmi}{Event flag as integer (e.g.: SE$CALC_RISE=1, SE$CALC_SET=2,SE$CALC_MTRANSIT=4,SE$CALC_ITRANSIT=8)}
+\item{rsmi}{Event flag as integer (e.g.: \code{SE$CALC_RISE=1}, \code{SE$CALC_SET=2}, \code{SE$CALC_MTRANSIT=4}, \code{SE$CALC_ITRANSIT=8})}
 
 \item{atpress}{Atmospheric pressure as double (hPa)}
 
@@ -81,7 +82,7 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 
 \item{jd_et}{ET Julian day number as double (day)}
 
-\item{coord_flag}{Coordinate flag as integer (reference system (SE$ECL2HOR=0 or SE$EQU2HOR=1))}
+\item{coord_flag}{Coordinate flag as integer (reference system (\code{SE$ECL2HOR=0} or \code{SE$EQU2HOR=1}))}
 
 \item{xin}{Position of body as numeric vector (either ecliptical or equatorial coordinates, depending on coord_flag)}
 
@@ -91,7 +92,7 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 
 \item{lapse_rate}{lapse rate as double (K/m)}
 
-\item{calc_flag}{Calculation flag as integer (refraction direction (SE$TRUE_TO_APP=0 or SE$APP_TO_TRUE=1))}
+\item{calc_flag}{Calculation flag as integer (refraction direction (\code{SE$TRUE_TO_APP=0} or \code{SE$APP_TO_TRUE=1}))}
 
 \item{jd_utstart}{UT Julian day number as double (day)}
 
