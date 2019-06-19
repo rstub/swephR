@@ -178,7 +178,7 @@ void revjul (double jd, int gregflag,
   into the Julian day number tgmt, which is an Astrodienst relative
   Julian date.
   The function checks that the input is a legal combination
-  of dates; for illegal dates like 32 January 1993 it returns ERR
+  of dates; for illegal dates like 32 January 1993 it returns SE_ERR
   but still converts the date correctly, i.e. like 1 Feb 1993.
   The function is usually used to convert user input of birth data
   into the Julian day number. Illegal dates should be notified to the user.
@@ -192,7 +192,7 @@ void revjul (double jd, int gregflag,
   etc.
   Many users of Astro programs do not know about this difference.
 
-  Return: OK or ERR (for illegal date)
+  Return: OK or SE_ERR (for illegal date)
 *********************************************************/
 
 int date_conversion (int d ,
@@ -217,6 +217,6 @@ int date_conversion (int d ,
   if (rmon == m && rday == d && ryear == y) {
     return OK;
   } else {
-    return ERR;
+    return SE_ERR;
   }
 }	/* end date_conversion */
