@@ -69,7 +69,7 @@ test_that("deltat can be retrieved with SEFLG_SWIEPH for vector", {
 })
 
 test_that("version works", {
-    expect_equal(swe_version(), "2.07.01")
+    expect_equal(swe_version(), "2.08")
 })
 
 
