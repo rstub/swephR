@@ -41,7 +41,7 @@ test_that("Moon near present day with SEFLG_MOSEPH (UT)", {
   expect_true(is.list(result))
   expect_equal(result$return, 4)
   expect_equal(result$serr, "")
-  expect_equal(result$xx, c(2.09403930530591e+02, 5.23876557411171e+00, 2.54767266268742e-03, 0, 0, 0))
+  expect_equal(result$xx, c(2.09403920927940e+02, 5.23876547658629e+00, 2.54767263292795e-03, 0, 0, 0))
   swe_close()
 })
 
