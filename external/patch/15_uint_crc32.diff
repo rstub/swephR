@@ -1,0 +1,19 @@
+commit 816bb437fafe8e0dc327cd9546aadc33dd308693
+Author: Ralf Stubner <ralf.stubner@gmail.com>
+Date:   Thu Jun 20 00:04:50 2019 +0200
+
+    Bring back incorrectly deleted 09_uint_crc32.diff
+
+diff --git a/src/libswe/swephlib.c b/src/libswe/swephlib.c
+index 2380222..91d0456 100644
+--- a/src/libswe/swephlib.c
++++ b/src/libswe/swephlib.c
+@@ -3632,7 +3632,7 @@ uint32 swi_crc32(unsigned char *buf, int len)
+ 
+ static void init_crc32(void)
+ {
+-  int32 i, j;
++  uint32 i, j;
+   uint32 c;
+   for (i = 0; i < 256; ++i) {
+     for (c = i << 24, j = 8; j > 0; --j)
