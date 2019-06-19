@@ -248,7 +248,7 @@
 #define NCTIES         6.0     /* number of centuries per eph. file */
 
 #define OK (0)
-#define ERR (-1)
+#define SE_ERR (-1)
 #define NOT_AVAILABLE (-2)
 #define BEYOND_EPH_LIMITS (-3)
 
