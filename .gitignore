@@ -1,4 +1,4 @@
-doc
+^doc$
 Meta
 inst/doc
 .Rhistory
@@ -10,6 +10,3 @@ inst/doc
 *.dll
 *~
 swephR.Rproj
-src/Makevars
-config.log
-config.status
