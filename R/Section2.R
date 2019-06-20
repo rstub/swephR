@@ -1,10 +1,10 @@
 ##' @title Section 2: Computing positions
 ##' @name Section2
 ##' @description Computing positions of planets, asteroids, lunar nodes and apogees using Swiss Ephemeris.
-##' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244837}
-##' @details 
+##' @seealso Section 2 in \url{http://www.astro.com/swisseph/swephprg.htm}
+##' @details
 ##' \describe{
-##'   \item{swe_calc_ut()}{It compute positions using UT.} 
+##'   \item{swe_calc_ut()}{It compute positions using UT.}
 ##'   \item{swe_calc()}{It compute positions using ET.}
 ##' }
 ##' @param jd_ut  UT Julian day number as double (day)
@@ -22,10 +22,10 @@
 swe_calc_ut <- function(jd_ut, ipl, iflag) {
   if (length(jd_ut) == 1 && length(ipl) > 1)
     jd_ut = rep_len(jd_ut, length(ipl))
-  
+
   if (length(jd_ut) > 1 && length(ipl) == 1)
     ipl = rep_len(ipl, length(jd_ut))
-  
+
   calc_ut(jd_ut, ipl, iflag)
 }
 
@@ -36,10 +36,9 @@ swe_calc_ut <- function(jd_ut, ipl, iflag) {
 swe_calc <- function(jd_et, ipl, iflag) {
   if (length(jd_et) == 1 && length(ipl) > 1)
     jd_et = rep_len(jd_et, length(ipl))
-  
+
   if (length(jd_et) > 1 && length(ipl) == 1)
     ipl = rep_len(ipl, length(jd_et))
-  
+
   calc(jd_et, ipl, iflag)
 }
-

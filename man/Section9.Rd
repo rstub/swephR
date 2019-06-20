@@ -26,5 +26,5 @@ Function for topocentric planet positions
 swe_set_topo(0,50,10)
 }
 \seealso{
-\url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244884}
+Section 9 in \url{http://www.astro.com/swisseph/swephprg.htm}
 }

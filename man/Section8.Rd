@@ -64,7 +64,7 @@ This function is only safe if:
 }
 
 \describe{
-\item{swe_set_delta_t_userdef()}{Allows the user to set a fixed DeltaT value that will 
+\item{swe_set_delta_t_userdef()}{Allows the user to set a fixed DeltaT value that will
 be returned by swe_deltat() or swe_deltat_ex().}
 }
 }
@@ -77,5 +77,5 @@ swe_get_tid_acc()
 swe_set_delta_t_userdef(0.23)
 }
 \seealso{
-\url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244878}
+Section 8 in \url{http://www.astro.com/swisseph/swephprg.htm}
 }

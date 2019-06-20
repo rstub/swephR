@@ -26,5 +26,5 @@ data(SE)
 swe_get_planet_name(SE$MOON)
 }
 \seealso{
-\url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244843}
+Section 3 in \url{http://www.astro.com/swisseph/swephprg.htm}
 }

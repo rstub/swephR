@@ -37,7 +37,7 @@ Several initialization functions
        Swiss Ephemeris may work, but the results may be not 100\% consistent.}
   \item{swe_close()}{At the end of your computations this function releases most
        resources (open files and allocated memory) used by Swiss Ephemeris.}
-  \item{swe_set_jpl_file()}{Set name of JPL ephemeris file.} 
+  \item{swe_set_jpl_file()}{Set name of JPL ephemeris file.}
   \item{swe_version()}{The function provides the version number of the Swiss Ephemeris software.}
 }
 }
@@ -48,5 +48,5 @@ swe_set_jpl_file("de431.eph")
 swe_version()
 }
 \seealso{
-\url{http://www.astro.com/swisseph/swephprg.htm?lang=g#_Toc505244831}
+Section 1 in \url{http://www.astro.com/swisseph/swephprg.htm}
 }

@@ -41,7 +41,7 @@ Functions related to calendar and time conversions.
 \details{
 \describe{
   \item{swe_julday()}{Convert calendar dates to the astronomical time scale which measures time in Julian day number.}
-  \item{swe_date_conversion()}{Convert calendar dates to the astronomical time scale which measures time in Julian day 
+  \item{swe_date_conversion()}{Convert calendar dates to the astronomical time scale which measures time in Julian day
   number and checks if the calendar date is legal.}
   \item{swe_revjul()}{Compute year, month, day and hour from a Julian day number.}
 }
@@ -53,5 +53,5 @@ swe_date_conversion(2000,1,1,12,"g")
 swe_revjul(2452500,SE$GREG_CAL)
 }
 \seealso{
-\url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244873}
+Section 7 in \url{http://www.astro.com/swisseph/swephprg.htm}
 }
