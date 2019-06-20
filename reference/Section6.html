@@ -32,8 +32,8 @@
 
 <meta property="og:title" content="Section 6: Eclipses, Risings, Settings, Meridian Transits, Planetary Phenomena — Section6" />
 
-<meta property="og:description" content="Functions for: determining eclipse and occultation calculations, computing the times of rising, setting and 
-meridian transits for all planets, asteroids, the moon and the fixed stars; computing phase, phase angle, elongation, 
+<meta property="og:description" content="Functions for: determining eclipse and occultation calculations, computing the times of rising, setting and
+meridian transits for all planets, asteroids, the moon and the fixed stars; computing phase, phase angle, elongation,
 apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids; and determining
 heliacal phenomenon after a given start date" />
 <meta name="twitter:card" content="summary" />
@@ -115,8 +115,8 @@ heliacal phenomenon after a given start date" />
 
     <div class="ref-description">
     
-    <p>Functions for: determining eclipse and occultation calculations, computing the times of rising, setting and 
-meridian transits for all planets, asteroids, the moon and the fixed stars; computing phase, phase angle, elongation, 
+    <p>Functions for: determining eclipse and occultation calculations, computing the times of rising, setting and
+meridian transits for all planets, asteroids, the moon and the fixed stars; computing phase, phase angle, elongation,
 apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids; and determining
 heliacal phenomenon after a given start date</p>
     
@@ -293,8 +293,8 @@ heliacal phenomenon after a given start date</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>swe_sol_eclipse_when_loc</code> returns a list with named entries: 
-     <code>return</code> status flag as integer, <code>tret</code> for eclipse timing moments as numeric vector, 
+    <p><code>swe_sol_eclipse_when_loc</code> returns a list with named entries:
+     <code>return</code> status flag as integer, <code>tret</code> for eclipse timing moments as numeric vector,
      <code>attr</code> phenomena during eclipse as numeric vector and <code>serr</code> error message as string</p>
 <p><code>swe_lun_eclipse_when_loc</code> returns a list with named entries:
      <code>return</code> status flag as integer, <code>tret</code> for eclipse timing moments,
@@ -358,28 +358,28 @@ heliacal phenomenon after a given start date</p>
 </dl>
     <dl class='dl-horizontal'>
 <dt>swe_azalt_rev()</dt><dd><p>compute either ecliptical or equatorial coordinates from azimuth and true altitude.
-If only an apparent altitude is given, the true altitude has to be computed first with 
+If only an apparent altitude is given, the true altitude has to be computed first with
 e.g. the function swe_refrac_extended().</p></dd>
 </dl>
     <dl class='dl-horizontal'>
-<dt>swe_refrac_extended()</dt><dd><p>Calculate either the topocentric altitude from the apparent altitude 
+<dt>swe_refrac_extended()</dt><dd><p>Calculate either the topocentric altitude from the apparent altitude
 or the apparent altitude from the topocentric altitude.
-It allows correct calculation of refraction for heights above sea &gt; 0, 
+It allows correct calculation of refraction for heights above sea &gt; 0,
 where the ideal horizon and planets that are visible may have a negative altitude.</p></dd>
 </dl>
     <dl class='dl-horizontal'>
-<dt>swe_heliacal_ut()</dt><dd><p>Compute the Julian day of the next heliacal phenomenon after a given UT start date. 
+<dt>swe_heliacal_ut()</dt><dd><p>Compute the Julian day of the next heliacal phenomenon after a given UT start date.
 It works between geographic latitudes 60 South and 60 North.</p></dd>
 </dl>
     <dl class='dl-horizontal'>
-<dt>swe_vis_limit_mag()</dt><dd><p>Determine the limiting visual magnitude in dark skies. If the visual magnitude mag of an object is known 
-for a given date (e. g. from a call of function swe_pheno_ut(), and if magnitude is smaller than the value returned 
+<dt>swe_vis_limit_mag()</dt><dd><p>Determine the limiting visual magnitude in dark skies. If the visual magnitude mag of an object is known
+for a given date (e. g. from a call of function swe_pheno_ut(), and if magnitude is smaller than the value returned
 by swe_vis_limit_mag(), then it is visible.</p></dd>
 </dl>
     <dl class='dl-horizontal'>
-<dt>swe_heliacal_pheno_ut()</dt><dd><p>Provide data that are relevant for the calculation of heliacal risings and settings. 
-This function does not provide data of heliacal risings and settings itself, just some 
-additional data mostly used for test purposes. To calculate heliacal risings and settings, 
+<dt>swe_heliacal_pheno_ut()</dt><dd><p>Provide data that are relevant for the calculation of heliacal risings and settings.
+This function does not provide data of heliacal risings and settings itself, just some
+additional data mostly used for test purposes. To calculate heliacal risings and settings,
 use the function swe_heliacal_ut().</p></dd>
 </dl>
     <dl class='dl-horizontal'>
@@ -391,7 +391,7 @@ use the function swe_heliacal_ut().</p></dd>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='http://www.astro.com/swisseph/swephprg.htm#_Toc505244853'>http://www.astro.com/swisseph/swephprg.htm#_Toc505244853</a></p></div>
+    <div class='dont-index'><p>Section 6 in <a href='http://www.astro.com/swisseph/swephprg.htm'>http://www.astro.com/swisseph/swephprg.htm</a></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -404,7 +404,7 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt; [10]       0
 #&gt; 
 #&gt; $attr
-#&gt;  [1]   0.5456566   0.9610719   0.4366684 140.8277406 240.5812752  -0.3454225
+#&gt;  [1]   0.5456566   0.9610719   0.4366684 140.8277404 240.5812752  -0.3454225
 #&gt;  [7]   0.1904528   0.2314444   0.5456566  43.0000000  11.0000000   0.0000000
 #&gt; [13]   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000
 #&gt; [19]   0.0000000   0.0000000
