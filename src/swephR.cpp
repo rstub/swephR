@@ -1,4 +1,4 @@
-// Copyright 2018 Ralf Stubner and Victor Reijs
+// Copyright 2018, 2019 Ralf Stubner and Victor Reijs
 //
 // This file is part of swephR.
 //
