@@ -21,13 +21,13 @@ swe_get_ayanamsa_name(sid_mode)
 
 \item{t0}{Reference date as double (day)}
 
+\item{ayan_t0}{The initial latitude value of the ayanamsha as double (deg)}
+
 \item{jd_ut}{UT Julian day number as double (day)}
 
 \item{iflag}{Computation flag as integer, many options possible (section 2.3,1)}
 
 \item{jd_et}{ET Julian day number as double (day)}
-
-\item{ayan_to}{The initial latitude value of the ayanamsha as double (deg)}
 }
 \value{
 \code{swe_get_ayanamsa_ex_ut} returns a list with named entries: \code{return} status flag as integer,
