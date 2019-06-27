@@ -77,3 +77,19 @@ test_that("Converting calander date into Julian day number", {
   result <- swe_julday(2000,1,1,12,1)
   expect_equal(result, 2451545)
 })
+
+test_that("Determing anaymasa using UT:", {
+  result <- swe_get_ayanamsa_ex_ut(2458346.82639,4)
+  expect_true(is.list(result))
+  expect_equal(result$return, 68)
+  expect_equal(result$serr, "")
+  expect_equal(result$daya, 24.99688, tolerance = .000001)
+})
+
+test_that("Determing anaymasa using ET:", {
+  result <- swe_get_ayanamsa_ex(2458346.82639,4)
+  expect_true(is.list(result))
+  expect_equal(result$return, 68)
+  expect_equal(result$serr, "")
+  expect_equal(result$daya, 24.99688, tolerance = .000001)
+})
