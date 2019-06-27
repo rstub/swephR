@@ -78,7 +78,7 @@ test_that("Converting calander date into Julian day number", {
   expect_equal(result, 2451545)
 })
 
-test_that("Determing anaymasa using UT:", {
+test_that("Determing ayanamsa using UT:", {
   result <- swe_get_ayanamsa_ex_ut(2458346.82639,4)
   expect_true(is.list(result))
   expect_equal(result$return, 68)
@@ -86,7 +86,7 @@ test_that("Determing anaymasa using UT:", {
   expect_equal(result$daya, 24.99688, tolerance = .000001)
 })
 
-test_that("Determing anaymasa using ET:", {
+test_that("Determing ayanamsa using ET:", {
   result <- swe_get_ayanamsa_ex(2458346.82639,4)
   expect_true(is.list(result))
   expect_equal(result$return, 68)

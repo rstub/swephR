@@ -867,7 +867,6 @@ Rcpp::List get_ayanamsa_ex_ut(double jd_ut, int iflag){
                             Rcpp::Named("serr") = std::string(serr.begin()));
 }
 
-
 //' @details
 //' \describe{
 //' \item{swe_get_ayanamsa_ex()}{It computes ayanamsa using ET.}
