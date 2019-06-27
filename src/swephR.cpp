@@ -831,11 +831,11 @@ void set_topo(double longitude, double lat, double height) {
 //' @param jd_et  ET Julian day number as double (day)
 //' @param jd_ut  UT Julian day number as double (day)
 //' @param iflag Computation flag as integer, many options possible (section 2.3,1)
+//' @param sid_mode  Siderial mode as integer
 //' @details
 //' \describe{
 //' \item{swe_set_sid_mode()}{Set the mode for sidereal computations.}
 //' }
-//' @param sid_mode  Siderial mode as integer
 //' @param t0  Reference date as double (day)
 //' @param ayan_to  The initial latitude value of the ayanamsha as double (deg)
 //' @examples
@@ -885,6 +885,24 @@ Rcpp::List get_ayanamsa_ex(double jd_et, int iflag){
   return Rcpp::List::create(Rcpp::Named("return") = i,
                             Rcpp::Named("daya") = daya,
                             Rcpp::Named("serr") = std::string(serr.begin()));
+}
+
+//' @details
+//' \describe{
+//' \item{swe_get_ayanamsa_name()}{Get the mode name for sidereal computations.}
+//' }
+//' @param sidmode Sidereal mode as integer 
+//' @return \code{swe_get_ayanamsa_name} returns name of Ayaname method as string
+//' @examples
+//' swe_get_ayanamsa_name(SE$SIDM_FAGAN_BRADLEY)
+//' @rdname Section10
+//' @export
+// [[Rcpp::export(swe_get_ayanamsa_name)]]
+std::string get_ayanamsa_name(int sidmode) {
+  std::array<char, 256> sidstring{{'\0'}};
+  //next statement does not work...
+//  sidstring = swe_get_ayanamsa_name(sidmode);
+  return std::string(&sidstring[0]);
 }
 
 
