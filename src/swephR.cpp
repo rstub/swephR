@@ -830,8 +830,7 @@ void set_topo(double longitude, double lat, double height) {
 //' @seealso Section 10 in \url{http://www.astro.com/swisseph/swephprg.htm}
 //' @param jd_et  ET Julian day number as double (day)
 //' @param jd_ut  UT Julian day number as double (day)
-//' @param iflag ???
-//' @param daya ???
+//' @param iflag Computation flag as integer, many options possible (section 2.3)
 //' @details
 //' \describe{
 //' \item{swe_set_sid_mode()}{Set the mode for sidereal computations.}
@@ -850,10 +849,12 @@ void set_sid_mode(int sid_mode, double t0, double ayan_t0) {
 
 //' @details
 //' \describe{
-//' \item{swe_get_ayanamsa_ex_ut()}{Compute ayanamsa UT.}
+//' \item{swe_get_ayanamsa_ex_ut()}{It computes ayanamsa using UT.}
 //' }
 //' @return \code{swe_get_ayanamsa_ex_ut} returns a list with named entries: \code{return} status flag as integer,
 //'      \code{daya} ayanamsa value as double and \code{serr} error message as string
+//' @examples
+//' swe_get_ayanamsa_ex_ut(2458346.82639,SE$FLG_MOSEPH)
 //' @rdname Section10
 //' @export
 // [[Rcpp::export(swe_get_ayanamsa_ex_ut)]]
@@ -869,10 +870,12 @@ Rcpp::List get_ayanamsa_ex_ut(double jd_ut, int iflag){
 
 //' @details
 //' \describe{
-//' \item{swe_get_ayanamsa_ex()}{Compute ayanamsa ET.}
+//' \item{swe_get_ayanamsa_ex()}{It computes ayanamsa using ET.}
 //' }
 //' @return \code{swe_get_ayanamsa_ex} returns a list with named entries: \code{return} status flag as integer,
 //'      \code{daya} ayanamsa value as double and \code{serr} error message as string
+//' @examples
+//' swe_get_ayanamsa_ex(2458346.82639,SE$FLG_MOSEPH)
 //' @rdname Section10
 //' @export
 // [[Rcpp::export(swe_get_ayanamsa_ex)]]
