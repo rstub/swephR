@@ -10,7 +10,7 @@
 ##' @param jd_ut  UT Julian day number as double (day)
 ##' @param jd_et  ET Julian day number as double (day)
 ##' @param ipl  Body/planet as integer (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)
-##' @param iflag Computation flag as integer, many options possible (section 2.3)
+##' @param iflag Computation flag as integer, many options possible (section 2.3.1)
 ##' @return \code{swe_calc_ut} returns a list with named entries: \code{return} status flag as integer,
 ##'        \code{xx} information on planet position, and \code{serr} error message as string.
 ##' @examples

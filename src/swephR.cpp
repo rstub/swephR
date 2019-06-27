@@ -830,7 +830,7 @@ void set_topo(double longitude, double lat, double height) {
 //' @seealso Section 10 in \url{http://www.astro.com/swisseph/swephprg.htm}
 //' @param jd_et  ET Julian day number as double (day)
 //' @param jd_ut  UT Julian day number as double (day)
-//' @param iflag Computation flag as integer, many options possible (section 2.3)
+//' @param iflag Computation flag as integer, many options possible (section 2.3,1)
 //' @details
 //' \describe{
 //' \item{swe_set_sid_mode()}{Set the mode for sidereal computations.}
