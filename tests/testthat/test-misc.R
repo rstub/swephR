@@ -93,3 +93,7 @@ test_that("Determing ayanamsa using ET:", {
   expect_equal(result$serr, "")
   expect_equal(result$daya, 24.99688, tolerance = .000001)
 })
+
+test_that("Retrieving ayanammsa name", {
+  expect_equal(swe_get_ayanamsa_name(12), "Babylonian/Huber")
+}) 
