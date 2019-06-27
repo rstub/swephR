@@ -898,10 +898,7 @@ Rcpp::List get_ayanamsa_ex(double jd_et, int iflag){
 //' @export
 // [[Rcpp::export(swe_get_ayanamsa_name)]]
 std::string get_ayanamsa_name(int sid_mode) {
-  std::array<char, 256> sidstring{{'\0'}};
-  //next statement does not work...
-//  sidstring = swe_get_ayanamsa_name(sid_mode);
-  return std::string(&sidstring[0]);
+  return std::string(swe_get_ayanamsa_name(sid_mode));
 }
 
 
