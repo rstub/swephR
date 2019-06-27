@@ -809,7 +809,7 @@ void set_delta_t_userdef (double delta_t) {
 //' @seealso Section 9 in \url{http://www.astro.com/swisseph/swephprg.htm}
 //' @details
 //' \describe{
-//'   \item{we_set_topo{}}{Set the topocentric location of the observer.}
+//' \item{swe_set_topo()}{Set the topocentric location of the observer.}
 //' }
 //' @param longitude  Geographic longitude as double (deg)
 //' @param lat  Geographic latitude as double (deg)
@@ -822,6 +822,69 @@ void set_delta_t_userdef (double delta_t) {
 void set_topo(double longitude, double lat, double height) {
   swe_set_topo(longitude, lat, height);
 }
+
+//////////////////////////////////////////////////////////////////////////
+//' @title Section 10: Sidereal mode functions
+//' @name Section10
+//' @description Functions to support the determination of siderial information
+//' @seealso Section 10 in \url{http://www.astro.com/swisseph/swephprg.htm}
+//' @param jd_et  ET Julian day number as double (day)
+//' @param jd_ut  UT Julian day number as double (day)
+//' @param iflag ???
+//' @param daya ???
+//' @details
+//' \describe{
+//' \item{swe_set_sid_mode()}{Set the mode for sidereal computations.}
+//' }
+//' @param sid_mode  Siderial mode as integer
+//' @param t0  Reference date as double (day)
+//' @param ayan_to  The initial latitude value of the ayanamsha as double (deg)
+//' @examples
+//' swe_set_sid_mode(SE$SIDM_FAGAN_BRADLEY,0,0)
+//' @rdname Section10
+//' @export
+// [[Rcpp::export(swe_set_sid_mode)]]
+void set_sid_mode(int sid_mode, double t0, double ayan_t0) {
+  swe_set_sid_mode(sid_mode, t0, ayan_t0);
+}
+
+//' @details
+//' \describe{
+//' \item{swe_get_ayanamsa_ex_ut()}{Compute ayanamsa UT.}
+//' }
+//' @return \code{swe_get_ayanamsa_ex_ut} returns a list with named entries: \code{return} status flag as integer,
+//'      \code{daya} ayanamsa value as double and \code{serr} error message as string
+//' @rdname Section10
+//' @export
+// [[Rcpp::export(swe_get_ayanamsa_ex_ut)]]
+Rcpp::List get_ayanamsa_ex_ut(double jd_ut, int iflag){
+  double daya;
+  std::array<char, 256> serr{'\0'};
+  int i = swe_get_ayanamsa_ex_ut(jd_ut, iflag,  &daya, serr.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("daya") = daya,
+                            Rcpp::Named("serr") = std::string(serr.begin()));
+}
+
+
+//' @details
+//' \describe{
+//' \item{swe_get_ayanamsa_ex()}{Compute ayanamsa ET.}
+//' }
+//' @return \code{swe_get_ayanamsa_ex} returns a list with named entries: \code{return} status flag as integer,
+//'      \code{daya} ayanamsa value as double and \code{serr} error message as string
+//' @rdname Section10
+//' @export
+// [[Rcpp::export(swe_get_ayanamsa_ex)]]
+Rcpp::List get_ayanamsa_ex(double jd_et, int iflag){
+  double daya;
+  std::array<char, 256> serr{'\0'};
+  int i = swe_get_ayanamsa_ex(jd_et, iflag,  &daya, serr.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("daya") = daya,
+                            Rcpp::Named("serr") = std::string(serr.begin()));
+}
+
 
 //////////////////////////////////////////////////////////////////////////
 //' @title Section 16.7: Other functions that may be useful
