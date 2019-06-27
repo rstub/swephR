@@ -15,7 +15,7 @@ swe_calc(jd_et, ipl, iflag)
 
 \item{ipl}{Body/planet as integer (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)}
 
-\item{iflag}{Computation flag as integer, many options possible (section 2.3)}
+\item{iflag}{Computation flag as integer, many options possible (section 2.3.1)}
 
 \item{jd_et}{ET Julian day number as double (day)}
 }

@@ -6,9 +6,9 @@
 \alias{swephR-package}
 \title{swephR: High Precision Swiss Ephemeris}
 \description{
-The Swiss Ephemeris is a high precision ephemeris based upon the
-    DE431 ephemerides from NASA's JPL. It covers the time range 13201 BC to
-    AD 17191. This package uses the semi-analytic theory by Steve Moshier.
+The Swiss Ephemeris (version 2.08) is a high precision ephemeris based upon the
+    DE431 ephemerides from NASA's JPL. It covers the time range 13201 BCE to
+    17191 CE. This package uses the semi-analytic theory by Steve Moshier.
     For faster and more accurate calculations, the compressed Swiss Ephemeris
     data is available in the 'swephRdata' package. To access this data package,
     run 'install.packages("swephRdata", repos = "https://rstub.github.io/drat/",

@@ -500,13 +500,12 @@ swe_set_topo <- function(longitude, lat, height) {
 #' @seealso Section 10 in \url{http://www.astro.com/swisseph/swephprg.htm}
 #' @param jd_et  ET Julian day number as double (day)
 #' @param jd_ut  UT Julian day number as double (day)
-#' @param iflag ???
-#' @param daya ???
+#' @param iflag Computation flag as integer, many options possible (section 2.3,1)
+#' @param sid_mode  Siderial mode as integer
 #' @details
 #' \describe{
 #' \item{swe_set_sid_mode()}{Set the mode for sidereal computations.}
 #' }
-#' @param sid_mode  Siderial mode as integer
 #' @param t0  Reference date as double (day)
 #' @param ayan_to  The initial latitude value of the ayanamsha as double (deg)
 #' @examples
@@ -519,10 +518,12 @@ swe_set_sid_mode <- function(sid_mode, t0, ayan_t0) {
 
 #' @details
 #' \describe{
-#' \item{swe_get_ayanamsa_ex_ut()}{Compute ayanamsa UT.}
+#' \item{swe_get_ayanamsa_ex_ut()}{It computes ayanamsa using UT.}
 #' }
 #' @return \code{swe_get_ayanamsa_ex_ut} returns a list with named entries: \code{return} status flag as integer,
 #'      \code{daya} ayanamsa value as double and \code{serr} error message as string
+#' @examples
+#' swe_get_ayanamsa_ex_ut(2458346.82639,SE$FLG_MOSEPH)
 #' @rdname Section10
 #' @export
 swe_get_ayanamsa_ex_ut <- function(jd_ut, iflag) {
@@ -531,14 +532,29 @@ swe_get_ayanamsa_ex_ut <- function(jd_ut, iflag) {
 
 #' @details
 #' \describe{
-#' \item{swe_get_ayanamsa_ex()}{Compute ayanamsa ET.}
+#' \item{swe_get_ayanamsa_ex()}{It computes ayanamsa using ET.}
 #' }
 #' @return \code{swe_get_ayanamsa_ex} returns a list with named entries: \code{return} status flag as integer,
 #'      \code{daya} ayanamsa value as double and \code{serr} error message as string
+#' @examples
+#' swe_get_ayanamsa_ex(2458346.82639,SE$FLG_MOSEPH)
 #' @rdname Section10
 #' @export
 swe_get_ayanamsa_ex <- function(jd_et, iflag) {
     .Call(`_swephR_get_ayanamsa_ex`, jd_et, iflag)
+}
+
+#' @details
+#' \describe{
+#' \item{swe_get_ayanamsa_name()}{Get the mode name for sidereal computations.}
+#' }
+#' @return \code{swe_get_ayanamsa_name} returns name of ayanamse method as string
+#' @examples
+#' swe_get_ayanamsa_name(SE$SIDM_FAGAN_BRADLEY)
+#' @rdname Section10
+#' @export
+swe_get_ayanamsa_name <- function(sid_mode) {
+    .Call(`_swephR_get_ayanamsa_name`, sid_mode)
 }
 
 #' @title Section 16.7: Other functions that may be useful
