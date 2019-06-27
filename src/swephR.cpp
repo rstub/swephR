@@ -891,17 +891,16 @@ Rcpp::List get_ayanamsa_ex(double jd_et, int iflag){
 //' \describe{
 //' \item{swe_get_ayanamsa_name()}{Get the mode name for sidereal computations.}
 //' }
-//' @param sidmode Sidereal mode as integer 
-//' @return \code{swe_get_ayanamsa_name} returns name of Ayaname method as string
+//' @return \code{swe_get_ayanamsa_name} returns name of ayanamse method as string
 //' @examples
 //' swe_get_ayanamsa_name(SE$SIDM_FAGAN_BRADLEY)
 //' @rdname Section10
 //' @export
 // [[Rcpp::export(swe_get_ayanamsa_name)]]
-std::string get_ayanamsa_name(int sidmode) {
+std::string get_ayanamsa_name(int sid_mode) {
   std::array<char, 256> sidstring{{'\0'}};
   //next statement does not work...
-//  sidstring = swe_get_ayanamsa_name(sidmode);
+//  sidstring = swe_get_ayanamsa_name(sid_mode);
   return std::string(&sidstring[0]);
 }
 
