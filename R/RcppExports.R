@@ -507,7 +507,7 @@ swe_set_topo <- function(longitude, lat, height) {
 #' \item{swe_set_sid_mode()}{Set the mode for sidereal computations.}
 #' }
 #' @param t0  Reference date as double (day)
-#' @param ayan_to  The initial latitude value of the ayanamsha as double (deg)
+#' @param ayan_t0  The initial latitude value of the ayanamsha as double (deg)
 #' @examples
 #' swe_set_sid_mode(SE$SIDM_FAGAN_BRADLEY,0,0)
 #' @rdname Section10
