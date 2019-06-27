@@ -19,7 +19,7 @@ Function for topocentric planet positions
 }
 \details{
 \describe{
-  \item{we_set_topo{}}{Set the topocentric location of the observer.}
+\item{swe_set_topo()}{Set the topocentric location of the observer.}
 }
 }
 \examples{
