@@ -828,8 +828,6 @@ void set_topo(double longitude, double lat, double height) {
 //' @name Section10
 //' @description Functions to support the determination of siderial information
 //' @seealso Section 10 in \url{http://www.astro.com/swisseph/swephprg.htm}
-//' @param jd_et  ET Julian day number as double (day)
-//' @param jd_ut  UT Julian day number as double (day)
 //' @param iflag Computation flag as integer, many options possible (section 2.3,1)
 //' @param sid_mode  Siderial mode as integer
 //' @details
@@ -865,6 +863,7 @@ std::string get_ayanamsa_name(int sid_mode) {
 //' \describe{
 //' \item{swe_get_ayanamsa_ex_ut()}{It computes ayanamsa using UT.}
 //' }
+//' @param jd_ut  UT Julian day number as double (day)
 //' @return \code{swe_get_ayanamsa_ex_ut} returns a list with named entries: \code{return} status flag as integer,
 //'      \code{daya} ayanamsa value as double and \code{serr} error message as string
 //' @examples
@@ -885,6 +884,7 @@ Rcpp::List get_ayanamsa_ex_ut(double jd_ut, int iflag){
 //' \describe{
 //' \item{swe_get_ayanamsa_ex()}{It computes ayanamsa using ET.}
 //' }
+//' @param jd_et  ET Julian day number as double (day)
 //' @return \code{swe_get_ayanamsa_ex} returns a list with named entries: \code{return} status flag as integer,
 //'      \code{daya} ayanamsa value as double and \code{serr} error message as string
 //' @examples
