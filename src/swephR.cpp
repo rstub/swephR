@@ -849,6 +849,20 @@ void set_sid_mode(int sid_mode, double t0, double ayan_t0) {
 
 //' @details
 //' \describe{
+//' \item{swe_get_ayanamsa_name()}{Get the mode name for sidereal computations.}
+//' }
+//' @return \code{swe_get_ayanamsa_name} returns name of ayanamse method as string
+//' @examples
+//' swe_get_ayanamsa_name(SE$SIDM_FAGAN_BRADLEY)
+//' @rdname Section10
+//' @export
+// [[Rcpp::export(swe_get_ayanamsa_name)]]
+std::string get_ayanamsa_name(int sid_mode) {
+  return std::string(swe_get_ayanamsa_name(sid_mode));
+}
+
+//' @details
+//' \describe{
 //' \item{swe_get_ayanamsa_ex_ut()}{It computes ayanamsa using UT.}
 //' }
 //' @return \code{swe_get_ayanamsa_ex_ut} returns a list with named entries: \code{return} status flag as integer,
@@ -886,21 +900,6 @@ Rcpp::List get_ayanamsa_ex(double jd_et, int iflag){
                             Rcpp::Named("daya") = daya,
                             Rcpp::Named("serr") = std::string(serr.begin()));
 }
-
-//' @details
-//' \describe{
-//' \item{swe_get_ayanamsa_name()}{Get the mode name for sidereal computations.}
-//' }
-//' @return \code{swe_get_ayanamsa_name} returns name of ayanamse method as string
-//' @examples
-//' swe_get_ayanamsa_name(SE$SIDM_FAGAN_BRADLEY)
-//' @rdname Section10
-//' @export
-// [[Rcpp::export(swe_get_ayanamsa_name)]]
-std::string get_ayanamsa_name(int sid_mode) {
-  return std::string(swe_get_ayanamsa_name(sid_mode));
-}
-
 
 //////////////////////////////////////////////////////////////////////////
 //' @title Section 16.7: Other functions that may be useful
