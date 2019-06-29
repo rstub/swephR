@@ -909,18 +909,18 @@ Rcpp::List get_ayanamsa_ex(double jd_et, int iflag){
 //' @seealso Section 13 in \url{http://www.astro.com/swisseph/swephprg.htm}
 //' @details
 //' \describe{
-//' \item{swe_houses_ex()}{Calcuate house cusps, ascendant and MC.}
+//' \item{swe_houses_ex()}{Calcuate house cusps, ascendant and Medium Coeli (MC).}
 //' }
 //' @param jd_et  ET Julian day number as double (day)
-//' @param cuspflag cusp flag as interger ()0 or SE$FLG_SIDEREAL or SE$FLG_RADIANS)
-//' @param geolat  geographic latitud as double (deg)
+//' @param cuspflag cusp flag as interger (0 or SE$FLG_SIDEREAL or SE$FLG_RADIANS)
+//' @param geolat  geographic latitude as double (deg)
 //' @param geolon  geographic longitude as double (deg)
-//' @param hsys  house method, one-letter case sensitive code as char
-//' //' @return \code{swe_houses_ex} returns a list with named entries: \code{return} status flag as integer,
+//' @param hsys  house method, one-letter as char
+//' @return \code{swe_houses_ex} returns a list with named entries: \code{return} status flag as integer,
 //'      \code{cusps} cusps values as double and \code{ascmc} ascendent and MCs as double.
 //' @examples
-//' swe_houses_ex(1234567, 0,53, 0, 'B')
-//' @rdname Section113
+//' swe_houses_ex(1234567, 0, 53, 0, 'B')
+//' @rdname Section13
 //' @export
 // [[Rcpp::export(swe_houses_ex)]]
 Rcpp::List houses_ex(double jd_ut, int cuspflag,double geolat, double geolon, char hsys){
@@ -935,17 +935,17 @@ Rcpp::List houses_ex(double jd_ut, int cuspflag,double geolat, double geolon, ch
 
 //' @details
 //' \describe{
-//' \item{swe_houses_armc()}{Calculate houses from an ARMC.}
+//' \item{swe_houses_armc()}{Calculate houses from the right ascension of the Medium Coeli (MC).}
 //' }
-//' @param armc  ??? as double (day)
-//' @param geolat  geographic latitud as double (deg)
+//' @param armc  right ascension of the MC as double (deg)
+//' @param geolat  geographic latitude as double (deg)
 //' @param eps  ecliptic obliquity as double (deg)
-//' @param hsys  house method, one-letter case sensitive code as char
-//' //' @return \code{swe_houses_armc} returns a list with named entries: \code{return} status flag as integer,
+//' @param hsys  house method, one-letter as char
+//' @return \code{swe_houses_armc} returns a list with named entries: \code{return} status flag as integer,
 //'      \code{cusps} cusps values as double and \code{ascmc} ascendent and MCs as double.
 //' @examples
-//' swe_houses_armc(1234567, 0,53, 0, 'B')
-//' @rdname Section113
+//' swe_houses_armc(12, 53, 23, 'B')
+//' @rdname Section13
 //' @export
 // [[Rcpp::export(swe_houses_armc)]]
 Rcpp::List houses_armc(double armc, double geolat, double eps, char hsys){
