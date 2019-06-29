@@ -498,8 +498,6 @@ swe_set_topo <- function(longitude, lat, height) {
 #' @name Section10
 #' @description Functions to support the determination of siderial information
 #' @seealso Section 10 in \url{http://www.astro.com/swisseph/swephprg.htm}
-#' @param jd_et  ET Julian day number as double (day)
-#' @param jd_ut  UT Julian day number as double (day)
 #' @param iflag Computation flag as integer, many options possible (section 2.3,1)
 #' @param sid_mode  Siderial mode as integer
 #' @details
@@ -509,7 +507,11 @@ swe_set_topo <- function(longitude, lat, height) {
 #' @param t0  Reference date as double (day)
 #' @param ayan_t0  The initial latitude value of the ayanamsha as double (deg)
 #' @examples
+#' data(SE)
 #' swe_set_sid_mode(SE$SIDM_FAGAN_BRADLEY,0,0)
+#' swe_get_ayanamsa_name(SE$SIDM_FAGAN_BRADLEY)
+#' swe_get_ayanamsa_ex_ut(2458346.82639,SE$FLG_MOSEPH)
+#' swe_get_ayanamsa_ex(2458346.82639,SE$FLG_MOSEPH)
 #' @rdname Section10
 #' @export
 swe_set_sid_mode <- function(sid_mode, t0, ayan_t0) {
@@ -518,12 +520,22 @@ swe_set_sid_mode <- function(sid_mode, t0, ayan_t0) {
 
 #' @details
 #' \describe{
+#' \item{swe_get_ayanamsa_name()}{Get the mode name for sidereal computations.}
+#' }
+#' @return \code{swe_get_ayanamsa_name} returns name of ayanamse method as string
+#' @rdname Section10
+#' @export
+swe_get_ayanamsa_name <- function(sid_mode) {
+    .Call(`_swephR_get_ayanamsa_name`, sid_mode)
+}
+
+#' @details
+#' \describe{
 #' \item{swe_get_ayanamsa_ex_ut()}{It computes ayanamsa using UT.}
 #' }
+#' @param jd_ut  UT Julian day number as double (day)
 #' @return \code{swe_get_ayanamsa_ex_ut} returns a list with named entries: \code{return} status flag as integer,
 #'      \code{daya} ayanamsa value as double and \code{serr} error message as string
-#' @examples
-#' swe_get_ayanamsa_ex_ut(2458346.82639,SE$FLG_MOSEPH)
 #' @rdname Section10
 #' @export
 swe_get_ayanamsa_ex_ut <- function(jd_ut, iflag) {
@@ -534,27 +546,106 @@ swe_get_ayanamsa_ex_ut <- function(jd_ut, iflag) {
 #' \describe{
 #' \item{swe_get_ayanamsa_ex()}{It computes ayanamsa using ET.}
 #' }
+#' @param jd_et  ET Julian day number as double (day)
 #' @return \code{swe_get_ayanamsa_ex} returns a list with named entries: \code{return} status flag as integer,
 #'      \code{daya} ayanamsa value as double and \code{serr} error message as string
-#' @examples
-#' swe_get_ayanamsa_ex(2458346.82639,SE$FLG_MOSEPH)
 #' @rdname Section10
 #' @export
 swe_get_ayanamsa_ex <- function(jd_et, iflag) {
     .Call(`_swephR_get_ayanamsa_ex`, jd_et, iflag)
 }
 
+#' @title Section 13: House cusp, ascendant and Medium Coeli calculations 
+#' @name Section13
+#' @description Calculate house cusp, ascendant and Medium Coeli calculations
+#' @seealso Section 13 in \url{http://www.astro.com/swisseph/swephprg.htm}
+#' @param geolat  geographic latitude as double (deg)
+#' @param geolon  geographic longitude as double (deg)
+#' @param hsys  house method, one-letter case sensitive as char
 #' @details
 #' \describe{
-#' \item{swe_get_ayanamsa_name()}{Get the mode name for sidereal computations.}
+#' \item{swe_houses_ex()}{Calculate house cusps, ascendant and Medium Coeli (MC).}
 #' }
-#' @return \code{swe_get_ayanamsa_name} returns name of ayanamse method as string
+#' @param jd_ut  UT Julian day number as double (day)
+#' @param cuspflag cusp flag as interger (0 or SE$FLG_SIDEREAL or SE$FLG_RADIANS)
+#' @return \code{swe_houses_ex} returns a list with named entries: \code{return} status flag as integer,
+#'      \code{cusps} cusps values as double and \code{ascmc} ascendent and MCs as double.
 #' @examples
-#' swe_get_ayanamsa_name(SE$SIDM_FAGAN_BRADLEY)
-#' @rdname Section10
+#' swe_houses_ex(1234567, 0, 53, 0, 'B')
+#' @rdname Section13
 #' @export
-swe_get_ayanamsa_name <- function(sid_mode) {
-    .Call(`_swephR_get_ayanamsa_name`, sid_mode)
+swe_houses_ex <- function(jd_ut, cuspflag, geolat, geolon, hsys) {
+    .Call(`_swephR_houses_ex`, jd_ut, cuspflag, geolat, geolon, hsys)
+}
+
+#' @details
+#' \describe{
+#' \item{swe_houses_armc()}{Calculate houses from the right ascension of the Medium Coeli (MC).}
+#' }
+#' @param armc  right ascension of the MC as double (deg)
+#' @param eps  ecliptic obliquity as double (deg)
+#' @return \code{swe_houses_armc} returns a list with named entries: \code{return} status flag as integer,
+#'      \code{cusps} cusps values as double and \code{ascmc} ascendent and MCs as double.
+#' @examples
+#' swe_houses_armc(12, 53, 23, 'B')
+#' @rdname Section13
+#' @export
+swe_houses_armc <- function(armc, geolat, eps, hsys) {
+    .Call(`_swephR_houses_armc`, armc, geolat, eps, hsys)
+}
+
+#' @details
+#' \describe{
+#' \item{swe_houses_name()}{Provide the house name.}
+#' }
+#' @return \code{swe_house_name} returns the house name as string
+#' @examples
+#' swe_house_name('G')
+#' @rdname Section13
+#' @export
+swe_house_name <- function(hsys) {
+    .Call(`_swephR_house_name`, hsys)
+}
+
+#' @title Section 14: House position calculations 
+#' @name Section14
+#' @description Calculate house position of a given body.
+#' @seealso Section 14 in \url{http://www.astro.com/swisseph/swephprg.htm}
+#' @param geolat  geographic latitude as double (deg)
+#' @param hsys  house method, one-letter case sensitive as char
+#' @param armc  right ascension of the MC as double (deg)
+#' @param eps  ecliptic obliquity as double (deg)
+#' @param xpin  longitude and latitude of the given boby as numeric vector (deg)
+#' @details
+#' \describe{
+#' \item{swe_house_pos()}{Calculate house position of given body.}
+#' }
+#' @return \code{swe_house_pos} returns a list with named entries: \code{return} how far from body's cusp as double,
+#'      and \code{serr} error message as string.
+#' @examples
+#' swe_house_pos(12, 53, 23, 'B', c(0,0))
+#' @rdname Section14
+#' @export
+swe_house_pos <- function(armc, geolat, eps, hsys, xpin) {
+    .Call(`_swephR_house_pos`, armc, geolat, eps, hsys, xpin)
+}
+
+#' @title Section 15: Sidereal time 
+#' @name Section15
+#' @description Calculate the sidereal time (in degrees).
+#' @seealso Section 15 in \url{http://www.astro.com/swisseph/swephprg.htm}
+#' @details
+#' \describe{
+#' \item{swe_sidtime()}{Determine the sidereal time.}
+#' }
+#' @param jd_ut  UT Julian day number as double (day)
+#' @return \code{swe_sidtime} returns the sidereal time as double (deg)
+#' @examples
+#' swe_sidtime(2451545)
+#' @rdname Section15
+#' @export
+swe_sidtime <- function(jd_ut) {
+    .Call(`_swephR_sidtime`, jd_ut)
 }
 
 #' @title Section 16.7: Other functions that may be useful

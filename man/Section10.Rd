@@ -3,18 +3,18 @@
 \name{Section10}
 \alias{Section10}
 \alias{swe_set_sid_mode}
+\alias{swe_get_ayanamsa_name}
 \alias{swe_get_ayanamsa_ex_ut}
 \alias{swe_get_ayanamsa_ex}
-\alias{swe_get_ayanamsa_name}
 \title{Section 10: Sidereal mode functions}
 \usage{
 swe_set_sid_mode(sid_mode, t0, ayan_t0)
 
+swe_get_ayanamsa_name(sid_mode)
+
 swe_get_ayanamsa_ex_ut(jd_ut, iflag)
 
 swe_get_ayanamsa_ex(jd_et, iflag)
-
-swe_get_ayanamsa_name(sid_mode)
 }
 \arguments{
 \item{sid_mode}{Siderial mode as integer}
@@ -30,13 +30,13 @@ swe_get_ayanamsa_name(sid_mode)
 \item{jd_et}{ET Julian day number as double (day)}
 }
 \value{
+\code{swe_get_ayanamsa_name} returns name of ayanamse method as string
+
 \code{swe_get_ayanamsa_ex_ut} returns a list with named entries: \code{return} status flag as integer,
      \code{daya} ayanamsa value as double and \code{serr} error message as string
 
 \code{swe_get_ayanamsa_ex} returns a list with named entries: \code{return} status flag as integer,
      \code{daya} ayanamsa value as double and \code{serr} error message as string
-
-\code{swe_get_ayanamsa_name} returns name of ayanamse method as string
 }
 \description{
 Functions to support the determination of siderial information
@@ -47,22 +47,23 @@ Functions to support the determination of siderial information
 }
 
 \describe{
+\item{swe_get_ayanamsa_name()}{Get the mode name for sidereal computations.}
+}
+
+\describe{
 \item{swe_get_ayanamsa_ex_ut()}{It computes ayanamsa using UT.}
 }
 
 \describe{
 \item{swe_get_ayanamsa_ex()}{It computes ayanamsa using ET.}
 }
-
-\describe{
-\item{swe_get_ayanamsa_name()}{Get the mode name for sidereal computations.}
-}
 }
 \examples{
+data(SE)
 swe_set_sid_mode(SE$SIDM_FAGAN_BRADLEY,0,0)
+swe_get_ayanamsa_name(SE$SIDM_FAGAN_BRADLEY)
 swe_get_ayanamsa_ex_ut(2458346.82639,SE$FLG_MOSEPH)
 swe_get_ayanamsa_ex(2458346.82639,SE$FLG_MOSEPH)
-swe_get_ayanamsa_name(SE$SIDM_FAGAN_BRADLEY)
 }
 \seealso{
 Section 10 in \url{http://www.astro.com/swisseph/swephprg.htm}
