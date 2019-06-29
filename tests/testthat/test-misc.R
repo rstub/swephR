@@ -121,7 +121,7 @@ test_that("Determine house info using date/lat/long:", {
   expect_equal(result$return, 0)
   expect_equal(result$cusps, c(0, 46.64518 , 67.89822,  88.19583, 108.40898 ,145.68710, 186.61910 ,226.64518, 247.89822 ,268.19583, 288.40898
                                ,325.68710,6.61910,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0), tolerance = .000001)
-  expect_equal(result$ascmc, c(46.64518, 288.40898, 289.99675, 196.36986 , 21.69681 , 13.76371 , 31.65048, 193.76371,0,0), tolerance = .000001)
+  expect_equal(result$ascmc, c(46.64518, 288.40898,289.99675, 196.36986 , 21.69681 , 13.76371 , 31.65048, 193.76371,0,0), tolerance = .000001)
 })
 
 test_that("Determine house info using date/lat/long:", {
