@@ -907,15 +907,15 @@ Rcpp::List get_ayanamsa_ex(double jd_et, int iflag){
 //' @name Section13
 //' @description Calculate house cusp.
 //' @seealso Section 13 in \url{http://www.astro.com/swisseph/swephprg.htm}
-//' @details
-//' \describe{
-//' \item{swe_houses_ex()}{Calcuate house cusps, ascendant and Medium Coeli (MC).}
-//' }
-//' @param jd_et  ET Julian day number as double (day)
-//' @param cuspflag cusp flag as interger (0 or SE$FLG_SIDEREAL or SE$FLG_RADIANS)
 //' @param geolat  geographic latitude as double (deg)
 //' @param geolon  geographic longitude as double (deg)
 //' @param hsys  house method, one-letter as char
+//' @details
+//' \describe{
+//' \item{swe_houses_ex()}{Calculate house cusps, ascendant and Medium Coeli (MC).}
+//' }
+//' @param jd_et  ET Julian day number as double (day)
+//' @param cuspflag cusp flag as interger (0 or SE$FLG_SIDEREAL or SE$FLG_RADIANS)
 //' @return \code{swe_houses_ex} returns a list with named entries: \code{return} status flag as integer,
 //'      \code{cusps} cusps values as double and \code{ascmc} ascendent and MCs as double.
 //' @examples
@@ -938,9 +938,7 @@ Rcpp::List houses_ex(double jd_ut, int cuspflag,double geolat, double geolon, ch
 //' \item{swe_houses_armc()}{Calculate houses from the right ascension of the Medium Coeli (MC).}
 //' }
 //' @param armc  right ascension of the MC as double (deg)
-//' @param geolat  geographic latitude as double (deg)
 //' @param eps  ecliptic obliquity as double (deg)
-//' @param hsys  house method, one-letter as char
 //' @return \code{swe_houses_armc} returns a list with named entries: \code{return} status flag as integer,
 //'      \code{cusps} cusps values as double and \code{ascmc} ascendent and MCs as double.
 //' @examples
@@ -956,6 +954,24 @@ Rcpp::List houses_armc(double armc, double geolat, double eps, char hsys){
                             Rcpp::Named("cusps") = cusps,
                             Rcpp::Named("ascmc") = ascmc);
 }
+
+//' @details
+//' \describe{
+//' \item{swe_houses_name()}{Provide the house name.}
+//' }
+//' @return \code{swe_house_name} returns the house name as string
+//' //' @examples
+//' swe_house_name('G')
+//' @rdname Section13
+//' @export
+// [[Rcpp::export(swe_house_name)]]
+std::string house_name(char hsys) {
+  std::array<char, 40> housestr{{'\0'}};
+  // next statement is not working!!!!
+// housestr = swe_house_name(hsys);
+  return std::string(housestr.begin());
+}
+
 
 //////////////////////////////////////////////////////////////////////////
 //' @title Section 15: Sidereal time 
