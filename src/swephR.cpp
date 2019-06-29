@@ -964,10 +964,7 @@ Rcpp::List houses_armc(double armc, double geolat, double eps, char hsys){
 //' @export
 // [[Rcpp::export(swe_house_name)]]
 std::string house_name(char hsys) {
-  std::array<char, 40> housestr{{'\0'}};
-  // next statement is not working!!!!
- std::string (housestr.begin()) = swe_house_name(hsys);
-  return std::string (housestr.begin());
+    return std::string(swe_house_name(hsys));
 }
 
 //////////////////////////////////////////////////////////////////////////
