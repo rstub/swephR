@@ -903,13 +903,13 @@ Rcpp::List get_ayanamsa_ex(double jd_et, int iflag){
 
 
 //////////////////////////////////////////////////////////////////////////
-//' @title Section 13: House cusp calculation 
+//' @title Section 13: House cusp ascendant and Medium Coeli calculations 
 //' @name Section13
 //' @description Calculate house cusp.
 //' @seealso Section 13 in \url{http://www.astro.com/swisseph/swephprg.htm}
 //' @param geolat  geographic latitude as double (deg)
 //' @param geolon  geographic longitude as double (deg)
-//' @param hsys  house method, one-letter as char
+//' @param hsys  house method, one-letter case sensitive as char
 //' @details
 //' \describe{
 //' \item{swe_houses_ex()}{Calculate house cusps, ascendant and Medium Coeli (MC).}
@@ -960,7 +960,7 @@ Rcpp::List houses_armc(double armc, double geolat, double eps, char hsys){
 //' \item{swe_houses_name()}{Provide the house name.}
 //' }
 //' @return \code{swe_house_name} returns the house name as string
-//' //' @examples
+//' @examples
 //' swe_house_name('G')
 //' @rdname Section13
 //' @export
@@ -968,8 +968,36 @@ Rcpp::List houses_armc(double armc, double geolat, double eps, char hsys){
 std::string house_name(char hsys) {
   std::array<char, 40> housestr{{'\0'}};
   // next statement is not working!!!!
-// housestr = swe_house_name(hsys);
-  return std::string(housestr.begin());
+ std::string (housestr.begin()) = swe_house_name(hsys);
+  return std::string (housestr.begin());
+}
+
+//////////////////////////////////////////////////////////////////////////
+//' @title Section 14: House position calculations 
+//' @name Section14
+//' @description Calculate house position.
+//' @seealso Section 14 in \url{http://www.astro.com/swisseph/swephprg.htm}
+//' @param geolat  geographic latitude as double (deg)
+//' @param hsys  house method, one-letter case sensitive as char
+//' @param armc  right ascension of the MC as double (deg)
+//' @param eps  ecliptic obliquity as double (deg)
+//' @param xpin  longitude and latitude of the planet as double vector (deg)
+//' @details
+//' \describe{
+//' \item{swe_house_pos()}{Calculate house position.}
+//' }
+//' @return \code{swe_house_pos} returns a list with named entries: \code{return} which house the planet is and how far from its cusp is as double,
+//'      and \code{serr} error message as string.
+//' @examples
+//' swe_house_pos(12, 53, 23, 'B', c(0,0))
+//' @rdname Section14
+//' @export
+// [[Rcpp::export(swe_house_pos)]]
+Rcpp::List house_pos(double armc, double geolat, double eps, char hsys ,Rcpp::NumericVector xpin){
+  std::array<char, 256> serr{'\0'};
+  double i = swe_house_pos(armc,geolat,eps, hsys, xpin.begin(), serr.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("serr") =  std::string(serr.begin()));
 }
 
 
