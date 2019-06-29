@@ -94,6 +94,10 @@ test_that("Determing ayanamsa using ET:", {
   expect_equal(result$daya, 24.99688, tolerance = .000001)
 })
 
-test_that("Retrieving ayanammsa name", {
+test_that("Retrieving ayanammsa name:", {
   expect_equal(swe_get_ayanamsa_name(12), "Babylonian/Huber")
+}) 
+
+test_that("Retrieving Sidereal time:", {
+  expect_equal(swe_sidtime(2451545), 18.69714,tolerance = .000001)
 }) 

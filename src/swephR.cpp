@@ -901,6 +901,82 @@ Rcpp::List get_ayanamsa_ex(double jd_et, int iflag){
                             Rcpp::Named("serr") = std::string(serr.begin()));
 }
 
+
+//////////////////////////////////////////////////////////////////////////
+//' @title Section 13: House cusp calculation 
+//' @name Section13
+//' @description Calculate house cusp.
+//' @seealso Section 13 in \url{http://www.astro.com/swisseph/swephprg.htm}
+//' @details
+//' \describe{
+//' \item{swe_houses_ex()}{Calcuate house cusps, ascendant and MC.}
+//' }
+//' @param jd_et  ET Julian day number as double (day)
+//' @param cuspflag cusp flag as interger ()0 or SE$FLG_SIDEREAL or SE$FLG_RADIANS)
+//' @param geolat  geographic latitud as double (deg)
+//' @param geolon  geographic longitude as double (deg)
+//' @param hsys  house method, one-letter case sensitive code as char
+//' //' @return \code{swe_houses_ex} returns a list with named entries: \code{return} status flag as integer,
+//'      \code{cusps} cusps values as double and \code{ascmc} ascendent and MCs as double.
+//' @examples
+//' swe_houses_ex(1234567, 0,53, 0, 'B')
+//' @rdname Section113
+//' @export
+// [[Rcpp::export(swe_houses_ex)]]
+Rcpp::List houses_ex(double jd_ut, int cuspflag,double geolat, double geolon, char hsys){
+  std::array<double, 37> cusps{0.0};
+  std::array<double, 10> ascmc{0.0};
+  int i = swe_houses_ex(jd_ut, cuspflag,geolat,geolon, hsys, cusps.begin(), ascmc.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("cusps") = cusps,
+                            Rcpp::Named("ascmc") = ascmc);
+}
+
+
+//' @details
+//' \describe{
+//' \item{swe_houses_armc()}{Calculate houses from an ARMC.}
+//' }
+//' @param armc  ??? as double (day)
+//' @param geolat  geographic latitud as double (deg)
+//' @param eps  ecliptic obliquity as double (deg)
+//' @param hsys  house method, one-letter case sensitive code as char
+//' //' @return \code{swe_houses_armc} returns a list with named entries: \code{return} status flag as integer,
+//'      \code{cusps} cusps values as double and \code{ascmc} ascendent and MCs as double.
+//' @examples
+//' swe_houses_armc(1234567, 0,53, 0, 'B')
+//' @rdname Section113
+//' @export
+// [[Rcpp::export(swe_houses_armc)]]
+Rcpp::List houses_armc(double armc, double geolat, double eps, char hsys){
+  std::array<double, 37> cusps{0.0};
+  std::array<double, 10> ascmc{0.0};
+  int i = swe_houses_armc(armc,geolat,eps, hsys, cusps.begin(), ascmc.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("cusps") = cusps,
+                            Rcpp::Named("ascmc") = ascmc);
+}
+
+//////////////////////////////////////////////////////////////////////////
+//' @title Section 15: Sidereal time 
+//' @name Section15
+//' @description Calculate the sidereal time (in degrees).
+//' @seealso Section 15 in \url{http://www.astro.com/swisseph/swephprg.htm}
+//' @details
+//' \describe{
+//' \item{swe_sidtime()}{Determine the sidereal time.}
+//' }
+//' @param jd_ut  UT Julian day number as double (day)
+//' @return \code{swe_sidtime} returns the sidereal time as double (deg)
+//' @examples
+//' swe_sidtime(2451545)
+//' @rdname Section15
+//' @export
+// [[Rcpp::export(swe_sidtime)]]
+double sidtime(double jd_ut) {
+  return swe_sidtime(jd_ut);
+}
+
 //////////////////////////////////////////////////////////////////////////
 //' @title Section 16.7: Other functions that may be useful
 //' @name Section16
