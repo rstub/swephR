@@ -837,7 +837,11 @@ void set_topo(double longitude, double lat, double height) {
 //' @param t0  Reference date as double (day)
 //' @param ayan_t0  The initial latitude value of the ayanamsha as double (deg)
 //' @examples
+//' data(SE)
 //' swe_set_sid_mode(SE$SIDM_FAGAN_BRADLEY,0,0)
+//' swe_get_ayanamsa_name(SE$SIDM_FAGAN_BRADLEY)
+//' swe_get_ayanamsa_ex_ut(2458346.82639,SE$FLG_MOSEPH)
+//' swe_get_ayanamsa_ex(2458346.82639,SE$FLG_MOSEPH)
 //' @rdname Section10
 //' @export
 // [[Rcpp::export(swe_set_sid_mode)]]
@@ -850,8 +854,6 @@ void set_sid_mode(int sid_mode, double t0, double ayan_t0) {
 //' \item{swe_get_ayanamsa_name()}{Get the mode name for sidereal computations.}
 //' }
 //' @return \code{swe_get_ayanamsa_name} returns name of ayanamse method as string
-//' @examples
-//' swe_get_ayanamsa_name(SE$SIDM_FAGAN_BRADLEY)
 //' @rdname Section10
 //' @export
 // [[Rcpp::export(swe_get_ayanamsa_name)]]
@@ -866,8 +868,6 @@ std::string get_ayanamsa_name(int sid_mode) {
 //' @param jd_ut  UT Julian day number as double (day)
 //' @return \code{swe_get_ayanamsa_ex_ut} returns a list with named entries: \code{return} status flag as integer,
 //'      \code{daya} ayanamsa value as double and \code{serr} error message as string
-//' @examples
-//' swe_get_ayanamsa_ex_ut(2458346.82639,SE$FLG_MOSEPH)
 //' @rdname Section10
 //' @export
 // [[Rcpp::export(swe_get_ayanamsa_ex_ut)]]
@@ -887,8 +887,6 @@ Rcpp::List get_ayanamsa_ex_ut(double jd_ut, int iflag){
 //' @param jd_et  ET Julian day number as double (day)
 //' @return \code{swe_get_ayanamsa_ex} returns a list with named entries: \code{return} status flag as integer,
 //'      \code{daya} ayanamsa value as double and \code{serr} error message as string
-//' @examples
-//' swe_get_ayanamsa_ex(2458346.82639,SE$FLG_MOSEPH)
 //' @rdname Section10
 //' @export
 // [[Rcpp::export(swe_get_ayanamsa_ex)]]
