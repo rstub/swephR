@@ -975,18 +975,18 @@ std::string house_name(char hsys) {
 //////////////////////////////////////////////////////////////////////////
 //' @title Section 14: House position calculations 
 //' @name Section14
-//' @description Calculate house position.
+//' @description Calculate house position of a given body.
 //' @seealso Section 14 in \url{http://www.astro.com/swisseph/swephprg.htm}
 //' @param geolat  geographic latitude as double (deg)
 //' @param hsys  house method, one-letter case sensitive as char
 //' @param armc  right ascension of the MC as double (deg)
 //' @param eps  ecliptic obliquity as double (deg)
-//' @param xpin  longitude and latitude of the planet as double vector (deg)
+//' @param xpin  longitude and latitude of the given boby as numeric vector (deg)
 //' @details
 //' \describe{
-//' \item{swe_house_pos()}{Calculate house position.}
+//' \item{swe_house_pos()}{Calculate house position of given body.}
 //' }
-//' @return \code{swe_house_pos} returns a list with named entries: \code{return} which house the planet is and how far from its cusp is as double,
+//' @return \code{swe_house_pos} returns a list with named entries: \code{return} how far from body's cusp as double,
 //'      and \code{serr} error message as string.
 //' @examples
 //' swe_house_pos(12, 53, 23, 'B', c(0,0))
