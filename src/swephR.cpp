@@ -903,9 +903,9 @@ Rcpp::List get_ayanamsa_ex(double jd_et, int iflag){
 
 
 //////////////////////////////////////////////////////////////////////////
-//' @title Section 13: House cusp ascendant and Medium Coeli calculations 
+//' @title Section 13: House cusp, ascendant and Medium Coeli calculations 
 //' @name Section13
-//' @description Calculate house cusp.
+//' @description Calculate house cusp, ascendant and Medium Coeli calculations
 //' @seealso Section 13 in \url{http://www.astro.com/swisseph/swephprg.htm}
 //' @param geolat  geographic latitude as double (deg)
 //' @param geolon  geographic longitude as double (deg)
@@ -914,7 +914,7 @@ Rcpp::List get_ayanamsa_ex(double jd_et, int iflag){
 //' \describe{
 //' \item{swe_houses_ex()}{Calculate house cusps, ascendant and Medium Coeli (MC).}
 //' }
-//' @param jd_et  ET Julian day number as double (day)
+//' @param jd_ut  UT Julian day number as double (day)
 //' @param cuspflag cusp flag as interger (0 or SE$FLG_SIDEREAL or SE$FLG_RADIANS)
 //' @return \code{swe_houses_ex} returns a list with named entries: \code{return} status flag as integer,
 //'      \code{cusps} cusps values as double and \code{ascmc} ascendent and MCs as double.
