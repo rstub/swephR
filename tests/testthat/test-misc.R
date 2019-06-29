@@ -98,6 +98,35 @@ test_that("Retrieving ayanammsa name:", {
   expect_equal(swe_get_ayanamsa_name(12), "Babylonian/Huber")
 }) 
 
+test_that("Retrieving house name:", {
+  expect_equal(swe_house_name('G'), "Gauquelin sectors")
+}) 
+
 test_that("Retrieving Sidereal time:", {
   expect_equal(swe_sidtime(2451545), 18.69714,tolerance = .000001)
 }) 
+
+test_that("Determine house info using ARMC:", {
+ result <- swe_houses_armc(12, 53, 23, 'B')
+ expect_true(is.list(result))
+ expect_equal(result$return, 0)
+ expect_equal(result$cusps, c(0, 125.97068,147.38669,169.96807,193.00244,233.05493,269.54195,305.97068,327.38669,349.96807,13.00244
+                            ,53.05493,  89.54195,   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0), tolerance = .000001)
+ expect_equal(result$ascmc, c(125.97068,13.00244,12.00000,263.98576,101.07060 ,71.50788,116.41241,251.50788,0,0), tolerance = .000001)
+})
+
+test_that("Determine house info using date/lat/long:", {
+  result <- swe_houses_ex(1234567, 0, 53, 0, 'B')
+  expect_true(is.list(result))
+  expect_equal(result$return, 0)
+  expect_equal(result$cusps, c(0, 46.64518 , 67.89822,  88.19583, 108.40898 ,145.68710, 186.61910 ,226.64518, 247.89822 ,268.19583, 288.40898
+                               ,325.68710,6.61910,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0), tolerance = .000001)
+  expect_equal(result$ascmc, c(46.64518, 288.40898, 289.99675, 196.36986 , 21.69681 , 13.76371 , 31.65048, 193.76371,0,0), tolerance = .000001)
+})
+
+test_that("Determine house info using date/lat/long:", {
+  result <- swe_house_pos(12, 53, 23, 'B', c(0,0))
+  expect_true(is.list(result))
+  expect_equal(result$return, 9.435262,tolerance = .000001)
+  expect_equal(result$serr, "")
+})
