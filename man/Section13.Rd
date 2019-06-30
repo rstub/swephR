@@ -16,7 +16,7 @@ swe_house_name(hsys)
 \arguments{
 \item{jd_ut}{UT Julian day number as double (day)}
 
-\item{cuspflag}{cusp flag as interger (0 or SE$FLG_SIDEREAL or SE$FLG_RADIANS)}
+\item{cuspflag}{cusp flag as integer (0 [tropical], SE$FLG_SIDEREAL, SE$FLG_RADIANS)}
 
 \item{geolat}{geographic latitude as double (deg)}
 
@@ -30,23 +30,23 @@ swe_house_name(hsys)
 }
 \value{
 \code{swe_houses_ex} returns a list with named entries: \code{return} status flag as integer,
-     \code{cusps} cusps values as double and \code{ascmc} ascendent and MCs as double.
+     \code{cusps} cusps values as double and \code{ascmc} ascendent, MCs. etc. as double.
 
 \code{swe_houses_armc} returns a list with named entries: \code{return} status flag as integer,
-     \code{cusps} cusps values as double and \code{ascmc} ascendent and MCs as double.
+     \code{cusps} cusps values as double and \code{ascmc} ascendent, MCs, etc. as double.
 
 \code{swe_house_name} returns the house name as string
 }
 \description{
-Calculate house cusp, ascendant and Medium Coeli calculations
+Calculate house cusp, ascendant, Medium Coeli, etc. calculations
 }
 \details{
 \describe{
-\item{swe_houses_ex()}{Calculate house cusps, ascendant and Medium Coeli (MC).}
+\item{swe_houses_ex()}{Calculate houses' cusps, ascendant, Medium Coeli (MC), etc.}
 }
 
 \describe{
-\item{swe_houses_armc()}{Calculate houses from the right ascension of the Medium Coeli (MC).}
+\item{swe_houses_armc()}{Calculate houses' information from the right ascension of the Medium Coeli (MC).}
 }
 
 \describe{
