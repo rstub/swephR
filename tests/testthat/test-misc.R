@@ -130,3 +130,11 @@ test_that("Determine house info using date/lat/long:", {
   expect_equal(result$return, 9.435262,tolerance = .000001)
   expect_equal(result$serr, "")
 })
+
+test_that("Determine Gauquelin sector position of a planet:", {
+  data(SE)
+result <- swe_gauquelin_sector(1234567.5,SE$VENUS,"",SE$FLG_MOSEPH,0,c(0,50,10),1013.25,15)
+expect_equal(result$return, 0)
+expect_equal(result$dgsect, 31.41367,tolerance = .000001)
+expect_equal(result$serr, "")
+})

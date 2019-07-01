@@ -138,7 +138,7 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
      and \code{serr} error warning as string
 
 \code{swe_rise_trans_true_hor} returns a list with named entries: \code{return} status flag as integer,
-     \code{tret} for azimuth/altitude info as numeric vector and \code{serr} error message as string
+     \code{tret} for azimuth/altitude info as double and \code{serr} error message as string
 
 \code{swe_pheno_ut} returns a list with named entries:
      \code{return} status fag as integer, \code{attr} for phenomenon information as numeric vector
