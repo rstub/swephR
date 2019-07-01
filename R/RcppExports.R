@@ -637,6 +637,7 @@ swe_house_pos <- function(armc, geolat, eps, hsys, xpin) {
 #' @param ipl  Body/planet as integer (\code{SE$SUN=0}, \code{SE$MOON=1}, ... \code{SE$PLUTO=9})
 #' @param starname  Star name as string (\code{""} for no star)
 #' @param jd_ut  UT Julian day number as double (day)
+#' @param geopos position as numeric vector (longitude, latitude, height)
 #' @param atpress Atmospheric pressure as double (hPa)
 #' @param attemp Atmospheric temperature as double (Celsius)
 #' @param ephe_flag Ephemeris flag as integer (\code{SE$FLG_JPLEPH=1}, \code{SE$FLG_SWIEPH=2} or \code{SE$FLG_MOSEPH=4})
