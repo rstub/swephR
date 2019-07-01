@@ -1058,7 +1058,6 @@ double sidtime(double jd_ut) {
 //'   \item{swe_day_of_week()}{Determine day of week from Julian day number.}
 //' }
 //' @param jd  Julian day number as numeric vector (day)
-//' @examples
 //' @return \code{swe_day_of_week} returns the day of week as integer vector (0 Monday .. 6 Sunday)
 //' @examples
 //' swe_day_of_week(1234.567)
