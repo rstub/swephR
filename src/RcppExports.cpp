@@ -564,6 +564,24 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// gauquelin_sector
+Rcpp::List gauquelin_sector(double jd_ut, int ipl, std::string starname, int ephe_flag, int imeth, Rcpp::NumericVector geopos, double atpress, double attemp);
+RcppExport SEXP _swephR_gauquelin_sector(SEXP jd_utSEXP, SEXP iplSEXP, SEXP starnameSEXP, SEXP ephe_flagSEXP, SEXP imethSEXP, SEXP geoposSEXP, SEXP atpressSEXP, SEXP attempSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type jd_ut(jd_utSEXP);
+    Rcpp::traits::input_parameter< int >::type ipl(iplSEXP);
+    Rcpp::traits::input_parameter< std::string >::type starname(starnameSEXP);
+    Rcpp::traits::input_parameter< int >::type ephe_flag(ephe_flagSEXP);
+    Rcpp::traits::input_parameter< int >::type imeth(imethSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type geopos(geoposSEXP);
+    Rcpp::traits::input_parameter< double >::type atpress(atpressSEXP);
+    Rcpp::traits::input_parameter< double >::type attemp(attempSEXP);
+    rcpp_result_gen = Rcpp::wrap(gauquelin_sector(jd_ut, ipl, starname, ephe_flag, imeth, geopos, atpress, attemp));
+    return rcpp_result_gen;
+END_RCPP
+}
 // sidtime
 double sidtime(double jd_ut);
 RcppExport SEXP _swephR_sidtime(SEXP jd_utSEXP) {
@@ -630,6 +648,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_houses_armc", (DL_FUNC) &_swephR_houses_armc, 4},
     {"_swephR_house_name", (DL_FUNC) &_swephR_house_name, 1},
     {"_swephR_house_pos", (DL_FUNC) &_swephR_house_pos, 5},
+    {"_swephR_gauquelin_sector", (DL_FUNC) &_swephR_gauquelin_sector, 8},
     {"_swephR_sidtime", (DL_FUNC) &_swephR_sidtime, 1},
     {"_swephR_day_of_week", (DL_FUNC) &_swephR_day_of_week, 1},
     {NULL, NULL, 0}

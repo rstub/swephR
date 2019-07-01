@@ -197,7 +197,7 @@ swe_lun_eclipse_when <- function(jd_start, ephe_flag, ifltype, backward) {
 #' \item{swe_rise_trans_true_hor()}{Compute the times of rising, setting and meridian transits for planets, asteroids, the moon, and the fixed stars for a local horizon that has an altitude. }
 #' }
 #' @return \code{swe_rise_trans_true_hor} returns a list with named entries: \code{return} status flag as integer,
-#'      \code{tret} for azimuth/altitude info as numeric vector and \code{serr} error message as string
+#'      \code{tret} for azimuth/altitude info as double and \code{serr} error message as string
 #' @rdname Section6
 #' @export
 swe_rise_trans_true_hor <- function(jd_ut, ipl, starname, ephe_flag, rsmi, geopos, atpress, attemp, horhgt) {
@@ -630,6 +630,28 @@ swe_house_pos <- function(armc, geolat, eps, hsys, xpin) {
     .Call(`_swephR_house_pos`, armc, geolat, eps, hsys, xpin)
 }
 
+#' @details
+#' \describe{
+#' \item{swe_gauquelin_sector()}{Compute the Gauquelin sector position of a planet or star. }
+#' }
+#' @param ipl  Body/planet as integer (\code{SE$SUN=0}, \code{SE$MOON=1}, ... \code{SE$PLUTO=9})
+#' @param starname  Star name as string (\code{""} for no star)
+#' @param jd_ut  UT Julian day number as double (day)
+#' @param atpress Atmospheric pressure as double (hPa)
+#' @param attemp Atmospheric temperature as double (Celsius)
+#' @param ephe_flag Ephemeris flag as integer (\code{SE$FLG_JPLEPH=1}, \code{SE$FLG_SWIEPH=2} or \code{SE$FLG_MOSEPH=4})
+#' @param imeth Gauquelin method as integer (0, 1, 2, 3, 4 or 5)
+#' @examples
+#' data(SE)
+#' swe_gauquelin_sector(1234567.5,SE$VENUS,"",SE$FLG_MOSEPH,0,c(0,50,10),1013.25,15)
+#' @return \code{swe_gauquelin_sector} returns a list with named entries: \code{return} status flag as integer,
+#'      \code{dgsect} for Gauquelin sector as double and \code{serr} error message as string
+#' @rdname Section14
+#' @export
+swe_gauquelin_sector <- function(jd_ut, ipl, starname, ephe_flag, imeth, geopos, atpress, attemp) {
+    .Call(`_swephR_gauquelin_sector`, jd_ut, ipl, starname, ephe_flag, imeth, geopos, atpress, attemp)
+}
+
 #' @title Section 15: Sidereal time 
 #' @name Section15
 #' @description Calculate the sidereal time (in degrees).
@@ -657,6 +679,7 @@ swe_sidtime <- function(jd_ut) {
 #'   \item{swe_day_of_week()}{Determine day of week from Julian day number.}
 #' }
 #' @param jd  Julian day number as numeric vector (day)
+#' @examples
 #' @return \code{swe_day_of_week} returns the day of week as integer vector (0 Monday .. 6 Sunday)
 #' @examples
 #' swe_day_of_week(1234.567)
