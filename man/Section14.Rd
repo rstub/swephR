@@ -32,6 +32,8 @@ swe_gauquelin_sector(jd_ut, ipl, starname, ephe_flag, imeth, geopos,
 
 \item{imeth}{Gauquelin method as integer (0, 1, 2, 3, 4 or 5)}
 
+\item{geopos}{position as numeric vector (longitude, latitude, height)}
+
 \item{atpress}{Atmospheric pressure as double (hPa)}
 
 \item{attemp}{Atmospheric temperature as double (Celsius)}
