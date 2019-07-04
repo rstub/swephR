@@ -96,9 +96,9 @@
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ns-load">requireNamespace</a></span>(<span class="st">"drat"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)) <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"drat"</span>)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">drat<span class="op">::</span><span class="kw">addRepo</span>(<span class="st">"rstub"</span>)</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"swephR"</span>)</a></code></pre></div>
-<p>This package uses the semi-analytic theory by Steve Moshier. For faster and more accurate calculations, the compressed Swiss Ephemeris data is available in the ‘swephRdata’ package. To access this data package, run</p>
+<p>This package uses the semi-analytic theory by Steve Moshier. For faster and more accurate calculations, the compressed Swiss Ephemeris data is available in the <code>swephRdata</code> package. To access this data package, run</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"swephRdata"</span>, <span class="dt">repos =</span> <span class="st">"https://rstub.github.io/drat/"</span>, <span class="dt">type =</span> <span class="st">"source"</span>)</a></code></pre></div>
-<p>The size of the ‘swephRdata’ package is approximately 115 MB. The user can also use the original JPL DE431 data.</p>
+<p>The size of the <code>swephRdata</code> package is approximately 115 MB. The user can also use the original JPL DE431 data.</p>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
@@ -146,7 +146,7 @@
 <a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">#&gt; $serr</span></a>
 <a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt; [1] ""</span></a></code></pre></div>
-<p>The current R interface is modled after the C interface. It is therefore often helpful to consult the <a href="https://www.astro.com/swisseph/swisseph.htm">general documentation</a> and <a href="https://www.astro.com/swisseph/swephprg.htm">programmer’s documentation</a> for the Swiss Ephemeris.</p>
+<p>The current R interface is modeled after the C interface. It is therefore often helpful to consult the <a href="https://www.astro.com/swisseph/swisseph.htm">general documentation</a> and <a href="https://www.astro.com/swisseph/swephprg.htm">programmer’s documentation</a> for the Swiss Ephemeris.</p>
 </div>
 <div id="feedback" class="section level2">
 <h2 class="hasAnchor">
