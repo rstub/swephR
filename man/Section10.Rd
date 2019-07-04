@@ -17,11 +17,11 @@ swe_get_ayanamsa_ex_ut(jd_ut, iflag)
 swe_get_ayanamsa_ex(jd_et, iflag)
 }
 \arguments{
-\item{sid_mode}{Siderial mode as integer}
+\item{sid_mode}{Sidereal mode as integer}
 
 \item{t0}{Reference date as double (day)}
 
-\item{ayan_t0}{The initial latitude value of the ayanamsha as double (deg)}
+\item{ayan_t0}{The initial latitude value of the ayanamsa as double (deg)}
 
 \item{jd_ut}{UT Julian day number as double (day)}
 
@@ -30,7 +30,7 @@ swe_get_ayanamsa_ex(jd_et, iflag)
 \item{jd_et}{ET Julian day number as double (day)}
 }
 \value{
-\code{swe_get_ayanamsa_name} returns name of ayanamse method as string
+\code{swe_get_ayanamsa_name} returns name of ayanamsa method as string
 
 \code{swe_get_ayanamsa_ex_ut} returns a list with named entries: \code{return} status flag as integer,
      \code{daya} ayanamsa value as double and \code{serr} error message as string
@@ -39,7 +39,7 @@ swe_get_ayanamsa_ex(jd_et, iflag)
      \code{daya} ayanamsa value as double and \code{serr} error message as string
 }
 \description{
-Functions to support the determination of siderial information
+Functions to support the determination of sidereal information
 }
 \details{
 \describe{

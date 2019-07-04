@@ -20,7 +20,7 @@ swe_gauquelin_sector(jd_ut, ipl, starname, ephe_flag, imeth, geopos,
 
 \item{hsys}{house method, one-letter case sensitive as char}
 
-\item{xpin}{longitude and latitude of the given boby as numeric vector (deg)}
+\item{xpin}{longitude and latitude of the given body as numeric vector (deg)}
 
 \item{jd_ut}{UT Julian day number as double (day)}
 

@@ -826,16 +826,16 @@ void set_topo(double longitude, double lat, double height) {
 //////////////////////////////////////////////////////////////////////////
 //' @title Section 10: Sidereal mode functions
 //' @name Section10
-//' @description Functions to support the determination of siderial information
+//' @description Functions to support the determination of sidereal information
 //' @seealso Section 10 in \url{http://www.astro.com/swisseph/swephprg.htm}
 //' @param iflag Computation flag as integer, many options possible (section 2.3,1)
-//' @param sid_mode  Siderial mode as integer
+//' @param sid_mode  Sidereal mode as integer
 //' @details
 //' \describe{
 //' \item{swe_set_sid_mode()}{Set the mode for sidereal computations.}
 //' }
 //' @param t0  Reference date as double (day)
-//' @param ayan_t0  The initial latitude value of the ayanamsha as double (deg)
+//' @param ayan_t0  The initial latitude value of the ayanamsa as double (deg)
 //' @examples
 //' data(SE)
 //' swe_set_sid_mode(SE$SIDM_FAGAN_BRADLEY,0,0)
@@ -853,7 +853,7 @@ void set_sid_mode(int sid_mode, double t0, double ayan_t0) {
 //' \describe{
 //' \item{swe_get_ayanamsa_name()}{Get the mode name for sidereal computations.}
 //' }
-//' @return \code{swe_get_ayanamsa_name} returns name of ayanamse method as string
+//' @return \code{swe_get_ayanamsa_name} returns name of ayanamsa method as string
 //' @rdname Section10
 //' @export
 // [[Rcpp::export(swe_get_ayanamsa_name)]]
@@ -901,7 +901,7 @@ Rcpp::List get_ayanamsa_ex(double jd_et, int iflag){
 
 
 //////////////////////////////////////////////////////////////////////////
-//' @title Section 13: House cusp, ascendant and Medium Coeli calculations 
+//' @title Section 13: House cusp, ascendant and Medium Coeli calculations
 //' @name Section13
 //' @description Calculate house cusp, ascendant, Medium Coeli, etc. calculations
 //' @seealso Section 13 in \url{http://www.astro.com/swisseph/swephprg.htm}
@@ -968,7 +968,7 @@ std::string house_name(char hsys) {
 }
 
 //////////////////////////////////////////////////////////////////////////
-//' @title Section 14: House position calculations 
+//' @title Section 14: House position calculations
 //' @name Section14
 //' @description Calculate house position of a given body.
 //' @seealso Section 14 in \url{http://www.astro.com/swisseph/swephprg.htm}
@@ -976,7 +976,7 @@ std::string house_name(char hsys) {
 //' @param hsys  house method, one-letter case sensitive as char
 //' @param armc  right ascension of the MC as double (deg)
 //' @param eps  ecliptic obliquity as double (deg)
-//' @param xpin  longitude and latitude of the given boby as numeric vector (deg)
+//' @param xpin  longitude and latitude of the given body as numeric vector (deg)
 //' @details
 //' \describe{
 //' \item{swe_house_pos()}{Calculate house position of given body.}
@@ -1029,7 +1029,7 @@ Rcpp::List gauquelin_sector(double jd_ut, int ipl, std::string starname, int eph
 
 
 //////////////////////////////////////////////////////////////////////////
-//' @title Section 15: Sidereal time 
+//' @title Section 15: Sidereal time
 //' @name Section15
 //' @description Calculate the sidereal time (in degrees).
 //' @seealso Section 15 in \url{http://www.astro.com/swisseph/swephprg.htm}

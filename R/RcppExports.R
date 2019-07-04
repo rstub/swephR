@@ -496,16 +496,16 @@ swe_set_topo <- function(longitude, lat, height) {
 
 #' @title Section 10: Sidereal mode functions
 #' @name Section10
-#' @description Functions to support the determination of siderial information
+#' @description Functions to support the determination of sidereal information
 #' @seealso Section 10 in \url{http://www.astro.com/swisseph/swephprg.htm}
 #' @param iflag Computation flag as integer, many options possible (section 2.3,1)
-#' @param sid_mode  Siderial mode as integer
+#' @param sid_mode  Sidereal mode as integer
 #' @details
 #' \describe{
 #' \item{swe_set_sid_mode()}{Set the mode for sidereal computations.}
 #' }
 #' @param t0  Reference date as double (day)
-#' @param ayan_t0  The initial latitude value of the ayanamsha as double (deg)
+#' @param ayan_t0  The initial latitude value of the ayanamsa as double (deg)
 #' @examples
 #' data(SE)
 #' swe_set_sid_mode(SE$SIDM_FAGAN_BRADLEY,0,0)
@@ -522,7 +522,7 @@ swe_set_sid_mode <- function(sid_mode, t0, ayan_t0) {
 #' \describe{
 #' \item{swe_get_ayanamsa_name()}{Get the mode name for sidereal computations.}
 #' }
-#' @return \code{swe_get_ayanamsa_name} returns name of ayanamse method as string
+#' @return \code{swe_get_ayanamsa_name} returns name of ayanamsa method as string
 #' @rdname Section10
 #' @export
 swe_get_ayanamsa_name <- function(sid_mode) {
@@ -555,7 +555,7 @@ swe_get_ayanamsa_ex <- function(jd_et, iflag) {
     .Call(`_swephR_get_ayanamsa_ex`, jd_et, iflag)
 }
 
-#' @title Section 13: House cusp, ascendant and Medium Coeli calculations 
+#' @title Section 13: House cusp, ascendant and Medium Coeli calculations
 #' @name Section13
 #' @description Calculate house cusp, ascendant, Medium Coeli, etc. calculations
 #' @seealso Section 13 in \url{http://www.astro.com/swisseph/swephprg.htm}
@@ -607,7 +607,7 @@ swe_house_name <- function(hsys) {
     .Call(`_swephR_house_name`, hsys)
 }
 
-#' @title Section 14: House position calculations 
+#' @title Section 14: House position calculations
 #' @name Section14
 #' @description Calculate house position of a given body.
 #' @seealso Section 14 in \url{http://www.astro.com/swisseph/swephprg.htm}
@@ -615,7 +615,7 @@ swe_house_name <- function(hsys) {
 #' @param hsys  house method, one-letter case sensitive as char
 #' @param armc  right ascension of the MC as double (deg)
 #' @param eps  ecliptic obliquity as double (deg)
-#' @param xpin  longitude and latitude of the given boby as numeric vector (deg)
+#' @param xpin  longitude and latitude of the given body as numeric vector (deg)
 #' @details
 #' \describe{
 #' \item{swe_house_pos()}{Calculate house position of given body.}
@@ -653,7 +653,7 @@ swe_gauquelin_sector <- function(jd_ut, ipl, starname, ephe_flag, imeth, geopos,
     .Call(`_swephR_gauquelin_sector`, jd_ut, ipl, starname, ephe_flag, imeth, geopos, atpress, attemp)
 }
 
-#' @title Section 15: Sidereal time 
+#' @title Section 15: Sidereal time
 #' @name Section15
 #' @description Calculate the sidereal time (in degrees).
 #' @seealso Section 15 in \url{http://www.astro.com/swisseph/swephprg.htm}

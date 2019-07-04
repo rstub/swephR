@@ -46,14 +46,14 @@ install.packages("swephR")
 
 This package uses the semi-analytic theory by Steve Moshier.  For
 faster and more accurate calculations, the compressed Swiss Ephemeris
-data is available in the 'swephRdata' package. To access this data
+data is available in the `swephRdata` package. To access this data
 package, run
 
 ``` r
 install.packages("swephRdata", repos = "https://rstub.github.io/drat/", type = "source")
 ```
 
-The size of the 'swephRdata' package is approximately 115 MB. The user
+The size of the `swephRdata` package is approximately 115 MB. The user
 can also use the original JPL DE431 data.
 
 ## Example
@@ -97,7 +97,7 @@ result <- swe_fixstar2_ut(starname, jdut, iflag)
 result
 ```
 
-The current R interface is modled after the C interface. It is
+The current R interface is modeled after the C interface. It is
 therefore often helpful to consult the [general
 documentation](https://www.astro.com/swisseph/swisseph.htm) and
 [programmer's
