@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Section 9: The function for calculating topocentric planet position — Section9 • swephR</title>
+<title>Section 14: House position calculations — Section14 • swephR</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Section 9: The function for calculating topocentric planet position — Section9" />
+<meta property="og:title" content="Section 14: House position calculations — Section14" />
 
-<meta property="og:description" content="Function for topocentric planet positions" />
+<meta property="og:description" content="Calculate house position of a given body." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -105,55 +105,124 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Section 9: The function for calculating topocentric planet position</h1>
+    <h1>Section 14: House position calculations</h1>
     <small class="dont-index">Source: <a href='https://github.com/rstub/swephR/blob/master/R/RcppExports.R'><code>R/RcppExports.R</code></a></small>
-    <div class="hidden name"><code>Section9.Rd</code></div>
+    <div class="hidden name"><code>Section14.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Function for topocentric planet positions</p>
+    <p>Calculate house position of a given body.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>swe_set_topo</span>(<span class='no'>longitude</span>, <span class='no'>lat</span>, <span class='no'>height</span>)</pre>
+    <pre class="usage"><span class='fu'>swe_house_pos</span>(<span class='no'>armc</span>, <span class='no'>geolat</span>, <span class='no'>eps</span>, <span class='no'>hsys</span>, <span class='no'>xpin</span>)
+
+<span class='fu'>swe_gauquelin_sector</span>(<span class='no'>jd_ut</span>, <span class='no'>ipl</span>, <span class='no'>starname</span>, <span class='no'>ephe_flag</span>, <span class='no'>imeth</span>, <span class='no'>geopos</span>,
+  <span class='no'>atpress</span>, <span class='no'>attemp</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>longitude</th>
-      <td><p>Geographic longitude as double (deg)</p></td>
+      <th>armc</th>
+      <td><p>right ascension of the MC as double (deg)</p></td>
     </tr>
     <tr>
-      <th>lat</th>
-      <td><p>Geographic latitude as double (deg)</p></td>
+      <th>geolat</th>
+      <td><p>geographic latitude as double (deg)</p></td>
     </tr>
     <tr>
-      <th>height</th>
-      <td><p>Height as double (m)</p></td>
+      <th>eps</th>
+      <td><p>ecliptic obliquity as double (deg)</p></td>
+    </tr>
+    <tr>
+      <th>hsys</th>
+      <td><p>house method, one-letter case sensitive as char</p></td>
+    </tr>
+    <tr>
+      <th>xpin</th>
+      <td><p>longitude and latitude of the given boby as numeric vector (deg)</p></td>
+    </tr>
+    <tr>
+      <th>jd_ut</th>
+      <td><p>UT Julian day number as double (day)</p></td>
+    </tr>
+    <tr>
+      <th>ipl</th>
+      <td><p>Body/planet as integer (<code>SE$SUN=0</code>, <code>SE$MOON=1</code>, ... <code>SE$PLUTO=9</code>)</p></td>
+    </tr>
+    <tr>
+      <th>starname</th>
+      <td><p>Star name as string (<code>""</code> for no star)</p></td>
+    </tr>
+    <tr>
+      <th>ephe_flag</th>
+      <td><p>Ephemeris flag as integer (<code>SE$FLG_JPLEPH=1</code>, <code>SE$FLG_SWIEPH=2</code> or <code>SE$FLG_MOSEPH=4</code>)</p></td>
+    </tr>
+    <tr>
+      <th>imeth</th>
+      <td><p>Gauquelin method as integer (0, 1, 2, 3, 4 or 5)</p></td>
+    </tr>
+    <tr>
+      <th>geopos</th>
+      <td><p>position as numeric vector (longitude, latitude, height)</p></td>
+    </tr>
+    <tr>
+      <th>atpress</th>
+      <td><p>Atmospheric pressure as double (hPa)</p></td>
+    </tr>
+    <tr>
+      <th>attemp</th>
+      <td><p>Atmospheric temperature as double (Celsius)</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>swe_house_pos</code> returns a list with named entries: <code>return</code> how far from body's cusp as double,
+     and <code>serr</code> error message as string.</p>
+<p><code>swe_gauquelin_sector</code> returns a list with named entries: <code>return</code> status flag as integer,
+     <code>dgsect</code> for Gauquelin sector as double and <code>serr</code> error message as string</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <dl class='dl-horizontal'>
-<dt>swe_set_topo()</dt><dd><p>Set the topocentric location of the observer.</p></dd>
+<dt>swe_house_pos()</dt><dd><p>Calculate house position of given body.</p></dd>
+</dl>
+    <dl class='dl-horizontal'>
+<dt>swe_gauquelin_sector()</dt><dd><p>Compute the Gauquelin sector position of a planet or star.</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Section 9 in <a href='http://www.astro.com/swisseph/swephprg.htm'>http://www.astro.com/swisseph/swephprg.htm</a></p></div>
+    <div class='dont-index'><p>Section 14 in <a href='http://www.astro.com/swisseph/swephprg.htm'>http://www.astro.com/swisseph/swephprg.htm</a></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>swe_set_topo</span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>swe_house_pos</span>(<span class='fl'>12</span>, <span class='fl'>53</span>, <span class='fl'>23</span>, <span class='st'>'B'</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>0</span>))</div><div class='output co'>#&gt; $return
+#&gt; [1] 9.435262
+#&gt; 
+#&gt; $serr
+#&gt; [1] ""
+#&gt; </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>SE</span>)
+<span class='fu'>swe_gauquelin_sector</span>(<span class='fl'>1234567.5</span>,<span class='no'>SE</span>$<span class='no'>VENUS</span>,<span class='st'>""</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>,<span class='fl'>0</span>,<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>),<span class='fl'>1013.25</span>,<span class='fl'>15</span>)</div><div class='output co'>#&gt; $return
+#&gt; [1] 0
+#&gt; 
+#&gt; $dgsect
+#&gt; [1] 31.41367
+#&gt; 
+#&gt; $serr
+#&gt; [1] ""
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#value">Value</a></li>
+
       <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>

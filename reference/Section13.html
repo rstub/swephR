@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Section 9: The function for calculating topocentric planet position — Section9 • swephR</title>
+<title>Section 13: House cusp, ascendant and Medium Coeli calculations — Section13 • swephR</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Section 9: The function for calculating topocentric planet position — Section9" />
+<meta property="og:title" content="Section 13: House cusp, ascendant and Medium Coeli calculations — Section13" />
 
-<meta property="og:description" content="Function for topocentric planet positions" />
+<meta property="og:description" content="Calculate house cusp, ascendant, Medium Coeli, etc. calculations" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -105,55 +105,119 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Section 9: The function for calculating topocentric planet position</h1>
+    <h1>Section 13: House cusp, ascendant and Medium Coeli calculations</h1>
     <small class="dont-index">Source: <a href='https://github.com/rstub/swephR/blob/master/R/RcppExports.R'><code>R/RcppExports.R</code></a></small>
-    <div class="hidden name"><code>Section9.Rd</code></div>
+    <div class="hidden name"><code>Section13.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Function for topocentric planet positions</p>
+    <p>Calculate house cusp, ascendant, Medium Coeli, etc. calculations</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>swe_set_topo</span>(<span class='no'>longitude</span>, <span class='no'>lat</span>, <span class='no'>height</span>)</pre>
+    <pre class="usage"><span class='fu'>swe_houses_ex</span>(<span class='no'>jd_ut</span>, <span class='no'>cuspflag</span>, <span class='no'>geolat</span>, <span class='no'>geolon</span>, <span class='no'>hsys</span>)
+
+<span class='fu'>swe_houses_armc</span>(<span class='no'>armc</span>, <span class='no'>geolat</span>, <span class='no'>eps</span>, <span class='no'>hsys</span>)
+
+<span class='fu'>swe_house_name</span>(<span class='no'>hsys</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>longitude</th>
-      <td><p>Geographic longitude as double (deg)</p></td>
+      <th>jd_ut</th>
+      <td><p>UT Julian day number as double (day)</p></td>
     </tr>
     <tr>
-      <th>lat</th>
-      <td><p>Geographic latitude as double (deg)</p></td>
+      <th>cuspflag</th>
+      <td><p>cusp flag as integer (0 [tropical], SE$FLG_SIDEREAL, SE$FLG_RADIANS)</p></td>
     </tr>
     <tr>
-      <th>height</th>
-      <td><p>Height as double (m)</p></td>
+      <th>geolat</th>
+      <td><p>geographic latitude as double (deg)</p></td>
+    </tr>
+    <tr>
+      <th>geolon</th>
+      <td><p>geographic longitude as double (deg)</p></td>
+    </tr>
+    <tr>
+      <th>hsys</th>
+      <td><p>house method, one-letter case sensitive as char</p></td>
+    </tr>
+    <tr>
+      <th>armc</th>
+      <td><p>right ascension of the MC as double (deg)</p></td>
+    </tr>
+    <tr>
+      <th>eps</th>
+      <td><p>ecliptic obliquity as double (deg)</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>swe_houses_ex</code> returns a list with named entries: <code>return</code> status flag as integer,
+     <code>cusps</code> cusps values as double and <code>ascmc</code> ascendent, MCs. etc. as double.</p>
+<p><code>swe_houses_armc</code> returns a list with named entries: <code>return</code> status flag as integer,
+     <code>cusps</code> cusps values as double and <code>ascmc</code> ascendent, MCs, etc. as double.</p>
+<p><code>swe_house_name</code> returns the house name as string</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <dl class='dl-horizontal'>
-<dt>swe_set_topo()</dt><dd><p>Set the topocentric location of the observer.</p></dd>
+<dt>swe_houses_ex()</dt><dd><p>Calculate houses' cusps, ascendant, Medium Coeli (MC), etc.</p></dd>
+</dl>
+    <dl class='dl-horizontal'>
+<dt>swe_houses_armc()</dt><dd><p>Calculate houses' information from the right ascension of the Medium Coeli (MC).</p></dd>
+</dl>
+    <dl class='dl-horizontal'>
+<dt>swe_houses_name()</dt><dd><p>Provide the house name.</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Section 9 in <a href='http://www.astro.com/swisseph/swephprg.htm'>http://www.astro.com/swisseph/swephprg.htm</a></p></div>
+    <div class='dont-index'><p>Section 13 in <a href='http://www.astro.com/swisseph/swephprg.htm'>http://www.astro.com/swisseph/swephprg.htm</a></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>swe_set_topo</span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>swe_houses_ex</span>(<span class='fl'>1234567</span>, <span class='fl'>0</span>, <span class='fl'>53</span>, <span class='fl'>0</span>, <span class='st'>'B'</span>)</div><div class='output co'>#&gt; $return
+#&gt; [1] 0
+#&gt; 
+#&gt; $cusps
+#&gt;  [1]   0.00000  46.64518  67.89822  88.19583 108.40898 145.68710 186.61910
+#&gt;  [8] 226.64518 247.89822 268.19583 288.40898 325.68710   6.61910   0.00000
+#&gt; [15]   0.00000   0.00000   0.00000   0.00000   0.00000   0.00000   0.00000
+#&gt; [22]   0.00000   0.00000   0.00000   0.00000   0.00000   0.00000   0.00000
+#&gt; [29]   0.00000   0.00000   0.00000   0.00000   0.00000   0.00000   0.00000
+#&gt; [36]   0.00000   0.00000
+#&gt; 
+#&gt; $ascmc
+#&gt;  [1]  46.64518 288.40898 289.99675 196.36986  21.69681  13.76371  31.65048
+#&gt;  [8] 193.76371   0.00000   0.00000
+#&gt; </div><div class='input'><span class='fu'>swe_houses_armc</span>(<span class='fl'>12</span>, <span class='fl'>53</span>, <span class='fl'>23</span>, <span class='st'>'B'</span>)</div><div class='output co'>#&gt; $return
+#&gt; [1] 0
+#&gt; 
+#&gt; $cusps
+#&gt;  [1]   0.00000 125.97068 147.38669 169.96807 193.00244 233.05493 269.54195
+#&gt;  [8] 305.97068 327.38669 349.96807  13.00244  53.05493  89.54195   0.00000
+#&gt; [15]   0.00000   0.00000   0.00000   0.00000   0.00000   0.00000   0.00000
+#&gt; [22]   0.00000   0.00000   0.00000   0.00000   0.00000   0.00000   0.00000
+#&gt; [29]   0.00000   0.00000   0.00000   0.00000   0.00000   0.00000   0.00000
+#&gt; [36]   0.00000   0.00000
+#&gt; 
+#&gt; $ascmc
+#&gt;  [1] 125.97068  13.00244  12.00000 263.98576 101.07060  71.50788 116.41241
+#&gt;  [8] 251.50788   0.00000   0.00000
+#&gt; </div><div class='input'><span class='fu'>swe_house_name</span>(<span class='st'>'G'</span>)</div><div class='output co'>#&gt; [1] "Gauquelin sectors"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#value">Value</a></li>
+
       <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Section 9: The function for calculating topocentric planet position — Section9 • swephR</title>
+<title>Section 10: Sidereal mode functions — Section10 • swephR</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Section 9: The function for calculating topocentric planet position — Section9" />
+<meta property="og:title" content="Section 10: Sidereal mode functions — Section10" />
 
-<meta property="og:description" content="Function for topocentric planet positions" />
+<meta property="og:description" content="Functions to support the determination of siderial information" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -105,55 +105,110 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Section 9: The function for calculating topocentric planet position</h1>
+    <h1>Section 10: Sidereal mode functions</h1>
     <small class="dont-index">Source: <a href='https://github.com/rstub/swephR/blob/master/R/RcppExports.R'><code>R/RcppExports.R</code></a></small>
-    <div class="hidden name"><code>Section9.Rd</code></div>
+    <div class="hidden name"><code>Section10.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Function for topocentric planet positions</p>
+    <p>Functions to support the determination of siderial information</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>swe_set_topo</span>(<span class='no'>longitude</span>, <span class='no'>lat</span>, <span class='no'>height</span>)</pre>
+    <pre class="usage"><span class='fu'>swe_set_sid_mode</span>(<span class='no'>sid_mode</span>, <span class='no'>t0</span>, <span class='no'>ayan_t0</span>)
+
+<span class='fu'>swe_get_ayanamsa_name</span>(<span class='no'>sid_mode</span>)
+
+<span class='fu'>swe_get_ayanamsa_ex_ut</span>(<span class='no'>jd_ut</span>, <span class='no'>iflag</span>)
+
+<span class='fu'>swe_get_ayanamsa_ex</span>(<span class='no'>jd_et</span>, <span class='no'>iflag</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>longitude</th>
-      <td><p>Geographic longitude as double (deg)</p></td>
+      <th>sid_mode</th>
+      <td><p>Siderial mode as integer</p></td>
     </tr>
     <tr>
-      <th>lat</th>
-      <td><p>Geographic latitude as double (deg)</p></td>
+      <th>t0</th>
+      <td><p>Reference date as double (day)</p></td>
     </tr>
     <tr>
-      <th>height</th>
-      <td><p>Height as double (m)</p></td>
+      <th>ayan_t0</th>
+      <td><p>The initial latitude value of the ayanamsha as double (deg)</p></td>
+    </tr>
+    <tr>
+      <th>jd_ut</th>
+      <td><p>UT Julian day number as double (day)</p></td>
+    </tr>
+    <tr>
+      <th>iflag</th>
+      <td><p>Computation flag as integer, many options possible (section 2.3,1)</p></td>
+    </tr>
+    <tr>
+      <th>jd_et</th>
+      <td><p>ET Julian day number as double (day)</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>swe_get_ayanamsa_name</code> returns name of ayanamse method as string</p>
+<p><code>swe_get_ayanamsa_ex_ut</code> returns a list with named entries: <code>return</code> status flag as integer,
+     <code>daya</code> ayanamsa value as double and <code>serr</code> error message as string</p>
+<p><code>swe_get_ayanamsa_ex</code> returns a list with named entries: <code>return</code> status flag as integer,
+     <code>daya</code> ayanamsa value as double and <code>serr</code> error message as string</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <dl class='dl-horizontal'>
-<dt>swe_set_topo()</dt><dd><p>Set the topocentric location of the observer.</p></dd>
+<dt>swe_set_sid_mode()</dt><dd><p>Set the mode for sidereal computations.</p></dd>
+</dl>
+    <dl class='dl-horizontal'>
+<dt>swe_get_ayanamsa_name()</dt><dd><p>Get the mode name for sidereal computations.</p></dd>
+</dl>
+    <dl class='dl-horizontal'>
+<dt>swe_get_ayanamsa_ex_ut()</dt><dd><p>It computes ayanamsa using UT.</p></dd>
+</dl>
+    <dl class='dl-horizontal'>
+<dt>swe_get_ayanamsa_ex()</dt><dd><p>It computes ayanamsa using ET.</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Section 9 in <a href='http://www.astro.com/swisseph/swephprg.htm'>http://www.astro.com/swisseph/swephprg.htm</a></p></div>
+    <div class='dont-index'><p>Section 10 in <a href='http://www.astro.com/swisseph/swephprg.htm'>http://www.astro.com/swisseph/swephprg.htm</a></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>swe_set_topo</span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>SE</span>)
+<span class='fu'>swe_set_sid_mode</span>(<span class='no'>SE</span>$<span class='no'>SIDM_FAGAN_BRADLEY</span>,<span class='fl'>0</span>,<span class='fl'>0</span>)
+<span class='fu'>swe_get_ayanamsa_name</span>(<span class='no'>SE</span>$<span class='no'>SIDM_FAGAN_BRADLEY</span>)</div><div class='output co'>#&gt; [1] "Fagan/Bradley"</div><div class='input'><span class='fu'>swe_get_ayanamsa_ex_ut</span>(<span class='fl'>2458346.82639</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>)</div><div class='output co'>#&gt; $return
+#&gt; [1] 68
+#&gt; 
+#&gt; $daya
+#&gt; [1] 24.99688
+#&gt; 
+#&gt; $serr
+#&gt; [1] ""
+#&gt; </div><div class='input'><span class='fu'>swe_get_ayanamsa_ex</span>(<span class='fl'>2458346.82639</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>)</div><div class='output co'>#&gt; $return
+#&gt; [1] 68
+#&gt; 
+#&gt; $daya
+#&gt; [1] 24.99688
+#&gt; 
+#&gt; $serr
+#&gt; [1] ""
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#value">Value</a></li>
+
       <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
