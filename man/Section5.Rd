@@ -23,7 +23,7 @@ swe_orbit_max_min_true_distance(jd_et, ipl, iflag)
 
 \item{iflag}{Computation flag as integer, many options possible (section 2.3.1)}
 
-\item{method}{as integer (\code{SE$NODBIT_MEAN=0}, \code{SE$NODBIT_OSCUN=1},, \code{SE$NODBIT_OSCU_BAR=4}, \code{SE$NODBIT_FOPOINT=256})}
+\item{method}{Method as integer (\code{SE$NODBIT_MEAN=0}, \code{SE$NODBIT_OSCUN=1},, \code{SE$NODBIT_OSCU_BAR=4}, \code{SE$NODBIT_FOPOINT=256})}
 
 \item{jd_et}{ET Julian day number as double (day)}
 }
@@ -60,7 +60,7 @@ Functions for: determining Kepler elements, apsides and nodes, orbital periods
   }
 
 \describe{
-  \item{swe_orbit_max_min_true_distance()}{This function calculates calculates the maximum possible distance, the minimum possible distance, and the current true distance of planet.}
+  \item{swe_orbit_max_min_true_distance()}{This function calculates the maximum possible distance, the minimum possible distance, and the current true distance of planet.}
   }
 }
 \examples{
