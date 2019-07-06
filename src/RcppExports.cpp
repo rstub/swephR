@@ -44,6 +44,16 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// get_library_path
+std::string get_library_path();
+RcppExport SEXP _swephR_get_library_path() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(get_library_path());
+    return rcpp_result_gen;
+END_RCPP
+}
 // calc_ut
 Rcpp::List calc_ut(Rcpp::NumericVector jd_ut, Rcpp::IntegerVector ipl, int iflag);
 RcppExport SEXP _swephR_calc_ut(SEXP jd_utSEXP, SEXP iplSEXP, SEXP iflagSEXP) {
@@ -664,6 +674,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_close", (DL_FUNC) &_swephR_close, 0},
     {"_swephR_set_jpl_file", (DL_FUNC) &_swephR_set_jpl_file, 1},
     {"_swephR_version", (DL_FUNC) &_swephR_version, 0},
+    {"_swephR_get_library_path", (DL_FUNC) &_swephR_get_library_path, 0},
     {"_swephR_calc_ut", (DL_FUNC) &_swephR_calc_ut, 3},
     {"_swephR_calc", (DL_FUNC) &_swephR_calc, 3},
     {"_swephR_get_planet_name", (DL_FUNC) &_swephR_get_planet_name, 1},
