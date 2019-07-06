@@ -271,7 +271,7 @@ Rcpp::List fixstar2_mag(Rcpp::CharacterVector starname) {
 //' @param jd_ut  UT Julian day number as double (day)
 //' @param ipl  Body/planet as integer (\code{SE$SUN=0}, \code{SE$MOON=1}, ... \code{SE$PLUTO=9})
 //' @param iflag Computation flag as integer, many options possible (section 2.3.1)
-//' @param method as integer (\code{SE$NODBIT_MEAN=0}, \code{SE$NODBIT_OSCUN=1},, \code{SE$NODBIT_OSCU_BAR=4}, \code{SE$NODBIT_FOPOINT=256})
+//' @param method Method as integer (\code{SE$NODBIT_MEAN=0}, \code{SE$NODBIT_OSCUN=1},, \code{SE$NODBIT_OSCU_BAR=4}, \code{SE$NODBIT_FOPOINT=256})
 //' @details
 //' \describe{
 //'   \item{swe_nod_aps_ut()}{Compute planetary nodes and apsides (perihelia, aphelia, second focal points of the orbital ellipses).}
@@ -351,7 +351,7 @@ Rcpp::List get_orbital_elements(double jd_et, int ipl, int iflag) {
 
 //' @details
 //' \describe{
-//'   \item{swe_orbit_max_min_true_distance()}{This function calculates calculates the maximum possible distance, the minimum possible distance, and the current true distance of planet.}
+//'   \item{swe_orbit_max_min_true_distance()}{This function calculates the maximum possible distance, the minimum possible distance, and the current true distance of planet.}
 //'   }
 //' @return \code{swe_orbit_max_min_true_distance} returns a list with named entries:
 //'      \code{return} status flag as integer, \code{dmax} maximum distance as double,
