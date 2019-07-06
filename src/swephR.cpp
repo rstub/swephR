@@ -263,6 +263,118 @@ Rcpp::List fixstar2_mag(Rcpp::CharacterVector starname) {
 }
 
 //////////////////////////////////////////////////////////////////////////
+//' @title Section 5: Kepler elements, apsides and nodes, orbital periods
+//' @name Section5
+//' @description Functions for: determining Kepler elements, apsides and nodes, orbital periods
+//' @seealso Section 5 in \url{http://www.astro.com/swisseph/swephprg.htm}
+//' @param jd_et  ET Julian day number as double (day)
+//' @param jd_ut  UT Julian day number as double (day)
+//' @param ipl  Body/planet as integer (\code{SE$SUN=0}, \code{SE$MOON=1}, ... \code{SE$PLUTO=9})
+//' @param iflag Computation flag as integer, many options possible (section 2.3.1)
+//' @param method as integer (\code{SE$NODBIT_MEAN=0}, \code{SE$NODBIT_OSCUN=1},, \code{SE$NODBIT_OSCU_BAR=4}, \code{SE$NODBIT_FOPOINT=256})
+//' @details
+//' \describe{
+//'   \item{swe_nod_aps_ut()}{Compute planetary nodes and apsides (perihelia, aphelia, second focal points of the orbital ellipses).}
+//'   }
+//' @examples
+//' data(SE)
+//' swe_nod_aps_ut(2451545,SE$MOON, SE$FLG_MOSEPH,SE$NODBIT_MEAN)
+//' swe_nod_aps(2451545,SE$MOON, SE$FLG_MOSEPH,SE$NODBIT_MEAN)
+//' swe_get_orbital_elements(2451545,SE$MOON, SE$FLG_MOSEPH)
+//' swe_orbit_max_min_true_distance(2451545,SE$MOON, SE$FLG_MOSEPH)
+//' @return \code{swe_nod_aps_ut} returns a list with named entries:
+//'      \code{return} status flag as integer, \code{xnasc} ascending nodes as numeric vector,
+//'      \code{xndsc} descending nodes as numeric vector, \code{xperi} perihelion as numeric vector, \code{xaphe} aphelion as numeric vector and \code{serr} error message as string
+//' @rdname Section5
+//' @export
+// [[Rcpp::export(swe_nod_aps_ut)]]
+Rcpp::List nod_aps_ut(double jd_ut, int ipl, int iflag, int method) {
+  std::array<double, 6> xnasc{0.0};
+  std::array<double, 6> xndsc{0.0};
+  std::array<double, 6> xperi{0.0};
+  std::array<double, 6> xaphe{0.0};
+  std::array<char, 256> serr{'\0'};
+  int rtn = swe_nod_aps_ut(jd_ut, ipl, iflag,method,  xnasc.begin(), xndsc.begin(), xperi.begin(),xaphe.begin(), serr.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = rtn, 
+                            Rcpp::Named("xnasc") = xnasc,
+                            Rcpp::Named("xndsc") = xndsc,
+                            Rcpp::Named("xperi") = xperi,
+                            Rcpp::Named("xaphe") = xaphe,
+                            Rcpp::Named("serr") = std::string(serr.begin())
+  );
+}
+
+//' @details
+//' \describe{
+//'   \item{swe_nod_aps()}{Compute planetary nodes and apsides (perihelia, aphelia, second focal points of the orbital ellipses).}
+//'   }
+//' @return \code{swe_nod_aps} returns a list with named entries:
+//'      \code{return} status flag as integer, \code{xnasc} ascending nodes as numeric vector,
+//'      \code{xndsc} descending nodes as numeric vector, \code{xperi} perihelion as numeric vector, \code{xaphe} aphelion as numeric vector and \code{serr} error message as string
+//' @rdname Section5
+//' @export
+// [[Rcpp::export(swe_nod_aps)]]
+Rcpp::List nod_aps(double jd_et, int ipl, int iflag, int method) {
+  std::array<double, 6> xnasc{0.0};
+  std::array<double, 6> xndsc{0.0};
+  std::array<double, 6> xperi{0.0};
+  std::array<double, 6> xaphe{0.0};
+  std::array<char, 256> serr{'\0'};
+  int rtn = swe_nod_aps(jd_et, ipl, iflag,method,  xnasc.begin(), xndsc.begin(), xperi.begin(),xaphe.begin(), serr.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = rtn, 
+                            Rcpp::Named("xnasc") = xnasc,
+                            Rcpp::Named("xndsc") = xndsc,
+                            Rcpp::Named("xperi") = xperi,
+                            Rcpp::Named("xaphe") = xaphe,
+                            Rcpp::Named("serr") = std::string(serr.begin())
+  );
+}
+
+//' @details
+//' \describe{
+//'   \item{swe_get_orbital_elements()}{This function calculates osculating elements (Kepler elements) and orbital periods.}
+//'   }
+//' @return \code{swe_get_orbital_elements} returns a list with named entries:
+//'      \code{return} status flag as integer, \code{dret} function results as numeric vector and \code{serr} error message as string
+//' @rdname Section5
+//' @export
+// [[Rcpp::export(swe_get_orbital_elements)]]
+Rcpp::List get_orbital_elements(double jd_et, int ipl, int iflag) {
+  std::array<double, 50> dret{0.0};
+  std::array<char, 256> serr{'\0'};
+  int rtn = swe_get_orbital_elements(jd_et, ipl, iflag, dret.begin(), serr.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = rtn, 
+                            Rcpp::Named("dret") = dret,
+                            Rcpp::Named("serr") = std::string(serr.begin())
+  );
+}
+
+//' @details
+//' \describe{
+//'   \item{swe_orbit_max_min_true_distance()}{This function calculates calculates the maximum possible distance, the minimum possible distance, and the current true distance of planet.}
+//'   }
+//' @return \code{swe_orbit_max_min_true_distance} returns a list with named entries:
+//'      \code{return} status flag as integer, \code{dmax} maximum distance as double,
+//'      \code{dmin} minimum distance as double, \code{dtrue} true distance as double and \code{serr} error message as string
+//' @rdname Section5
+//' @export
+// [[Rcpp::export(swe_orbit_max_min_true_distance)]]
+Rcpp::List orbit_max_min_true_distance(double jd_et, int ipl, int iflag) {
+  double dmax;
+  double dmin;
+  double dtrue;
+  std::array<char, 256> serr{'\0'};
+  int rtn = swe_orbit_max_min_true_distance(jd_et, ipl, iflag,&dmax,&dmin,&dtrue, serr.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = rtn, 
+                            Rcpp::Named("dmax") = dmax,
+                            Rcpp::Named("dmin") = dmin,
+                            Rcpp::Named("dtrue") = dtrue,
+                            Rcpp::Named("serr") = std::string(serr.begin())
+  );
+}
+
+
+//////////////////////////////////////////////////////////////////////////
 //' @title Section 6: Eclipses, Risings, Settings, Meridian Transits, Planetary Phenomena
 //' @name Section6
 //' @description Functions for: determining eclipse and occultation calculations, computing the times of rising, setting and
