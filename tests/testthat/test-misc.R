@@ -138,3 +138,44 @@ expect_equal(result$return, 0)
 expect_equal(result$dgsect, 31.41367,tolerance = .000001)
 expect_equal(result$serr, "")
 })
+
+test_that("Compute planetary nodes and apsides (based on UT):", {
+  data(SE)
+  result <- swe_nod_aps_ut(2451545,SE$MOON, SE$FLG_MOSEPH,SE$NODBIT_MEAN)
+  expect_equal(result$return, 0)
+  expect_equal(result$xnasc, c(1.250406e+02, 3.476104e-13, 2.460922e-03, 0,0,0),tolerance = .000001)
+  expect_equal(result$xndsc, c(3.050406e+02, 2.439083e-13, 2.671325e-03, 0,0,0),tolerance = .000001)
+  expect_equal(result$xperi, c(83.464332724, -3.419715015,  0.002428485, 0,0,0),tolerance = .000001)
+  expect_equal(result$xaphe, c(2.634643e+02, 3.419715e+00, 2.710625e-03, 0,0,0),tolerance = .000001)
+  expect_equal(result$serr, "")
+})
+
+test_that("Compute planetary nodes and apsides (based on ET):", {
+  data(SE)
+  result <- swe_nod_aps(2451545,SE$MOON, SE$FLG_MOSEPH,SE$NODBIT_MEAN)
+  expect_equal(result$return, 0)
+  expect_equal(result$xnasc, c(1.250407e+02, 1.105681e-13, 2.460922e-03, 0,0,0),tolerance = .000001)
+  expect_equal(result$xndsc, c(3.050407e+02, -2.612689e-13,  2.671325e-03, 0,0,0),tolerance = .000001)
+  expect_equal(result$xperi, c(83.464250479, -3.419723161 , 0.002428485, 0,0,0),tolerance = .000001)
+  expect_equal(result$xaphe, c(2.634643e+02, 3.419723e+00, 2.710625e-03, 0,0,0),tolerance = .000001)
+  expect_equal(result$serr, "")
+})
+
+test_that("calculates osculating elements (Kepler elements) and orbital periods:", {
+  data(SE)
+  result <- swe_get_orbital_elements(2451545,SE$MOON, SE$FLG_MOSEPH)
+  expect_equal(result$return, 0)
+  expect_equal(result$dret[0:17], c(2.552584e-03,  6.317394e-02,  5.240360e+00,  1.239572e+02 , 3.089075e+02 , 7.286466e+01 , 1.466895e+02 , 1.504159e+02 , 1.485766e+02,
+                              2.195542e+02,  7.435498e-02 , 1.325595e+01,  7.435776e-02 ,-2.933903e+01,  2.451534e+06 , 2.391328e-03 , 2.713841e-03),tolerance = .000001)
+  expect_equal(result$serr, "")
+})
+
+test_that("Calculates the maximum possible distance, the minimum possible distance and the current true distance:", {
+  data(SE)
+  result <- swe_orbit_max_min_true_distance(2451545,SE$MOON, SE$FLG_MOSEPH)
+  expect_equal(result$return, 0)
+  expect_equal(result$dmax, 0.002713841,tolerance = .000001)
+  expect_equal(result$dmin, 0.002391328,tolerance = .000001)
+  expect_equal(result$dtrue, 0.002690191,tolerance = .000001)
+  expect_equal(result$serr, "")
+})

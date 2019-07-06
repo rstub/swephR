@@ -6,7 +6,7 @@
 \alias{swe_nod_aps}
 \alias{swe_get_orbital_elements}
 \alias{swe_orbit_max_min_true_distance}
-\title{Section 5: Kepler elements, apsides and nodes, orbital periods}
+\title{Section 5: Kepler elements, nodes, apsides and orbital periods}
 \usage{
 swe_nod_aps_ut(jd_ut, ipl, iflag, method)
 
@@ -44,7 +44,7 @@ swe_orbit_max_min_true_distance(jd_et, ipl, iflag)
      \code{dmin} minimum distance as double, \code{dtrue} true distance as double and \code{serr} error message as string
 }
 \description{
-Functions for: determining Kepler elements, apsides and nodes, orbital periods
+Functions for: determining Kepler elements, nodes, apsides and orbital periods
 }
 \details{
 \describe{
@@ -60,7 +60,7 @@ Functions for: determining Kepler elements, apsides and nodes, orbital periods
   }
 
 \describe{
-  \item{swe_orbit_max_min_true_distance()}{This function calculates the maximum possible distance, the minimum possible distance, and the current true distance of planet.}
+  \item{swe_orbit_max_min_true_distance()}{This function calculates the maximum possible distance, the minimum possible distance and the current true distance of planet.}
   }
 }
 \examples{

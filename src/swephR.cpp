@@ -263,9 +263,9 @@ Rcpp::List fixstar2_mag(Rcpp::CharacterVector starname) {
 }
 
 //////////////////////////////////////////////////////////////////////////
-//' @title Section 5: Kepler elements, apsides and nodes, orbital periods
+//' @title Section 5: Kepler elements, nodes, apsides and orbital periods
 //' @name Section5
-//' @description Functions for: determining Kepler elements, apsides and nodes, orbital periods
+//' @description Functions for: determining Kepler elements, nodes, apsides and orbital periods
 //' @seealso Section 5 in \url{http://www.astro.com/swisseph/swephprg.htm}
 //' @param jd_et  ET Julian day number as double (day)
 //' @param jd_ut  UT Julian day number as double (day)
@@ -351,7 +351,7 @@ Rcpp::List get_orbital_elements(double jd_et, int ipl, int iflag) {
 
 //' @details
 //' \describe{
-//'   \item{swe_orbit_max_min_true_distance()}{This function calculates the maximum possible distance, the minimum possible distance, and the current true distance of planet.}
+//'   \item{swe_orbit_max_min_true_distance()}{This function calculates the maximum possible distance, the minimum possible distance and the current true distance of planet.}
 //'   }
 //' @return \code{swe_orbit_max_min_true_distance} returns a list with named entries:
 //'      \code{return} status flag as integer, \code{dmax} maximum distance as double,
@@ -372,7 +372,6 @@ Rcpp::List orbit_max_min_true_distance(double jd_et, int ipl, int iflag) {
                             Rcpp::Named("serr") = std::string(serr.begin())
   );
 }
-
 
 //////////////////////////////////////////////////////////////////////////
 //' @title Section 6: Eclipses, Risings, Settings, Meridian Transits, Planetary Phenomena
