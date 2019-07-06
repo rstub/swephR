@@ -6,6 +6,7 @@
 \alias{swe_close}
 \alias{swe_set_jpl_file}
 \alias{swe_version}
+\alias{swe_get_library_path}
 \title{Section 1: The Ephemeris file related functions}
 \usage{
 swe_set_ephe_path(path)
@@ -15,6 +16,8 @@ swe_close()
 swe_set_jpl_file(fname)
 
 swe_version()
+
+swe_get_library_path()
 }
 \arguments{
 \item{path}{Directory for the sefstars.txt, swe_deltat.txt and jpl files}
@@ -23,6 +26,8 @@ swe_version()
 }
 \value{
 \code{swe_version} returns Swiss Ephemeris software version as string
+
+\code{swe_get_library_path} returns the path in which the executable resides as string
 }
 \description{
 Several initialization functions
@@ -39,6 +44,7 @@ Several initialization functions
        resources (open files and allocated memory) used by Swiss Ephemeris.}
   \item{swe_set_jpl_file()}{Set name of JPL ephemeris file.}
   \item{swe_version()}{The function provides the version number of the Swiss Ephemeris software.}
+  \item{swe_get_library_path()}{The function provides the path where the executable resides.}
 }
 }
 \examples{
@@ -46,6 +52,7 @@ Several initialization functions
 swe_close()
 swe_set_jpl_file("de431.eph")
 swe_version()
+swe_get_library_path()
 }
 \seealso{
 Section 1 in \url{http://www.astro.com/swisseph/swephprg.htm}

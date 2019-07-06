@@ -36,6 +36,7 @@
 //'        resources (open files and allocated memory) used by Swiss Ephemeris.}
 //'   \item{swe_set_jpl_file()}{Set name of JPL ephemeris file.}
 //'   \item{swe_version()}{The function provides the version number of the Swiss Ephemeris software.}
+//'   \item{swe_get_library_path()}{The function provides the path where the executable resides.}
 //' }
 //' @param path Directory for the sefstars.txt, swe_deltat.txt and jpl files
 //' @examples
@@ -43,6 +44,7 @@
 //' swe_close()
 //' swe_set_jpl_file("de431.eph")
 //' swe_version()
+//' swe_get_library_path()
 //' @rdname Section1
 //' @export
 // [[Rcpp::export(swe_set_ephe_path)]]
@@ -80,6 +82,15 @@ std::string version() {
   return std::string(&version[0]);
 }
 
+//' @return \code{swe_get_library_path} returns the path in which the executable resides as string
+//' @rdname Section1
+//' @export
+// [[Rcpp::export(swe_get_library_path)]]
+std::string get_library_path() {
+  std::array<char, 256> spath{{'\0'}};
+  swe_get_library_path(&spath[0]);
+  return std::string(&spath[0]);
+}
 
 //////////////////////////////////////////////////////////////////////////
 // Section 2: Computing positions
