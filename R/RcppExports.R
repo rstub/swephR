@@ -114,8 +114,8 @@ swe_fixstar2_mag <- function(starname) {
 #' swe_get_orbital_elements(2451545,SE$MOON, SE$FLG_MOSEPH)
 #' swe_orbit_max_min_true_distance(2451545,SE$MOON, SE$FLG_MOSEPH)
 #' @return \code{swe_nod_aps_ut} returns a list with named entries:
-#'      \code{return} status flag as integer, \code{xnasc} ascending nodes as numeric vector,
-#'      \code{xndsc} descending nodes as numeric vector, \code{xperi} perihelion as numeric vector, \code{xaphe} aphelion as numeric vector and \code{serr} error message as string
+#'      \code{return} status flag as integer, \code{xnasc} ascending nodes (x,y,z) as numeric vector,
+#'      \code{xndsc} (x,y,z) descending nodes as numeric vector, \code{xperi} perihelion (x,y,z) as numeric vector, \code{xaphe} (x,y,z) aphelion as numeric vector and \code{serr} error message as string
 #' @rdname Section5
 #' @export
 swe_nod_aps_ut <- function(jd_ut, ipl, iflag, method) {
@@ -127,8 +127,8 @@ swe_nod_aps_ut <- function(jd_ut, ipl, iflag, method) {
 #'   \item{swe_nod_aps()}{Compute planetary nodes and apsides (perihelia, aphelia, second focal points of the orbital ellipses).}
 #'   }
 #' @return \code{swe_nod_aps} returns a list with named entries:
-#'      \code{return} status flag as integer, \code{xnasc} ascending nodes as numeric vector,
-#'      \code{xndsc} descending nodes as numeric vector, \code{xperi} perihelion as numeric vector, \code{xaphe} aphelion as numeric vector and \code{serr} error message as string
+#'      \code{return} status flag as integer, \code{xnasc} ascending nodes (x,y,z) as numeric vector,
+#'      \code{xndsc} (x,y,z) descending nodes as numeric vector, \code{xperi} perihelion (x,y,z) as numeric vector, \code{xaphe} (x,y,z) aphelion as numeric vector and \code{serr} error message as string
 #' @rdname Section5
 #' @export
 swe_nod_aps <- function(jd_et, ipl, iflag, method) {

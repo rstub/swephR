@@ -29,12 +29,12 @@ swe_orbit_max_min_true_distance(jd_et, ipl, iflag)
 }
 \value{
 \code{swe_nod_aps_ut} returns a list with named entries:
-     \code{return} status flag as integer, \code{xnasc} ascending nodes as numeric vector,
-     \code{xndsc} descending nodes as numeric vector, \code{xperi} perihelion as numeric vector, \code{xaphe} aphelion as numeric vector and \code{serr} error message as string
+     \code{return} status flag as integer, \code{xnasc} ascending nodes (x,y,z) as numeric vector,
+     \code{xndsc} (x,y,z) descending nodes as numeric vector, \code{xperi} perihelion (x,y,z) as numeric vector, \code{xaphe} (x,y,z) aphelion as numeric vector and \code{serr} error message as string
 
 \code{swe_nod_aps} returns a list with named entries:
-     \code{return} status flag as integer, \code{xnasc} ascending nodes as numeric vector,
-     \code{xndsc} descending nodes as numeric vector, \code{xperi} perihelion as numeric vector, \code{xaphe} aphelion as numeric vector and \code{serr} error message as string
+     \code{return} status flag as integer, \code{xnasc} ascending nodes (x,y,z) as numeric vector,
+     \code{xndsc} (x,y,z) descending nodes as numeric vector, \code{xperi} perihelion (x,y,z) as numeric vector, \code{xaphe} (x,y,z) aphelion as numeric vector and \code{serr} error message as string
 
 \code{swe_get_orbital_elements} returns a list with named entries:
      \code{return} status flag as integer, \code{dret} function results as numeric vector and \code{serr} error message as string
