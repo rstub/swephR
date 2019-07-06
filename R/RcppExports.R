@@ -94,9 +94,9 @@ swe_fixstar2_mag <- function(starname) {
     .Call(`_swephR_fixstar2_mag`, starname)
 }
 
-#' @title Section 5: Kepler elements, apsides and nodes, orbital periods
+#' @title Section 5: Kepler elements, nodes, apsides and orbital periods
 #' @name Section5
-#' @description Functions for: determining Kepler elements, apsides and nodes, orbital periods
+#' @description Functions for: determining Kepler elements, nodes, apsides and orbital periods
 #' @seealso Section 5 in \url{http://www.astro.com/swisseph/swephprg.htm}
 #' @param jd_et  ET Julian day number as double (day)
 #' @param jd_ut  UT Julian day number as double (day)
@@ -149,7 +149,7 @@ swe_get_orbital_elements <- function(jd_et, ipl, iflag) {
 
 #' @details
 #' \describe{
-#'   \item{swe_orbit_max_min_true_distance()}{This function calculates the maximum possible distance, the minimum possible distance, and the current true distance of planet.}
+#'   \item{swe_orbit_max_min_true_distance()}{This function calculates the maximum possible distance, the minimum possible distance and the current true distance of planet.}
 #'   }
 #' @return \code{swe_orbit_max_min_true_distance} returns a list with named entries:
 #'      \code{return} status flag as integer, \code{dmax} maximum distance as double,
