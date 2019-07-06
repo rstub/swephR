@@ -118,6 +118,60 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// nod_aps_ut
+Rcpp::List nod_aps_ut(double jd_ut, int ipl, int iflag, int method);
+RcppExport SEXP _swephR_nod_aps_ut(SEXP jd_utSEXP, SEXP iplSEXP, SEXP iflagSEXP, SEXP methodSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type jd_ut(jd_utSEXP);
+    Rcpp::traits::input_parameter< int >::type ipl(iplSEXP);
+    Rcpp::traits::input_parameter< int >::type iflag(iflagSEXP);
+    Rcpp::traits::input_parameter< int >::type method(methodSEXP);
+    rcpp_result_gen = Rcpp::wrap(nod_aps_ut(jd_ut, ipl, iflag, method));
+    return rcpp_result_gen;
+END_RCPP
+}
+// nod_aps
+Rcpp::List nod_aps(double jd_et, int ipl, int iflag, int method);
+RcppExport SEXP _swephR_nod_aps(SEXP jd_etSEXP, SEXP iplSEXP, SEXP iflagSEXP, SEXP methodSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type jd_et(jd_etSEXP);
+    Rcpp::traits::input_parameter< int >::type ipl(iplSEXP);
+    Rcpp::traits::input_parameter< int >::type iflag(iflagSEXP);
+    Rcpp::traits::input_parameter< int >::type method(methodSEXP);
+    rcpp_result_gen = Rcpp::wrap(nod_aps(jd_et, ipl, iflag, method));
+    return rcpp_result_gen;
+END_RCPP
+}
+// get_orbital_elements
+Rcpp::List get_orbital_elements(double jd_et, int ipl, int iflag);
+RcppExport SEXP _swephR_get_orbital_elements(SEXP jd_etSEXP, SEXP iplSEXP, SEXP iflagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type jd_et(jd_etSEXP);
+    Rcpp::traits::input_parameter< int >::type ipl(iplSEXP);
+    Rcpp::traits::input_parameter< int >::type iflag(iflagSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_orbital_elements(jd_et, ipl, iflag));
+    return rcpp_result_gen;
+END_RCPP
+}
+// orbit_max_min_true_distance
+Rcpp::List orbit_max_min_true_distance(double jd_et, int ipl, int iflag);
+RcppExport SEXP _swephR_orbit_max_min_true_distance(SEXP jd_etSEXP, SEXP iplSEXP, SEXP iflagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type jd_et(jd_etSEXP);
+    Rcpp::traits::input_parameter< int >::type ipl(iplSEXP);
+    Rcpp::traits::input_parameter< int >::type iflag(iflagSEXP);
+    rcpp_result_gen = Rcpp::wrap(orbit_max_min_true_distance(jd_et, ipl, iflag));
+    return rcpp_result_gen;
+END_RCPP
+}
 // sol_eclipse_when_loc
 Rcpp::List sol_eclipse_when_loc(double jd_start, int ephe_flag, Rcpp::NumericVector geopos, bool backward);
 RcppExport SEXP _swephR_sol_eclipse_when_loc(SEXP jd_startSEXP, SEXP ephe_flagSEXP, SEXP geoposSEXP, SEXP backwardSEXP) {
@@ -616,6 +670,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_fixstar2_ut", (DL_FUNC) &_swephR_fixstar2_ut, 3},
     {"_swephR_fixstar2", (DL_FUNC) &_swephR_fixstar2, 3},
     {"_swephR_fixstar2_mag", (DL_FUNC) &_swephR_fixstar2_mag, 1},
+    {"_swephR_nod_aps_ut", (DL_FUNC) &_swephR_nod_aps_ut, 4},
+    {"_swephR_nod_aps", (DL_FUNC) &_swephR_nod_aps, 4},
+    {"_swephR_get_orbital_elements", (DL_FUNC) &_swephR_get_orbital_elements, 3},
+    {"_swephR_orbit_max_min_true_distance", (DL_FUNC) &_swephR_orbit_max_min_true_distance, 3},
     {"_swephR_sol_eclipse_when_loc", (DL_FUNC) &_swephR_sol_eclipse_when_loc, 4},
     {"_swephR_lun_eclipse_when_loc", (DL_FUNC) &_swephR_lun_eclipse_when_loc, 4},
     {"_swephR_lun_eclipse_how", (DL_FUNC) &_swephR_lun_eclipse_how, 3},

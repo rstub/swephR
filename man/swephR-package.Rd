@@ -19,6 +19,7 @@ The Swiss Ephemeris (version 2.08) is a high precision ephemeris based upon the
 Useful links:
 \itemize{
   \item \url{https://github.com/rstub/swephR/}
+  \item \url{https://rstub.github.io/swephR/}
   \item \url{http://www.astro.com/swisseph/}
   \item Report bugs at \url{https://github.com/rstub/swephR/issues/}
 }
