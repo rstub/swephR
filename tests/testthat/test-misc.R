@@ -179,3 +179,62 @@ test_that("Calculates the maximum possible distance, the minimum possible distan
   expect_equal(result$dtrue, 0.002690191,tolerance = .000001)
   expect_equal(result$serr, "")
 })
+
+test_that("Calcuate the time zone time:", {
+  result <- swe_utc_time_zone(2000,1,1,12,5,1.2,2)
+  expect_equal(result$year_out, 2000)
+  expect_equal(result$month_out, 1)
+  expect_equal(result$day_out, 1)
+  expect_equal(result$hour_out, 10)
+  expect_equal(result$min_out, 5)
+  expect_equal(result$sec_out, 1.2,tolerance = .000001)
+})
+
+test_that("Calcuate Julian day number ET and UT):", {
+  result <- swe_utc_to_jd(2000,1,1,0,12,3.4,SE$GREG_CAL)
+  expect_equal(result$return,0)
+  expect_equal(result$dret, c(2451544.50911556, 2451544.50837680),tolerance = .000001)
+  expect_equal(result$serr, "")
+})
+
+test_that("Calcuate UTC from Julian day number ET):", {
+  result <- swe_jdet_to_utc(2452500,SE$GREG_CAL)
+  expect_equal(result$year_out, 2002)
+  expect_equal(result$month_out, 8)
+  expect_equal(result$day_out, 13)
+  expect_equal(result$hour_out, 11)
+  expect_equal(result$min_out, 58)
+  expect_equal(result$sec_out, 55.8159989118576,tolerance = .000001)
+})
+
+test_that("Calcuate UTC from Julian day number UT):", {
+  result <- swe_jdut1_to_utc(2452500,SE$GREG_CAL)
+  expect_equal(result$year_out, 2002)
+  expect_equal(result$month_out, 8)
+  expect_equal(result$day_out, 13)
+  expect_equal(result$hour_out, 12)
+  expect_equal(result$min_out, 0)
+  expect_equal(result$sec_out, 0.23009330034256,tolerance = .000001)
+})
+
+test_that("Calcuate equation of time):", {
+  result <- swe_time_equ(2452500)
+  expect_equal(result$return,0)
+  expect_equal(result$e, -0.00338739864203035,tolerance = .000001)
+  expect_equal(result$serr, "")
+})
+
+test_that("Calcuate LAT):", {
+  result <- swe_lmt_to_lat(2452500,0)
+  expect_equal(result$return,0)
+  expect_equal(result$jd_lat, 2452499.9966126,tolerance = .000001)
+  expect_equal(result$serr, "")
+})
+
+test_that("Calcuate LMT):", {
+  result <- swe_lat_to_lmt(2452500,0)
+  expect_equal(result$return,0)
+  expect_equal(result$jd_lmt, 2452500.00338698,tolerance = .000001)
+  expect_equal(result$serr, "")
+})
+
