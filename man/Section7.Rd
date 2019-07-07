@@ -5,6 +5,10 @@
 \alias{swe_julday}
 \alias{swe_date_conversion}
 \alias{swe_revjul}
+\alias{swe_utc_time_zone}
+\alias{swe_utc_to_jd}
+\alias{swe_jdet_to_utc}
+\alias{swe_jdut1_to_utc}
 \title{Section 7: Date and time conversion functions}
 \usage{
 swe_julday(year, month, day, hour, gregflag)
@@ -12,6 +16,14 @@ swe_julday(year, month, day, hour, gregflag)
 swe_date_conversion(year, month, day, hour, cal)
 
 swe_revjul(jd, gregflag)
+
+swe_utc_time_zone(year, month, day, hour, min, sec, d_timezone)
+
+swe_utc_to_jd(year, month, day, hour, min, sec, gregflag)
+
+swe_jdet_to_utc(jd_et, gregflag)
+
+swe_jdut1_to_utc(jd_ut1, gregflag)
 }
 \arguments{
 \item{year}{Astronomical year as integer}
@@ -27,6 +39,12 @@ swe_revjul(jd, gregflag)
 \item{cal}{Calendar type "g" [Gregorian] or "j" [Julian] as char}
 
 \item{jd}{Julian day number as double}
+
+\item{d_timezone}{Timezone offset (hour) as double}
+
+\item{jd_et}{Julian day number (ET) as double (day)}
+
+\item{jd_ut1}{Julian day number (UT1) as double (day)}
 }
 \value{
 \code{swe_date_conversion} returns a list with named entries: \code{return} status flag as integer,
@@ -34,6 +52,21 @@ swe_revjul(jd, gregflag)
 
 \code{swe_revjul} returns a list with named entries: \code{year} year as integer,
      \code{month} month as integer, \code{day} day as integer and \code{hour} hour as double.
+
+\code{swe_utc_time_zone} returns a list with named entries: \code{year_out} year as integer,
+     \code{month_out} month as integer, \code{day_out} day as integer, \code{hour_out} hour as integer, \code{min_out} minute as integer, 
+     \code{sec_out} second as double,
+
+\code{swe_utc_to_jd } returns a list with named entries: \code{return} status flag as integer,
+     \code{dret} Julian day number as numeric vector and \code{serr} for error message as string.
+
+\code{swe_jdet_to_utc} returns a list with named entries: \code{year_out} year as integer,
+     \code{month_out} month as integer, \code{day_out} day as integer, \code{hour_out} hour as integer, \code{min_out} minute as integer, 
+     \code{sec_out} second as double,
+
+\code{swe_jdut1_to_utc} returns a list with named entries: \code{year_out} year as integer,
+     \code{month_out} month as integer, \code{day_out} day as integer, \code{hour_out} hour as integer, \code{min_out} minute as integer, 
+     \code{sec_out} second as double,
 }
 \description{
 Functions related to calendar and time conversions.
@@ -44,6 +77,10 @@ Functions related to calendar and time conversions.
   \item{swe_date_conversion()}{Convert calendar dates to the astronomical time scale which measures time in Julian day
   number and checks if the calendar date is legal.}
   \item{swe_revjul()}{Compute year, month, day and hour from a Julian day number.}
+  \item{swe_utc_time_zone()}{Convert local time to UTC and UTC to local time.}
+  \item{swe_utc_to_jd()}{Convert UTC to Julian day number.}
+  \item{swe_jdet_to_utc()}{Convert ???.}
+  \item{swe_jdut1_to_utc()}{Convert ???.}
 }
 }
 \examples{
@@ -51,6 +88,10 @@ data(SE)
 swe_julday(2000,1,1,12,SE$GREG_CAL)
 swe_date_conversion(2000,1,1,12,"g")
 swe_revjul(2452500,SE$GREG_CAL)
+swe_utc_time_zone(2000,1,1,12,5,1.2,2)
+swe_utc_to_jd(2000,1,1,0,12,3.4,SE$GREG_CAL)
+swe_jdet_to_utc(2000,1,1,12,5,1.2,SE$GREG_CAL)
+swe_jdut1_to_utc(2000,1,1,12,5,1.2,SE$GREG_CAL)
 }
 \seealso{
 Section 7 in \url{http://www.astro.com/swisseph/swephprg.htm}

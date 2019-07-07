@@ -461,6 +461,64 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// utc_time_zone
+Rcpp::List utc_time_zone(int year, int month, int day, int hour, int min, double sec, double d_timezone);
+RcppExport SEXP _swephR_utc_time_zone(SEXP yearSEXP, SEXP monthSEXP, SEXP daySEXP, SEXP hourSEXP, SEXP minSEXP, SEXP secSEXP, SEXP d_timezoneSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type year(yearSEXP);
+    Rcpp::traits::input_parameter< int >::type month(monthSEXP);
+    Rcpp::traits::input_parameter< int >::type day(daySEXP);
+    Rcpp::traits::input_parameter< int >::type hour(hourSEXP);
+    Rcpp::traits::input_parameter< int >::type min(minSEXP);
+    Rcpp::traits::input_parameter< double >::type sec(secSEXP);
+    Rcpp::traits::input_parameter< double >::type d_timezone(d_timezoneSEXP);
+    rcpp_result_gen = Rcpp::wrap(utc_time_zone(year, month, day, hour, min, sec, d_timezone));
+    return rcpp_result_gen;
+END_RCPP
+}
+// utc_to_jd
+Rcpp::List utc_to_jd(int year, int month, int day, int hour, int min, double sec, int gregflag);
+RcppExport SEXP _swephR_utc_to_jd(SEXP yearSEXP, SEXP monthSEXP, SEXP daySEXP, SEXP hourSEXP, SEXP minSEXP, SEXP secSEXP, SEXP gregflagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type year(yearSEXP);
+    Rcpp::traits::input_parameter< int >::type month(monthSEXP);
+    Rcpp::traits::input_parameter< int >::type day(daySEXP);
+    Rcpp::traits::input_parameter< int >::type hour(hourSEXP);
+    Rcpp::traits::input_parameter< int >::type min(minSEXP);
+    Rcpp::traits::input_parameter< double >::type sec(secSEXP);
+    Rcpp::traits::input_parameter< int >::type gregflag(gregflagSEXP);
+    rcpp_result_gen = Rcpp::wrap(utc_to_jd(year, month, day, hour, min, sec, gregflag));
+    return rcpp_result_gen;
+END_RCPP
+}
+// jdet_to_utc
+Rcpp::List jdet_to_utc(double jd_et, int gregflag);
+RcppExport SEXP _swephR_jdet_to_utc(SEXP jd_etSEXP, SEXP gregflagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type jd_et(jd_etSEXP);
+    Rcpp::traits::input_parameter< int >::type gregflag(gregflagSEXP);
+    rcpp_result_gen = Rcpp::wrap(jdet_to_utc(jd_et, gregflag));
+    return rcpp_result_gen;
+END_RCPP
+}
+// jdut1_to_utc
+Rcpp::List jdut1_to_utc(double jd_ut1, int gregflag);
+RcppExport SEXP _swephR_jdut1_to_utc(SEXP jd_ut1SEXP, SEXP gregflagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type jd_ut1(jd_ut1SEXP);
+    Rcpp::traits::input_parameter< int >::type gregflag(gregflagSEXP);
+    rcpp_result_gen = Rcpp::wrap(jdut1_to_utc(jd_ut1, gregflag));
+    return rcpp_result_gen;
+END_RCPP
+}
 // deltat_ex
 Rcpp::List deltat_ex(Rcpp::NumericVector jd_ut, int ephe_flag);
 RcppExport SEXP _swephR_deltat_ex(SEXP jd_utSEXP, SEXP ephe_flagSEXP) {
@@ -703,6 +761,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_julday", (DL_FUNC) &_swephR_julday, 5},
     {"_swephR_date_conversion", (DL_FUNC) &_swephR_date_conversion, 5},
     {"_swephR_revjul", (DL_FUNC) &_swephR_revjul, 2},
+    {"_swephR_utc_time_zone", (DL_FUNC) &_swephR_utc_time_zone, 7},
+    {"_swephR_utc_to_jd", (DL_FUNC) &_swephR_utc_to_jd, 7},
+    {"_swephR_jdet_to_utc", (DL_FUNC) &_swephR_jdet_to_utc, 2},
+    {"_swephR_jdut1_to_utc", (DL_FUNC) &_swephR_jdut1_to_utc, 2},
     {"_swephR_deltat_ex", (DL_FUNC) &_swephR_deltat_ex, 2},
     {"_swephR_deltat", (DL_FUNC) &_swephR_deltat, 1},
     {"_swephR_set_tid_acc", (DL_FUNC) &_swephR_set_tid_acc, 1},
