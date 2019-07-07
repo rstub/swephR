@@ -809,7 +809,7 @@ Rcpp::List heliacal_angle(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericV
 //' @param gregflag  Calendar type as integer (SE$JUL_CAL=0 or SE$GREG_CAL=1)
 //' @param jd_et  Julian day number (ET) as double (day)
 //' @param jd_ut  Julian day number (UT) as double (day)
-//' @param jd_lmt  Julian day number (LMT) as double (day)
+//' @param jd_lmt  Julian day number (LMT=UT+geolon/360) as double (day)
 //' @param jd_lat  Julian day number (LAT) as double (day)
 //' @rdname Section7
 //' @export

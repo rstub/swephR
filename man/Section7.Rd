@@ -61,7 +61,7 @@ swe_lat_to_lmt(jd_lat, geolon)
 
 \item{jd_ut}{Julian day number (UT) as double (day)}
 
-\item{jd_lmt}{Julian day number (LMT) as double (day)}
+\item{jd_lmt}{Julian day number (LMT=UT+geolon/360) as double (day)}
 
 \item{geolon}{geographic longitude as double (deg)}
 
