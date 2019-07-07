@@ -439,9 +439,12 @@ swe_heliacal_angle <- function(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS
 #'   number and checks if the calendar date is legal.}
 #'   \item{swe_revjul()}{Compute year, month, day and hour from a Julian day number.}
 #'   \item{swe_utc_time_zone()}{Convert local time to UTC and UTC to local time.}
-#'   \item{swe_utc_to_jd()}{Convert UTC to Julian day number.}
-#'   \item{swe_jdet_to_utc()}{Convert ???.}
-#'   \item{swe_jdut1_to_utc()}{Convert ???.}
+#'   \item{swe_utc_to_jd()}{Convert UTC to Julian day number (UT and ET).}
+#'   \item{swe_jdet_to_utc()}{Convert Julian day number (ET) into UTC.}
+#'   \item{swe_jdut1_to_utc()}{Convert Julian day number (UT1) into UTC.}
+#'   \item{swe_time_equ()}{Calculate equation of time (LAT-LMT).}
+#'   \item{swe_lmt_to_lat()}{Convert Julian day number (LMT) into Julian day number (LAT).}
+#'   \item{swe_lat_to_lmt()}{Convert Julian day number (LAT) into Julian day number (LMT).}
 #' }
 #' @examples
 #' data(SE)
@@ -450,19 +453,28 @@ swe_heliacal_angle <- function(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS
 #' swe_revjul(2452500,SE$GREG_CAL)
 #' swe_utc_time_zone(2000,1,1,12,5,1.2,2)
 #' swe_utc_to_jd(2000,1,1,0,12,3.4,SE$GREG_CAL)
-#' swe_jdet_to_utc(2000,1,1,12,5,1.2,SE$GREG_CAL)
-#' swe_jdut1_to_utc(2000,1,1,12,5,1.2,SE$GREG_CAL)
+#' swe_jdet_to_utc(2452500,SE$GREG_CAL)
+#' swe_jdut1_to_utc(2452500,SE$GREG_CAL)
+#' swe_time_equ(2452500)
+#' swe_lmt_to_lat(2452500,53)
+#' swe_lat_to_lmt(2452500,53)
 #' @param year  Astronomical year as integer
 #' @param month  Month as integer
 #' @param day  Day as integer
-#' @param hour  Hour as double
+#' @param hourd  Hour as double
+#' @param houri  Hour as integer
+#' @param min  min as integer
+#' @param sec  Second as double
+#' @param geolon  geographic longitude as double (deg)
 #' @param gregflag  Calendar type as integer (SE$JUL_CAL=0 or SE$GREG_CAL=1)
 #' @param jd_et  Julian day number (ET) as double (day)
-#' @param jd_ut1  Julian day number (UT1) as double (day)
+#' @param jd_ut  Julian day number (UT) as double (day)
+#' @param jd_lmt  Julian day number (LMT) as double (day)
+#' @param jd_lat  Julian day number (LAT) as double (day)
 #' @rdname Section7
 #' @export
-swe_julday <- function(year, month, day, hour, gregflag) {
-    .Call(`_swephR_julday`, year, month, day, hour, gregflag)
+swe_julday <- function(year, month, day, hourd, gregflag) {
+    .Call(`_swephR_julday`, year, month, day, hourd, gregflag)
 }
 
 #' @param cal  Calendar type "g" [Gregorian] or "j" [Julian] as char
@@ -470,8 +482,8 @@ swe_julday <- function(year, month, day, hour, gregflag) {
 #'      \code{jd} Julian day number as double
 #' @rdname Section7
 #' @export
-swe_date_conversion <- function(year, month, day, hour, cal) {
-    .Call(`_swephR_date_conversion`, year, month, day, hour, cal)
+swe_date_conversion <- function(year, month, day, hourd, cal) {
+    .Call(`_swephR_date_conversion`, year, month, day, hourd, cal)
 }
 
 #' @param jd  Julian day number as double
@@ -489,16 +501,16 @@ swe_revjul <- function(jd, gregflag) {
 #'      \code{sec_out} second as double,
 #' @rdname Section7
 #' @export
-swe_utc_time_zone <- function(year, month, day, hour, min, sec, d_timezone) {
-    .Call(`_swephR_utc_time_zone`, year, month, day, hour, min, sec, d_timezone)
+swe_utc_time_zone <- function(year, month, day, houri, min, sec, d_timezone) {
+    .Call(`_swephR_utc_time_zone`, year, month, day, houri, min, sec, d_timezone)
 }
 
-#' @return \code{swe_utc_to_jd } returns a list with named entries: \code{return} status flag as integer,
+#' @return \code{swe_utc_to_jd} returns a list with named entries: \code{return} status flag as integer,
 #'      \code{dret} Julian day number as numeric vector and \code{serr} for error message as string.
 #' @rdname Section7
 #' @export
-swe_utc_to_jd <- function(year, month, day, hour, min, sec, gregflag) {
-    .Call(`_swephR_utc_to_jd`, year, month, day, hour, min, sec, gregflag)
+swe_utc_to_jd <- function(year, month, day, houri, min, sec, gregflag) {
+    .Call(`_swephR_utc_to_jd`, year, month, day, houri, min, sec, gregflag)
 }
 
 #' @return \code{swe_jdet_to_utc} returns a list with named entries: \code{year_out} year as integer,
@@ -515,8 +527,32 @@ swe_jdet_to_utc <- function(jd_et, gregflag) {
 #'      \code{sec_out} second as double,
 #' @rdname Section7
 #' @export
-swe_jdut1_to_utc <- function(jd_ut1, gregflag) {
-    .Call(`_swephR_jdut1_to_utc`, jd_ut1, gregflag)
+swe_jdut1_to_utc <- function(jd_ut, gregflag) {
+    .Call(`_swephR_jdut1_to_utc`, jd_ut, gregflag)
+}
+
+#' @return \code{swe_swe_time_equ} returns a list with named entries: \code{return} status flag as integer,
+#'      \code{e} equation of time (day) as double and \code{serr} for error message as string.
+#' @rdname Section7
+#' @export
+swe_time_equ <- function(jd_ut) {
+    .Call(`_swephR_time_equ`, jd_ut)
+}
+
+#' @return \code{swe_lmt_to_lat} returns a list with named entries: \code{return} status flag as integer,
+#'      \code{jd_lat} Julian day number (LAT) (day) as double and \code{serr} for error message as string.
+#' @rdname Section7
+#' @export
+swe_lmt_to_lat <- function(jd_lmt, geolon) {
+    .Call(`_swephR_lmt_to_lat`, jd_lmt, geolon)
+}
+
+#' @return \code{swe_lat_to_lmt} returns a list with named entries: \code{return} status flag as integer,
+#'      \code{jd_lmt} Julian day number (LMT) (day) as double and \code{serr} for error message as string.
+#' @rdname Section7
+#' @export
+swe_lat_to_lmt <- function(jd_lat, geolon) {
+    .Call(`_swephR_lat_to_lmt`, jd_lat, geolon)
 }
 
 #' @title Section 8: Delta T-related functions

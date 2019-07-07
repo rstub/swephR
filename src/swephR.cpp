@@ -779,9 +779,12 @@ Rcpp::List heliacal_angle(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericV
 //'   number and checks if the calendar date is legal.}
 //'   \item{swe_revjul()}{Compute year, month, day and hour from a Julian day number.}
 //'   \item{swe_utc_time_zone()}{Convert local time to UTC and UTC to local time.}
-//'   \item{swe_utc_to_jd()}{Convert UTC to Julian day number.}
-//'   \item{swe_jdet_to_utc()}{Convert ???.}
-//'   \item{swe_jdut1_to_utc()}{Convert ???.}
+//'   \item{swe_utc_to_jd()}{Convert UTC to Julian day number (UT and ET).}
+//'   \item{swe_jdet_to_utc()}{Convert Julian day number (ET) into UTC.}
+//'   \item{swe_jdut1_to_utc()}{Convert Julian day number (UT1) into UTC.}
+//'   \item{swe_time_equ()}{Calculate equation of time (LAT-LMT).}
+//'   \item{swe_lmt_to_lat()}{Convert Julian day number (LMT) into Julian day number (LAT).}
+//'   \item{swe_lat_to_lmt()}{Convert Julian day number (LAT) into Julian day number (LMT).}
 //' }
 //' @examples
 //' data(SE)
@@ -790,21 +793,30 @@ Rcpp::List heliacal_angle(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericV
 //' swe_revjul(2452500,SE$GREG_CAL)
 //' swe_utc_time_zone(2000,1,1,12,5,1.2,2)
 //' swe_utc_to_jd(2000,1,1,0,12,3.4,SE$GREG_CAL)
-//' swe_jdet_to_utc(2000,1,1,12,5,1.2,SE$GREG_CAL)
-//' swe_jdut1_to_utc(2000,1,1,12,5,1.2,SE$GREG_CAL)
+//' swe_jdet_to_utc(2452500,SE$GREG_CAL)
+//' swe_jdut1_to_utc(2452500,SE$GREG_CAL)
+//' swe_time_equ(2452500)
+//' swe_lmt_to_lat(2452500,53)
+//' swe_lat_to_lmt(2452500,53)
 //' @param year  Astronomical year as integer
 //' @param month  Month as integer
 //' @param day  Day as integer
-//' @param hour  Hour as double
+//' @param hourd  Hour as double
+//' @param houri  Hour as integer
+//' @param min  min as integer
+//' @param sec  Second as double
+//' @param geolon  geographic longitude as double (deg)
 //' @param gregflag  Calendar type as integer (SE$JUL_CAL=0 or SE$GREG_CAL=1)
 //' @param jd_et  Julian day number (ET) as double (day)
-//' @param jd_ut1  Julian day number (UT1) as double (day)
+//' @param jd_ut  Julian day number (UT) as double (day)
+//' @param jd_lmt  Julian day number (LMT) as double (day)
+//' @param jd_lat  Julian day number (LAT) as double (day)
 //' @rdname Section7
 //' @export
 // [[Rcpp::export(swe_julday)]]
-double julday(int year, int month, int day, double hour, int gregflag) {
+double julday(int year, int month, int day, double hourd, int gregflag) {
     double i;
-    i = swe_julday(year, month, day, hour, gregflag);
+    i = swe_julday(year, month, day, hourd, gregflag);
   return i;
 }
 
@@ -814,9 +826,9 @@ double julday(int year, int month, int day, double hour, int gregflag) {
 //' @rdname Section7
 //' @export
 // [[Rcpp::export(swe_date_conversion)]]
-Rcpp::List date_conversion(int year, int month, int day, double hour, char cal) {
+Rcpp::List date_conversion(int year, int month, int day, double hourd, char cal) {
   double jd;
-  int i = swe_date_conversion(year, month, day, hour, cal, &jd);
+  int i = swe_date_conversion(year, month, day, hourd, cal, &jd);
   return Rcpp::List::create(Rcpp::Named("return") = i,
                             Rcpp::Named("jd") = jd);
 }
@@ -846,14 +858,14 @@ Rcpp::List revjul(double jd, int gregflag ) {
 //' @rdname Section7
 //' @export
 // [[Rcpp::export(swe_utc_time_zone)]]
-Rcpp::List utc_time_zone(int year, int month, int day, int hour, int min, double sec, double d_timezone) {
+Rcpp::List utc_time_zone(int year, int month, int day, int houri, int min, double sec, double d_timezone) {
   int year_out;
   int month_out;
   int day_out;
   int hour_out;
   int min_out;
   double sec_out;
-  swe_utc_time_zone(year, month, day, hour, min, sec, d_timezone, &year_out,&month_out,&day_out,&hour_out,&min_out,&sec_out);
+  swe_utc_time_zone(year, month, day, houri, min, sec, d_timezone, &year_out,&month_out,&day_out,&hour_out,&min_out,&sec_out);
   return Rcpp::List::create(Rcpp::Named("year_out") = year_out,
                             Rcpp::Named("month_out") = month_out,
                             Rcpp::Named("day_out") = day_out,
@@ -863,15 +875,15 @@ Rcpp::List utc_time_zone(int year, int month, int day, int hour, int min, double
                             );
 }
 
-//' @return \code{swe_utc_to_jd } returns a list with named entries: \code{return} status flag as integer,
+//' @return \code{swe_utc_to_jd} returns a list with named entries: \code{return} status flag as integer,
 //'      \code{dret} Julian day number as numeric vector and \code{serr} for error message as string.
 //' @rdname Section7
 //' @export
-// [[Rcpp::export(swe_utc_to_jd )]]
-Rcpp::List utc_to_jd (int year, int month, int day, int hour, int min, double sec, int gregflag) {
+// [[Rcpp::export(swe_utc_to_jd)]]
+Rcpp::List utc_to_jd (int year, int month, int day, int houri, int min, double sec, int gregflag) {
   std::array<char, 256> serr{'\0'};
   std::array<double, 2> dret{0.0};
-  int i = swe_utc_to_jd (year, month, day, hour, min,sec,gregflag, dret.begin(),serr.begin());
+  int i = swe_utc_to_jd(year, month, day, houri, min,sec,gregflag, dret.begin(),serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = i,
                             Rcpp::Named("dret") = dret,
                             Rcpp::Named("serr") = std::string(serr.begin()));
@@ -905,15 +917,15 @@ Rcpp::List jdet_to_utc(double jd_et, int gregflag) {
 //'      \code{sec_out} second as double,
 //' @rdname Section7
 //' @export
-// [[Rcpp::export(swe_jdut1_to_utc )]]
-Rcpp::List jdut1_to_utc(double jd_ut1, int gregflag) {
+// [[Rcpp::export(swe_jdut1_to_utc)]]
+Rcpp::List jdut1_to_utc(double jd_ut, int gregflag) {
   int year_out;
   int month_out;
   int day_out;
   int hour_out;
   int min_out;
   double sec_out;
-  swe_jdut1_to_utc(jd_ut1,gregflag, &year_out,&month_out,&day_out,&hour_out,&min_out,&sec_out);
+  swe_jdut1_to_utc(jd_ut,gregflag, &year_out,&month_out,&day_out,&hour_out,&min_out,&sec_out);
   return Rcpp::List::create(Rcpp::Named("year_out") = year_out,
                             Rcpp::Named("month_out") = month_out,
                             Rcpp::Named("day_out") = day_out,
@@ -921,6 +933,48 @@ Rcpp::List jdut1_to_utc(double jd_ut1, int gregflag) {
                             Rcpp::Named("min_out") = min_out,
                             Rcpp::Named("sec_out") = sec_out
   );
+}
+
+//' @return \code{swe_swe_time_equ} returns a list with named entries: \code{return} status flag as integer,
+//'      \code{e} equation of time (day) as double and \code{serr} for error message as string.
+//' @rdname Section7
+//' @export
+// [[Rcpp::export(swe_time_equ)]]
+Rcpp::List time_equ(double jd_ut) {
+  std::array<char, 256> serr{'\0'};
+  double e;
+  int i = swe_time_equ(jd_ut,&e,serr.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("e") = e,
+                            Rcpp::Named("serr") = std::string(serr.begin()));
+}
+
+//' @return \code{swe_lmt_to_lat} returns a list with named entries: \code{return} status flag as integer,
+//'      \code{jd_lat} Julian day number (LAT) (day) as double and \code{serr} for error message as string.
+//' @rdname Section7
+//' @export
+// [[Rcpp::export(swe_lmt_to_lat)]]
+Rcpp::List lmt_to_lat(double jd_lmt, double geolon) {
+  std::array<char, 256> serr{'\0'};
+  double jd_lat;
+  int i = swe_lmt_to_lat(jd_lmt,geolon,&jd_lat,serr.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("jd_lat") = jd_lat,
+                            Rcpp::Named("serr") = std::string(serr.begin()));
+}
+
+//' @return \code{swe_lat_to_lmt} returns a list with named entries: \code{return} status flag as integer,
+//'      \code{jd_lmt} Julian day number (LMT) (day) as double and \code{serr} for error message as string.
+//' @rdname Section7
+//' @export
+// [[Rcpp::export(swe_lat_to_lmt)]]
+Rcpp::List lat_to_lmt(double jd_lat, double geolon) {
+  std::array<char, 256> serr{'\0'};
+  double jd_lmt;
+  int i = swe_lat_to_lmt(jd_lat,geolon,&jd_lmt,serr.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("jd_lmt") = jd_lmt,
+                            Rcpp::Named("serr") = std::string(serr.begin()));
 }
 
 //////////////////////////////////////////////////////////////////////////

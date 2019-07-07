@@ -420,32 +420,32 @@ BEGIN_RCPP
 END_RCPP
 }
 // julday
-double julday(int year, int month, int day, double hour, int gregflag);
-RcppExport SEXP _swephR_julday(SEXP yearSEXP, SEXP monthSEXP, SEXP daySEXP, SEXP hourSEXP, SEXP gregflagSEXP) {
+double julday(int year, int month, int day, double hourd, int gregflag);
+RcppExport SEXP _swephR_julday(SEXP yearSEXP, SEXP monthSEXP, SEXP daySEXP, SEXP hourdSEXP, SEXP gregflagSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< int >::type year(yearSEXP);
     Rcpp::traits::input_parameter< int >::type month(monthSEXP);
     Rcpp::traits::input_parameter< int >::type day(daySEXP);
-    Rcpp::traits::input_parameter< double >::type hour(hourSEXP);
+    Rcpp::traits::input_parameter< double >::type hourd(hourdSEXP);
     Rcpp::traits::input_parameter< int >::type gregflag(gregflagSEXP);
-    rcpp_result_gen = Rcpp::wrap(julday(year, month, day, hour, gregflag));
+    rcpp_result_gen = Rcpp::wrap(julday(year, month, day, hourd, gregflag));
     return rcpp_result_gen;
 END_RCPP
 }
 // date_conversion
-Rcpp::List date_conversion(int year, int month, int day, double hour, char cal);
-RcppExport SEXP _swephR_date_conversion(SEXP yearSEXP, SEXP monthSEXP, SEXP daySEXP, SEXP hourSEXP, SEXP calSEXP) {
+Rcpp::List date_conversion(int year, int month, int day, double hourd, char cal);
+RcppExport SEXP _swephR_date_conversion(SEXP yearSEXP, SEXP monthSEXP, SEXP daySEXP, SEXP hourdSEXP, SEXP calSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< int >::type year(yearSEXP);
     Rcpp::traits::input_parameter< int >::type month(monthSEXP);
     Rcpp::traits::input_parameter< int >::type day(daySEXP);
-    Rcpp::traits::input_parameter< double >::type hour(hourSEXP);
+    Rcpp::traits::input_parameter< double >::type hourd(hourdSEXP);
     Rcpp::traits::input_parameter< char >::type cal(calSEXP);
-    rcpp_result_gen = Rcpp::wrap(date_conversion(year, month, day, hour, cal));
+    rcpp_result_gen = Rcpp::wrap(date_conversion(year, month, day, hourd, cal));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -462,36 +462,36 @@ BEGIN_RCPP
 END_RCPP
 }
 // utc_time_zone
-Rcpp::List utc_time_zone(int year, int month, int day, int hour, int min, double sec, double d_timezone);
-RcppExport SEXP _swephR_utc_time_zone(SEXP yearSEXP, SEXP monthSEXP, SEXP daySEXP, SEXP hourSEXP, SEXP minSEXP, SEXP secSEXP, SEXP d_timezoneSEXP) {
+Rcpp::List utc_time_zone(int year, int month, int day, int houri, int min, double sec, double d_timezone);
+RcppExport SEXP _swephR_utc_time_zone(SEXP yearSEXP, SEXP monthSEXP, SEXP daySEXP, SEXP houriSEXP, SEXP minSEXP, SEXP secSEXP, SEXP d_timezoneSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< int >::type year(yearSEXP);
     Rcpp::traits::input_parameter< int >::type month(monthSEXP);
     Rcpp::traits::input_parameter< int >::type day(daySEXP);
-    Rcpp::traits::input_parameter< int >::type hour(hourSEXP);
+    Rcpp::traits::input_parameter< int >::type houri(houriSEXP);
     Rcpp::traits::input_parameter< int >::type min(minSEXP);
     Rcpp::traits::input_parameter< double >::type sec(secSEXP);
     Rcpp::traits::input_parameter< double >::type d_timezone(d_timezoneSEXP);
-    rcpp_result_gen = Rcpp::wrap(utc_time_zone(year, month, day, hour, min, sec, d_timezone));
+    rcpp_result_gen = Rcpp::wrap(utc_time_zone(year, month, day, houri, min, sec, d_timezone));
     return rcpp_result_gen;
 END_RCPP
 }
 // utc_to_jd
-Rcpp::List utc_to_jd(int year, int month, int day, int hour, int min, double sec, int gregflag);
-RcppExport SEXP _swephR_utc_to_jd(SEXP yearSEXP, SEXP monthSEXP, SEXP daySEXP, SEXP hourSEXP, SEXP minSEXP, SEXP secSEXP, SEXP gregflagSEXP) {
+Rcpp::List utc_to_jd(int year, int month, int day, int houri, int min, double sec, int gregflag);
+RcppExport SEXP _swephR_utc_to_jd(SEXP yearSEXP, SEXP monthSEXP, SEXP daySEXP, SEXP houriSEXP, SEXP minSEXP, SEXP secSEXP, SEXP gregflagSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< int >::type year(yearSEXP);
     Rcpp::traits::input_parameter< int >::type month(monthSEXP);
     Rcpp::traits::input_parameter< int >::type day(daySEXP);
-    Rcpp::traits::input_parameter< int >::type hour(hourSEXP);
+    Rcpp::traits::input_parameter< int >::type houri(houriSEXP);
     Rcpp::traits::input_parameter< int >::type min(minSEXP);
     Rcpp::traits::input_parameter< double >::type sec(secSEXP);
     Rcpp::traits::input_parameter< int >::type gregflag(gregflagSEXP);
-    rcpp_result_gen = Rcpp::wrap(utc_to_jd(year, month, day, hour, min, sec, gregflag));
+    rcpp_result_gen = Rcpp::wrap(utc_to_jd(year, month, day, houri, min, sec, gregflag));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -508,14 +508,49 @@ BEGIN_RCPP
 END_RCPP
 }
 // jdut1_to_utc
-Rcpp::List jdut1_to_utc(double jd_ut1, int gregflag);
-RcppExport SEXP _swephR_jdut1_to_utc(SEXP jd_ut1SEXP, SEXP gregflagSEXP) {
+Rcpp::List jdut1_to_utc(double jd_ut, int gregflag);
+RcppExport SEXP _swephR_jdut1_to_utc(SEXP jd_utSEXP, SEXP gregflagSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type jd_ut1(jd_ut1SEXP);
+    Rcpp::traits::input_parameter< double >::type jd_ut(jd_utSEXP);
     Rcpp::traits::input_parameter< int >::type gregflag(gregflagSEXP);
-    rcpp_result_gen = Rcpp::wrap(jdut1_to_utc(jd_ut1, gregflag));
+    rcpp_result_gen = Rcpp::wrap(jdut1_to_utc(jd_ut, gregflag));
+    return rcpp_result_gen;
+END_RCPP
+}
+// time_equ
+Rcpp::List time_equ(double jd_ut);
+RcppExport SEXP _swephR_time_equ(SEXP jd_utSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type jd_ut(jd_utSEXP);
+    rcpp_result_gen = Rcpp::wrap(time_equ(jd_ut));
+    return rcpp_result_gen;
+END_RCPP
+}
+// lmt_to_lat
+Rcpp::List lmt_to_lat(double jd_lmt, double geolon);
+RcppExport SEXP _swephR_lmt_to_lat(SEXP jd_lmtSEXP, SEXP geolonSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type jd_lmt(jd_lmtSEXP);
+    Rcpp::traits::input_parameter< double >::type geolon(geolonSEXP);
+    rcpp_result_gen = Rcpp::wrap(lmt_to_lat(jd_lmt, geolon));
+    return rcpp_result_gen;
+END_RCPP
+}
+// lat_to_lmt
+Rcpp::List lat_to_lmt(double jd_lat, double geolon);
+RcppExport SEXP _swephR_lat_to_lmt(SEXP jd_latSEXP, SEXP geolonSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type jd_lat(jd_latSEXP);
+    Rcpp::traits::input_parameter< double >::type geolon(geolonSEXP);
+    rcpp_result_gen = Rcpp::wrap(lat_to_lmt(jd_lat, geolon));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -765,6 +800,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_utc_to_jd", (DL_FUNC) &_swephR_utc_to_jd, 7},
     {"_swephR_jdet_to_utc", (DL_FUNC) &_swephR_jdet_to_utc, 2},
     {"_swephR_jdut1_to_utc", (DL_FUNC) &_swephR_jdut1_to_utc, 2},
+    {"_swephR_time_equ", (DL_FUNC) &_swephR_time_equ, 1},
+    {"_swephR_lmt_to_lat", (DL_FUNC) &_swephR_lmt_to_lat, 2},
+    {"_swephR_lat_to_lmt", (DL_FUNC) &_swephR_lat_to_lmt, 2},
     {"_swephR_deltat_ex", (DL_FUNC) &_swephR_deltat_ex, 2},
     {"_swephR_deltat", (DL_FUNC) &_swephR_deltat, 1},
     {"_swephR_set_tid_acc", (DL_FUNC) &_swephR_set_tid_acc, 1},
