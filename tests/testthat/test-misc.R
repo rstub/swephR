@@ -1,7 +1,7 @@
 context("Misc tests")
 
 test_that("day_of_week works", {
-  expect_equal(swe_day_of_week(1234.567), 3)
+  expect_equal(swe_day_of_week(1234.567), 3 )
 })
 
 test_that("day_of_week works with vector input", {
