@@ -55,13 +55,13 @@ swe_lat_to_lmt(jd_lat, geolon)
 
 \item{sec}{Second as double}
 
-\item{d_timezone}{Timezone offset (hour) as double}
+\item{d_timezone}{Timezone offset as double (hour)}
 
 \item{jd_et}{Julian day number (ET) as double (day)}
 
 \item{jd_ut}{Julian day number (UT) as double (day)}
 
-\item{jd_lmt}{Julian day number (LMT) as double (day)}
+\item{jd_lmt}{Julian day number (LMT=UT) as double (day)}
 
 \item{geolon}{geographic longitude as double (deg)}
 
@@ -96,7 +96,7 @@ swe_lat_to_lmt(jd_lat, geolon)
      \code{jd_lat} Julian day number (LAT) (day) as double and \code{serr} for error message as string.
 
 \code{swe_lat_to_lmt} returns a list with named entries: \code{return} status flag as integer,
-     \code{jd_lmt} Julian day number (LMT) (day) as double and \code{serr} for error message as string.
+     \code{jd_lmt} Julian day number (LMT=UT) (day) as double and \code{serr} for error message as string.
 }
 \description{
 Functions related to calendar and time conversions.
@@ -111,9 +111,9 @@ Functions related to calendar and time conversions.
   \item{swe_utc_to_jd()}{Convert UTC to Julian day number (UT and ET).}
   \item{swe_jdet_to_utc()}{Convert Julian day number (ET) into UTC.}
   \item{swe_jdut1_to_utc()}{Convert Julian day number (UT1) into UTC.}
-  \item{swe_time_equ()}{Calculate equation of time (LAT-LMT).}
-  \item{swe_lmt_to_lat()}{Convert Julian day number (LMT) into Julian day number (LAT).}
-  \item{swe_lat_to_lmt()}{Convert Julian day number (LAT) into Julian day number (LMT).}
+  \item{swe_time_equ()}{Calculate equation of time (LAT-LMT=LAT-UT).}
+  \item{swe_lmt_to_lat()}{Convert Julian day number (LMT=UT) into Julian day number (LAT).}
+  \item{swe_lat_to_lmt()}{Convert Julian day number (LAT) into Julian day number (LMT=UT).}
 }
 }
 \examples{
