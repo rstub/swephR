@@ -442,9 +442,9 @@ swe_heliacal_angle <- function(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS
 #'   \item{swe_utc_to_jd()}{Convert UTC to Julian day number (UT and ET).}
 #'   \item{swe_jdet_to_utc()}{Convert Julian day number (ET) into UTC.}
 #'   \item{swe_jdut1_to_utc()}{Convert Julian day number (UT1) into UTC.}
-#'   \item{swe_time_equ()}{Calculate equation of time (LAT-LMT).}
-#'   \item{swe_lmt_to_lat()}{Convert Julian day number (LMT) into Julian day number (LAT).}
-#'   \item{swe_lat_to_lmt()}{Convert Julian day number (LAT) into Julian day number (LMT).}
+#'   \item{swe_time_equ()}{Calculate equation of time (LAT-LMT=LAT-UT).}
+#'   \item{swe_lmt_to_lat()}{Convert Julian day number (LMT=UT) into Julian day number (LAT).}
+#'   \item{swe_lat_to_lmt()}{Convert Julian day number (LAT) into Julian day number (LMT=UT).}
 #' }
 #' @examples
 #' data(SE)
@@ -469,7 +469,7 @@ swe_heliacal_angle <- function(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS
 #' @param gregflag  Calendar type as integer (SE$JUL_CAL=0 or SE$GREG_CAL=1)
 #' @param jd_et  Julian day number (ET) as double (day)
 #' @param jd_ut  Julian day number (UT) as double (day)
-#' @param jd_lmt  Julian day number (LMT) as double (day)
+#' @param jd_lmt  Julian day number (LMT=UT) as double (day)
 #' @param jd_lat  Julian day number (LAT) as double (day)
 #' @rdname Section7
 #' @export
@@ -495,7 +495,7 @@ swe_revjul <- function(jd, gregflag) {
     .Call(`_swephR_revjul`, jd, gregflag)
 }
 
-#' @param d_timezone  Timezone offset (hour) as double
+#' @param d_timezone  Timezone offset as double (hour)
 #' @return \code{swe_utc_time_zone} returns a list with named entries: \code{year_out} year as integer,
 #'      \code{month_out} month as integer, \code{day_out} day as integer, \code{hour_out} hour as integer, \code{min_out} minute as integer, 
 #'      \code{sec_out} second as double,
@@ -548,7 +548,7 @@ swe_lmt_to_lat <- function(jd_lmt, geolon) {
 }
 
 #' @return \code{swe_lat_to_lmt} returns a list with named entries: \code{return} status flag as integer,
-#'      \code{jd_lmt} Julian day number (LMT) (day) as double and \code{serr} for error message as string.
+#'      \code{jd_lmt} Julian day number (LMT=UT) (day) as double and \code{serr} for error message as string.
 #' @rdname Section7
 #' @export
 swe_lat_to_lmt <- function(jd_lat, geolon) {
