@@ -778,17 +778,27 @@ Rcpp::List heliacal_angle(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericV
 //'   \item{swe_date_conversion()}{Convert calendar dates to the astronomical time scale which measures time in Julian day
 //'   number and checks if the calendar date is legal.}
 //'   \item{swe_revjul()}{Compute year, month, day and hour from a Julian day number.}
+//'   \item{swe_utc_time_zone()}{Convert local time to UTC and UTC to local time.}
+//'   \item{swe_utc_to_jd()}{Convert UTC to Julian day number.}
+//'   \item{swe_jdet_to_utc()}{Convert ???.}
+//'   \item{swe_jdut1_to_utc()}{Convert ???.}
 //' }
 //' @examples
 //' data(SE)
 //' swe_julday(2000,1,1,12,SE$GREG_CAL)
 //' swe_date_conversion(2000,1,1,12,"g")
 //' swe_revjul(2452500,SE$GREG_CAL)
+//' swe_utc_time_zone(2000,1,1,12,5,1.2,2)
+//' swe_utc_to_jd(2000,1,1,0,12,3.4,SE$GREG_CAL)
+//' swe_jdet_to_utc(2000,1,1,12,5,1.2,SE$GREG_CAL)
+//' swe_jdut1_to_utc(2000,1,1,12,5,1.2,SE$GREG_CAL)
 //' @param year  Astronomical year as integer
 //' @param month  Month as integer
 //' @param day  Day as integer
 //' @param hour  Hour as double
 //' @param gregflag  Calendar type as integer (SE$JUL_CAL=0 or SE$GREG_CAL=1)
+//' @param jd_et  Julian day number (ET) as double (day)
+//' @param jd_ut1  Julian day number (UT1) as double (day)
 //' @rdname Section7
 //' @export
 // [[Rcpp::export(swe_julday)]]
@@ -829,6 +839,89 @@ Rcpp::List revjul(double jd, int gregflag ) {
                             Rcpp::Named("hour") = hour);
 }
 
+//' @param d_timezone  Timezone offset (hour) as double
+//' @return \code{swe_utc_time_zone} returns a list with named entries: \code{year_out} year as integer,
+//'      \code{month_out} month as integer, \code{day_out} day as integer, \code{hour_out} hour as integer, \code{min_out} minute as integer, 
+//'      \code{sec_out} second as double,
+//' @rdname Section7
+//' @export
+// [[Rcpp::export(swe_utc_time_zone)]]
+Rcpp::List utc_time_zone(int year, int month, int day, int hour, int min, double sec, double d_timezone) {
+  int year_out;
+  int month_out;
+  int day_out;
+  int hour_out;
+  int min_out;
+  double sec_out;
+  swe_utc_time_zone(year, month, day, hour, min, sec, d_timezone, &year_out,&month_out,&day_out,&hour_out,&min_out,&sec_out);
+  return Rcpp::List::create(Rcpp::Named("year_out") = year_out,
+                            Rcpp::Named("month_out") = month_out,
+                            Rcpp::Named("day_out") = day_out,
+                            Rcpp::Named("hour_out") = hour_out,
+                            Rcpp::Named("min_out") = min_out,
+                            Rcpp::Named("sec_out") = sec_out
+                            );
+}
+
+//' @return \code{swe_utc_to_jd } returns a list with named entries: \code{return} status flag as integer,
+//'      \code{dret} Julian day number as numeric vector and \code{serr} for error message as string.
+//' @rdname Section7
+//' @export
+// [[Rcpp::export(swe_utc_to_jd )]]
+Rcpp::List utc_to_jd (int year, int month, int day, int hour, int min, double sec, int gregflag) {
+  std::array<char, 256> serr{'\0'};
+  std::array<double, 2> dret{0.0};
+  int i = swe_utc_to_jd (year, month, day, hour, min,sec,gregflag, dret.begin(),serr.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = i,
+                            Rcpp::Named("dret") = dret,
+                            Rcpp::Named("serr") = std::string(serr.begin()));
+}
+
+//' @return \code{swe_jdet_to_utc} returns a list with named entries: \code{year_out} year as integer,
+//'      \code{month_out} month as integer, \code{day_out} day as integer, \code{hour_out} hour as integer, \code{min_out} minute as integer, 
+//'      \code{sec_out} second as double,
+//' @rdname Section7
+//' @export
+// [[Rcpp::export(swe_jdet_to_utc )]]
+Rcpp::List jdet_to_utc(double jd_et, int gregflag) {
+  int year_out;
+  int month_out;
+  int day_out;
+  int hour_out;
+  int min_out;
+  double sec_out;
+  swe_jdet_to_utc(jd_et,gregflag, &year_out,&month_out,&day_out,&hour_out,&min_out,&sec_out);
+  return Rcpp::List::create(Rcpp::Named("year_out") = year_out,
+                            Rcpp::Named("month_out") = month_out,
+                            Rcpp::Named("day_out") = day_out,
+                            Rcpp::Named("hour_out") = hour_out,
+                            Rcpp::Named("min_out") = min_out,
+                            Rcpp::Named("sec_out") = sec_out
+  );
+}
+
+//' @return \code{swe_jdut1_to_utc} returns a list with named entries: \code{year_out} year as integer,
+//'      \code{month_out} month as integer, \code{day_out} day as integer, \code{hour_out} hour as integer, \code{min_out} minute as integer, 
+//'      \code{sec_out} second as double,
+//' @rdname Section7
+//' @export
+// [[Rcpp::export(swe_jdut1_to_utc )]]
+Rcpp::List jdut1_to_utc(double jd_ut1, int gregflag) {
+  int year_out;
+  int month_out;
+  int day_out;
+  int hour_out;
+  int min_out;
+  double sec_out;
+  swe_jdut1_to_utc(jd_ut1,gregflag, &year_out,&month_out,&day_out,&hour_out,&min_out,&sec_out);
+  return Rcpp::List::create(Rcpp::Named("year_out") = year_out,
+                            Rcpp::Named("month_out") = month_out,
+                            Rcpp::Named("day_out") = day_out,
+                            Rcpp::Named("hour_out") = hour_out,
+                            Rcpp::Named("min_out") = min_out,
+                            Rcpp::Named("sec_out") = sec_out
+  );
+}
 
 //////////////////////////////////////////////////////////////////////////
 //' @title Section 8: Delta T-related functions
@@ -840,7 +933,7 @@ Rcpp::List revjul(double jd, int gregflag ) {
 //' \describe{
 //' \item{swe_deltat_ex()}{Determine DeltaT from Julian day number for a specific ephemeris.}
 //' }
-//' @param jd_ut  Julian day number (UT) as numeric vector (day)
+//' @param jd_ut Julian day number (UT) as numeric vector (day)
 //' @param t_acc Tidal acceleration as double (arcsec/century^2)
 //' @param delta_t DeltaT (day)
 //' @examples
