@@ -281,7 +281,7 @@ Rcpp::List fixstar2_mag(Rcpp::CharacterVector starname) {
 //' @param jd_et  ET Julian day number as double (day)
 //' @param jd_ut  UT Julian day number as double (day)
 //' @param ipl  Body/planet as integer (\code{SE$SUN=0}, \code{SE$MOON=1}, ... \code{SE$PLUTO=9})
-//' @param iflag Computation flag as integer, many options possible (section 2.3.1)
+//' @param iflag Computation flag as integer, many options possible (section 2.3)
 //' @param method Method as integer (\code{SE$NODBIT_MEAN=0}, \code{SE$NODBIT_OSCUN=1},, \code{SE$NODBIT_OSCU_BAR=4}, \code{SE$NODBIT_FOPOINT=256})
 //' @details
 //' \describe{
@@ -835,7 +835,7 @@ Rcpp::List revjul(double jd, int gregflag ) {
 //' @name Section8
 //' @description Functions related to DeltaT and tidal acceleration
 //' @seealso Section 8 in \url{http://www.astro.com/swisseph/swephprg.htm}
-//' @param ephe_flag  ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4) (section 2.3.2)
+//' @param ephe_flag  ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4) (section 2.3)
 //' @details
 //' \describe{
 //' \item{swe_deltat_ex()}{Determine DeltaT from Julian day number for a specific ephemeris.}
@@ -950,7 +950,7 @@ void set_topo(double longitude, double lat, double height) {
 //' @name Section10
 //' @description Functions to support the determination of sidereal information
 //' @seealso Section 10 in \url{http://www.astro.com/swisseph/swephprg.htm}
-//' @param iflag Computation flag as integer, many options possible (section 2.3,1)
+//' @param iflag Computation flag as integer, many options possible (section 2.3)
 //' @param sid_mode  Sidereal mode as integer
 //' @details
 //' \describe{

@@ -21,7 +21,7 @@ swe_orbit_max_min_true_distance(jd_et, ipl, iflag)
 
 \item{ipl}{Body/planet as integer (\code{SE$SUN=0}, \code{SE$MOON=1}, ... \code{SE$PLUTO=9})}
 
-\item{iflag}{Computation flag as integer, many options possible (section 2.3.1)}
+\item{iflag}{Computation flag as integer, many options possible (section 2.3)}
 
 \item{method}{Method as integer (\code{SE$NODBIT_MEAN=0}, \code{SE$NODBIT_OSCUN=1},, \code{SE$NODBIT_OSCU_BAR=4}, \code{SE$NODBIT_FOPOINT=256})}
 

@@ -25,7 +25,7 @@ swe_get_ayanamsa_ex(jd_et, iflag)
 
 \item{jd_ut}{UT Julian day number as double (day)}
 
-\item{iflag}{Computation flag as integer, many options possible (section 2.3,1)}
+\item{iflag}{Computation flag as integer, many options possible (section 2.3)}
 
 \item{jd_et}{ET Julian day number as double (day)}
 }
