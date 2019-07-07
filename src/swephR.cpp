@@ -835,7 +835,7 @@ Rcpp::List revjul(double jd, int gregflag ) {
 //' @name Section8
 //' @description Functions related to DeltaT and tidal acceleration
 //' @seealso Section 8 in \url{http://www.astro.com/swisseph/swephprg.htm}
-//' @param ephe_flag  ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4) (section 2.3)
+//' @param ephe_flag  ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4)
 //' @details
 //' \describe{
 //' \item{swe_deltat_ex()}{Determine DeltaT from Julian day number for a specific ephemeris.}
