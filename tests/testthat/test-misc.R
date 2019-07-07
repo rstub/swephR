@@ -217,21 +217,24 @@ test_that("Calcuate UTC from Julian day number UT):", {
   expect_equal(result$sec_out, 0.23009330034256,tolerance = .000001)
 })
 
-test_that("Calcuate equation of time):", {
+test_that("Calculate equation of time):", {
+  skip_if_not_installed("swephRdata")
   result <- swe_time_equ(2452500)
   expect_equal(result$return,0)
   expect_equal(result$e, -0.00338739864203035,tolerance = .000001)
   expect_equal(result$serr, "")
 })
 
-test_that("Calcuate LAT):", {
+test_that("Calculate LAT):", {
+  skip_if_not_installed("swephRdata")
   result <- swe_lmt_to_lat(2452500,0)
   expect_equal(result$return,0)
   expect_equal(result$jd_lat, 2452499.9966126,tolerance = .000001)
   expect_equal(result$serr, "")
 })
 
-test_that("Calcuate LMT):", {
+test_that("Calculate LMT):", {
+  skip_if_not_installed("swephRdata")
   result <- swe_lat_to_lmt(2452500,0)
   expect_equal(result$return,0)
   expect_equal(result$jd_lmt, 2452500.00338698,tolerance = .000001)
