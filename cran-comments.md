@@ -1,3 +1,8 @@
+## Resubmission
+
+In this resubmission I have fixed the stack overflow write found in the
+UBSAN tests done by CRAN. Thanks for the heads up!
+
 ## Test environments
 
 * local Linux install: R 3.5.2

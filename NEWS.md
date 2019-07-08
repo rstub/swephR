@@ -1,5 +1,9 @@
 # NEWS for swephR
 
+## swephR 0.2.1
+
+* fix stack overflow write in libswe
+
 ## swephR 0.2.0
 
 * new upstream version v2.08
