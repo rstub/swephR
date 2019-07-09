@@ -472,6 +472,8 @@ Rcpp::List lun_eclipse_when_loc(double jd_start, int ephe_flag, Rcpp::NumericVec
   );
 }
 
+
+
 //' @details
 //' \describe{
 //' \item{swe_lun_eclipse_how()}{Compute the attributes of a lunar eclipse for a given time.}
