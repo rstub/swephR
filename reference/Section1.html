@@ -122,7 +122,9 @@
 
 <span class='fu'>swe_set_jpl_file</span>(<span class='no'>fname</span>)
 
-<span class='fu'>swe_version</span>()</pre>
+<span class='fu'>swe_version</span>()
+
+<span class='fu'>swe_get_library_path</span>()</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -140,6 +142,7 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>swe_version</code> returns Swiss Ephemeris software version as string</p>
+<p><code>swe_get_library_path</code> returns the path in which the executable resides as string</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -154,6 +157,7 @@
        resources (open files and allocated memory) used by Swiss Ephemeris.</p></dd>
   <dt>swe_set_jpl_file()</dt><dd><p>Set name of JPL ephemeris file.</p></dd>
   <dt>swe_version()</dt><dd><p>The function provides the version number of the Swiss Ephemeris software.</p></dd>
+  <dt>swe_get_library_path()</dt><dd><p>The function provides the path where the executable resides.</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -166,7 +170,7 @@
 <span class='fu'>swe_set_ephe_path</span>(<span class='st'>"c:\\sweph\\ephe"</span>)
 <span class='co'># }</span><div class='input'><span class='fu'>swe_close</span>()
 <span class='fu'>swe_set_jpl_file</span>(<span class='st'>"de431.eph"</span>)
-<span class='fu'>swe_version</span>()</div><div class='output co'>#&gt; [1] "2.08"</div></pre>
+<span class='fu'>swe_version</span>()</div><div class='output co'>#&gt; [1] "2.08"</div><div class='input'><span class='fu'>swe_get_library_path</span>()</div><div class='output co'>#&gt; [1] "/home/travis/build/rstub/swephR/src/swephR.so"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -116,11 +116,25 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>swe_julday</span>(<span class='no'>year</span>, <span class='no'>month</span>, <span class='no'>day</span>, <span class='no'>hour</span>, <span class='no'>gregflag</span>)
+    <pre class="usage"><span class='fu'>swe_julday</span>(<span class='no'>year</span>, <span class='no'>month</span>, <span class='no'>day</span>, <span class='no'>hourd</span>, <span class='no'>gregflag</span>)
 
-<span class='fu'>swe_date_conversion</span>(<span class='no'>year</span>, <span class='no'>month</span>, <span class='no'>day</span>, <span class='no'>hour</span>, <span class='no'>cal</span>)
+<span class='fu'>swe_date_conversion</span>(<span class='no'>year</span>, <span class='no'>month</span>, <span class='no'>day</span>, <span class='no'>hourd</span>, <span class='no'>cal</span>)
 
-<span class='fu'>swe_revjul</span>(<span class='no'>jd</span>, <span class='no'>gregflag</span>)</pre>
+<span class='fu'>swe_revjul</span>(<span class='no'>jd</span>, <span class='no'>gregflag</span>)
+
+<span class='fu'>swe_utc_time_zone</span>(<span class='no'>year</span>, <span class='no'>month</span>, <span class='no'>day</span>, <span class='no'>houri</span>, <span class='no'>min</span>, <span class='no'>sec</span>, <span class='no'>d_timezone</span>)
+
+<span class='fu'>swe_utc_to_jd</span>(<span class='no'>year</span>, <span class='no'>month</span>, <span class='no'>day</span>, <span class='no'>houri</span>, <span class='no'>min</span>, <span class='no'>sec</span>, <span class='no'>gregflag</span>)
+
+<span class='fu'>swe_jdet_to_utc</span>(<span class='no'>jd_et</span>, <span class='no'>gregflag</span>)
+
+<span class='fu'>swe_jdut1_to_utc</span>(<span class='no'>jd_ut</span>, <span class='no'>gregflag</span>)
+
+<span class='fu'>swe_time_equ</span>(<span class='no'>jd_ut</span>)
+
+<span class='fu'>swe_lmt_to_lat</span>(<span class='no'>jd_lmt</span>, <span class='no'>geolon</span>)
+
+<span class='fu'>swe_lat_to_lmt</span>(<span class='no'>jd_lat</span>, <span class='no'>geolon</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,7 +152,7 @@
       <td><p>Day as integer</p></td>
     </tr>
     <tr>
-      <th>hour</th>
+      <th>hourd</th>
       <td><p>Hour as double</p></td>
     </tr>
     <tr>
@@ -153,6 +167,42 @@
       <th>jd</th>
       <td><p>Julian day number as double</p></td>
     </tr>
+    <tr>
+      <th>houri</th>
+      <td><p>Hour as integer</p></td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td><p>min as integer</p></td>
+    </tr>
+    <tr>
+      <th>sec</th>
+      <td><p>Second as double</p></td>
+    </tr>
+    <tr>
+      <th>d_timezone</th>
+      <td><p>Timezone offset as double (hour)</p></td>
+    </tr>
+    <tr>
+      <th>jd_et</th>
+      <td><p>Julian day number (ET) as double (day)</p></td>
+    </tr>
+    <tr>
+      <th>jd_ut</th>
+      <td><p>Julian day number (UT) as double (day)</p></td>
+    </tr>
+    <tr>
+      <th>jd_lmt</th>
+      <td><p>Julian day number (LMT=UT+geolon/360) as double (day)</p></td>
+    </tr>
+    <tr>
+      <th>geolon</th>
+      <td><p>geographic longitude as double (deg)</p></td>
+    </tr>
+    <tr>
+      <th>jd_lat</th>
+      <td><p>Julian day number (LAT) as double (day)</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -161,6 +211,23 @@
      <code>jd</code> Julian day number as double</p>
 <p><code>swe_revjul</code> returns a list with named entries: <code>year</code> year as integer,
      <code>month</code> month as integer, <code>day</code> day as integer and <code>hour</code> hour as double.</p>
+<p><code>swe_utc_time_zone</code> returns a list with named entries: <code>year_out</code> year as integer,
+     <code>month_out</code> month as integer, <code>day_out</code> day as integer, <code>hour_out</code> hour as integer, <code>min_out</code> minute as integer, 
+     <code>sec_out</code> second as double,</p>
+<p><code>swe_utc_to_jd</code> returns a list with named entries: <code>return</code> status flag as integer,
+     <code>dret</code> Julian day number as numeric vector and <code>serr</code> for error message as string.</p>
+<p><code>swe_jdet_to_utc</code> returns a list with named entries: <code>year_out</code> year as integer,
+     <code>month_out</code> month as integer, <code>day_out</code> day as integer, <code>hour_out</code> hour as integer, <code>min_out</code> minute as integer, 
+     <code>sec_out</code> second as double,</p>
+<p><code>swe_jdut1_to_utc</code> returns a list with named entries: <code>year_out</code> year as integer,
+     <code>month_out</code> month as integer, <code>day_out</code> day as integer, <code>hour_out</code> hour as integer, <code>min_out</code> minute as integer, 
+     <code>sec_out</code> second as double,</p>
+<p><code>swe_swe_time_equ</code> returns a list with named entries: <code>return</code> status flag as integer,
+     <code>e</code> equation of time (day) as double and <code>serr</code> for error message as string.</p>
+<p><code>swe_lmt_to_lat</code> returns a list with named entries: <code>return</code> status flag as integer,
+     <code>jd_lat</code> Julian day number (LAT) (day) as double and <code>serr</code> for error message as string.</p>
+<p><code>swe_lat_to_lmt</code> returns a list with named entries: <code>return</code> status flag as integer,
+     <code>jd_lmt</code> Julian day number (LMT) (day) as double and <code>serr</code> for error message as string.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -169,6 +236,13 @@
   <dt>swe_date_conversion()</dt><dd><p>Convert calendar dates to the astronomical time scale which measures time in Julian day
   number and checks if the calendar date is legal.</p></dd>
   <dt>swe_revjul()</dt><dd><p>Compute year, month, day and hour from a Julian day number.</p></dd>
+  <dt>swe_utc_time_zone()</dt><dd><p>Convert local time to UTC and UTC to local time.</p></dd>
+  <dt>swe_utc_to_jd()</dt><dd><p>Convert UTC to Julian day number (UT and ET).</p></dd>
+  <dt>swe_jdet_to_utc()</dt><dd><p>Convert Julian day number (ET) into UTC.</p></dd>
+  <dt>swe_jdut1_to_utc()</dt><dd><p>Convert Julian day number (UT1) into UTC.</p></dd>
+  <dt>swe_time_equ()</dt><dd><p>Calculate equation of time (LAT-LMT).</p></dd>
+  <dt>swe_lmt_to_lat()</dt><dd><p>Convert Julian day number (LMT) into Julian day number (LAT).</p></dd>
+  <dt>swe_lat_to_lmt()</dt><dd><p>Convert Julian day number (LAT) into Julian day number (LMT).</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -194,6 +268,89 @@
 #&gt; 
 #&gt; $hour
 #&gt; [1] 12
+#&gt; </div><div class='input'><span class='fu'>swe_utc_time_zone</span>(<span class='fl'>2000</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>12</span>,<span class='fl'>5</span>,<span class='fl'>1.2</span>,<span class='fl'>2</span>)</div><div class='output co'>#&gt; $year_out
+#&gt; [1] 2000
+#&gt; 
+#&gt; $month_out
+#&gt; [1] 1
+#&gt; 
+#&gt; $day_out
+#&gt; [1] 1
+#&gt; 
+#&gt; $hour_out
+#&gt; [1] 10
+#&gt; 
+#&gt; $min_out
+#&gt; [1] 5
+#&gt; 
+#&gt; $sec_out
+#&gt; [1] 1.2
+#&gt; </div><div class='input'><span class='fu'>swe_utc_to_jd</span>(<span class='fl'>2000</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>12</span>,<span class='fl'>3.4</span>,<span class='no'>SE</span>$<span class='no'>GREG_CAL</span>)</div><div class='output co'>#&gt; $return
+#&gt; [1] 0
+#&gt; 
+#&gt; $dret
+#&gt; [1] 2451545 2451545
+#&gt; 
+#&gt; $serr
+#&gt; [1] ""
+#&gt; </div><div class='input'><span class='fu'>swe_jdet_to_utc</span>(<span class='fl'>2452500</span>,<span class='no'>SE</span>$<span class='no'>GREG_CAL</span>)</div><div class='output co'>#&gt; $year_out
+#&gt; [1] 2002
+#&gt; 
+#&gt; $month_out
+#&gt; [1] 8
+#&gt; 
+#&gt; $day_out
+#&gt; [1] 13
+#&gt; 
+#&gt; $hour_out
+#&gt; [1] 11
+#&gt; 
+#&gt; $min_out
+#&gt; [1] 58
+#&gt; 
+#&gt; $sec_out
+#&gt; [1] 55.816
+#&gt; </div><div class='input'><span class='fu'>swe_jdut1_to_utc</span>(<span class='fl'>2452500</span>,<span class='no'>SE</span>$<span class='no'>GREG_CAL</span>)</div><div class='output co'>#&gt; $year_out
+#&gt; [1] 2002
+#&gt; 
+#&gt; $month_out
+#&gt; [1] 8
+#&gt; 
+#&gt; $day_out
+#&gt; [1] 13
+#&gt; 
+#&gt; $hour_out
+#&gt; [1] 12
+#&gt; 
+#&gt; $min_out
+#&gt; [1] 0
+#&gt; 
+#&gt; $sec_out
+#&gt; [1] 0.2300933
+#&gt; </div><div class='input'><span class='fu'>swe_time_equ</span>(<span class='fl'>2452500</span>)</div><div class='output co'>#&gt; $return
+#&gt; [1] 0
+#&gt; 
+#&gt; $e
+#&gt; [1] -0.003387399
+#&gt; 
+#&gt; $serr
+#&gt; [1] ""
+#&gt; </div><div class='input'><span class='fu'>swe_lmt_to_lat</span>(<span class='fl'>2452500</span>,<span class='fl'>0</span>)</div><div class='output co'>#&gt; $return
+#&gt; [1] 0
+#&gt; 
+#&gt; $jd_lat
+#&gt; [1] 2452500
+#&gt; 
+#&gt; $serr
+#&gt; [1] ""
+#&gt; </div><div class='input'><span class='fu'>swe_lat_to_lmt</span>(<span class='fl'>2452500</span>,<span class='fl'>0</span>)</div><div class='output co'>#&gt; $return
+#&gt; [1] 0
+#&gt; 
+#&gt; $jd_lmt
+#&gt; [1] 2452500
+#&gt; 
+#&gt; $serr
+#&gt; [1] ""
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
