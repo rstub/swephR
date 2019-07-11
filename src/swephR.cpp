@@ -615,6 +615,20 @@ Rcpp::List azalt_rev(double jd_ut, int coord_flag, Rcpp::NumericVector geopos, R
 
 //' @details
 //' \describe{
+//' \item{swe_refrac()}{Calculate either the topocentric altitude from the apparent altitude
+//' or the apparent altitude from the topocentric altitude.
+//' }
+//' @param InAlt  object's apparent/topocentric altitude as double (depending on calc_flag) (deg)
+//' @return \code{swe_refrac} returns the (apparent/topocentric) altitude as double (deg)
+//' @rdname Section6
+//' @export
+// [[Rcpp::export(swe_refrac)]]
+double refrac(double InAlt, double atpress, double attemp, int calc_flag) {
+  return swe_refrac(InAlt,atpress,attemp,calc_flag);
+}
+
+//' @details
+//' \describe{
 //' \item{swe_refrac_extended()}{Calculate either the topocentric altitude from the apparent altitude
 //' or the apparent altitude from the topocentric altitude.
 //' It allows correct calculation of refraction for heights above sea > 0,
@@ -629,7 +643,7 @@ Rcpp::List azalt_rev(double jd_ut, int coord_flag, Rcpp::NumericVector geopos, R
 //' @export
 // [[Rcpp::export(swe_refrac_extended)]]
 Rcpp::List refrac_extended(double InAlt, double height, double atpress, double attemp, double lapse_rate, int calc_flag) {
-  std::array<double, 10> dret{0.0};
+  std::array<double, 20> dret{0.0};
   double i = swe_refrac_extended(InAlt,height,atpress,attemp,lapse_rate,calc_flag, dret.begin());
   return Rcpp::List::create(Rcpp::Named("return") = i,
                             Rcpp::Named("dret") = dret);
