@@ -11,6 +11,7 @@
 \alias{swe_pheno}
 \alias{swe_azalt}
 \alias{swe_azalt_rev}
+\alias{swe_refrac}
 \alias{swe_refrac_extended}
 \alias{swe_heliacal_ut}
 \alias{swe_vis_limit_mag}
@@ -37,6 +38,8 @@ swe_pheno(jd_et, ipl, ephe_flag)
 swe_azalt(jd_ut, coord_flag, geopos, atpress, attemp, xin)
 
 swe_azalt_rev(jd_ut, coord_flag, geopos, xin)
+
+swe_refrac(InAlt, atpress, attemp, calc_flag)
 
 swe_refrac_extended(InAlt, height, atpress, attemp, lapse_rate, calc_flag)
 
@@ -88,11 +91,11 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 
 \item{InAlt}{object's apparent/topocentric altitude as double (depending on calc_flag) (deg)}
 
+\item{calc_flag}{Calculation flag as integer (refraction direction (\code{SE$TRUE_TO_APP=0} or \code{SE$APP_TO_TRUE=1}))}
+
 \item{height}{observer's height as double (m)}
 
 \item{lapse_rate}{lapse rate as double (K/m)}
-
-\item{calc_flag}{Calculation flag as integer (refraction direction (\code{SE$TRUE_TO_APP=0} or \code{SE$APP_TO_TRUE=1}))}
 
 \item{jd_utstart}{UT Julian day number as double (day)}
 
@@ -119,6 +122,8 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 \item{AziM}{Moon's azimuth as double (deg)}
 
 \item{AltM}{Moon's altitude as double (deg)}
+
+\item{InAlt}{object's apparent/topocentric altitude as double (depending on calc_flag) (deg)}
 }
 \value{
 \code{swe_sol_eclipse_when_loc} returns a list with named entries:
@@ -153,6 +158,8 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 
 \code{swe_azalt_rev} returns a list with named entries:
      \code{xaz} for celestial info as numeric vector.
+
+\code{swe_refrac} returns the (apparent/topocentric) altitude as double (deg)
 
 \code{swe_refrac_extended} returns a list with named entries: \code{return} status flag as integer,
      \code{dret} refraction results as numeric vector (TopoAlt, AppAlt, refraction)

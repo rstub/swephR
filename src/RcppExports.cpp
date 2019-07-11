@@ -312,6 +312,20 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// refrac
+double refrac(double InAlt, double atpress, double attemp, int calc_flag);
+RcppExport SEXP _swephR_refrac(SEXP InAltSEXP, SEXP atpressSEXP, SEXP attempSEXP, SEXP calc_flagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type InAlt(InAltSEXP);
+    Rcpp::traits::input_parameter< double >::type atpress(atpressSEXP);
+    Rcpp::traits::input_parameter< double >::type attemp(attempSEXP);
+    Rcpp::traits::input_parameter< int >::type calc_flag(calc_flagSEXP);
+    rcpp_result_gen = Rcpp::wrap(refrac(InAlt, atpress, attemp, calc_flag));
+    return rcpp_result_gen;
+END_RCPP
+}
 // refrac_extended
 Rcpp::List refrac_extended(double InAlt, double height, double atpress, double attemp, double lapse_rate, int calc_flag);
 RcppExport SEXP _swephR_refrac_extended(SEXP InAltSEXP, SEXP heightSEXP, SEXP atpressSEXP, SEXP attempSEXP, SEXP lapse_rateSEXP, SEXP calc_flagSEXP) {
@@ -787,6 +801,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_pheno", (DL_FUNC) &_swephR_pheno, 3},
     {"_swephR_azalt", (DL_FUNC) &_swephR_azalt, 6},
     {"_swephR_azalt_rev", (DL_FUNC) &_swephR_azalt_rev, 4},
+    {"_swephR_refrac", (DL_FUNC) &_swephR_refrac, 4},
     {"_swephR_refrac_extended", (DL_FUNC) &_swephR_refrac_extended, 6},
     {"_swephR_heliacal_ut", (DL_FUNC) &_swephR_heliacal_ut, 7},
     {"_swephR_vis_limit_mag", (DL_FUNC) &_swephR_vis_limit_mag, 6},
