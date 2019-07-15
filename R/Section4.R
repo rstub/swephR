@@ -1,7 +1,7 @@
 ##' @title Section 4: Fixed stars functions
 ##' @name Section4
 ##' @description The following functions are used to calculate positions of fixed stars.
-##' @seealso Section 4 in \url{http://www.astro.com/swisseph/swephprg.htm}
+##' @seealso Section 4 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 ##' @details
 ##' \describe{
 ##'   \item{swe_fixstar2_mag()}{Calculate visible magnitude (Vmag) of star.}

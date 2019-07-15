@@ -130,5 +130,5 @@ swe_lmt_to_lat(2452500,0)
 swe_lat_to_lmt(2452500,0)
 }
 \seealso{
-Section 7 in \url{http://www.astro.com/swisseph/swephprg.htm}
+Section 7 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 }

@@ -63,5 +63,5 @@ data(SE)
 swe_gauquelin_sector(1234567.5,SE$VENUS,"",SE$FLG_MOSEPH,0,c(0,50,10),1013.25,15)
 }
 \seealso{
-Section 14 in \url{http://www.astro.com/swisseph/swephprg.htm}
+Section 14 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 }
