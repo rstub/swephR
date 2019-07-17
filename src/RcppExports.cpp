@@ -196,6 +196,45 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// sol_eclipse_when_glob
+Rcpp::List sol_eclipse_when_glob(double jd_start, int ephe_flag, int ifltype, bool backward);
+RcppExport SEXP _swephR_sol_eclipse_when_glob(SEXP jd_startSEXP, SEXP ephe_flagSEXP, SEXP ifltypeSEXP, SEXP backwardSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type jd_start(jd_startSEXP);
+    Rcpp::traits::input_parameter< int >::type ephe_flag(ephe_flagSEXP);
+    Rcpp::traits::input_parameter< int >::type ifltype(ifltypeSEXP);
+    Rcpp::traits::input_parameter< bool >::type backward(backwardSEXP);
+    rcpp_result_gen = Rcpp::wrap(sol_eclipse_when_glob(jd_start, ephe_flag, ifltype, backward));
+    return rcpp_result_gen;
+END_RCPP
+}
+// sol_eclipse_how
+Rcpp::List sol_eclipse_how(double jd_ut, int ephe_flag, Rcpp::NumericVector geopos);
+RcppExport SEXP _swephR_sol_eclipse_how(SEXP jd_utSEXP, SEXP ephe_flagSEXP, SEXP geoposSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type jd_ut(jd_utSEXP);
+    Rcpp::traits::input_parameter< int >::type ephe_flag(ephe_flagSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type geopos(geoposSEXP);
+    rcpp_result_gen = Rcpp::wrap(sol_eclipse_how(jd_ut, ephe_flag, geopos));
+    return rcpp_result_gen;
+END_RCPP
+}
+// sol_eclipse_where
+Rcpp::List sol_eclipse_where(double jd_ut, int ephe_flag);
+RcppExport SEXP _swephR_sol_eclipse_where(SEXP jd_utSEXP, SEXP ephe_flagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type jd_ut(jd_utSEXP);
+    Rcpp::traits::input_parameter< int >::type ephe_flag(ephe_flagSEXP);
+    rcpp_result_gen = Rcpp::wrap(sol_eclipse_where(jd_ut, ephe_flag));
+    return rcpp_result_gen;
+END_RCPP
+}
 // lun_eclipse_when_loc
 Rcpp::List lun_eclipse_when_loc(double jd_start, int ephe_flag, Rcpp::NumericVector geopos, bool backward);
 RcppExport SEXP _swephR_lun_eclipse_when_loc(SEXP jd_startSEXP, SEXP ephe_flagSEXP, SEXP geoposSEXP, SEXP backwardSEXP) {
@@ -793,6 +832,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_get_orbital_elements", (DL_FUNC) &_swephR_get_orbital_elements, 3},
     {"_swephR_orbit_max_min_true_distance", (DL_FUNC) &_swephR_orbit_max_min_true_distance, 3},
     {"_swephR_sol_eclipse_when_loc", (DL_FUNC) &_swephR_sol_eclipse_when_loc, 4},
+    {"_swephR_sol_eclipse_when_glob", (DL_FUNC) &_swephR_sol_eclipse_when_glob, 4},
+    {"_swephR_sol_eclipse_how", (DL_FUNC) &_swephR_sol_eclipse_how, 3},
+    {"_swephR_sol_eclipse_where", (DL_FUNC) &_swephR_sol_eclipse_where, 2},
     {"_swephR_lun_eclipse_when_loc", (DL_FUNC) &_swephR_lun_eclipse_when_loc, 4},
     {"_swephR_lun_eclipse_how", (DL_FUNC) &_swephR_lun_eclipse_how, 3},
     {"_swephR_lun_eclipse_when", (DL_FUNC) &_swephR_lun_eclipse_when, 4},
