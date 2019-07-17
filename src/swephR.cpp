@@ -414,6 +414,9 @@ Rcpp::List orbit_max_min_true_distance(double jd_et, int ipl, int iflag) {
 //' swe_sol_eclipse_when_glob(1234567,SE$FLG_MOSEPH,SE$ECL_TOTAL+SE$ECL_CENTRAL+SE$ECL_NONCENTRAL,FALSE)
 //' swe_sol_eclipse_how(1234580.19960447,SE$FLG_MOSEPH,c(0,50,10))
 //' swe_sol_eclipse_where(1234771.68584597,SE$FLG_MOSEPH)
+//' swe_lun_occult_when_loc(1234567,SE$VENUS,"",SE$FLG_MOSEPH+SE$ECL_ONE_TRY,c(0,50,10),FALSE)
+//' swe_lun_occult_when_glob(1234567,SE$VENUS,"",SE$FLG_MOSEPH+SE$ECL_ONE_TRY,SE$ECL_TOTAL+SE$ECL_CENTRAL+SE$ECL_NONCENTRAL,FALSE)
+//' swe_lun_occult_where(1234590.44756319,SE$VENUS,"",SE$FLG_MOSEPH+SE$ECL_ONE_TRY)
 //' swe_lun_eclipse_when_loc(1234567,SE$FLG_MOSEPH,c(0,50,10),FALSE)
 //' swe_lun_eclipse_when(1234567,SE$FLG_MOSEPH,SE$ECL_CENTRAL,FALSE)
 //' swe_lun_eclipse_how(1234580.19960447,SE$FLG_MOSEPH,c(0,50,10))
@@ -510,6 +513,74 @@ Rcpp::List sol_eclipse_where(double jd_ut, int ephe_flag) {
   std::array<double, 20> attr{0.0};
   std::array<char, 256> serr{'\0'};
   int rtn = swe_sol_eclipse_where(jd_ut, ephe_flag, pathpos.begin(), attr.begin(), serr.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = rtn,
+                            Rcpp::Named("pathpos") = pathpos,
+                            Rcpp::Named("attr") = attr,
+                            Rcpp::Named("serr") = std::string(serr.begin())
+  );
+}
+
+//' @details
+//' \describe{
+//' \item{swe_lun_occult_when_loc()}{Find the next lunar occultation with planet or star at a certain position.}
+//' }
+//' @param geopos position as numeric vector (longitude, latitude, height)
+//' @param backward backwards search as boolean (TRUE)
+//' @return \code{swe_lun_occult_when_loc} returns a list with named entries:
+//'      \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector,
+//'      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
+//' @rdname Section6
+//' @export
+// [[Rcpp::export(swe_lun_occult_when_loc)]]
+Rcpp::List lun_occult_when_loc(double jd_start, int ipl, std::string starname,int ephe_flag, Rcpp::NumericVector geopos, bool backward) {
+  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have a length of 3");
+  std::array<double, 10> tret{0.0};
+  std::array<double, 20> attr{0.0};
+  std::array<char, 256> serr{'\0'};
+  int rtn = swe_lun_occult_when_loc(jd_start, ipl,&starname[0], ephe_flag, geopos.begin(), tret.begin(), attr.begin(), backward, serr.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = rtn, Rcpp::Named("tret") = tret,
+                            Rcpp::Named("attr") = attr,
+                            Rcpp::Named("serr") = std::string(serr.begin())
+  );
+}
+
+//' @details
+//' \describe{
+//' \item{swe_lun_occult_when_glob()}{Find the next lunar occultation with planet or star somewhere on the earth.}
+//' }
+//' @param geopos position as numeric vector (longitude, latitude, height)
+//' @param backward backwards search as boolean (TRUE)
+//' @return \code{swe_lun_occult_when_glob} returns a list with named entries:
+//'      \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector,
+//'      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
+//' @rdname Section6
+//' @export
+// [[Rcpp::export(swe_lun_occult_when_glob)]]
+Rcpp::List lun_occult_when_glob(double jd_start, int ipl, std::string starname,int ephe_flag, int ifltype, bool backward) {
+  std::array<double, 10> tret{0.0};
+  std::array<char, 256> serr{'\0'};
+  int rtn = swe_lun_occult_when_glob(jd_start, ipl,&starname[0], ephe_flag,ifltype,tret.begin(), backward, serr.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = rtn, Rcpp::Named("tret") = tret,
+                            Rcpp::Named("serr") = std::string(serr.begin())
+  );
+}
+
+//' @details
+//' \describe{
+//' \item{swe_lun_occult_where()}{Compute the geographic position of an occultation path.}
+//' }
+//' @param jd_start  Julian day number as double (UT)
+//' @return \code{swe_lun_occult_where} returns a list with named entries:
+//'      \code{return} status flag as integer, \code{pathpos} geographic path positions as numeric vector,
+//'      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
+//' @rdname Section6
+//' @export
+// [[Rcpp::export(swe_lun_occult_where)]]
+Rcpp::List lun_occult_where(double jd_ut, int ipl, std::string starname,int ephe_flag) {
+  std::array<double, 15> pathpos{0.0};
+  std::array<double, 20> attr{0.0};
+  std::array<char, 256> serr{'\0'};
+  int rtn = swe_lun_occult_where(jd_ut, ipl, &starname[0],ephe_flag, pathpos.begin(), attr.begin(), serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = rtn,
                             Rcpp::Named("pathpos") = pathpos,
                             Rcpp::Named("attr") = attr,
@@ -838,16 +909,6 @@ Rcpp::List heliacal_angle(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericV
                             Rcpp::Named("dret") = dret,
                             Rcpp::Named("serr") = std::string(serr.begin()));
 }
-
-// to be added in future:
-// swe_sol_eclipse_when_glob( tjd...) finds the next eclipse globally.
-// swe_sol_eclipse_where() computes the geographic location of a solar eclipse for a given tjd.
-// swe_sol_eclipse_how() computes attributes of a solar eclipse for a given tjd, geographic longitude, latitude and height.
-
-// swe_lun_occult_when_loc( tjd...) finds the next occultation for a body and a given geographic position.
-// swe_lun_occult_when_glob( tjd...) finds the next occultation of a given body globally.
-// swe_lun_occult_where() computes the geographic location of an occultation for a given tjd.
-
 
 //////////////////////////////////////////////////////////////////////////
 //' @title Section 7: Date and time conversion functions

@@ -6,6 +6,9 @@
 \alias{swe_sol_eclipse_when_glob}
 \alias{swe_sol_eclipse_how}
 \alias{swe_sol_eclipse_where}
+\alias{swe_lun_occult_when_loc}
+\alias{swe_lun_occult_when_glob}
+\alias{swe_lun_occult_where}
 \alias{swe_lun_eclipse_when_loc}
 \alias{swe_lun_eclipse_how}
 \alias{swe_lun_eclipse_when}
@@ -30,6 +33,14 @@ swe_sol_eclipse_when_glob(jd_start, ephe_flag, ifltype, backward)
 swe_sol_eclipse_how(jd_ut, ephe_flag, geopos)
 
 swe_sol_eclipse_where(jd_ut, ephe_flag)
+
+swe_lun_occult_when_loc(jd_start, ipl, starname, ephe_flag, geopos,
+  backward)
+
+swe_lun_occult_when_glob(jd_start, ipl, starname, ephe_flag, ifltype,
+  backward)
+
+swe_lun_occult_where(jd_ut, ipl, starname, ephe_flag)
 
 swe_lun_eclipse_when_loc(jd_start, ephe_flag, geopos, backward)
 
@@ -134,6 +145,16 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 
 \item{jd_start}{Julian day number as double (UT)}
 
+\item{geopos}{position as numeric vector (longitude, latitude, height)}
+
+\item{backward}{backwards search as boolean (TRUE)}
+
+\item{jd_start}{Julian day number as double (UT)}
+
+\item{geopos}{position as numeric vector (longitude, latitude, height)}
+
+\item{backward}{backwards search as boolean (TRUE)}
+
 \item{jd_start}{Julian day number as double (UT)}
 
 \item{ifltype}{eclipse type as integer (\code{SE$ECL_CENTRAL=1}, \code{SE$ECL_NONCENTRAL=2},
@@ -155,6 +176,18 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
 
 \code{swe_sol_eclipse_where} returns a list with named entries:
+     \code{return} status flag as integer, \code{pathpos} geographic path positions as numeric vector,
+     \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
+
+\code{swe_lun_occult_when_loc} returns a list with named entries:
+     \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector,
+     \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
+
+\code{swe_lun_occult_when_glob} returns a list with named entries:
+     \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector,
+     \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
+
+\code{swe_lun_occult_where} returns a list with named entries:
      \code{return} status flag as integer, \code{pathpos} geographic path positions as numeric vector,
      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
 
@@ -231,6 +264,18 @@ heliacal phenomenon after a given start date
 }
 
 \describe{
+\item{swe_lun_occult_when_loc()}{Find the next lunar occultation with planet or star at a certain position.}
+}
+
+\describe{
+\item{swe_lun_occult_when_glob()}{Find the next lunar occultation with planet or star somewhere on the earth.}
+}
+
+\describe{
+\item{swe_lun_occult_where()}{Compute the geographic position of an occultation path.}
+}
+
+\describe{
 \item{swe_lun_eclipse_when_loc()}{Find the next lunar eclipse for a given geographic position.}
 }
 
@@ -303,6 +348,9 @@ swe_sol_eclipse_when_loc(1234567,SE$FLG_MOSEPH,c(0,50,10),FALSE)
 swe_sol_eclipse_when_glob(1234567,SE$FLG_MOSEPH,SE$ECL_TOTAL+SE$ECL_CENTRAL+SE$ECL_NONCENTRAL,FALSE)
 swe_sol_eclipse_how(1234580.19960447,SE$FLG_MOSEPH,c(0,50,10))
 swe_sol_eclipse_where(1234771.68584597,SE$FLG_MOSEPH)
+swe_lun_occult_when_loc(1234567,SE$VENUS,"",SE$FLG_MOSEPH+SE$ECL_ONE_TRY,c(0,50,10),FALSE)
+swe_lun_occult_when_glob(1234567,SE$VENUS,"",SE$FLG_MOSEPH+SE$ECL_ONE_TRY,SE$ECL_TOTAL+SE$ECL_CENTRAL+SE$ECL_NONCENTRAL,FALSE)
+swe_lun_occult_where(1234590.44756319,SE$VENUS,"",SE$FLG_MOSEPH+SE$ECL_ONE_TRY)
 swe_lun_eclipse_when_loc(1234567,SE$FLG_MOSEPH,c(0,50,10),FALSE)
 swe_lun_eclipse_when(1234567,SE$FLG_MOSEPH,SE$ECL_CENTRAL,FALSE)
 swe_lun_eclipse_how(1234580.19960447,SE$FLG_MOSEPH,c(0,50,10))
