@@ -418,7 +418,7 @@ Rcpp::List orbit_max_min_true_distance(double jd_et, int ipl, int iflag) {
 //' swe_sol_eclipse_how(1234580.19960447,SE$FLG_MOSEPH,c(0,50,10))
 //' swe_sol_eclipse_where(1234771.68584597,SE$FLG_MOSEPH)
 //' swe_lun_occult_when_loc(1234567,SE$VENUS,"",SE$FLG_MOSEPH+SE$ECL_ONE_TRY,c(0,50,10),FALSE)
-//' swe_lun_occult_when_glob(1234567,SE$VENUS,"",SE$FLG_MOSEPH+SE$ECL_ONE_TRY,SE$ECL_TOTAL+SE$ECL_CENTRAL+SE$ECL_NONCENTRAL,FALSE)
+//' swe_lun_occult_when_glob(1234567,SE$VENUS,"",SE$FLG_MOSEPH+SE$ECL_ONE_TRY,SE$ECL_TOTAL,FALSE)
 //' swe_lun_occult_where(1234590.44756319,SE$VENUS,"",SE$FLG_MOSEPH+SE$ECL_ONE_TRY)
 //' swe_lun_eclipse_when_loc(1234567,SE$FLG_MOSEPH,c(0,50,10),FALSE)
 //' swe_lun_eclipse_when(1234567,SE$FLG_MOSEPH,SE$ECL_CENTRAL,FALSE)
@@ -763,7 +763,6 @@ double refrac(double InAlt, double atpress, double attemp, int calc_flag) {
 //' It allows correct calculation of refraction for heights above sea > 0,
 //' where the ideal horizon and planets that are visible may have a negative altitude. }
 //' }
-//' @param InAlt  object's apparent/topocentric altitude as double (depending on calc_flag) (deg)
 //' @param height  observer's height as double (m)
 //' @param lapse_rate  lapse rate as double (K/m)
 //' @return \code{swe_refrac_extended} returns a list with named entries: \code{return} status flag as integer,
