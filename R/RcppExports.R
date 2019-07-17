@@ -188,6 +188,8 @@ swe_orbit_max_min_true_distance <- function(jd_et, ipl, iflag) {
 #' @param geopos position as numeric vector (longitude, latitude, height)
 #' @param backward backwards search as boolean (TRUE)
 #' @param ephe_flag Ephemeris flag as integer (\code{SE$FLG_JPLEPH=1}, \code{SE$FLG_SWIEPH=2} or \code{SE$FLG_MOSEPH=4})
+#' @param ifltype eclipse type as integer (\code{SE$ECL_CENTRAL=1}, \code{SE$ECL_NONCENTRAL=2},
+#'  \code{SE$ECL_TOTAL=4}, \code{SE$ECL_ANNULAR=8}, \code{SE$ECL_PARTIAL=16}, \code{SE$ECL_ANNULAR_TOTAL=32} or 0 for any)
 #' @param horhgt Horizon apparent altitude as double (deg)
 #' @param xin  Position of body as numeric vector (either ecliptical or equatorial coordinates, depending on coord_flag)
 #' @param rsmi  Event flag as integer (e.g.: \code{SE$CALC_RISE=1}, \code{SE$CALC_SET=2}, \code{SE$CALC_MTRANSIT=4}, \code{SE$CALC_ITRANSIT=8})
@@ -236,8 +238,6 @@ swe_sol_eclipse_when_loc <- function(jd_start, ephe_flag, geopos, backward) {
 #' \describe{
 #' \item{swe_sol_eclipse_when_glob()}{Find the next solar eclipse on earth.}
 #' }
-#' @param ifltype eclipse type as integer (\code{SE$ECL_CENTRAL=1}, \code{SE$ECL_NONCENTRAL=2},
-#'  \code{SE$ECL_TOTAL=4}, \code{SE$ECL_ANNULAR=8}, \code{SE$ECL_PARTIAL=16}, \code{SE$ECL_ANNULAR_TOTAL=32} or 0 for any)
 #' @return \code{swe_sol_eclipse_when_glob} returns a list with named entries:
 #'      \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector
 #'      and \code{serr} error warning as string
@@ -342,8 +342,6 @@ swe_lun_eclipse_how <- function(jd_ut, ephe_flag, geopos) {
 #' \describe{
 #' \item{swe_lun_eclipse_when()}{Find the next lunar eclipse on earth.}
 #' }
-#' @param ifltype eclipse type as integer (\code{SE$ECL_CENTRAL=1}, \code{SE$ECL_NONCENTRAL=2},
-#'  \code{SE$ECL_TOTAL=4}, \code{SE$ECL_ANNULAR=8}, \code{SE$ECL_PARTIAL=16}, \code{SE$ECL_ANNULAR_TOTAL=32} or 0 for any)
 #' @return \code{swe_lun_eclipse_when} returns a list with named entries:
 #'      \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector
 #'      and \code{serr} error warning as string
