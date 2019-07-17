@@ -396,10 +396,13 @@ Rcpp::List orbit_max_min_true_distance(double jd_et, int ipl, int iflag) {
 //' @param ipl  Body/planet as integer (\code{SE$SUN=0}, \code{SE$MOON=1}, ... \code{SE$PLUTO=9})
 //' @param starname  Star name as string (\code{""} for no star)
 //' @param jd_ut  UT Julian day number as double (day)
+//' @param jd_start  Julian day number as double (UT)
 //' @param calc_flag Calculation flag as integer (refraction direction (\code{SE$TRUE_TO_APP=0} or \code{SE$APP_TO_TRUE=1}))
 //' @param coord_flag Coordinate flag as integer (reference system (\code{SE$ECL2HOR=0} or \code{SE$EQU2HOR=1}))
 //' @param atpress Atmospheric pressure as double (hPa)
 //' @param attemp Atmospheric temperature as double (Celsius)
+//' @param geopos position as numeric vector (longitude, latitude, height)
+//' @param backward backwards search as boolean (TRUE)
 //' @param ephe_flag Ephemeris flag as integer (\code{SE$FLG_JPLEPH=1}, \code{SE$FLG_SWIEPH=2} or \code{SE$FLG_MOSEPH=4})
 //' @param horhgt Horizon apparent altitude as double (deg)
 //' @param xin  Position of body as numeric vector (either ecliptical or equatorial coordinates, depending on coord_flag)
@@ -479,7 +482,6 @@ Rcpp::List sol_eclipse_when_glob(double jd_start, int ephe_flag, int ifltype, bo
 //' \describe{
 //' \item{swe_sol_eclipse_how()}{Compute the attributes of a solar eclipse for a given time.}
 //' }
-//' @param jd_start  Julian day number as double (UT)
 //' @return \code{swe_sol_eclipse_how} returns a list with named entries:
 //'      \code{return} status flag as integer,
 //'      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
@@ -501,7 +503,6 @@ Rcpp::List sol_eclipse_how(double jd_ut, int ephe_flag, Rcpp::NumericVector geop
 //' \describe{
 //' \item{swe_sol_eclipse_where()}{Compute the geographic position of a solar eclipse path.}
 //' }
-//' @param jd_start  Julian day number as double (UT)
 //' @return \code{swe_sol_eclipse_where} returns a list with named entries:
 //'      \code{return} status flag as integer, \code{pathpos} geographic path positions as numeric vector,
 //'      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
@@ -524,8 +525,6 @@ Rcpp::List sol_eclipse_where(double jd_ut, int ephe_flag) {
 //' \describe{
 //' \item{swe_lun_occult_when_loc()}{Find the next lunar occultation with planet or star at a certain position.}
 //' }
-//' @param geopos position as numeric vector (longitude, latitude, height)
-//' @param backward backwards search as boolean (TRUE)
 //' @return \code{swe_lun_occult_when_loc} returns a list with named entries:
 //'      \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector,
 //'      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
@@ -548,8 +547,6 @@ Rcpp::List lun_occult_when_loc(double jd_start, int ipl, std::string starname,in
 //' \describe{
 //' \item{swe_lun_occult_when_glob()}{Find the next lunar occultation with planet or star somewhere on the earth.}
 //' }
-//' @param geopos position as numeric vector (longitude, latitude, height)
-//' @param backward backwards search as boolean (TRUE)
 //' @return \code{swe_lun_occult_when_glob} returns a list with named entries:
 //'      \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector,
 //'      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
@@ -569,7 +566,6 @@ Rcpp::List lun_occult_when_glob(double jd_start, int ipl, std::string starname,i
 //' \describe{
 //' \item{swe_lun_occult_where()}{Compute the geographic position of an occultation path.}
 //' }
-//' @param jd_start  Julian day number as double (UT)
 //' @return \code{swe_lun_occult_where} returns a list with named entries:
 //'      \code{return} status flag as integer, \code{pathpos} geographic path positions as numeric vector,
 //'      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
@@ -592,8 +588,6 @@ Rcpp::List lun_occult_where(double jd_ut, int ipl, std::string starname,int ephe
 //' \describe{
 //' \item{swe_lun_eclipse_when_loc()}{Find the next lunar eclipse for a given geographic position.}
 //' }
-//' @param geopos position as numeric vector (longitude, latitude, height)
-//' @param backward backwards search as boolean (TRUE)
 //' @return \code{swe_lun_eclipse_when_loc} returns a list with named entries:
 //'      \code{return} status flag as integer, \code{tret} for eclipse timing moments,
 //'      \code{attr} phenomena during eclipse and \code{serr} error warning as string
@@ -616,7 +610,6 @@ Rcpp::List lun_eclipse_when_loc(double jd_start, int ephe_flag, Rcpp::NumericVec
 //' \describe{
 //' \item{swe_lun_eclipse_how()}{Compute the attributes of a lunar eclipse for a given time.}
 //' }
-//' @param jd_start  Julian day number as double (UT)
 //' @return \code{swe_lun_eclipse_how} returns a list with named entries:
 //'      \code{return} status flag as integer,
 //'      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
@@ -674,7 +667,6 @@ Rcpp::List rise_trans_true_hor(double jd_ut, int ipl, std::string starname, int 
                             Rcpp::Named("tret") = tret,
                             Rcpp::Named("serr") = std::string(serr.begin()));
 }
-
 
 //' @details
 //' \describe{

@@ -143,20 +143,6 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
 
 \item{AltM}{Moon's altitude as double (deg)}
 
-\item{jd_start}{Julian day number as double (UT)}
-
-\item{geopos}{position as numeric vector (longitude, latitude, height)}
-
-\item{backward}{backwards search as boolean (TRUE)}
-
-\item{jd_start}{Julian day number as double (UT)}
-
-\item{geopos}{position as numeric vector (longitude, latitude, height)}
-
-\item{backward}{backwards search as boolean (TRUE)}
-
-\item{jd_start}{Julian day number as double (UT)}
-
 \item{ifltype}{eclipse type as integer (\code{SE$ECL_CENTRAL=1}, \code{SE$ECL_NONCENTRAL=2},
 \code{SE$ECL_TOTAL=4}, \code{SE$ECL_ANNULAR=8}, \code{SE$ECL_PARTIAL=16}, \code{SE$ECL_ANNULAR_TOTAL=32} or 0 for any)}
 
