@@ -496,22 +496,22 @@ Rcpp::List sol_eclipse_how(double jd_ut, int ephe_flag, Rcpp::NumericVector geop
 
 //' @details
 //' \describe{
-//' \item{swe_sol_eclipse_where()}{Compute the geoposition of a solar eclipse events.}
+//' \item{swe_sol_eclipse_where()}{Compute the geographic position of a solar eclipse path.}
 //' }
 //' @param jd_start  Julian day number as double (UT)
 //' @return \code{swe_sol_eclipse_where} returns a list with named entries:
-//'      \code{return} status flag as integer, \code{geopos} geopositions as numeric vector,
+//'      \code{return} status flag as integer, \code{pathpos} geographic path positions as numeric vector,
 //'      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
 //' @rdname Section6
 //' @export
 // [[Rcpp::export(swe_sol_eclipse_where)]]
 Rcpp::List sol_eclipse_where(double jd_ut, int ephe_flag) {
-  std::array<double, 15> geopos{0.0};
+  std::array<double, 15> pathpos{0.0};
   std::array<double, 20> attr{0.0};
   std::array<char, 256> serr{'\0'};
-  int rtn = swe_sol_eclipse_where(jd_ut, ephe_flag, geopos.begin(), attr.begin(), serr.begin());
+  int rtn = swe_sol_eclipse_where(jd_ut, ephe_flag, pathpos.begin(), attr.begin(), serr.begin());
   return Rcpp::List::create(Rcpp::Named("return") = rtn,
-                            Rcpp::Named("geopos") = geopos,
+                            Rcpp::Named("pathpos") = pathpos,
                             Rcpp::Named("attr") = attr,
                             Rcpp::Named("serr") = std::string(serr.begin())
   );
@@ -663,7 +663,7 @@ Rcpp::List azalt(double jd_ut, int coord_flag, Rcpp::NumericVector geopos, doubl
 
 //' @details
 //' \describe{
-//' \item{swe_azalt_rev()}{compute either ecliptical or equatorial coordinates from azimuth and true altitude.
+//' \item{swe_azalt_rev()}{Compute either ecliptical or equatorial coordinates from azimuth and true altitude.
 //' If only an apparent altitude is given, the true altitude has to be computed first with
 //' e.g. the function swe_refrac_extended().}
 //' }

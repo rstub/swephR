@@ -257,11 +257,11 @@ swe_sol_eclipse_how <- function(jd_ut, ephe_flag, geopos) {
 
 #' @details
 #' \describe{
-#' \item{swe_sol_eclipse_where()}{Compute the geoposition of a solar eclipse events.}
+#' \item{swe_sol_eclipse_where()}{Compute the geographic position of a solar eclipse path.}
 #' }
 #' @param jd_start  Julian day number as double (UT)
 #' @return \code{swe_sol_eclipse_where} returns a list with named entries:
-#'      \code{return} status flag as integer, \code{geopos} geopositions as numeric vector,
+#'      \code{return} status flag as integer, \code{pathpos} geographic path positions as numeric vector,
 #'      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
 #' @rdname Section6
 #' @export
@@ -365,7 +365,7 @@ swe_azalt <- function(jd_ut, coord_flag, geopos, atpress, attemp, xin) {
 
 #' @details
 #' \describe{
-#' \item{swe_azalt_rev()}{compute either ecliptical or equatorial coordinates from azimuth and true altitude.
+#' \item{swe_azalt_rev()}{Compute either ecliptical or equatorial coordinates from azimuth and true altitude.
 #' If only an apparent altitude is given, the true altitude has to be computed first with
 #' e.g. the function swe_refrac_extended().}
 #' }

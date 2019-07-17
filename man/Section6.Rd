@@ -155,7 +155,7 @@ swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
 
 \code{swe_sol_eclipse_where} returns a list with named entries:
-     \code{return} status flag as integer, \code{geopos} geopositions as numeric vector,
+     \code{return} status flag as integer, \code{pathpos} geographic path positions as numeric vector,
      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
 
 \code{swe_lun_eclipse_when_loc} returns a list with named entries:
@@ -227,7 +227,7 @@ heliacal phenomenon after a given start date
 }
 
 \describe{
-\item{swe_sol_eclipse_where()}{Compute the geoposition of a solar eclipse events.}
+\item{swe_sol_eclipse_where()}{Compute the geographic position of a solar eclipse path.}
 }
 
 \describe{
@@ -259,7 +259,7 @@ heliacal phenomenon after a given start date
 }
 
 \describe{
-\item{swe_azalt_rev()}{compute either ecliptical or equatorial coordinates from azimuth and true altitude.
+\item{swe_azalt_rev()}{Compute either ecliptical or equatorial coordinates from azimuth and true altitude.
 If only an apparent altitude is given, the true altitude has to be computed first with
 e.g. the function swe_refrac_extended().}
 }
