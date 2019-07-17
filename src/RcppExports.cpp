@@ -235,6 +235,52 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// lun_occult_when_loc
+Rcpp::List lun_occult_when_loc(double jd_start, int ipl, std::string starname, int ephe_flag, Rcpp::NumericVector geopos, bool backward);
+RcppExport SEXP _swephR_lun_occult_when_loc(SEXP jd_startSEXP, SEXP iplSEXP, SEXP starnameSEXP, SEXP ephe_flagSEXP, SEXP geoposSEXP, SEXP backwardSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type jd_start(jd_startSEXP);
+    Rcpp::traits::input_parameter< int >::type ipl(iplSEXP);
+    Rcpp::traits::input_parameter< std::string >::type starname(starnameSEXP);
+    Rcpp::traits::input_parameter< int >::type ephe_flag(ephe_flagSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type geopos(geoposSEXP);
+    Rcpp::traits::input_parameter< bool >::type backward(backwardSEXP);
+    rcpp_result_gen = Rcpp::wrap(lun_occult_when_loc(jd_start, ipl, starname, ephe_flag, geopos, backward));
+    return rcpp_result_gen;
+END_RCPP
+}
+// lun_occult_when_glob
+Rcpp::List lun_occult_when_glob(double jd_start, int ipl, std::string starname, int ephe_flag, int ifltype, bool backward);
+RcppExport SEXP _swephR_lun_occult_when_glob(SEXP jd_startSEXP, SEXP iplSEXP, SEXP starnameSEXP, SEXP ephe_flagSEXP, SEXP ifltypeSEXP, SEXP backwardSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type jd_start(jd_startSEXP);
+    Rcpp::traits::input_parameter< int >::type ipl(iplSEXP);
+    Rcpp::traits::input_parameter< std::string >::type starname(starnameSEXP);
+    Rcpp::traits::input_parameter< int >::type ephe_flag(ephe_flagSEXP);
+    Rcpp::traits::input_parameter< int >::type ifltype(ifltypeSEXP);
+    Rcpp::traits::input_parameter< bool >::type backward(backwardSEXP);
+    rcpp_result_gen = Rcpp::wrap(lun_occult_when_glob(jd_start, ipl, starname, ephe_flag, ifltype, backward));
+    return rcpp_result_gen;
+END_RCPP
+}
+// lun_occult_where
+Rcpp::List lun_occult_where(double jd_ut, int ipl, std::string starname, int ephe_flag);
+RcppExport SEXP _swephR_lun_occult_where(SEXP jd_utSEXP, SEXP iplSEXP, SEXP starnameSEXP, SEXP ephe_flagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type jd_ut(jd_utSEXP);
+    Rcpp::traits::input_parameter< int >::type ipl(iplSEXP);
+    Rcpp::traits::input_parameter< std::string >::type starname(starnameSEXP);
+    Rcpp::traits::input_parameter< int >::type ephe_flag(ephe_flagSEXP);
+    rcpp_result_gen = Rcpp::wrap(lun_occult_where(jd_ut, ipl, starname, ephe_flag));
+    return rcpp_result_gen;
+END_RCPP
+}
 // lun_eclipse_when_loc
 Rcpp::List lun_eclipse_when_loc(double jd_start, int ephe_flag, Rcpp::NumericVector geopos, bool backward);
 RcppExport SEXP _swephR_lun_eclipse_when_loc(SEXP jd_startSEXP, SEXP ephe_flagSEXP, SEXP geoposSEXP, SEXP backwardSEXP) {
@@ -835,6 +881,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"_swephR_sol_eclipse_when_glob", (DL_FUNC) &_swephR_sol_eclipse_when_glob, 4},
     {"_swephR_sol_eclipse_how", (DL_FUNC) &_swephR_sol_eclipse_how, 3},
     {"_swephR_sol_eclipse_where", (DL_FUNC) &_swephR_sol_eclipse_where, 2},
+    {"_swephR_lun_occult_when_loc", (DL_FUNC) &_swephR_lun_occult_when_loc, 6},
+    {"_swephR_lun_occult_when_glob", (DL_FUNC) &_swephR_lun_occult_when_glob, 6},
+    {"_swephR_lun_occult_where", (DL_FUNC) &_swephR_lun_occult_where, 4},
     {"_swephR_lun_eclipse_when_loc", (DL_FUNC) &_swephR_lun_eclipse_when_loc, 4},
     {"_swephR_lun_eclipse_how", (DL_FUNC) &_swephR_lun_eclipse_how, 3},
     {"_swephR_lun_eclipse_when", (DL_FUNC) &_swephR_lun_eclipse_when, 4},
