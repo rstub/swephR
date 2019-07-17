@@ -411,9 +411,12 @@ Rcpp::List orbit_max_min_true_distance(double jd_et, int ipl, int iflag) {
 //' @examples
 //' data(SE)
 //' swe_sol_eclipse_when_loc(1234567,SE$FLG_MOSEPH,c(0,50,10),FALSE)
+//' swe_sol_eclipse_when_glob(1234567,SE$FLG_MOSEPH,SE$ECL_TOTAL+SE$ECL_CENTRAL+SE$ECL_NONCENTRAL,FALSE)
+//' swe_sol_eclipse_how(1234580.19960447,SE$FLG_MOSEPH,c(0,50,10))
+//' swe_sol_eclipse_where(1234771.68584597,SE$FLG_MOSEPH)
 //' swe_lun_eclipse_when_loc(1234567,SE$FLG_MOSEPH,c(0,50,10),FALSE)
-//' swe_lun_eclipse_how(1234580.19960447,SE$FLG_MOSEPH,c(0,50,10))
 //' swe_lun_eclipse_when(1234567,SE$FLG_MOSEPH,SE$ECL_CENTRAL,FALSE)
+//' swe_lun_eclipse_how(1234580.19960447,SE$FLG_MOSEPH,c(0,50,10))
 //' swe_rise_trans_true_hor(1234567.5,SE$SUN,"",SE$FLG_MOSEPH,0,c(0,50,10),1013.25,15,0)
 //' swe_pheno_ut(1234567,1,SE$FLG_MOSEPH)
 //' swe_pheno(1234567,1,SE$FLG_MOSEPH)
@@ -450,6 +453,72 @@ Rcpp::List sol_eclipse_when_loc(double jd_start, int ephe_flag, Rcpp::NumericVec
 
 //' @details
 //' \describe{
+//' \item{swe_sol_eclipse_when_glob()}{Find the next solar eclipse on earth.}
+//' }
+//' @param ifltype eclipse type as integer (\code{SE$ECL_CENTRAL=1}, \code{SE$ECL_NONCENTRAL=2},
+//'  \code{SE$ECL_TOTAL=4}, \code{SE$ECL_ANNULAR=8}, \code{SE$ECL_PARTIAL=16}, \code{SE$ECL_ANNULAR_TOTAL=32} or 0 for any)
+//' @return \code{swe_sol_eclipse_when_glob} returns a list with named entries:
+//'      \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector
+//'      and \code{serr} error warning as string
+//' @rdname Section6
+//' @export
+// [[Rcpp::export(swe_sol_eclipse_when_glob)]]
+Rcpp::List sol_eclipse_when_glob(double jd_start, int ephe_flag, int ifltype, bool backward) {
+  std::array<double, 20> tret{0.0};
+  std::array<char, 256> serr{'\0'};
+  int rtn = swe_sol_eclipse_when_glob(jd_start, ephe_flag, ifltype, tret.begin(), backward, serr.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = rtn, Rcpp::Named("tret") = tret,
+                            Rcpp::Named("serr") = std::string(serr.begin())
+  );
+}
+
+//' @details
+//' \describe{
+//' \item{swe_sol_eclipse_how()}{Compute the attributes of a solar eclipse for a given time.}
+//' }
+//' @param jd_start  Julian day number as double (UT)
+//' @return \code{swe_sol_eclipse_how} returns a list with named entries:
+//'      \code{return} status flag as integer,
+//'      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
+//' @rdname Section6
+//' @export
+// [[Rcpp::export(swe_sol_eclipse_how)]]
+Rcpp::List sol_eclipse_how(double jd_ut, int ephe_flag, Rcpp::NumericVector geopos) {
+  if (geopos.length() < 3) Rcpp::stop("Geographic position 'geopos' must have a length of 3");
+  std::array<double, 20> attr{0.0};
+  std::array<char, 256> serr{'\0'};
+  int rtn = swe_sol_eclipse_how(jd_ut, ephe_flag, geopos.begin(), attr.begin(), serr.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = rtn,
+                            Rcpp::Named("attr") = attr,
+                            Rcpp::Named("serr") = std::string(serr.begin())
+  );
+}
+
+//' @details
+//' \describe{
+//' \item{swe_sol_eclipse_where()}{Compute the geoposition of a solar eclipse events.}
+//' }
+//' @param jd_start  Julian day number as double (UT)
+//' @return \code{swe_sol_eclipse_where} returns a list with named entries:
+//'      \code{return} status flag as integer, \code{geopos} geopositions as numeric vector,
+//'      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
+//' @rdname Section6
+//' @export
+// [[Rcpp::export(swe_sol_eclipse_where)]]
+Rcpp::List sol_eclipse_where(double jd_ut, int ephe_flag) {
+  std::array<double, 15> geopos{0.0};
+  std::array<double, 20> attr{0.0};
+  std::array<char, 256> serr{'\0'};
+  int rtn = swe_sol_eclipse_where(jd_ut, ephe_flag, geopos.begin(), attr.begin(), serr.begin());
+  return Rcpp::List::create(Rcpp::Named("return") = rtn,
+                            Rcpp::Named("geopos") = geopos,
+                            Rcpp::Named("attr") = attr,
+                            Rcpp::Named("serr") = std::string(serr.begin())
+  );
+}
+
+//' @details
+//' \describe{
 //' \item{swe_lun_eclipse_when_loc()}{Find the next lunar eclipse for a given geographic position.}
 //' }
 //' @param geopos position as numeric vector (longitude, latitude, height)
@@ -471,8 +540,6 @@ Rcpp::List lun_eclipse_when_loc(double jd_start, int ephe_flag, Rcpp::NumericVec
                             Rcpp::Named("serr") = std::string(serr.begin())
   );
 }
-
-
 
 //' @details
 //' \describe{
@@ -496,13 +563,12 @@ Rcpp::List lun_eclipse_how(double jd_ut, int ephe_flag, Rcpp::NumericVector geop
   );
 }
 
-
 //' @details
 //' \describe{
 //' \item{swe_lun_eclipse_when()}{Find the next lunar eclipse on earth.}
 //' }
 //' @param ifltype eclipse type as integer (\code{SE$ECL_CENTRAL=1}, \code{SE$ECL_NONCENTRAL=2},
-//'  \code{SE$ECL_TOTAL=4}, \code{SE$ECL_ANNULAR=8}, \code{SE$ECL_PARTIAL=16} or \code{SE$ECL_ANNULAR_TOTAL=32})
+//'  \code{SE$ECL_TOTAL=4}, \code{SE$ECL_ANNULAR=8}, \code{SE$ECL_PARTIAL=16}, \code{SE$ECL_ANNULAR_TOTAL=32} or 0 for any)
 //' @return \code{swe_lun_eclipse_when} returns a list with named entries:
 //'      \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector
 //'      and \code{serr} error warning as string
