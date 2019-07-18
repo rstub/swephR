@@ -743,7 +743,7 @@ Rcpp::List azalt_rev(double jd_ut, int coord_flag, Rcpp::NumericVector geopos, R
 //' @details
 //' \describe{
 //' \item{swe_refrac()}{Calculate either the topocentric altitude from the apparent altitude
-//' or the apparent altitude from the topocentric altitude.
+//' or the apparent altitude from the topocentric altitude.}
 //' }
 //' @param InAlt  object's apparent/topocentric altitude as double (depending on calc_flag) (deg)
 //' @return \code{swe_refrac} returns the (apparent/topocentric) altitude as double (deg)
