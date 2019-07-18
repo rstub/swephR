@@ -291,6 +291,11 @@ e.g. the function swe_refrac_extended().}
 }
 
 \describe{
+\item{swe_refrac()}{Calculate either the topocentric altitude from the apparent altitude
+or the apparent altitude from the topocentric altitude.}
+}
+
+\describe{
 \item{swe_refrac_extended()}{Calculate either the topocentric altitude from the apparent altitude
 or the apparent altitude from the topocentric altitude.
 It allows correct calculation of refraction for heights above sea > 0,
