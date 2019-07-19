@@ -124,6 +124,20 @@ heliacal phenomenon after a given start date</p>
 
     <pre class="usage"><span class='fu'>swe_sol_eclipse_when_loc</span>(<span class='no'>jd_start</span>, <span class='no'>ephe_flag</span>, <span class='no'>geopos</span>, <span class='no'>backward</span>)
 
+<span class='fu'>swe_sol_eclipse_when_glob</span>(<span class='no'>jd_start</span>, <span class='no'>ephe_flag</span>, <span class='no'>ifltype</span>, <span class='no'>backward</span>)
+
+<span class='fu'>swe_sol_eclipse_how</span>(<span class='no'>jd_ut</span>, <span class='no'>ephe_flag</span>, <span class='no'>geopos</span>)
+
+<span class='fu'>swe_sol_eclipse_where</span>(<span class='no'>jd_ut</span>, <span class='no'>ephe_flag</span>)
+
+<span class='fu'>swe_lun_occult_when_loc</span>(<span class='no'>jd_start</span>, <span class='no'>ipl</span>, <span class='no'>starname</span>, <span class='no'>ephe_flag</span>, <span class='no'>geopos</span>,
+  <span class='no'>backward</span>)
+
+<span class='fu'>swe_lun_occult_when_glob</span>(<span class='no'>jd_start</span>, <span class='no'>ipl</span>, <span class='no'>starname</span>, <span class='no'>ephe_flag</span>, <span class='no'>ifltype</span>,
+  <span class='no'>backward</span>)
+
+<span class='fu'>swe_lun_occult_where</span>(<span class='no'>jd_ut</span>, <span class='no'>ipl</span>, <span class='no'>starname</span>, <span class='no'>ephe_flag</span>)
+
 <span class='fu'>swe_lun_eclipse_when_loc</span>(<span class='no'>jd_start</span>, <span class='no'>ephe_flag</span>, <span class='no'>geopos</span>, <span class='no'>backward</span>)
 
 <span class='fu'>swe_lun_eclipse_how</span>(<span class='no'>jd_ut</span>, <span class='no'>ephe_flag</span>, <span class='no'>geopos</span>)
@@ -140,6 +154,8 @@ heliacal phenomenon after a given start date</p>
 <span class='fu'>swe_azalt</span>(<span class='no'>jd_ut</span>, <span class='no'>coord_flag</span>, <span class='no'>geopos</span>, <span class='no'>atpress</span>, <span class='no'>attemp</span>, <span class='no'>xin</span>)
 
 <span class='fu'>swe_azalt_rev</span>(<span class='no'>jd_ut</span>, <span class='no'>coord_flag</span>, <span class='no'>geopos</span>, <span class='no'>xin</span>)
+
+<span class='fu'>swe_refrac</span>(<span class='no'>InAlt</span>, <span class='no'>atpress</span>, <span class='no'>attemp</span>, <span class='no'>calc_flag</span>)
 
 <span class='fu'>swe_refrac_extended</span>(<span class='no'>InAlt</span>, <span class='no'>height</span>, <span class='no'>atpress</span>, <span class='no'>attemp</span>, <span class='no'>lapse_rate</span>, <span class='no'>calc_flag</span>)
 
@@ -177,13 +193,13 @@ heliacal phenomenon after a given start date</p>
       <td><p>backwards search as boolean (TRUE)</p></td>
     </tr>
     <tr>
-      <th>jd_ut</th>
-      <td><p>UT Julian day number as double (day)</p></td>
-    </tr>
-    <tr>
       <th>ifltype</th>
       <td><p>eclipse type as integer (<code>SE$ECL_CENTRAL=1</code>, <code>SE$ECL_NONCENTRAL=2</code>,
-<code>SE$ECL_TOTAL=4</code>, <code>SE$ECL_ANNULAR=8</code>, <code>SE$ECL_PARTIAL=16</code> or <code>SE$ECL_ANNULAR_TOTAL=32</code>)</p></td>
+<code>SE$ECL_TOTAL=4</code>, <code>SE$ECL_ANNULAR=8</code>, <code>SE$ECL_PARTIAL=16</code>, <code>SE$ECL_ANNULAR_TOTAL=32</code> or 0 for any)</p></td>
+    </tr>
+    <tr>
+      <th>jd_ut</th>
+      <td><p>UT Julian day number as double (day)</p></td>
     </tr>
     <tr>
       <th>ipl</th>
@@ -226,16 +242,16 @@ heliacal phenomenon after a given start date</p>
       <td><p>object's apparent/topocentric altitude as double (depending on calc_flag) (deg)</p></td>
     </tr>
     <tr>
+      <th>calc_flag</th>
+      <td><p>Calculation flag as integer (refraction direction (<code>SE$TRUE_TO_APP=0</code> or <code>SE$APP_TO_TRUE=1</code>))</p></td>
+    </tr>
+    <tr>
       <th>height</th>
       <td><p>observer's height as double (m)</p></td>
     </tr>
     <tr>
       <th>lapse_rate</th>
       <td><p>lapse rate as double (K/m)</p></td>
-    </tr>
-    <tr>
-      <th>calc_flag</th>
-      <td><p>Calculation flag as integer (refraction direction (<code>SE$TRUE_TO_APP=0</code> or <code>SE$APP_TO_TRUE=1</code>))</p></td>
     </tr>
     <tr>
       <th>jd_utstart</th>
@@ -296,6 +312,24 @@ heliacal phenomenon after a given start date</p>
     <p><code>swe_sol_eclipse_when_loc</code> returns a list with named entries:
      <code>return</code> status flag as integer, <code>tret</code> for eclipse timing moments as numeric vector,
      <code>attr</code> phenomena during eclipse as numeric vector and <code>serr</code> error message as string</p>
+<p><code>swe_sol_eclipse_when_glob</code> returns a list with named entries:
+     <code>return</code> status flag as integer, <code>tret</code> for eclipse timing moments as numeric vector
+     and <code>serr</code> error warning as string</p>
+<p><code>swe_sol_eclipse_how</code> returns a list with named entries:
+     <code>return</code> status flag as integer,
+     <code>attr</code> phenomena during eclipse as numeric vector and <code>serr</code> error message as string</p>
+<p><code>swe_sol_eclipse_where</code> returns a list with named entries:
+     <code>return</code> status flag as integer, <code>pathpos</code> geographic path positions as numeric vector,
+     <code>attr</code> phenomena during eclipse as numeric vector and <code>serr</code> error message as string</p>
+<p><code>swe_lun_occult_when_loc</code> returns a list with named entries:
+     <code>return</code> status flag as integer, <code>tret</code> for eclipse timing moments as numeric vector,
+     <code>attr</code> phenomena during eclipse as numeric vector and <code>serr</code> error message as string</p>
+<p><code>swe_lun_occult_when_glob</code> returns a list with named entries:
+     <code>return</code> status flag as integer, <code>tret</code> for eclipse timing moments as numeric vector,
+     <code>attr</code> phenomena during eclipse as numeric vector and <code>serr</code> error message as string</p>
+<p><code>swe_lun_occult_where</code> returns a list with named entries:
+     <code>return</code> status flag as integer, <code>pathpos</code> geographic path positions as numeric vector,
+     <code>attr</code> phenomena during eclipse as numeric vector and <code>serr</code> error message as string</p>
 <p><code>swe_lun_eclipse_when_loc</code> returns a list with named entries:
      <code>return</code> status flag as integer, <code>tret</code> for eclipse timing moments,
      <code>attr</code> phenomena during eclipse and <code>serr</code> error warning as string</p>
@@ -317,6 +351,7 @@ heliacal phenomenon after a given start date</p>
      <code>xaz</code> for azi/alt info as numeric vector.</p>
 <p><code>swe_azalt_rev</code> returns a list with named entries:
      <code>xaz</code> for celestial info as numeric vector.</p>
+<p><code>swe_refrac</code> returns the (apparent/topocentric) altitude as double (deg)</p>
 <p><code>swe_refrac_extended</code> returns a list with named entries: <code>return</code> status flag as integer,
      <code>dret</code> refraction results as numeric vector (TopoAlt, AppAlt, refraction)</p>
 <p><code>swe_heliacal_ut</code> returns a list with named entries <code>return</code> status flag as integer,
@@ -335,6 +370,24 @@ heliacal phenomenon after a given start date</p>
     <dl class='dl-horizontal'>
   <dt>swe_sol_eclipse_when_loc()</dt><dd><p>Find the next solar eclipse for a given geographic position.</p></dd>
   </dl>
+    <dl class='dl-horizontal'>
+<dt>swe_sol_eclipse_when_glob()</dt><dd><p>Find the next solar eclipse on earth.</p></dd>
+</dl>
+    <dl class='dl-horizontal'>
+<dt>swe_sol_eclipse_how()</dt><dd><p>Compute the attributes of a solar eclipse for a given time.</p></dd>
+</dl>
+    <dl class='dl-horizontal'>
+<dt>swe_sol_eclipse_where()</dt><dd><p>Compute the geographic position of a solar eclipse path.</p></dd>
+</dl>
+    <dl class='dl-horizontal'>
+<dt>swe_lun_occult_when_loc()</dt><dd><p>Find the next lunar occultation with planet or star at a certain position.</p></dd>
+</dl>
+    <dl class='dl-horizontal'>
+<dt>swe_lun_occult_when_glob()</dt><dd><p>Find the next lunar occultation with planet or star somewhere on the earth.</p></dd>
+</dl>
+    <dl class='dl-horizontal'>
+<dt>swe_lun_occult_where()</dt><dd><p>Compute the geographic position of an occultation path.</p></dd>
+</dl>
     <dl class='dl-horizontal'>
 <dt>swe_lun_eclipse_when_loc()</dt><dd><p>Find the next lunar eclipse for a given geographic position.</p></dd>
 </dl>
@@ -357,9 +410,13 @@ heliacal phenomenon after a given start date</p>
 <dt>swe_azalt()</dt><dd><p>Compute the horizontal coordinates (azimuth and altitude) of a planet or a star from either ecliptical or equatorial coordinates.</p></dd>
 </dl>
     <dl class='dl-horizontal'>
-<dt>swe_azalt_rev()</dt><dd><p>compute either ecliptical or equatorial coordinates from azimuth and true altitude.
+<dt>swe_azalt_rev()</dt><dd><p>Compute either ecliptical or equatorial coordinates from azimuth and true altitude.
 If only an apparent altitude is given, the true altitude has to be computed first with
 e.g. the function swe_refrac_extended().</p></dd>
+</dl>
+    <dl class='dl-horizontal'>
+<dt>swe_refrac()</dt><dd><p>Calculate either the topocentric altitude from the apparent altitude
+or the apparent altitude from the topocentric altitude.</p></dd>
 </dl>
     <dl class='dl-horizontal'>
 <dt>swe_refrac_extended()</dt><dd><p>Calculate either the topocentric altitude from the apparent altitude
@@ -391,7 +448,7 @@ use the function swe_heliacal_ut().</p></dd>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Section 6 in <a href='http://www.astro.com/swisseph/swephprg.htm'>http://www.astro.com/swisseph/swephprg.htm</a></p></div>
+    <div class='dont-index'><p>Section 6 in <a href='http://www.astro.com/swisseph/swephprg.htm'>http://www.astro.com/swisseph/swephprg.htm</a>. Remember that array indices start in R at 1, while in C they start at 0!</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -411,6 +468,83 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
+#&gt; </div><div class='input'><span class='fu'>swe_sol_eclipse_when_glob</span>(<span class='fl'>1234567</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>,<span class='no'>SE</span>$<span class='no'>ECL_TOTAL</span>+<span class='no'>SE</span>$<span class='no'>ECL_CENTRAL</span>+<span class='no'>SE</span>$<span class='no'>ECL_NONCENTRAL</span>,<span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; $return
+#&gt; [1] 5
+#&gt; 
+#&gt; $tret
+#&gt;  [1] 1235274 1235274 1235274 1235274 1235274 1235274 1235274 1235274       0
+#&gt; [10]       0       0       0       0       0       0       0       0       0
+#&gt; [19]       0       0
+#&gt; 
+#&gt; $serr
+#&gt; [1] ""
+#&gt; </div><div class='input'><span class='fu'>swe_sol_eclipse_how</span>(<span class='fl'>1234580.19960447</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>,<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>))</div><div class='output co'>#&gt; $return
+#&gt; [1] 0
+#&gt; 
+#&gt; $attr
+#&gt;  [1]   0.000000   0.000000   0.000000   0.000000  60.620865  -1.191438
+#&gt;  [7]  -1.191438 178.457334   0.000000   0.000000   0.000000   0.000000
+#&gt; [13]   0.000000   0.000000   0.000000   0.000000   0.000000   0.000000
+#&gt; [19]   0.000000   0.000000
+#&gt; 
+#&gt; $serr
+#&gt; [1] ""
+#&gt; </div><div class='input'><span class='fu'>swe_sol_eclipse_where</span>(<span class='fl'>1234771.68584597</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>)</div><div class='output co'>#&gt; $return
+#&gt; [1] 18
+#&gt; 
+#&gt; $pathpos
+#&gt;  [1] -12.73280  60.96523   0.00000   0.00000   0.00000   0.00000   0.00000
+#&gt;  [8]   0.00000   0.00000   0.00000   0.00000   0.00000   0.00000   0.00000
+#&gt; [15]   0.00000
+#&gt; 
+#&gt; $attr
+#&gt;  [1]   0.85430631   0.96115285   0.80281057 140.82774036 229.98172373
+#&gt;  [6]  -0.06472644   0.42784837   0.06720146   0.85430631  43.00000000
+#&gt; [11]  11.00000000   0.00000000   0.00000000   0.00000000   0.00000000
+#&gt; [16]   0.00000000   0.00000000   0.00000000   0.00000000   0.00000000
+#&gt; 
+#&gt; $serr
+#&gt; [1] ""
+#&gt; </div><div class='input'><span class='fu'>swe_lun_occult_when_loc</span>(<span class='fl'>1234567</span>,<span class='no'>SE</span>$<span class='no'>VENUS</span>,<span class='st'>""</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>+<span class='no'>SE</span>$<span class='no'>ECL_ONE_TRY</span>,<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>),<span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; $return
+#&gt; [1] 32644
+#&gt; 
+#&gt; $tret
+#&gt;  [1] 1234620 1234620 1234620 1234620 1234620       0       0       0       0
+#&gt; [10]       0
+#&gt; 
+#&gt; $attr
+#&gt;  [1]  4.507396e+01  1.018559e+02  1.037461e+04 -3.451948e+03  4.149433e+01
+#&gt;  [6]  9.456394e+00  9.549269e+00  3.256049e-02  0.000000e+00  0.000000e+00
+#&gt; [11]  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00
+#&gt; [16]  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00
+#&gt; 
+#&gt; $serr
+#&gt; [1] ""
+#&gt; </div><div class='input'><span class='fu'>swe_lun_occult_when_glob</span>(<span class='fl'>1234567</span>,<span class='no'>SE</span>$<span class='no'>VENUS</span>,<span class='st'>""</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>+<span class='no'>SE</span>$<span class='no'>ECL_ONE_TRY</span>,<span class='no'>SE</span>$<span class='no'>ECL_TOTAL</span>,<span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; $return
+#&gt; [1] 5
+#&gt; 
+#&gt; $tret
+#&gt;  [1] 1234590 1234590 1234590 1234591 1234590 1234591 1234590 1234590       0
+#&gt; [10]       0
+#&gt; 
+#&gt; $serr
+#&gt; [1] ""
+#&gt; </div><div class='input'><span class='fu'>swe_lun_occult_where</span>(<span class='fl'>1234590.44756319</span>,<span class='no'>SE</span>$<span class='no'>VENUS</span>,<span class='st'>""</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>+<span class='no'>SE</span>$<span class='no'>ECL_ONE_TRY</span>)</div><div class='output co'>#&gt; $return
+#&gt; [1] 5
+#&gt; 
+#&gt; $pathpos
+#&gt;  [1] 157.97716  24.85635   0.00000   0.00000   0.00000   0.00000   0.00000
+#&gt;  [8]   0.00000   0.00000   0.00000   0.00000   0.00000   0.00000   0.00000
+#&gt; [15]   0.00000
+#&gt; 
+#&gt; $attr
+#&gt;  [1]  3.961332e+01  7.827476e+01  6.126939e+03 -3.444527e+03  4.467609e+00
+#&gt;  [6]  4.393483e+01  4.395166e+01  1.659223e-04  0.000000e+00  0.000000e+00
+#&gt; [11]  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00
+#&gt; [16]  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00
+#&gt; 
+#&gt; $serr
+#&gt; [1] ""
 #&gt; </div><div class='input'><span class='fu'>swe_lun_eclipse_when_loc</span>(<span class='fl'>1234567</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>,<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>),<span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; $return
 #&gt; [1] 20624
 #&gt; 
@@ -426,6 +560,16 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
+#&gt; </div><div class='input'><span class='fu'>swe_lun_eclipse_when</span>(<span class='fl'>1234567</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>,<span class='no'>SE</span>$<span class='no'>ECL_CENTRAL</span>,<span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; $return
+#&gt; [1] 4
+#&gt; 
+#&gt; $tret
+#&gt;  [1] 1234580       0 1234580 1234580 1234580 1234580 1234580 1234580       0
+#&gt; [10]       0       0       0       0       0       0       0       0       0
+#&gt; [19]       0       0
+#&gt; 
+#&gt; $serr
+#&gt; [1] ""
 #&gt; </div><div class='input'><span class='fu'>swe_lun_eclipse_how</span>(<span class='fl'>1234580.19960447</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>,<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>))</div><div class='output co'>#&gt; $return
 #&gt; [1] 16
 #&gt; 
@@ -434,16 +578,6 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt;  [7]   0.1857383   0.5866633   0.7181700  12.0000000  58.0000000   0.0000000
 #&gt; [13]   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000
 #&gt; [19]   0.0000000   0.0000000
-#&gt; 
-#&gt; $serr
-#&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_lun_eclipse_when</span>(<span class='fl'>1234567</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>,<span class='no'>SE</span>$<span class='no'>ECL_CENTRAL</span>,<span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; $return
-#&gt; [1] 4
-#&gt; 
-#&gt; $tret
-#&gt;  [1] 1234580       0 1234580 1234580 1234580 1234580 1234580 1234580       0
-#&gt; [10]       0       0       0       0       0       0       0       0       0
-#&gt; [19]       0       0
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
@@ -486,7 +620,8 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt; 
 #&gt; $dret
 #&gt;  [1] 2.0000000 2.2787088 0.2787088 0.0000000 0.0000000 0.0000000 0.0000000
-#&gt;  [8] 0.0000000 0.0000000 0.0000000
+#&gt;  [8] 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000
+#&gt; [15] 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000
 #&gt; </div><div class='input'><span class='fu'>swe_heliacal_ut</span>(<span class='fl'>1234567</span>,<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>),<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1013.25</span>,<span class='fl'>15</span>,<span class='fl'>50</span>,<span class='fl'>0.25</span>),<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>25</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>5</span>,<span class='fl'>0.8</span>),<span class='st'>"sirius"</span>,
   <span class='no'>SE</span>$<span class='no'>HELIACAL_RISING</span>,<span class='no'>SE</span>$<span class='no'>HELFLAG_HIGH_PRECISION</span>+<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>)</div><div class='output co'>#&gt; $return
 #&gt; [1] 0
