@@ -56,7 +56,6 @@ Ephemeris), you do the following steps:
 
 ``` r
 library(swephR)
-data(SE)
 swe_version()
 #> [1] "2.08"
 ```
