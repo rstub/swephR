@@ -74,7 +74,7 @@
       <h1>swephR</h1>
                         <h4 class="author">Victor Reijs</h4>
             
-            <h4 class="date">2019-08-09</h4>
+            <h4 class="date">2019-08-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rstub/swephR/blob/master/vignettes/swephR.Rmd"><code>vignettes/swephR.Rmd</code></a></small>
       <div class="hidden name"><code>swephR.Rmd</code></div>
@@ -88,10 +88,9 @@
 <a href="#some-simple-steps-to-do-calculations" class="anchor"></a>Some simple steps to do calculations</h1>
 <p>To compute the position of celestial body or star with SE (Swiss Ephemeris), you do the following steps:</p>
 <ol style="list-style-type: decimal">
-<li>First load <code>swephR</code> and constants used in swephR/SE:</li>
+<li>First load <code>swephR</code>:</li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(swephR)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(SE)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(swephR)</a></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Optionally set the directory path of the ephemeris files (the format of the path depends on your OS), e.g.:</li>
 </ol>
@@ -170,57 +169,56 @@
 </ol>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">digits=</span><span class="dv">6</span>)</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2">  <span class="kw"><a href="../reference/Section1.html">swe_set_ephe_path</a></span>(<span class="ot">NULL</span>)</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">  <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(SE)</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">  iflag =<span class="st"> </span>SE<span class="op">$</span>FLG_SPEED</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">  {</a>
-<a class="sourceLine" id="cb7-6" data-line-number="6">    <span class="co">#get year</span></a>
-<a class="sourceLine" id="cb7-7" data-line-number="7">    jyear &lt;-<span class="st"> </span><span class="dv">2000</span></a>
-<a class="sourceLine" id="cb7-8" data-line-number="8">    <span class="co">#get month</span></a>
-<a class="sourceLine" id="cb7-9" data-line-number="9">    jmon &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb7-10" data-line-number="10">    <span class="co">#get day</span></a>
-<a class="sourceLine" id="cb7-11" data-line-number="11">    jday &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb7-12" data-line-number="12">    <span class="co">#get time</span></a>
-<a class="sourceLine" id="cb7-13" data-line-number="13">    jhour &lt;-<span class="st"> </span><span class="dv">12</span></a>
-<a class="sourceLine" id="cb7-14" data-line-number="14">    <span class="co">#determine julian day number (at 12:00 GMT)</span></a>
-<a class="sourceLine" id="cb7-15" data-line-number="15">    tjd_ut &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Section7.html">swe_julday</a></span>(jyear, jmon, jday, jhour, SE<span class="op">$</span>GREG_CAL)</a>
-<a class="sourceLine" id="cb7-16" data-line-number="16">    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(<span class="st">"Julian day number (UT) :"</span>, tjd_ut, <span class="st">"("</span>,jyear,<span class="st">","</span>,jmon,<span class="st">","</span>,jday,<span class="st">"; proleptic Gregorian calendar)</span><span class="ch">\n</span><span class="st">"</span>)</a>
-<a class="sourceLine" id="cb7-17" data-line-number="17">    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(<span class="st">"planet :"</span>,</a>
-<a class="sourceLine" id="cb7-18" data-line-number="18">        <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"longitude"</span>, <span class="st">"latitude"</span>, <span class="st">"distance"</span>, <span class="st">"long. speed"</span>, <span class="st">"lat. speed"</span>),</a>
-<a class="sourceLine" id="cb7-19" data-line-number="19">        <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</a>
-<a class="sourceLine" id="cb7-20" data-line-number="20">    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(<span class="st">"===========================================================</span><span class="ch">\n</span><span class="st">"</span>)</a>
-<a class="sourceLine" id="cb7-21" data-line-number="21">    <span class="co"># loop over all planets</span></a>
-<a class="sourceLine" id="cb7-22" data-line-number="22">    <span class="cf">for</span> (p <span class="cf">in</span> SE<span class="op">$</span>SUN<span class="op">:</span>SE<span class="op">$</span>OSCU_APOG) {</a>
-<a class="sourceLine" id="cb7-23" data-line-number="23">      <span class="co"># get the name of the planet p</span></a>
-<a class="sourceLine" id="cb7-24" data-line-number="24">      objectname =<span class="st"> </span><span class="kw"><a href="../reference/Section3.html">swe_get_planet_name</a></span>(p)</a>
-<a class="sourceLine" id="cb7-25" data-line-number="25">        <span class="co"># do the coordinate calculation for this planet p</span></a>
-<a class="sourceLine" id="cb7-26" data-line-number="26">        i =<span class="st"> </span><span class="kw"><a href="../reference/Section2.html">swe_calc_ut</a></span>(tjd_ut, p, iflag)</a>
-<a class="sourceLine" id="cb7-27" data-line-number="27">        <span class="cf">if</span> (i<span class="op">$</span>return <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) {</a>
-<a class="sourceLine" id="cb7-28" data-line-number="28">          <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(<span class="st">"Error :"</span>, i<span class="op">$</span>err, <span class="st">"("</span>, objectname, <span class="st">")</span><span class="ch">\n</span><span class="st">"</span>)</a>
-<a class="sourceLine" id="cb7-29" data-line-number="29">        }</a>
-<a class="sourceLine" id="cb7-30" data-line-number="30">        <span class="cf">else</span></a>
-<a class="sourceLine" id="cb7-31" data-line-number="31">        {</a>
-<a class="sourceLine" id="cb7-32" data-line-number="32">          <span class="co"># print data</span></a>
-<a class="sourceLine" id="cb7-33" data-line-number="33">          <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span> (objectname, <span class="st">":"</span>, i<span class="op">$</span>xx[<span class="dv">0</span><span class="op">:</span><span class="dv">5</span>], <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</a>
-<a class="sourceLine" id="cb7-34" data-line-number="34">        }</a>
-<a class="sourceLine" id="cb7-35" data-line-number="35">    }</a>
-<a class="sourceLine" id="cb7-36" data-line-number="36">  }</a>
-<a class="sourceLine" id="cb7-37" data-line-number="37"><span class="co">#&gt; Julian day number (UT) : 2451545 ( 2000 , 1 , 1 ; proleptic Gregorian calendar)</span></a>
-<a class="sourceLine" id="cb7-38" data-line-number="38"><span class="co">#&gt; planet : longitude latitude distance long. speed lat. speed </span></a>
-<a class="sourceLine" id="cb7-39" data-line-number="39"><span class="co">#&gt; ===========================================================</span></a>
-<a class="sourceLine" id="cb7-40" data-line-number="40"><span class="co">#&gt; Sun : 280.369 0.000232327 0.983328 1.01943 -8.9228e-07 </span></a>
-<a class="sourceLine" id="cb7-41" data-line-number="41"><span class="co">#&gt; Moon : 223.324 5.17082 0.00268998 12.0212 -0.178063 </span></a>
-<a class="sourceLine" id="cb7-42" data-line-number="42"><span class="co">#&gt; Mercury : 271.889 -0.994825 1.41547 1.55625 -0.0974918 </span></a>
-<a class="sourceLine" id="cb7-43" data-line-number="43"><span class="co">#&gt; Venus : 241.566 2.06635 1.13758 1.20904 -0.0280736 </span></a>
-<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; Mars : 327.963 -1.06778 1.84969 0.775673 0.0124755 </span></a>
-<a class="sourceLine" id="cb7-45" data-line-number="45"><span class="co">#&gt; Jupiter : 25.253 -1.26217 4.62118 0.0407613 0.00517336 </span></a>
-<a class="sourceLine" id="cb7-46" data-line-number="46"><span class="co">#&gt; Saturn : 40.3956 -2.44482 8.6528 -0.0199448 0.00474316 </span></a>
-<a class="sourceLine" id="cb7-47" data-line-number="47"><span class="co">#&gt; Uranus : 314.809 -0.658333 20.7272 0.0503436 0.000250014 </span></a>
-<a class="sourceLine" id="cb7-48" data-line-number="48"><span class="co">#&gt; Neptune : 303.193 0.234991 31.0245 0.0355701 -0.000223651 </span></a>
-<a class="sourceLine" id="cb7-49" data-line-number="49"><span class="co">#&gt; Pluto : 251.455 10.8552 31.0644 0.0351529 0.0014674 </span></a>
-<a class="sourceLine" id="cb7-50" data-line-number="50"><span class="co">#&gt; mean Node : 125.041 0 0.00256956 -0.0529518 0 </span></a>
-<a class="sourceLine" id="cb7-51" data-line-number="51"><span class="co">#&gt; true Node : 123.953 0 0.00244538 -0.0543822 0 </span></a>
-<a class="sourceLine" id="cb7-52" data-line-number="52"><span class="co">#&gt; mean Apogee : 263.464 3.41972 0.00271063 0.111328 -0.011021 </span></a>
-<a class="sourceLine" id="cb7-53" data-line-number="53"><span class="co">#&gt; osc. Apogee : 252.979 4.07551 0.00271384 1.64684 -0.0971172</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-3" data-line-number="3">  iflag =<span class="st"> </span>SE<span class="op">$</span>FLG_SPEED</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">  {</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">    <span class="co">#get year</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">    jyear &lt;-<span class="st"> </span><span class="dv">2000</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">    <span class="co">#get month</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">    jmon &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9">    <span class="co">#get day</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">    jday &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11">    <span class="co">#get time</span></a>
+<a class="sourceLine" id="cb7-12" data-line-number="12">    jhour &lt;-<span class="st"> </span><span class="dv">12</span></a>
+<a class="sourceLine" id="cb7-13" data-line-number="13">    <span class="co">#determine julian day number (at 12:00 GMT)</span></a>
+<a class="sourceLine" id="cb7-14" data-line-number="14">    tjd_ut &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Section7.html">swe_julday</a></span>(jyear, jmon, jday, jhour, SE<span class="op">$</span>GREG_CAL)</a>
+<a class="sourceLine" id="cb7-15" data-line-number="15">    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(<span class="st">"Julian day number (UT) :"</span>, tjd_ut, <span class="st">"("</span>,jyear,<span class="st">","</span>,jmon,<span class="st">","</span>,jday,<span class="st">"; proleptic Gregorian calendar)</span><span class="ch">\n</span><span class="st">"</span>)</a>
+<a class="sourceLine" id="cb7-16" data-line-number="16">    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(<span class="st">"planet :"</span>,</a>
+<a class="sourceLine" id="cb7-17" data-line-number="17">        <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"longitude"</span>, <span class="st">"latitude"</span>, <span class="st">"distance"</span>, <span class="st">"long. speed"</span>, <span class="st">"lat. speed"</span>),</a>
+<a class="sourceLine" id="cb7-18" data-line-number="18">        <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</a>
+<a class="sourceLine" id="cb7-19" data-line-number="19">    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(<span class="st">"===========================================================</span><span class="ch">\n</span><span class="st">"</span>)</a>
+<a class="sourceLine" id="cb7-20" data-line-number="20">    <span class="co"># loop over all planets</span></a>
+<a class="sourceLine" id="cb7-21" data-line-number="21">    <span class="cf">for</span> (p <span class="cf">in</span> SE<span class="op">$</span>SUN<span class="op">:</span>SE<span class="op">$</span>OSCU_APOG) {</a>
+<a class="sourceLine" id="cb7-22" data-line-number="22">      <span class="co"># get the name of the planet p</span></a>
+<a class="sourceLine" id="cb7-23" data-line-number="23">      objectname =<span class="st"> </span><span class="kw"><a href="../reference/Section3.html">swe_get_planet_name</a></span>(p)</a>
+<a class="sourceLine" id="cb7-24" data-line-number="24">        <span class="co"># do the coordinate calculation for this planet p</span></a>
+<a class="sourceLine" id="cb7-25" data-line-number="25">        i =<span class="st"> </span><span class="kw"><a href="../reference/Section2.html">swe_calc_ut</a></span>(tjd_ut, p, iflag)</a>
+<a class="sourceLine" id="cb7-26" data-line-number="26">        <span class="cf">if</span> (i<span class="op">$</span>return <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb7-27" data-line-number="27">          <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(<span class="st">"Error :"</span>, i<span class="op">$</span>err, <span class="st">"("</span>, objectname, <span class="st">")</span><span class="ch">\n</span><span class="st">"</span>)</a>
+<a class="sourceLine" id="cb7-28" data-line-number="28">        }</a>
+<a class="sourceLine" id="cb7-29" data-line-number="29">        <span class="cf">else</span></a>
+<a class="sourceLine" id="cb7-30" data-line-number="30">        {</a>
+<a class="sourceLine" id="cb7-31" data-line-number="31">          <span class="co"># print data</span></a>
+<a class="sourceLine" id="cb7-32" data-line-number="32">          <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span> (objectname, <span class="st">":"</span>, i<span class="op">$</span>xx[<span class="dv">0</span><span class="op">:</span><span class="dv">5</span>], <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</a>
+<a class="sourceLine" id="cb7-33" data-line-number="33">        }</a>
+<a class="sourceLine" id="cb7-34" data-line-number="34">    }</a>
+<a class="sourceLine" id="cb7-35" data-line-number="35">  }</a>
+<a class="sourceLine" id="cb7-36" data-line-number="36"><span class="co">#&gt; Julian day number (UT) : 2451545 ( 2000 , 1 , 1 ; proleptic Gregorian calendar)</span></a>
+<a class="sourceLine" id="cb7-37" data-line-number="37"><span class="co">#&gt; planet : longitude latitude distance long. speed lat. speed </span></a>
+<a class="sourceLine" id="cb7-38" data-line-number="38"><span class="co">#&gt; ===========================================================</span></a>
+<a class="sourceLine" id="cb7-39" data-line-number="39"><span class="co">#&gt; Sun : 280.369 0.000232327 0.983328 1.01943 -8.9228e-07 </span></a>
+<a class="sourceLine" id="cb7-40" data-line-number="40"><span class="co">#&gt; Moon : 223.324 5.17082 0.00268998 12.0212 -0.178063 </span></a>
+<a class="sourceLine" id="cb7-41" data-line-number="41"><span class="co">#&gt; Mercury : 271.889 -0.994825 1.41547 1.55625 -0.0974918 </span></a>
+<a class="sourceLine" id="cb7-42" data-line-number="42"><span class="co">#&gt; Venus : 241.566 2.06635 1.13758 1.20904 -0.0280736 </span></a>
+<a class="sourceLine" id="cb7-43" data-line-number="43"><span class="co">#&gt; Mars : 327.963 -1.06778 1.84969 0.775673 0.0124755 </span></a>
+<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; Jupiter : 25.253 -1.26217 4.62118 0.0407613 0.00517336 </span></a>
+<a class="sourceLine" id="cb7-45" data-line-number="45"><span class="co">#&gt; Saturn : 40.3956 -2.44482 8.6528 -0.0199448 0.00474316 </span></a>
+<a class="sourceLine" id="cb7-46" data-line-number="46"><span class="co">#&gt; Uranus : 314.809 -0.658333 20.7272 0.0503436 0.000250014 </span></a>
+<a class="sourceLine" id="cb7-47" data-line-number="47"><span class="co">#&gt; Neptune : 303.193 0.234991 31.0245 0.0355701 -0.000223651 </span></a>
+<a class="sourceLine" id="cb7-48" data-line-number="48"><span class="co">#&gt; Pluto : 251.455 10.8552 31.0644 0.0351529 0.0014674 </span></a>
+<a class="sourceLine" id="cb7-49" data-line-number="49"><span class="co">#&gt; mean Node : 125.041 0 0.00256956 -0.0529518 0 </span></a>
+<a class="sourceLine" id="cb7-50" data-line-number="50"><span class="co">#&gt; true Node : 123.953 0 0.00244538 -0.0543822 0 </span></a>
+<a class="sourceLine" id="cb7-51" data-line-number="51"><span class="co">#&gt; mean Apogee : 263.464 3.41972 0.00271063 0.111328 -0.011021 </span></a>
+<a class="sourceLine" id="cb7-52" data-line-number="52"><span class="co">#&gt; osc. Apogee : 252.979 4.07551 0.00271384 1.64684 -0.0971172</span></a></code></pre></div>
 <ol start="7" style="list-style-type: decimal">
 <li>At the end of your computations close all files and free up memory:</li>
 </ol>
