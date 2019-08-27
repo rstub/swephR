@@ -1,5 +1,10 @@
 # NEWS for swephR
 
+## swephR 0.3.0
+
+* support all functions from SE's C API
+* check for UBSAN errors using https://hub.docker.com/r/rstub/swephr-debug
+
 ## swephR 0.2.1
 
 * fix stack overflow write in libswe

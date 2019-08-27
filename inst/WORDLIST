@@ -1,5 +1,6 @@
 AppAlt
 AppVeyor
+apsides
 arcsec
 arcus
 ascendent
@@ -20,6 +21,7 @@ ephemeris
 Ephemeris
 FLG
 Gauquelin
+geolon
 github
 heliacal
 Heliacal
@@ -30,6 +32,8 @@ io
 jpl
 JPL
 JPLEPH
+libswe
+LMT
 MCs
 MOSEPH
 Moshier
@@ -44,6 +48,7 @@ swephRdata
 SWIEPH
 TopoAlt
 topocentric
+UBSAN
 ut
 vis
 visionis

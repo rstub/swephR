@@ -1,7 +1,7 @@
 Package: swephR
 Type: Package
 Title: High Precision Swiss Ephemeris
-Version: 0.2.1.1
+Version: 0.3.0
 Authors@R: c(
     person("Ralf", "Stubner", email = "ralf.stubner@gmail.com", role = c("aut", "cre")),
     person("Victor", "Reijs", role = "aut"),
@@ -29,3 +29,4 @@ BugReports: https://github.com/rstub/swephR/issues/
 Additional_repositories: https://rstub.github.io/drat
 VignetteBuilder: knitr
 LazyData: true
+Language: en-US
