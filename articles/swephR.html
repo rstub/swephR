@@ -74,7 +74,7 @@
       <h1>swephR</h1>
                         <h4 class="author">Victor Reijs</h4>
             
-            <h4 class="date">2019-08-23</h4>
+            <h4 class="date">2019-08-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rstub/swephR/blob/master/vignettes/swephR.Rmd"><code>vignettes/swephR.Rmd</code></a></small>
       <div class="hidden name"><code>swephR.Rmd</code></div>
@@ -169,7 +169,7 @@
 </ol>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">digits=</span><span class="dv">6</span>)</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2">  <span class="kw"><a href="../reference/Section1.html">swe_set_ephe_path</a></span>(<span class="ot">NULL</span>)</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">  iflag =<span class="st"> </span>SE<span class="op">$</span>FLG_SPEED</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">  iflag =<span class="st"> </span>SE<span class="op">$</span>FLG_SPEED <span class="op">+</span><span class="st"> </span>SE<span class="op">$</span>FLG_MOSEPH</a>
 <a class="sourceLine" id="cb7-4" data-line-number="4">  {</a>
 <a class="sourceLine" id="cb7-5" data-line-number="5">    <span class="co">#get year</span></a>
 <a class="sourceLine" id="cb7-6" data-line-number="6">    jyear &lt;-<span class="st"> </span><span class="dv">2000</span></a>
