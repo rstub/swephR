@@ -67,7 +67,7 @@ result
 ```{r}
   options(digits=6)
   swe_set_ephe_path(NULL)
-  iflag = SE$FLG_SPEED
+  iflag = SE$FLG_SPEED + SE$FLG_MOSEPH
   {
     #get year
     jyear <- 2000
