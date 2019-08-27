@@ -1,4 +1,4 @@
-FROM wch1/r-debug
+FROM wch1/r-debug:latest
 
 ENV _R_CHECK_FORCE_SUGGESTS_=false
 
