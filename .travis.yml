@@ -21,6 +21,10 @@ matrix:
   - r: devel
   - r: release
     os: osx
+addons:
+  apt:
+    packages:
+      - devscripts
 notifications:
   email:
     on_success: change
