@@ -8,11 +8,13 @@
 
 <title>Section 6: Eclipses, Risings, Settings, Meridian Transits, Planetary Phenomena — Section6 • swephR</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -32,13 +34,14 @@
 
 
 
-<meta property="og:title" content="Section 6: Eclipses, Risings, Settings, Meridian Transits, Planetary Phenomena — Section6" />
 
+<meta property="og:title" content="Section 6: Eclipses, Risings, Settings, Meridian Transits, Planetary Phenomena — Section6" />
 <meta property="og:description" content="Functions for: determining eclipse and occultation calculations, computing the times of rising, setting and
 meridian transits for all planets, asteroids, the moon and the fixed stars; computing phase, phase angle, elongation,
 apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids; and determining
 heliacal phenomenon after a given start date" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -91,7 +94,6 @@ heliacal phenomenon after a given start date" />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/rstub/swephR">
@@ -118,12 +120,10 @@ heliacal phenomenon after a given start date" />
     </div>
 
     <div class="ref-description">
-    
     <p>Functions for: determining eclipse and occultation calculations, computing the times of rising, setting and
 meridian transits for all planets, asteroids, the moon and the fixed stars; computing phase, phase angle, elongation,
 apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids; and determining
 heliacal phenomenon after a given start date</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>swe_sol_eclipse_when_loc</span>(<span class='no'>jd_start</span>, <span class='no'>ephe_flag</span>, <span class='no'>geopos</span>, <span class='no'>backward</span>)
@@ -176,7 +176,7 @@ heliacal phenomenon after a given start date</p>
 
 <span class='fu'>swe_heliacal_angle</span>(<span class='no'>jd_ut</span>, <span class='no'>dgeo</span>, <span class='no'>datm</span>, <span class='no'>dobs</span>, <span class='no'>helflag</span>, <span class='no'>mag</span>, <span class='no'>AziO</span>, <span class='no'>AziS</span>, <span class='no'>AziM</span>,
   <span class='no'>AltM</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -310,7 +310,7 @@ heliacal phenomenon after a given start date</p>
       <td><p>Moon's altitude as double (deg)</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>swe_sol_eclipse_when_loc</code> returns a list with named entries:
@@ -368,7 +368,6 @@ heliacal phenomenon after a given start date</p>
      <code>darr</code> heliacal details as numeric vector and <code>serr</code> error message as string</p>
 <p><code>swe_heliacal_angle</code> returns a list with named entries: <code>return</code> status flag as integer,
      <code>dret</code> heliacal angle as numeric vector and <code>serr</code> error message as string</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     
@@ -494,11 +493,9 @@ use the function swe_heliacal_ut().</p></dd>
 
 </dl>
 
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Section 6 in <a href='http://www.astro.com/swisseph/swephprg.htm'>http://www.astro.com/swisseph/swephprg.htm</a>. Remember that array indices start in R at 1, while in C they start at 0!</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>SE</span>)
@@ -751,13 +748,9 @@ use the function swe_heliacal_ut().</p></dd>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
