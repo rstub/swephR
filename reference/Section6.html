@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -40,7 +44,6 @@
 meridian transits for all planets, asteroids, the moon and the fixed stars; computing phase, phase angle, elongation,
 apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids; and determining
 heliacal phenomenon after a given start date" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -58,7 +61,7 @@ heliacal phenomenon after a given start date" />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -96,7 +99,7 @@ heliacal phenomenon after a given start date" />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/rstub/swephR">
+  <a href="https://github.com/rstub/swephR/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -371,90 +374,90 @@ heliacal phenomenon after a given start date</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     
-<dl class='dl-horizontal'>
+<dl'>
   <dt>swe_sol_eclipse_when_loc()</dt><dd><p>Find the next solar eclipse for a given geographic position.</p></dd>
   
 </dl>
 
-<dl class='dl-horizontal'>
+<dl'>
 <dt>swe_sol_eclipse_when_glob()</dt><dd><p>Find the next solar eclipse on earth.</p></dd>
 
 </dl>
 
-<dl class='dl-horizontal'>
+<dl'>
 <dt>swe_sol_eclipse_how()</dt><dd><p>Compute the attributes of a solar eclipse for a given time.</p></dd>
 
 </dl>
 
-<dl class='dl-horizontal'>
+<dl'>
 <dt>swe_sol_eclipse_where()</dt><dd><p>Compute the geographic position of a solar eclipse path.</p></dd>
 
 </dl>
 
-<dl class='dl-horizontal'>
+<dl'>
 <dt>swe_lun_occult_when_loc()</dt><dd><p>Find the next lunar occultation with planet or star at a certain position.</p></dd>
 
 </dl>
 
-<dl class='dl-horizontal'>
+<dl'>
 <dt>swe_lun_occult_when_glob()</dt><dd><p>Find the next lunar occultation with planet or star somewhere on the earth.</p></dd>
 
 </dl>
 
-<dl class='dl-horizontal'>
+<dl'>
 <dt>swe_lun_occult_where()</dt><dd><p>Compute the geographic position of an occultation path.</p></dd>
 
 </dl>
 
-<dl class='dl-horizontal'>
+<dl'>
 <dt>swe_lun_eclipse_when_loc()</dt><dd><p>Find the next lunar eclipse for a given geographic position.</p></dd>
 
 </dl>
 
-<dl class='dl-horizontal'>
+<dl'>
 <dt>swe_lun_eclipse_how()</dt><dd><p>Compute the attributes of a lunar eclipse for a given time.</p></dd>
 
 </dl>
 
-<dl class='dl-horizontal'>
+<dl'>
 <dt>swe_lun_eclipse_when()</dt><dd><p>Find the next lunar eclipse on earth.</p></dd>
 
 </dl>
 
-<dl class='dl-horizontal'>
+<dl'>
 <dt>swe_rise_trans_true_hor()</dt><dd><p>Compute the times of rising, setting and meridian transits for planets, asteroids, the moon, and the fixed stars for a local horizon that has an altitude.</p></dd>
 
 </dl>
 
-<dl class='dl-horizontal'>
+<dl'>
 <dt>swe_pheno_ut()</dt><dd><p>Compute phase, phase angle, elongation, apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids (UT)</p></dd>
 
 </dl>
 
-<dl class='dl-horizontal'>
+<dl'>
 <dt>swe_pheno()</dt><dd><p>Compute phase, phase angle, elongation, apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids (ET).</p></dd>
 
 </dl>
 
-<dl class='dl-horizontal'>
+<dl'>
 <dt>swe_azalt()</dt><dd><p>Compute the horizontal coordinates (azimuth and altitude) of a planet or a star from either ecliptical or equatorial coordinates.</p></dd>
 
 </dl>
 
-<dl class='dl-horizontal'>
+<dl'>
 <dt>swe_azalt_rev()</dt><dd><p>Compute either ecliptical or equatorial coordinates from azimuth and true altitude.
 If only an apparent altitude is given, the true altitude has to be computed first with
 e.g. the function swe_refrac_extended().</p></dd>
 
 </dl>
 
-<dl class='dl-horizontal'>
+<dl'>
 <dt>swe_refrac()</dt><dd><p>Calculate either the topocentric altitude from the apparent altitude
 or the apparent altitude from the topocentric altitude.</p></dd>
 
 </dl>
 
-<dl class='dl-horizontal'>
+<dl'>
 <dt>swe_refrac_extended()</dt><dd><p>Calculate either the topocentric altitude from the apparent altitude
 or the apparent altitude from the topocentric altitude.
 It allows correct calculation of refraction for heights above sea &gt; 0,
@@ -462,20 +465,20 @@ where the ideal horizon and planets that are visible may have a negative altitud
 
 </dl>
 
-<dl class='dl-horizontal'>
+<dl'>
 <dt>swe_heliacal_ut()</dt><dd><p>Compute the Julian day of the next heliacal phenomenon after a given UT start date.
 It works between geographic latitudes 60 South and 60 North.</p></dd>
 
 </dl>
 
-<dl class='dl-horizontal'>
+<dl'>
 <dt>swe_vis_limit_mag()</dt><dd><p>Determine the limiting visual magnitude in dark skies. If the visual magnitude mag of an object is known
 for a given date (e. g. from a call of function swe_pheno_ut(), and if magnitude is smaller than the value returned
 by swe_vis_limit_mag(), then it is visible.</p></dd>
 
 </dl>
 
-<dl class='dl-horizontal'>
+<dl'>
 <dt>swe_heliacal_pheno_ut()</dt><dd><p>Provide data that are relevant for the calculation of heliacal risings and settings.
 This function does not provide data of heliacal risings and settings itself, just some
 additional data mostly used for test purposes. To calculate heliacal risings and settings,
@@ -483,12 +486,12 @@ use the function swe_heliacal_ut().</p></dd>
 
 </dl>
 
-<dl class='dl-horizontal'>
+<dl'>
 <dt>swe_topo_arcus_visionis()</dt><dd><p>Compute topocentric arcus visionis.</p></dd>
 
 </dl>
 
-<dl class='dl-horizontal'>
+<dl'>
 <dt>swe_heliacal_angle()</dt><dd><p>Compute heliacal angle.</p></dd>
 
 </dl>
@@ -744,16 +747,10 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt; [1] ""
 #&gt; </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -764,7 +761,7 @@ use the function swe_heliacal_ut().</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
 </div>
 
       </footer>
