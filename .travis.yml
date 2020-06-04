@@ -10,9 +10,7 @@ matrix:
   - r: release
     r_packages:
     - covr
-#    - pkgdown
-    r_github_packages:
-    - r-lib/pkgdown
+    - pkgdown
     after_success:
     - Rscript -e "covr::codecov()"
     deploy:
