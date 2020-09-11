@@ -123,25 +123,25 @@
     <p>Functions related to calendar and time conversions.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>swe_julday</span>(<span class='no'>year</span>, <span class='no'>month</span>, <span class='no'>day</span>, <span class='no'>hourd</span>, <span class='no'>gregflag</span>)
+    <pre class="usage"><span class='fu'>swe_julday</span>(<span class='kw'>year</span>, <span class='kw'>month</span>, <span class='kw'>day</span>, <span class='kw'>hourd</span>, <span class='kw'>gregflag</span>)
 
-<span class='fu'>swe_date_conversion</span>(<span class='no'>year</span>, <span class='no'>month</span>, <span class='no'>day</span>, <span class='no'>hourd</span>, <span class='no'>cal</span>)
+<span class='fu'>swe_date_conversion</span>(<span class='kw'>year</span>, <span class='kw'>month</span>, <span class='kw'>day</span>, <span class='kw'>hourd</span>, <span class='kw'>cal</span>)
 
-<span class='fu'>swe_revjul</span>(<span class='no'>jd</span>, <span class='no'>gregflag</span>)
+<span class='fu'>swe_revjul</span>(<span class='kw'>jd</span>, <span class='kw'>gregflag</span>)
 
-<span class='fu'>swe_utc_time_zone</span>(<span class='no'>year</span>, <span class='no'>month</span>, <span class='no'>day</span>, <span class='no'>houri</span>, <span class='no'>min</span>, <span class='no'>sec</span>, <span class='no'>d_timezone</span>)
+<span class='fu'>swe_utc_time_zone</span>(<span class='kw'>year</span>, <span class='kw'>month</span>, <span class='kw'>day</span>, <span class='kw'>houri</span>, <span class='kw'>min</span>, <span class='kw'>sec</span>, <span class='kw'>d_timezone</span>)
 
-<span class='fu'>swe_utc_to_jd</span>(<span class='no'>year</span>, <span class='no'>month</span>, <span class='no'>day</span>, <span class='no'>houri</span>, <span class='no'>min</span>, <span class='no'>sec</span>, <span class='no'>gregflag</span>)
+<span class='fu'>swe_utc_to_jd</span>(<span class='kw'>year</span>, <span class='kw'>month</span>, <span class='kw'>day</span>, <span class='kw'>houri</span>, <span class='kw'>min</span>, <span class='kw'>sec</span>, <span class='kw'>gregflag</span>)
 
-<span class='fu'>swe_jdet_to_utc</span>(<span class='no'>jd_et</span>, <span class='no'>gregflag</span>)
+<span class='fu'>swe_jdet_to_utc</span>(<span class='kw'>jd_et</span>, <span class='kw'>gregflag</span>)
 
-<span class='fu'>swe_jdut1_to_utc</span>(<span class='no'>jd_ut</span>, <span class='no'>gregflag</span>)
+<span class='fu'>swe_jdut1_to_utc</span>(<span class='kw'>jd_ut</span>, <span class='kw'>gregflag</span>)
 
-<span class='fu'>swe_time_equ</span>(<span class='no'>jd_ut</span>)
+<span class='fu'>swe_time_equ</span>(<span class='kw'>jd_ut</span>)
 
-<span class='fu'>swe_lmt_to_lat</span>(<span class='no'>jd_lmt</span>, <span class='no'>geolon</span>)
+<span class='fu'>swe_lmt_to_lat</span>(<span class='kw'>jd_lmt</span>, <span class='kw'>geolon</span>)
 
-<span class='fu'>swe_lat_to_lmt</span>(<span class='no'>jd_lat</span>, <span class='no'>geolon</span>)</pre>
+<span class='fu'>swe_lat_to_lmt</span>(<span class='kw'>jd_lat</span>, <span class='kw'>geolon</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -238,7 +238,7 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     
-<dl'>
+<dl>
   <dt>swe_julday()</dt><dd><p>Convert calendar dates to the astronomical time scale which measures time in Julian day number.</p></dd>
   <dt>swe_date_conversion()</dt><dd><p>Convert calendar dates to the astronomical time scale which measures time in Julian day
   number and checks if the calendar date is legal.</p></dd>
@@ -258,13 +258,16 @@
     <div class='dont-index'><p>Section 7 in <a href='http://www.astro.com/swisseph/swephprg.htm'>http://www.astro.com/swisseph/swephprg.htm</a>. Remember that array indices start in R at 1, while in C they start at 0!</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>SE</span>)
-<span class='fu'>swe_julday</span>(<span class='fl'>2000</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>12</span>,<span class='no'>SE</span>$<span class='no'>GREG_CAL</span>)</div><div class='output co'>#&gt; [1] 2451545</div><div class='input'><span class='fu'>swe_date_conversion</span>(<span class='fl'>2000</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>12</span>,<span class='st'>"g"</span>)</div><div class='output co'>#&gt; $return
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>SE</span>)
+<span class='fu'>swe_julday</span>(<span class='fl'>2000</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>12</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>GREG_CAL</span>)
+</div><div class='output co'>#&gt; [1] 2451545</div><div class='input'><span class='fu'>swe_date_conversion</span>(<span class='fl'>2000</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>12</span>,<span class='st'>"g"</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 0
 #&gt; 
 #&gt; $jd
 #&gt; [1] 2451545
-#&gt; </div><div class='input'><span class='fu'>swe_revjul</span>(<span class='fl'>2452500</span>,<span class='no'>SE</span>$<span class='no'>GREG_CAL</span>)</div><div class='output co'>#&gt; $year
+#&gt; </div><div class='input'><span class='fu'>swe_revjul</span>(<span class='fl'>2452500</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>GREG_CAL</span>)
+</div><div class='output co'>#&gt; $year
 #&gt; [1] 2002
 #&gt; 
 #&gt; $month
@@ -275,7 +278,8 @@
 #&gt; 
 #&gt; $hour
 #&gt; [1] 12
-#&gt; </div><div class='input'><span class='fu'>swe_utc_time_zone</span>(<span class='fl'>2000</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>12</span>,<span class='fl'>5</span>,<span class='fl'>1.2</span>,<span class='fl'>2</span>)</div><div class='output co'>#&gt; $year_out
+#&gt; </div><div class='input'><span class='fu'>swe_utc_time_zone</span>(<span class='fl'>2000</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>12</span>,<span class='fl'>5</span>,<span class='fl'>1.2</span>,<span class='fl'>2</span>)
+</div><div class='output co'>#&gt; $year_out
 #&gt; [1] 2000
 #&gt; 
 #&gt; $month_out
@@ -292,7 +296,8 @@
 #&gt; 
 #&gt; $sec_out
 #&gt; [1] 1.2
-#&gt; </div><div class='input'><span class='fu'>swe_utc_to_jd</span>(<span class='fl'>2000</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>12</span>,<span class='fl'>3.4</span>,<span class='no'>SE</span>$<span class='no'>GREG_CAL</span>)</div><div class='output co'>#&gt; $return
+#&gt; </div><div class='input'><span class='fu'>swe_utc_to_jd</span>(<span class='fl'>2000</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>12</span>,<span class='fl'>3.4</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>GREG_CAL</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 0
 #&gt; 
 #&gt; $dret
@@ -300,7 +305,8 @@
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_jdet_to_utc</span>(<span class='fl'>2452500</span>,<span class='no'>SE</span>$<span class='no'>GREG_CAL</span>)</div><div class='output co'>#&gt; $year_out
+#&gt; </div><div class='input'><span class='fu'>swe_jdet_to_utc</span>(<span class='fl'>2452500</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>GREG_CAL</span>)
+</div><div class='output co'>#&gt; $year_out
 #&gt; [1] 2002
 #&gt; 
 #&gt; $month_out
@@ -317,7 +323,8 @@
 #&gt; 
 #&gt; $sec_out
 #&gt; [1] 55.816
-#&gt; </div><div class='input'><span class='fu'>swe_jdut1_to_utc</span>(<span class='fl'>2452500</span>,<span class='no'>SE</span>$<span class='no'>GREG_CAL</span>)</div><div class='output co'>#&gt; $year_out
+#&gt; </div><div class='input'><span class='fu'>swe_jdut1_to_utc</span>(<span class='fl'>2452500</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>GREG_CAL</span>)
+</div><div class='output co'>#&gt; $year_out
 #&gt; [1] 2002
 #&gt; 
 #&gt; $month_out
@@ -334,7 +341,8 @@
 #&gt; 
 #&gt; $sec_out
 #&gt; [1] 0.2300933
-#&gt; </div><div class='input'><span class='fu'>swe_time_equ</span>(<span class='fl'>2452500</span>)</div><div class='output co'>#&gt; $return
+#&gt; </div><div class='input'><span class='fu'>swe_time_equ</span>(<span class='fl'>2452500</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 0
 #&gt; 
 #&gt; $e
@@ -342,7 +350,8 @@
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_lmt_to_lat</span>(<span class='fl'>2452500</span>,<span class='fl'>0</span>)</div><div class='output co'>#&gt; $return
+#&gt; </div><div class='input'><span class='fu'>swe_lmt_to_lat</span>(<span class='fl'>2452500</span>,<span class='fl'>0</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 0
 #&gt; 
 #&gt; $jd_lat
@@ -350,7 +359,8 @@
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_lat_to_lmt</span>(<span class='fl'>2452500</span>,<span class='fl'>0</span>)</div><div class='output co'>#&gt; $return
+#&gt; </div><div class='input'><span class='fu'>swe_lat_to_lmt</span>(<span class='fl'>2452500</span>,<span class='fl'>0</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 0
 #&gt; 
 #&gt; $jd_lmt
@@ -374,7 +384,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

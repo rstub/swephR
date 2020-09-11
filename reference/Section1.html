@@ -123,11 +123,11 @@
     <p>Several initialization functions</p>
     </div>
 
-    <pre class="usage"><span class='fu'>swe_set_ephe_path</span>(<span class='no'>path</span>)
+    <pre class="usage"><span class='fu'>swe_set_ephe_path</span>(<span class='kw'>path</span>)
 
 <span class='fu'>swe_close</span>()
 
-<span class='fu'>swe_set_jpl_file</span>(<span class='no'>fname</span>)
+<span class='fu'>swe_set_jpl_file</span>(<span class='kw'>fname</span>)
 
 <span class='fu'>swe_version</span>()
 
@@ -153,7 +153,7 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     
-<dl'>
+<dl>
   <dt>swe_set_ephe_path()</dt><dd><p>This is the first function that should be called
        before any other function of the Swiss Ephemeris. Even if you don't
        want to set an ephemeris path and use the Moshier ephemeris, it is
@@ -173,10 +173,12 @@
     <div class='dont-index'><p>Section 1 in <a href='http://www.astro.com/swisseph/swephprg.htm'>http://www.astro.com/swisseph/swephprg.htm</a>. Remember that array indices start in R at 1, while in C they start at 0!</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) <span class='fu'>swe_set_ephe_path</span>(<span class='st'>"c:\\sweph\\ephe"</span>)
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) <span class='fu'>swe_set_ephe_path</span>(<span class='st'>"c:\\sweph\\ephe"</span>)
 <span class='fu'>swe_close</span>()
 <span class='fu'>swe_set_jpl_file</span>(<span class='st'>"de431.eph"</span>)
-<span class='fu'>swe_version</span>()</div><div class='output co'>#&gt; [1] "2.08"</div><div class='input'><span class='fu'>swe_get_library_path</span>()</div><div class='output co'>#&gt; [1] "/home/travis/R/Library/swephR/libs/swephR.so"</div></pre>
+<span class='fu'>swe_version</span>()
+</div><div class='output co'>#&gt; [1] "2.08"</div><div class='input'><span class='fu'>swe_get_library_path</span>()
+</div><div class='output co'>#&gt; [1] "/home/travis/R/Library/swephR/libs/swephR.so"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -192,7 +194,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

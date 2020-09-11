@@ -123,13 +123,13 @@
     <p>Functions for: determining Kepler elements, nodes, apsides and orbital periods</p>
     </div>
 
-    <pre class="usage"><span class='fu'>swe_nod_aps_ut</span>(<span class='no'>jd_ut</span>, <span class='no'>ipl</span>, <span class='no'>iflag</span>, <span class='no'>method</span>)
+    <pre class="usage"><span class='fu'>swe_nod_aps_ut</span>(<span class='kw'>jd_ut</span>, <span class='kw'>ipl</span>, <span class='kw'>iflag</span>, <span class='kw'>method</span>)
 
-<span class='fu'>swe_nod_aps</span>(<span class='no'>jd_et</span>, <span class='no'>ipl</span>, <span class='no'>iflag</span>, <span class='no'>method</span>)
+<span class='fu'>swe_nod_aps</span>(<span class='kw'>jd_et</span>, <span class='kw'>ipl</span>, <span class='kw'>iflag</span>, <span class='kw'>method</span>)
 
-<span class='fu'>swe_get_orbital_elements</span>(<span class='no'>jd_et</span>, <span class='no'>ipl</span>, <span class='no'>iflag</span>)
+<span class='fu'>swe_get_orbital_elements</span>(<span class='kw'>jd_et</span>, <span class='kw'>ipl</span>, <span class='kw'>iflag</span>)
 
-<span class='fu'>swe_orbit_max_min_true_distance</span>(<span class='no'>jd_et</span>, <span class='no'>ipl</span>, <span class='no'>iflag</span>)</pre>
+<span class='fu'>swe_orbit_max_min_true_distance</span>(<span class='kw'>jd_et</span>, <span class='kw'>ipl</span>, <span class='kw'>iflag</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -172,22 +172,22 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     
-<dl'>
+<dl>
   <dt>swe_nod_aps_ut()</dt><dd><p>Compute planetary nodes and apsides (perihelia, aphelia, second focal points of the orbital ellipses).</p></dd>
   
 </dl>
 
-<dl'>
+<dl>
   <dt>swe_nod_aps()</dt><dd><p>Compute planetary nodes and apsides (perihelia, aphelia, second focal points of the orbital ellipses).</p></dd>
   
 </dl>
 
-<dl'>
+<dl>
   <dt>swe_get_orbital_elements()</dt><dd><p>This function calculates osculating elements (Kepler elements) and orbital periods.</p></dd>
   
 </dl>
 
-<dl'>
+<dl>
   <dt>swe_orbit_max_min_true_distance()</dt><dd><p>This function calculates the maximum possible distance, the minimum possible distance and the current true distance of planet.</p></dd>
   
 </dl>
@@ -197,8 +197,9 @@
     <div class='dont-index'><p>Section 5 in <a href='http://www.astro.com/swisseph/swephprg.htm'>http://www.astro.com/swisseph/swephprg.htm</a>. Remember that array indices start in R at 1, while in C they start at 0!</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>SE</span>)
-<span class='fu'>swe_nod_aps_ut</span>(<span class='fl'>2451545</span>,<span class='no'>SE</span>$<span class='no'>MOON</span>, <span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>,<span class='no'>SE</span>$<span class='no'>NODBIT_MEAN</span>)</div><div class='output co'>#&gt; $return
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>SE</span>)
+<span class='fu'>swe_nod_aps_ut</span>(<span class='fl'>2451545</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>MOON</span>, <span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>NODBIT_MEAN</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 0
 #&gt; 
 #&gt; $xnasc
@@ -219,7 +220,8 @@
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_nod_aps</span>(<span class='fl'>2451545</span>,<span class='no'>SE</span>$<span class='no'>MOON</span>, <span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>,<span class='no'>SE</span>$<span class='no'>NODBIT_MEAN</span>)</div><div class='output co'>#&gt; $return
+#&gt; </div><div class='input'><span class='fu'>swe_nod_aps</span>(<span class='fl'>2451545</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>MOON</span>, <span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>NODBIT_MEAN</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 0
 #&gt; 
 #&gt; $xnasc
@@ -240,7 +242,8 @@
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_get_orbital_elements</span>(<span class='fl'>2451545</span>,<span class='no'>SE</span>$<span class='no'>MOON</span>, <span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>)</div><div class='output co'>#&gt; $return
+#&gt; </div><div class='input'><span class='fu'>swe_get_orbital_elements</span>(<span class='fl'>2451545</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>MOON</span>, <span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 0
 #&gt; 
 #&gt; $dret
@@ -257,7 +260,8 @@
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_orbit_max_min_true_distance</span>(<span class='fl'>2451545</span>,<span class='no'>SE</span>$<span class='no'>MOON</span>, <span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>)</div><div class='output co'>#&gt; $return
+#&gt; </div><div class='input'><span class='fu'>swe_orbit_max_min_true_distance</span>(<span class='fl'>2451545</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>MOON</span>, <span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 0
 #&gt; 
 #&gt; $dmax
@@ -287,7 +291,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

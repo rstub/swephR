@@ -129,56 +129,56 @@ apparent diameter, apparent magnitude for the Sun, the Moon, all planets and ast
 heliacal phenomenon after a given start date</p>
     </div>
 
-    <pre class="usage"><span class='fu'>swe_sol_eclipse_when_loc</span>(<span class='no'>jd_start</span>, <span class='no'>ephe_flag</span>, <span class='no'>geopos</span>, <span class='no'>backward</span>)
+    <pre class="usage"><span class='fu'>swe_sol_eclipse_when_loc</span>(<span class='kw'>jd_start</span>, <span class='kw'>ephe_flag</span>, <span class='kw'>geopos</span>, <span class='kw'>backward</span>)
 
-<span class='fu'>swe_sol_eclipse_when_glob</span>(<span class='no'>jd_start</span>, <span class='no'>ephe_flag</span>, <span class='no'>ifltype</span>, <span class='no'>backward</span>)
+<span class='fu'>swe_sol_eclipse_when_glob</span>(<span class='kw'>jd_start</span>, <span class='kw'>ephe_flag</span>, <span class='kw'>ifltype</span>, <span class='kw'>backward</span>)
 
-<span class='fu'>swe_sol_eclipse_how</span>(<span class='no'>jd_ut</span>, <span class='no'>ephe_flag</span>, <span class='no'>geopos</span>)
+<span class='fu'>swe_sol_eclipse_how</span>(<span class='kw'>jd_ut</span>, <span class='kw'>ephe_flag</span>, <span class='kw'>geopos</span>)
 
-<span class='fu'>swe_sol_eclipse_where</span>(<span class='no'>jd_ut</span>, <span class='no'>ephe_flag</span>)
+<span class='fu'>swe_sol_eclipse_where</span>(<span class='kw'>jd_ut</span>, <span class='kw'>ephe_flag</span>)
 
-<span class='fu'>swe_lun_occult_when_loc</span>(<span class='no'>jd_start</span>, <span class='no'>ipl</span>, <span class='no'>starname</span>, <span class='no'>ephe_flag</span>, <span class='no'>geopos</span>,
-  <span class='no'>backward</span>)
+<span class='fu'>swe_lun_occult_when_loc</span>(<span class='kw'>jd_start</span>, <span class='kw'>ipl</span>, <span class='kw'>starname</span>, <span class='kw'>ephe_flag</span>, <span class='kw'>geopos</span>,
+  <span class='kw'>backward</span>)
 
-<span class='fu'>swe_lun_occult_when_glob</span>(<span class='no'>jd_start</span>, <span class='no'>ipl</span>, <span class='no'>starname</span>, <span class='no'>ephe_flag</span>, <span class='no'>ifltype</span>,
-  <span class='no'>backward</span>)
+<span class='fu'>swe_lun_occult_when_glob</span>(<span class='kw'>jd_start</span>, <span class='kw'>ipl</span>, <span class='kw'>starname</span>, <span class='kw'>ephe_flag</span>, <span class='kw'>ifltype</span>,
+  <span class='kw'>backward</span>)
 
-<span class='fu'>swe_lun_occult_where</span>(<span class='no'>jd_ut</span>, <span class='no'>ipl</span>, <span class='no'>starname</span>, <span class='no'>ephe_flag</span>)
+<span class='fu'>swe_lun_occult_where</span>(<span class='kw'>jd_ut</span>, <span class='kw'>ipl</span>, <span class='kw'>starname</span>, <span class='kw'>ephe_flag</span>)
 
-<span class='fu'>swe_lun_eclipse_when_loc</span>(<span class='no'>jd_start</span>, <span class='no'>ephe_flag</span>, <span class='no'>geopos</span>, <span class='no'>backward</span>)
+<span class='fu'>swe_lun_eclipse_when_loc</span>(<span class='kw'>jd_start</span>, <span class='kw'>ephe_flag</span>, <span class='kw'>geopos</span>, <span class='kw'>backward</span>)
 
-<span class='fu'>swe_lun_eclipse_how</span>(<span class='no'>jd_ut</span>, <span class='no'>ephe_flag</span>, <span class='no'>geopos</span>)
+<span class='fu'>swe_lun_eclipse_how</span>(<span class='kw'>jd_ut</span>, <span class='kw'>ephe_flag</span>, <span class='kw'>geopos</span>)
 
-<span class='fu'>swe_lun_eclipse_when</span>(<span class='no'>jd_start</span>, <span class='no'>ephe_flag</span>, <span class='no'>ifltype</span>, <span class='no'>backward</span>)
+<span class='fu'>swe_lun_eclipse_when</span>(<span class='kw'>jd_start</span>, <span class='kw'>ephe_flag</span>, <span class='kw'>ifltype</span>, <span class='kw'>backward</span>)
 
-<span class='fu'>swe_rise_trans_true_hor</span>(<span class='no'>jd_ut</span>, <span class='no'>ipl</span>, <span class='no'>starname</span>, <span class='no'>ephe_flag</span>, <span class='no'>rsmi</span>, <span class='no'>geopos</span>,
-  <span class='no'>atpress</span>, <span class='no'>attemp</span>, <span class='no'>horhgt</span>)
+<span class='fu'>swe_rise_trans_true_hor</span>(<span class='kw'>jd_ut</span>, <span class='kw'>ipl</span>, <span class='kw'>starname</span>, <span class='kw'>ephe_flag</span>, <span class='kw'>rsmi</span>, <span class='kw'>geopos</span>,
+  <span class='kw'>atpress</span>, <span class='kw'>attemp</span>, <span class='kw'>horhgt</span>)
 
-<span class='fu'>swe_pheno_ut</span>(<span class='no'>jd_ut</span>, <span class='no'>ipl</span>, <span class='no'>ephe_flag</span>)
+<span class='fu'>swe_pheno_ut</span>(<span class='kw'>jd_ut</span>, <span class='kw'>ipl</span>, <span class='kw'>ephe_flag</span>)
 
-<span class='fu'>swe_pheno</span>(<span class='no'>jd_et</span>, <span class='no'>ipl</span>, <span class='no'>ephe_flag</span>)
+<span class='fu'>swe_pheno</span>(<span class='kw'>jd_et</span>, <span class='kw'>ipl</span>, <span class='kw'>ephe_flag</span>)
 
-<span class='fu'>swe_azalt</span>(<span class='no'>jd_ut</span>, <span class='no'>coord_flag</span>, <span class='no'>geopos</span>, <span class='no'>atpress</span>, <span class='no'>attemp</span>, <span class='no'>xin</span>)
+<span class='fu'>swe_azalt</span>(<span class='kw'>jd_ut</span>, <span class='kw'>coord_flag</span>, <span class='kw'>geopos</span>, <span class='kw'>atpress</span>, <span class='kw'>attemp</span>, <span class='kw'>xin</span>)
 
-<span class='fu'>swe_azalt_rev</span>(<span class='no'>jd_ut</span>, <span class='no'>coord_flag</span>, <span class='no'>geopos</span>, <span class='no'>xin</span>)
+<span class='fu'>swe_azalt_rev</span>(<span class='kw'>jd_ut</span>, <span class='kw'>coord_flag</span>, <span class='kw'>geopos</span>, <span class='kw'>xin</span>)
 
-<span class='fu'>swe_refrac</span>(<span class='no'>InAlt</span>, <span class='no'>atpress</span>, <span class='no'>attemp</span>, <span class='no'>calc_flag</span>)
+<span class='fu'>swe_refrac</span>(<span class='kw'>InAlt</span>, <span class='kw'>atpress</span>, <span class='kw'>attemp</span>, <span class='kw'>calc_flag</span>)
 
-<span class='fu'>swe_refrac_extended</span>(<span class='no'>InAlt</span>, <span class='no'>height</span>, <span class='no'>atpress</span>, <span class='no'>attemp</span>, <span class='no'>lapse_rate</span>, <span class='no'>calc_flag</span>)
+<span class='fu'>swe_refrac_extended</span>(<span class='kw'>InAlt</span>, <span class='kw'>height</span>, <span class='kw'>atpress</span>, <span class='kw'>attemp</span>, <span class='kw'>lapse_rate</span>, <span class='kw'>calc_flag</span>)
 
-<span class='fu'>swe_heliacal_ut</span>(<span class='no'>jd_utstart</span>, <span class='no'>dgeo</span>, <span class='no'>datm</span>, <span class='no'>dobs</span>, <span class='no'>objectname</span>, <span class='no'>event_type</span>,
-  <span class='no'>helflag</span>)
+<span class='fu'>swe_heliacal_ut</span>(<span class='kw'>jd_utstart</span>, <span class='kw'>dgeo</span>, <span class='kw'>datm</span>, <span class='kw'>dobs</span>, <span class='kw'>objectname</span>, <span class='kw'>event_type</span>,
+  <span class='kw'>helflag</span>)
 
-<span class='fu'>swe_vis_limit_mag</span>(<span class='no'>jd_ut</span>, <span class='no'>dgeo</span>, <span class='no'>datm</span>, <span class='no'>dobs</span>, <span class='no'>objectname</span>, <span class='no'>helflag</span>)
+<span class='fu'>swe_vis_limit_mag</span>(<span class='kw'>jd_ut</span>, <span class='kw'>dgeo</span>, <span class='kw'>datm</span>, <span class='kw'>dobs</span>, <span class='kw'>objectname</span>, <span class='kw'>helflag</span>)
 
-<span class='fu'>swe_heliacal_pheno_ut</span>(<span class='no'>jd_ut</span>, <span class='no'>dgeo</span>, <span class='no'>datm</span>, <span class='no'>dobs</span>, <span class='no'>objectname</span>, <span class='no'>event_type</span>,
-  <span class='no'>helflag</span>)
+<span class='fu'>swe_heliacal_pheno_ut</span>(<span class='kw'>jd_ut</span>, <span class='kw'>dgeo</span>, <span class='kw'>datm</span>, <span class='kw'>dobs</span>, <span class='kw'>objectname</span>, <span class='kw'>event_type</span>,
+  <span class='kw'>helflag</span>)
 
-<span class='fu'>swe_topo_arcus_visionis</span>(<span class='no'>jd_ut</span>, <span class='no'>dgeo</span>, <span class='no'>datm</span>, <span class='no'>dobs</span>, <span class='no'>helflag</span>, <span class='no'>mag</span>, <span class='no'>AziO</span>, <span class='no'>AltO</span>,
-  <span class='no'>AziS</span>, <span class='no'>AziM</span>, <span class='no'>AltM</span>)
+<span class='fu'>swe_topo_arcus_visionis</span>(<span class='kw'>jd_ut</span>, <span class='kw'>dgeo</span>, <span class='kw'>datm</span>, <span class='kw'>dobs</span>, <span class='kw'>helflag</span>, <span class='kw'>mag</span>, <span class='kw'>AziO</span>, <span class='kw'>AltO</span>,
+  <span class='kw'>AziS</span>, <span class='kw'>AziM</span>, <span class='kw'>AltM</span>)
 
-<span class='fu'>swe_heliacal_angle</span>(<span class='no'>jd_ut</span>, <span class='no'>dgeo</span>, <span class='no'>datm</span>, <span class='no'>dobs</span>, <span class='no'>helflag</span>, <span class='no'>mag</span>, <span class='no'>AziO</span>, <span class='no'>AziS</span>, <span class='no'>AziM</span>,
-  <span class='no'>AltM</span>)</pre>
+<span class='fu'>swe_heliacal_angle</span>(<span class='kw'>jd_ut</span>, <span class='kw'>dgeo</span>, <span class='kw'>datm</span>, <span class='kw'>dobs</span>, <span class='kw'>helflag</span>, <span class='kw'>mag</span>, <span class='kw'>AziO</span>, <span class='kw'>AziS</span>, <span class='kw'>AziM</span>,
+  <span class='kw'>AltM</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -374,90 +374,90 @@ heliacal phenomenon after a given start date</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     
-<dl'>
+<dl>
   <dt>swe_sol_eclipse_when_loc()</dt><dd><p>Find the next solar eclipse for a given geographic position.</p></dd>
   
 </dl>
 
-<dl'>
+<dl>
 <dt>swe_sol_eclipse_when_glob()</dt><dd><p>Find the next solar eclipse on earth.</p></dd>
 
 </dl>
 
-<dl'>
+<dl>
 <dt>swe_sol_eclipse_how()</dt><dd><p>Compute the attributes of a solar eclipse for a given time.</p></dd>
 
 </dl>
 
-<dl'>
+<dl>
 <dt>swe_sol_eclipse_where()</dt><dd><p>Compute the geographic position of a solar eclipse path.</p></dd>
 
 </dl>
 
-<dl'>
+<dl>
 <dt>swe_lun_occult_when_loc()</dt><dd><p>Find the next lunar occultation with planet or star at a certain position.</p></dd>
 
 </dl>
 
-<dl'>
+<dl>
 <dt>swe_lun_occult_when_glob()</dt><dd><p>Find the next lunar occultation with planet or star somewhere on the earth.</p></dd>
 
 </dl>
 
-<dl'>
+<dl>
 <dt>swe_lun_occult_where()</dt><dd><p>Compute the geographic position of an occultation path.</p></dd>
 
 </dl>
 
-<dl'>
+<dl>
 <dt>swe_lun_eclipse_when_loc()</dt><dd><p>Find the next lunar eclipse for a given geographic position.</p></dd>
 
 </dl>
 
-<dl'>
+<dl>
 <dt>swe_lun_eclipse_how()</dt><dd><p>Compute the attributes of a lunar eclipse for a given time.</p></dd>
 
 </dl>
 
-<dl'>
+<dl>
 <dt>swe_lun_eclipse_when()</dt><dd><p>Find the next lunar eclipse on earth.</p></dd>
 
 </dl>
 
-<dl'>
+<dl>
 <dt>swe_rise_trans_true_hor()</dt><dd><p>Compute the times of rising, setting and meridian transits for planets, asteroids, the moon, and the fixed stars for a local horizon that has an altitude.</p></dd>
 
 </dl>
 
-<dl'>
+<dl>
 <dt>swe_pheno_ut()</dt><dd><p>Compute phase, phase angle, elongation, apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids (UT)</p></dd>
 
 </dl>
 
-<dl'>
+<dl>
 <dt>swe_pheno()</dt><dd><p>Compute phase, phase angle, elongation, apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids (ET).</p></dd>
 
 </dl>
 
-<dl'>
+<dl>
 <dt>swe_azalt()</dt><dd><p>Compute the horizontal coordinates (azimuth and altitude) of a planet or a star from either ecliptical or equatorial coordinates.</p></dd>
 
 </dl>
 
-<dl'>
+<dl>
 <dt>swe_azalt_rev()</dt><dd><p>Compute either ecliptical or equatorial coordinates from azimuth and true altitude.
 If only an apparent altitude is given, the true altitude has to be computed first with
 e.g. the function swe_refrac_extended().</p></dd>
 
 </dl>
 
-<dl'>
+<dl>
 <dt>swe_refrac()</dt><dd><p>Calculate either the topocentric altitude from the apparent altitude
 or the apparent altitude from the topocentric altitude.</p></dd>
 
 </dl>
 
-<dl'>
+<dl>
 <dt>swe_refrac_extended()</dt><dd><p>Calculate either the topocentric altitude from the apparent altitude
 or the apparent altitude from the topocentric altitude.
 It allows correct calculation of refraction for heights above sea &gt; 0,
@@ -465,20 +465,20 @@ where the ideal horizon and planets that are visible may have a negative altitud
 
 </dl>
 
-<dl'>
+<dl>
 <dt>swe_heliacal_ut()</dt><dd><p>Compute the Julian day of the next heliacal phenomenon after a given UT start date.
 It works between geographic latitudes 60 South and 60 North.</p></dd>
 
 </dl>
 
-<dl'>
+<dl>
 <dt>swe_vis_limit_mag()</dt><dd><p>Determine the limiting visual magnitude in dark skies. If the visual magnitude mag of an object is known
 for a given date (e. g. from a call of function swe_pheno_ut(), and if magnitude is smaller than the value returned
 by swe_vis_limit_mag(), then it is visible.</p></dd>
 
 </dl>
 
-<dl'>
+<dl>
 <dt>swe_heliacal_pheno_ut()</dt><dd><p>Provide data that are relevant for the calculation of heliacal risings and settings.
 This function does not provide data of heliacal risings and settings itself, just some
 additional data mostly used for test purposes. To calculate heliacal risings and settings,
@@ -486,12 +486,12 @@ use the function swe_heliacal_ut().</p></dd>
 
 </dl>
 
-<dl'>
+<dl>
 <dt>swe_topo_arcus_visionis()</dt><dd><p>Compute topocentric arcus visionis.</p></dd>
 
 </dl>
 
-<dl'>
+<dl>
 <dt>swe_heliacal_angle()</dt><dd><p>Compute heliacal angle.</p></dd>
 
 </dl>
@@ -501,8 +501,9 @@ use the function swe_heliacal_ut().</p></dd>
     <div class='dont-index'><p>Section 6 in <a href='http://www.astro.com/swisseph/swephprg.htm'>http://www.astro.com/swisseph/swephprg.htm</a>. Remember that array indices start in R at 1, while in C they start at 0!</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>SE</span>)
-<span class='fu'>swe_sol_eclipse_when_loc</span>(<span class='fl'>1234567</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>),<span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; $return
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>SE</span>)
+<span class='fu'>swe_sol_eclipse_when_loc</span>(<span class='fl'>1234567</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>),<span class='fl'>FALSE</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 4242
 #&gt; 
 #&gt; $tret
@@ -517,7 +518,8 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_sol_eclipse_when_glob</span>(<span class='fl'>1234567</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>,<span class='no'>SE</span>$<span class='no'>ECL_TOTAL</span>+<span class='no'>SE</span>$<span class='no'>ECL_CENTRAL</span>+<span class='no'>SE</span>$<span class='no'>ECL_NONCENTRAL</span>,<span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; $return
+#&gt; </div><div class='input'><span class='fu'>swe_sol_eclipse_when_glob</span>(<span class='fl'>1234567</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>ECL_TOTAL</span><span class='op'>+</span><span class='kw'>SE</span><span class='op'>$</span><span class='kw'>ECL_CENTRAL</span><span class='op'>+</span><span class='kw'>SE</span><span class='op'>$</span><span class='kw'>ECL_NONCENTRAL</span>,<span class='fl'>FALSE</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 5
 #&gt; 
 #&gt; $tret
@@ -527,7 +529,8 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_sol_eclipse_how</span>(<span class='fl'>1234580.19960447</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>))</div><div class='output co'>#&gt; $return
+#&gt; </div><div class='input'><span class='fu'>swe_sol_eclipse_how</span>(<span class='fl'>1234580.19960447</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>))
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 0
 #&gt; 
 #&gt; $attr
@@ -538,7 +541,8 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_sol_eclipse_where</span>(<span class='fl'>1234771.68584597</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>)</div><div class='output co'>#&gt; $return
+#&gt; </div><div class='input'><span class='fu'>swe_sol_eclipse_where</span>(<span class='fl'>1234771.68584597</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 18
 #&gt; 
 #&gt; $pathpos
@@ -554,7 +558,8 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_lun_occult_when_loc</span>(<span class='fl'>1234567</span>,<span class='no'>SE</span>$<span class='no'>VENUS</span>,<span class='st'>""</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>+<span class='no'>SE</span>$<span class='no'>ECL_ONE_TRY</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>),<span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; $return
+#&gt; </div><div class='input'><span class='fu'>swe_lun_occult_when_loc</span>(<span class='fl'>1234567</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>VENUS</span>,<span class='st'>""</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span><span class='op'>+</span><span class='kw'>SE</span><span class='op'>$</span><span class='kw'>ECL_ONE_TRY</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>),<span class='fl'>FALSE</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 32644
 #&gt; 
 #&gt; $tret
@@ -569,7 +574,8 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_lun_occult_when_glob</span>(<span class='fl'>1234567</span>,<span class='no'>SE</span>$<span class='no'>VENUS</span>,<span class='st'>""</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>+<span class='no'>SE</span>$<span class='no'>ECL_ONE_TRY</span>,<span class='no'>SE</span>$<span class='no'>ECL_TOTAL</span>,<span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; $return
+#&gt; </div><div class='input'><span class='fu'>swe_lun_occult_when_glob</span>(<span class='fl'>1234567</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>VENUS</span>,<span class='st'>""</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span><span class='op'>+</span><span class='kw'>SE</span><span class='op'>$</span><span class='kw'>ECL_ONE_TRY</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>ECL_TOTAL</span>,<span class='fl'>FALSE</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 5
 #&gt; 
 #&gt; $tret
@@ -578,7 +584,8 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_lun_occult_where</span>(<span class='fl'>1234590.44756319</span>,<span class='no'>SE</span>$<span class='no'>VENUS</span>,<span class='st'>""</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>+<span class='no'>SE</span>$<span class='no'>ECL_ONE_TRY</span>)</div><div class='output co'>#&gt; $return
+#&gt; </div><div class='input'><span class='fu'>swe_lun_occult_where</span>(<span class='fl'>1234590.44756319</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>VENUS</span>,<span class='st'>""</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span><span class='op'>+</span><span class='kw'>SE</span><span class='op'>$</span><span class='kw'>ECL_ONE_TRY</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 5
 #&gt; 
 #&gt; $pathpos
@@ -594,7 +601,8 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_lun_eclipse_when_loc</span>(<span class='fl'>1234567</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>),<span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; $return
+#&gt; </div><div class='input'><span class='fu'>swe_lun_eclipse_when_loc</span>(<span class='fl'>1234567</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>),<span class='fl'>FALSE</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 20624
 #&gt; 
 #&gt; $tret
@@ -609,7 +617,8 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_lun_eclipse_when</span>(<span class='fl'>1234567</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>,<span class='no'>SE</span>$<span class='no'>ECL_CENTRAL</span>,<span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; $return
+#&gt; </div><div class='input'><span class='fu'>swe_lun_eclipse_when</span>(<span class='fl'>1234567</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>ECL_CENTRAL</span>,<span class='fl'>FALSE</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 4
 #&gt; 
 #&gt; $tret
@@ -619,7 +628,8 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_lun_eclipse_how</span>(<span class='fl'>1234580.19960447</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>))</div><div class='output co'>#&gt; $return
+#&gt; </div><div class='input'><span class='fu'>swe_lun_eclipse_how</span>(<span class='fl'>1234580.19960447</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>))
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 16
 #&gt; 
 #&gt; $attr
@@ -630,7 +640,8 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_rise_trans_true_hor</span>(<span class='fl'>1234567.5</span>,<span class='no'>SE</span>$<span class='no'>SUN</span>,<span class='st'>""</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>,<span class='fl'>0</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>),<span class='fl'>1013.25</span>,<span class='fl'>15</span>,<span class='fl'>0</span>)</div><div class='output co'>#&gt; $return
+#&gt; </div><div class='input'><span class='fu'>swe_rise_trans_true_hor</span>(<span class='fl'>1234567.5</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>SUN</span>,<span class='st'>""</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>,<span class='fl'>0</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>),<span class='fl'>1013.25</span>,<span class='fl'>15</span>,<span class='fl'>0</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 0
 #&gt; 
 #&gt; $tret
@@ -638,7 +649,8 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_pheno_ut</span>(<span class='fl'>1234567</span>,<span class='fl'>1</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>)</div><div class='output co'>#&gt; $return
+#&gt; </div><div class='input'><span class='fu'>swe_pheno_ut</span>(<span class='fl'>1234567</span>,<span class='fl'>1</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 4
 #&gt; 
 #&gt; $attr
@@ -649,7 +661,8 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_pheno</span>(<span class='fl'>1234567</span>,<span class='fl'>1</span>,<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>)</div><div class='output co'>#&gt; $return
+#&gt; </div><div class='input'><span class='fu'>swe_pheno</span>(<span class='fl'>1234567</span>,<span class='fl'>1</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 4
 #&gt; 
 #&gt; $attr
@@ -660,11 +673,14 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_azalt</span>(<span class='fl'>1234567</span>,<span class='no'>SE</span>$<span class='no'>EQU2HOR</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>),<span class='fl'>15</span>,<span class='fl'>1013.25</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>186</span>,<span class='fl'>22</span>))</div><div class='output co'>#&gt; $xaz
+#&gt; </div><div class='input'><span class='fu'>swe_azalt</span>(<span class='fl'>1234567</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>EQU2HOR</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>),<span class='fl'>15</span>,<span class='fl'>1013.25</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>186</span>,<span class='fl'>22</span>))
+</div><div class='output co'>#&gt; $xaz
 #&gt; [1] 114.636188   8.210881   8.209274
-#&gt; </div><div class='input'><span class='fu'>swe_azalt_rev</span>(<span class='fl'>1234567</span>,<span class='no'>SE</span>$<span class='no'>ECL2HOR</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>50</span>,<span class='fl'>10</span>),<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>123</span>,<span class='fl'>2</span>))</div><div class='output co'>#&gt; $xout
+#&gt; </div><div class='input'><span class='fu'>swe_azalt_rev</span>(<span class='fl'>1234567</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>ECL2HOR</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>50</span>,<span class='fl'>10</span>),<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>123</span>,<span class='fl'>2</span>))
+</div><div class='output co'>#&gt; $xout
 #&gt; [1] 166.0465  18.0853   0.0000
-#&gt; </div><div class='input'><span class='fu'>swe_refrac_extended</span>(<span class='fl'>2</span>,<span class='fl'>0</span>,<span class='fl'>1013.25</span>,<span class='fl'>15</span>,-<span class='fl'>0.065</span>,<span class='no'>SE</span>$<span class='no'>TRUE_TO_APP</span>)</div><div class='output co'>#&gt; $return
+#&gt; </div><div class='input'><span class='fu'>swe_refrac_extended</span>(<span class='fl'>2</span>,<span class='fl'>0</span>,<span class='fl'>1013.25</span>,<span class='fl'>15</span>,<span class='op'>-</span><span class='fl'>0.065</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>TRUE_TO_APP</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 2.278709
 #&gt; 
 #&gt; $dret
@@ -672,7 +688,8 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt;  [8] 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000
 #&gt; [15] 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000
 #&gt; </div><div class='input'><span class='fu'>swe_heliacal_ut</span>(<span class='fl'>1234567</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>),<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1013.25</span>,<span class='fl'>15</span>,<span class='fl'>50</span>,<span class='fl'>0.25</span>),<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>25</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>5</span>,<span class='fl'>0.8</span>),<span class='st'>"sirius"</span>,
-  <span class='no'>SE</span>$<span class='no'>HELIACAL_RISING</span>,<span class='no'>SE</span>$<span class='no'>HELFLAG_HIGH_PRECISION</span>+<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>)</div><div class='output co'>#&gt; $return
+  <span class='kw'>SE</span><span class='op'>$</span><span class='kw'>HELIACAL_RISING</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>HELFLAG_HIGH_PRECISION</span><span class='op'>+</span><span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 0
 #&gt; 
 #&gt; $dret
@@ -686,7 +703,8 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt; $serr
 #&gt; [1] ""
 #&gt; </div><div class='input'><span class='fu'>swe_vis_limit_mag</span>(<span class='fl'>1234567.5</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>),<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1013.25</span>,<span class='fl'>15</span>,<span class='fl'>20</span>,<span class='fl'>0.25</span>),<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>25</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>5</span>,<span class='fl'>0.8</span>),<span class='st'>'sirius'</span>,
-  <span class='no'>SE</span>$<span class='no'>HELFLAG_HIGH_PRECISION</span>+<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>)</div><div class='output co'>#&gt; $return
+  <span class='kw'>SE</span><span class='op'>$</span><span class='kw'>HELFLAG_HIGH_PRECISION</span><span class='op'>+</span><span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 1
 #&gt; 
 #&gt; $dret
@@ -703,7 +721,8 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt; $serr
 #&gt; [1] ""
 #&gt; </div><div class='input'><span class='fu'>swe_heliacal_pheno_ut</span>(<span class='fl'>1234567.5</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>),<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1013.25</span>,<span class='fl'>15</span>,<span class='fl'>20</span>,<span class='fl'>0.25</span>),<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>25</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>5</span>,<span class='fl'>0.8</span>),<span class='st'>'sirius'</span>,
-  <span class='no'>SE</span>$<span class='no'>HELIACAL_RISING</span>,<span class='no'>SE</span>$<span class='no'>HELFLAG_HIGH_PRECISION</span>+<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>)</div><div class='output co'>#&gt; $return
+  <span class='kw'>SE</span><span class='op'>$</span><span class='kw'>HELIACAL_RISING</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>HELFLAG_HIGH_PRECISION</span><span class='op'>+</span><span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 0
 #&gt; 
 #&gt; $darr
@@ -721,7 +740,8 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt; $serr
 #&gt; [1] ""
 #&gt; </div><div class='input'><span class='fu'>swe_topo_arcus_visionis</span>(<span class='fl'>1234567.5</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>),<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1013.25</span>,<span class='fl'>15</span>,<span class='fl'>20</span>,<span class='fl'>0.25</span>),<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>25</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>5</span>,<span class='fl'>0.8</span>),
-  <span class='no'>SE</span>$<span class='no'>HELFLAG_HIGH_PRECISION</span>+<span class='no'>SE</span>$<span class='no'>HELFLAG_OPTICAL_PARAMS</span>,-<span class='fl'>1</span>,<span class='fl'>124</span>,<span class='fl'>2</span>,<span class='fl'>120</span>,<span class='fl'>0</span>,-<span class='fl'>45</span>)</div><div class='output co'>#&gt; $return
+  <span class='kw'>SE</span><span class='op'>$</span><span class='kw'>HELFLAG_HIGH_PRECISION</span><span class='op'>+</span><span class='kw'>SE</span><span class='op'>$</span><span class='kw'>HELFLAG_OPTICAL_PARAMS</span>,<span class='op'>-</span><span class='fl'>1</span>,<span class='fl'>124</span>,<span class='fl'>2</span>,<span class='fl'>120</span>,<span class='fl'>0</span>,<span class='op'>-</span><span class='fl'>45</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 0
 #&gt; 
 #&gt; $tav
@@ -730,7 +750,8 @@ use the function swe_heliacal_ut().</p></dd>
 #&gt; $serr
 #&gt; [1] ""
 #&gt; </div><div class='input'><span class='fu'>swe_heliacal_angle</span>(<span class='fl'>1234567.5</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>),<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1013.25</span>,<span class='fl'>15</span>,<span class='fl'>20</span>,<span class='fl'>0.25</span>),<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>25</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>5</span>,<span class='fl'>0.8</span>),
-  <span class='no'>SE</span>$<span class='no'>HELFLAG_HIGH_PRECISION</span>+<span class='no'>SE</span>$<span class='no'>HELFLAG_OPTICAL_PARAMS</span>,-<span class='fl'>1</span>,<span class='fl'>124</span>,<span class='fl'>120</span>,<span class='fl'>0</span>,-<span class='fl'>45</span>)</div><div class='output co'>#&gt; $return
+  <span class='kw'>SE</span><span class='op'>$</span><span class='kw'>HELFLAG_HIGH_PRECISION</span><span class='op'>+</span><span class='kw'>SE</span><span class='op'>$</span><span class='kw'>HELFLAG_OPTICAL_PARAMS</span>,<span class='op'>-</span><span class='fl'>1</span>,<span class='fl'>124</span>,<span class='fl'>120</span>,<span class='fl'>0</span>,<span class='op'>-</span><span class='fl'>45</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 0
 #&gt; 
 #&gt; $dret
@@ -761,7 +782,7 @@ use the function swe_heliacal_ut().</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

@@ -123,11 +123,11 @@
     <p>The following functions are used to calculate positions of fixed stars.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>swe_fixstar2_mag</span>(<span class='no'>starname</span>)
+    <pre class="usage"><span class='fu'>swe_fixstar2_mag</span>(<span class='kw'>starname</span>)
 
-<span class='fu'>swe_fixstar2</span>(<span class='no'>starname</span>, <span class='no'>jd_et</span>, <span class='no'>iflag</span>)
+<span class='fu'>swe_fixstar2</span>(<span class='kw'>starname</span>, <span class='kw'>jd_et</span>, <span class='kw'>iflag</span>)
 
-<span class='fu'>swe_fixstar2_ut</span>(<span class='no'>starname</span>, <span class='no'>jd_ut</span>, <span class='no'>iflag</span>)</pre>
+<span class='fu'>swe_fixstar2_ut</span>(<span class='kw'>starname</span>, <span class='kw'>jd_ut</span>, <span class='kw'>iflag</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,7 +161,7 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     
-<dl'>
+<dl>
   <dt>swe_fixstar2_mag()</dt><dd><p>Calculate visible magnitude (Vmag) of star.</p></dd>
   <dt>swe_fixstar2()</dt><dd><p>Compute information of star using ET.</p></dd>
   <dt>swe_fixstar2_ut()</dt><dd><p>Compute information of star using UT</p></dd>
@@ -173,8 +173,9 @@
     <div class='dont-index'><p>Section 4 in <a href='http://www.astro.com/swisseph/swephprg.htm'>http://www.astro.com/swisseph/swephprg.htm</a>. Remember that array indices start in R at 1, while in C they start at 0!</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>SE</span>)
-<span class='fu'>swe_fixstar2_mag</span>(<span class='st'>"sirius"</span>)</div><div class='output co'>#&gt; $return
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>SE</span>)
+<span class='fu'>swe_fixstar2_mag</span>(<span class='st'>"sirius"</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 0
 #&gt; 
 #&gt; $starname
@@ -186,7 +187,8 @@
 #&gt; $serr
 #&gt; [1] ""
 #&gt; </div><div class='input'><span class='fu'><a href='Section9.html'>swe_set_topo</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>10</span>)
-<span class='fu'>swe_fixstar2</span>(<span class='st'>"sirius"</span>,<span class='fl'>1234567</span>,<span class='no'>SE</span>$<span class='no'>FLG_TOPOCTR</span>+<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>+<span class='no'>SE</span>$<span class='no'>FLG_EQUATORIAL</span>)</div><div class='output co'>#&gt; $return
+<span class='fu'>swe_fixstar2</span>(<span class='st'>"sirius"</span>,<span class='fl'>1234567</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_TOPOCTR</span><span class='op'>+</span><span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span><span class='op'>+</span><span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_EQUATORIAL</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 34820
 #&gt; 
 #&gt; $starname
@@ -198,7 +200,8 @@
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_fixstar2_ut</span>(<span class='st'>"sirius"</span>,<span class='fl'>1234567</span>,<span class='no'>SE</span>$<span class='no'>FLG_TOPOCTR</span>+<span class='no'>SE</span>$<span class='no'>FLG_MOSEPH</span>+<span class='no'>SE</span>$<span class='no'>FLG_EQUATORIAL</span>)</div><div class='output co'>#&gt; $return
+#&gt; </div><div class='input'><span class='fu'>swe_fixstar2_ut</span>(<span class='st'>"sirius"</span>,<span class='fl'>1234567</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_TOPOCTR</span><span class='op'>+</span><span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span><span class='op'>+</span><span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_EQUATORIAL</span>)
+</div><div class='output co'>#&gt; $return
 #&gt; [1] 34820
 #&gt; 
 #&gt; $starname
@@ -226,7 +229,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>
