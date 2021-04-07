@@ -5,9 +5,8 @@
 ^doc$
 external
 
-^\.travis\.yml$
-^appveyor\.yml$
 ^codecov\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 docker
+^\.github$
