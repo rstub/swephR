@@ -1,0 +1,1 @@
+rm -f src/*.o src/*.a src/*/*.o src/*/*.a src/*.dll
