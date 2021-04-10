@@ -123,13 +123,13 @@
     <p>Functions for: determining Kepler elements, nodes, apsides and orbital periods</p>
     </div>
 
-    <pre class="usage"><span class='fu'>swe_nod_aps_ut</span>(<span class='kw'>jd_ut</span>, <span class='kw'>ipl</span>, <span class='kw'>iflag</span>, <span class='kw'>method</span>)
+    <pre class="usage"><span class='fu'>swe_nod_aps_ut</span><span class='op'>(</span><span class='va'>jd_ut</span>, <span class='va'>ipl</span>, <span class='va'>iflag</span>, <span class='va'>method</span><span class='op'>)</span>
 
-<span class='fu'>swe_nod_aps</span>(<span class='kw'>jd_et</span>, <span class='kw'>ipl</span>, <span class='kw'>iflag</span>, <span class='kw'>method</span>)
+<span class='fu'>swe_nod_aps</span><span class='op'>(</span><span class='va'>jd_et</span>, <span class='va'>ipl</span>, <span class='va'>iflag</span>, <span class='va'>method</span><span class='op'>)</span>
 
-<span class='fu'>swe_get_orbital_elements</span>(<span class='kw'>jd_et</span>, <span class='kw'>ipl</span>, <span class='kw'>iflag</span>)
+<span class='fu'>swe_get_orbital_elements</span><span class='op'>(</span><span class='va'>jd_et</span>, <span class='va'>ipl</span>, <span class='va'>iflag</span><span class='op'>)</span>
 
-<span class='fu'>swe_orbit_max_min_true_distance</span>(<span class='kw'>jd_et</span>, <span class='kw'>ipl</span>, <span class='kw'>iflag</span>)</pre>
+<span class='fu'>swe_orbit_max_min_true_distance</span><span class='op'>(</span><span class='va'>jd_et</span>, <span class='va'>ipl</span>, <span class='va'>iflag</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -197,8 +197,8 @@
     <div class='dont-index'><p>Section 5 in <a href='http://www.astro.com/swisseph/swephprg.htm'>http://www.astro.com/swisseph/swephprg.htm</a>. Remember that array indices start in R at 1, while in C they start at 0!</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>SE</span>)
-<span class='fu'>swe_nod_aps_ut</span>(<span class='fl'>2451545</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>MOON</span>, <span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>NODBIT_MEAN</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>SE</span><span class='op'>)</span>
+<span class='fu'>swe_nod_aps_ut</span><span class='op'>(</span><span class='fl'>2451545</span>,<span class='va'>SE</span><span class='op'>$</span><span class='va'>MOON</span>, <span class='va'>SE</span><span class='op'>$</span><span class='va'>FLG_MOSEPH</span>,<span class='va'>SE</span><span class='op'>$</span><span class='va'>NODBIT_MEAN</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $return
 #&gt; [1] 0
 #&gt; 
@@ -220,12 +220,12 @@
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_nod_aps</span>(<span class='fl'>2451545</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>MOON</span>, <span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>NODBIT_MEAN</span>)
+#&gt; </div><div class='input'><span class='fu'>swe_nod_aps</span><span class='op'>(</span><span class='fl'>2451545</span>,<span class='va'>SE</span><span class='op'>$</span><span class='va'>MOON</span>, <span class='va'>SE</span><span class='op'>$</span><span class='va'>FLG_MOSEPH</span>,<span class='va'>SE</span><span class='op'>$</span><span class='va'>NODBIT_MEAN</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $return
 #&gt; [1] 0
 #&gt; 
 #&gt; $xnasc
-#&gt; [1] 1.250407e+02 1.105681e-13 2.460922e-03 0.000000e+00 0.000000e+00
+#&gt; [1] 1.250407e+02 1.105679e-13 2.460922e-03 0.000000e+00 0.000000e+00
 #&gt; [6] 0.000000e+00
 #&gt; 
 #&gt; $xndsc
@@ -242,7 +242,7 @@
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_get_orbital_elements</span>(<span class='fl'>2451545</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>MOON</span>, <span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>)
+#&gt; </div><div class='input'><span class='fu'>swe_get_orbital_elements</span><span class='op'>(</span><span class='fl'>2451545</span>,<span class='va'>SE</span><span class='op'>$</span><span class='va'>MOON</span>, <span class='va'>SE</span><span class='op'>$</span><span class='va'>FLG_MOSEPH</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $return
 #&gt; [1] 0
 #&gt; 
@@ -260,7 +260,7 @@
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_orbit_max_min_true_distance</span>(<span class='fl'>2451545</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>MOON</span>, <span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>)
+#&gt; </div><div class='input'><span class='fu'>swe_orbit_max_min_true_distance</span><span class='op'>(</span><span class='fl'>2451545</span>,<span class='va'>SE</span><span class='op'>$</span><span class='va'>MOON</span>, <span class='va'>SE</span><span class='op'>$</span><span class='va'>FLG_MOSEPH</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $return
 #&gt; [1] 0
 #&gt; 

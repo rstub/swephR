@@ -123,13 +123,13 @@
     <p>Functions to support the determination of sidereal information</p>
     </div>
 
-    <pre class="usage"><span class='fu'>swe_set_sid_mode</span>(<span class='kw'>sid_mode</span>, <span class='kw'>t0</span>, <span class='kw'>ayan_t0</span>)
+    <pre class="usage"><span class='fu'>swe_set_sid_mode</span><span class='op'>(</span><span class='va'>sid_mode</span>, <span class='va'>t0</span>, <span class='va'>ayan_t0</span><span class='op'>)</span>
 
-<span class='fu'>swe_get_ayanamsa_name</span>(<span class='kw'>sid_mode</span>)
+<span class='fu'>swe_get_ayanamsa_name</span><span class='op'>(</span><span class='va'>sid_mode</span><span class='op'>)</span>
 
-<span class='fu'>swe_get_ayanamsa_ex_ut</span>(<span class='kw'>jd_ut</span>, <span class='kw'>iflag</span>)
+<span class='fu'>swe_get_ayanamsa_ex_ut</span><span class='op'>(</span><span class='va'>jd_ut</span>, <span class='va'>iflag</span><span class='op'>)</span>
 
-<span class='fu'>swe_get_ayanamsa_ex</span>(<span class='kw'>jd_et</span>, <span class='kw'>iflag</span>)</pre>
+<span class='fu'>swe_get_ayanamsa_ex</span><span class='op'>(</span><span class='va'>jd_et</span>, <span class='va'>iflag</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -195,10 +195,10 @@
     <div class='dont-index'><p>Section 10 in <a href='http://www.astro.com/swisseph/swephprg.htm'>http://www.astro.com/swisseph/swephprg.htm</a>. Remember that array indices start in R at 1, while in C they start at 0!</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>SE</span>)
-<span class='fu'>swe_set_sid_mode</span>(<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>SIDM_FAGAN_BRADLEY</span>,<span class='fl'>0</span>,<span class='fl'>0</span>)
-<span class='fu'>swe_get_ayanamsa_name</span>(<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>SIDM_FAGAN_BRADLEY</span>)
-</div><div class='output co'>#&gt; [1] "Fagan/Bradley"</div><div class='input'><span class='fu'>swe_get_ayanamsa_ex_ut</span>(<span class='fl'>2458346.82639</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>SE</span><span class='op'>)</span>
+<span class='fu'>swe_set_sid_mode</span><span class='op'>(</span><span class='va'>SE</span><span class='op'>$</span><span class='va'>SIDM_FAGAN_BRADLEY</span>,<span class='fl'>0</span>,<span class='fl'>0</span><span class='op'>)</span>
+<span class='fu'>swe_get_ayanamsa_name</span><span class='op'>(</span><span class='va'>SE</span><span class='op'>$</span><span class='va'>SIDM_FAGAN_BRADLEY</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "Fagan/Bradley"</div><div class='input'><span class='fu'>swe_get_ayanamsa_ex_ut</span><span class='op'>(</span><span class='fl'>2458346.82639</span>,<span class='va'>SE</span><span class='op'>$</span><span class='va'>FLG_MOSEPH</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $return
 #&gt; [1] 68
 #&gt; 
@@ -207,7 +207,7 @@
 #&gt; 
 #&gt; $serr
 #&gt; [1] ""
-#&gt; </div><div class='input'><span class='fu'>swe_get_ayanamsa_ex</span>(<span class='fl'>2458346.82639</span>,<span class='kw'>SE</span><span class='op'>$</span><span class='kw'>FLG_MOSEPH</span>)
+#&gt; </div><div class='input'><span class='fu'>swe_get_ayanamsa_ex</span><span class='op'>(</span><span class='fl'>2458346.82639</span>,<span class='va'>SE</span><span class='op'>$</span><span class='va'>FLG_MOSEPH</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $return
 #&gt; [1] 68
 #&gt; 

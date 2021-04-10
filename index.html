@@ -89,46 +89,41 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the released version of swephR from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"swephR"</span>)
-</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"swephR"</span><span class="op">)</span></code></pre></div>
 <p>Intermediate releases can also be obtained via <a href="https://cran.r-project.org/package=drat">drat</a>:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co">if</span> (<span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"drat"</span>, quietly = <span class="fl">TRUE</span>)) <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"drat"</span>)
-<span class="kw">drat</span>::<span class="fu">addRepo</span>(<span class="st">"rstub"</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"swephR"</span>)
-</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"drat"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"drat"</span><span class="op">)</span>
+<span class="fu">drat</span><span class="fu">::</span><span class="fu">addRepo</span><span class="op">(</span><span class="st">"rstub"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"swephR"</span><span class="op">)</span></code></pre></div>
 <p>This package uses the semi-analytic theory by Steve Moshier. For faster and more accurate calculations, the compressed Swiss Ephemeris data is available in the <code>swephRdata</code> package. To access this data package, run</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"swephRdata"</span>, repos = <span class="st">"https://rstub.github.io/drat/"</span>, type = <span class="st">"source"</span>)
-</pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"swephRdata"</span>, repos <span class="op">=</span> <span class="st">"https://rstub.github.io/drat/"</span>, type <span class="op">=</span> <span class="st">"source"</span><span class="op">)</span></code></pre></div>
 <p>The size of the <code>swephRdata</code> package is approximately 115 MB. The user can also use the original JPL DE431 data.</p>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>To compute the position of celestial body or star with SE (Swiss Ephemeris), you do the following steps:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/rstub/swephR">swephR</a></span>)
-<span class="fu"><a href="reference/Section1.html">swe_version</a></span>()
-<span class="co">#&gt; [1] "2.08"</span>
-</pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstub/swephR/">swephR</a></span><span class="op">)</span>
+<span class="fu"><a href="reference/Section1.html">swe_version</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; [1] "2.08"</span></code></pre></div>
 <p>For a specific date, compute the Julian day number (in below example: J2000.0, 1 January 2000 at 12:00 UT):</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="kw">year</span> <span class="op">&lt;-</span> <span class="fl">2000</span>
-<span class="kw">month</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-<span class="kw">day</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-<span class="kw">hour</span> <span class="op">&lt;-</span> <span class="fl">12</span>
-<span class="kw">jdut</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/Section7.html">swe_julday</a></span>(<span class="kw">year</span>, <span class="kw">month</span>, <span class="kw">day</span>, <span class="kw">hour</span>, <span class="kw">SE</span><span class="op">$</span><span class="kw">GREG_CAL</span>)
-<span class="kw">jdut</span>
-<span class="co">#&gt; [1] 2451545</span>
-</pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">year</span> <span class="op">&lt;-</span> <span class="fl">2000</span>
+<span class="va">month</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+<span class="va">day</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+<span class="va">hour</span> <span class="op">&lt;-</span> <span class="fl">12</span>
+<span class="va">jdut</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/Section7.html">swe_julday</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">month</span>, <span class="va">day</span>, <span class="va">hour</span>, <span class="va">SE</span><span class="op">$</span><span class="va">GREG_CAL</span><span class="op">)</span>
+<span class="va">jdut</span>
+<span class="co">#&gt; [1] 2451545</span></code></pre></div>
 <p>Compute (using Moshier ephemeris) the positions (longitude, latitude, distance, longitude speed and latitude speed) of a planet or other celestial bodies (in below example: the Sun):</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="kw">ipl</span> <span class="op">&lt;-</span> <span class="kw">SE</span><span class="op">$</span><span class="kw">SUN</span>
-<span class="kw">iflag</span> <span class="op">&lt;-</span> <span class="kw">SE</span><span class="op">$</span><span class="kw">FLG_MOSEPH</span> <span class="op">+</span> <span class="kw">SE</span><span class="op">$</span><span class="kw">FLG_SPEED</span>
-<span class="kw">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/Section2.html">swe_calc_ut</a></span>(<span class="kw">jdut</span>, <span class="kw">ipl</span>, <span class="kw">iflag</span>)
-<span class="kw">result</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ipl</span> <span class="op">&lt;-</span> <span class="va">SE</span><span class="op">$</span><span class="va">SUN</span>
+<span class="va">iflag</span> <span class="op">&lt;-</span> <span class="va">SE</span><span class="op">$</span><span class="va">FLG_MOSEPH</span> <span class="op">+</span> <span class="va">SE</span><span class="op">$</span><span class="va">FLG_SPEED</span>
+<span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/Section2.html">swe_calc_ut</a></span><span class="op">(</span><span class="va">jdut</span>, <span class="va">ipl</span>, <span class="va">iflag</span><span class="op">)</span>
+<span class="va">result</span>
 <span class="co">#&gt; $return</span>
 <span class="co">#&gt; [1] 260</span>
 <span class="co">#&gt; </span>
@@ -137,13 +132,12 @@
 <span class="co">#&gt; [6] -7.339410e-06</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $serr</span>
-<span class="co">#&gt; [1] ""</span>
-</pre></div>
+<span class="co">#&gt; [1] ""</span></code></pre></div>
 <p>or a fixed star (in below example: Sirius):</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="kw">starname</span> <span class="op">=</span> <span class="st">"sirius"</span>
-<span class="kw">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/Section4.html">swe_fixstar2_ut</a></span>(<span class="kw">starname</span>, <span class="kw">jdut</span>, <span class="kw">iflag</span>)
-<span class="kw">result</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starname</span> <span class="op">=</span> <span class="st">"sirius"</span>
+<span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/Section4.html">swe_fixstar2_ut</a></span><span class="op">(</span><span class="va">starname</span>, <span class="va">jdut</span>, <span class="va">iflag</span><span class="op">)</span>
+<span class="va">result</span>
 <span class="co">#&gt; $return</span>
 <span class="co">#&gt; [1] 260</span>
 <span class="co">#&gt; </span>
@@ -155,8 +149,7 @@
 <span class="co">#&gt; [6] -4.130539e-03</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $serr</span>
-<span class="co">#&gt; [1] ""</span>
-</pre></div>
+<span class="co">#&gt; [1] ""</span></code></pre></div>
 <p>The current R interface is modeled after the C interface. It is therefore often helpful to consult the <a href="https://www.astro.com/swisseph/swisseph.htm">general documentation</a> and <a href="https://www.astro.com/swisseph/swephprg.htm">programmer’s documentation</a> for the Swiss Ephemeris.</p>
 </div>
 <div id="feedback" class="section level2">
@@ -200,8 +193,7 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://travis-ci.org/rstub/swephR"><img src="https://travis-ci.org/rstub/swephR.svg?branch=master" alt="Travis build status"></a></li>
-<li><a href="https://ci.appveyor.com/project/rstub/swephR"><img src="https://ci.appveyor.com/api/projects/status/github/rstub/swephR?branch=master&amp;svg=true" alt="AppVeyor build status"></a></li>
+<li><a href="https://github.com/rstub/swephR/actions"><img src="https://github.com/rstub/swephR/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
 <li><a href="https://codecov.io/github/rstub/swephR?branch=master"><img src="https://codecov.io/gh/rstub/swephR/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
 <li><a href="https://cran.r-project.org/package=swephR"><img src="https://www.r-pkg.org/badges/version/swephR" alt="CRAN status"></a></li>
 <li><a href="https://www.r-pkg.org/pkg/swephR"><img src="https://cranlogs.r-pkg.org/badges/swephR?color=brightgreen" alt="Downloads"></a></li>

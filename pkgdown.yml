@@ -1,7 +1,7 @@
-pandoc: '2.2'
+pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   swephR: swephR.html
-last_built: 2021-04-02T13:38Z
+last_built: 2021-04-10T09:12Z
 
