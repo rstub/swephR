@@ -310,7 +310,7 @@ static int32 fsizer(char *serr)
     default:
       if (serr != NULL)
 	sprintf(serr,"unknown numde value %d;", numde);
-      return ERR;
+      return SE_ERR;
   }
 #endif
   if (ksize < 1000 || ksize > 5000) {
@@ -927,7 +927,7 @@ int swi_open_jpl_file(double *ss, char *fname, char *fpath, char *serr)
     ) {
     if (serr != NULL)
       strcpy(serr, "error in malloc() with JPL ephemeris.");
-    return ERR;
+    return SE_ERR;
   }
   strcpy(js->jplfname, fname);
   strcpy(js->jplfpath, fpath);

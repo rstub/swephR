@@ -2141,15 +2141,15 @@ int swi_nutation(double tjd, int32 iflag, double *nutlo)
       swed.interpol.tjd_nut0 = tjd - 1.0; // one day earlier
       swed.interpol.tjd_nut2 = tjd + 1.0; // one day later
       retc = calc_nutation(swed.interpol.tjd_nut0, iflag, dnut);
-      if (retc == ERR) return ERR;
+      if (retc == SE_ERR) return SE_ERR;
       swed.interpol.nut_dpsi0 = dnut[0];
       swed.interpol.nut_deps0 = dnut[1];
       retc = calc_nutation(swed.interpol.tjd_nut2, iflag, dnut);
-      if (retc == ERR) return ERR;
+      if (retc == SE_ERR) return SE_ERR;
       swed.interpol.nut_dpsi2 = dnut[0];
       swed.interpol.nut_deps2 = dnut[1];
       retc = calc_nutation(tjd, iflag, nutlo);
-      if (retc == ERR) return ERR;
+      if (retc == SE_ERR) return SE_ERR;
       swed.interpol.nut_dpsi1 = nutlo[0];
       swed.interpol.nut_deps1 = nutlo[1];
     }
@@ -3767,7 +3767,7 @@ uint32 swi_crc32(unsigned char *buf, int len)
 
 static void init_crc32(void)
 {
-  int32 i, j;
+  uint32 i, j;
   uint32 c;
   for (i = 0; i < 256; ++i) {
     for (c = i << 24, j = 8; j > 0; --j)

@@ -1,8 +1,8 @@
 diff --git a/src/libswe/swecl.c b/src/libswe/swecl.c
-index 3b76773..e9b2474 100644
+index 3a4434f..10e5ddf 100644
 --- a/src/libswe/swecl.c
 +++ b/src/libswe/swecl.c
-@@ -3002,8 +3002,8 @@ void CALL_CONV swe_set_lapse_rate(double lapse_rate)
+@@ -3007,8 +3007,8 @@ void CALL_CONV swe_set_lapse_rate(double lapse_rate)
   *                      * geometric horizon = plane perpendicular to gravity *
   * double geoalt;       * altitude of observer above sea level in meters *
   * double atpress;      * millibars (hectopascal) *
@@ -12,7 +12,7 @@ index 3b76773..e9b2474 100644
   * int32  calc_flag;    * either SE_APP_TO_TRUE or
   *                      *        SE_TRUE_TO_APP
   *
-@@ -3152,7 +3152,7 @@ static double calc_dip(double geoalt, double atpress, double attemp, double laps
+@@ -3161,7 +3161,7 @@ static double calc_dip(double geoalt, double atpress, double attemp, double laps
  {
    /* below formula is based on A. Thom, Megalithic lunar observations, 1973 (page 32).
    * conversion to metric has been done by
