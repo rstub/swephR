@@ -96,7 +96,7 @@ as needed for complete nathan data records.
 The function knows itself how many planets and in which mode
 they have to be calculated for Nathan. 
 
-return OK or SE_ERR
+return OK or ERR
 
 The returned positions are in centiseconds, our standard
 coordinate format for fast mathematics with planetary positions.
@@ -122,13 +122,13 @@ int nacalc (double	jd_ad,	/* universal time relative  julian date */
     } else {
       plon [planet] = -1;
       if (pspe != NULL) pspe [planet] = 0;
-      if (result != SE_ERR) {	/* save first error message */
+      if (result != ERR) {	/* save first error message */
 	strcpy(err, placalc_get_errtext());
       }
-      result = SE_ERR;
+      result = ERR;
     }
   }
-  if (result == SE_ERR)
+  if (result == ERR)
     strcpy(perrtx, err);
   return result;
 }	/* end nacalc */
@@ -143,9 +143,9 @@ int nacalc (double	jd_ad,	/* universal time relative  julian date */
 
    Explanation of the arguments: see the functions header.
 
-   Returns OK or SE_ERR (if some planet out of time range). OK and SE_ERR are
+   Returns OK or ERR (if some planet out of time range). OK and ERR are
    defined in ourdef.h and must not be confused with TRUE and FALSE.
-   OK and SE_ERR are of type int, not of type AS_BOOL.
+   OK and ERR are of type int, not of type AS_BOOL.
 
    Bits used in flag:
    CALC_BIT_HELIO  		0 = geocentric, 1 = heliocentric
@@ -199,7 +199,7 @@ int calc(int  planet,  	/* planet index as defined in placalc.h,
     ipl = plac2swe[planet];
   else {
     sprintf(perrtx, "invalid planet number %d. ", planet);
-    return SE_ERR;
+    return ERR;
   }
   /* flag */
   if (flag & CALC_BIT_HELIO)
@@ -212,7 +212,7 @@ int calc(int  planet,  	/* planet index as defined in placalc.h,
   if (flag & CALC_BIT_SPEED)
     iflag |= SEFLG_SPEED;
   /* ecliptic and nutation */
-  if ((iflagret = swe_calc(tjd, ipl, iflag, x, perrtx)) == SE_ERR)
+  if ((iflagret = swe_calc(tjd, ipl, iflag, x, perrtx)) == ERR)
     return iflagret;
   if (ipl == SE_ECL_NUT) {
     *alng = nut = x[2];

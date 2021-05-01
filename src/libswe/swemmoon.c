@@ -1,5 +1,4 @@
 /* SWISSEPH
-   $Header: /home/dieter/sweph/RCS/swemmoon.c,v 1.74 2008/06/16 10:07:20 dieter Exp $
  *
  * Steve Moshier's analytical lunar ephemeris
 
@@ -886,7 +885,7 @@ int swi_moshmoon(double tjd, AS_BOOL do_save, double *xpmret, char *serr)
       if (strlen(serr) + strlen(s) < AS_MAXCH)
 	strcat(serr, s);
     }
-    return(SE_ERR);
+    return(ERR);
   }  
   /* if moon has already been computed */
   if (tjd == pdp->teval && pdp->iephe == SEFLG_MOSEPH) {
@@ -1510,7 +1509,7 @@ int swi_mean_node(double J, double *pol, char *serr)
       if (strlen(serr) + strlen(s) < AS_MAXCH)
 	strcat(serr, s);
     }
-    return SE_ERR;
+    return ERR;
   }
   mean_elements();
   dcor = corr_mean_node(J) * 3600;
@@ -1583,7 +1582,7 @@ int swi_mean_apog(double J, double *pol, char *serr)
       if (strlen(serr) + strlen(s) < AS_MAXCH)
 	strcat(serr, s);
     }
-    return(SE_ERR);
+    return(ERR);
   }
   mean_elements();
   pol[0] = swi_mod2PI((SWELP - MP) * STR + PI);

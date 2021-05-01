@@ -1,6 +1,5 @@
 
 /* 
- | $Header: /home/dieter/sweph/RCS/swejpl.c,v 1.76 2008/08/26 13:55:36 dieter Exp $
  |
  | Subroutines for reading JPL ephemerides.
  | derived from testeph.f as contained in DE403 distribution July 1995.
@@ -311,7 +310,7 @@ static int32 fsizer(char *serr)
     default:
       if (serr != NULL)
 	sprintf(serr,"unknown numde value %d;", numde);
-      return SE_ERR;
+      return ERR;
   }
 #endif
   if (ksize < 1000 || ksize > 5000) {
@@ -928,7 +927,7 @@ int swi_open_jpl_file(double *ss, char *fname, char *fpath, char *serr)
     ) {
     if (serr != NULL)
       strcpy(serr, "error in malloc() with JPL ephemeris.");
-    return SE_ERR;
+    return ERR;
   }
   strcpy(js->jplfname, fname);
   strcpy(js->jplfpath, fpath);

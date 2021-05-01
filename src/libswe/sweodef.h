@@ -1,5 +1,4 @@
 /************************************************************
-   $Header: /home/dieter/sweph/RCS/sweodef.h,v 1.74 2008/06/16 10:07:20 dieter Exp $
    definitions and constants for all Swiss Ephemeris source files,
    only required for compiling the libraries, not for the external
    interface of the libraries.
@@ -237,7 +236,7 @@
 
 #ifndef OK 
 #  define OK (0)
-#  define SE_ERR (-1)
+#  define ERR (-1)
 #endif
 
 /* hack because UCHAR is already used by mingw gcc */

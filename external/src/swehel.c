@@ -1,5 +1,4 @@
 /* SWISSEPH 
- $Header: /home/dieter/sweph/RCS/swehel.c,v 1.1 2009/04/21 06:05:59 dieter Exp dieter $
 
   Heliacal risings and related calculations
   
@@ -76,7 +75,7 @@
 #define BNIGHT_FACTOR   1.0
 #define PI		M_PI
 #define Min2Deg   (1.0 / 60.0)
-#define DEBUG  0
+#define SWEHEL_DEBUG  0
 #define DONE  1
 #define MaxTryHours   4 
 #define TimeStepDefault	1
@@ -278,7 +277,7 @@ static double OpticFactor(double Bback, double kX, double *dobs, double JDNDaysU
   Fa = pow((Pst / OpticDia), 2);
   Fr = (1 + 0.03 * pow((OpticMag * ObjectSize / CVA(Bback, SNi, helflag)), 2)) / pow(SNi, 2);
   Fm = pow(OpticMag, 2);
-#if DEBUG
+#if SWEHEL_DEBUG
   fprintf(stderr, "Pst=%f\n", Pst);
   fprintf(stderr, "Fb =%f\n", Fb);
   fprintf(stderr, "Fe =%f\n", Fe);
@@ -827,7 +826,7 @@ static double kOZ(double AltS, double sunra, double Lat)
   if (altslim < 0)
     altslim = 0;
   CHANGEKO = (100 - 11.6 * mymin(6, altslim)) / 100;
-if (0) {
+if ((0)) {
   static int a = 0;
   if (a == 0)
     printf("bsk=%f %f\n", kOZret, AltS);
@@ -1283,7 +1282,7 @@ static double Bsky(double AltO, double AziO, double AltM, double AziM, double JD
       Bsky += Bday(AltO, AziO, AltS, AziS, sunra, Lat, HeightEye, datm, helflag, serr);
     } else {
       Bsky += mymin(Bday(AltO, AziO, AltS, AziS, sunra, Lat, HeightEye, datm, helflag, serr), Btwi(AltO, AziO, AltS, AziS, sunra, Lat, HeightEye, datm, helflag, serr));
-if (0) {
+if ((0)) {
   static int a = 0;
   if (a == 0)
     printf("bsk=%f\n", Bsky);
@@ -1386,7 +1385,7 @@ static double VisLimMagn(double *dobs, double AltO, double AziO, double AltM, do
   Bsk = Bsky(AltO, AziO, AltM, AziM, JDNDaysUT, AltS, AziS, sunra, Lat, HeightEye, datm, helflag, serr);
   /* Schaefer, Astronomy and the limits of vision, Archaeoastronomy, 1993 Verder:*/
   kX = Deltam(AltO, AltS, sunra, Lat, HeightEye, datm, helflag, serr);
-if (0) {
+if ((0)) {
   static int a = 0;
   if (a == 0)
     printf("bsk=%f, kx=%f\n", Bsk, kX);
@@ -1423,7 +1422,7 @@ if (0) {
   /*Bsk = Bsk / CorrFactor1;*/
   Bsk = Bsk * CorrFactor1;
   Th = C1 * pow(1 + sqrt(C2 * Bsk), 2) * CorrFactor2;
-#if DEBUG
+#if SWEHEL_DEBUG
   fprintf(stderr, "Bsk=%f, ", Bsk);
   fprintf(stderr, "kX =%f, ", kX);
   fprintf(stderr, "Th =%f, ", Th);
@@ -1506,7 +1505,7 @@ int32 CALL_CONV swe_vis_limit_mag(double tjdut, double *dgeo, double *datm, doub
     if (ObjectLoc(tjdut, dgeo, datm, "moon", 1, helflag, &AziM, serr) == ERR)
       return ERR;
   }
-#if DEBUG
+#if SWEHEL_DEBUG
 {
   int i;
   for (i = 0; i < 6;i++)
@@ -1914,7 +1913,7 @@ int32 CALL_CONV swe_heliacal_pheno_ut(double JDNDaysUT, double *dgeo, double *da
     illum = attr[1] * 100;
   }
   kact = kt(AltS, sunra, dgeo[1], dgeo[2], datm[1], datm[2], datm[3], 4, serr);
-  if (0) {
+  if ((0)) {
 darr[26] = kR(AltS, dgeo[2]);
 darr[27] = kW(dgeo[2], datm[1], datm[2]);
 darr[28] = kOZ(AltS, sunra, dgeo[1]);
@@ -3228,7 +3227,7 @@ static int32 heliacal_ut_vis_lim(double tjd_start, double *dgeo, double *datm, d
     if (ipl == SE_MERCURY || ipl == SE_VENUS || TypeEvent <= 2) {
       retval = get_heliacal_details(tday, dgeo, datm, dobs, ObjectName, TypeEvent, helflag2, dret, serr);
       if (retval == ERR) goto swe_heliacal_err;
-    } else if (0) {
+    } else if ((0)) {
       if (TypeEvent == 4 || TypeEvent == 6) direct = -1;
       for (i = 0, d = 100.0 / 86400.0; i < 3; i++, d /= 10.0) {
 	while((retval = swe_vis_limit_mag(*dret + d * direct, dgeo, datm, dobs, ObjectName, helflag, darr, serr)) == -2 || (retval >= 0 && darr[0] < darr[7])) { 
