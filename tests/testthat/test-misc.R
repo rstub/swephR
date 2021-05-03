@@ -22,14 +22,14 @@ test_that("deltat can be retrieved", {
     if (requireNamespace("swephRdata", quietly = TRUE))
         expect_equal(swe_deltat(1234.567), 1.5976757, tolerance = .0000001)
     else
-        expect_equal(swe_deltat(1234.567), 1.58738640540236, tolerance = .0000001)
+        expect_equal(swe_deltat(1234.567), 1.5976757, tolerance = .0000001)
 })
 
 test_that("deltat can be retrieved for vector", {
     if (requireNamespace("swephRdata", quietly = TRUE))
         expect_equal(swe_deltat(c(1234.567, 1234567)), c(1.5976757, 0.3685434), tolerance = .0000001)
     else
-        expect_equal(swe_deltat(c(1234.567, 1234567)), c(1.5873864, 0.366039979375346), tolerance = .0000001)
+        expect_equal(swe_deltat(c(1234.567, 1234567)), c(1.5976757, 0.3685434), tolerance = .0000001)
 })
 
 test_that("deltat can be set and retrieved", {
@@ -69,7 +69,7 @@ test_that("deltat can be retrieved with SEFLG_SWIEPH for vector", {
 })
 
 test_that("version works", {
-    expect_equal(swe_version(), "2.08")
+    expect_equal(swe_version(), "2.10")
 })
 
 
@@ -83,7 +83,7 @@ test_that("Determing ayanamsa using UT:", {
   expect_true(is.list(result))
   expect_equal(result$return, 68)
   expect_equal(result$serr, "")
-  expect_equal(result$daya, 24.99688, tolerance = .000001)
+  expect_equal(result$daya, 24.99676, tolerance = .000001)
 })
 
 test_that("Determing ayanamsa using ET:", {
@@ -91,7 +91,7 @@ test_that("Determing ayanamsa using ET:", {
   expect_true(is.list(result))
   expect_equal(result$return, 68)
   expect_equal(result$serr, "")
-  expect_equal(result$daya, 24.99688, tolerance = .000001)
+  expect_equal(result$daya, 24.99676, tolerance = .000001)
 })
 
 test_that("Retrieving ayanammsa name:", {
