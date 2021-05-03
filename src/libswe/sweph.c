@@ -2291,6 +2291,8 @@ again:
         sp++;
       else
         sp = fname;
+      // truncate file name if needed
+      if (strnlen(sp, AS_MAXCH) >= 230) sp[230] = '\0';
       if (ipli > SE_AST_OFFSET) {
         sprintf(s, "asteroid No. %d (%s): ", ipli - SE_AST_OFFSET, sp);
       } else if (ipli > SE_PLMOON_OFFSET) {
