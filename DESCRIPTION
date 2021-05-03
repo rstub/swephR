@@ -1,12 +1,12 @@
 Package: swephR
 Type: Package
 Title: High Precision Swiss Ephemeris
-Version: 0.3.0
+Version: 0.3.0.1
 Authors@R: c(
     person("Ralf", "Stubner", email = "ralf.stubner@gmail.com", role = c("aut", "cre")),
     person("Victor", "Reijs", role = "aut"),
     person("Authors and copyright holder of the Swiss Ephemeris", role = c("aut", "cph"), comment = "see LICENSE for details"))
-Description: The Swiss Ephemeris (version 2.08) is a high precision ephemeris based upon the
+Description: The Swiss Ephemeris (version 2.10) is a high precision ephemeris based upon the
     DE431 ephemerides from NASA's JPL. It covers the time range 13201 BCE to
     17191 CE. This package uses the semi-analytic theory by Steve Moshier.
     For faster and more accurate calculations, the compressed Swiss Ephemeris
