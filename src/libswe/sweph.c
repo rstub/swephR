@@ -2178,7 +2178,7 @@ static int jplplan(double tjd, int ipli, int32 iflag, AS_BOOL do_save,
 static int sweph(double tjd, int ipli, int ifno, int32 iflag, double *xsunb, AS_BOOL do_save, double *xpret, char *serr)
 {
   int i, ipl, retc, subdirlen;
-  char s[AS_MAXCH], subdirnam[AS_MAXCH], fname[AS_MAXCH], *sp;
+  char s[2 * AS_MAXCH], subdirnam[AS_MAXCH], fname[AS_MAXCH], *sp;
   double t, tsv;       
   double xemb[6], xx[6], *xp;
   struct plan_data *pdp;
@@ -2291,8 +2291,6 @@ again:
         sp++;
       else
         sp = fname;
-      // truncate file name if needed
-      if (strnlen(sp, AS_MAXCH) >= 230) sp[230] = '\0';
       if (ipli > SE_AST_OFFSET) {
         sprintf(s, "asteroid No. %d (%s): ", ipli - SE_AST_OFFSET, sp);
       } else if (ipli > SE_PLMOON_OFFSET) {
