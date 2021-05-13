@@ -14,7 +14,7 @@ Description: The Swiss Ephemeris (version 2.10.01) is a high precision ephemeris
     run 'install.packages("swephRdata", repos = "https://rstub.github.io/drat/",
     type = "source")'. The size of the 'swephRdata' package is approximately
     115 MB. The user can also use the original JPL DE431 data.
-License: AGPL | file LICENSE
+License: AGPL
 Imports: Rcpp (>= 0.12.18)
 LinkingTo: Rcpp
 RoxygenNote: 7.1.1
