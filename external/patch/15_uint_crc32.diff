@@ -1,9 +1,9 @@
 diff --git a/src/libswe/swephlib.c b/src/libswe/swephlib.c
-index 3ecb42c..fb26d40 100644
+index 745309d..1a45696 100644
 --- a/src/libswe/swephlib.c
 +++ b/src/libswe/swephlib.c
-@@ -3767,0 +3767,0 @@ uint32 swi_crc32(unsigned char *buf, int len)
-
+@@ -3769,7 +3769,7 @@ uint32 swi_crc32(unsigned char *buf, int len)
+ 
  static void init_crc32(void)
  {
 -  int32 i, j;

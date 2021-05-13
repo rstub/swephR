@@ -69,7 +69,7 @@ test_that("deltat can be retrieved with SEFLG_SWIEPH for vector", {
 })
 
 test_that("version works", {
-    expect_equal(swe_version(), "2.10")
+    expect_equal(swe_version(), "2.10.01")
 })
 
 
@@ -96,15 +96,15 @@ test_that("Determing ayanamsa using ET:", {
 
 test_that("Retrieving ayanammsa name:", {
   expect_equal(swe_get_ayanamsa_name(12), "Babylonian/Huber")
-}) 
+})
 
 test_that("Retrieving house name:", {
   expect_equal(swe_house_name('G'), "Gauquelin sectors")
-}) 
+})
 
 test_that("Retrieving Sidereal time:", {
   expect_equal(swe_sidtime(2451545), 18.69714,tolerance = .000001)
-}) 
+})
 
 test_that("Determine house info using ARMC:", {
  result <- swe_houses_armc(12, 53, 23, 'B')
@@ -240,4 +240,3 @@ test_that("Calculate LMT):", {
   expect_equal(result$jd_lmt, 2452500.00338698,tolerance = .000001)
   expect_equal(result$serr, "")
 })
-

@@ -1,5 +1,5 @@
 diff --git a/src/libswe/swecl.c b/src/libswe/swecl.c
-index 3a4434f..10e5ddf 100644
+index 81a57f3..2e60c22 100644
 --- a/src/libswe/swecl.c
 +++ b/src/libswe/swecl.c
 @@ -3007,8 +3007,8 @@ void CALL_CONV swe_set_lapse_rate(double lapse_rate)
