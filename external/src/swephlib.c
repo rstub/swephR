@@ -18,8 +18,8 @@
    modulo and normalization functions
 
 **************************************************************/
-/* Copyright (C) 1997 - 2008 Astrodienst AG, Switzerland.  All rights reserved.
-  
+/* Copyright (C) 1997 - 2021 Astrodienst AG, Switzerland.  All rights reserved.
+
   License conditions
   ------------------
 
@@ -34,17 +34,17 @@
   system. The software developer, who uses any part of Swiss Ephemeris
   in his or her software, must choose between one of the two license models,
   which are
-  a) GNU public license version 2 or later
+  a) GNU Affero General Public License (AGPL)
   b) Swiss Ephemeris Professional License
 
   The choice must be made before the software developer distributes software
   containing parts of Swiss Ephemeris to others, and before any public
   service using the developed software is activated.
 
-  If the developer choses the GNU GPL software license, he or she must fulfill
+  If the developer choses the AGPL software license, he or she must fulfill
   the conditions of that license, which includes the obligation to place his
-  or her whole software project under the GNU GPL or a compatible license.
-  See http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+  or her whole software project under the AGPL or a compatible license.
+  See https://www.gnu.org/licenses/agpl-3.0.html
 
   If the developer choses the Swiss Ephemeris Professional license,
   he must follow the instructions as found in http://www.astro.com/swisseph/ 
@@ -2488,10 +2488,10 @@ static TLS double dt[TABSIZ_SPACE] = {
 /* 2010.0 - 2018.0 */
 66.0699, 66.3246, 66.6030, 66.9069, 67.2810, 67.6439, 68.1024, 68.5927, 68.9676, 69.2202,
 /* 2020.0 -        */
-69.3612,
+69.3612, 69.3593, 
 /* Extrapolated values: 
  * 2021 - 2028 */
-         69.4271, 70.00,   70.50,   71.00,   71.50,   72.00,   72.50,   73.00,
+                  69.2581,   69.50,   70.00,   70.50,   71.00,   71.50,   72.00,
 };
 
 #define TAB2_SIZ	27
@@ -3230,6 +3230,8 @@ int32 swi_get_tid_acc(double tjd_ut, int32 iflag, int32 denum, int32 *denumret, 
     case 422: *tid_acc = SE_TIDAL_DE422; break;
     case 430: *tid_acc = SE_TIDAL_DE430; break;
     case 431: *tid_acc = SE_TIDAL_DE431; break;
+    case 440: *tid_acc = SE_TIDAL_DE441; break;
+    case 441: *tid_acc = SE_TIDAL_DE441; break;
     default: denum = SE_DE_NUMBER; *tid_acc = SE_TIDAL_DEFAULT; break;
   }
   *denumret = denum;

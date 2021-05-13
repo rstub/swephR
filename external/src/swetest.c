@@ -5,8 +5,8 @@
 
 **************************************************************/
 
-/* Copyright (C) 1997 - 2008 Astrodienst AG, Switzerland.  All rights reserved.
-  
+/* Copyright (C) 1997 - 2021 Astrodienst AG, Switzerland.  All rights reserved.
+
   License conditions
   ------------------
 
@@ -21,17 +21,17 @@
   system. The software developer, who uses any part of Swiss Ephemeris
   in his or her software, must choose between one of the two license models,
   which are
-  a) GNU public license version 2 or later
+  a) GNU Affero General Public License (AGPL)
   b) Swiss Ephemeris Professional License
 
   The choice must be made before the software developer distributes software
   containing parts of Swiss Ephemeris to others, and before any public
   service using the developed software is activated.
 
-  If the developer choses the GNU GPL software license, he or she must fulfill
+  If the developer choses the AGPL software license, he or she must fulfill
   the conditions of that license, which includes the obligation to place his
-  or her whole software project under the GNU GPL or a compatible license.
-  See http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+  or her whole software project under the AGPL or a compatible license.
+  See https://www.gnu.org/licenses/agpl-3.0.html
 
   If the developer choses the Swiss Ephemeris Professional license,
   he must follow the instructions as found in http://www.astro.com/swisseph/ 
@@ -186,7 +186,7 @@ static char *infocmd2 = "\
 static char *infocmd3 = "\
         -geopos[long,lat,elev]	\n\
 		Geographic position. Can be used for azimuth and altitude\n\
-                or house cups calculations.\n\
+                or house cusps calculations.\n\
                 The longitude, latitude (degrees with DECIMAL fraction)\n\
 		and elevation (meters) can be given, with\n\
 		commas separated, + for east and north. If none are given,\n\
@@ -252,6 +252,10 @@ static char *infocmd3 = "\
 	   40 Cochrane (Gal.Center = 0 Cap)\n\
 	   41 Galactic Equator (Fiorenza)\n\
 	   42 Vettius Valens\n\
+	   43 Lahiri 1940\n\
+	   44 Lahiri VP285 (1980)\n\
+	   45 Krishnamurti VP291\n\
+	   46 Lahiri ICRC\n\
      ephemeris specifications:\n\
         -edirPATH change the directory of the ephemeris files \n\
         -eswe   swiss ephemeris\n\
@@ -280,6 +284,7 @@ static char *infocmd4 = "\
         -testaa97\n\
         -roundsec         round to seconds\n\
         -roundmin         round to minutes\n\
+	-ep		  use extra precision in output for some data\n\
 	-dms              use dms instead of fractions, at some places\n\
 	-lim		  print ephemeris file range\n\
      observer position:\n\
@@ -290,6 +295,16 @@ static char *infocmd4 = "\
 		DECIMAL fraction) and elevation (meters) can be given, with\n\
 		commas separated, + for east and north. If none are given,\n\
 		Greenwich is used 0.00,51.50,0\n\
+        -pc...  compute planetocentric positions\n\
+                to specify the central body, use the internal object number\n\
+		of Swiss Ephemeris, e.g. 3 for Venus, 4 for Mars, \n\
+        -pc3 	Venus-centric \n\
+        -pc4 	Mars-centric \n\
+        -pc5 	Jupiter-centric (barycenter)\n\
+	-pc9599 Jupiter-centric (center of body)\n\
+	-pc9699 Saturn-centric (center of body)\n\
+		For asteroids use MPC number + 10000, e.g.\n\
+	-pc10433 Eros-centric (Eros = 433 + 10000)\n\
      orbital elements:\n\
         -orbel  compute osculating orbital elements relative to the\n\
 	        mean ecliptic J2000. (Note, all values, including time of\n\
@@ -442,6 +457,8 @@ static char *infoplan = "\n\
         c intp. lunar apogee \n\
         g intp. lunar perigee \n\
         C Earth (in heliocentric or barycentric calculation)\n\
+        For planets Jupiter to Pluto the center of body (COB) can be\n\
+        calculated using the additional parameter -cob\n\
      dwarf planets, plutoids\n\
         F Ceres\n\
 	9 Pluto\n\
@@ -455,6 +472,18 @@ static char *infoplan = "\n\
         H Juno \n\
         I Vesta \n\
         s minor planet, with MPC number given in -xs\n\
+     some planetary moons and center of body of a planet:\n\
+        v with moon number given in -xv:\n\
+        v -xv9501 Io/Jupiter:\n\
+        v -xv9599 Jupiter, center of body (COB):\n\
+        v -xv94.. Mars moons:\n\
+        v -xv95.. Jupiter moons and COB:\n\
+        v -xv96.. Saturn moons and COB:\n\
+        v -xv97.. Uranus moons and COB:\n\
+        v -xv98.. Neptune moons and COB:\n\
+        v -xv99.. Pluto moons and COB:\n\
+          The numbers of the moons are given here: \n\
+	  https://www.astro.com/ftp/swisseph/ephe/sat/plmolist.txt\n\
      fixed stars:\n\
         f fixed star, with name or number given in -xf option\n\
 	f -xfSirius   Sirius\n\
@@ -514,6 +543,8 @@ static char *infoform = "\n\
         q relative distance (1000=nearest, 0=furthest)\n\
         A right ascension in hh:mm:ss\n\
         a right ascension hours decimal\n\
+	m Meridian distance \n\
+	z Zenith distance \n\
         D declination degree\n\
         d declination decimal\n\
         I azimuth degree\n\
@@ -676,6 +707,9 @@ static char *infoexamp = "\n\
 #define SEARCH_RANGE_LUNAR_CYCLES 20000
 
 #define LEN_SOUT    1000 // length of output string variable
+#define SIND(x) sin((x) * DEGTORAD)
+#define COSD(x) cos((x) * DEGTORAD)
+#define ACOSD(x)        (acos((x)) * RADTODEG)
 
 static char se_pname[AS_MAXCH];
 static char *zod_nam[] = {"ar", "ta", "ge", "cn", "le", "vi", 
@@ -1693,7 +1727,7 @@ int main(int argc, char *argv[])
 	  }
         }
         /* equator position */
-        if (strpbrk(fmt, "aADdQ") != NULL) {
+        if (strpbrk(fmt, "aADdQmz") != NULL) {
           iflag2 = iflag | SEFLG_EQUATORIAL;
           if (ipl == SE_FIXSTAR) {
             iflgret = call_swe_fixstar(star, te, iflag2, xequ, serr);
@@ -1800,7 +1834,7 @@ int main(int argc, char *argv[])
           }
         }
         /* house position */
-        if (strpbrk(fmt, "gGj") != NULL) {
+        if (strpbrk(fmt, "gGjzm") != NULL) {
 	  armc = swe_degnorm(swe_sidtime(tut) * 15 + geopos[0]);
 	  for (i = 0; i < 6; i++)
 	    xsv[i] = x[i];
@@ -1929,8 +1963,10 @@ int main(int argc, char *argv[])
 	  line_count++;
 	}
       }
-      if (line_count >= line_limit) 
+      if (line_count >= line_limit) {
+	printf("****** line count %d was exceeded\n", line_limit);
         break;
+      }
     }           /* for tjd */
     if (*serr_warn != '\0') {
       printf("\nwarning: ");
@@ -2218,7 +2254,7 @@ static int print_line(int mode, AS_BOOL is_first, int sid_mode)
 	      case 'r':   /* speed! */
 		if (is_label) { printf("AU/day"); break; }
 		if (output_extra_prec)
-		  printf("%# 16.11f", x[5]);
+		  printf("%# 16.14f", x[5]);
 		else
 		  printf("%# 14.9f", x[5]);
 		break;
@@ -2345,7 +2381,10 @@ static int print_line(int mode, AS_BOOL is_first, int sid_mode)
 	break;
     case 'R':
 	if (is_label) { printf("distAU   "); break; }
-	printf("%# 14.9f", x[2]);
+	if (output_extra_prec)
+	  printf("%# 16.14f", x[2]);
+	else
+	  printf("%# 14.9f", x[2]);
 	break;
     case 'W':
 	if (is_label) { printf("distLY   "); break; }
@@ -2368,7 +2407,7 @@ static int print_line(int mode, AS_BOOL is_first, int sid_mode)
 	  swe_pheno(te, ipl, iflag, dret, serr);
 	  printf("%# 13.5f\"", dret[5] * 3600);
 	} else {
-	  printf("%# 14.9f", x[2]* SE_AUNIT_TO_LIGHTYEAR);
+	  printf("%# 14.9f", x[2]);
 	}
 	break;
     case 'q':
@@ -2522,6 +2561,26 @@ static int print_line(int mode, AS_BOOL is_first, int sid_mode)
 	if (*sp == 'V')
 	  printf(" %2d%%", swe_d2l(100 * fmod(xhds / 0.9375, 1)));
         break;
+      }
+    case 'm': {	// Meridian distance
+	if (is_label) { printf("MD      "); break; }
+	double md = swe_difdeg2n(xequ[0], armc);
+	if (md < 0) md = -md;
+	if (output_extra_prec)
+	  printf("%# 11.11f", md);
+	else
+	  printf("%# 11.7f", md);
+    	break;
+      }
+    case 'z': {	// Zenith distance
+	if (is_label) { printf("ZD      "); break; }
+	swe_azalt(tut, SE_EQU2HOR, geopos, datm[0], datm[1], xequ, xaz);
+	double zd = 90 - xaz[1];
+	if (output_extra_prec)
+	  printf("%# 11.11f", zd);
+	else
+	  printf("%# 11.7f", zd);
+    	break;
       }
     }     /* switch */
   }       /* for sp */
