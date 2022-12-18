@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // set_ephe_path
 void set_ephe_path(Rcpp::Nullable<Rcpp::CharacterVector> path);
 RcppExport SEXP _swephR_set_ephe_path(SEXP pathSEXP) {
