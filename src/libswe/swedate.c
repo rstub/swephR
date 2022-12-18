@@ -64,7 +64,7 @@
   This function converts some date+time input {y,m,d,uttime}
   into the Julian day number tjd.
   The function checks that the input is a legal combination
-  of dates; for illegal dates like 32 January 1993 it returns ERR
+  of dates; for illegal dates like 32 January 1993 it returns SE_ERR
   but still converts the date correctly, i.e. like 1 Feb 1993.
   The function is usually used to convert user input of birth data
   into the Julian day number. Illegal dates should be notified to the user.
@@ -78,7 +78,7 @@
   etc.
   Many users of Astro programs do not know about this difference.
 
-  Return: OK or ERR (for illegal date)
+  Return: OK or SE_ERR (for illegal date)
 *********************************************************/
 
 # include "swephexp.h"
@@ -106,7 +106,7 @@ int CALL_CONV swe_date_conversion(int y,
   if (rmon == m && rday == d && ryear == y) {
     return OK;
   } else {
-    return ERR;
+    return SE_ERR;
   }
 }
 
@@ -385,7 +385,7 @@ int32 CALL_CONV swe_utc_to_jd(int32 iyear, int32 imonth, int32 iday, int32 ihour
   if (iyear != iyear2 || imonth != imonth2 || iday != iday2) {
     if (serr != NULL)
       sprintf(serr, "invalid date: year = %d, month = %d, day = %d", iyear, imonth, iday);
-    return ERR;
+    return SE_ERR;
   }
   if (ihour < 0 || ihour > 23 
    || imin < 0 || imin > 59 
@@ -393,7 +393,7 @@ int32 CALL_CONV swe_utc_to_jd(int32 iyear, int32 imonth, int32 iday, int32 ihour
    || (dsec >= 60 && (imin < 59 || ihour < 23 || tjd_ut1 < J1972))) {
     if (serr != NULL)
       sprintf(serr, "invalid time: %d:%d:%.2f", ihour, imin, dsec);
-    return ERR;
+    return SE_ERR;
   }
   dhour = (double) ihour + ((double) imin) / 60.0 + dsec / 3600.0;
   /* 
@@ -448,7 +448,7 @@ int32 CALL_CONV swe_utc_to_jd(int32 iyear, int32 imonth, int32 iday, int32 ihour
     if (j != 1) {
       if (serr != NULL)
 	sprintf(serr, "invalid time (no leap second!): %d:%d:%.2f", ihour, imin, dsec);
-      return ERR;
+      return SE_ERR;
     }
   }
   /* 

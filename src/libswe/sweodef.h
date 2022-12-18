@@ -240,7 +240,7 @@
 
 #ifndef OK 
 #  define OK (0)
-#  define ERR (-1)
+#  define SE_ERR (-1)
 #endif
 
 /* hack because UCHAR is already used by mingw gcc */

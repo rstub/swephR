@@ -150,7 +150,7 @@ extern "C" {
 #define SE_ISIS         	48
 #define SE_NIBIRU       	49
 #define SE_HARRINGTON           50
-#define SE_NEPTUNE_LEVERRIER    51
+#define SE_NEPTUNE_LEVSE_ERRIER    51
 #define SE_NEPTUNE_ADAMS        52
 #define SE_PLUTO_LOWELL         53
 #define SE_PLUTO_PICKERING      54
@@ -195,8 +195,8 @@ extern "C" {
                                 * SEFLG_SPEED is faster and more precise.) */
 #define SEFLG_SPEED	256    /* high precision speed  */
 #define SEFLG_NOGDEFL	512    /* turn off gravitational deflection */
-#define SEFLG_NOABERR	1024   /* turn off 'annual' aberration of light */
-#define SEFLG_ASTROMETRIC (SEFLG_NOABERR|SEFLG_NOGDEFL) /* astrometric position,
+#define SEFLG_NOABSE_ERR	1024   /* turn off 'annual' aberration of light */
+#define SEFLG_ASTROMETRIC (SEFLG_NOABSE_ERR|SEFLG_NOGDEFL) /* astrometric position,
                                 * i.e. with light-time, but without aberration and
 			        * light deflection */
 #define SEFLG_EQUATORIAL (2*1024)    /* equatorial positions are wanted */
