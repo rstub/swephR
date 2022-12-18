@@ -74,13 +74,17 @@
 # define MY_TRUE 1	/* for use in other defines, before TRUE is defined */
 # define MY_FALSE 0	/* for use in other defines, before TRUE is defined */
 
+#ifdef __CYGWIN__	// following T. Mack Jan/July 2021
+# undef __GNUC__
+#endif
+
 /* TLS support
  *
  * Sun Studio C/C++, IBM XL C/C++, GNU C and Intel C/C++ (Linux systems) -> __thread
  * Borland, VC++ -> __declspec(thread)
  */
 #if !defined(TLSOFF) && !defined( __APPLE__ ) && !defined(WIN32) && !defined(DOS32)
-#if defined( __GNUC__ )
+#if defined( __GNUC__ ) || defined( __CYGWIN__ ) 
 #define TLS     __thread
 #else
 #define TLS     __declspec(thread)
@@ -236,7 +240,7 @@
 
 #ifndef OK 
 #  define OK (0)
-#  define SE_ERR (-1)
+#  define ERR (-1)
 #endif
 
 /* hack because UCHAR is already used by mingw gcc */

@@ -150,7 +150,7 @@ extern "C" {
 #define SE_ISIS         	48
 #define SE_NIBIRU       	49
 #define SE_HARRINGTON           50
-#define SE_NEPTUNE_LEVSE_ERRIER    51
+#define SE_NEPTUNE_LEVERRIER    51
 #define SE_NEPTUNE_ADAMS        52
 #define SE_PLUTO_LOWELL         53
 #define SE_PLUTO_PICKERING      54
@@ -195,8 +195,8 @@ extern "C" {
                                 * SEFLG_SPEED is faster and more precise.) */
 #define SEFLG_SPEED	256    /* high precision speed  */
 #define SEFLG_NOGDEFL	512    /* turn off gravitational deflection */
-#define SEFLG_NOABSE_ERR	1024   /* turn off 'annual' aberration of light */
-#define SEFLG_ASTROMETRIC (SEFLG_NOABSE_ERR|SEFLG_NOGDEFL) /* astrometric position,
+#define SEFLG_NOABERR	1024   /* turn off 'annual' aberration of light */
+#define SEFLG_ASTROMETRIC (SEFLG_NOABERR|SEFLG_NOGDEFL) /* astrometric position,
                                 * i.e. with light-time, but without aberration and
 			        * light deflection */
 #define SEFLG_EQUATORIAL (2*1024)    /* equatorial positions are wanted */
@@ -709,6 +709,15 @@ ext_def(int32) swe_calc_ut(double tjd_ut, int32 ipl, int32 iflag,
 
 ext_def(int32) swe_calc_pctr(double tjd, int32 ipl, int32 iplctr, int32 iflag, double *xxret, char *serr);
 
+ext_def(double) swe_solcross(double x2cross, double jd_et, int32 flag, char *serr);
+ext_def(double) swe_solcross_ut(double x2cross, double jd_ut, int32 flag, char *serr);
+ext_def(double) swe_mooncross(double x2cross, double jd_et, int32 flag, char *serr);
+ext_def(double) swe_mooncross_ut(double x2cross, double jd_ut, int32 flag, char *serr);
+ext_def(double) swe_mooncross_node(double jd_et, int32 flag, double *xlon, double *xlat, char *serr);
+ext_def(double) swe_mooncross_node_ut(double jd_ut, int32 flag, double *xlon, double *xlat, char *serr);
+ext_def(int32) swe_helio_cross(int32 ipl, double x2cross, double jd_et, int32 iflag, int32 dir, double *jd_cross, char *serr);
+ext_def(int32) swe_helio_cross_ut(int32 ipl, double x2cross, double jd_ut, int32 iflag, int32 dir, double *jd_cross, char *serr);
+
 /* fixed stars */
 ext_def( int32 ) swe_fixstar(
         char *star, double tjd, int32 iflag, 
@@ -734,10 +743,10 @@ ext_def(int32) swe_fixstar2_mag(char *star, double *mag, char *serr);
 ext_def( void ) swe_close(void);
 
 /* set directory path of ephemeris files */
-ext_def( void ) swe_set_ephe_path(char *path);
+ext_def( void ) swe_set_ephe_path(const char *path);
 
 /* set file name of JPL file */
-ext_def( void ) swe_set_jpl_file(char *fname);
+ext_def( void ) swe_set_jpl_file(const char *fname);
 
 /* get planet name */
 ext_def( char *) swe_get_planet_name(int ipl, char *spname);
@@ -828,7 +837,7 @@ ext_def( int ) swe_houses_armc_ex2(
 ext_def(double) swe_house_pos(
 	double armc, double geolat, double eps, int hsys, double *xpin, char *serr);
 
-ext_def(char *) swe_house_name(int hsys);
+ext_def(const char *) swe_house_name(int hsys);
 
 
 

@@ -115,6 +115,23 @@ DllImport int32 CALL_CONV_IMP swe_calc_ut(
         double *xx,
         char *serr);
 
+DllImport double CALL_CONV_IMP swe_solcross(
+	double x2cross, double jd_et, int32 flag, char *serr);
+DllImport double CALL_CONV_IMP swe_solcross_ut(
+	double x2cross, double jd_ut, int32 flag, char *serr);
+DllImport double CALL_CONV_IMP swe_mooncross(
+	double x2cross, double jd_et, int32 flag, char *serr);
+DllImport double CALL_CONV_IMP swe_mooncross_ut(
+	double x2cross, double jd_ut, int32 flag, char *serr);
+DllImport double CALL_CONV_IMP swe_mooncross_node(
+	double jd_et, int32 flag, double *xlon, double *xlat, char *serr);
+DllImport double CALL_CONV_IMP swe_mooncross_node_ut(
+	double jd_ut, int32 flag, double *xlon, double *xlat, char *serr);
+DllImport int32 CALL_CONV_IMP swe_helio_cross(
+	int ipl, double x2cross, double jd_et, int32 iflag, int32 dir, double *jd_cross, char *serr);
+DllImport int32 CALL_CONV_IMP swe_helio_cross_ut(
+	int ipl, double x2cross, double jd_ut, int32 iflag, int32 dir, double *jd_cross, char *serr);
+
 DllImport int32 CALL_CONV_IMP swe_fixstar(
         char *star, double tjd, int32 iflag, 
         double *xx,
@@ -170,7 +187,7 @@ DllImport int  CALL_CONV_IMP swe_houses_armc_ex2(
 DllImport double  CALL_CONV_IMP swe_house_pos(
         double armc, double geolon, double eps, int hsys, double *xpin, char *serr);
 
-DllImport char * CALL_CONV_IMP swe_house_name(int hsys);
+DllImport const char * CALL_CONV_IMP swe_house_name(int hsys);
 
 DllImport int32  CALL_CONV_IMP swe_gauquelin_sector(
 	double t_ut, int32 ipl, char *starname, int32 iflag, int32 imeth, double *geopos, double atpress, double attemp, double *dgsect, char *serr);
@@ -233,8 +250,8 @@ DllImport int  CALL_CONV_IMP swe_lat_to_lmt(double tjd_lat, double geolon, doubl
 DllImport double  CALL_CONV_IMP swe_get_tid_acc(void);
 DllImport void  CALL_CONV_IMP swe_set_tid_acc(double tidacc);
 DllImport void  CALL_CONV_IMP swe_set_delta_t_userdef(double dt);
-DllImport void  CALL_CONV_IMP swe_set_ephe_path(char *path);
-DllImport void  CALL_CONV_IMP swe_set_jpl_file(char *fname);
+DllImport void  CALL_CONV_IMP swe_set_ephe_path(const char *path);
+DllImport void  CALL_CONV_IMP swe_set_jpl_file(const char *fname);
 DllImport void  CALL_CONV_IMP swe_close(void);
 DllImport char * CALL_CONV_IMP swe_get_planet_name(int ipl, char *spname);
 DllImport void  CALL_CONV_IMP swe_cotrans(double *xpo, double *xpn, double eps);
