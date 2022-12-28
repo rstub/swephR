@@ -74,9 +74,9 @@ test_that("Finds the next occultation for a body and a given geographic position
   result <- swe_lun_occult_when_loc(1234567,SE$VENUS,"",SE$FLG_MOSEPH+SE$ECL_ONE_TRY,c(0,50,10),FALSE)
   expect_equal(result$return, 32644)
   expect_equal(result$tret[1:6],c(1234620.01091964, 1234619.98320972, 1234619.98379339, 1234620.03675771, 1234620.03728753,0))
-  expect_equal(result$attr[1:9],c( 4.50739631328003e+01,  1.01855850852554e+02 , 1.03746143528978e+04, -3.45194789925967e+03,
-                                    4.14943252743968e+01 , 9.45639393731195e+00  ,9.54926910539598e+00,  3.25604915761606e-02,
-                                   0))
+  expect_equal(result$attr[1:9],c(45.0754362139716, 101.859216986627, 10375.3000851288,
+                                  -3451.9490282791, 41.4943252743968, 9.45639393731195,
+                                  9.54926910539598, 0.0325604915761606, 0))
   expect_equal(result$serr, "")
   swe_close()
 })
@@ -94,9 +94,9 @@ test_that("Compute the geographic location of an occultation for a given tjd.", 
   result <- swe_lun_occult_where(1234590.44756319,SE$VENUS,"",SE$FLG_MOSEPH+SE$ECL_ONE_TRY)
   expect_equal(result$return, 5)
   expect_equal(result$pathpos[1:3],c(157.9771583092420 , 24.8563536921861,0))
-  expect_equal(result$attr[1:9],c( 3.96133153349951e+01,  7.82747642094204e+01 , 6.12693871204036e+03 ,-3.44452665419664e+03,
-                                    4.46760851275411e+00 , 4.39348319535477e+01 , 4.39516599201838e+01 , 1.65922292213691e-04,
-                                   0))
+  expect_equal(result$attr[1:9],c(39.614607952576, 78.2773510353004, 6127.34368510365,
+                                  -3444.52812728212, 4.46760851275411, 43.9348319535477,
+                                  43.9516599201838, 0.000165922292213691, 0))
   expect_equal(result$serr, "")
   swe_close()
 })
@@ -105,7 +105,9 @@ test_that("Lunar eclipse at a certain location", {
   result <- swe_lun_eclipse_when_loc(1234567,4,c(0,50,10),FALSE)
   expect_equal(result$return, 20624)
   expect_equal(result$tret,c(1234580.19,0,0,1234580.23691550,0,0,0,1234580.28328264,1234580.19960447,0))
-  expect_equal(result$attr[1:11],c(0.718169986750774,1.74556231683580,0 ,0,240.642969834840244,-0.351069739087650,0.185738292657396,  0.586663260830164  ,0.718169986750774,12,58))
+  expect_equal(result$attr[1:11],c(0.71817816677135, 1.74557050319063, 0, 0,
+                                   240.642834168763, -0.351168041982899, 0.185656243939104,
+                                   0.586658994624941, 0.71817816677135, 12, 58))
   expect_equal(result$serr, "")
   swe_close()
 })
@@ -131,7 +133,8 @@ test_that("Lunar eclipse conditions", {
 test_that("Phenomena of Moon (UT)", {
   result <- swe_pheno_ut(1234567,1,4)
   expect_equal(result$return, 4)
-  expect_equal(result$attr[1:6],c(149.6307215971651772,0.0686075615100681,30.2944345224700591, 0.5180433249746146, -6.8235614464226826 , 0.9505687417907285))
+  expect_equal(result$attr[1:6],c(149.630721612028, 0.0686075614444923, 30.2944345377085,
+                                  0.517849595679598, -6.78321156622476, 0.950568741790746))
   expect_equal(result$serr, "")
   swe_close()
 })
@@ -139,7 +142,8 @@ test_that("Phenomena of Moon (UT)", {
 test_that("Phenomena of Moon (ET)", {
   result <- swe_pheno(1234567,1,4)
   expect_equal(result$return, 4)
-  expect_equal(result$attr[1:6],c(154.1161000624804274,0.0501597578258811, 25.8196104808596623, 0.5205532974955946, -6.4659828673145414, 0.9551682301559420))
+  expect_equal(result$attr[1:6],c(154.116100062436, 0.0501597578260507, 25.8196104659902,
+                                  0.520358629679155, -6.27357709338102, 0.95516823015598))
   expect_equal(result$serr, "")
   swe_close()
 })
