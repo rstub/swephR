@@ -12,12 +12,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="High Precision Swiss Ephemeris">
-<meta property="og:description" content="The Swiss Ephemeris (version 2.08) is a high precision ephemeris based upon the
+<meta property="og:description" content="The Swiss Ephemeris (version 2.10.03) is a high precision ephemeris based upon the
     DE431 ephemerides from NASAs JPL. It covers the time range 13201 BCE to
     17191 CE. This package uses the semi-analytic theory by Steve Moshier.
     For faster and more accurate calculations, the compressed Swiss Ephemeris
     data is available in the swephRdata package. To access this data package,
-    run install.packages(&quot;swephRdata&quot;, repos = &quot;https://rstub.github.io/drat/&quot;,
+    run install.packages(&quot;swephRdata&quot;, repos = &quot;https://rstub.r-universe.dev&quot;,
     type = &quot;source&quot;). The size of the swephRdata' package is approximately
     115 MB. The user can also use the original JPL DE431 data.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,18 +40,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">swephR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="articles/swephR.html">Get started</a>
 </li>
@@ -62,7 +58,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/rstub/swephR/">
+  <a href="https://github.com/rstub/swephR/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -81,81 +77,81 @@
   <div class="contents col-md-9">
 
 
-<div id="swephr" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#swephr" class="anchor"></a>swephR</h1></div>
-<p>The goal of swephR is to provide an R interface to the <a href="https://www.astro.com/swisseph/">Swiss Ephemeris</a>. The Swiss Ephemeris is a high precision ephemeris based upon the DE431 ephemeris from NASA’s JPL. It covers the time range 13201 BCE to 17191 CE.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of swephR from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
+<div class="section level1">
+<div class="page-header"><h1 id="swephr">swephR<a class="anchor" aria-label="anchor" href="#swephr"></a>
+</h1></div>
+<p>The goal of swephR is to provide an R interface to the <a href="https://www.astro.com/swisseph/" class="external-link">Swiss Ephemeris</a>. The Swiss Ephemeris is a high precision ephemeris based upon the DE431 ephemeris from NASA’s JPL. It covers the time range 13201 BCE to 17191 CE.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install the released version of swephR from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"swephR"</span><span class="op">)</span></code></pre></div>
-<p>Intermediate releases can also be obtained via <a href="https://cran.r-project.org/package=drat">drat</a>:</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"swephR"</span><span class="op">)</span></span></code></pre></div>
+<p>Intermediate releases can also be obtained via <a href="https://cran.r-project.org/package=drat" class="external-link">drat</a>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"drat"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"drat"</span><span class="op">)</span>
-<span class="fu">drat</span><span class="fu">::</span><span class="fu">addRepo</span><span class="op">(</span><span class="st">"rstub"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"swephR"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"drat"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"drat"</span><span class="op">)</span></span>
+<span><span class="fu">drat</span><span class="fu">::</span><span class="fu">addRepo</span><span class="op">(</span><span class="st">"rstub"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"swephR"</span><span class="op">)</span></span></code></pre></div>
 <p>This package uses the semi-analytic theory by Steve Moshier. For faster and more accurate calculations, the compressed Swiss Ephemeris data is available in the <code>swephRdata</code> package. To access this data package, run</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"swephRdata"</span>, repos <span class="op">=</span> <span class="st">"https://rstub.github.io/drat/"</span>, type <span class="op">=</span> <span class="st">"source"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"swephRdata"</span>, repos <span class="op">=</span> <span class="st">"https://rstub.github.io/drat/"</span>, type <span class="op">=</span> <span class="st">"source"</span><span class="op">)</span></span></code></pre></div>
 <p>The size of the <code>swephRdata</code> package is approximately 115 MB. The user can also use the original JPL DE431 data.</p>
 </div>
-<div id="example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
 <p>To compute the position of celestial body or star with SE (Swiss Ephemeris), you do the following steps:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstub/swephR/">swephR</a></span><span class="op">)</span>
-<span class="fu"><a href="reference/Section1.html">swe_version</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2.08"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstub/swephR/" class="external-link">swephR</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/Section1.html">swe_version</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "2.10"</span></span></code></pre></div>
 <p>For a specific date, compute the Julian day number (in below example: J2000.0, 1 January 2000 at 12:00 UT):</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">year</span> <span class="op">&lt;-</span> <span class="fl">2000</span>
-<span class="va">month</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-<span class="va">day</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-<span class="va">hour</span> <span class="op">&lt;-</span> <span class="fl">12</span>
-<span class="va">jdut</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/Section7.html">swe_julday</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">month</span>, <span class="va">day</span>, <span class="va">hour</span>, <span class="va">SE</span><span class="op">$</span><span class="va">GREG_CAL</span><span class="op">)</span>
-<span class="va">jdut</span>
-<span class="co">#&gt; [1] 2451545</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">year</span> <span class="op">&lt;-</span> <span class="fl">2000</span></span>
+<span><span class="va">month</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="va">day</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="va">hour</span> <span class="op">&lt;-</span> <span class="fl">12</span></span>
+<span><span class="va">jdut</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/Section7.html">swe_julday</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">month</span>, <span class="va">day</span>, <span class="va">hour</span>, <span class="va">SE</span><span class="op">$</span><span class="va">GREG_CAL</span><span class="op">)</span></span>
+<span><span class="va">jdut</span></span>
+<span><span class="co">#&gt; [1] 2451545</span></span></code></pre></div>
 <p>Compute (using Moshier ephemeris) the positions (longitude, latitude, distance, longitude speed and latitude speed) of a planet or other celestial bodies (in below example: the Sun):</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ipl</span> <span class="op">&lt;-</span> <span class="va">SE</span><span class="op">$</span><span class="va">SUN</span>
-<span class="va">iflag</span> <span class="op">&lt;-</span> <span class="va">SE</span><span class="op">$</span><span class="va">FLG_MOSEPH</span> <span class="op">+</span> <span class="va">SE</span><span class="op">$</span><span class="va">FLG_SPEED</span>
-<span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/Section2.html">swe_calc_ut</a></span><span class="op">(</span><span class="va">jdut</span>, <span class="va">ipl</span>, <span class="va">iflag</span><span class="op">)</span>
-<span class="va">result</span>
-<span class="co">#&gt; $return</span>
-<span class="co">#&gt; [1] 260</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $xx</span>
-<span class="co">#&gt; [1]  2.803689e+02  2.323265e-04  9.833276e-01  1.019432e+00 -8.922802e-07</span>
-<span class="co">#&gt; [6] -7.339410e-06</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $serr</span>
-<span class="co">#&gt; [1] ""</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">ipl</span> <span class="op">&lt;-</span> <span class="va">SE</span><span class="op">$</span><span class="va">SUN</span></span>
+<span><span class="va">iflag</span> <span class="op">&lt;-</span> <span class="va">SE</span><span class="op">$</span><span class="va">FLG_MOSEPH</span> <span class="op">+</span> <span class="va">SE</span><span class="op">$</span><span class="va">FLG_SPEED</span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/Section2.html">swe_calc_ut</a></span><span class="op">(</span><span class="va">jdut</span>, <span class="va">ipl</span>, <span class="va">iflag</span><span class="op">)</span></span>
+<span><span class="va">result</span></span>
+<span><span class="co">#&gt; $return</span></span>
+<span><span class="co">#&gt; [1] 260</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $xx</span></span>
+<span><span class="co">#&gt; [1]  2.803689e+02  2.323265e-04  9.833276e-01  1.019432e+00 -8.922802e-07</span></span>
+<span><span class="co">#&gt; [6] -7.339410e-06</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $serr</span></span>
+<span><span class="co">#&gt; [1] ""</span></span></code></pre></div>
 <p>or a fixed star (in below example: Sirius):</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">starname</span> <span class="op">=</span> <span class="st">"sirius"</span>
-<span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/Section4.html">swe_fixstar2_ut</a></span><span class="op">(</span><span class="va">starname</span>, <span class="va">jdut</span>, <span class="va">iflag</span><span class="op">)</span>
-<span class="va">result</span>
-<span class="co">#&gt; $return</span>
-<span class="co">#&gt; [1] 260</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $starname</span>
-<span class="co">#&gt; [1] "Sirius,alCMa"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $xx</span>
-<span class="co">#&gt; [1]  1.040853e+02 -3.960507e+01  5.439322e+05  4.643164e-05 -7.119376e-05</span>
-<span class="co">#&gt; [6] -4.130539e-03</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $serr</span>
-<span class="co">#&gt; [1] ""</span></code></pre></div>
-<p>The current R interface is modeled after the C interface. It is therefore often helpful to consult the <a href="https://www.astro.com/swisseph/swisseph.htm">general documentation</a> and <a href="https://www.astro.com/swisseph/swephprg.htm">programmer’s documentation</a> for the Swiss Ephemeris.</p>
+<code class="sourceCode R"><span><span class="va">starname</span> <span class="op">=</span> <span class="st">"sirius"</span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/Section4.html">swe_fixstar2_ut</a></span><span class="op">(</span><span class="va">starname</span>, <span class="va">jdut</span>, <span class="va">iflag</span><span class="op">)</span></span>
+<span><span class="va">result</span></span>
+<span><span class="co">#&gt; $return</span></span>
+<span><span class="co">#&gt; [1] 260</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $starname</span></span>
+<span><span class="co">#&gt; [1] "Sirius,alCMa"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $xx</span></span>
+<span><span class="co">#&gt; [1]  1.040853e+02 -3.960507e+01  5.439322e+05  4.643164e-05 -7.119376e-05</span></span>
+<span><span class="co">#&gt; [6] -4.130539e-03</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $serr</span></span>
+<span><span class="co">#&gt; [1] ""</span></span></code></pre></div>
+<p>The current R interface is modeled after the C interface. It is therefore often helpful to consult the <a href="https://www.astro.com/swisseph/swisseph.htm" class="external-link">general documentation</a> and <a href="https://www.astro.com/swisseph/swephprg.htm" class="external-link">programmer’s documentation</a> for the Swiss Ephemeris.</p>
 </div>
-<div id="feedback" class="section level2">
-<h2 class="hasAnchor">
-<a href="#feedback" class="anchor"></a>Feedback</h2>
-<p>All feedback (bug reports, security issues, feature requests, …) should be provided as <a href="https://github.com/rstub/swephR/issues">issues</a>.</p>
+<div class="section level2">
+<h2 id="feedback">Feedback<a class="anchor" aria-label="anchor" href="#feedback"></a>
+</h2>
+<p>All feedback (bug reports, security issues, feature requests, …) should be provided as <a href="https://github.com/rstub/swephR/issues" class="external-link">issues</a>.</p>
 </div>
 </div>
 
@@ -163,53 +159,62 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=swephR">https://​cloud.r-project.org/​package=swephR</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/rstub/swephR/">https://​github.com/​rstub/​swephR/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/rstub/swephR/issues/">https://​github.com/​rstub/​swephR/​issues/​</a>
-</li>
-</ul>
-</div>
-<div class="license">
-<h2>License</h2>
-<ul class="list-unstyled">
-<li>AGPL | file <a href="LICENSE-text.html">LICENSE</a>
-</li>
-</ul>
-</div>
-<div class="developers">
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>Ralf Stubner <br><small class="roles"> Author, maintainer </small>  </li>
-<li>Victor Reijs <br><small class="roles"> Author </small>  </li>
-<li>Authors and copyright holder of the Swiss Ephemeris <br><small class="roles"> Author, copyright holder </small>  <br><small>(see LICENSE for details)</small>
-</li>
+<li><a href="https://cloud.r-project.org/package=swephR" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/rstub/swephR/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/rstub/swephR/issues/" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="license">
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/rstub/swephR/actions"><img src="https://github.com/rstub/swephR/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://codecov.io/github/rstub/swephR?branch=master"><img src="https://codecov.io/gh/rstub/swephR/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
-<li><a href="https://cran.r-project.org/package=swephR"><img src="https://www.r-pkg.org/badges/version/swephR" alt="CRAN status"></a></li>
-<li><a href="https://www.r-pkg.org/pkg/swephR"><img src="https://cranlogs.r-pkg.org/badges/swephR?color=brightgreen" alt="Downloads"></a></li>
-<li><a href="https://cran.r-project.org/package=swephR"><img src="https://tinyverse.netlify.com/badge/swephR" alt="Dependencies"></a></li>
+<li>AGPL</li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing swephR</a></li>
+</ul>
 </div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>Ralf Stubner <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Victor Reijs <br><small class="roles"> Author </small>  </li>
+<li>Authors and copyright holder of the Swiss Ephemeris <br><small class="roles"> Author, copyright holder </small>  </li>
+<li><a href="authors.html">More about authors...</a></li>
+</ul>
+</div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/rstub/swephR/actions" class="external-link"><img src="https://github.com/rstub/swephR/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://codecov.io/github/rstub/swephR?branch=master" class="external-link"><img src="https://codecov.io/gh/rstub/swephR/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
+<li><a href="https://cran.r-project.org/package=swephR" class="external-link"><img src="https://www.r-pkg.org/badges/version/swephR" alt="CRAN status"></a></li>
+<li><a href="https://www.r-pkg.org/pkg/swephR" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/swephR?color=brightgreen" alt="Downloads"></a></li>
+<li><a href="https://cran.r-project.org/package=swephR" class="external-link"><img src="https://tinyverse.netlify.com/badge/swephR" alt="Dependencies"></a></li>
+</ul>
+</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Ralf Stubner, Victor Reijs, Authors and copyright holder of the Swiss Ephemeris.</p>
+  <p></p>
+<p>Developed by Ralf Stubner, Victor Reijs, Authors and copyright holder of the Swiss Ephemeris.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -217,6 +222,8 @@
 
   
 
+
+  
 
   </body>
 </html>

@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">swephR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/swephR.html">Get started</a>
 </li>
@@ -55,7 +51,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/rstub/swephR/">
+  <a href="https://github.com/rstub/swephR/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -70,169 +66,178 @@
 
       
 
-      </header><script src="swephR_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>swephR</h1>
-                        <h4 class="author">Victor Reijs</h4>
+                        <h4 data-toc-skip class="author">Victor
+Reijs</h4>
             
-            <h4 class="date">2021-04-10</h4>
+            <h4 data-toc-skip class="date">2022-12-30</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/rstub/swephR/blob/master/vignettes/swephR.Rmd"><code>vignettes/swephR.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/rstub/swephR/blob/HEAD/vignettes/swephR.Rmd" class="external-link"><code>vignettes/swephR.Rmd</code></a></small>
       <div class="hidden name"><code>swephR.Rmd</code></div>
 
     </div>
 
     
     
-<div id="some-simple-steps-to-do-calculations" class="section level1">
-<h1 class="hasAnchor">
-<a href="#some-simple-steps-to-do-calculations" class="anchor"></a>Some simple steps to do calculations</h1>
-<p>To compute the position of celestial body or star with SE (Swiss Ephemeris), you do the following steps:</p>
+<div class="section level2">
+<h2 id="some-simple-steps-to-do-calculations">Some simple steps to do calculations<a class="anchor" aria-label="anchor" href="#some-simple-steps-to-do-calculations"></a>
+</h2>
+<p>To compute the position of celestial body or star with SE (Swiss
+Ephemeris), you do the following steps:</p>
 <ol style="list-style-type: decimal">
 <li>First load <code>swephR</code>:</li>
 </ol>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstub/swephR/">swephR</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstub/swephR/" class="external-link">swephR</a></span><span class="op">)</span></span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
-<li>Optionally set the directory path of the ephemeris files (the format of the path depends on your OS), e.g.:</li>
+<li>Optionally set the directory path of the ephemeris files (the format
+of the path depends on your OS), e.g.:</li>
 </ol>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/Section1.html">swe_set_ephe_path</a></span><span class="op">(</span><span class="st">"C:\\sweph\\ephe"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/Section1.html">swe_set_ephe_path</a></span><span class="op">(</span><span class="st">"C:\\sweph\\ephe"</span><span class="op">)</span></span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
-<li>For a specific date, compute the Julian day number (in below example: J2000.0, 1 January 2000 at 12:00 UT):</li>
+<li>For a specific date, compute the Julian day number (in below
+example: J2000.0, 1 January 2000 at 12:00 UT):</li>
 </ol>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">year</span> <span class="op">&lt;-</span> <span class="fl">2000</span>
-<span class="va">month</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-<span class="va">day</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-<span class="va">hour</span> <span class="op">&lt;-</span> <span class="fl">12</span>
-<span class="va">jdut</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Section7.html">swe_julday</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">month</span>, <span class="va">day</span>, <span class="va">hour</span>, <span class="va">SE</span><span class="op">$</span><span class="va">GREG_CAL</span><span class="op">)</span>
-<span class="va">jdut</span>
-<span class="co">#&gt; [1] 2451545</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">year</span> <span class="op">&lt;-</span> <span class="fl">2000</span></span>
+<span><span class="va">month</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="va">day</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="va">hour</span> <span class="op">&lt;-</span> <span class="fl">12</span></span>
+<span><span class="va">jdut</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Section7.html">swe_julday</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">month</span>, <span class="va">day</span>, <span class="va">hour</span>, <span class="va">SE</span><span class="op">$</span><span class="va">GREG_CAL</span><span class="op">)</span></span>
+<span><span class="va">jdut</span></span>
+<span><span class="co">#&gt; [1] 2451545</span></span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
-<li>Compute (using Moshier ephemeris) the positions (longitude, latitude, distance, longitude speed and latitude speed) of a planet or other celestial bodies (in below example: the Sun):</li>
+<li>Compute (using Moshier ephemeris) the positions (longitude,
+latitude, distance, longitude speed and latitude speed) of a planet or
+other celestial bodies (in below example: the Sun):</li>
 </ol>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ipl</span> <span class="op">&lt;-</span> <span class="va">SE</span><span class="op">$</span><span class="va">SUN</span>
-<span class="va">iflag</span> <span class="op">&lt;-</span> <span class="va">SE</span><span class="op">$</span><span class="va">FLG_MOSEPH</span> <span class="op">+</span> <span class="va">SE</span><span class="op">$</span><span class="va">FLG_SPEED</span>
-<span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Section2.html">swe_calc_ut</a></span><span class="op">(</span><span class="va">jdut</span>, <span class="va">ipl</span>, <span class="va">iflag</span><span class="op">)</span>
-<span class="va">result</span>
-<span class="co">#&gt; $return</span>
-<span class="co">#&gt; [1] 260</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $xx</span>
-<span class="co">#&gt; [1]  2.803689e+02  2.323265e-04  9.833276e-01  1.019432e+00 -8.922802e-07</span>
-<span class="co">#&gt; [6] -7.339410e-06</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $serr</span>
-<span class="co">#&gt; [1] ""</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">ipl</span> <span class="op">&lt;-</span> <span class="va">SE</span><span class="op">$</span><span class="va">SUN</span></span>
+<span><span class="va">iflag</span> <span class="op">&lt;-</span> <span class="va">SE</span><span class="op">$</span><span class="va">FLG_MOSEPH</span> <span class="op">+</span> <span class="va">SE</span><span class="op">$</span><span class="va">FLG_SPEED</span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Section2.html">swe_calc_ut</a></span><span class="op">(</span><span class="va">jdut</span>, <span class="va">ipl</span>, <span class="va">iflag</span><span class="op">)</span></span>
+<span><span class="va">result</span></span>
+<span><span class="co">#&gt; $return</span></span>
+<span><span class="co">#&gt; [1] 260</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $xx</span></span>
+<span><span class="co">#&gt; [1]  2.803689e+02  2.323265e-04  9.833276e-01  1.019432e+00 -8.922802e-07</span></span>
+<span><span class="co">#&gt; [6] -7.339410e-06</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $serr</span></span>
+<span><span class="co">#&gt; [1] ""</span></span></code></pre></div>
 <p>or a fixed star (in below example: Sirius):</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">starname</span> <span class="op">=</span> <span class="st">"sirius"</span>
-<span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Section4.html">swe_fixstar2_ut</a></span><span class="op">(</span><span class="va">starname</span>, <span class="va">jdut</span>, <span class="va">iflag</span><span class="op">)</span>
-<span class="va">result</span>
-<span class="co">#&gt; $return</span>
-<span class="co">#&gt; [1] 260</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $starname</span>
-<span class="co">#&gt; [1] "Sirius,alCMa"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $xx</span>
-<span class="co">#&gt; [1]  1.040853e+02 -3.960507e+01  5.439322e+05  4.644315e-05 -7.119241e-05</span>
-<span class="co">#&gt; [6] -4.126480e-03</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $serr</span>
-<span class="co">#&gt; [1] ""</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">starname</span> <span class="op">=</span> <span class="st">"sirius"</span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Section4.html">swe_fixstar2_ut</a></span><span class="op">(</span><span class="va">starname</span>, <span class="va">jdut</span>, <span class="va">iflag</span><span class="op">)</span></span>
+<span><span class="va">result</span></span>
+<span><span class="co">#&gt; $return</span></span>
+<span><span class="co">#&gt; [1] 260</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $starname</span></span>
+<span><span class="co">#&gt; [1] "Sirius,alCMa"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $xx</span></span>
+<span><span class="co">#&gt; [1]  1.040853e+02 -3.960507e+01  5.439322e+05  4.643164e-05 -7.119376e-05</span></span>
+<span><span class="co">#&gt; [6] -4.130539e-03</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $serr</span></span>
+<span><span class="co">#&gt; [1] ""</span></span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>Determine the Julian day number of the Heliacal Rise of Sirius:</li>
 </ol>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>digits<span class="op">=</span><span class="fl">15</span><span class="op">)</span>
-<span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Section6.html">swe_heliacal_ut</a></span><span class="op">(</span><span class="va">jdut</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">50</span>,<span class="fl">10</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1013.25</span>,<span class="fl">15</span>,<span class="fl">50</span>,<span class="fl">0.25</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">25</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">5</span>,<span class="fl">0.8</span><span class="op">)</span>,<span class="va">starname</span>,
-  <span class="va">SE</span><span class="op">$</span><span class="va">HELIACAL_RISING</span>,<span class="va">SE</span><span class="op">$</span><span class="va">HELFLAG_HIGH_PRECISION</span><span class="op">+</span><span class="va">SE</span><span class="op">$</span><span class="va">FLG_MOSEPH</span><span class="op">)</span>
-<span class="va">result</span>
-<span class="co">#&gt; $return</span>
-<span class="co">#&gt; [1] 0</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dret</span>
-<span class="co">#&gt;  [1] 2451779.67915537 2451779.68432898 2451779.69042851       0.00000000</span>
-<span class="co">#&gt;  [5]       0.00000000       0.00000000       0.00000000       0.00000000</span>
-<span class="co">#&gt;  [9]       0.00000000       0.00000000       0.00000000       0.00000000</span>
-<span class="co">#&gt; [13]       0.00000000       0.00000000       0.00000000       0.00000000</span>
-<span class="co">#&gt; [17]       0.00000000       0.00000000       0.00000000       0.00000000</span>
-<span class="co">#&gt; [21]       0.00000000       0.00000000       0.00000000       0.00000000</span>
-<span class="co">#&gt; [25]       0.00000000       0.00000000       0.00000000       0.00000000</span>
-<span class="co">#&gt; [29]       0.00000000       0.00000000       0.00000000       0.00000000</span>
-<span class="co">#&gt; [33]       0.00000000       0.00000000       0.00000000       0.00000000</span>
-<span class="co">#&gt; [37]       0.00000000       0.00000000       0.00000000       0.00000000</span>
-<span class="co">#&gt; [41]       0.00000000       0.00000000       0.00000000       0.00000000</span>
-<span class="co">#&gt; [45]       0.00000000       0.00000000       0.00000000       0.00000000</span>
-<span class="co">#&gt; [49]       0.00000000       0.00000000</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $serr</span>
-<span class="co">#&gt; [1] ""</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>digits<span class="op">=</span><span class="fl">15</span><span class="op">)</span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Section6.html">swe_heliacal_ut</a></span><span class="op">(</span><span class="va">jdut</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">50</span>,<span class="fl">10</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1013.25</span>,<span class="fl">15</span>,<span class="fl">50</span>,<span class="fl">0.25</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">25</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">5</span>,<span class="fl">0.8</span><span class="op">)</span>,<span class="va">starname</span>,</span>
+<span>  <span class="va">SE</span><span class="op">$</span><span class="va">HELIACAL_RISING</span>,<span class="va">SE</span><span class="op">$</span><span class="va">HELFLAG_HIGH_PRECISION</span><span class="op">+</span><span class="va">SE</span><span class="op">$</span><span class="va">FLG_MOSEPH</span><span class="op">)</span></span>
+<span><span class="va">result</span></span>
+<span><span class="co">#&gt; $return</span></span>
+<span><span class="co">#&gt; [1] 0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $dret</span></span>
+<span><span class="co">#&gt;  [1] 2451779.67915537 2451779.68432898 2451779.69042851       0.00000000</span></span>
+<span><span class="co">#&gt;  [5]       0.00000000       0.00000000       0.00000000       0.00000000</span></span>
+<span><span class="co">#&gt;  [9]       0.00000000       0.00000000       0.00000000       0.00000000</span></span>
+<span><span class="co">#&gt; [13]       0.00000000       0.00000000       0.00000000       0.00000000</span></span>
+<span><span class="co">#&gt; [17]       0.00000000       0.00000000       0.00000000       0.00000000</span></span>
+<span><span class="co">#&gt; [21]       0.00000000       0.00000000       0.00000000       0.00000000</span></span>
+<span><span class="co">#&gt; [25]       0.00000000       0.00000000       0.00000000       0.00000000</span></span>
+<span><span class="co">#&gt; [29]       0.00000000       0.00000000       0.00000000       0.00000000</span></span>
+<span><span class="co">#&gt; [33]       0.00000000       0.00000000       0.00000000       0.00000000</span></span>
+<span><span class="co">#&gt; [37]       0.00000000       0.00000000       0.00000000       0.00000000</span></span>
+<span><span class="co">#&gt; [41]       0.00000000       0.00000000       0.00000000       0.00000000</span></span>
+<span><span class="co">#&gt; [45]       0.00000000       0.00000000       0.00000000       0.00000000</span></span>
+<span><span class="co">#&gt; [49]       0.00000000       0.00000000</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $serr</span></span>
+<span><span class="co">#&gt; [1] ""</span></span></code></pre></div>
 <ol start="6" style="list-style-type: decimal">
-<li>Here is a miniature sample program described in Chapter 0 of the programmer’s manual of SE (<a href="http://www.astro.com/swisseph/swephprg.htm#_Toc505244830">see also</a>):</li>
+<li>Here is a miniature sample program described in Chapter 0 of the
+programmer’s manual of SE (<a href="http://www.astro.com/swisseph/swephprg.htm#_Toc505244830" class="external-link">see
+also</a>):</li>
 </ol>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R">  <span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>digits<span class="op">=</span><span class="fl">6</span><span class="op">)</span>
-  <span class="fu"><a href="../reference/Section1.html">swe_set_ephe_path</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span>
-  <span class="va">iflag</span> <span class="op">=</span> <span class="va">SE</span><span class="op">$</span><span class="va">FLG_SPEED</span> <span class="op">+</span> <span class="va">SE</span><span class="op">$</span><span class="va">FLG_MOSEPH</span>
-  <span class="op">{</span>
-    <span class="co">#get year</span>
-    <span class="va">jyear</span> <span class="op">&lt;-</span> <span class="fl">2000</span>
-    <span class="co">#get month</span>
-    <span class="va">jmon</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-    <span class="co">#get day</span>
-    <span class="va">jday</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-    <span class="co">#get time</span>
-    <span class="va">jhour</span> <span class="op">&lt;-</span> <span class="fl">12</span>
-    <span class="co">#determine julian day number (at 12:00 GMT)</span>
-    <span class="va">tjd_ut</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Section7.html">swe_julday</a></span><span class="op">(</span><span class="va">jyear</span>, <span class="va">jmon</span>, <span class="va">jday</span>, <span class="va">jhour</span>, <span class="va">SE</span><span class="op">$</span><span class="va">GREG_CAL</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Julian day number (UT) :"</span>, <span class="va">tjd_ut</span>, <span class="st">"("</span>,<span class="va">jyear</span>,<span class="st">","</span>,<span class="va">jmon</span>,<span class="st">","</span>,<span class="va">jday</span>,<span class="st">"; proleptic Gregorian calendar)\n"</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"planet :"</span>,
-        <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span>, <span class="st">"distance"</span>, <span class="st">"long. speed"</span>, <span class="st">"lat. speed"</span><span class="op">)</span>,
-        <span class="st">"\n"</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"===========================================================\n"</span><span class="op">)</span>
-    <span class="co"># loop over all planets</span>
-    <span class="kw">for</span> <span class="op">(</span><span class="va">p</span> <span class="kw">in</span> <span class="va">SE</span><span class="op">$</span><span class="va">SUN</span><span class="op">:</span><span class="va">SE</span><span class="op">$</span><span class="va">OSCU_APOG</span><span class="op">)</span> <span class="op">{</span>
-      <span class="co"># get the name of the planet p</span>
-      <span class="va">objectname</span> <span class="op">=</span> <span class="fu"><a href="../reference/Section3.html">swe_get_planet_name</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span>
-        <span class="co"># do the coordinate calculation for this planet p</span>
-        <span class="va">i</span> <span class="op">=</span> <span class="fu"><a href="../reference/Section2.html">swe_calc_ut</a></span><span class="op">(</span><span class="va">tjd_ut</span>, <span class="va">p</span>, <span class="va">iflag</span><span class="op">)</span>
-        <span class="kw">if</span> <span class="op">(</span><span class="va">i</span><span class="op">$</span><span class="va">return</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>
-          <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Error :"</span>, <span class="va">i</span><span class="op">$</span><span class="va">err</span>, <span class="st">"("</span>, <span class="va">objectname</span>, <span class="st">")\n"</span><span class="op">)</span>
-        <span class="op">}</span>
-        <span class="kw">else</span>
-        <span class="op">{</span>
-          <span class="co"># print data</span>
-          <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span> <span class="op">(</span><span class="va">objectname</span>, <span class="st">":"</span>, <span class="va">i</span><span class="op">$</span><span class="va">xx</span><span class="op">[</span><span class="fl">0</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, <span class="st">"\n"</span><span class="op">)</span>
-        <span class="op">}</span>
-    <span class="op">}</span>
-  <span class="op">}</span>
-<span class="co">#&gt; Julian day number (UT) : 2451545 ( 2000 , 1 , 1 ; proleptic Gregorian calendar)</span>
-<span class="co">#&gt; planet : longitude latitude distance long. speed lat. speed </span>
-<span class="co">#&gt; ===========================================================</span>
-<span class="co">#&gt; Sun : 280.369 0.000232327 0.983328 1.01943 -8.9228e-07 </span>
-<span class="co">#&gt; Moon : 223.324 5.17082 0.00268998 12.0212 -0.178063 </span>
-<span class="co">#&gt; Mercury : 271.889 -0.994825 1.41547 1.55625 -0.0974918 </span>
-<span class="co">#&gt; Venus : 241.566 2.06635 1.13758 1.20904 -0.0280736 </span>
-<span class="co">#&gt; Mars : 327.963 -1.06778 1.84969 0.775673 0.0124755 </span>
-<span class="co">#&gt; Jupiter : 25.253 -1.26217 4.62118 0.0407613 0.00517336 </span>
-<span class="co">#&gt; Saturn : 40.3956 -2.44482 8.6528 -0.0199448 0.00474316 </span>
-<span class="co">#&gt; Uranus : 314.809 -0.658333 20.7272 0.0503436 0.000250014 </span>
-<span class="co">#&gt; Neptune : 303.193 0.234991 31.0245 0.0355701 -0.000223651 </span>
-<span class="co">#&gt; Pluto : 251.455 10.8552 31.0644 0.0351529 0.0014674 </span>
-<span class="co">#&gt; mean Node : 125.041 0 0.00256956 -0.0529518 0 </span>
-<span class="co">#&gt; true Node : 123.953 0 0.00244538 -0.0543822 0 </span>
-<span class="co">#&gt; mean Apogee : 263.464 3.41972 0.00271063 0.111328 -0.011021 </span>
-<span class="co">#&gt; osc. Apogee : 252.979 4.07551 0.00271384 1.64684 -0.0971172</span></code></pre></div>
+<code class="sourceCode R"><span>  <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>digits<span class="op">=</span><span class="fl">6</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/Section1.html">swe_set_ephe_path</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span>
+<span>  <span class="va">iflag</span> <span class="op">=</span> <span class="va">SE</span><span class="op">$</span><span class="va">FLG_SPEED</span> <span class="op">+</span> <span class="va">SE</span><span class="op">$</span><span class="va">FLG_MOSEPH</span></span>
+<span>  <span class="op">{</span></span>
+<span>    <span class="co">#get year</span></span>
+<span>    <span class="va">jyear</span> <span class="op">&lt;-</span> <span class="fl">2000</span></span>
+<span>    <span class="co">#get month</span></span>
+<span>    <span class="va">jmon</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span>    <span class="co">#get day</span></span>
+<span>    <span class="va">jday</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span>    <span class="co">#get time</span></span>
+<span>    <span class="va">jhour</span> <span class="op">&lt;-</span> <span class="fl">12</span></span>
+<span>    <span class="co">#determine julian day number (at 12:00 GMT)</span></span>
+<span>    <span class="va">tjd_ut</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Section7.html">swe_julday</a></span><span class="op">(</span><span class="va">jyear</span>, <span class="va">jmon</span>, <span class="va">jday</span>, <span class="va">jhour</span>, <span class="va">SE</span><span class="op">$</span><span class="va">GREG_CAL</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Julian day number (UT) :"</span>, <span class="va">tjd_ut</span>, <span class="st">"("</span>,<span class="va">jyear</span>,<span class="st">","</span>,<span class="va">jmon</span>,<span class="st">","</span>,<span class="va">jday</span>,<span class="st">"; proleptic Gregorian calendar)\n"</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"planet :"</span>,</span>
+<span>        <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span>, <span class="st">"distance"</span>, <span class="st">"long. speed"</span>, <span class="st">"lat. speed"</span><span class="op">)</span>,</span>
+<span>        <span class="st">"\n"</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"===========================================================\n"</span><span class="op">)</span></span>
+<span>    <span class="co"># loop over all planets</span></span>
+<span>    <span class="kw">for</span> <span class="op">(</span><span class="va">p</span> <span class="kw">in</span> <span class="va">SE</span><span class="op">$</span><span class="va">SUN</span><span class="op">:</span><span class="va">SE</span><span class="op">$</span><span class="va">OSCU_APOG</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="co"># get the name of the planet p</span></span>
+<span>      <span class="va">objectname</span> <span class="op">=</span> <span class="fu"><a href="../reference/Section3.html">swe_get_planet_name</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
+<span>        <span class="co"># do the coordinate calculation for this planet p</span></span>
+<span>        <span class="va">i</span> <span class="op">=</span> <span class="fu"><a href="../reference/Section2.html">swe_calc_ut</a></span><span class="op">(</span><span class="va">tjd_ut</span>, <span class="va">p</span>, <span class="va">iflag</span><span class="op">)</span></span>
+<span>        <span class="kw">if</span> <span class="op">(</span><span class="va">i</span><span class="op">$</span><span class="va">return</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span>          <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Error :"</span>, <span class="va">i</span><span class="op">$</span><span class="va">err</span>, <span class="st">"("</span>, <span class="va">objectname</span>, <span class="st">")\n"</span><span class="op">)</span></span>
+<span>        <span class="op">}</span></span>
+<span>        <span class="kw">else</span></span>
+<span>        <span class="op">{</span></span>
+<span>          <span class="co"># print data</span></span>
+<span>          <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span> <span class="op">(</span><span class="va">objectname</span>, <span class="st">":"</span>, <span class="va">i</span><span class="op">$</span><span class="va">xx</span><span class="op">[</span><span class="fl">0</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, <span class="st">"\n"</span><span class="op">)</span></span>
+<span>        <span class="op">}</span></span>
+<span>    <span class="op">}</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="co">#&gt; Julian day number (UT) : 2451545 ( 2000 , 1 , 1 ; proleptic Gregorian calendar)</span></span>
+<span><span class="co">#&gt; planet : longitude latitude distance long. speed lat. speed </span></span>
+<span><span class="co">#&gt; ===========================================================</span></span>
+<span><span class="co">#&gt; Sun : 280.369 0.000232327 0.983328 1.01943 -8.9228e-07 </span></span>
+<span><span class="co">#&gt; Moon : 223.324 5.17082 0.00268998 12.0212 -0.178063 </span></span>
+<span><span class="co">#&gt; Mercury : 271.889 -0.994825 1.41547 1.55625 -0.0974918 </span></span>
+<span><span class="co">#&gt; Venus : 241.566 2.06635 1.13758 1.20904 -0.0280736 </span></span>
+<span><span class="co">#&gt; Mars : 327.963 -1.06778 1.84969 0.775673 0.0124755 </span></span>
+<span><span class="co">#&gt; Jupiter : 25.253 -1.26217 4.62118 0.0407613 0.00517336 </span></span>
+<span><span class="co">#&gt; Saturn : 40.3956 -2.44482 8.6528 -0.0199448 0.00474316 </span></span>
+<span><span class="co">#&gt; Uranus : 314.809 -0.658333 20.7272 0.0503436 0.000250014 </span></span>
+<span><span class="co">#&gt; Neptune : 303.193 0.234991 31.0245 0.0355701 -0.000223651 </span></span>
+<span><span class="co">#&gt; Pluto : 251.455 10.8552 31.0644 0.0351529 0.0014674 </span></span>
+<span><span class="co">#&gt; mean Node : 125.041 0 0.00256956 -0.0529518 0 </span></span>
+<span><span class="co">#&gt; true Node : 123.953 0 0.00244538 -0.0543822 0 </span></span>
+<span><span class="co">#&gt; mean Apogee : 263.464 3.41972 0.00271063 0.111328 -0.011021 </span></span>
+<span><span class="co">#&gt; osc. Apogee : 252.979 4.07551 0.00271384 1.64684 -0.0971172</span></span></code></pre></div>
 <ol start="7" style="list-style-type: decimal">
-<li>At the end of your computations close all files and free up memory:</li>
+<li>At the end of your computations close all files and free up
+memory:</li>
 </ol>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/Section1.html">swe_close</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/Section1.html">swe_close</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
   </div>
 
@@ -247,11 +252,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Ralf Stubner, Victor Reijs, Authors and copyright holder of the Swiss Ephemeris.</p>
+  <p></p>
+<p>Developed by Ralf Stubner, Victor Reijs, Authors and copyright holder of the Swiss Ephemeris.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -259,6 +266,8 @@
 
   
 
+
+  
 
   </body>
 </html>
