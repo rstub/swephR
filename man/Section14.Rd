@@ -8,8 +8,16 @@
 \usage{
 swe_house_pos(armc, geolat, eps, hsys, xpin)
 
-swe_gauquelin_sector(jd_ut, ipl, starname, ephe_flag, imeth, geopos,
-  atpress, attemp)
+swe_gauquelin_sector(
+  jd_ut,
+  ipl,
+  starname,
+  ephe_flag,
+  imeth,
+  geopos,
+  atpress,
+  attemp
+)
 }
 \arguments{
 \item{armc}{right ascension of the MC as double (deg)}

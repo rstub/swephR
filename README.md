@@ -54,7 +54,7 @@ Ephemeris), you do the following steps:
 ``` r
 library(swephR)
 swe_version()
-#> [1] "2.08"
+#> [1] "2.10"
 ```
 
 For a specific date, compute the Julian day number (in below example:

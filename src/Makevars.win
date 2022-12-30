@@ -6,7 +6,7 @@ all: $(SHLIB)
 $(SHLIB): libswe.a
 
 LIBSWE = libswe/swedate.o libswe/swehouse.o libswe/swejpl.o libswe/swemmoon.o \
-	 libswe/swemplan.o libswe/swepcalc.o libswe/sweph.o libswe/swepdate.o \
+	 libswe/swemplan.o libswe/sweph.o \
 	 libswe/swephlib.o libswe/swecl.o libswe/swehel.o
 libswe.a: $(LIBSWE)
 	$(AR) rcs libswe.a $(LIBSWE)

@@ -4,7 +4,9 @@
 \name{SE}
 \alias{SE}
 \title{Constants used in swephR}
-\format{A data frame with 217 rows and 2 variables}
+\format{
+A data frame with 217 rows and 2 variables
+}
 \usage{
 data(SE)
 }
