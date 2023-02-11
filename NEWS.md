@@ -1,8 +1,8 @@
 # NEWS for swephR
 
-## swephR 0.3.0.1 (unreleased)
+## swephR 0.3.1
 
-* new upstream version 2.10.03
+* new upstream version v2.10.03
 
 ## swephR 0.3.0
 

@@ -1,7 +1,7 @@
 Package: swephR
 Type: Package
 Title: High Precision Swiss Ephemeris
-Version: 0.3.0.1
+Version: 0.3.1
 Authors@R: c(
     person("Ralf", "Stubner", email = "ralf.stubner@gmail.com", role = c("aut", "cre")),
     person("Victor", "Reijs", role = "aut"),

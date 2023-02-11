@@ -3,7 +3,8 @@
 ^cran-comments\.md$
 ^Meta$
 ^doc$
-external
+^external$
+^revdep$
 
 ^codecov\.yml$
 ^.*\.Rproj$

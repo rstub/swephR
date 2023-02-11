@@ -26,13 +26,11 @@ You can install the released version of swephR from
 install.packages("swephR")
 ```
 
-Intermediate releases can also be obtained via
-[drat](https://cran.r-project.org/package=drat):
+Intermediate releases can also be obtained from
+<https://rstub.r-universe.dev/>:
 
 ``` r
-if (!requireNamespace("drat", quietly = TRUE)) install.packages("drat")
-drat::addRepo("rstub")
-install.packages("swephR")
+install.packages('swephR', repos = c('https://rstub.r-universe.dev', 'https://cloud.r-project.org'))
 ```
 
 This package uses the semi-analytic theory by Steve Moshier. For faster
@@ -40,7 +38,7 @@ and more accurate calculations, the compressed Swiss Ephemeris data is
 available in the `swephRdata` package. To access this data package, run
 
 ``` r
-install.packages("swephRdata", repos = "https://rstub.github.io/drat/", type = "source")
+install.packages("swephRdata", repos = "https://rstub.r-universe.dev", type = "source")
 ```
 
 The size of the `swephRdata` package is approximately 115 MB. The user
@@ -54,7 +52,7 @@ Ephemeris), you do the following steps:
 ``` r
 library(swephR)
 swe_version()
-#> [1] "2.10"
+#> [1] "2.10.03"
 ```
 
 For a specific date, compute the Julian day number (in below example:
