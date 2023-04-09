@@ -5,7 +5,7 @@ Version: 0.3.1
 Authors@R: c(
     person("Ralf", "Stubner", email = "ralf.stubner@gmail.com", role = c("aut", "cre")),
     person("Victor", "Reijs", role = "aut"),
-    person("Authors and copyright holder of the Swiss Ephemeris", role = c("aut", "cph"), comment = "see LICENSE for details"))
+    person("Authors and copyright holder of the Swiss Ephemeris", role = c("aut", "cph")))
 Description: The Swiss Ephemeris (version 2.10.03) is a high precision ephemeris based upon the
     DE431 ephemerides from NASA's JPL. It covers the time range 13201 BCE to
     17191 CE. This package uses the semi-analytic theory by Steve Moshier.
