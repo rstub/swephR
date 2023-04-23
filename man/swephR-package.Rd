@@ -24,7 +24,7 @@ Useful links:
 Authors:
 \itemize{
   \item Victor Reijs
-  \item Authors and copyright holder of the Swiss Ephemeris (see LICENSE for details) [copyright holder]
+  \item Authors and copyright holder of the Swiss Ephemeris [copyright holder]
 }
 
 }
