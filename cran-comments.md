@@ -1,6 +1,11 @@
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Updated the CITATION file to use bibentry()
+
 ## Test environments
 
-* local Linux install: R 4.2.2
+* local Linux install: R 4.3.0
 * Ubuntu (on GHA): R oldrel, release, devel
 * Mac OS X (on GHA): R release
 * Windows (on GHA): R release
