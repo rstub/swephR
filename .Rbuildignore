@@ -10,3 +10,4 @@ external
 ^\.Rproj\.user$
 docker
 ^\.github$
+^CRAN-SUBMISSION$

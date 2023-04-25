@@ -1,9 +1,15 @@
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Downgraded the included SWE library so that dependent packages don't break
+* Fixed the warnings w.r.t. incomplete functions
+
 ## Test environments
 
-* local Linux install: R 3.6.1
-* Ubuntu 16.04 (on Travis CI): R oldrel, release, devel
-* Mac OS X (on Travis CI): R release
-* Windows (on Appveyor): R release
+* local Linux install: R 4.3.0
+* Ubuntu (on GHA): R oldrel, release, devel
+* Mac OS X (on GHA): R release
+* Windows (on GHA): R release
 * Windows (on win-builder): R devel
 * Solaris 10 (on r-hub): R patched
 
