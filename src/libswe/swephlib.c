@@ -2141,15 +2141,15 @@ int swi_nutation(double tjd, int32 iflag, double *nutlo)
       swed.interpol.tjd_nut0 = tjd - 1.0; // one day earlier
       swed.interpol.tjd_nut2 = tjd + 1.0; // one day later
       retc = calc_nutation(swed.interpol.tjd_nut0, iflag, dnut);
-      if (retc == SE_ERR) return SE_ERR;
+      if (retc == ERR) return ERR;
       swed.interpol.nut_dpsi0 = dnut[0];
       swed.interpol.nut_deps0 = dnut[1];
       retc = calc_nutation(swed.interpol.tjd_nut2, iflag, dnut);
-      if (retc == SE_ERR) return SE_ERR;
+      if (retc == ERR) return ERR;
       swed.interpol.nut_dpsi2 = dnut[0];
       swed.interpol.nut_deps2 = dnut[1];
       retc = calc_nutation(tjd, iflag, nutlo);
-      if (retc == SE_ERR) return SE_ERR;
+      if (retc == ERR) return ERR;
       swed.interpol.nut_dpsi1 = nutlo[0];
       swed.interpol.nut_deps1 = nutlo[1];
     }
@@ -3151,7 +3151,7 @@ static double adjust_for_tidacc(double ans, double Y, double tid_acc, double tid
 }
 
 /* returns tidal acceleration used in swe_deltat() and swe_deltat_ex() */
-double CALL_CONV swe_get_tid_acc()
+double CALL_CONV swe_get_tid_acc(void)
 {
   return swed.tid_acc;
 }
@@ -3183,7 +3183,7 @@ void CALL_CONV swe_set_delta_t_userdef(double dt)
   }
 }
 
-int32 swi_guess_ephe_flag()
+int32 swi_guess_ephe_flag(void)
 {
   int32 iflag = SEFLG_SWIEPH;
   /* if jpl file is open, assume SEFLG_JPLEPH */

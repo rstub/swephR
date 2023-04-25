@@ -112,7 +112,7 @@
 #define SE_NAME_ISIS            "Isis"
 #define SE_NAME_NIBIRU          "Nibiru"
 #define SE_NAME_HARRINGTON      "Harrington"
-#define SE_NAME_NEPTUNE_LEVSE_ERRIER       "Leverrier"
+#define SE_NAME_NEPTUNE_LEVERRIER       "Leverrier"
 #define SE_NAME_NEPTUNE_ADAMS   "Adams"
 #define SE_NAME_PLUTO_LOWELL    "Lowell"
 #define SE_NAME_PLUTO_PICKERING "Pickering"
@@ -249,7 +249,7 @@
 #define NCTIES         6.0     /* number of centuries per eph. file */
 
 #define OK (0)
-#define SE_ERR (-1)
+#define ERR (-1)
 #define NOT_AVAILABLE (-2)
 #define BEYOND_EPH_LIMITS (-3)
 

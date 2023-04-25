@@ -885,7 +885,7 @@ int swi_moshmoon(double tjd, AS_BOOL do_save, double *xpmret, char *serr)
       if (strlen(serr) + strlen(s) < AS_MAXCH)
 	strcat(serr, s);
     }
-    return(SE_ERR);
+    return(ERR);
   }  
   /* if moon has already been computed */
   if (tjd == pdp->teval && pdp->iephe == SEFLG_MOSEPH) {
@@ -1179,7 +1179,7 @@ moonpol[1] *= a;
 moonpol[2] *= a;
 }
 #else
-static void moon1()
+static void moon1(void)
 {
 double a;
 /* This code added by Bhanu Pinnamaneni, 17-aug-2009 */
@@ -1364,7 +1364,7 @@ moonpol[2] *= a;
 }
 #endif	/* MOSH_MOON_200 */
 
-static void moon2()
+static void moon2(void)
 {
 /* terms in T^0 */
 g = STR*(2*(Ea-Ju+D)-MP+648431.172);
@@ -1441,7 +1441,7 @@ g = STR*(SWELP - 2.0*D + 2.5);
 B +=  0.29855 * sin(g);
 }
 
-static void moon3()
+static void moon3(void)
 {
 /* terms in T^0 */
 moonpol[0] = 0.0;
@@ -1455,7 +1455,7 @@ moonpol[2] = 1.0e-4 * moonpol[2] + 385000.52899; /* kilometers */
 
 /* Compute final ecliptic polar coordinates
  */
-static void moon4()
+static void moon4(void)
 {
 moonpol[2] /= AUNIT / 1000;
 moonpol[0] = STR * mods3600( moonpol[0] );
@@ -1509,7 +1509,7 @@ int swi_mean_node(double J, double *pol, char *serr)
       if (strlen(serr) + strlen(s) < AS_MAXCH)
 	strcat(serr, s);
     }
-    return SE_ERR;
+    return ERR;
   }
   mean_elements();
   dcor = corr_mean_node(J) * 3600;
@@ -1582,7 +1582,7 @@ int swi_mean_apog(double J, double *pol, char *serr)
       if (strlen(serr) + strlen(s) < AS_MAXCH)
 	strcat(serr, s);
     }
-    return(SE_ERR);
+    return(ERR);
   }
   mean_elements();
   pol[0] = swi_mod2PI((SWELP - MP) * STR + PI);
@@ -1760,7 +1760,7 @@ void swi_mean_lunar_elements(double tjd,
   *peri = swe_degnorm(*peri - dcor);
 }
 
-static void mean_elements()
+static void mean_elements(void)
 {
 double fracT = fmod(T, 1);
 /* Mean anomaly of sun = l' (J. Laskar) */
@@ -1817,7 +1817,7 @@ SWELP += ((z[11]*T + z[10])*T + z[9])*T2;
  */
 }
 
-void mean_elements_pl() 
+void mean_elements_pl(void)
 {
 /* Mean longitudes of planets (Laskar, Bretagnon) */
 Ve = mods3600( 210664136.4335482 * T + 655127.283046 );
