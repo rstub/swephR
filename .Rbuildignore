@@ -4,7 +4,7 @@
 ^Meta$
 ^doc$
 external
-
+revdep
 ^codecov\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$

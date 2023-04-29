@@ -34,11 +34,9 @@ swe_sol_eclipse_how(jd_ut, ephe_flag, geopos)
 
 swe_sol_eclipse_where(jd_ut, ephe_flag)
 
-swe_lun_occult_when_loc(jd_start, ipl, starname, ephe_flag, geopos,
-  backward)
+swe_lun_occult_when_loc(jd_start, ipl, starname, ephe_flag, geopos, backward)
 
-swe_lun_occult_when_glob(jd_start, ipl, starname, ephe_flag, ifltype,
-  backward)
+swe_lun_occult_when_glob(jd_start, ipl, starname, ephe_flag, ifltype, backward)
 
 swe_lun_occult_where(jd_ut, ipl, starname, ephe_flag)
 
@@ -48,8 +46,17 @@ swe_lun_eclipse_how(jd_ut, ephe_flag, geopos)
 
 swe_lun_eclipse_when(jd_start, ephe_flag, ifltype, backward)
 
-swe_rise_trans_true_hor(jd_ut, ipl, starname, ephe_flag, rsmi, geopos,
-  atpress, attemp, horhgt)
+swe_rise_trans_true_hor(
+  jd_ut,
+  ipl,
+  starname,
+  ephe_flag,
+  rsmi,
+  geopos,
+  atpress,
+  attemp,
+  horhgt
+)
 
 swe_pheno_ut(jd_ut, ipl, ephe_flag)
 
@@ -63,19 +70,38 @@ swe_refrac(InAlt, atpress, attemp, calc_flag)
 
 swe_refrac_extended(InAlt, height, atpress, attemp, lapse_rate, calc_flag)
 
-swe_heliacal_ut(jd_utstart, dgeo, datm, dobs, objectname, event_type,
-  helflag)
+swe_heliacal_ut(jd_utstart, dgeo, datm, dobs, objectname, event_type, helflag)
 
 swe_vis_limit_mag(jd_ut, dgeo, datm, dobs, objectname, helflag)
 
-swe_heliacal_pheno_ut(jd_ut, dgeo, datm, dobs, objectname, event_type,
-  helflag)
+swe_heliacal_pheno_ut(jd_ut, dgeo, datm, dobs, objectname, event_type, helflag)
 
-swe_topo_arcus_visionis(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AltO,
-  AziS, AziM, AltM)
+swe_topo_arcus_visionis(
+  jd_ut,
+  dgeo,
+  datm,
+  dobs,
+  helflag,
+  mag,
+  AziO,
+  AltO,
+  AziS,
+  AziM,
+  AltM
+)
 
-swe_heliacal_angle(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS, AziM,
-  AltM)
+swe_heliacal_angle(
+  jd_ut,
+  dgeo,
+  datm,
+  dobs,
+  helflag,
+  mag,
+  AziO,
+  AziS,
+  AziM,
+  AltM
+)
 }
 \arguments{
 \item{jd_start}{Julian day number as double (UT)}

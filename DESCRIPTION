@@ -17,7 +17,7 @@ Description: The Swiss Ephemeris (version 2.08) is a high precision ephemeris ba
 License: AGPL | file LICENSE
 Imports: Rcpp (>= 0.12.18)
 LinkingTo: Rcpp
-RoxygenNote: 6.1.1
+RoxygenNote: 7.2.3
 Suggests:
     testthat,
     swephRdata,
