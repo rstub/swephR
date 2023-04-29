@@ -370,7 +370,7 @@ char *placalc_set_ephepath(char *path)
   return epath;
 }
 
-char *placalc_get_errtext()
+char *placalc_get_errtext(void)
 {
   return perrtx;
 }

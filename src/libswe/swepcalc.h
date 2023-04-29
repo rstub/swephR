@@ -117,7 +117,7 @@ extern double mod8360(double x);
 extern double diff8360(double x, double y);
 extern double test_near_zero(double x);
 extern double deltat(double jd_ad);
-extern char *placalc_get_errtext();
+extern char *placalc_get_errtext(void);
 extern char *placalc_set_ephepath(char *new_path);	/* sets ephepath;
 				if called with NULL, returns current path */
 
