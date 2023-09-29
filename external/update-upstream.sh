@@ -4,3 +4,9 @@ do
     g=$(basename $f)
     cp swisseph/$g $f
 done
+
+for f in ../inst/ephemeris/*.txt
+do
+    g=$(basename $f)
+    find . -name $g -exec cp \{\} $f \;
+done
