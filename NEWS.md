@@ -1,5 +1,10 @@
 # NEWS for swephR
 
+## swephR (unpublished)
+
+* Add files seorbel.txt (fictitious bodies) and seleapsec.txt (leap seconds)
+* Update sefstars.txt (fixed stars)
+
 ## swephR 0.3.1
 
 * new upstream version v2.10.03

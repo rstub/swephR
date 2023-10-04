@@ -20,8 +20,10 @@ Gal. Center,SgrA*,ICRS,17,45,40.03599,-29,00,28.1699,-2.755718425, -5.547,  0.0,
 # 325.3, -7.2, 4844 km s-1 according to Kraan-Korteweg et al. 1996, 
 # Woudt 1998
 Great Attractor,GA,2000,16,15,02.836,-60,53,22.54,0.000,   0.00,  0.0,0.0000159,999.99,  0,    0
-# Virgo Cluster, according to NED (Nasa Extragalactic Database)
-Virgo Cluster,VC,2000,12,26,32.1,12,43,24,0.000,   0.00,  0.0,0.0000,999.99,  0,    0
+# Virgo Cluster, according to NED (Nasa Extragalactic Database) (old from 2008 or earlier)
+# Virgo Cluster,VC,2000,12,26,32.1,12,43,24,0.000,   0.00,  0.0,0.0000,999.99,  0,    0
+# Virgo Cluster, according to NED (Nasa Extragalactic Database) 17 June 2021
+Virgo Cluster,VC,2000,12,30,47.3,12,20,13,0.000,   0.00,  0.0,0.0000,999.99,  0,    0
 Andromeda Galaxy,M31,ICRS,00,42,44.330,+41,16,07.50,-35.99,-12.92,-301,0.00128205,3.44,  0,    0
 # Prasepe (Beehive Cluster): http://seds.lpl.arizona.edu/messier/m/m044.html (note, the apparent dimension is 95.0 arc min)
 Praesepe Cluster,M44,2000,08,40,6.000,19,59,0.00,0.000,   0.00,  0.0,5.65,3.7,  0,    0
@@ -583,6 +585,8 @@ Ruchbah II ,ome-2Cyg,ICRS,20,31,18.81663,+49,13,13.0656,9.21,-31.88,-64.15,8.17,
 # We use identical coordinates, but 61 Cyg has combined magnitude of both stars.
              ,61Cyg,ICRS,21,06,53.95249,+38,44,57.9854,4168.31,3269.2,-65.74,286.82,4.84, 38, 4343
              ,61CygA,ICRS,21,06,53.95249,+38,44,57.9854,4168.31,3269.2,-65.74,286.82,5.21, 38, 4343
+# added 3-dec-22 upon request Charlotte Jean Hardy <charlottejeanhardy@outlook.com>
+	     ,34Cyg,ICRS,20,17,47.20208,+38,01,58.5527,-3.18,-6.45,-8.9,0.32,-3e-05,0,0
 # Delphinus
 Sualocin     ,alDel,ICRS,20,39,38.28720,+15,54,43.4637,53.82,8.47,-3.4,12.85,3.8, 15, 4222
 Rotanev      ,beDel,ICRS,20,37,32.94130,+14,35,42.3195,118.09,-48.06,-22.7,32.33,3.63, 14, 4369
@@ -643,7 +647,8 @@ Athebyne    ,etDra,ICRS,16,23,59.48594,+61,30,51.1699,-17.02,56.95,-15.2,35.42,2
 Batentaban Australis,phDra,ICRS,18,20,45.43224,+71,20,16.1499,-5.03,37.86,-16,10.77,4.22, 0,  0
 Tianyi      ,7Dra,ICRS,12,47,34.3489,+66,47,25.086,5.089,-5.74,11.33,4.4,5.423, 0,0
 Taiyi       ,8Dra,ICRS,12,55,28.54827,+65,26,18.5073,-4.8,-30.09,9,34.14,5.225, 0,0
-Fafnir      ,32Dra,ICRS,17,53,31.72962,+56,52,21.5143,93.82,78.5,-26.46,28.98,3.75, 0,0
+#Fafnir      ,32Dra,ICRS,17,53,31.72962,+56,52,21.5143,93.82,78.5,-26.46,28.98,3.75, 0,0
+Fafnir      ,42Dra,ICRS,18,25,59.1383795957,+65,33,48.503958394,105.248,-25.104,31.79,11.0061,4.823, 0,0
 # Equuleus
 Kitalpha     ,alEqu,ICRS,21,15,49.43192,+05,14,52.2430,59.88,-94.09,-16.26,17.14,3.933, 04, 4635
              ,gaEqu,ICRS,21,10,20.50005,+10,07,53.6763,48.74,-153.03,-16.5,27.55,4.68, 09, 4732
