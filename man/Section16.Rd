@@ -25,5 +25,5 @@ Useful functions
 swe_day_of_week(1234.567)
 }
 \seealso{
-\url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244906}
+Section 16.7 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 }

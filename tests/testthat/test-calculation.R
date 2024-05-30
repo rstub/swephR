@@ -41,7 +41,7 @@ test_that("Moon near present day with SEFLG_MOSEPH (UT)", {
   expect_true(is.list(result))
   expect_equal(result$return, 4)
   expect_equal(result$serr, "")
-  expect_equal(result$xx, c(2.09403930530591e+02, 5.23876557411171e+00, 2.54767266268742e-03, 0, 0, 0))
+  expect_equal(result$xx, c(2.09403920927940e+02, 5.23876547658629e+00, 2.54767263292795e-03, 0, 0, 0))
   swe_close()
 })
 
@@ -91,7 +91,7 @@ test_that("Existing star position (ET)", {
   expect_true(is.list(result))
   expect_equal(result$return, 34820)
   expect_equal(result$star, "Sirius,alCMa")
-  expect_equal(result$xx, c(64.6573398258270  , -17.8051962679158 , 551818.7534446509089, 0,0,0),tolerance = .00001)
+  expect_equal(result$xx, c(64.6573398258270  , -17.8051962679158 , 547924.62574, 0,0,0),tolerance = .00001)
   swe_close()
 })
 
@@ -101,7 +101,7 @@ test_that("Existing star position (UT)", {
   expect_true(is.list(result))
   expect_equal(result$return, 34820)
   expect_equal(result$star, "Sirius,alCMa")
-  expect_equal(result$xx, c(64.6572872143770,    -17.8051778192498, 551818.7549828081392, 0,0,0),tolerance = .00001)
+  expect_equal(result$xx, c(64.6572872143770,    -17.8051778192498, 547924.62843, 0,0,0),tolerance = .00001)
   swe_close()
 })
 
@@ -112,8 +112,8 @@ test_that("Two existing stars positions (ET)", {
   expect_true(is.list(result))
   expect_equal(result$return, c(34820, 34820))
   expect_equal(result$star, c("Sirius,alCMa", "Aldebaran,alTau"))
-  expect_equal(result$xx, matrix(c(6.465315e+01, -1.780315e+01, 5.518192e+05, -3.482530e-04, 1.170200e-05, -3.109594e-03,
-                                   2.385093e+01, 4.006615e+00, 4.138739e+06, 0.000000e+00, 0.000000e+00, 0.000000e+00),
+  expect_equal(result$xx, matrix(c(6.465315e+01, -1.780315e+01, 547924.6, -3.482530e-04, 1.170200e-05, -3.109594e-03,
+                                   2.385093e+01, 4.006615e+00, 4176531.2, 0.000000e+00, 0.000000e+00, 0.000000e+00),
                                 nrow = 2, byrow = TRUE), tolerance = .00001)
   swe_close()
 })

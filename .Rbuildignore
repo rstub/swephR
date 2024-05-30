@@ -1,9 +1,14 @@
+^README\.Rmd$
+^CRAN-RELEASE$
+^cran-comments\.md$
 ^Meta$
 ^doc$
-external
+^external$
+^revdep$
 
-^\.travis\.yml$
-^appveyor\.yml$
 ^codecov\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+docker
+^\.github$
+^CRAN-SUBMISSION$

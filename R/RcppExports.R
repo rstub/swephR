@@ -3,8 +3,8 @@
 
 #' @title Section 1: The Ephemeris file related functions
 #' @name Section1
-#' @description Several initialisation functions
-#' @seealso \url{http://www.astro.com/swisseph/swephprg.htm?lang=g#_Toc505244831}
+#' @description Several initialization functions
+#' @seealso Section 1 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 #' @details
 #' \describe{
 #'   \item{swe_set_ephe_path()}{This is the first function that should be called
@@ -15,8 +15,9 @@
 #'        Swiss Ephemeris may work, but the results may be not 100\% consistent.}
 #'   \item{swe_close()}{At the end of your computations this function releases most
 #'        resources (open files and allocated memory) used by Swiss Ephemeris.}
-#'   \item{swe_set_jpl_file()}{Set name of JPL ephemeris file.} 
+#'   \item{swe_set_jpl_file()}{Set name of JPL ephemeris file.}
 #'   \item{swe_version()}{The function provides the version number of the Swiss Ephemeris software.}
+#'   \item{swe_get_library_path()}{The function provides the path where the executable resides.}
 #' }
 #' @param path Directory for the sefstars.txt, swe_deltat.txt and jpl files
 #' @examples
@@ -24,6 +25,7 @@
 #' swe_close()
 #' swe_set_jpl_file("de431.eph")
 #' swe_version()
+#' swe_get_library_path()
 #' @rdname Section1
 #' @export
 swe_set_ephe_path <- function(path) {
@@ -50,22 +52,11 @@ swe_version <- function() {
     .Call(`_swephR_version`)
 }
 
-#' @title Section 16.7: Other functions that may be useful
-#' @name Section16
-#' @description Useful functions
-#' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244906}
-#' @details
-#' \describe{
-#'   \item{swe_day_of_week()}{Determine day of week from Julian day number.}
-#' }
-#' @param jd  Julian day number as numeric vector (day)
-#' @return \code{swe_day_of_week} returns the day of week as integer vector (0 Monday .. 6 Sunday)
-#' @examples
-#' swe_day_of_week(1234.567)
-#' @rdname Section16
+#' @return \code{swe_get_library_path} returns the path in which the executable resides as string
+#' @rdname Section1
 #' @export
-swe_day_of_week <- function(jd) {
-    .Call(`_swephR_day_of_week`, jd)
+swe_get_library_path <- function() {
+    .Call(`_swephR_get_library_path`)
 }
 
 calc_ut <- function(jd_ut, ipl, iflag) {
@@ -79,16 +70,16 @@ calc <- function(jd_et, ipl, iflag) {
 #' @title Section 3: Find a planetary or asteroid name
 #' @name Section3
 #' @description Find a planetary or asteroid name.
-#' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244843}
+#' @seealso Section 3 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 #' @details
 #' \describe{
-#'   \item{swe_get_planet_name()}{Convert object number into ubject name.}
+#'   \item{swe_get_planet_name()}{Convert object number into object name.}
 #' }
 #' @examples
 #' data(SE)
 #' swe_get_planet_name(SE$MOON)
 #' @param ipl  Body/planet as integer (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)
-#' @return \code{swe_get_planet_name} returns objectname as string
+#' @return \code{swe_get_planet_name} returns the object's name as string
 #' @rdname Section3
 #' @export
 swe_get_planet_name <- function(ipl) {
@@ -112,25 +103,96 @@ swe_fixstar2_mag <- function(starname) {
     .Call(`_swephR_fixstar2_mag`, starname)
 }
 
+#' @title Section 5: Kepler elements, nodes, apsides and orbital periods
+#' @name Section5
+#' @description Functions for: determining Kepler elements, nodes, apsides and orbital periods
+#' @seealso Section 5 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+#' @param jd_et  ET Julian day number as double (day)
+#' @param jd_ut  UT Julian day number as double (day)
+#' @param ipl  Body/planet as integer (\code{SE$SUN=0}, \code{SE$MOON=1}, ... \code{SE$PLUTO=9})
+#' @param iflag Computation flag as integer, many options possible (section 2.3)
+#' @param method Method as integer (\code{SE$NODBIT_MEAN=0}, \code{SE$NODBIT_OSCUN=1},, \code{SE$NODBIT_OSCU_BAR=4}, \code{SE$NODBIT_FOPOINT=256})
+#' @details
+#' \describe{
+#'   \item{swe_nod_aps_ut()}{Compute planetary nodes and apsides (perihelia, aphelia, second focal points of the orbital ellipses).}
+#'   }
+#' @examples
+#' data(SE)
+#' swe_nod_aps_ut(2451545,SE$MOON, SE$FLG_MOSEPH,SE$NODBIT_MEAN)
+#' swe_nod_aps(2451545,SE$MOON, SE$FLG_MOSEPH,SE$NODBIT_MEAN)
+#' swe_get_orbital_elements(2451545,SE$MOON, SE$FLG_MOSEPH)
+#' swe_orbit_max_min_true_distance(2451545,SE$MOON, SE$FLG_MOSEPH)
+#' @return \code{swe_nod_aps_ut} returns a list with named entries:
+#'      \code{return} status flag as integer, \code{xnasc} ascending nodes as numeric vector,
+#'      \code{xndsc} descending nodes as numeric vector, \code{xperi} perihelion as numeric vector, \code{xaphe} aphelion as numeric vector and \code{serr} error message as string
+#' @rdname Section5
+#' @export
+swe_nod_aps_ut <- function(jd_ut, ipl, iflag, method) {
+    .Call(`_swephR_nod_aps_ut`, jd_ut, ipl, iflag, method)
+}
+
+#' @details
+#' \describe{
+#'   \item{swe_nod_aps()}{Compute planetary nodes and apsides (perihelia, aphelia, second focal points of the orbital ellipses).}
+#'   }
+#' @return \code{swe_nod_aps} returns a list with named entries:
+#'      \code{return} status flag as integer, \code{xnasc} ascending nodes as numeric vector,
+#'      \code{xndsc} descending nodes as numeric vector, \code{xperi} perihelion as numeric vector, \code{xaphe} aphelion as numeric vector and \code{serr} error message as string
+#' @rdname Section5
+#' @export
+swe_nod_aps <- function(jd_et, ipl, iflag, method) {
+    .Call(`_swephR_nod_aps`, jd_et, ipl, iflag, method)
+}
+
+#' @details
+#' \describe{
+#'   \item{swe_get_orbital_elements()}{This function calculates osculating elements (Kepler elements) and orbital periods.}
+#'   }
+#' @return \code{swe_get_orbital_elements} returns a list with named entries:
+#'      \code{return} status flag as integer, \code{dret} function results as numeric vector and \code{serr} error message as string
+#' @rdname Section5
+#' @export
+swe_get_orbital_elements <- function(jd_et, ipl, iflag) {
+    .Call(`_swephR_get_orbital_elements`, jd_et, ipl, iflag)
+}
+
+#' @details
+#' \describe{
+#'   \item{swe_orbit_max_min_true_distance()}{This function calculates the maximum possible distance, the minimum possible distance and the current true distance of planet.}
+#'   }
+#' @return \code{swe_orbit_max_min_true_distance} returns a list with named entries:
+#'      \code{return} status flag as integer, \code{dmax} maximum distance as double,
+#'      \code{dmin} minimum distance as double, \code{dtrue} true distance as double and \code{serr} error message as string
+#' @rdname Section5
+#' @export
+swe_orbit_max_min_true_distance <- function(jd_et, ipl, iflag) {
+    .Call(`_swephR_orbit_max_min_true_distance`, jd_et, ipl, iflag)
+}
+
 #' @title Section 6: Eclipses, Risings, Settings, Meridian Transits, Planetary Phenomena
 #' @name Section6
-#' @description Functions for: determining eclipse and occultation calculations, computing the times of rising, setting and 
-#' meridian transits for all planets, asteroids, the moon and the fixed stars; computing phase, phase angle, elongation, 
-#' apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids; and determing 
+#' @description Functions for: determining eclipse and occultation calculations, computing the times of rising, setting and
+#' meridian transits for all planets, asteroids, the moon and the fixed stars; computing phase, phase angle, elongation,
+#' apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids; and determining
 #' heliacal phenomenon after a given start date
-#' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244853}
+#' @seealso Section 6 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 #' @param jd_et  ET Julian day number as double (day)
-#' @param ipl  Body/planet as integer (SE$SUN=0, SE$MOON=1,  ... SE$PLUTO=9)
-#' @param starname  Star name as string ("" for no star)
+#' @param ipl  Body/planet as integer (\code{SE$SUN=0}, \code{SE$MOON=1}, ... \code{SE$PLUTO=9})
+#' @param starname  Star name as string (\code{""} for no star)
 #' @param jd_ut  UT Julian day number as double (day)
-#' @param calc_flag Calculation flag as integer (refraction direction (SE$TRUE_TO_APP=0 or SE$APP_TO_TRUE=1))
-#' @param coord_flag Coordinate flag as integer (reference system (SE$ECL2HOR=0 or SE$EQU2HOR=1)) 
+#' @param jd_start  Julian day number as double (UT)
+#' @param calc_flag Calculation flag as integer (refraction direction (\code{SE$TRUE_TO_APP=0} or \code{SE$APP_TO_TRUE=1}))
+#' @param coord_flag Coordinate flag as integer (reference system (\code{SE$ECL2HOR=0} or \code{SE$EQU2HOR=1}))
 #' @param atpress Atmospheric pressure as double (hPa)
 #' @param attemp Atmospheric temperature as double (Celsius)
-#' @param ephe_flag Ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4)
+#' @param geopos position as numeric vector (longitude, latitude, height)
+#' @param backward backwards search as boolean (TRUE)
+#' @param ephe_flag Ephemeris flag as integer (\code{SE$FLG_JPLEPH=1}, \code{SE$FLG_SWIEPH=2} or \code{SE$FLG_MOSEPH=4})
+#' @param ifltype eclipse type as integer (\code{SE$ECL_CENTRAL=1}, \code{SE$ECL_NONCENTRAL=2},
+#'  \code{SE$ECL_TOTAL=4}, \code{SE$ECL_ANNULAR=8}, \code{SE$ECL_PARTIAL=16}, \code{SE$ECL_ANNULAR_TOTAL=32} or 0 for any)
 #' @param horhgt Horizon apparent altitude as double (deg)
 #' @param xin  Position of body as numeric vector (either ecliptical or equatorial coordinates, depending on coord_flag)
-#' @param rsmi  Event flag as integer (e.g.: SE$CALC_RISE=1, SE$CALC_SET=2,SE$CALC_MTRANSIT=4,SE$CALC_ITRANSIT=8)
+#' @param rsmi  Event flag as integer (e.g.: \code{SE$CALC_RISE=1}, \code{SE$CALC_SET=2}, \code{SE$CALC_MTRANSIT=4}, \code{SE$CALC_ITRANSIT=8})
 #' @details
 #' \describe{
 #'   \item{swe_sol_eclipse_when_loc()}{Find the next solar eclipse for a given geographic position.}
@@ -138,9 +200,15 @@ swe_fixstar2_mag <- function(starname) {
 #' @examples
 #' data(SE)
 #' swe_sol_eclipse_when_loc(1234567,SE$FLG_MOSEPH,c(0,50,10),FALSE)
+#' swe_sol_eclipse_when_glob(1234567,SE$FLG_MOSEPH,SE$ECL_TOTAL+SE$ECL_CENTRAL+SE$ECL_NONCENTRAL,FALSE)
+#' swe_sol_eclipse_how(1234580.19960447,SE$FLG_MOSEPH,c(0,50,10))
+#' swe_sol_eclipse_where(1234771.68584597,SE$FLG_MOSEPH)
+#' swe_lun_occult_when_loc(1234567,SE$VENUS,"",SE$FLG_MOSEPH+SE$ECL_ONE_TRY,c(0,50,10),FALSE)
+#' swe_lun_occult_when_glob(1234567,SE$VENUS,"",SE$FLG_MOSEPH+SE$ECL_ONE_TRY,SE$ECL_TOTAL,FALSE)
+#' swe_lun_occult_where(1234590.44756319,SE$VENUS,"",SE$FLG_MOSEPH+SE$ECL_ONE_TRY)
 #' swe_lun_eclipse_when_loc(1234567,SE$FLG_MOSEPH,c(0,50,10),FALSE)
-#' swe_lun_eclipse_how(1234580.19960447,SE$FLG_MOSEPH,c(0,50,10))
 #' swe_lun_eclipse_when(1234567,SE$FLG_MOSEPH,SE$ECL_CENTRAL,FALSE)
+#' swe_lun_eclipse_how(1234580.19960447,SE$FLG_MOSEPH,c(0,50,10))
 #' swe_rise_trans_true_hor(1234567.5,SE$SUN,"",SE$FLG_MOSEPH,0,c(0,50,10),1013.25,15,0)
 #' swe_pheno_ut(1234567,1,SE$FLG_MOSEPH)
 #' swe_pheno(1234567,1,SE$FLG_MOSEPH)
@@ -157,49 +225,123 @@ swe_fixstar2_mag <- function(starname) {
 #'   SE$HELFLAG_HIGH_PRECISION+SE$HELFLAG_OPTICAL_PARAMS,-1,124,2,120,0,-45)
 #' swe_heliacal_angle(1234567.5,c(0,50,10),c(1013.25,15,20,0.25),c(25,1,1,1,5,0.8),
 #'   SE$HELFLAG_HIGH_PRECISION+SE$HELFLAG_OPTICAL_PARAMS,-1,124,120,0,-45)
-#' @return \code{swe_sol_eclipse_when_loc} returns a list with named entries: 
-#'      \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector, 
-#'      \code{attr} pheneomena during eclipse as numeric vector and \code{serr} error message as string
+#' @return \code{swe_sol_eclipse_when_loc} returns a list with named entries:
+#'      \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector,
+#'      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
 #' @rdname Section6
 #' @export
 swe_sol_eclipse_when_loc <- function(jd_start, ephe_flag, geopos, backward) {
     .Call(`_swephR_sol_eclipse_when_loc`, jd_start, ephe_flag, geopos, backward)
 }
 
-#' @details 
+#' @details
+#' \describe{
+#' \item{swe_sol_eclipse_when_glob()}{Find the next solar eclipse on earth.}
+#' }
+#' @return \code{swe_sol_eclipse_when_glob} returns a list with named entries:
+#'      \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector
+#'      and \code{serr} error warning as string
+#' @rdname Section6
+#' @export
+swe_sol_eclipse_when_glob <- function(jd_start, ephe_flag, ifltype, backward) {
+    .Call(`_swephR_sol_eclipse_when_glob`, jd_start, ephe_flag, ifltype, backward)
+}
+
+#' @details
+#' \describe{
+#' \item{swe_sol_eclipse_how()}{Compute the attributes of a solar eclipse for a given time.}
+#' }
+#' @return \code{swe_sol_eclipse_how} returns a list with named entries:
+#'      \code{return} status flag as integer,
+#'      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
+#' @rdname Section6
+#' @export
+swe_sol_eclipse_how <- function(jd_ut, ephe_flag, geopos) {
+    .Call(`_swephR_sol_eclipse_how`, jd_ut, ephe_flag, geopos)
+}
+
+#' @details
+#' \describe{
+#' \item{swe_sol_eclipse_where()}{Compute the geographic position of a solar eclipse path.}
+#' }
+#' @return \code{swe_sol_eclipse_where} returns a list with named entries:
+#'      \code{return} status flag as integer, \code{pathpos} geographic path positions as numeric vector,
+#'      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
+#' @rdname Section6
+#' @export
+swe_sol_eclipse_where <- function(jd_ut, ephe_flag) {
+    .Call(`_swephR_sol_eclipse_where`, jd_ut, ephe_flag)
+}
+
+#' @details
+#' \describe{
+#' \item{swe_lun_occult_when_loc()}{Find the next lunar occultation with planet or star at a certain position.}
+#' }
+#' @return \code{swe_lun_occult_when_loc} returns a list with named entries:
+#'      \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector,
+#'      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
+#' @rdname Section6
+#' @export
+swe_lun_occult_when_loc <- function(jd_start, ipl, starname, ephe_flag, geopos, backward) {
+    .Call(`_swephR_lun_occult_when_loc`, jd_start, ipl, starname, ephe_flag, geopos, backward)
+}
+
+#' @details
+#' \describe{
+#' \item{swe_lun_occult_when_glob()}{Find the next lunar occultation with planet or star somewhere on the earth.}
+#' }
+#' @return \code{swe_lun_occult_when_glob} returns a list with named entries:
+#'      \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector,
+#'      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
+#' @rdname Section6
+#' @export
+swe_lun_occult_when_glob <- function(jd_start, ipl, starname, ephe_flag, ifltype, backward) {
+    .Call(`_swephR_lun_occult_when_glob`, jd_start, ipl, starname, ephe_flag, ifltype, backward)
+}
+
+#' @details
+#' \describe{
+#' \item{swe_lun_occult_where()}{Compute the geographic position of an occultation path.}
+#' }
+#' @return \code{swe_lun_occult_where} returns a list with named entries:
+#'      \code{return} status flag as integer, \code{pathpos} geographic path positions as numeric vector,
+#'      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
+#' @rdname Section6
+#' @export
+swe_lun_occult_where <- function(jd_ut, ipl, starname, ephe_flag) {
+    .Call(`_swephR_lun_occult_where`, jd_ut, ipl, starname, ephe_flag)
+}
+
+#' @details
 #' \describe{
 #' \item{swe_lun_eclipse_when_loc()}{Find the next lunar eclipse for a given geographic position.}
 #' }
-#' @param geopos position as numeric vector (longitude, latitude, height)
-#' @param backward backwards search as boolean (TRUE)
 #' @return \code{swe_lun_eclipse_when_loc} returns a list with named entries:
 #'      \code{return} status flag as integer, \code{tret} for eclipse timing moments,
-#'      \code{attr} pheneomena during eclipse and \code{serr} error warning as string
+#'      \code{attr} phenomena during eclipse and \code{serr} error warning as string
 #' @rdname Section6
 #' @export
 swe_lun_eclipse_when_loc <- function(jd_start, ephe_flag, geopos, backward) {
     .Call(`_swephR_lun_eclipse_when_loc`, jd_start, ephe_flag, geopos, backward)
 }
 
-#' @details 
+#' @details
 #' \describe{
 #' \item{swe_lun_eclipse_how()}{Compute the attributes of a lunar eclipse for a given time.}
 #' }
-#' @param jd_start  Julian day number as double (UT)
 #' @return \code{swe_lun_eclipse_how} returns a list with named entries:
 #'      \code{return} status flag as integer,
-#'      \code{attr} pheneomena during eclipse as numeric vector and \code{serr} error message as string
+#'      \code{attr} phenomena during eclipse as numeric vector and \code{serr} error message as string
 #' @rdname Section6
 #' @export
 swe_lun_eclipse_how <- function(jd_ut, ephe_flag, geopos) {
     .Call(`_swephR_lun_eclipse_how`, jd_ut, ephe_flag, geopos)
 }
 
-#' @details 
+#' @details
 #' \describe{
 #' \item{swe_lun_eclipse_when()}{Find the next lunar eclipse on earth.}
 #' }
-#' @param ifltype eclipse type as integer (e.g.: SE$ECL_CENTRAL=1,SE$ECL_NONCENTRAL=2,SE$ECL_TOTAL=4,SE$ECL_ANNULAR=8,SE$ECL_PARTIAL=16,SE$ECL_ANNULAR_TOTAL=32)
 #' @return \code{swe_lun_eclipse_when} returns a list with named entries:
 #'      \code{return} status flag as integer, \code{tret} for eclipse timing moments as numeric vector
 #'      and \code{serr} error warning as string
@@ -209,19 +351,19 @@ swe_lun_eclipse_when <- function(jd_start, ephe_flag, ifltype, backward) {
     .Call(`_swephR_lun_eclipse_when`, jd_start, ephe_flag, ifltype, backward)
 }
 
-#' @details 
+#' @details
 #' \describe{
 #' \item{swe_rise_trans_true_hor()}{Compute the times of rising, setting and meridian transits for planets, asteroids, the moon, and the fixed stars for a local horizon that has an altitude. }
 #' }
 #' @return \code{swe_rise_trans_true_hor} returns a list with named entries: \code{return} status flag as integer,
-#'      \code{tret} for azi/alt info as numeric vector and \code{serr} error message as string
+#'      \code{tret} for azimuth/altitude info as double and \code{serr} error message as string
 #' @rdname Section6
 #' @export
 swe_rise_trans_true_hor <- function(jd_ut, ipl, starname, ephe_flag, rsmi, geopos, atpress, attemp, horhgt) {
     .Call(`_swephR_rise_trans_true_hor`, jd_ut, ipl, starname, ephe_flag, rsmi, geopos, atpress, attemp, horhgt)
 }
 
-#' @details 
+#' @details
 #' \describe{
 #' \item{swe_pheno_ut()}{Compute phase, phase angle, elongation, apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids (UT)}
 #' }
@@ -234,7 +376,7 @@ swe_pheno_ut <- function(jd_ut, ipl, ephe_flag) {
     .Call(`_swephR_pheno_ut`, jd_ut, ipl, ephe_flag)
 }
 
-#' @details 
+#' @details
 #' \describe{
 #' \item{swe_pheno()}{Compute phase, phase angle, elongation, apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids (ET).}
 #' }
@@ -247,7 +389,7 @@ swe_pheno <- function(jd_et, ipl, ephe_flag) {
     .Call(`_swephR_pheno`, jd_et, ipl, ephe_flag)
 }
 
-#' @details 
+#' @details
 #' \describe{
 #' \item{swe_azalt()}{Compute the horizontal coordinates (azimuth and altitude) of a planet or a star from either ecliptical or equatorial coordinates.}
 #' }
@@ -259,41 +401,53 @@ swe_azalt <- function(jd_ut, coord_flag, geopos, atpress, attemp, xin) {
     .Call(`_swephR_azalt`, jd_ut, coord_flag, geopos, atpress, attemp, xin)
 }
 
-#' @details 
+#' @details
 #' \describe{
-#' \item{swe_azalt_rev()}{compute either ecliptical or equatorial coordinates from azimuth and true altitude.
-#' If only an apparent altitude is given, the true altitude has to be computed first with 
+#' \item{swe_azalt_rev()}{Compute either ecliptical or equatorial coordinates from azimuth and true altitude.
+#' If only an apparent altitude is given, the true altitude has to be computed first with
 #' e.g. the function swe_refrac_extended().}
 #' }
 #' @return \code{swe_azalt_rev} returns a list with named entries:
-#'      \code{xaz} for celestial info a snumeric vector.
+#'      \code{xaz} for celestial info as numeric vector.
 #' @rdname Section6
 #' @export
 swe_azalt_rev <- function(jd_ut, coord_flag, geopos, xin) {
     .Call(`_swephR_azalt_rev`, jd_ut, coord_flag, geopos, xin)
 }
 
-#' @details 
+#' @details
 #' \describe{
-#' \item{swe_refrac_extended()}{Calculate either the topocentric altitude from the apparent altitude 
-#' or the apparent altitude from the topocentric altitude.
-#' It allows correct calculation of refraction for heights above sea > 0, 
-#' where the ideal horizon and planets that are visible may have a negative altitude. }
+#' \item{swe_refrac()}{Calculate either the topocentric altitude from the apparent altitude
+#' or the apparent altitude from the topocentric altitude.}
 #' }
 #' @param InAlt  object's apparent/topocentric altitude as double (depending on calc_flag) (deg)
+#' @return \code{swe_refrac} returns the (apparent/topocentric) altitude as double (deg)
+#' @rdname Section6
+#' @export
+swe_refrac <- function(InAlt, atpress, attemp, calc_flag) {
+    .Call(`_swephR_refrac`, InAlt, atpress, attemp, calc_flag)
+}
+
+#' @details
+#' \describe{
+#' \item{swe_refrac_extended()}{Calculate either the topocentric altitude from the apparent altitude
+#' or the apparent altitude from the topocentric altitude.
+#' It allows correct calculation of refraction for heights above sea > 0,
+#' where the ideal horizon and planets that are visible may have a negative altitude. }
+#' }
 #' @param height  observer's height as double (m)
 #' @param lapse_rate  lapse rate as double (K/m)
 #' @return \code{swe_refrac_extended} returns a list with named entries: \code{return} status flag as integer,
-#'      \code{dret} refraction results as nemeric vector (TopoAlt, AppAlt, refraction)
+#'      \code{dret} refraction results as numeric vector (TopoAlt, AppAlt, refraction)
 #' @rdname Section6
 #' @export
 swe_refrac_extended <- function(InAlt, height, atpress, attemp, lapse_rate, calc_flag) {
     .Call(`_swephR_refrac_extended`, InAlt, height, atpress, attemp, lapse_rate, calc_flag)
 }
 
-#' @details 
+#' @details
 #' \describe{
-#' \item{swe_heliacal_ut()}{Compute the Julian day of the next heliacal phenomenon after a given UT start date. 
+#' \item{swe_heliacal_ut()}{Compute the Julian day of the next heliacal phenomenon after a given UT start date.
 #' It works between geographic latitudes 60 South and 60 North.}
 #' }
 #' @param jd_utstart  UT Julian day number as double (day)
@@ -311,11 +465,11 @@ swe_heliacal_ut <- function(jd_utstart, dgeo, datm, dobs, objectname, event_type
     .Call(`_swephR_heliacal_ut`, jd_utstart, dgeo, datm, dobs, objectname, event_type, helflag)
 }
 
-#' @details 
+#' @details
 #' \describe{
-#' \item{swe_vis_limit_mag()}{Determine the limiting visual magnitude in dark skies. If the visual magnitude mag of an object is known 
-#' for a given date (e. g. from a call of function swe_pheno_ut(), and if magnitude is smaller than the value returned 
-#' by swe_vis_limt_mag(), then it is visible.}
+#' \item{swe_vis_limit_mag()}{Determine the limiting visual magnitude in dark skies. If the visual magnitude mag of an object is known
+#' for a given date (e. g. from a call of function swe_pheno_ut(), and if magnitude is smaller than the value returned
+#' by swe_vis_limit_mag(), then it is visible.}
 #' }
 #' @return \code{swe_vis_limit_mag} returns a list with named entries: \code{return} status flag as integer,
 #'      \code{dret} limiting magnitude as double and \code{serr} error message as string
@@ -325,11 +479,11 @@ swe_vis_limit_mag <- function(jd_ut, dgeo, datm, dobs, objectname, helflag) {
     .Call(`_swephR_vis_limit_mag`, jd_ut, dgeo, datm, dobs, objectname, helflag)
 }
 
-#' @details 
+#' @details
 #' \describe{
-#' \item{swe_heliacal_pheno_ut()}{Provide data that are relevant for the calculation of heliacal risings and settings. 
-#' This function does not provide data of heliacal risings and settings itself, just some 
-#' additional data mostly used for test purposes. To calculate heliacal risings and settings, 
+#' \item{swe_heliacal_pheno_ut()}{Provide data that are relevant for the calculation of heliacal risings and settings.
+#' This function does not provide data of heliacal risings and settings itself, just some
+#' additional data mostly used for test purposes. To calculate heliacal risings and settings,
 #' use the function swe_heliacal_ut().}
 #' }
 #' @return \code{swe_heliacal_pheno_ut} returns a list with named entries: \code{return} status flag as integer
@@ -340,7 +494,7 @@ swe_heliacal_pheno_ut <- function(jd_ut, dgeo, datm, dobs, objectname, event_typ
     .Call(`_swephR_heliacal_pheno_ut`, jd_ut, dgeo, datm, dobs, objectname, event_type, helflag)
 }
 
-#' @details 
+#' @details
 #' \describe{
 #' \item{swe_topo_arcus_visionis()}{Compute topocentric arcus visionis.}
 #' }
@@ -348,7 +502,7 @@ swe_heliacal_pheno_ut <- function(jd_ut, dgeo, datm, dobs, objectname, event_typ
 #' @param AziO  Object's azimuth as double (deg)
 #' @param AltO  Object's altitude as double (deg)
 #' @param AziS  Sun's azimuth as double (deg)
-#' @param AziM  Moon's azimut as double (deg)
+#' @param AziM  Moon's azimuth as double (deg)
 #' @param AltM  Moon's altitude as double (deg)
 #' @return \code{swe_topo_arcus_visionis} returns a list with named entries: \code{return} status flag as integer,
 #'      \code{darr} heliacal details as numeric vector and \code{serr} error message as string
@@ -358,7 +512,7 @@ swe_topo_arcus_visionis <- function(jd_ut, dgeo, datm, dobs, helflag, mag, AziO,
     .Call(`_swephR_topo_arcus_visionis`, jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AltO, AziS, AziM, AltM)
 }
 
-#' @details 
+#' @details
 #' \describe{
 #' \item{swe_heliacal_angle()}{Compute heliacal angle.}
 #' }
@@ -373,58 +527,140 @@ swe_heliacal_angle <- function(jd_ut, dgeo, datm, dobs, helflag, mag, AziO, AziS
 #' @title Section 7: Date and time conversion functions
 #' @name Section7
 #' @description Functions related to calendar and time conversions.
-#' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244873}
+#' @seealso Section 7 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 #' @details
 #' \describe{
 #'   \item{swe_julday()}{Convert calendar dates to the astronomical time scale which measures time in Julian day number.}
-#'   \item{swe_date_conversion()}{Convert calendar dates to the astronomical time scale which measures time in Julian day 
+#'   \item{swe_date_conversion()}{Convert calendar dates to the astronomical time scale which measures time in Julian day
 #'   number and checks if the calendar date is legal.}
 #'   \item{swe_revjul()}{Compute year, month, day and hour from a Julian day number.}
+#'   \item{swe_utc_time_zone()}{Convert local time to UTC and UTC to local time.}
+#'   \item{swe_utc_to_jd()}{Convert UTC to Julian day number (UT and ET).}
+#'   \item{swe_jdet_to_utc()}{Convert Julian day number (ET) into UTC.}
+#'   \item{swe_jdut1_to_utc()}{Convert Julian day number (UT1) into UTC.}
+#'   \item{swe_time_equ()}{Calculate equation of time (LAT-LMT).}
+#'   \item{swe_lmt_to_lat()}{Convert Julian day number (LMT) into Julian day number (LAT).}
+#'   \item{swe_lat_to_lmt()}{Convert Julian day number (LAT) into Julian day number (LMT).}
 #' }
 #' @examples
 #' data(SE)
 #' swe_julday(2000,1,1,12,SE$GREG_CAL)
 #' swe_date_conversion(2000,1,1,12,"g")
 #' swe_revjul(2452500,SE$GREG_CAL)
+#' swe_utc_time_zone(2000,1,1,12,5,1.2,2)
+#' swe_utc_to_jd(2000,1,1,0,12,3.4,SE$GREG_CAL)
+#' swe_jdet_to_utc(2452500,SE$GREG_CAL)
+#' swe_jdut1_to_utc(2452500,SE$GREG_CAL)
+#' swe_time_equ(2452500)
+#' swe_lmt_to_lat(2452500,0)
+#' swe_lat_to_lmt(2452500,0)
 #' @param year  Astronomical year as integer
 #' @param month  Month as integer
 #' @param day  Day as integer
-#' @param hour  Hour as double
+#' @param hourd  Hour as double
+#' @param houri  Hour as integer
+#' @param min  min as integer
+#' @param sec  Second as double
+#' @param geolon  geographic longitude as double (deg)
 #' @param gregflag  Calendar type as integer (SE$JUL_CAL=0 or SE$GREG_CAL=1)
+#' @param jd_et  Julian day number (ET) as double (day)
+#' @param jd_ut  Julian day number (UT) as double (day)
+#' @param jd_lmt  Julian day number (LMT=UT+geolon/360) as double (day)
+#' @param jd_lat  Julian day number (LAT) as double (day)
 #' @rdname Section7
 #' @export
-swe_julday <- function(year, month, day, hour, gregflag) {
-    .Call(`_swephR_julday`, year, month, day, hour, gregflag)
+swe_julday <- function(year, month, day, hourd, gregflag) {
+    .Call(`_swephR_julday`, year, month, day, hourd, gregflag)
 }
 
-#' @param cal  Calendar type "g"[regorian] or "j"[ulian] as char
+#' @param cal  Calendar type "g" [Gregorian] or "j" [Julian] as char
 #' @return \code{swe_date_conversion} returns a list with named entries: \code{return} status flag as integer,
 #'      \code{jd} Julian day number as double
 #' @rdname Section7
 #' @export
-swe_date_conversion <- function(year, month, day, hour, cal) {
-    .Call(`_swephR_date_conversion`, year, month, day, hour, cal)
+swe_date_conversion <- function(year, month, day, hourd, cal) {
+    .Call(`_swephR_date_conversion`, year, month, day, hourd, cal)
 }
 
 #' @param jd  Julian day number as double
 #' @return \code{swe_revjul} returns a list with named entries: \code{year} year as integer,
-#'      \code{month} month as interger, \code{day} day as integer and \code{hour} hour as double.
+#'      \code{month} month as integer, \code{day} day as integer and \code{hour} hour as double.
 #' @rdname Section7
 #' @export
 swe_revjul <- function(jd, gregflag) {
     .Call(`_swephR_revjul`, jd, gregflag)
 }
 
+#' @param d_timezone  Timezone offset as double (hour)
+#' @return \code{swe_utc_time_zone} returns a list with named entries: \code{year_out} year as integer,
+#'      \code{month_out} month as integer, \code{day_out} day as integer, \code{hour_out} hour as integer, \code{min_out} minute as integer, 
+#'      \code{sec_out} second as double,
+#' @rdname Section7
+#' @export
+swe_utc_time_zone <- function(year, month, day, houri, min, sec, d_timezone) {
+    .Call(`_swephR_utc_time_zone`, year, month, day, houri, min, sec, d_timezone)
+}
+
+#' @return \code{swe_utc_to_jd} returns a list with named entries: \code{return} status flag as integer,
+#'      \code{dret} Julian day number as numeric vector and \code{serr} for error message as string.
+#' @rdname Section7
+#' @export
+swe_utc_to_jd <- function(year, month, day, houri, min, sec, gregflag) {
+    .Call(`_swephR_utc_to_jd`, year, month, day, houri, min, sec, gregflag)
+}
+
+#' @return \code{swe_jdet_to_utc} returns a list with named entries: \code{year_out} year as integer,
+#'      \code{month_out} month as integer, \code{day_out} day as integer, \code{hour_out} hour as integer, \code{min_out} minute as integer, 
+#'      \code{sec_out} second as double,
+#' @rdname Section7
+#' @export
+swe_jdet_to_utc <- function(jd_et, gregflag) {
+    .Call(`_swephR_jdet_to_utc`, jd_et, gregflag)
+}
+
+#' @return \code{swe_jdut1_to_utc} returns a list with named entries: \code{year_out} year as integer,
+#'      \code{month_out} month as integer, \code{day_out} day as integer, \code{hour_out} hour as integer, \code{min_out} minute as integer, 
+#'      \code{sec_out} second as double,
+#' @rdname Section7
+#' @export
+swe_jdut1_to_utc <- function(jd_ut, gregflag) {
+    .Call(`_swephR_jdut1_to_utc`, jd_ut, gregflag)
+}
+
+#' @return \code{swe_swe_time_equ} returns a list with named entries: \code{return} status flag as integer,
+#'      \code{e} equation of time (day) as double and \code{serr} for error message as string.
+#' @rdname Section7
+#' @export
+swe_time_equ <- function(jd_ut) {
+    .Call(`_swephR_time_equ`, jd_ut)
+}
+
+#' @return \code{swe_lmt_to_lat} returns a list with named entries: \code{return} status flag as integer,
+#'      \code{jd_lat} Julian day number (LAT) (day) as double and \code{serr} for error message as string.
+#' @rdname Section7
+#' @export
+swe_lmt_to_lat <- function(jd_lmt, geolon) {
+    .Call(`_swephR_lmt_to_lat`, jd_lmt, geolon)
+}
+
+#' @return \code{swe_lat_to_lmt} returns a list with named entries: \code{return} status flag as integer,
+#'      \code{jd_lmt} Julian day number (LMT) (day) as double and \code{serr} for error message as string.
+#' @rdname Section7
+#' @export
+swe_lat_to_lmt <- function(jd_lat, geolon) {
+    .Call(`_swephR_lat_to_lmt`, jd_lat, geolon)
+}
+
 #' @title Section 8: Delta T-related functions
 #' @name Section8
-#' @description FUnctions rleated to DeltaT and tidal acceleration
-#' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244878}
-#' @param ephe_flag  ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4) (section 2.3.2)
-#' @details 
+#' @description Functions related to DeltaT and tidal acceleration
+#' @seealso Section 8 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+#' @param ephe_flag  ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4)
+#' @details
 #' \describe{
 #' \item{swe_deltat_ex()}{Determine DeltaT from Julian day number for a specific ephemeris.}
 #' }
-#' @param jd_ut  Julian day number (UT) as numeric vector (day)
+#' @param jd_ut Julian day number (UT) as numeric vector (day)
 #' @param t_acc Tidal acceleration as double (arcsec/century^2)
 #' @param delta_t DeltaT (day)
 #' @examples
@@ -442,7 +678,7 @@ swe_deltat_ex <- function(jd_ut, ephe_flag) {
     .Call(`_swephR_deltat_ex`, jd_ut, ephe_flag)
 }
 
-#' @details 
+#' @details
 #' \describe{
 #' \item{swe_deltat()}{Determine DeltaT from Julian day number for a used ephemeris.
 #' This function is only safe if:
@@ -460,7 +696,7 @@ swe_deltat <- function(jd_ut) {
     .Call(`_swephR_deltat`, jd_ut)
 }
 
-#' @details 
+#' @details
 #' \describe{
 #' \item{swe_set_tid_acc()}{Set the tidal acceleration.}
 #' }
@@ -470,7 +706,7 @@ swe_set_tid_acc <- function(t_acc) {
     invisible(.Call(`_swephR_set_tid_acc`, t_acc))
 }
 
-#' @details 
+#' @details
 #' \describe{
 #' \item{swe_get_tid_acc()}{Get the present configured tidal acceleration.}
 #' }
@@ -481,9 +717,9 @@ swe_get_tid_acc <- function() {
     .Call(`_swephR_get_tid_acc`)
 }
 
-#' @details 
+#' @details
 #' \describe{
-#' \item{swe_set_delta_t_userdef()}{Allows the user to set a fixed DeltaT value that will 
+#' \item{swe_set_delta_t_userdef()}{Allows the user to set a fixed DeltaT value that will
 #' be returned by swe_deltat() or swe_deltat_ex().}
 #' }
 #' @rdname Section8
@@ -495,10 +731,10 @@ swe_set_delta_t_userdef <- function(delta_t) {
 #' @title Section 9: The function for calculating topocentric planet position
 #' @name Section9
 #' @description Function for topocentric planet positions
-#' @seealso \url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244884}
+#' @seealso Section 9 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 #' @details
 #' \describe{
-#'   \item{we_set_topo{}}{Set the topocentric location of the observer.}
+#' \item{swe_set_topo()}{Set the topocentric location of the observer.}
 #' }
 #' @param longitude  Geographic longitude as double (deg)
 #' @param lat  Geographic latitude as double (deg)
@@ -509,5 +745,200 @@ swe_set_delta_t_userdef <- function(delta_t) {
 #' @export
 swe_set_topo <- function(longitude, lat, height) {
     invisible(.Call(`_swephR_set_topo`, longitude, lat, height))
+}
+
+#' @title Section 10: Sidereal mode functions
+#' @name Section10
+#' @description Functions to support the determination of sidereal information
+#' @seealso Section 10 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+#' @param iflag Computation flag as integer, many options possible (section 2.3)
+#' @param sid_mode  Sidereal mode as integer
+#' @details
+#' \describe{
+#' \item{swe_set_sid_mode()}{Set the mode for sidereal computations.}
+#' }
+#' @param t0  Reference date as double (day)
+#' @param ayan_t0  The initial latitude value of the ayanamsa as double (deg)
+#' @examples
+#' data(SE)
+#' swe_set_sid_mode(SE$SIDM_FAGAN_BRADLEY,0,0)
+#' swe_get_ayanamsa_name(SE$SIDM_FAGAN_BRADLEY)
+#' swe_get_ayanamsa_ex_ut(2458346.82639,SE$FLG_MOSEPH)
+#' swe_get_ayanamsa_ex(2458346.82639,SE$FLG_MOSEPH)
+#' @rdname Section10
+#' @export
+swe_set_sid_mode <- function(sid_mode, t0, ayan_t0) {
+    invisible(.Call(`_swephR_set_sid_mode`, sid_mode, t0, ayan_t0))
+}
+
+#' @details
+#' \describe{
+#' \item{swe_get_ayanamsa_name()}{Get the mode name for sidereal computations.}
+#' }
+#' @return \code{swe_get_ayanamsa_name} returns name of ayanamsa method as string
+#' @rdname Section10
+#' @export
+swe_get_ayanamsa_name <- function(sid_mode) {
+    .Call(`_swephR_get_ayanamsa_name`, sid_mode)
+}
+
+#' @details
+#' \describe{
+#' \item{swe_get_ayanamsa_ex_ut()}{It computes ayanamsa using UT.}
+#' }
+#' @param jd_ut  UT Julian day number as double (day)
+#' @return \code{swe_get_ayanamsa_ex_ut} returns a list with named entries: \code{return} status flag as integer,
+#'      \code{daya} ayanamsa value as double and \code{serr} error message as string
+#' @rdname Section10
+#' @export
+swe_get_ayanamsa_ex_ut <- function(jd_ut, iflag) {
+    .Call(`_swephR_get_ayanamsa_ex_ut`, jd_ut, iflag)
+}
+
+#' @details
+#' \describe{
+#' \item{swe_get_ayanamsa_ex()}{It computes ayanamsa using ET.}
+#' }
+#' @param jd_et  ET Julian day number as double (day)
+#' @return \code{swe_get_ayanamsa_ex} returns a list with named entries: \code{return} status flag as integer,
+#'      \code{daya} ayanamsa value as double and \code{serr} error message as string
+#' @rdname Section10
+#' @export
+swe_get_ayanamsa_ex <- function(jd_et, iflag) {
+    .Call(`_swephR_get_ayanamsa_ex`, jd_et, iflag)
+}
+
+#' @title Section 13: House cusp, ascendant and Medium Coeli calculations
+#' @name Section13
+#' @description Calculate house cusp, ascendant, Medium Coeli, etc. calculations
+#' @seealso Section 13 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+#' @param geolat  geographic latitude as double (deg)
+#' @param geolon  geographic longitude as double (deg)
+#' @param hsys  house method, one-letter case sensitive as char
+#' @details
+#' \describe{
+#' \item{swe_houses_ex()}{Calculate houses' cusps, ascendant, Medium Coeli (MC), etc.}
+#' }
+#' @param jd_ut  UT Julian day number as double (day)
+#' @param cuspflag cusp flag as integer (0 [tropical], SE$FLG_SIDEREAL, SE$FLG_RADIANS)
+#' @return \code{swe_houses_ex} returns a list with named entries: \code{return} status flag as integer,
+#'      \code{cusps} cusps values as double and \code{ascmc} ascendent, MCs. etc. as double.
+#' @examples
+#' swe_houses_ex(1234567, 0, 53, 0, 'B')
+#' @rdname Section13
+#' @export
+swe_houses_ex <- function(jd_ut, cuspflag, geolat, geolon, hsys) {
+    .Call(`_swephR_houses_ex`, jd_ut, cuspflag, geolat, geolon, hsys)
+}
+
+#' @details
+#' \describe{
+#' \item{swe_houses_armc()}{Calculate houses' information from the right ascension of the Medium Coeli (MC).}
+#' }
+#' @param armc  right ascension of the MC as double (deg)
+#' @param eps  ecliptic obliquity as double (deg)
+#' @return \code{swe_houses_armc} returns a list with named entries: \code{return} status flag as integer,
+#'      \code{cusps} cusps values as double and \code{ascmc} ascendent, MCs, etc. as double.
+#' @examples
+#' swe_houses_armc(12, 53, 23, 'B')
+#' @rdname Section13
+#' @export
+swe_houses_armc <- function(armc, geolat, eps, hsys) {
+    .Call(`_swephR_houses_armc`, armc, geolat, eps, hsys)
+}
+
+#' @details
+#' \describe{
+#' \item{swe_houses_name()}{Provide the house name.}
+#' }
+#' @return \code{swe_house_name} returns the house name as string
+#' @examples
+#' swe_house_name('G')
+#' @rdname Section13
+#' @export
+swe_house_name <- function(hsys) {
+    .Call(`_swephR_house_name`, hsys)
+}
+
+#' @title Section 14: House position calculations
+#' @name Section14
+#' @description Calculate house position of a given body.
+#' @seealso Section 14 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+#' @param geolat  geographic latitude as double (deg)
+#' @param hsys  house method, one-letter case sensitive as char
+#' @param armc  right ascension of the MC as double (deg)
+#' @param eps  ecliptic obliquity as double (deg)
+#' @param xpin  longitude and latitude of the given body as numeric vector (deg)
+#' @details
+#' \describe{
+#' \item{swe_house_pos()}{Calculate house position of given body.}
+#' }
+#' @return \code{swe_house_pos} returns a list with named entries: \code{return} how far from body's cusp as double,
+#'      and \code{serr} error message as string.
+#' @examples
+#' swe_house_pos(12, 53, 23, 'B', c(0,0))
+#' @rdname Section14
+#' @export
+swe_house_pos <- function(armc, geolat, eps, hsys, xpin) {
+    .Call(`_swephR_house_pos`, armc, geolat, eps, hsys, xpin)
+}
+
+#' @details
+#' \describe{
+#' \item{swe_gauquelin_sector()}{Compute the Gauquelin sector position of a planet or star. }
+#' }
+#' @param ipl  Body/planet as integer (\code{SE$SUN=0}, \code{SE$MOON=1}, ... \code{SE$PLUTO=9})
+#' @param starname  Star name as string (\code{""} for no star)
+#' @param jd_ut  UT Julian day number as double (day)
+#' @param geopos position as numeric vector (longitude, latitude, height)
+#' @param atpress Atmospheric pressure as double (hPa)
+#' @param attemp Atmospheric temperature as double (Celsius)
+#' @param ephe_flag Ephemeris flag as integer (\code{SE$FLG_JPLEPH=1}, \code{SE$FLG_SWIEPH=2} or \code{SE$FLG_MOSEPH=4})
+#' @param imeth Gauquelin method as integer (0, 1, 2, 3, 4 or 5)
+#' @examples
+#' data(SE)
+#' swe_gauquelin_sector(1234567.5,SE$VENUS,"",SE$FLG_MOSEPH,0,c(0,50,10),1013.25,15)
+#' @return \code{swe_gauquelin_sector} returns a list with named entries: \code{return} status flag as integer,
+#'      \code{dgsect} for Gauquelin sector as double and \code{serr} error message as string
+#' @rdname Section14
+#' @export
+swe_gauquelin_sector <- function(jd_ut, ipl, starname, ephe_flag, imeth, geopos, atpress, attemp) {
+    .Call(`_swephR_gauquelin_sector`, jd_ut, ipl, starname, ephe_flag, imeth, geopos, atpress, attemp)
+}
+
+#' @title Section 15: Sidereal time
+#' @name Section15
+#' @description Calculate the sidereal time (in degrees).
+#' @seealso Section 15 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+#' @details
+#' \describe{
+#' \item{swe_sidtime()}{Determine the sidereal time.}
+#' }
+#' @param jd_ut  UT Julian day number as double (day)
+#' @return \code{swe_sidtime} returns the sidereal time as double (deg)
+#' @examples
+#' swe_sidtime(2451545)
+#' @rdname Section15
+#' @export
+swe_sidtime <- function(jd_ut) {
+    .Call(`_swephR_sidtime`, jd_ut)
+}
+
+#' @title Section 16.7: Other functions that may be useful
+#' @name Section16
+#' @description Useful functions
+#' @seealso Section 16.7 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+#' @details
+#' \describe{
+#'   \item{swe_day_of_week()}{Determine day of week from Julian day number.}
+#' }
+#' @param jd  Julian day number as numeric vector (day)
+#' @return \code{swe_day_of_week} returns the day of week as integer vector (0 Monday .. 6 Sunday)
+#' @examples
+#' swe_day_of_week(1234.567)
+#' @rdname Section16
+#' @export
+swe_day_of_week <- function(jd) {
+    .Call(`_swephR_day_of_week`, jd)
 }
 

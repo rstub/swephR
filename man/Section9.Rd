@@ -19,12 +19,12 @@ Function for topocentric planet positions
 }
 \details{
 \describe{
-  \item{we_set_topo{}}{Set the topocentric location of the observer.}
+\item{swe_set_topo()}{Set the topocentric location of the observer.}
 }
 }
 \examples{
 swe_set_topo(0,50,10)
 }
 \seealso{
-\url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244884}
+Section 9 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 }

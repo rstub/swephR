@@ -21,13 +21,12 @@ knitr::opts_chunk$set(
 To compute the position of celestial body or star with SE (Swiss Ephemeris), you do the following steps:
 
 
-1. First load `swephR` and constants used in swephR/SE:
+1. First load `swephR`:
 ```{r}
 library(swephR)
-data(SE)
 ```
 
-2. Optionaly set the directory path of the ephemeris files  (the format of the path depends on your OS), e.g.:
+2. Optionally set the directory path of the ephemeris files  (the format of the path depends on your OS), e.g.:
 ```{r, eval = FALSE}
 swe_set_ephe_path("C:\\sweph\\ephe")
 ```
@@ -64,12 +63,11 @@ result <- swe_heliacal_ut(jdut,c(0,50,10),c(1013.25,15,50,0.25),c(25,1,1,1,5,0.8
 result
 ```
 
-6. Here is a miniature sample program described in Chapter 0 of the programma's manual of SE ([see also](http://www.astro.com/swisseph/swephprg.htm#_Toc505244830)):
+6. Here is a miniature sample program described in Chapter 0 of the programmer's manual of SE ([see also](http://www.astro.com/swisseph/swephprg.htm#_Toc505244830)):
 ```{r}
   options(digits=6)
   swe_set_ephe_path(NULL)
-  data(SE)
-  iflag = SE$FLG_SPEED
+  iflag = SE$FLG_SPEED + SE$FLG_MOSEPH
   {
     #get year
     jyear <- 2000

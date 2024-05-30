@@ -15,7 +15,7 @@ swe_calc(jd_et, ipl, iflag)
 
 \item{ipl}{Body/planet as integer (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)}
 
-\item{iflag}{Computation flag as integer, many options possible (section 2.3)}
+\item{iflag}{Computation flag as integer, many options possible (section 2.3.1)}
 
 \item{jd_et}{ET Julian day number as double (day)}
 }
@@ -31,7 +31,7 @@ Computing positions of planets, asteroids, lunar nodes and apogees using Swiss E
 }
 \details{
 \describe{
-  \item{swe_calc_ut()}{It compute positions using UT.} 
+  \item{swe_calc_ut()}{It compute positions using UT.}
   \item{swe_calc()}{It compute positions using ET.}
 }
 }
@@ -41,5 +41,5 @@ swe_calc_ut(2458346.82639, SE$MOON, SE$FLG_MOSEPH)
 swe_calc(2458346.82639, SE$MOON, SE$FLG_MOSEPH)
 }
 \seealso{
-\url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244837}
+Section 2 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 }

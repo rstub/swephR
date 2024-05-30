@@ -1,19 +1,17 @@
 /*********************************************************
-  $Header: /home/dieter/sweph/RCS/swedate.c,v 1.75 2009/04/08 07:17:29 dieter Exp $
-  version 15-feb-89 16:30
   
   swe_date_conversion()
   swe_revjul()
   swe_julday()
 
 ************************************************************/
-/* Copyright (C) 1997 - 2008 Astrodienst AG, Switzerland.  All rights reserved.
-  
+/* Copyright (C) 1997 - 2021 Astrodienst AG, Switzerland.  All rights reserved.
+
   License conditions
   ------------------
 
   This file is part of Swiss Ephemeris.
-  
+
   Swiss Ephemeris is distributed with NO WARRANTY OF ANY KIND.  No author
   or distributor accepts any responsibility for the consequences of using it,
   or for whether it serves any particular purpose or works at all, unless he
@@ -23,17 +21,17 @@
   system. The software developer, who uses any part of Swiss Ephemeris
   in his or her software, must choose between one of the two license models,
   which are
-  a) GNU public license version 2 or later
+  a) GNU Affero General Public License (AGPL)
   b) Swiss Ephemeris Professional License
-  
+
   The choice must be made before the software developer distributes software
   containing parts of Swiss Ephemeris to others, and before any public
   service using the developed software is activated.
 
-  If the developer choses the GNU GPL software license, he or she must fulfill
+  If the developer choses the AGPL software license, he or she must fulfill
   the conditions of that license, which includes the obligation to place his
-  or her whole software project under the GNU GPL or a compatible license.
-  See http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+  or her whole software project under the AGPL or a compatible license.
+  See https://www.gnu.org/licenses/agpl-3.0.html
 
   If the developer choses the Swiss Ephemeris Professional license,
   he must follow the instructions as found in http://www.astro.com/swisseph/ 
@@ -63,7 +61,7 @@
 
 /*
   swe_date_conversion():
-  This function converts some date+time input {d,m,y,uttime}
+  This function converts some date+time input {y,m,d,uttime}
   into the Julian day number tjd.
   The function checks that the input is a legal combination
   of dates; for illegal dates like 32 January 1993 it returns ERR
@@ -110,7 +108,7 @@ int CALL_CONV swe_date_conversion(int y,
   } else {
     return ERR;
   }
-}	/* end date_conversion */
+}
 
 /*************** swe_julday ********************************************
  * This function returns the absolute Julian day number (JD)
@@ -148,16 +146,13 @@ int CALL_CONV swe_date_conversion(int y,
 
  Original author: Marc Pottenger, Los Angeles.
  with bug fix for year < -4711   15-aug-88 by Alois Treindl
- (The parameter sequence m,d,y still indicates the US origin,
-  be careful because the similar function date_conversion() uses
-  other parameter sequence and also Astrodienst relative juldate.)
  
  References: Oliver Montenbruck, Grundlagen der Ephemeridenrechnung,
              Verlag Sterne und Weltraum (1987), p.49 ff
  
  related functions: swe_revjul() reverse Julian day number: compute the
   			       calendar date from a given JD
-	            date_conversion() includes test for legal date values
+	            swe_date_conversion() includes test for legal date values
 		    and notifies errors like 32 January.
  ****************************************************************/
 

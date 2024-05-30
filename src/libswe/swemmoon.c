@@ -1,11 +1,10 @@
 /* SWISSEPH
-   $Header: /home/dieter/sweph/RCS/swemmoon.c,v 1.74 2008/06/16 10:07:20 dieter Exp $
  *
  * Steve Moshier's analytical lunar ephemeris
 
 **************************************************************/
-/* Copyright (C) 1997 - 2008 Astrodienst AG, Switzerland.  All rights reserved.
-  
+/* Copyright (C) 1997 - 2021 Astrodienst AG, Switzerland.  All rights reserved.
+
   License conditions
   ------------------
 
@@ -20,17 +19,17 @@
   system. The software developer, who uses any part of Swiss Ephemeris
   in his or her software, must choose between one of the two license models,
   which are
-  a) GNU public license version 2 or later
+  a) GNU Affero General Public License (AGPL)
   b) Swiss Ephemeris Professional License
 
   The choice must be made before the software developer distributes software
   containing parts of Swiss Ephemeris to others, and before any public
   service using the developed software is activated.
 
-  If the developer choses the GNU GPL software license, he or she must fulfill
+  If the developer choses the AGPL software license, he or she must fulfill
   the conditions of that license, which includes the obligation to place his
-  or her whole software project under the GNU GPL or a compatible license.
-  See http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+  or her whole software project under the AGPL or a compatible license.
+  See https://www.gnu.org/licenses/agpl-3.0.html
 
   If the developer choses the Swiss Ephemeris Professional license,
   he must follow the instructions as found in http://www.astro.com/swisseph/ 
@@ -1180,7 +1179,7 @@ moonpol[1] *= a;
 moonpol[2] *= a;
 }
 #else
-static void moon1()
+static void moon1(void)
 {
 double a;
 /* This code added by Bhanu Pinnamaneni, 17-aug-2009 */
@@ -1365,7 +1364,7 @@ moonpol[2] *= a;
 }
 #endif	/* MOSH_MOON_200 */
 
-static void moon2()
+static void moon2(void)
 {
 /* terms in T^0 */
 g = STR*(2*(Ea-Ju+D)-MP+648431.172);
@@ -1442,7 +1441,7 @@ g = STR*(SWELP - 2.0*D + 2.5);
 B +=  0.29855 * sin(g);
 }
 
-static void moon3()
+static void moon3(void)
 {
 /* terms in T^0 */
 moonpol[0] = 0.0;
@@ -1456,7 +1455,7 @@ moonpol[2] = 1.0e-4 * moonpol[2] + 385000.52899; /* kilometers */
 
 /* Compute final ecliptic polar coordinates
  */
-static void moon4()
+static void moon4(void)
 {
 moonpol[2] /= AUNIT / 1000;
 moonpol[0] = STR * mods3600( moonpol[0] );
@@ -1761,7 +1760,7 @@ void swi_mean_lunar_elements(double tjd,
   *peri = swe_degnorm(*peri - dcor);
 }
 
-static void mean_elements()
+static void mean_elements(void)
 {
 double fracT = fmod(T, 1);
 /* Mean anomaly of sun = l' (J. Laskar) */
@@ -1818,7 +1817,7 @@ SWELP += ((z[11]*T + z[10])*T + z[9])*T2;
  */
 }
 
-void mean_elements_pl() 
+void mean_elements_pl(void)
 {
 /* Mean longitudes of planets (Laskar, Bretagnon) */
 Ve = mods3600( 210664136.4335482 * T + 655127.283046 );

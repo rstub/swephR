@@ -37,18 +37,18 @@ The following functions are used to calculate positions of fixed stars.
 }
 \details{
 \describe{
-  \item{swe_fixstar2_mag()}{Calculate visible magnitude (Vmag) of star.} 
+  \item{swe_fixstar2_mag()}{Calculate visible magnitude (Vmag) of star.}
   \item{swe_fixstar2()}{Compute information of star using ET.}
-  \item{swe_fixstar2_ut()}{Compute information of star using UT} 
+  \item{swe_fixstar2_ut()}{Compute information of star using UT}
 }
 }
 \examples{
 data(SE)
-swe_fixstar2_mag("sirius") 
-swe_set_topo(0,50,10)      
+swe_fixstar2_mag("sirius")
+swe_set_topo(0,50,10)
 swe_fixstar2("sirius",1234567,SE$FLG_TOPOCTR+SE$FLG_MOSEPH+SE$FLG_EQUATORIAL)
 swe_fixstar2_ut("sirius",1234567,SE$FLG_TOPOCTR+SE$FLG_MOSEPH+SE$FLG_EQUATORIAL)
 }
 \seealso{
-\url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244844}
+Section 4 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 }

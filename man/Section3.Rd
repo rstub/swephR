@@ -11,14 +11,14 @@ swe_get_planet_name(ipl)
 \item{ipl}{Body/planet as integer (SE$SUN=0, SE$Moon=1,  ... SE$PLUTO=9)}
 }
 \value{
-\code{swe_get_planet_name} returns objectname as string
+\code{swe_get_planet_name} returns the object's name as string
 }
 \description{
 Find a planetary or asteroid name.
 }
 \details{
 \describe{
-  \item{swe_get_planet_name()}{Convert object number into ubject name.}
+  \item{swe_get_planet_name()}{Convert object number into object name.}
 }
 }
 \examples{
@@ -26,5 +26,5 @@ data(SE)
 swe_get_planet_name(SE$MOON)
 }
 \seealso{
-\url{http://www.astro.com/swisseph/swephprg.htm#_Toc505244843}
+Section 3 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 }
