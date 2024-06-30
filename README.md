@@ -4,7 +4,7 @@
 [![R build
 status](https://github.com/rstub/swephR/workflows/R-CMD-check/badge.svg)](https://github.com/rstub/swephR/actions)
 [![Coverage
-status](https://codecov.io/gh/rstub/swephR/branch/master/graph/badge.svg)](https://codecov.io/github/rstub/swephR?branch=master)
+status](https://codecov.io/gh/rstub/swephR/branch/master/graph/badge.svg)](https://app.codecov.io/github/rstub/swephR?branch=master)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/swephR)](https://cran.r-project.org/package=swephR)
 [![Downloads](https://cranlogs.r-pkg.org/badges/swephR?color=brightgreen)](https://www.r-pkg.org/pkg/swephR)
