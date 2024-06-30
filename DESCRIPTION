@@ -30,3 +30,4 @@ Additional_repositories: https://rstub.r-universe.dev
 VignetteBuilder: knitr
 LazyData: true
 Language: en-US
+Config/build/compilation-database: true

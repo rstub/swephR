@@ -10,3 +10,6 @@ inst/doc
 *.dll
 *~
 swephR.Rproj
+compile_commands.json
+.cache
+revdep
