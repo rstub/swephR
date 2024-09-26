@@ -1,0 +1,76 @@
+---
+title: "swephR"
+author: "Victor Reijs"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{swephR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Introduction
+This vignette provides input how the vectorised swephR functions can be used (these function-names start with 'vec-').The vectorised functions provide a list of lists as results. 
+These functions are not finalised and are in testing. A decision STILL has to be made if the reuslts should be a list of matrices or a list of lists.
+
+
+# Some simple steps to do calculations
+To compute the position of celestial body or star with SE (Swiss Ephemeris) for two dates (aka using vectorisation), you do the following steps:
+
+
+1. First load `swephR` and constants used in swephR/SE:
+```{r}
+library(swephR)
+data(SE)
+```
+
+2. Optionaly set the directory path of the ephemeris files  (the format of the path depends on your OS), e.g.:
+```{r, eval = FALSE}
+swe_set_ephe_path("C:\\sweph\\ephe")
+```
+
+3. For a specific date, compute the Julian day number (in below example: 1 January 2000CE at 12:00 UT (or J2000.0) and 1 January 1BCE at 12:00):
+```{r}
+year1 <- 2000
+year2 <- 0
+month <- 1
+day <- 1
+hour <- 12
+jdut <- vec_julday(c(year1,year2), month, day, hour, SE$GREG_CAL)
+jdut
+```
+4. Compute (using Moshier ephemeris) the positions (longitude, latitude, distance, longitude speed and latitude speed) of a planet or other celestial bodies for two dates (in below example: the Sun and Moon):
+```{r}
+ipl1 <- SE$SUN
+ipl2 <- SE$MOON
+iflag <- SE$FLG_MOSEPH + SE$FLG_SPEED
+result <- vec_calc_ut(c(jdut[[1]],jdut[[2]]), c(ipl1,ipl1,ipl2,ipl2), iflag)
+result
+```
+or a fixed star on two dates (in below example: Sirius):
+```{r}
+starname = "sirius"
+result <- vec_fixstar2_ut(starname, c(jdut[[1]],jdut[[2]]), iflag)
+result
+```
+
+5. Determine the Julian day number of the Heliacal Rise of Sirius for two epochs:
+```{r}
+options(digits=15)
+result <- vec_heliacal_ut(c(jdut[[1]],jdut[[2]]),0,50,10,1013.25,15,50,0.25,25,1,1,1,5,0.8,starname,
+  SE$HELIACAL_RISING,SE$HELFLAG_HIGH_PRECISION+SE$FLG_MOSEPH)
+result
+```
+
+
+6.	At the end of your computations close all files and free up memory:
+```{r}
+swe_close()
+```
