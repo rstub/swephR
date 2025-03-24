@@ -3,7 +3,7 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]--></head><body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-reference-topic">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -34,20 +34,20 @@
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/rstub/swephR/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Section 1: The Ephemeris file related functions</h1>
-    <small class="dont-index">Source: <a href="https://github.com/rstub/swephR/blob/HEAD/R/RcppExports.R" class="external-link"><code>R/RcppExports.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/rstub/swephR/blob/master/R/RcppExports.R" class="external-link"><code>R/RcppExports.R</code></a></small>
     <div class="hidden name"><code>Section1.Rd</code></div>
     </div>
 
@@ -69,26 +69,24 @@
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>path</dt>
+
+
+<dl><dt id="arg-path">path<a class="anchor" aria-label="anchor" href="#arg-path"></a></dt>
 <dd><p>Directory for the sefstars.txt, swe_deltat.txt and jpl files</p></dd>
 
 
-<dt>fname</dt>
+<dt id="arg-fname">fname<a class="anchor" aria-label="anchor" href="#arg-fname"></a></dt>
 <dd><p>JPL ephemeris name as string (JPL ephemeris file, e.g. de431.eph)</p></dd>
 
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    
-
-<p><code>swe_version</code> returns Swiss Ephemeris software version as string</p>
-
-
+    <p><code>swe_version</code> returns Swiss Ephemeris software version as string</p>
 <p><code>swe_get_library_path</code> returns the path in which the executable resides as string</p>
     </div>
     <div id="details">
     <h2>Details</h2>
-    
+
 <dl><dt>swe_set_ephe_path()</dt>
 <dd><p>This is the first function that should be called
        before any other function of the Swiss Ephemeris. Even if you don't
@@ -119,7 +117,7 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="fu">swe_set_ephe_path</span><span class="op">(</span><span class="st">"c:\\sweph\\ephe"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="fu">swe_set_ephe_path</span><span class="op">(</span><span class="st">"c:\\sweph\\ephe"</span><span class="op">)</span> <span class="co"># \dontrun{}</span></span></span>
 <span class="r-in"><span><span class="fu">swe_close</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">swe_set_jpl_file</span><span class="op">(</span><span class="st">"de431.eph"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">swe_version</span><span class="op">(</span><span class="op">)</span></span></span>
@@ -140,15 +138,15 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer></div>
 
-  
 
 
-  
+
+
 
   </body></html>
 

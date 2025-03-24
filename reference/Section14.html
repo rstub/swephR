@@ -3,7 +3,7 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]--></head><body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-reference-topic">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -34,20 +34,20 @@
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/rstub/swephR/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Section 14: House position calculations</h1>
-    <small class="dont-index">Source: <a href="https://github.com/rstub/swephR/blob/HEAD/R/RcppExports.R" class="external-link"><code>R/RcppExports.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/rstub/swephR/blob/master/R/RcppExports.R" class="external-link"><code>R/RcppExports.R</code></a></small>
     <div class="hidden name"><code>Section14.Rd</code></div>
     </div>
 
@@ -72,73 +72,70 @@
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>armc</dt>
+
+
+<dl><dt id="arg-armc">armc<a class="anchor" aria-label="anchor" href="#arg-armc"></a></dt>
 <dd><p>right ascension of the MC as double (deg)</p></dd>
 
 
-<dt>geolat</dt>
+<dt id="arg-geolat">geolat<a class="anchor" aria-label="anchor" href="#arg-geolat"></a></dt>
 <dd><p>geographic latitude as double (deg)</p></dd>
 
 
-<dt>eps</dt>
+<dt id="arg-eps">eps<a class="anchor" aria-label="anchor" href="#arg-eps"></a></dt>
 <dd><p>ecliptic obliquity as double (deg)</p></dd>
 
 
-<dt>hsys</dt>
+<dt id="arg-hsys">hsys<a class="anchor" aria-label="anchor" href="#arg-hsys"></a></dt>
 <dd><p>house method, one-letter case sensitive as char</p></dd>
 
 
-<dt>xpin</dt>
+<dt id="arg-xpin">xpin<a class="anchor" aria-label="anchor" href="#arg-xpin"></a></dt>
 <dd><p>longitude and latitude of the given body as numeric vector (deg)</p></dd>
 
 
-<dt>jd_ut</dt>
+<dt id="arg-jd-ut">jd_ut<a class="anchor" aria-label="anchor" href="#arg-jd-ut"></a></dt>
 <dd><p>UT Julian day number as double (day)</p></dd>
 
 
-<dt>ipl</dt>
+<dt id="arg-ipl">ipl<a class="anchor" aria-label="anchor" href="#arg-ipl"></a></dt>
 <dd><p>Body/planet as integer (<code>SE$SUN=0</code>, <code>SE$MOON=1</code>, ... <code>SE$PLUTO=9</code>)</p></dd>
 
 
-<dt>starname</dt>
+<dt id="arg-starname">starname<a class="anchor" aria-label="anchor" href="#arg-starname"></a></dt>
 <dd><p>Star name as string (<code>""</code> for no star)</p></dd>
 
 
-<dt>ephe_flag</dt>
+<dt id="arg-ephe-flag">ephe_flag<a class="anchor" aria-label="anchor" href="#arg-ephe-flag"></a></dt>
 <dd><p>Ephemeris flag as integer (<code>SE$FLG_JPLEPH=1</code>, <code>SE$FLG_SWIEPH=2</code> or <code>SE$FLG_MOSEPH=4</code>)</p></dd>
 
 
-<dt>imeth</dt>
+<dt id="arg-imeth">imeth<a class="anchor" aria-label="anchor" href="#arg-imeth"></a></dt>
 <dd><p>Gauquelin method as integer (0, 1, 2, 3, 4 or 5)</p></dd>
 
 
-<dt>geopos</dt>
+<dt id="arg-geopos">geopos<a class="anchor" aria-label="anchor" href="#arg-geopos"></a></dt>
 <dd><p>position as numeric vector (longitude, latitude, height)</p></dd>
 
 
-<dt>atpress</dt>
+<dt id="arg-atpress">atpress<a class="anchor" aria-label="anchor" href="#arg-atpress"></a></dt>
 <dd><p>Atmospheric pressure as double (hPa)</p></dd>
 
 
-<dt>attemp</dt>
+<dt id="arg-attemp">attemp<a class="anchor" aria-label="anchor" href="#arg-attemp"></a></dt>
 <dd><p>Atmospheric temperature as double (Celsius)</p></dd>
 
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    
-
-<p><code>swe_house_pos</code> returns a list with named entries: <code>return</code> how far from body's cusp as double,
+    <p><code>swe_house_pos</code> returns a list with named entries: <code>return</code> how far from body's cusp as double,
      and <code>serr</code> error message as string.</p>
-
-
-<p><code>swe_gauquelin_sector</code> returns a list with named entries: <code>return</code> status flag as integer,</p>
-<p></p>
-<p><code>dgsect</code> for Gauquelin sector as double and <code>serr</code> error message as string</p>
+<p><code>swe_gauquelin_sector</code> returns a list with named entries: <code>return</code> status flag as integer,
+     <code>dgsect</code> for Gauquelin sector as double and <code>serr</code> error message as string</p>
     </div>
     <div id="details">
     <h2>Details</h2>
-    
+
 <dl><dt>swe_house_pos()</dt>
 <dd><p>Calculate house position of given body.</p></dd>
 
@@ -187,15 +184,15 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer></div>
 
-  
 
 
-  
+
+
 
   </body></html>
 

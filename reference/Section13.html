@@ -3,7 +3,7 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]--></head><body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-reference-topic">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -34,20 +34,20 @@
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/rstub/swephR/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Section 13: House cusp, ascendant and Medium Coeli calculations</h1>
-    <small class="dont-index">Source: <a href="https://github.com/rstub/swephR/blob/HEAD/R/RcppExports.R" class="external-link"><code>R/RcppExports.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/rstub/swephR/blob/master/R/RcppExports.R" class="external-link"><code>R/RcppExports.R</code></a></small>
     <div class="hidden name"><code>Section13.Rd</code></div>
     </div>
 
@@ -65,53 +65,47 @@
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>jd_ut</dt>
+
+
+<dl><dt id="arg-jd-ut">jd_ut<a class="anchor" aria-label="anchor" href="#arg-jd-ut"></a></dt>
 <dd><p>UT Julian day number as double (day)</p></dd>
 
 
-<dt>cuspflag</dt>
+<dt id="arg-cuspflag">cuspflag<a class="anchor" aria-label="anchor" href="#arg-cuspflag"></a></dt>
 <dd><p>cusp flag as integer (0 [tropical], SE$FLG_SIDEREAL, SE$FLG_RADIANS)</p></dd>
 
 
-<dt>geolat</dt>
+<dt id="arg-geolat">geolat<a class="anchor" aria-label="anchor" href="#arg-geolat"></a></dt>
 <dd><p>geographic latitude as double (deg)</p></dd>
 
 
-<dt>geolon</dt>
+<dt id="arg-geolon">geolon<a class="anchor" aria-label="anchor" href="#arg-geolon"></a></dt>
 <dd><p>geographic longitude as double (deg)</p></dd>
 
 
-<dt>hsys</dt>
+<dt id="arg-hsys">hsys<a class="anchor" aria-label="anchor" href="#arg-hsys"></a></dt>
 <dd><p>house method, one-letter case sensitive as char</p></dd>
 
 
-<dt>armc</dt>
+<dt id="arg-armc">armc<a class="anchor" aria-label="anchor" href="#arg-armc"></a></dt>
 <dd><p>right ascension of the MC as double (deg)</p></dd>
 
 
-<dt>eps</dt>
+<dt id="arg-eps">eps<a class="anchor" aria-label="anchor" href="#arg-eps"></a></dt>
 <dd><p>ecliptic obliquity as double (deg)</p></dd>
 
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    
-
-<p><code>swe_houses_ex</code> returns a list with named entries: <code>return</code> status flag as integer,</p>
-<p></p>
-<p><code>cusps</code> cusps values as double and <code>ascmc</code> ascendent, MCs. etc. as double.</p>
-
-
-<p><code>swe_houses_armc</code> returns a list with named entries: <code>return</code> status flag as integer,</p>
-<p></p>
-<p><code>cusps</code> cusps values as double and <code>ascmc</code> ascendent, MCs, etc. as double.</p>
-
-
+    <p><code>swe_houses_ex</code> returns a list with named entries: <code>return</code> status flag as integer,
+     <code>cusps</code> cusps values as double and <code>ascmc</code> ascendent, MCs. etc. as double.</p>
+<p><code>swe_houses_armc</code> returns a list with named entries: <code>return</code> status flag as integer,
+     <code>cusps</code> cusps values as double and <code>ascmc</code> ascendent, MCs, etc. as double.</p>
 <p><code>swe_house_name</code> returns the house name as string</p>
     </div>
     <div id="details">
     <h2>Details</h2>
-    
+
 <dl><dt>swe_houses_ex()</dt>
 <dd><p>Calculate houses' cusps, ascendant, Medium Coeli (MC), etc.</p></dd>
 
@@ -180,15 +174,15 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer></div>
 
-  
 
 
-  
+
+
 
   </body></html>
 

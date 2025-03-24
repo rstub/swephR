@@ -6,7 +6,7 @@ heliacal phenomenon after a given start date"><!-- mathjax --><script src="https
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]--></head><body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-reference-topic">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -37,20 +37,20 @@ heliacal phenomenon after a given start date"><!-- mathjax --><script src="https
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/rstub/swephR/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Section 6: Eclipses, Risings, Settings, Meridian Transits, Planetary Phenomena</h1>
-    <small class="dont-index">Source: <a href="https://github.com/rstub/swephR/blob/HEAD/R/RcppExports.R" class="external-link"><code>R/RcppExports.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/rstub/swephR/blob/master/R/RcppExports.R" class="external-link"><code>R/RcppExports.R</code></a></small>
     <div class="hidden name"><code>Section6.Rd</code></div>
     </div>
 
@@ -142,273 +142,202 @@ heliacal phenomenon after a given start date</p>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>jd_start</dt>
+
+
+<dl><dt id="arg-jd-start">jd_start<a class="anchor" aria-label="anchor" href="#arg-jd-start"></a></dt>
 <dd><p>Julian day number as double (UT)</p></dd>
 
 
-<dt>ephe_flag</dt>
+<dt id="arg-ephe-flag">ephe_flag<a class="anchor" aria-label="anchor" href="#arg-ephe-flag"></a></dt>
 <dd><p>Ephemeris flag as integer (<code>SE$FLG_JPLEPH=1</code>, <code>SE$FLG_SWIEPH=2</code> or <code>SE$FLG_MOSEPH=4</code>)</p></dd>
 
 
-<dt>geopos</dt>
+<dt id="arg-geopos">geopos<a class="anchor" aria-label="anchor" href="#arg-geopos"></a></dt>
 <dd><p>position as numeric vector (longitude, latitude, height)</p></dd>
 
 
-<dt>backward</dt>
+<dt id="arg-backward">backward<a class="anchor" aria-label="anchor" href="#arg-backward"></a></dt>
 <dd><p>backwards search as boolean (TRUE)</p></dd>
 
 
-<dt>ifltype</dt>
+<dt id="arg-ifltype">ifltype<a class="anchor" aria-label="anchor" href="#arg-ifltype"></a></dt>
 <dd><p>eclipse type as integer (<code>SE$ECL_CENTRAL=1</code>, <code>SE$ECL_NONCENTRAL=2</code>,
 <code>SE$ECL_TOTAL=4</code>, <code>SE$ECL_ANNULAR=8</code>, <code>SE$ECL_PARTIAL=16</code>, <code>SE$ECL_ANNULAR_TOTAL=32</code> or 0 for any)</p></dd>
 
 
-<dt>jd_ut</dt>
+<dt id="arg-jd-ut">jd_ut<a class="anchor" aria-label="anchor" href="#arg-jd-ut"></a></dt>
 <dd><p>UT Julian day number as double (day)</p></dd>
 
 
-<dt>ipl</dt>
+<dt id="arg-ipl">ipl<a class="anchor" aria-label="anchor" href="#arg-ipl"></a></dt>
 <dd><p>Body/planet as integer (<code>SE$SUN=0</code>, <code>SE$MOON=1</code>, ... <code>SE$PLUTO=9</code>)</p></dd>
 
 
-<dt>starname</dt>
+<dt id="arg-starname">starname<a class="anchor" aria-label="anchor" href="#arg-starname"></a></dt>
 <dd><p>Star name as string (<code>""</code> for no star)</p></dd>
 
 
-<dt>rsmi</dt>
+<dt id="arg-rsmi">rsmi<a class="anchor" aria-label="anchor" href="#arg-rsmi"></a></dt>
 <dd><p>Event flag as integer (e.g.: <code>SE$CALC_RISE=1</code>, <code>SE$CALC_SET=2</code>, <code>SE$CALC_MTRANSIT=4</code>, <code>SE$CALC_ITRANSIT=8</code>)</p></dd>
 
 
-<dt>atpress</dt>
+<dt id="arg-atpress">atpress<a class="anchor" aria-label="anchor" href="#arg-atpress"></a></dt>
 <dd><p>Atmospheric pressure as double (hPa)</p></dd>
 
 
-<dt>attemp</dt>
+<dt id="arg-attemp">attemp<a class="anchor" aria-label="anchor" href="#arg-attemp"></a></dt>
 <dd><p>Atmospheric temperature as double (Celsius)</p></dd>
 
 
-<dt>horhgt</dt>
+<dt id="arg-horhgt">horhgt<a class="anchor" aria-label="anchor" href="#arg-horhgt"></a></dt>
 <dd><p>Horizon apparent altitude as double (deg)</p></dd>
 
 
-<dt>jd_et</dt>
+<dt id="arg-jd-et">jd_et<a class="anchor" aria-label="anchor" href="#arg-jd-et"></a></dt>
 <dd><p>ET Julian day number as double (day)</p></dd>
 
 
-<dt>coord_flag</dt>
+<dt id="arg-coord-flag">coord_flag<a class="anchor" aria-label="anchor" href="#arg-coord-flag"></a></dt>
 <dd><p>Coordinate flag as integer (reference system (<code>SE$ECL2HOR=0</code> or <code>SE$EQU2HOR=1</code>))</p></dd>
 
 
-<dt>xin</dt>
+<dt id="arg-xin">xin<a class="anchor" aria-label="anchor" href="#arg-xin"></a></dt>
 <dd><p>Position of body as numeric vector (either ecliptical or equatorial coordinates, depending on coord_flag)</p></dd>
 
 
-<dt>InAlt</dt>
+<dt id="arg-inalt">InAlt<a class="anchor" aria-label="anchor" href="#arg-inalt"></a></dt>
 <dd><p>object's apparent/topocentric altitude as double (depending on calc_flag) (deg)</p></dd>
 
 
-<dt>calc_flag</dt>
+<dt id="arg-calc-flag">calc_flag<a class="anchor" aria-label="anchor" href="#arg-calc-flag"></a></dt>
 <dd><p>Calculation flag as integer (refraction direction (<code>SE$TRUE_TO_APP=0</code> or <code>SE$APP_TO_TRUE=1</code>))</p></dd>
 
 
-<dt>height</dt>
+<dt id="arg-height">height<a class="anchor" aria-label="anchor" href="#arg-height"></a></dt>
 <dd><p>observer's height as double (m)</p></dd>
 
 
-<dt>lapse_rate</dt>
+<dt id="arg-lapse-rate">lapse_rate<a class="anchor" aria-label="anchor" href="#arg-lapse-rate"></a></dt>
 <dd><p>lapse rate as double (K/m)</p></dd>
 
 
-<dt>jd_utstart</dt>
+<dt id="arg-jd-utstart">jd_utstart<a class="anchor" aria-label="anchor" href="#arg-jd-utstart"></a></dt>
 <dd><p>UT Julian day number as double (day)</p></dd>
 
 
-<dt>dgeo</dt>
+<dt id="arg-dgeo">dgeo<a class="anchor" aria-label="anchor" href="#arg-dgeo"></a></dt>
 <dd><p>Geographic position as numeric vector (longitude, latitude, height)</p></dd>
 
 
-<dt>datm</dt>
+<dt id="arg-datm">datm<a class="anchor" aria-label="anchor" href="#arg-datm"></a></dt>
 <dd><p>Atmospheric conditions as numeric vector (pressure, temperature, relative humidity, visibility)</p></dd>
 
 
-<dt>dobs</dt>
+<dt id="arg-dobs">dobs<a class="anchor" aria-label="anchor" href="#arg-dobs"></a></dt>
 <dd><p>Observer description as numeric vector</p></dd>
 
 
-<dt>objectname</dt>
+<dt id="arg-objectname">objectname<a class="anchor" aria-label="anchor" href="#arg-objectname"></a></dt>
 <dd><p>Name of fixed star or planet as string</p></dd>
 
 
-<dt>event_type</dt>
+<dt id="arg-event-type">event_type<a class="anchor" aria-label="anchor" href="#arg-event-type"></a></dt>
 <dd><p>Event type as integer</p></dd>
 
 
-<dt>helflag</dt>
+<dt id="arg-helflag">helflag<a class="anchor" aria-label="anchor" href="#arg-helflag"></a></dt>
 <dd><p>Calculation flag (incl. ephe_flag values) as integer</p></dd>
 
 
-<dt>mag</dt>
+<dt id="arg-mag">mag<a class="anchor" aria-label="anchor" href="#arg-mag"></a></dt>
 <dd><p>Object's visible magnitude (Vmag) as double (-)</p></dd>
 
 
-<dt>AziO</dt>
+<dt id="arg-azio">AziO<a class="anchor" aria-label="anchor" href="#arg-azio"></a></dt>
 <dd><p>Object's azimuth as double (deg)</p></dd>
 
 
-<dt>AltO</dt>
+<dt id="arg-alto">AltO<a class="anchor" aria-label="anchor" href="#arg-alto"></a></dt>
 <dd><p>Object's altitude as double (deg)</p></dd>
 
 
-<dt>AziS</dt>
+<dt id="arg-azis">AziS<a class="anchor" aria-label="anchor" href="#arg-azis"></a></dt>
 <dd><p>Sun's azimuth as double (deg)</p></dd>
 
 
-<dt>AziM</dt>
+<dt id="arg-azim">AziM<a class="anchor" aria-label="anchor" href="#arg-azim"></a></dt>
 <dd><p>Moon's azimuth as double (deg)</p></dd>
 
 
-<dt>AltM</dt>
+<dt id="arg-altm">AltM<a class="anchor" aria-label="anchor" href="#arg-altm"></a></dt>
 <dd><p>Moon's altitude as double (deg)</p></dd>
 
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    
-
-<p><code>swe_sol_eclipse_when_loc</code> returns a list with named entries:</p>
-<p></p>
-<p><code>return</code> status flag as integer, <code>tret</code> for eclipse timing moments as numeric vector,</p>
-<p></p>
-<p><code>attr</code> phenomena during eclipse as numeric vector and <code>serr</code> error message as string</p>
-
-
-<p><code>swe_sol_eclipse_when_glob</code> returns a list with named entries:</p>
-<p></p>
-<p><code>return</code> status flag as integer, <code>tret</code> for eclipse timing moments as numeric vector
+    <p><code>swe_sol_eclipse_when_loc</code> returns a list with named entries:
+     <code>return</code> status flag as integer, <code>tret</code> for eclipse timing moments as numeric vector,
+     <code>attr</code> phenomena during eclipse as numeric vector and <code>serr</code> error message as string</p>
+<p><code>swe_sol_eclipse_when_glob</code> returns a list with named entries:
+     <code>return</code> status flag as integer, <code>tret</code> for eclipse timing moments as numeric vector
      and <code>serr</code> error warning as string</p>
-
-
-<p><code>swe_sol_eclipse_how</code> returns a list with named entries:</p>
-<p></p>
-<p><code>return</code> status flag as integer,</p>
-<p></p>
-<p><code>attr</code> phenomena during eclipse as numeric vector and <code>serr</code> error message as string</p>
-
-
-<p><code>swe_sol_eclipse_where</code> returns a list with named entries:</p>
-<p></p>
-<p><code>return</code> status flag as integer, <code>pathpos</code> geographic path positions as numeric vector,</p>
-<p></p>
-<p><code>attr</code> phenomena during eclipse as numeric vector and <code>serr</code> error message as string</p>
-
-
-<p><code>swe_lun_occult_when_loc</code> returns a list with named entries:</p>
-<p></p>
-<p><code>return</code> status flag as integer, <code>tret</code> for eclipse timing moments as numeric vector,</p>
-<p></p>
-<p><code>attr</code> phenomena during eclipse as numeric vector and <code>serr</code> error message as string</p>
-
-
-<p><code>swe_lun_occult_when_glob</code> returns a list with named entries:</p>
-<p></p>
-<p><code>return</code> status flag as integer, <code>tret</code> for eclipse timing moments as numeric vector,</p>
-<p></p>
-<p><code>attr</code> phenomena during eclipse as numeric vector and <code>serr</code> error message as string</p>
-
-
-<p><code>swe_lun_occult_where</code> returns a list with named entries:</p>
-<p></p>
-<p><code>return</code> status flag as integer, <code>pathpos</code> geographic path positions as numeric vector,</p>
-<p></p>
-<p><code>attr</code> phenomena during eclipse as numeric vector and <code>serr</code> error message as string</p>
-
-
-<p><code>swe_lun_eclipse_when_loc</code> returns a list with named entries:</p>
-<p></p>
-<p><code>return</code> status flag as integer, <code>tret</code> for eclipse timing moments,</p>
-<p></p>
-<p><code>attr</code> phenomena during eclipse and <code>serr</code> error warning as string</p>
-
-
-<p><code>swe_lun_eclipse_how</code> returns a list with named entries:</p>
-<p></p>
-<p><code>return</code> status flag as integer,</p>
-<p></p>
-<p><code>attr</code> phenomena during eclipse as numeric vector and <code>serr</code> error message as string</p>
-
-
-<p><code>swe_lun_eclipse_when</code> returns a list with named entries:</p>
-<p></p>
-<p><code>return</code> status flag as integer, <code>tret</code> for eclipse timing moments as numeric vector
+<p><code>swe_sol_eclipse_how</code> returns a list with named entries:
+     <code>return</code> status flag as integer,
+     <code>attr</code> phenomena during eclipse as numeric vector and <code>serr</code> error message as string</p>
+<p><code>swe_sol_eclipse_where</code> returns a list with named entries:
+     <code>return</code> status flag as integer, <code>pathpos</code> geographic path positions as numeric vector,
+     <code>attr</code> phenomena during eclipse as numeric vector and <code>serr</code> error message as string</p>
+<p><code>swe_lun_occult_when_loc</code> returns a list with named entries:
+     <code>return</code> status flag as integer, <code>tret</code> for eclipse timing moments as numeric vector,
+     <code>attr</code> phenomena during eclipse as numeric vector and <code>serr</code> error message as string</p>
+<p><code>swe_lun_occult_when_glob</code> returns a list with named entries:
+     <code>return</code> status flag as integer, <code>tret</code> for eclipse timing moments as numeric vector,
+     <code>attr</code> phenomena during eclipse as numeric vector and <code>serr</code> error message as string</p>
+<p><code>swe_lun_occult_where</code> returns a list with named entries:
+     <code>return</code> status flag as integer, <code>pathpos</code> geographic path positions as numeric vector,
+     <code>attr</code> phenomena during eclipse as numeric vector and <code>serr</code> error message as string</p>
+<p><code>swe_lun_eclipse_when_loc</code> returns a list with named entries:
+     <code>return</code> status flag as integer, <code>tret</code> for eclipse timing moments,
+     <code>attr</code> phenomena during eclipse and <code>serr</code> error warning as string</p>
+<p><code>swe_lun_eclipse_how</code> returns a list with named entries:
+     <code>return</code> status flag as integer,
+     <code>attr</code> phenomena during eclipse as numeric vector and <code>serr</code> error message as string</p>
+<p><code>swe_lun_eclipse_when</code> returns a list with named entries:
+     <code>return</code> status flag as integer, <code>tret</code> for eclipse timing moments as numeric vector
      and <code>serr</code> error warning as string</p>
-
-
-<p><code>swe_rise_trans_true_hor</code> returns a list with named entries: <code>return</code> status flag as integer,</p>
-<p></p>
-<p><code>tret</code> for azimuth/altitude info as double and <code>serr</code> error message as string</p>
-
-
-<p><code>swe_pheno_ut</code> returns a list with named entries:</p>
-<p></p>
-<p><code>return</code> status fag as integer, <code>attr</code> for phenomenon information as numeric vector
+<p><code>swe_rise_trans_true_hor</code> returns a list with named entries: <code>return</code> status flag as integer,
+     <code>tret</code> for azimuth/altitude info as double and <code>serr</code> error message as string</p>
+<p><code>swe_pheno_ut</code> returns a list with named entries:
+     <code>return</code> status fag as integer, <code>attr</code> for phenomenon information as numeric vector
      and <code>serr</code> error warning as string</p>
-
-
-<p><code>swe_pheno</code> returns a list with named entries:</p>
-<p></p>
-<p><code>return</code> status fag as integer, <code>attr</code> for phenomenon information as numeric vector
+<p><code>swe_pheno</code> returns a list with named entries:
+     <code>return</code> status fag as integer, <code>attr</code> for phenomenon information as numeric vector
      and <code>serr</code> error message as string</p>
-
-
-<p><code>swe_azalt</code> returns a list with named entries:</p>
-<p></p>
-<p><code>xaz</code> for azi/alt info as numeric vector.</p>
-
-
-<p><code>swe_azalt_rev</code> returns a list with named entries:</p>
-<p></p>
-<p><code>xaz</code> for celestial info as numeric vector.</p>
-
-
+<p><code>swe_azalt</code> returns a list with named entries:
+     <code>xaz</code> for azi/alt info as numeric vector.</p>
+<p><code>swe_azalt_rev</code> returns a list with named entries:
+     <code>xaz</code> for celestial info as numeric vector.</p>
 <p><code>swe_refrac</code> returns the (apparent/topocentric) altitude as double (deg)</p>
-
-
-<p><code>swe_refrac_extended</code> returns a list with named entries: <code>return</code> status flag as integer,</p>
-<p></p>
-<p><code>dret</code> refraction results as numeric vector (TopoAlt, AppAlt, refraction)</p>
-
-
-<p><code>swe_heliacal_ut</code> returns a list with named entries <code>return</code> status flag as integer,</p>
-<p></p>
-<p><code>dret</code> heliacal results as numeric vector, and <code>serr</code> error message as string.</p>
-
-
-<p><code>swe_vis_limit_mag</code> returns a list with named entries: <code>return</code> status flag as integer,</p>
-<p></p>
-<p><code>dret</code> limiting magnitude as double and <code>serr</code> error message as string</p>
-
-
-<p><code>swe_heliacal_pheno_ut</code> returns a list with named entries: <code>return</code> status flag as integer</p>
-<p></p>
-<p><code>darr</code> for heliacal details as numeric vector and <code>serr</code> error message as string</p>
-
-
-<p><code>swe_topo_arcus_visionis</code> returns a list with named entries: <code>return</code> status flag as integer,</p>
-<p></p>
-<p><code>darr</code> heliacal details as numeric vector and <code>serr</code> error message as string</p>
-
-
-<p><code>swe_heliacal_angle</code> returns a list with named entries: <code>return</code> status flag as integer,</p>
-<p></p>
-<p><code>dret</code> heliacal angle as numeric vector and <code>serr</code> error message as string</p>
+<p><code>swe_refrac_extended</code> returns a list with named entries: <code>return</code> status flag as integer,
+     <code>dret</code> refraction results as numeric vector (TopoAlt, AppAlt, refraction)</p>
+<p><code>swe_heliacal_ut</code> returns a list with named entries <code>return</code> status flag as integer,
+        <code>dret</code> heliacal results as numeric vector, and <code>serr</code> error message as string.</p>
+<p><code>swe_vis_limit_mag</code> returns a list with named entries: <code>return</code> status flag as integer,
+     <code>dret</code> limiting magnitude as double and <code>serr</code> error message as string</p>
+<p><code>swe_heliacal_pheno_ut</code> returns a list with named entries: <code>return</code> status flag as integer
+     <code>darr</code> for heliacal details as numeric vector and <code>serr</code> error message as string</p>
+<p><code>swe_topo_arcus_visionis</code> returns a list with named entries: <code>return</code> status flag as integer,
+     <code>darr</code> heliacal details as numeric vector and <code>serr</code> error message as string</p>
+<p><code>swe_heliacal_angle</code> returns a list with named entries: <code>return</code> status flag as integer,
+     <code>dret</code> heliacal angle as numeric vector and <code>serr</code> error message as string</p>
     </div>
     <div id="details">
     <h2>Details</h2>
-    
+
 <dl><dt>swe_sol_eclipse_when_loc()</dt>
 <dd><p>Find the next solar eclipse for a given geographic position.</p></dd>
 
-  
+
 </dl><dl><dt>swe_sol_eclipse_when_glob()</dt>
 <dd><p>Find the next solar eclipse on earth.</p></dd>
 
@@ -813,15 +742,15 @@ use the function swe_heliacal_ut().</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer></div>
 
-  
 
 
-  
+
+
 
   </body></html>
 
