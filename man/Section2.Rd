@@ -41,5 +41,5 @@ swe_calc_ut(2458346.82639, SE$MOON, SE$FLG_MOSEPH)
 swe_calc(2458346.82639, SE$MOON, SE$FLG_MOSEPH)
 }
 \seealso{
-Section 2 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+Section 2 in \url{https://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 }

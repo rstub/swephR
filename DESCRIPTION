@@ -24,7 +24,7 @@ Suggests:
     knitr,
     rmarkdown
 Encoding: UTF-8
-URL: https://github.com/rstub/swephR/, https://rstub.github.io/swephR/, http://www.astro.com/swisseph/
+URL: https://github.com/rstub/swephR/, https://rstub.github.io/swephR/, https://www.astro.com/swisseph/
 BugReports: https://github.com/rstub/swephR/issues/
 Additional_repositories: https://rstub.r-universe.dev
 VignetteBuilder: knitr

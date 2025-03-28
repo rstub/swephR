@@ -59,5 +59,5 @@ swe_houses_armc(12, 53, 23, 'B')
 swe_house_name('G')
 }
 \seealso{
-Section 13 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+Section 13 in \url{https://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 }

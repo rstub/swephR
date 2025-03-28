@@ -26,5 +26,5 @@ Function for topocentric planet positions
 swe_set_topo(0,50,10)
 }
 \seealso{
-Section 9 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+Section 9 in \url{https://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 }

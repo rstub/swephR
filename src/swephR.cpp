@@ -23,7 +23,7 @@
 //' @title Section 1: The Ephemeris file related functions
 //' @name Section1
 //' @description Several initialization functions
-//' @seealso Section 1 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+//' @seealso Section 1 in \url{https://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 //' @details
 //' \describe{
 //'   \item{swe_set_ephe_path()}{This is the first function that should be called
@@ -156,7 +156,7 @@ Rcpp::List calc(Rcpp::NumericVector jd_et, Rcpp::IntegerVector ipl, int iflag) {
 //' @title Section 3: Find a planetary or asteroid name
 //' @name Section3
 //' @description Find a planetary or asteroid name.
-//' @seealso Section 3 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+//' @seealso Section 3 in \url{https://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 //' @details
 //' \describe{
 //'   \item{swe_get_planet_name()}{Convert object number into object name.}
@@ -277,7 +277,7 @@ Rcpp::List fixstar2_mag(Rcpp::CharacterVector starname) {
 //' @title Section 5: Kepler elements, nodes, apsides and orbital periods
 //' @name Section5
 //' @description Functions for: determining Kepler elements, nodes, apsides and orbital periods
-//' @seealso Section 5 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+//' @seealso Section 5 in \url{https://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 //' @param jd_et  ET Julian day number as double (day)
 //' @param jd_ut  UT Julian day number as double (day)
 //' @param ipl  Body/planet as integer (\code{SE$SUN=0}, \code{SE$MOON=1}, ... \code{SE$PLUTO=9})
@@ -391,7 +391,7 @@ Rcpp::List orbit_max_min_true_distance(double jd_et, int ipl, int iflag) {
 //' meridian transits for all planets, asteroids, the moon and the fixed stars; computing phase, phase angle, elongation,
 //' apparent diameter, apparent magnitude for the Sun, the Moon, all planets and asteroids; and determining
 //' heliacal phenomenon after a given start date
-//' @seealso Section 6 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+//' @seealso Section 6 in \url{https://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 //' @param jd_et  ET Julian day number as double (day)
 //' @param ipl  Body/planet as integer (\code{SE$SUN=0}, \code{SE$MOON=1}, ... \code{SE$PLUTO=9})
 //' @param starname  Star name as string (\code{""} for no star)
@@ -903,7 +903,7 @@ Rcpp::List heliacal_angle(double jd_ut, Rcpp::NumericVector dgeo, Rcpp::NumericV
 //' @title Section 7: Date and time conversion functions
 //' @name Section7
 //' @description Functions related to calendar and time conversions.
-//' @seealso Section 7 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+//' @seealso Section 7 in \url{https://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 //' @details
 //' \describe{
 //'   \item{swe_julday()}{Convert calendar dates to the astronomical time scale which measures time in Julian day number.}
@@ -1113,7 +1113,7 @@ Rcpp::List lat_to_lmt(double jd_lat, double geolon) {
 //' @title Section 8: Delta T-related functions
 //' @name Section8
 //' @description Functions related to DeltaT and tidal acceleration
-//' @seealso Section 8 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+//' @seealso Section 8 in \url{https://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 //' @param ephe_flag  ephemeris flag as integer (SE$FLG_JPLEPH=1, SE$FLG_SWIEPH=2 or SE$FLG_MOSEPH=4)
 //' @details
 //' \describe{
@@ -1207,7 +1207,7 @@ void set_delta_t_userdef (double delta_t) {
 //' @title Section 9: The function for calculating topocentric planet position
 //' @name Section9
 //' @description Function for topocentric planet positions
-//' @seealso Section 9 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+//' @seealso Section 9 in \url{https://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 //' @details
 //' \describe{
 //' \item{swe_set_topo()}{Set the topocentric location of the observer.}
@@ -1228,7 +1228,7 @@ void set_topo(double longitude, double lat, double height) {
 //' @title Section 10: Sidereal mode functions
 //' @name Section10
 //' @description Functions to support the determination of sidereal information
-//' @seealso Section 10 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+//' @seealso Section 10 in \url{https://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 //' @param iflag Computation flag as integer, many options possible (section 2.3)
 //' @param sid_mode  Sidereal mode as integer
 //' @details
@@ -1305,7 +1305,7 @@ Rcpp::List get_ayanamsa_ex(double jd_et, int iflag){
 //' @title Section 13: House cusp, ascendant and Medium Coeli calculations
 //' @name Section13
 //' @description Calculate house cusp, ascendant, Medium Coeli, etc. calculations
-//' @seealso Section 13 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+//' @seealso Section 13 in \url{https://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 //' @param geolat  geographic latitude as double (deg)
 //' @param geolon  geographic longitude as double (deg)
 //' @param hsys  house method, one-letter case sensitive as char
@@ -1372,7 +1372,7 @@ std::string house_name(char hsys) {
 //' @title Section 14: House position calculations
 //' @name Section14
 //' @description Calculate house position of a given body.
-//' @seealso Section 14 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+//' @seealso Section 14 in \url{https://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 //' @param geolat  geographic latitude as double (deg)
 //' @param hsys  house method, one-letter case sensitive as char
 //' @param armc  right ascension of the MC as double (deg)
@@ -1433,7 +1433,7 @@ Rcpp::List gauquelin_sector(double jd_ut, int ipl, std::string starname, int eph
 //' @title Section 15: Sidereal time
 //' @name Section15
 //' @description Calculate the sidereal time (in degrees).
-//' @seealso Section 15 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+//' @seealso Section 15 in \url{https://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 //' @details
 //' \describe{
 //' \item{swe_sidtime()}{Determine the sidereal time.}
@@ -1453,7 +1453,7 @@ double sidtime(double jd_ut) {
 //' @title Section 16.7: Other functions that may be useful
 //' @name Section16
 //' @description Useful functions
-//' @seealso Section 16.7 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+//' @seealso Section 16.7 in \url{https://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 //' @details
 //' \describe{
 //'   \item{swe_day_of_week()}{Determine day of week from Julian day number.}

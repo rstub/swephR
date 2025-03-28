@@ -1,7 +1,7 @@
 ##' @title Section 2: Computing positions
 ##' @name Section2
 ##' @description Computing positions of planets, asteroids, lunar nodes and apogees using Swiss Ephemeris.
-##' @seealso Section 2 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+##' @seealso Section 2 in \url{https://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 ##' @details
 ##' \describe{
 ##'   \item{swe_calc_ut()}{It compute positions using UT.}

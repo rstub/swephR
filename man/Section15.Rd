@@ -25,5 +25,5 @@ Calculate the sidereal time (in degrees).
 swe_sidtime(2451545)
 }
 \seealso{
-Section 15 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+Section 15 in \url{https://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 }

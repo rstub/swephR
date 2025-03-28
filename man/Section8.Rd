@@ -77,5 +77,5 @@ swe_get_tid_acc()
 swe_set_delta_t_userdef(0.23)
 }
 \seealso{
-Section 8 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+Section 8 in \url{https://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 }

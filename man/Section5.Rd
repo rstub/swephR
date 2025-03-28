@@ -71,5 +71,5 @@ swe_get_orbital_elements(2451545,SE$MOON, SE$FLG_MOSEPH)
 swe_orbit_max_min_true_distance(2451545,SE$MOON, SE$FLG_MOSEPH)
 }
 \seealso{
-Section 5 in \url{http://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
+Section 5 in \url{https://www.astro.com/swisseph/swephprg.htm}. Remember that array indices start in R at 1, while in C they start at 0!
 }
