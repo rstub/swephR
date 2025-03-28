@@ -1,7 +1,8 @@
 PKG_LIBS=-L. -lswe
 PKG_CPPFLAGS=-I./libswe/ -DSTRICT_R_HEADERS
 
-all: $(SHLIB)
+all: $(SHLIB) purify
+
 $(SHLIB): libswe.a
 
 LIBSWE = libswe/swedate.o libswe/swehouse.o libswe/swejpl.o libswe/swemmoon.o \
@@ -9,3 +10,6 @@ LIBSWE = libswe/swedate.o libswe/swehouse.o libswe/swejpl.o libswe/swemmoon.o \
 	 libswe/swephlib.o libswe/swecl.o libswe/swehel.o
 libswe.a: $(LIBSWE)
 	$(AR) rcs libswe.a $(LIBSWE)
+
+purify: $(SHLIB)
+	@rm -rf libswe.a || true
