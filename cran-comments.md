@@ -1,11 +1,8 @@
-## Resubmission
-This is a resubmission. In this version I have:
-
-* Updated the CITATION file to use bibentry()
+This release fixes a new warning found on CRAN. It also adds and updates some included datafiles.
 
 ## Test environments
 
-* local Linux install: R 4.3.0
+* local Linux install: R 4.4.2
 * Ubuntu (on GHA): R oldrel, release, devel
 * Mac OS X (on GHA): R release
 * Windows (on GHA): R release
