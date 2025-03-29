@@ -10,9 +10,11 @@ This release fixes a new warning found on CRAN. It also adds and updates some in
 
 ## R CMD check results
 
-0 errors | 0 warnings | 2 notes
+0 errors | 0 warnings | 0 notes
 
-* The remark to use angle brackets on the URL is a false positive since the
-  URL is part of literal R code.
-* Suggested package swephRdata is only available in the 'additional repository'
-  https://rstub.r-universe.dev
+## Reverse dependencies
+
+We checked 2 reverse dependencies from CRAN, comparing R CMD check results
+across CRAN and dev versions of this package.
+
+ * We saw 0 new problems
